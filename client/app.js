@@ -12,12 +12,13 @@ const app = new Vue({
   ...App
 })
 
-
 Vue.mixin({
+
   beforeDestroy(){
 
 
   }
+
 });
 
 export {app, router, store}

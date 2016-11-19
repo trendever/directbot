@@ -1,6 +1,6 @@
 <template lang="pug">
 
-li.flex-item
+li.single-photo.flex-item(:class="className")
  img(:src="thumb")
 
 </template>
@@ -31,6 +31,6 @@ export default {
     }
 
   },
-	props: ['product']
+	props: ['product', 'class-name']
 }
 </script>

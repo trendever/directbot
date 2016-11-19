@@ -2,6 +2,7 @@
 div.page
 	router-link(to="/chat")
 		photos
+
 </template>
 <script>
 import Counter from '../components/Counter'

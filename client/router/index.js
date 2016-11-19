@@ -12,9 +12,8 @@ let router = new Router({
 
 	scrollBehavior (to, from, savedPosition) {
 
-
-
 	},
+
 	routes: [
 		{
       name: 'home',

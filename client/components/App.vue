@@ -5,9 +5,13 @@ div#app
 
 <script>
 import listen from 'event-listener';
+import * as product from 'services/products';
 
 export default {
+  created(){
 
+
+  }
 }
 </script>
 
