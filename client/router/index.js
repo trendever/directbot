@@ -5,18 +5,24 @@ import ChatList from '../views/ChatList'
 Vue.use(Router)
 
 export default new Router({
+
 	saveScrollPosition: true,
-	mode: 'hash',
-    scrollBehavior (to, from, savedPosition) {
-        console.log("DEBUG")
-        console.log(to)
-        console.log(from)
-        console.log(savedPosition)
-        return { x: 0, y: 100 }
-    },
+
+	mode: 'history',
+
+  scrollBehavior (to, from, savedPosition) {
+
+    localStorage.setItem(`${from.name}.scroll`, window.scrollY);
+
+    let item = `${to.name}.scroll`;
+
+    window.scrollTo(0, +localStorage.getItem(item));
+
+  },
+
 	routes: [
 		{
-          name: 'home',
+      name: 'home',
 		  path: '/',
 		  component: Home
 		},
@@ -25,5 +31,11 @@ export default new Router({
 		  path: '/chat',
 		  component: ChatList
 		},
+    {
+      name: 'chatone',
+      path: '/chatone',
+      component: ChatList
+    }
 	]
 })
+

@@ -4,6 +4,48 @@ div#app
     router-view
 </template>
 
+<script>
+import listen from 'event-listener';
+
+export default {
+  data(){
+    return {
+      oldData: ''
+    }
+  },
+  created(){
+
+    this.saveScroll =  this.saveScroll.bind(this);
+
+  },
+  mounted(){
+
+    //this.listenScroll =  listen( window, 'scroll', this.saveScroll );
+
+  },
+
+  methods: {
+
+    saveScroll(){
+
+      console.log(this.$route)
+
+      this.scroll = window.scrollY;
+
+      localStorage.setItem(`${this.$route.name}.scroll`, this.scroll);
+
+    }
+
+  },
+  watch: {
+    '$router'(){
+      alert(1);
+    }
+  },
+
+}
+</script>
+
 <style>
 body {
   margin: 0;

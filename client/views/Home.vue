@@ -1,8 +1,7 @@
 <template lang="pug">
 div.page
 	router-link(to="/chat")
-		keep-alive 
-			photos(v-keep-scroll-position="")
+		photos
 </template>
 
 <script>
