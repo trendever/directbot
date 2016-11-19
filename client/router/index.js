@@ -7,13 +7,6 @@ Vue.use(Router)
 export default new Router({
 	saveScrollPosition: true,
 	mode: 'hash',
-    scrollBehavior (to, from, savedPosition) {
-        console.log("DEBUG")
-        console.log(to)
-        console.log(from)
-        console.log(savedPosition)
-        return { x: 0, y: 100 }
-    },
 	routes: [
 		{
           name: 'home',
