@@ -4,6 +4,14 @@ div#app
     router-view
 </template>
 
+<script>
+import listen from 'event-listener';
+
+export default {
+
+}
+</script>
+
 <style>
 body {
   margin: 0;
