@@ -1,6 +1,7 @@
 <template lang="pug">
 div#app
-  router-view
+  keep-alive
+    router-view
 </template>
 
 <style>
@@ -16,6 +17,7 @@ body {
 }
 .page {
   text-align: center;
+  overflow: hidden;
 }
 code {
   background-color: #f0f0f0;

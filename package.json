@@ -1,5 +1,5 @@
 {
-  "name": "trendever2",
+  "name": "directbot",
   "version": "0.1.0",
   "description": "instagramm shopping",
   "main": "client/index.js",
@@ -12,12 +12,14 @@
   "author": "A.Lopan",
   "license": "MIT",
   "dependencies": {
+    "jwt-decode": "^2.1.0",
+    "sockjs-client": "^1.1.1",
     "vue": "^2.0.0",
+    "vue-infinite-loading": "^2.0.0-rc.3",
+    "vue-keep-scroll-position": "^0.1.2",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
-    "vuex-router-sync": "^3.0.0",
-    "sockjs-client": "^1.1.1",
-    "jwt-decode": "^2.1.0"
+    "vuex-router-sync": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -36,6 +38,7 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
+    "html-webpack-template": "^5.4.1",
     "postcss-loader": "^0.9.1",
     "postcss-nested": "^1.0.0",
     "progress-bar-webpack-plugin": "^1.9.0",
