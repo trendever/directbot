@@ -4,16 +4,16 @@ import Home from '../views/Home'
 import ChatList from '../views/ChatList'
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
 
 	saveScrollPosition: true,
 
 	mode: 'history',
 
 	scrollBehavior (to, from, savedPosition) {
-		localStorage.setItem(`${from.name}.scroll`, window.scrollY);
-		let item = `${to.name}.scroll`;
-		window.scrollTo(0, +localStorage.getItem(item));
+
+
+
 	},
 	routes: [
 		{
@@ -34,3 +34,16 @@ export default new Router({
 	]
 })
 
+router.beforeEach((to, from, next)=>{
+
+  localStorage.setItem(`${from.name}.scroll`, window.scrollY);
+
+  let item = `${to.name}.scroll`;
+
+  window.scrollTo(0, +localStorage.getItem(item));
+
+  next();
+
+});
+
+export default router;
