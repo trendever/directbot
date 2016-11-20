@@ -5,14 +5,14 @@ let state = {
 
   lists: {
 
-    /*sample:{
+    /*id:{
       products: [],
       scroll: 0
     }*/
 
   },
 
-  list: 'id'
+  list: ''
 
 }
 
@@ -25,19 +25,20 @@ let getters = {
 
   },
 
-  listPhotos(state, getters) {
+  listProducts({ lists, list }) {
 
-    if(state.lists.hasOwnProperty(state.list)) {
+    if(lists.hasOwnProperty(list)) {
 
-      return state.lists[getters.listName].products;
+      return lists[list].products;
+
     }
 
 
   },
 
-  listScroll(state) {
+  listScroll(state, getters) {
 
-    return state.lists[getters.listName].products;
+    return state.lists[getters.listName].scroll;
 
   },
 
@@ -52,7 +53,7 @@ let actions = {
 
   },
 
-  openList({ commit, state }, { id, shop_id = null } ) {
+  openList({ commit, state }, { id, shop_id = null, limit = 30 } ) {
 
     if(state.lists[id]) {
 
@@ -62,7 +63,7 @@ let actions = {
 
     }
 
-    return products.find( { shop_id }).then(data=>{
+    return products.find( { shop_id, limit }).then(data=>{
 
       commit( types.PRODUCTS_ADD_LIST, { id , data } );
 
@@ -76,6 +77,16 @@ let actions = {
 
     commit(types.PRODUCTS_SET_LIST)
 
+  },
+
+  increaseLength({commit}, { shop_id, offset }){
+
+    return products.find( { shop_id, offset } ).then(data=>{
+
+      commit(types.PRODUCTS_INCREASE_LIST_LENGTH, data)
+
+    })
+
   }
 
 }
@@ -85,32 +96,47 @@ let actions = {
 let mutations = {
 
 
-  [types.PRODUCTS_SET_LIST_SCROLL](state, { id, value }){
+  [types.PRODUCTS_SET_LIST_SCROLL]( { lists, list }, value ){
 
-   state.lists[id].scroll = value;
+    if(lists.hasOwnProperty(list)) {
+
+      lists[list].scroll = value;
+
+    }
+
 
   },
 
 
-  [types.PRODUCTS_SET_LIST]( state, value ){
+  [types.PRODUCTS_SET_LIST]( { list }, id ){
 
-   state.list = value;
-
-  },
-
-
-  [types.PRODUCTS_ADD_LIST](state, { id, data }) {
-
-    state.lists[id] = {};
-
-    state.lists[id].products = data;
+    state.list = id;
 
   },
 
 
-  [types.PRODUCTS_CLOSE_LIST]( state ) {
+  [types.PRODUCTS_ADD_LIST]({ lists }, { id, data }) {
 
-    state.list = '';
+    lists[id] = {};
+
+    lists[id].products = data;
+
+  },
+
+
+  [types.PRODUCTS_CLOSE_LIST]( { list } ) {
+
+    list = '';
+
+  },
+
+  [types.PRODUCTS_INCREASE_LIST_LENGTH]( { lists, list }, products) {
+
+    products.forEach(item=>{
+
+      lists[list].products.push(item);
+
+    })
 
   }
 

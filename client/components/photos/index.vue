@@ -1,7 +1,7 @@
 <template lang="pug">
-div.photos
-  ul.photos-flex(:style="{ paddingTop: padding + 'px'}")
-    template(v-for="photo, index in listPhotos")
+.photos
+  ul.photos-flex(:style="{ paddingTop: space + 'px'}")
+    template(v-for="photo, index in listProducts")
       single(:product="photo.data", :class-name="'p-item-' + index")
 </template>
 
@@ -15,6 +15,7 @@ import single from './single.vue';
 import * as products from 'services/products.js';
 
 export default {
+
   props:{
     shopId: {
       default:null
@@ -26,20 +27,14 @@ export default {
   data(){
     return {
       windowListener: {},
-      padding: 0,
+      space: 0,
       Off: false,
       offset: 0,
       list: ''
     }
   },
-  mounted(){
 
-
-    this.simpleScroll().then(()=>{
-
-      console.log(this.listPhotos);
-
-    })
+  created(){
 
     if(this.infinite) {
 
@@ -47,12 +42,15 @@ export default {
 
     }
 
+    this.simpleScroll()
+
   },
 
   methods:{
 
     ...mapActions([
 
+      'increaseLength',
       'openList',
       'closeList',
       'setScroll'
@@ -61,10 +59,41 @@ export default {
 
     simpleScroll(){
 
-      return this.openList({
+      this.openList({
 
         id: this.$route.params.id ? +this.$route.params.id : 'home',
+
         shop_id: this.$route.params.id ? +this.$route.params.id : null
+
+      }).then(()=>{
+
+        this.windowListener = listen( window , 'scroll', ()=> {
+
+          this.setScroll(window.scrollY);
+
+          if(this.off) return;
+
+          if(window.scrollY > window.innerHeight/2) {
+
+            this.off = true;
+
+            this.offset += 20;
+
+            this.increaseLength( {
+
+              shop_id: this.$route.params.id ? +this.$route.params.id : null,
+
+              offset: this.offset
+
+            }).then(()=>{
+
+              this.off = false;
+
+            })
+
+          }
+
+        })
 
       })
 
@@ -189,7 +218,7 @@ export default {
 
     ...mapGetters([
       'listName',
-      'listPhotos',
+      'listProducts',
       'listScroll'
     ])
 

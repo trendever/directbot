@@ -1,7 +1,6 @@
 <template lang="pug">
 div.page
-	router-link(to="/chat")
-		photos(:shop-id="$route.query.shopid ? +$route.query.shopid : null")
+	photos
 
 </template>
 <script>
