@@ -26,9 +26,9 @@ let router = new Router({
 		  component: ChatList
 		},
     {
-      name: 'chatone',
-      path: '/chatone',
-      component: ChatList
+      name: 'profile',
+      path: '/:id',
+      component: require('../views/Profile')
     }
 	]
 })

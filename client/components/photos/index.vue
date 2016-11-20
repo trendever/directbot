@@ -1,125 +1,185 @@
 <template lang="pug">
 div.photos
   ul.photos-flex(:style="{ paddingTop: padding + 'px'}")
-    template(v-for="photo, index in getPhotos")
+    template(v-for="photo, index in listPhotos")
       single(:product="photo.data", :class-name="'p-item-' + index")
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
+
 import listen from 'event-listener';
 import single from './single.vue';
 import * as products from 'services/products.js';
 
 export default {
+  props:{
+    shopId: {
+      default:null
+    },
+    infinite: {
+      default: false
+    }
+  },
   data(){
     return {
-      photos: [],
-      scroll: 0,
       windowListener: {},
       padding: 0,
-      off: false,
+      Off: false,
       offset: 0,
-      idStart: 0,
-      idEnd: 0
-
+      list: ''
     }
   },
   mounted(){
 
-    let photos = this.$store.state.photos;
 
-    if(photos.padding) {
+    this.simpleScroll().then(()=>{
 
-      this.padding = this.$store.state.photos.padding;
+      console.log(this.listPhotos);
+
+    })
+
+    if(this.infinite) {
+
+      this.infiniteScroll();
 
     }
 
-    if( this.$store.state.photos.list.length) {
+  },
 
-    } else {
+  methods:{
 
-      products.find({limit:50, offset: this.offset}).then(data=>{
+    ...mapActions([
 
-        photos.list = data;
+      'openList',
+      'closeList',
+      'setScroll'
 
-        photos.idStart = 0;
+    ]),
 
-        photos.idEnd = data.length;
+    simpleScroll(){
+
+      return this.openList({
+
+        id: this.$route.params.id ? +this.$route.params.id : 'home',
+        shop_id: this.$route.params.id ? +this.$route.params.id : null
 
       })
 
-    }
+    },
 
-    this.windowListener = listen(window, 'scroll',()=>{
+    infiniteScroll(){
 
-      localStorage.setItem(`${this.$route.name}.scroll`, window.scrollY);
+/*    let photos = this.$store.state.photos.lists[this.list];
 
-      let direction = window.scrollY - this.oldScroll < 0 ? false : true;
+      if(photos.padding) {
 
-      this.oldScroll = window.scrollY;
+        this.padding = photos.padding;
 
-      let { scrollTop, scrollHeight } = document.body;
+      }
 
-      if(this.off) return;
+      if(localStorage.getItem('scrollCnt')){
 
-      if(direction) {
-
-        let xItem = document.querySelector(`.p-item-${Math.ceil(this.getPhotos.length/3)}`);
-        xItem.style.background = 'red';
-
-        if( xItem.getBoundingClientRect().bottom < 0 ) {
-
-          this.off = true;
-          this.offset += 20;
-
-          products.find({limit: 20, offset: this.offset }).then(data=>{
-
-            data.forEach(item=>{
-
-              this.$store.state.photos.list.push(item)
-
-            });
-
-            photos.idStart += 10;
-
-            photos.idEnd += 10;
-
-            this.padding += xItem.offsetHeight * 5
-
-            this.off = false;
-
-          })
+        let { idStart, idEnd } = localStorage.getItem('scrollCnt');
 
 
 
-        }
-      } else {
+      }
+
+      if( photos.list.length) {
+
+      }
+
+      if( !photos.list.length ) {
+
+        products.find({limit:50, offset: this.offset, shop_id: this.shopId }).then(data=>{
+
+          photos.list = data;
+
+          photos.idStart = 0;
+
+          photos.idEnd = data.length;
+
+        })
+
+      }
+
+      this.windowListener = listen(window, 'scroll',()=>{
+
+        localStorage.setItem(`${this.$route.name}.scroll`, window.scrollY);
+
+        let direction = window.scrollY - this.oldScroll < 0 ? false : true;
+
+        this.oldScroll = window.scrollY;
+
+        let { scrollTop, scrollHeight } = document.body;
+
+        if(this.off) return;
+
+        if(direction) {
 
           let xItem = document.querySelector(`.p-item-${Math.ceil(this.getPhotos.length/3)}`);
-
           xItem.style.background = 'red';
 
-          if( xItem.getBoundingClientRect().top > window.innerHeight ) {
+          if( xItem.getBoundingClientRect().bottom < 0 ) {
 
-            if(photos.idEnd < 40) {
+            this.off = true;
+            this.offset += 20;
 
-              return;
+            products.find({limit: 20, offset: this.offset, shop_id: this.shopId  }).then(data=>{
 
-            }
+              data.forEach(item=>{
 
-            photos.idStart -= 10;
+                this.$store.state.photos.list.push(item)
 
-            photos.idEnd -= 10;
+              });
 
-            this.padding -= Math.abs(xItem.offsetHeight * 5)
+              photos.idStart += 10;
+
+              photos.idEnd += 10;
+
+              this.padding += xItem.offsetHeight * 5
+
+              this.off = false;
+
+            })
+
+
 
           }
+        } else {
+
+            let xItem = document.querySelector(`.p-item-${Math.ceil(this.getPhotos.length/3)}`);
+
+            xItem.style.background = 'red';
+
+            if( xItem.getBoundingClientRect().top > window.innerHeight ) {
+
+              if(photos.idEnd < 40) {
+
+                return;
+
+              }
+
+              photos.idStart -= 10;
+
+              photos.idEnd -= 10;
+
+              this.padding -= Math.abs(xItem.offsetHeight * 5)
+
+            }
         }
-      })
+      })*/
+    }
   },
+
   beforeDestroy(){
 
-    this.$store.state.photos.padding = this.padding;
+    //let { idStart, idEnd } = this.$store.state.photos.lists[this.list];
+
+    //localStorage.setItem(`${ this.$route.name }.scrollCnt`, { idStart, idEnd, padding: this.padding })
 
     this.windowListener.remove();
 
@@ -127,25 +187,18 @@ export default {
 
   computed: {
 
-    getPhotos(){
-
-      let photos = this.$store.state.photos;
-
-      return this.$store.state.photos.list.slice(photos.idStart, photos.idEnd);
-
-    }
-
-  },
-  watch:{
-    photos(value){
-
-
-    }
+    ...mapGetters([
+      'listName',
+      'listPhotos',
+      'listScroll'
+    ])
 
   },
   components:{
+
     single
-  }
+
+  },
 }
 </script>
 

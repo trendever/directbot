@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import products from './products'
 
 Vue.use(Vuex)
 
@@ -7,15 +8,7 @@ const state = {
   count: 0,
   user:{
     isAuth: false
-  },
-  photos:{
-
-    list:[],
-    idStart: 0,
-    idEnd: 0
-
   }
-
 }
 
 const mutations = {
@@ -35,7 +28,10 @@ const actions = {
 const store = new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  modules: {
+    products
+  }
 })
 
 export default store

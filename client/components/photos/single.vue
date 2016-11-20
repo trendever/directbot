@@ -1,7 +1,9 @@
 <template lang="pug">
-
 li.single-photo.flex-item(:class="className")
- img(:src="thumb")
+
+  router-link(:to="{name: 'profile', params: { id: product.shop.id } }")
+    img(:src="thumb")
+
 
 </template>
 
