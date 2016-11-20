@@ -60,12 +60,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: config.title,
-      appMountId: 'app',
-      template: require('html-webpack-template'),
-      filename: _.outputIndexPath,
-      meta: {
-        viewport: 'width=device-width, initial-scale=1, user-scalable=no'
-      },
+      template: __dirname + '/index.html',
+      filename: _.outputIndexPath
     })
   ],
   target: _.target
