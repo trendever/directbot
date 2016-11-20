@@ -7,7 +7,15 @@ const state = {
   count: 0,
   user:{
     isAuth: false
+  },
+  photos:{
+
+    list:[],
+    idStart: 0,
+    idEnd: 0
+
   }
+
 }
 
 const mutations = {

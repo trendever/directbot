@@ -1,7 +1,7 @@
 <template lang="pug">
 div.photos
   ul.photos-flex(:style="{ paddingTop: padding + 'px'}")
-    template(v-for="photo, index in photos")
+    template(v-for="photo, index in getPhotos")
       single(:product="photo.data", :class-name="'p-item-' + index")
 </template>
 
@@ -17,49 +17,131 @@ export default {
       scroll: 0,
       windowListener: {},
       padding: 0,
-      off: false
+      off: false,
+      offset: 0,
+      idStart: 0,
+      idEnd: 0
 
     }
   },
   mounted(){
 
-    products.find({limit:50, offset: this.offset}).then(data=>{
+    let photos = this.$store.state.photos;
 
-      this.photos = data;
+    if(photos.padding) {
 
-    })
-
-    this.windowListener = listen(window, 'scroll',()=>{
-
-      console.log(this.off)
-
-      if(this.off) return;
-
-      let { scrollTop, scrollHeight } = document.body;
-
-      if( scrollTop >  scrollHeight / 2 ) {
-
-        this.off = true;
-
-        products.find({limit:2, offset: this.photos.length + this.count}).then(data=>{
-
-          this.photos = data;
-
-        }).then(()=>{
-
-          setTimeout(()=>{
-            this.off = false;
-          },200)
-
-        })
+      this.padding = this.$store.state.photos.padding;
 
     }
 
+    if( this.$store.state.photos.list.length) {
 
-    })
+    } else {
+
+      products.find({limit:50, offset: this.offset}).then(data=>{
+
+        photos.list = data;
+
+        photos.idStart = 0;
+
+        photos.idEnd = data.length;
+
+      })
+
+    }
+
+    this.windowListener = listen(window, 'scroll',()=>{
+
+      localStorage.setItem(`${this.$route.name}.scroll`, window.scrollY);
+
+      let direction = window.scrollY - this.oldScroll < 0 ? false : true;
+
+      this.oldScroll = window.scrollY;
+
+      let { scrollTop, scrollHeight } = document.body;
+
+      if(this.off) return;
+
+      if(direction) {
+
+        let xItem = document.querySelector(`.p-item-${Math.ceil(this.getPhotos.length/3)}`);
+        xItem.style.background = 'red';
+
+        if( xItem.getBoundingClientRect().bottom < 0 ) {
+
+          this.off = true;
+          this.offset += 20;
+
+          products.find({limit: 20, offset: this.offset }).then(data=>{
+
+            data.forEach(item=>{
+
+              this.$store.state.photos.list.push(item)
+
+            });
+
+            photos.idStart += 10;
+
+            photos.idEnd += 10;
+
+            this.padding += xItem.offsetHeight * 5
+
+            this.off = false;
+
+          })
+
+
+
+        }
+      } else {
+
+          let xItem = document.querySelector(`.p-item-${Math.ceil(this.getPhotos.length/3)}`);
+
+          xItem.style.background = 'red';
+
+          if( xItem.getBoundingClientRect().top > window.innerHeight ) {
+
+            if(photos.idEnd < 40) {
+
+              return;
+
+            }
+
+            photos.idStart -= 10;
+
+            photos.idEnd -= 10;
+
+            this.padding -= Math.abs(xItem.offsetHeight * 5)
+
+          }
+        }
+      })
   },
   beforeDestroy(){
+
+    this.$store.state.photos.padding = this.padding;
+
     this.windowListener.remove();
+
+  },
+
+  computed: {
+
+    getPhotos(){
+
+      let photos = this.$store.state.photos;
+
+      return this.$store.state.photos.list.slice(photos.idStart, photos.idEnd);
+
+    }
+
+  },
+  watch:{
+    photos(value){
+
+
+    }
+
   },
   components:{
     single
