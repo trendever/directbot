@@ -1,5 +1,6 @@
 <template lang="pug">
 #profile
+  h1 PROFILE
   photos(:shop-id="+$route.params.id || null")
 </template>
 

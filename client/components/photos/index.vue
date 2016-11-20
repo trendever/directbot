@@ -2,7 +2,7 @@
 .photos
   ul.photos-flex(:style="{ paddingTop: space + 'px'}")
     template(v-for="photo, index in listProducts")
-      single(:product="photo.data", :class-name="'p-item-' + index")
+      single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index")
 </template>
 
 <script>
@@ -29,20 +29,35 @@ export default {
       windowListener: {},
       space: 0,
       Off: false,
-      offset: 0,
-      list: ''
+      offset: 0
     }
   },
 
   created(){
 
-    if(this.infinite) {
-
-      this.infiniteScroll();
-
-    }
-
     this.simpleScroll()
+
+  },
+
+  mounted(){
+
+    this.$nextTick(()=>{
+
+      this.scrollTo(this.listScroll);
+
+    });
+
+  },
+
+  computed: {
+
+    ...mapGetters([
+
+      'listId',
+      'listProducts',
+      'listScroll'
+
+    ])
 
   },
 
@@ -61,9 +76,9 @@ export default {
 
       this.openList({
 
-        id: this.$route.params.id ? +this.$route.params.id : 'home',
+        listId: this.shopId ? this.shopId : 'home',
 
-        shop_id: this.$route.params.id ? +this.$route.params.id : null
+        shop_id: this.shopId ? this.shopId : null
 
       }).then(()=>{
 
@@ -73,7 +88,7 @@ export default {
 
           if(this.off) return;
 
-          if(window.scrollY > window.innerHeight/2) {
+          if(window.scrollY > document.body.scrollHeight/1.29) {
 
             this.off = true;
 
@@ -81,13 +96,15 @@ export default {
 
             this.increaseLength( {
 
-              shop_id: this.$route.params.id ? +this.$route.params.id : null,
+              shop_id: this.shopId ? this.shopId : null,
 
               offset: this.offset
 
             }).then(()=>{
 
               this.off = false;
+
+              this.scrollTo(this.listScroll);
 
             })
 
@@ -96,6 +113,11 @@ export default {
         })
 
       })
+
+    },
+    scrollTo(value){
+
+      window.scrollTo(0,value);
 
     },
 
@@ -212,17 +234,10 @@ export default {
 
     this.windowListener.remove();
 
-  },
-
-  computed: {
-
-    ...mapGetters([
-      'listName',
-      'listProducts',
-      'listScroll'
-    ])
+    //this.closeList();
 
   },
+
   components:{
 
     single

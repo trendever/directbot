@@ -12,33 +12,39 @@ let state = {
 
   },
 
-  list: ''
+  listId: ''
 
 }
 
 
 let getters = {
 
-  listName(state) {
+  listId(state) {
 
     return state.list;
 
   },
 
-  listProducts({ lists, list }) {
+  listProducts(state) {
 
-    if(lists.hasOwnProperty(list)) {
+    if(state.lists.hasOwnProperty(state.listId)) {
 
-      return lists[list].products;
+      return state.lists[state.listId].products;
 
     }
 
 
   },
 
-  listScroll(state, getters) {
+  listScroll(state) {
 
-    return state.lists[getters.listName].scroll;
+    if(state.lists.hasOwnProperty(state.listId)) {
+
+      return state.lists[state.listId].scroll;
+
+    }
+
+    return null;
 
   },
 
@@ -47,17 +53,17 @@ let getters = {
 
 let actions = {
 
-  setScroll({ commit }, count){
+  setScroll({ commit }, count) {
 
     commit( types.PRODUCTS_SET_LIST_SCROLL, count)
 
   },
 
-  openList({ commit, state }, { id, shop_id = null, limit = 30 } ) {
+  openList({ commit, state }, { listId, shop_id = null, limit = 30 } ) {
 
-    if(state.lists[id]) {
+    if(state.lists[listId]) {
 
-      commit( types.PRODUCTS_SET_LIST, id );
+      commit( types.PRODUCTS_SET_LIST, listId );
 
       return;
 
@@ -65,9 +71,9 @@ let actions = {
 
     return products.find( { shop_id, limit }).then(data=>{
 
-      commit( types.PRODUCTS_ADD_LIST, { id , data } );
+      commit( types.PRODUCTS_ADD_LIST, { listId , data } );
 
-      commit( types.PRODUCTS_SET_LIST, id );
+      commit( types.PRODUCTS_SET_LIST, listId );
 
     })
 
@@ -75,7 +81,7 @@ let actions = {
 
   closeList({commit}){
 
-    commit(types.PRODUCTS_SET_LIST)
+    commit(types.PRODUCTS_CLOSE_LIST)
 
   },
 
@@ -96,45 +102,55 @@ let actions = {
 let mutations = {
 
 
-  [types.PRODUCTS_SET_LIST_SCROLL]( { lists, list }, value ){
+  [types.PRODUCTS_SET_LIST_SCROLL]( state, value ){
 
-    if(lists.hasOwnProperty(list)) {
+    if(state.lists.hasOwnProperty(state.listId)) {
 
-      lists[list].scroll = value;
+      state.lists[state.listId].scroll = value;
 
     }
 
+  },
+
+
+  [types.PRODUCTS_SET_LIST]( state, listId ){
+
+    state.listId = listId;
 
   },
 
 
-  [types.PRODUCTS_SET_LIST]( { list }, id ){
+  [types.PRODUCTS_ADD_LIST](state, { listId, data }) {
 
-    state.list = id;
+    state.lists = Object.assign(
 
-  },
+      {},
 
+      state.lists,{
 
-  [types.PRODUCTS_ADD_LIST]({ lists }, { id, data }) {
+        [listId]: {
 
-    lists[id] = {};
+          products : data,
+          scroll: 0
 
-    lists[id].products = data;
+        }
 
-  },
-
-
-  [types.PRODUCTS_CLOSE_LIST]( { list } ) {
-
-    list = '';
+    } );
 
   },
 
-  [types.PRODUCTS_INCREASE_LIST_LENGTH]( { lists, list }, products) {
+
+  [types.PRODUCTS_CLOSE_LIST]( state ) {
+
+    state.listId = null;
+
+  },
+
+  [types.PRODUCTS_INCREASE_LIST_LENGTH]( { lists, listId }, products) {
 
     products.forEach(item=>{
 
-      lists[list].products.push(item);
+      lists[listId].products.push(item);
 
     })
 
