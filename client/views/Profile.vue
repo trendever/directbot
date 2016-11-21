@@ -1,6 +1,6 @@
 <template lang="pug">
 #profile
-  h1 PROFILE
+  h1#test PROFILE
   photos(:shop-id="+$route.params.id || null")
 </template>
 
@@ -18,31 +18,4 @@ export default {
 }
 </script>
 
-
-<style lang="postcss">
-.chat-list {
-
-    &.page {
-
-      position: relative;
-      height: 6000px
-
-    }
-
-    .home {
-
-      position: fixed;
-      top: 50%;
-
-    }
-
-    .chatone {
-
-      position: fixed;
-      top: 40%;
-
-    }
-
-}
-
-</style>
+<style src='./css/profile.pcss'></style>
