@@ -7,11 +7,11 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import listen from 'event-listener';
 import single from './single.vue';
+
 import * as products from 'services/products.js';
 
 export default {

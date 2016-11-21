@@ -28,7 +28,7 @@ let router = new Router({
     {
       name: 'profile',
       path: '/:id',
-      component: require('../views/Profile')
+      component: require('../views/profile/index.vue')
     }
 	]
 })

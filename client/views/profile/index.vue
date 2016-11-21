@@ -22,8 +22,7 @@
           .insta-link-text ссылка на эту витрину
           .insta-link(:ref="instaLink") {{ getUserName }}.drbt.io
 
-        button.turn-on-bot-btn-desk.blue-btn(
-          v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
+        button.turn-on-bot-btn-desk.blue-btn( v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
         button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
 
         template(v-if="loaded")
@@ -52,15 +51,23 @@
 </template>
 
 <script>
-import photos from '../components/photos/index';
+import photos from 'components/photos/index';
 import headerComponent from 'components/header';
 
-export default {
-  mounted(){
+import { mapActions, mapGetters } from 'vuex';
 
+export default {
+
+  created(){
+    this.openProfile({instagram_name: this.$route.params.id})
 
   },
+  methods:{
+    ...mapActions([
+      'openProfile'
+    ])
 
+  },
   components: {
     photos,
     headerComponent
