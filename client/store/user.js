@@ -23,7 +23,19 @@ let getters = {
 
   authUserId(){
     return state.authId;
+  },
+
+  userShopId(){
+
+    if(state.all[state.id].supplier_of !== null){
+
+      return state.all[state.id].supplier_of[0];
+
+    }
+
+    return null;
   }
+
 }
 
 
@@ -34,6 +46,7 @@ let actions = {
     if(state.all.hasOwnProperty(state.id)){
 
       commit(types.USER_SET_PROFILE);
+
       return;
 
     }
@@ -42,7 +55,7 @@ let actions = {
 
       commit(types.USER_ADD_PROFILE, data);
 
-      commit(types.USER_SET_PROFILE);
+      commit(types.USER_SET_PROFILE, data.id);
 
     })
 
@@ -52,9 +65,9 @@ let actions = {
 
 let mutations = {
 
-  [types.USER_ADD_PROFILE](state, { id, data }) {
+  [types.USER_ADD_PROFILE](state, data ) {
 
-    state.all = Object.assign({}, state.all, {[id]: data})
+    state.all = Object.assign({}, state.all, {[data.id]: data})
 
   },
 

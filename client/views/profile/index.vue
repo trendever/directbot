@@ -1,31 +1,30 @@
 <template lang="pug">
 #profile
   header-component
-  .section.top.bottom.db-bottom
-    .section__content(v-cloak)
-      .profile
-        .profile_info
 
-          .profile_info_img()
-            img(:src="getUserPhoto")
-          .profile_info_about(v-if="false")
-            span.profile_info_about_type Магазин #[br(v-if="isMobile")]
-            span.profile_info_about_location  Красноярск #[br(v-if="isMobile")]
-            span.profile_info_about_work-time  10.00-21.00  #[br(v-if="isMobile")]
-            span.profile_info_about_posts-quantity  951 постов
+    .profile
+      .profile_info
 
-        .profile_desc.less(v-on:click="this.isMoreClass = !this.isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
-          .profile_desc_t(v-if="getSlogan") {{getSlogan}}
-          .profile_desc_caption(v-if="getUserCaption", v-html="getUserCaption")
+        .profile_info_img
+          img(:src="getUserPhoto")
+        .profile_info_about(v-if="false")
+          span.profile_info_about_type Магазин #[br(v-if="isMobile")]
+          span.profile_info_about_location  Красноярск #[br(v-if="isMobile")]
+          span.profile_info_about_work-time  10.00-21.00  #[br(v-if="isMobile")]
+          span.profile_info_about_posts-quantity  951 постов
 
-        .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
-          .insta-link-text ссылка на эту витрину
-          .insta-link(:ref="instaLink") {{ getUserName }}.drbt.io
+      .profile_desc.less(v-on:click="this.isMoreClass = !this.isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
+        .profile_desc_t(v-if="getSlogan") {{getSlogan}}
+        .profile_desc_caption(v-if="getUserCaption", v-html="getUserCaption")
 
-        button.turn-on-bot-btn-desk.blue-btn( v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
-        button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
+      .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
+        .insta-link-text ссылка на эту витрину
+        .insta-link(:ref="instaLink") {{ getUserName }}.drbt.io
 
-        template(v-if="loaded")
+      button.turn-on-bot-btn-desk.blue-btn( v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
+      button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
+
+      template(v-if="loaded")
 
         .profile_inactive(v-if="false")
           //-img(src="./img/empty-directbot-profile.png")
@@ -44,9 +43,9 @@
           span.save Directbot #[br(v-if="!isMobile")]
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
-        .btn-bot-connect ПОДКЛЮЧИТЬ БОТА
+      .btn-bot-connect ПОДКЛЮЧИТЬ БОТА
 
-  photos(:shop-id="+$route.params.id || null")
+  photos(:shop-id="userShopId", :list-id="userShopId")
 
 </template>
 
@@ -58,9 +57,19 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
 
-  created(){
-    this.openProfile({instagram_name: this.$route.params.id})
+  beforeRouteEnter(to, from, next){
 
+    next(vm => {
+
+      vm.openProfile({instagram_name: to.params.id})
+
+    })
+
+  },
+  computed: {
+    ...mapGetters([
+      'userShopId'
+    ])
   },
   methods:{
     ...mapActions([
