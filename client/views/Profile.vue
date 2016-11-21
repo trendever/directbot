@@ -1,11 +1,13 @@
 <template lang="pug">
 #profile
+  header-component
   h1 PROFILE
   photos(:shop-id="+$route.params.id || null")
 </template>
 
 <script>
 import photos from '../components/photos/index';
+import headerComponent from 'components/header';
 export default {
   mounted(){
 
@@ -13,7 +15,8 @@ export default {
 
   },
   components: {
-    photos
+    photos,
+    headerComponent
   },
 }
 </script>
