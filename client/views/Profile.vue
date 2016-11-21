@@ -1,19 +1,66 @@
 <template lang="pug">
 #profile
   header-component
-  h1 PROFILE
+  .section.top.bottom.db-bottom
+    .section__content(v-cloak)
+      .profile
+        .profile_info
+
+          .profile_info_img()
+            img(:src="getUserPhoto")
+          .profile_info_about(v-if="false")
+            span.profile_info_about_type Магазин #[br(v-if="isMobile")]
+            span.profile_info_about_location  Красноярск #[br(v-if="isMobile")]
+            span.profile_info_about_work-time  10.00-21.00  #[br(v-if="isMobile")]
+            span.profile_info_about_posts-quantity  951 постов
+
+        .profile_desc.less(v-on:click="this.isMoreClass = !this.isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
+          .profile_desc_t(v-if="getSlogan") {{getSlogan}}
+          .profile_desc_caption(v-if="getUserCaption", v-html="getUserCaption")
+
+        .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
+          .insta-link-text ссылка на эту витрину
+          .insta-link(:ref="instaLink") {{ getUserName }}.drbt.io
+
+        button.turn-on-bot-btn-desk.blue-btn(
+          v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
+        button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
+
+        template(v-if="loaded")
+
+        .profile_inactive(v-if="false")
+          //-img(src="./img/empty-directbot-profile.png")
+          span.empty Деактивирован
+          span #[br(v-if="isMobile")]мониторю 3 поста #[br] отправил 5 сообщений
+
+        .profile_active
+          //-img(src="./img/active-directbot-profile.png", v-if="isMobile")
+          //-img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
+          .text-box
+            p.bold Активирован #[br]
+            p.light мониторю 3 поста #[br] отправил 5 сообщений
+
+        .profile_no-goods-banner(v-if="false")
+          span После подключения #[br(v-if="isMobile")]
+          span.save Directbot #[br(v-if="!isMobile")]
+          span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
+
+        .btn-bot-connect ПОДКЛЮЧИТЬ БОТА
+
   photos(:shop-id="+$route.params.id || null")
+
 </template>
 
 <script>
 import photos from '../components/photos/index';
 import headerComponent from 'components/header';
+
 export default {
   mounted(){
 
-    this.$emit('setList',true);
 
   },
+
   components: {
     photos,
     headerComponent
@@ -23,28 +70,32 @@ export default {
 
 
 <style lang="postcss">
-.chat-list {
 
-    &.page {
+@define-mixin button__sample $background: #FFDE1E, $bottom: 98px {
 
-      position: relative;
-      height: 6000px
+    cursor: pointer;
+    color: #12302d;
+    font-family: $font__family__light;
+    font-size: 36px;
+    text-align: center;
+    line-height: 100px;
+    position:fixed;
+    left: 0;
+    right: 0;
+    bottom: $bottom;
+    background: $background;
+    height: 100px;
+    z-index: 100;
 
-    }
+}
 
-    .home {
+#profile {
 
-      position: fixed;
-      top: 50%;
+  .btn-bot-connect {
 
-    }
+    @mixin button__sample
 
-    .chatone {
-
-      position: fixed;
-      top: 40%;
-
-    }
+  }
 
 }
 

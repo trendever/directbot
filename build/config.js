@@ -21,6 +21,8 @@ module.exports = {
       browsers: ['last 2 versions', 'ie > 8']
     }),
     require('postcss-nested'),
+    //require('postcss-import'),
+    //require('postcss-comment'),
     require('precss'),
     require('postcss-short')
   ],
