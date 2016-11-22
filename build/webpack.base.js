@@ -15,12 +15,14 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
+    root: [path.join(__dirname, '../client')],
     extensions: ['', '.js', '.vue', '.css', '.json'],
     alias: {
       root: path.join(__dirname, '../client'),
       app: path.join(__dirname, '../client'),
       services: path.join(__dirname, '../client/services'),
-      components: path.join(__dirname, '../client/components')
+      components: path.join(__dirname, '../client/components'),
+      views: path.join(__dirname, '../client/views')
     }
   },
   module: {

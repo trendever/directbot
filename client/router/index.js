@@ -29,7 +29,12 @@ export default new Router({
     {
       name: 'auth',
       path: '/auth',
-      component: require('../views/Auth')
+      component: require('../views/auth')
+    },
+    {
+      name: 'confirm',
+      path: '/confirm',
+      component: require('../views/auth/confirm')
     }
 	]
 })

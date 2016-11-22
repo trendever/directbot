@@ -23,7 +23,7 @@ export default {
 
 body {
 
-  font-size: 2rem;
+  font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont,
                'avenir next', avenir,
                helvetica, 'helvetica neue',

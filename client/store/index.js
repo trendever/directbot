@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import auth from './auth';
 
 Vue.use(Vuex)
 
@@ -27,7 +28,10 @@ const actions = {
 const store = new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  modules: {
+    auth
+  }
 })
 
 export default store

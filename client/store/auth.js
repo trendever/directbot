@@ -1,5 +1,5 @@
 import * as auth from 'services/auth';
-import * as utils from 'utils';
+import * as utils from '../utils';
 import * as types from './mutation-types';
 
 let state = {
@@ -17,17 +17,25 @@ let state = {
 
 let getters = {
 
+authData(state){
+  return {
+    phone: state.phone,
+    username: state.username,
+    instagram: state.instagram,
+  };
+},
 
+callbackOnSuccessAuth(state){
 
+  return state.callbackOnSuccess;
 
-
-
+  }
 }
 
 
 let actions = {
 
-  saveAuthData({ commit }, { phone, username, instagram }) => {
+  saveAuthData({ commit }, { phone, username, instagram }){
 
     phone = phone ? utils.formatPhone(phone, true) : '';
 
@@ -39,16 +47,19 @@ let actions = {
 
     return new Promise((resolve, reject) => {
 
-      auth.signup(state.auth.phone, state.auth.username, state.auth.instagram)
+      auth.signup(state.phone, state.username, state.instagram)
+
       .then( () => {
 
         resolve(true);
 
-      }).catch( error => {
+      })
+
+      .catch( error => {
 
         if (error === auth.ERROR_CODES.USER_ALREADY_EXISTS) {
 
-          return auth.sendPassword(state.auth.phone).then( () => {
+          return auth.sendPassword(state.phone).then( () => {
 
               resolve(true);
 
@@ -75,7 +86,7 @@ let actions = {
 
     return new Promise((resolve, reject) => {
 
-      auth.setData(state.auth.phone, state.auth.username, state.auth.instagram)
+      auth.setData(state.phone, state.username, state.instagram)
 
       .then( () => {
 
@@ -97,7 +108,7 @@ let actions = {
 
     commit(types.AUTH_SET_CALLBACK_ON_SUCCEESS, callback);
 
-  }
+  },
 
   executeCallbackOnSuccessAuth({ commit, state }){
 
@@ -142,4 +153,4 @@ export default {
   actions,
   mutations
 
-};
+}
