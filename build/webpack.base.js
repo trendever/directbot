@@ -15,12 +15,14 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
+    root: [path.join(__dirname, '../client')],
     extensions: ['', '.js', '.vue', '.css', '.json'],
     alias: {
       root: path.join(__dirname, '../client'),
       app: path.join(__dirname, '../client'),
       services: path.join(__dirname, '../client/services'),
-      components: path.join(__dirname, '../client/components')
+      components: path.join(__dirname, '../client/components'),
+      views: path.join(__dirname, '../client/views')
     }
   },
   module: {
@@ -28,6 +30,10 @@ module.exports = {
       {
         test: /\.vue$/,
         loaders: ['vue']
+      },
+      {
+        test:   /\.pcss$/,
+        loaders: "style-loader!css-loader!postcss-loader?sourceMap"
       },
       {
         test: /\.js$/,
@@ -64,15 +70,8 @@ module.exports = {
       template: __dirname + '/index.html',
       filename: _.outputIndexPath
     })
-    /*new HtmlWebpackPlugin({
-      title: config.title,
-      appMountId: 'app',
-      template: require('html-webpack-template'),
-      filename: _.outputIndexPath,
-      meta: {
-        viewport: 'width=device-width, initial-scale=1, user-scalable=no'
-      },
-    })*/
+
   ],
+
   target: _.target
 }

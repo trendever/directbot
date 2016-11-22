@@ -2,7 +2,6 @@
 .chat-list.page
   | CHATLIST
   router-link.home( :to="{name: 'home'}") Домой
-  router-link.chatone( :to="{name: 'chatone'}") chatone
 </template>
 
 <script>

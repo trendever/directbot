@@ -1,5 +1,6 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
+import auth from './auth';
 import products from './products';
 import user from './user';
 
@@ -29,6 +30,7 @@ const store = new Vuex.Store({
   actions,
   modules: {
     products,
+    auth,
     user
   }
 })

@@ -1,4 +1,6 @@
 'use strict'
+const path = require('path');
+const webpack = require('webpack');
 const pkg = require('../package')
 
 module.exports = {
@@ -21,10 +23,15 @@ module.exports = {
       browsers: ['last 2 versions', 'ie > 8']
     }),
     require('postcss-nested'),
-    //require('postcss-import'),
     //require('postcss-comment'),
     require('precss'),
-    require('postcss-short')
+    require('postcss-short'),
+    require('precss'),
+    require('postcss-import')({
+      path: path.join(__dirname, '../client'),
+      addDependencyTo: webpack
+    })
+
   ],
   cssModules: true,
 }

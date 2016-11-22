@@ -21,7 +21,7 @@ let router = new Router({
 		  component: Home
 		},
 		{
-		  name: 'chat',
+		  name: 'chat_list',
 		  path: '/chat',
 		  component: ChatList
 		},
@@ -29,6 +29,15 @@ let router = new Router({
       name: 'profile',
       path: '/:id',
       component: require('../views/profile/index.vue')
+    },
+    {
+      name: 'auth',
+      path: '/auth',
+      component: require('../views/auth')
+    },
+    {
+      name: 'confirm',
+      path: '/confirm',
     }
 	]
 })

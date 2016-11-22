@@ -1,11 +1,11 @@
 import channel from './channel/channel.js';
 
 export const ERROR_CODES = {
-      NO_ERRORS: 0,
-      USER_NOT_EXISTS: 1,
-      USER_ALREADY_EXISTS: 2,
-      WRONG_CREDENTIALS: 3,
-      INCORRECT_PHONE_FORMAT: 6
+  NO_ERRORS: 0,
+  USER_NOT_EXISTS: 1,
+  USER_ALREADY_EXISTS: 2,
+  WRONG_CREDENTIALS: 3,
+  INCORRECT_PHONE_FORMAT: 6
 };
 
 /**
@@ -34,6 +34,27 @@ export function signup(phone, username, instagram) {
       }
     }).catch( error => {
       console.error('signup', error);
+    });
+
+  });
+}
+
+
+
+export function setData(phone, username, instagram) {
+
+  return new Promise( (resolve, reject) => {
+    let request = { phone };
+    if (instagram) {
+      request.name = username;
+    } else {
+      request.name = username;
+    }
+
+    channel.req('set_data', 'user', request).then( data => {
+      resolve(true);
+    }).catch( error => {
+      reject();
     });
 
   });
