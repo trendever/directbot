@@ -67,7 +67,7 @@ export default {
 
       this
 
-        .authUser(user, token)
+        .authUser({ user, token })
 
         .then(() => {
 

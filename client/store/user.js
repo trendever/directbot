@@ -1,6 +1,24 @@
 import * as types from './mutation-types';
 import * as profile from 'services/profile';
 
+function getValidUserObject( user, user_id ) {
+
+  if ( user.hasOwnProperty( 'id' ) ) {
+    return user
+  }
+
+  if ( user.hasOwnProperty( 'User' ) ) {
+    return user.User;
+  }
+
+  if ( user.hasOwnProperty( 'Shop' ) ) {
+    return user.Shop;
+  }
+
+  return { id: user_id }
+
+};
+
 function picProfile( profile ) {
 
   return Object.assign(
@@ -64,12 +82,11 @@ const state = {
 let getters = {
 
 
-
-}
+};
 
 let actions = {
 
-  authUser( { commit }, user, token ) {
+  authUser( { commit },{ user, token} ) {
 
     return new Promise( ( resolve, reject ) => {
 
