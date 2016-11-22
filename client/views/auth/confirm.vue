@@ -4,13 +4,13 @@
 
   input(v-model="code")
 
-  button Отправить
+  button(v-on:click="onButton") Отправить
 
 
 </template>
 
 <script>
-
+import { mapActions, mapGetters } from 'vuex';
 import * as auth from 'services/auth';
 export default {
 
@@ -24,6 +24,8 @@ export default {
   computed:{
     ...mapGetters([
 
+      'callbackOnSuccessAuth',
+      'authData'
 
     ])
   },
@@ -43,21 +45,25 @@ export default {
 
     onConfirm() {
       auth.confirmByCode( this.authData.phone, this.code)
+
       .then( ({ user, token }) => {
+
         this.onComplete(user, token);
+
       }).catch( error => {
+
         if (error === auth.ERROR_CODES.WRONG_CREDENTIALS) {
+
           this.onErrorCode();
+
         }
+
       })
+
     },
     onComplete(user, token) {
 
       this.isCompleted = true;
-
-      //this.$els.confirmBtn.focus();
-
-      //this.anotherName = user.name !== this.authData.username ? user.name : '';
 
       this
 
@@ -69,13 +75,14 @@ export default {
 
             if (!this.callbackOnSuccessAuth) {
 
-              setTimeout( () => this.$router.go({name: 'chat_list'}), 1000);
+              setTimeout( () => this.$router.push({name: 'chat_list'}), 1000);
 
               return true;
 
             } else {
 
               this.executeCallbackOnSuccessAuth()
+
               return 0;
 
             }

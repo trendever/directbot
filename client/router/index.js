@@ -22,7 +22,7 @@ export default new Router({
 		  component: Home
 		},
 		{
-		  name: 'chat',
+		  name: 'chat_list',
 		  path: '/chat',
 		  component: ChatList
 		},

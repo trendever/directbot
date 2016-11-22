@@ -1,3 +1,6 @@
+import * as types from './mutation-types';
+import * as profile from 'services/profile';
+
 function picProfile( profile ) {
 
   return Object.assign(
@@ -56,6 +59,13 @@ const state = {
   payment: {},
 
 };
+
+
+let getters = {
+
+
+
+}
 
 let actions = {
 
@@ -229,6 +239,9 @@ const mutations = {
 };
 
 export default {
+
   state,
+  getters,
+  actions,
   mutations
 };
