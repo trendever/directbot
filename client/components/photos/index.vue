@@ -28,7 +28,7 @@ export default {
     return {
       windowListener: {},
       space: 0,
-      Off: false,
+      off: false,
       offset: 0
     }
   },
