@@ -1,4 +1,5 @@
 <template lang="pug">
+
 #confirm
 
   input(v-model="code")
@@ -15,10 +16,31 @@ export default {
 
   data () {
     return {
-      code: ''
+      code: '',
+      isCompleted: false,
+      anotherName: false
     };
   },
+  computed:{
+    ...mapGetters([
+
+
+    ])
+  },
   methods: {
+    ...mapActions([
+
+      'executeCallbackOnSuccessAuth',
+      'authUser'
+
+    ]),
+
+    onButton() {
+      if(!this.isCompleted) {
+        this.onConfirm();
+      }
+    },
+
     onConfirm() {
       auth.confirmByCode( this.authData.phone, this.code)
       .then( ({ user, token }) => {
@@ -33,24 +55,31 @@ export default {
 
       this.isCompleted = true;
 
-      this.$els.confirmBtn.focus();
+      //this.$els.confirmBtn.focus();
 
-      this.anotherName = user.name !== this.authData.username ? user.name : '';
+      //this.anotherName = user.name !== this.authData.username ? user.name : '';
 
       this
+
         .authUser(user, token)
+
         .then(() => {
+
           if(!this.anotherName) {
-            if (typeof Android !== 'undefined'){
-              Android.sendToken();
-            }
+
             if (!this.callbackOnSuccessAuth) {
+
               setTimeout( () => this.$router.go({name: 'chat_list'}), 1000);
+
               return true;
+
             } else {
+
               this.executeCallbackOnSuccessAuth()
               return 0;
+
             }
+
           }
         });
 
