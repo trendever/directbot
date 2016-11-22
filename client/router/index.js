@@ -27,9 +27,9 @@ export default new Router({
 		  component: ChatList
 		},
     {
-      name: 'chatone',
-      path: '/chatone',
-      component: ChatList
+      name: 'auth',
+      path: '/auth',
+      component: require('../views/Auth')
     }
 	]
 })

@@ -3,8 +3,12 @@
 #auth
 
   form
-    input(type="number", v-model="phonenumber")
-    input(type="username")
+    .input-wrap
+      label User name
+      input(type="username")
+    .input-wrap
+      label Номер телефона
+      input(type="number", v-model="phone")
 
 </template>
 
@@ -16,7 +20,7 @@ export default {
 
   data () {
     return {
-      phonenumber: '',
+      phone: '',
       username: '',
     };
   }
@@ -28,7 +32,18 @@ export default {
 
 #auth {
   height: 100%;
+  form {
 
+    display: block;
+    margin: 50px auto * auto;
+
+    label {
+      display: block;
+      text-align: center;
+    }
+
+
+  }
 
 }
 
