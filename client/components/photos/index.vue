@@ -24,6 +24,10 @@ export default {
 </script>
 
 <style type="pcss">
+
+@import './style.pcss';
+
+
 .photos-flex{
   padding: 0;
   margin: 0;
@@ -40,7 +44,7 @@ export default {
  }
 
  .flex-item {
-  background: tomato;
+  background: $color__green;
   width: 50%;
   hegith: 400px;
   color: white;

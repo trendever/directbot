@@ -1,4 +1,6 @@
 'use strict'
+const path = require('path');
+const webpack = require('webpack');
 const pkg = require('../package')
 
 module.exports = {
@@ -20,7 +22,12 @@ module.exports = {
       // Vue does not support ie 8 and below
       browsers: ['last 2 versions', 'ie > 8']
     }),
-    require('postcss-nested')
+    require('postcss-nested'),
+    require('precss'),
+    require('postcss-import')({
+      path: path.join(__dirname, '../client'),
+      addDependencyTo: webpack
+    })
   ],
   cssModules: true,
 }

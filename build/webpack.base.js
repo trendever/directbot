@@ -32,6 +32,10 @@ module.exports = {
         loaders: ['vue']
       },
       {
+        test:   /\.pcss$/,
+        loaders: "style-loader!css-loader!postcss-loader?sourceMap"
+      },
+      {
         test: /\.js$/,
         loaders: ['babel'],
         exclude: [/node_modules/]
