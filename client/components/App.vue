@@ -1,5 +1,5 @@
 <template lang="pug">
-div#app
+#app
   router-view
 </template>
 
@@ -11,9 +11,18 @@ export default {
 }
 </script>
 
-<style>
-body {
+<style lang="postcss">
+
+* {
+
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+
+}
+
+body {
+
   font-size: 2rem;
   font-family: -apple-system, BlinkMacSystemFont,
                'avenir next', avenir,
@@ -22,13 +31,11 @@ body {
                'segoe ui', arial,
                sans-serif;
 }
+
+
 .page {
   text-align: center;
   overflow: hidden;
 }
-code {
-  background-color: #f0f0f0;
-  padding: 3px 5px;
-  border-radius: 2px;
-}
+
 </style>
