@@ -18,15 +18,16 @@ module.exports = {
     ]
   },
   postcss: [
-    require('postcss-nested'),
-    //require('postcss-comment'),
-    require('precss'),
-    require('postcss-short'),
-    require('precss'),
+
     require('postcss-import')({
-      path: path.join(__dirname, '../client'),
+      path: path.resolve('./client'),
       addDependencyTo: webpack
     }),
+    require('postcss-nested'),
+    require('postcss-discard-comments'),
+    //require('postcss-comment'),
+    require('postcss-short'),
+    require('precss'),
     require('autoprefixer')({
       // Vue does not support ie 8 and below
       browsers: ['last 2 versions', 'ie > 8']

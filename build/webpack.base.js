@@ -15,7 +15,6 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    root: [path.join(__dirname, '../client')],
     extensions: ['', '.js', '.vue', '.css', '.json'],
     alias: {
       root: path.join(__dirname, '../client'),
