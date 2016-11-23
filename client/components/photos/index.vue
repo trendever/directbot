@@ -30,6 +30,7 @@ export default {
 
   data(){
     return {
+      firstOpened: false,
       oldScroll: 0,
       windowListener: {},
       space: 0,
@@ -47,6 +48,11 @@ export default {
   mounted(){
 
     this.$nextTick(()=>{
+
+      if(this.firstOpened) {
+        this.scrollTo(0);
+        return;
+      }
 
       this.scrollTo(this.listScroll);
 
@@ -78,6 +84,13 @@ export default {
     ]),
 
     simpleScroll(){
+
+      //to have 0 scroll when first load
+      if(!this.$store.state.products.lists.hasOwnProperty(this.listName)) {
+
+        this.firstOpened = true;
+
+      }
 
       this.openList( {
 

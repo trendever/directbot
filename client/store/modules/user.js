@@ -7,7 +7,7 @@ import * as getters from '../getters/user';
 function getValidUserObject( user, user_id ) {
 
   if ( user.hasOwnProperty( 'id' ) ) {
-    return user
+    return user;
   }
 
   if ( user.hasOwnProperty( 'User' ) ) {
