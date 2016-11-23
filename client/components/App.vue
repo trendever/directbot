@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import listen from 'event-listener';
-import * as product from 'services/products';
+
+import 'components/fonts/trendever-icons/trendever-icons.font.js';
 
 export default {
   created(){

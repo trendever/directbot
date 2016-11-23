@@ -1,6 +1,6 @@
 <template lang="pug">
 #header
-
+  slot
 </template>
 
 <script>
