@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../views/Home'
 import ChatList from '../views/ChatList'
 Vue.use(Router)
 
@@ -18,7 +17,7 @@ let router = new Router({
 		{
       name: 'home',
 		  path: '/',
-		  component: Home
+		  component: require('views/home')
 		},
 		{
 		  name: 'chat_list',
