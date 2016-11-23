@@ -84,12 +84,9 @@ export default {
     ]),
 
     simpleScroll(){
-
       //to have 0 scroll when first load
       if(!this.$store.state.products.lists.hasOwnProperty(this.listName)) {
-
         this.firstOpened = true;
-
       }
 
       this.openList( {
@@ -100,37 +97,41 @@ export default {
 
       } ).then( () => {
 
-        this.windowListener = listen( window , 'scroll', () => {
+        this.$nextTick(()=>{
 
-          let direction = window.scrollY - this.oldScroll < 0 ? false : true;
+          this.windowListener = listen( window , 'scroll', () => {
 
-          this.oldScroll = window.scrollY;
+            let direction = window.scrollY - this.oldScroll < 0 ? false : true;
 
-          this.setScroll(window.scrollY);
+            this.oldScroll = window.scrollY;
 
-          if(this.off || !direction) return;
+            this.setScroll(window.scrollY);
 
-          if(window.scrollY > document.body.scrollHeight/2) {
+            if(this.off || !direction) return;
 
-            this.off = true;
+            if(window.scrollY > document.body.scrollHeight/2) {
 
-            this.offset += 20;
+              this.off = true;
 
-            this.increaseLength( {
+              this.offset += 20;
 
-              shop_id: this.shopId,
+              this.increaseLength( {
 
-              offset: this.offset
+                shop_id: this.shopId,
 
-            }).then(()=>{
+                offset: this.offset
 
-              this.scrollTo(this.listScroll);
+              }).then(()=>{
 
-              this.off = false;
+                this.scrollTo(this.listScroll);
 
-            })
+                this.off = false;
 
-          }
+              })
+
+            }
+
+          })
 
         })
 
@@ -271,13 +272,14 @@ export default {
 
 <style type="pcss">
 
-@import './style.pcss';
+@import 'components/vars/vars.pcss';
 
 
 .photos-flex{
   padding: 0;
   margin: 0;
   list-style: none;
+
 
   display: -webkit-box;
   display: -moz-box;
@@ -286,22 +288,42 @@ export default {
   display: flex;
 
   -webkit-flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: center;
+
+  @media(min-width: 1050px){
+
+    max-width: 1000px;
+    margin: 0 auto;
+  }
 
  }
 
 
- .flex-item {
-  background: $color__green;
-  width: 50%;
-  hegith: 400px;
+ li.flex-item {
+
+  @media(--mobile) {
+
+    width: 48%;
+    height: 48%;
+    margin: * 2px * 2px;
+
+  }
+
+  @media(min-width: 751px){
+
+    width: 30%;
+    heigth: 30%;
+    margin: * 5px * 5px;
+
+  }
+
   color: white;
   font-weight: bold;
   font-size: 3em;
   text-align: center;
 
   img {
-    max-width: 200px;
+    width: 100%;
   }
 }
 
