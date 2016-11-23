@@ -1,7 +1,6 @@
-//@import '../../components/vars/vars.pcss';
-
-.directbot{
-  .directbot-header .wrapper {
+@import 'components/vars/vars.pcss';
+#profile {
+  .directbot-header .wrapper{
     background-color: $color__blue !important;
   }
   .db-bottom{
@@ -45,7 +44,7 @@
     }
   }
 
-  .profile-cnt {
+
     .profile {
       position: relative;
       display: flex;
@@ -82,7 +81,7 @@
           position: relative;
           overflow: hidden;
           border-radius: 50%;
-          background-image: url("../icons/user_active.svg");
+          background-image: url("./icons/user_active.svg");
           background-repeat: no-repeat;
           -webkit-background-size: 120px;
           background-size: 120px;
@@ -281,7 +280,7 @@
         }
       }
     }
-  }
+
   .turn-on-bot-btn{
       @media(--mobile) {
         z-index: 20;
@@ -357,8 +356,8 @@
       }
     }
   }
-  .directbot-right-nav .navbar-cnt .navbar_i.__active .navbar_i_wrap_ic, .navbar-cnt .navbar_i.__active .navbar_i_wrap_t{
-    color: $color__blue;
+  .directbot-navbar .navbar-cnt .navbar_i.__active .navbar_i_wrap_ic, .navbar-cnt .navbar_i.__active .navbar_i_wrap_t{
+    color: $color__blue !important;
   }
   .directbot-right-nav .right-nav .right-nav_i.__active{
     background-color: #496DA1 !important;

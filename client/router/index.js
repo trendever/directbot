@@ -26,11 +26,6 @@ let router = new Router({
 		  component: ChatList
 		},
     {
-      name: 'profile',
-      path: '/:id',
-      component: require('views/profile/index')
-    },
-    {
       name: 'auth',
       path: '/auth',
       component: require('views/auth/index')
@@ -38,7 +33,12 @@ let router = new Router({
     {
       name: 'confirm',
       path: '/confirm',
-    }
+    },
+    {
+      name: 'profile',
+      path: '/:id',
+      component: require('views/profile/index')
+    },
 	]
 })
 

@@ -12,11 +12,11 @@ const app = new Vue({
   ...App
 })
 
+
 Vue.mixin({
   data(){
     return {
-
-
+      isMobile: window.browser.mobile
     }
   }
 });
