@@ -1,7 +1,6 @@
 <template lang="pug">
-#home.page
-  i.ic-bag
-  //-photos
+#home
+  photos
 
 </template>
 <script>

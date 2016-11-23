@@ -1,5 +1,5 @@
-import * as types from './mutation-types';
 import * as products from 'services/products';
+import * as types from '../mutation-types';
 
 let state = {
 

@@ -20,6 +20,9 @@ export default {
     shopId: {
       default:null
     },
+    listId: {
+      default: 'home',
+    },
     infinite: {
       default: false
     }
@@ -76,9 +79,9 @@ export default {
 
       this.openList({
 
-        listId: this.shopId ? this.shopId : 'home',
+        listId: this.listId,
 
-        shop_id: this.shopId ? this.shopId : null
+        shop_id: this.shopId
 
       }).then(()=>{
 
@@ -115,6 +118,7 @@ export default {
       })
 
     },
+
     scrollTo(value){
 
       window.scrollTo(0,value);
@@ -225,6 +229,12 @@ export default {
       })*/
     }
   },
+  watch:{
+
+    shopId(){
+      this.simpleScroll();
+    }
+  },
 
   beforeDestroy(){
 
@@ -264,7 +274,9 @@ export default {
 
   -webkit-flex-flow: row wrap;
   justify-content: space-around;
+
  }
+
 
  .flex-item {
   background: $color__green;

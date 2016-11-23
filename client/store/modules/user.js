@@ -1,5 +1,8 @@
-import * as types from './mutation-types';
+import * as userService from 'services/user';
 import * as profile from 'services/profile';
+
+import * as types from '../mutation-types';
+import * as getters from '../getters/user';
 
 function getValidUserObject( user, user_id ) {
 
@@ -79,15 +82,12 @@ const state = {
 };
 
 
-let getters = {
-
-
-};
-
 let actions = {
 
   openProfile( { commit, state }, id ) {
+
     return new Promise( ( resolve, reject ) => {
+
       if ( typeof id === 'undefined' ) {
 
         commit( types.USER_SET_PROFILE, id );
@@ -103,7 +103,7 @@ let actions = {
         listId: 'profile',
         photosFilter: {
           user_id: null,
-          instagram_name: getUserName( state )
+          instagram_name: getters.getUserName( state )
         }
       };
 
@@ -116,21 +116,45 @@ let actions = {
 
       if ( requestData.user_id !== null || requestData.instagram_name !== null ) {
 
-        const cacheProfile = getProfile( state, id );
+        const cacheProfile = getters.getProfile( state, id );
 
         if ( cacheProfile !== null ) {
 
-          commit( types.USER_SET_PHOTOS_CONFIG, photosConfig.listId, photosConfig.photosFilter, id );
+          commit( types.USER_SET_PHOTOS_CONFIG, {
+
+                listId: photosConfig.listId,
+
+                photosFilter: photosConfig.photosFilter,
+
+                id: id });
+
           commit( types.USER_SET_PROFILE, id );
+
           resolve();
 
         } else {
+
           userService
             .get( requestData )
+
             .then( ( user ) => {
-              commit( types.USER_RECEIVE_PROFILE, getValidUserObject( user, id ), id );
-              commit( types.USER_SET_PHOTOS_CONFIG, photosConfig.listId, photosConfig.photosFilter, id );
+
+              commit( types.USER_RECEIVE_PROFILE, {
+
+                profile: getValidUserObject( user, id ),
+
+                id } );
+
+              commit( types.USER_SET_PHOTOS_CONFIG, {
+
+                listId: photosConfig.listId,
+
+                photosFilter: photosConfig.photosFilter,
+
+                id });
+
               commit( types.USER_SET_PROFILE, id );
+
               resolve();
             } )
             .catch( error => {
@@ -148,8 +172,17 @@ let actions = {
       } else {
 
         commit( types.USER_SET_PROFILE );
-        commit( types.USER_SET_PHOTOS_CONFIG, photosConfig.listId, photosConfig.photosFilter );
+
+        commit( types.USER_SET_PHOTOS_CONFIG, {
+
+          listId:photosConfig.listId,
+
+          photosFilter: photosConfig.photosFilter
+
+        } );
+
         resolve();
+
       }
 
     } );
@@ -271,7 +304,7 @@ const mutations = {
     state.myId = myId;
     state.id   = myId;
   },
-  [types.USER_RECEIVE_PROFILE] ( state, profile, id = null ) {
+  [types.USER_RECEIVE_PROFILE] ( state, { profile, id = null } ) {
     state.all = Object.assign( {}, state.all, { [(id !== null) ? id : profile.id]: picProfile( profile ) } );
   },
   [types.USER_SET_PROFILE] ( state, id = state.myId ) {
@@ -280,7 +313,8 @@ const mutations = {
     }
     state.done = true;
   },
-  [types.USER_SET_PHOTOS_CONFIG] ( state, listId, photoFilter, id = state.myId ) {
+  [types.USER_SET_PHOTOS_CONFIG] ( state, { listId, photoFilter, id = state.myId } ) {
+    console.log(id)
     if ( state.all.hasOwnProperty( id ) ) {
       state.photoConfigs = Object.assign( {}, state.photoConfigs, { [id]: { listId, photoFilter } } );
     } else {

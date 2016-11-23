@@ -1,6 +1,6 @@
 import * as auth from 'services/auth';
-import * as utils from '../utils';
-import * as types from './mutation-types';
+import * as utils from '../../utils';
+import * as types from '../mutation-types';
 
 let state = {
 
