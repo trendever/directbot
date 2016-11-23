@@ -43,9 +43,9 @@
           span.save Directbot #[br(v-if="!isMobile")]
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
-      .btn-bot-connect ПОДКЛЮЧИТЬ БОТА
+        .btn-bot-connect ПОДКЛЮЧИТЬ БОТА
 
-  photos(:shop-id="userShopId", :list-id="userShopId")
+  //-photos(:shop-id="userShopId", :list-id="userShopId")
 
 </template>
 
@@ -89,25 +89,6 @@ export default {
 
 @import '../../components/vars/vars.pcss';
 
-
-@define-mixin button__sample $background: #FFDE1E, $bottom: 98px {
-
-    cursor: pointer;
-    color: #12302d;
-    font-family: $font__family__light;
-    font-size: 36px;
-    text-align: center;
-    line-height: 100px;
-    position:fixed;
-    left: 0;
-    right: 0;
-    bottom: $bottom;
-    background: $background;
-    height: 100px;
-    z-index: 100;
-
-}
-
 #profile {
 
   .btn-bot-connect {
@@ -117,5 +98,6 @@ export default {
   }
 
 }
+
 
 </style>

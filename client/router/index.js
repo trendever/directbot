@@ -28,12 +28,12 @@ let router = new Router({
     {
       name: 'profile',
       path: '/:id',
-      component: require('../views/profile/index')
+      component: require('views/profile/index')
     },
     {
       name: 'auth',
       path: '/auth',
-      component: require('../views/auth/index')
+      component: require('views/auth/index')
     },
     {
       name: 'confirm',
