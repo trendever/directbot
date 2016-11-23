@@ -87,6 +87,9 @@ export default {
 
 <style lang="postcss">
 
+@import '../../components/vars/vars.pcss';
+
+
 @define-mixin button__sample $background: #FFDE1E, $bottom: 98px {
 
     cursor: pointer;

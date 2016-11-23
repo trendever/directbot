@@ -18,10 +18,6 @@ module.exports = {
     ]
   },
   postcss: [
-    require('autoprefixer')({
-      // Vue does not support ie 8 and below
-      browsers: ['last 2 versions', 'ie > 8']
-    }),
     require('postcss-nested'),
     //require('postcss-comment'),
     require('precss'),
@@ -30,6 +26,10 @@ module.exports = {
     require('postcss-import')({
       path: path.join(__dirname, '../client'),
       addDependencyTo: webpack
+    }),
+    require('autoprefixer')({
+      // Vue does not support ie 8 and below
+      browsers: ['last 2 versions', 'ie > 8']
     })
 
   ],

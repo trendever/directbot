@@ -28,12 +28,12 @@ let router = new Router({
     {
       name: 'profile',
       path: '/:id',
-      component: require('../views/profile/index.vue')
+      component: require('../views/profile/index')
     },
     {
       name: 'auth',
       path: '/auth',
-      component: require('../views/auth')
+      component: require('../views/auth/index')
     },
     {
       name: 'confirm',
