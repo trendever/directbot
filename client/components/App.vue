@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="postcss">
-
+@import 'components/vars/fonts.pcss';
 * {
 
   box-sizing: border-box;
@@ -28,12 +28,7 @@ export default {
 body {
 
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont,
-               'avenir next', avenir,
-               helvetica, 'helvetica neue',
-               Ubuntu,
-               'segoe ui', arial,
-               sans-serif;
+  font-family: $font__family;
 }
 
 
