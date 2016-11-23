@@ -1,15 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './auth';
+import products from './products';
 import user from './user';
 
 Vue.use(Vuex)
 
 const state = {
   count: 0,
-  user:{
-    isAuth: false
-  }
 }
 
 const mutations = {
@@ -31,6 +29,7 @@ const store = new Vuex.Store({
   mutations,
   actions,
   modules: {
+    products,
     auth,
     user
   }

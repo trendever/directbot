@@ -15,7 +15,6 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    root: [path.join(__dirname, '../client')],
     extensions: ['', '.js', '.vue', '.css', '.json'],
     alias: {
       root: path.join(__dirname, '../client'),
@@ -64,11 +63,14 @@ module.exports = {
     postcss: config.postcss
   },
   plugins: [
+
     new HtmlWebpackPlugin({
       title: config.title,
       template: __dirname + '/index.html',
       filename: _.outputIndexPath
     })
+
   ],
+
   target: _.target
 }

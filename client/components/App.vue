@@ -4,10 +4,14 @@
 </template>
 
 <script>
-import listen from 'event-listener';
+
+import 'components/fonts/trendever-icons/trendever-icons.font.js';
 
 export default {
+  created(){
 
+
+  }
 }
 </script>
 

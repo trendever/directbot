@@ -17,17 +17,26 @@ module.exports = {
       'transform-vue-jsx'
     ]
   },
-  postcss: [
-    require('autoprefixer')({
-      // Vue does not support ie 8 and below
-      browsers: ['last 2 versions', 'ie > 8']
-    }),
-    require('postcss-nested'),
-    require('precss'),
-    require('postcss-import')({
-      path: path.join(__dirname, '../client'),
-      addDependencyTo: webpack
-    })
-  ],
+
+  postcss: function(){
+    return [
+      require('postcss-import')({
+        path: path.resolve('./client'),
+        addDependencyTo: webpack
+      }),
+      require('postcss-nested')(),
+      require('postcss-comment/hookRequire')(),
+      require('postcss-discard-comments')(),
+      require('postcss-short')(),
+      require('precss')(),
+      require('postcss-flexbugs-fixes')(),
+      require('autoprefixer')({
+        // Vue does not support ie 8 and below
+        browsers: ['last 2 versions', 'ie > 8']
+      })
+
+    ]
+
+  },
   cssModules: true,
 }

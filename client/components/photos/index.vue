@@ -1,25 +1,248 @@
 <template lang="pug">
-div.photos
-  ul.photos-flex
-    template(v-for="photo in photos")
-      single(:product="photo")
+.photos
+  ul.photos-flex(:style="{ paddingTop: space + 'px'}")
+    template(v-for="photo, index in listProducts")
+      single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index")
 </template>
 
 <script>
 
+import { mapGetters, mapActions } from 'vuex'
+
+import listen from 'event-listener';
 import single from './single.vue';
+
 import * as products from 'services/products.js';
 
 export default {
-  data(){
-    return {
-      photos: [1,2,3,4,5,6,7,8,9,10,11,12,123,124,124,12,4,123,,123,123,12,3,123,12,31,45,12,51,2,34,12,4,124,12,4,124,12,4,123,3,3,12,3,12,3,12,3,123,12,5,12,5,12,3,13,2,3,123,123,1231,23,123,1,23],
-      scroll: 0
+
+  props:{
+    shopId: {
+      default:null
+    },
+    infinite: {
+      default: false
     }
   },
+  data(){
+    return {
+      windowListener: {},
+      space: 0,
+      off: false,
+      offset: 0
+    }
+  },
+
+  created(){
+
+    this.simpleScroll()
+
+  },
+
+  mounted(){
+
+    this.$nextTick(()=>{
+
+      this.scrollTo(this.listScroll);
+
+    });
+
+  },
+
+  computed: {
+
+    ...mapGetters([
+
+      'listId',
+      'listProducts',
+      'listScroll'
+
+    ])
+
+  },
+
+  methods:{
+
+    ...mapActions([
+
+      'increaseLength',
+      'openList',
+      'closeList',
+      'setScroll'
+
+    ]),
+
+    simpleScroll(){
+
+      this.openList({
+
+        listId: this.shopId ? this.shopId : 'home',
+
+        shop_id: this.shopId ? this.shopId : null
+
+      }).then(()=>{
+
+        this.windowListener = listen( window , 'scroll', ()=> {
+
+          this.setScroll(window.scrollY);
+
+          if(this.off) return;
+
+          if(window.scrollY > document.body.scrollHeight/1.29) {
+
+            this.off = true;
+
+            this.offset += 20;
+
+            this.increaseLength( {
+
+              shop_id: this.shopId ? this.shopId : null,
+
+              offset: this.offset
+
+            }).then(()=>{
+
+              this.off = false;
+
+              this.scrollTo(this.listScroll);
+
+            })
+
+          }
+
+        })
+
+      })
+
+    },
+    scrollTo(value){
+
+      window.scrollTo(0,value);
+
+    },
+
+    infiniteScroll(){
+
+/*    let photos = this.$store.state.photos.lists[this.list];
+
+      if(photos.padding) {
+
+        this.padding = photos.padding;
+
+      }
+
+      if(localStorage.getItem('scrollCnt')){
+
+        let { idStart, idEnd } = localStorage.getItem('scrollCnt');
+
+
+
+      }
+
+      if( photos.list.length) {
+
+      }
+
+      if( !photos.list.length ) {
+
+        products.find({limit:50, offset: this.offset, shop_id: this.shopId }).then(data=>{
+
+          photos.list = data;
+
+          photos.idStart = 0;
+
+          photos.idEnd = data.length;
+
+        })
+
+      }
+
+      this.windowListener = listen(window, 'scroll',()=>{
+
+        localStorage.setItem(`${this.$route.name}.scroll`, window.scrollY);
+
+        let direction = window.scrollY - this.oldScroll < 0 ? false : true;
+
+        this.oldScroll = window.scrollY;
+
+        let { scrollTop, scrollHeight } = document.body;
+
+        if(this.off) return;
+
+        if(direction) {
+
+          let xItem = document.querySelector(`.p-item-${Math.ceil(this.getPhotos.length/3)}`);
+          xItem.style.background = 'red';
+
+          if( xItem.getBoundingClientRect().bottom < 0 ) {
+
+            this.off = true;
+            this.offset += 20;
+
+            products.find({limit: 20, offset: this.offset, shop_id: this.shopId  }).then(data=>{
+
+              data.forEach(item=>{
+
+                this.$store.state.photos.list.push(item)
+
+              });
+
+              photos.idStart += 10;
+
+              photos.idEnd += 10;
+
+              this.padding += xItem.offsetHeight * 5
+
+              this.off = false;
+
+            })
+
+
+
+          }
+        } else {
+
+            let xItem = document.querySelector(`.p-item-${Math.ceil(this.getPhotos.length/3)}`);
+
+            xItem.style.background = 'red';
+
+            if( xItem.getBoundingClientRect().top > window.innerHeight ) {
+
+              if(photos.idEnd < 40) {
+
+                return;
+
+              }
+
+              photos.idStart -= 10;
+
+              photos.idEnd -= 10;
+
+              this.padding -= Math.abs(xItem.offsetHeight * 5)
+
+            }
+        }
+      })*/
+    }
+  },
+
+  beforeDestroy(){
+
+    //let { idStart, idEnd } = this.$store.state.photos.lists[this.list];
+
+    //localStorage.setItem(`${ this.$route.name }.scrollCnt`, { idStart, idEnd, padding: this.padding })
+
+    this.windowListener.remove();
+
+    //this.closeList();
+
+  },
+
   components:{
+
     single
-  }
+
+  },
 }
 </script>
 
@@ -51,6 +274,10 @@ export default {
   font-weight: bold;
   font-size: 3em;
   text-align: center;
+
+  img {
+    max-width: 200px;
+  }
 }
 
 
