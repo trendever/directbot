@@ -28,6 +28,7 @@ module.exports = {
     //require('postcss-comment'),
     require('postcss-short'),
     require('precss'),
+    require('postcss-flexbugs-fixes'),
     require('autoprefixer')({
       // Vue does not support ie 8 and below
       browsers: ['last 2 versions', 'ie > 8']
