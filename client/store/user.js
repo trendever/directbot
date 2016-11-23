@@ -86,6 +86,76 @@ let getters = {
 
 let actions = {
 
+  openProfile( { commit, state }, id ) {
+    return new Promise( ( resolve, reject ) => {
+      if ( typeof id === 'undefined' ) {
+
+        commit( types.USER_SET_PROFILE, id );
+
+      }
+
+      const requestData = {
+        user_id: null,
+        instagram_name: null
+      };
+
+      const photosConfig = {
+        listId: 'profile',
+        photosFilter: {
+          user_id: null,
+          instagram_name: getUserName( state )
+        }
+      };
+
+
+      if ( typeof id === 'string' ) {
+          requestData.instagram_name               = id;
+          photosConfig.listId                      = `profile_${ id }`;
+          photosConfig.photosFilter.instagram_name = id;
+      }
+
+      if ( requestData.user_id !== null || requestData.instagram_name !== null ) {
+
+        const cacheProfile = getProfile( state, id );
+
+        if ( cacheProfile !== null ) {
+
+          commit( types.USER_SET_PHOTOS_CONFIG, photosConfig.listId, photosConfig.photosFilter, id );
+          commit( types.USER_SET_PROFILE, id );
+          resolve();
+
+        } else {
+          userService
+            .get( requestData )
+            .then( ( user ) => {
+              commit( types.USER_RECEIVE_PROFILE, getValidUserObject( user, id ), id );
+              commit( types.USER_SET_PHOTOS_CONFIG, photosConfig.listId, photosConfig.photosFilter, id );
+              commit( types.USER_SET_PROFILE, id );
+              resolve();
+            } )
+            .catch( error => {
+              reject( error );
+              console.error(
+                new Error( 'User doesn`t exists or opened incorect url' ),
+                {
+                  extra: { errorData: error, username: id }
+                }
+              );
+            } );
+
+        }
+
+      } else {
+
+        commit( types.USER_SET_PROFILE );
+        commit( types.USER_SET_PHOTOS_CONFIG, photosConfig.listId, photosConfig.photosFilter );
+        resolve();
+      }
+
+    } );
+
+  },
+
   authUser( { commit },{ user, token} ) {
 
     return new Promise( ( resolve, reject ) => {

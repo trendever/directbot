@@ -62,9 +62,7 @@
 
         a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
-        //-photos-component(
-          :filter-by-shop-id="shopId",
-          :list-id.sync="listId")
+  photos-component
 
   .directbot-navbar(v-if="isMobile")
     //-navbar-component(:current='listId')
@@ -84,11 +82,6 @@ export default {
       loaded: true,
       getAuthUser: {},
     }
-  },
-
-  beforeRouteEnter(to, from, next){
-
-    next()
   },
   computed: {
     ...mapGetters([
