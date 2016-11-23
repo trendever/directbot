@@ -37,6 +37,20 @@ export const user = ( user ) => {
   return {instagram_username:"",name:""};
 };
 
+export const userShopId =  (state) => {
+
+  let shops = user(state).supplier_of
+
+  if(shops !== null) {
+
+    return shops[0];
+
+  }
+
+  return null;
+
+}
+
 export const userID = ( state ) => {
 
   const userData = user( state );

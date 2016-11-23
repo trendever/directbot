@@ -83,7 +83,18 @@ const state = {
 
 
 let actions = {
+  closeProfile( { commit } ){
 
+    commit( types.USER_CLOSE_PROFILE );
+
+  },
+  logOut ( { commit } ){
+
+    //removeToken();
+
+    commit( types.USER_LOGOUT )
+
+  },
   openProfile( { commit, state }, id ) {
 
     return new Promise( ( resolve, reject ) => {
@@ -135,6 +146,7 @@ let actions = {
         } else {
 
           userService
+
             .get( requestData )
 
             .then( ( user ) => {
@@ -314,7 +326,6 @@ const mutations = {
     state.done = true;
   },
   [types.USER_SET_PHOTOS_CONFIG] ( state, { listId, photoFilter, id = state.myId } ) {
-    console.log(id)
     if ( state.all.hasOwnProperty( id ) ) {
       state.photoConfigs = Object.assign( {}, state.photoConfigs, { [id]: { listId, photoFilter } } );
     } else {

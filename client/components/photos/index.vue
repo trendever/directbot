@@ -20,15 +20,17 @@ export default {
     shopId: {
       default:null
     },
-    listId: {
+    listName: {
       default: 'home',
     },
     infinite: {
       default: false
     }
   },
+
   data(){
     return {
+      oldScroll: 0,
       windowListener: {},
       space: 0,
       off: false,
@@ -77,21 +79,25 @@ export default {
 
     simpleScroll(){
 
-      this.openList({
+      this.openList( {
 
-        listId: this.listId,
+        listId: this.listName,
 
         shop_id: this.shopId
 
-      }).then(()=>{
+      } ).then( () => {
 
-        this.windowListener = listen( window , 'scroll', ()=> {
+        this.windowListener = listen( window , 'scroll', () => {
+
+          let direction = window.scrollY - this.oldScroll < 0 ? false : true;
+
+          this.oldScroll = window.scrollY;
 
           this.setScroll(window.scrollY);
 
-          if(this.off) return;
+          if(this.off || !direction) return;
 
-          if(window.scrollY > document.body.scrollHeight/1.29) {
+          if(window.scrollY > document.body.scrollHeight/2) {
 
             this.off = true;
 
@@ -99,15 +105,15 @@ export default {
 
             this.increaseLength( {
 
-              shop_id: this.shopId ? this.shopId : null,
+              shop_id: this.shopId,
 
               offset: this.offset
 
             }).then(()=>{
 
-              this.off = false;
-
               this.scrollTo(this.listScroll);
+
+              this.off = false;
 
             })
 
@@ -227,12 +233,6 @@ export default {
             }
         }
       })*/
-    }
-  },
-  watch:{
-
-    shopId(){
-      this.simpleScroll();
     }
   },
 

@@ -63,7 +63,7 @@
 
         a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
-  //-photos(shopId="userShopId")
+  photos(:shopId="userShopId", :listName="getPhotoConfig.listId")
 
   .directbot-navbar(v-if="isMobile")
     //-navbar-component(:current='listId')
@@ -83,30 +83,22 @@ export default {
   data(){
     return {
       loaded: true,
-      getAuthUser: {},
+      getAuthUser: {}
     }
   },
-  beforeRouteEnter({params:{id}}, to, next) {
-
-    store.dispatch('openProfile', id)
-
-    .then(()=>{
-
-      next();
-
-    })
-
+  beforeRouteEnter( { params: { id } }, to, next) {
+    store
+      .dispatch('openProfile', id)
+      .then(()=>{
+        next();
+      })
   },
   computed: {
     ...mapGetters([
-      'userShopId'
+      'userShopId',
+      'getUserName',
+      'getPhotoConfig'
     ])
-  },
-  methods:{
-    ...mapActions([
-      'openProfile'
-    ])
-
   },
   components: {
     photos,
