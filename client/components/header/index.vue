@@ -1,7 +1,6 @@
 <template lang="pug">
 #header
 
-
 </template>
 
 <script>
@@ -16,11 +15,11 @@ export default {
 
 <style lang="postcss">
 
-$color__blue: #5E8BCE;
+@import 'components/vars/vars.pcss';
 
 #header {
   position: relative;
-  height: 128px;
+  height: 50px;
   background: $color__blue;
 }
 
