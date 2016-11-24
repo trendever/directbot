@@ -32,6 +32,7 @@ let router = new Router({
     {
       name: 'confirm',
       path: '/confirm',
+      component: require('views/auth/confirm')
     },
     {
       name: 'profile',

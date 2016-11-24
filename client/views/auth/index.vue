@@ -177,10 +177,14 @@ export default {
       this.save();
 
       this.signup().then( ()=> {
-        this.$router.push({ name: 'comfirm' });
+
+        this.$router.push({ name: 'confirm' });
+
       }).catch( (error) => {
+
         this.onErrorPhone();
       })
+
     },
 
     blurInput(){
