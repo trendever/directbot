@@ -34,8 +34,8 @@
           .insta-link-text ссылка на эту витрину
           .insta-link(:ref="instaLink") {{ getUserName }}.drbt.io
 
-        button.turn-on-bot-btn-desk.blue-btn(
-        v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
+        //-button.turn-on-bot-btn-desk.blue-btn(
+          v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
         button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
 
       template(v-if="loaded")
@@ -54,17 +54,16 @@
           span.save Directbot #[br(v-if="!isMobile")]
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
-        button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
-        v-link="{ name: 'turn-on-bot' }", v-if="getAuthUser.supplier_of === null && isMobile") ПОДКЛЮЧИТЬ БОТА
+        //-router-link(:to="{ name: 'turn-on-bot' }")
+          button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
+          v-if="getAuthUser.supplier_of === null && isMobile") ПОДКЛЮЧИТЬ БОТА
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
 
         a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
-        //-photos-component(
-          :filter-by-shop-id="shopId",
-          :list-id.sync="listId")
+  photos(:shopId="userShopId", :listName="getPhotoConfig.listId")
 
   .directbot-navbar(v-if="isMobile")
     //-navbar-component(:current='listId')
@@ -72,6 +71,7 @@
 </template>
 
 <script>
+import store from 'root/store';
 import photos from 'components/photos/index';
 import headerComponent from 'components/header';
 
@@ -79,27 +79,26 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
 
+
   data(){
     return {
       loaded: true,
-      getAuthUser: {},
+      getAuthUser: {}
     }
   },
-
-  beforeRouteEnter(to, from, next){
-
-    next()
+  beforeRouteEnter( { params: { id } }, to, next) {
+    store
+      .dispatch('openProfile', id)
+      .then(()=>{
+        next();
+      })
   },
   computed: {
     ...mapGetters([
-      'userShopId'
+      'userShopId',
+      'getUserName',
+      'getPhotoConfig'
     ])
-  },
-  methods:{
-    ...mapActions([
-      'openProfile'
-    ])
-
   },
   components: {
     photos,
@@ -111,7 +110,7 @@ export default {
 
 <style lang="postcss">
 
-@import '../../components/vars/vars.pcss';
+@import '../../components/style/vars/vars.pcss';
 
 #profile {
 

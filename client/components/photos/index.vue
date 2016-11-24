@@ -20,12 +20,18 @@ export default {
     shopId: {
       default:null
     },
+    listName: {
+      default: 'home',
+    },
     infinite: {
       default: false
     }
   },
+
   data(){
     return {
+      firstOpened: false,
+      oldScroll: 0,
       windowListener: {},
       space: 0,
       off: false,
@@ -42,6 +48,11 @@ export default {
   mounted(){
 
     this.$nextTick(()=>{
+
+      if(this.firstOpened) {
+        this.scrollTo(0);
+        return;
+      }
 
       this.scrollTo(this.listScroll);
 
@@ -73,48 +84,61 @@ export default {
     ]),
 
     simpleScroll(){
+      //to have 0 scroll when first load
+      if(!this.$store.state.products.lists.hasOwnProperty(this.listName)) {
+        this.firstOpened = true;
+      }
 
-      this.openList({
+      this.openList( {
 
-        listId: this.shopId ? this.shopId : 'home',
+        listId: this.listName,
 
-        shop_id: this.shopId ? this.shopId : null
+        shop_id: this.shopId
 
-      }).then(()=>{
+      } ).then( () => {
 
-        this.windowListener = listen( window , 'scroll', ()=> {
+        this.$nextTick(()=>{
 
-          this.setScroll(window.scrollY);
+          this.windowListener = listen( window , 'scroll', () => {
 
-          if(this.off) return;
+            let direction = window.scrollY - this.oldScroll < 0 ? false : true;
 
-          if(window.scrollY > document.body.scrollHeight/1.29) {
+            this.oldScroll = window.scrollY;
 
-            this.off = true;
+            this.setScroll(window.scrollY);
 
-            this.offset += 20;
+            if(this.off || !direction) return;
 
-            this.increaseLength( {
+            if(window.scrollY > document.body.scrollHeight/2) {
 
-              shop_id: this.shopId ? this.shopId : null,
+              this.off = true;
 
-              offset: this.offset
+              this.offset += 20;
 
-            }).then(()=>{
+              this.increaseLength( {
 
-              this.off = false;
+                shop_id: this.shopId,
 
-              this.scrollTo(this.listScroll);
+                offset: this.offset
 
-            })
+              }).then(()=>{
 
-          }
+                this.scrollTo(this.listScroll);
+
+                this.off = false;
+
+              })
+
+            }
+
+          })
 
         })
 
       })
 
     },
+
     scrollTo(value){
 
       window.scrollTo(0,value);
@@ -248,13 +272,14 @@ export default {
 
 <style type="pcss">
 
-@import './style.pcss';
+@import 'components/style/vars/vars.pcss';
 
 
 .photos-flex{
   padding: 0;
   margin: 0;
   list-style: none;
+
 
   display: -webkit-box;
   display: -moz-box;
@@ -263,20 +288,42 @@ export default {
   display: flex;
 
   -webkit-flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: center;
+
+  @media(min-width: 1050px){
+
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
  }
 
- .flex-item {
-  background: $color__green;
-  width: 50%;
-  hegith: 400px;
+
+ li.flex-item {
+
+  @media(--mobile) {
+
+    width: 48%;
+    height: 48%;
+    margin: * 2px * 2px;
+
+  }
+
+  @media(min-width: 751px){
+
+    width: 30%;
+    heigth: 30%;
+    margin: * 5px * 5px;
+
+  }
+
   color: white;
   font-weight: bold;
   font-size: 3em;
   text-align: center;
 
   img {
-    max-width: 200px;
+    width: 100%;
   }
 }
 

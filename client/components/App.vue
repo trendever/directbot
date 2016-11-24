@@ -6,6 +6,7 @@
 <script>
 
 import 'components/fonts/trendever-icons/trendever-icons.font.js';
+import 'components/style/index.pcss';
 
 export default {
   created(){

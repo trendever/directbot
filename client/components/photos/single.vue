@@ -3,21 +3,10 @@ li.single-photo.flex-item(:class="className")
   router-link(:to="{name: 'profile', params: { id: product.shop.name } }")
     img(:src="thumb")
 
-
-
 </template>
 
 <script>
 export default {
-
-  mounted(){
-
-    this.$nextTick(()=>{
-
-      window.scrollTo(0,localStorage.getItem(`${this.$route.name}.scroll`));
-
-    });
-  },
 
   computed:{
 
