@@ -4,13 +4,14 @@
 </template>
 
 <script>
-
+import store from 'root/store';
 import 'style/fonts/trendever-icons/trendever-icons.font.js';
 import 'style/index.pcss';
 
 export default {
   created(){
 
+    store.dispatch('authUser', { null, null } )
 
   }
 }
