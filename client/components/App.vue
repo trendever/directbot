@@ -5,8 +5,8 @@
 
 <script>
 
-import 'components/fonts/trendever-icons/trendever-icons.font.js';
-import 'components/style/index.pcss';
+import 'style/fonts/trendever-icons/trendever-icons.font.js';
+import 'style/index.pcss';
 
 export default {
   created(){
@@ -17,7 +17,8 @@ export default {
 </script>
 
 <style lang="postcss">
-@import 'components/vars/fonts.pcss';
+
+
 * {
 
   box-sizing: border-box;

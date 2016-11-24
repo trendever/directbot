@@ -272,8 +272,7 @@ export default {
 
 <style type="pcss">
 
-@import 'components/style/vars/vars.pcss';
-
+@import 'style/vars/vars.pcss';
 
 .photos-flex{
   padding: 0;

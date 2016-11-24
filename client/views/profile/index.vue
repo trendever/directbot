@@ -110,7 +110,7 @@ export default {
 
 <style lang="postcss">
 
-@import '../../components/style/vars/vars.pcss';
+@import 'style/vars/vars.pcss';
 
 #profile {
 
