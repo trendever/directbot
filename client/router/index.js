@@ -35,6 +35,12 @@ let router = new Router({
       component: require('views/auth/confirm')
     },
     {
+      name: 'product_detail',
+      path: '/product_detail',
+      component: require('views/product_detail/index')
+
+    },
+    {
       name: 'profile',
       path: '/:id',
       component: require('views/profile/index')
