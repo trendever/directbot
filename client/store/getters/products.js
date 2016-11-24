@@ -1,5 +1,36 @@
 import store from 'root/store';
 
+export const listId = (state) => {
+
+  return state.list;
+
+};
+
+export const listProducts = (state) => {
+
+  if(state.lists.hasOwnProperty(state.listId)) {
+
+    return state.lists[state.listId].products;
+
+  }
+
+
+};
+
+export const listScroll = (state) => {
+
+  if(state.lists.hasOwnProperty(state.listId)) {
+
+    return state.lists[state.listId].scroll;
+
+  }
+
+  return null;
+
+};
+
+
+
 export const getList = ( products ) => {
 
   if ( products.lists.hasOwnProperty( products.listId ) ) {
@@ -167,3 +198,5 @@ export const getCountElementOnPage = () => {
 export const isAuthUserProduct = ( products ) => {
 
   return products.authUserProduct;
+
+};
