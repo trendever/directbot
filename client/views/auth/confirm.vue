@@ -1,7 +1,7 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
-#confirm Привет
-//-div
+
+#confirm
   .signup.confirm(:style='{ height: height }')
     .signup__close.__hello(v-on:click='closePage'): i.ic-close
     .section
@@ -74,10 +74,6 @@
               v-show='needNewSMS'
               v-on:click.prevent='sendSMS') Отправить новый код
 
-
-
-
-
 </template>
 
 <script>
@@ -121,8 +117,8 @@ export default {
   },
 
   ready() {
-    this.$set('height', `${ document.body.scrollHeight }px`);
-    this.$els.confirmField.focus();
+    this.height = `${ document.body.scrollHeight }px`;
+    this.$refs.confirmField.focus();
   },
   computed: {
     isDisabled() {
@@ -151,7 +147,7 @@ export default {
     onButton() {
       if(this.anotherName){
         if (!this.callbackOnSuccessAuth) {
-              this.$router.go({name: 'chat_list'}), 1000;
+              this.$router.push({name: 'chat_list'}), 1000;
               return;
             } else {
               this.executeCallbackOnSuccessAuth()
@@ -163,7 +159,7 @@ export default {
       }
       if (!this.isCompleted) {
         this.onConfirm();
-        setTimeout( () => this.$set('needNewSMS', true), 7000);
+        setTimeout( () => this.needNewSMS = true, 7000);
       }
     },
     onConfirm() {
@@ -178,7 +174,7 @@ export default {
     },
     onComplete(user, token) {
       this.isCompleted = true;
-      this.$els.confirmBtn.focus();
+      this.$refs.confirmBtn.focus();
       this.anotherName = user.name !== this.authData.username ? user.name : '';
       this
         .authUser(user, token)
@@ -188,7 +184,7 @@ export default {
               Android.sendToken();
             }
             if (!this.callbackOnSuccessAuth) {
-              setTimeout( () => this.$router.go({name: 'chat_list'}), 1000);
+              setTimeout( () => this.$router.push({name: 'chat_list'}), 1000);
               return true;
             } else {
               this.executeCallbackOnSuccessAuth()
@@ -199,31 +195,31 @@ export default {
     },
     onErrorCode() {
       console.log('on error');
-      this.$set('errorCode', true);
-      this.$set('text_header', TEXT_HEADER.ERROR);
-      this.$set('code', '');
+      this.errorCode = true;
+      this.text_header = TEXT_HEADER.ERROR;
+      this.code = '';
     },
     onFocus() {
-      if (this.$get('errorCode')) {
-        this.$set('errorCode', false);
-        this.$set('text_header', TEXT_HEADER.DEFAULT);
+      if (this.errorCode) {
+        this.errorCode = false;
+        this.text_header = TEXT_HEADER.DEFAULT;
       }
     },
     sendSMS() {
       this.onFocus();
-      this.$set('code', '');
-      this.$set('needNewSMS', false);
-      setTimeout( () => this.$set('needNewSMS', true), 7000);
+      this.code = '';
+      this.needNewSMS = false;
+      setTimeout( () => this.needNewSMS = true, 7000);
       auth.sendPassword(this.authData.phone).then( data => {
-        this.$router.go({ name: 'comfirm-sms' })
+        this.$router.push({ name: 'comfirm-sms' })
       })
     },
     closePage() {
       mixpanel.track('Close confirm-sms Page');
       if (window.history.length > 2) {
-        this.$router.go(window.history.back(2));
+        this.$router.push(window.history.back(2));
       } else {
-        this.$router.go({name: 'home'});
+        this.$router.push({name: 'home'});
       }
     },
   },
