@@ -15,7 +15,7 @@ export default {
 
 <style lang="postcss">
 
-@import 'components/vars/vars.pcss';
+@import 'components/style/vars/vars.pcss';
 
 #header {
   position: relative;
