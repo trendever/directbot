@@ -14,7 +14,6 @@
 
 <script type="text/babel">
 
-import { isAuth } from 'vuex/getters/user';
 import { openProduct, closeProduct, setScrollByProduct } from 'vuex/actions/products';
 import { getOpenedProduct, getScrollTopOfProduct } from 'vuex/getters/products';
 import { checkIsUserProduct } from 'vuex/actions/products';
@@ -47,19 +46,23 @@ export default {
 
   methods: {
     ..mapActions([
+
       'openProduct',
       'closeProduct',
       'setScrollByProduct',
       'checkIsUserProduct'
+
     ])
   },
 
   computed: {
 
     ...mapGetters([
+
       'getOpenedProduct',
       'getScrollTopOfProduct',
       'isAuth'
+
     ]),
 
     title(){
