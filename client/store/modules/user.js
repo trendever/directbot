@@ -201,7 +201,7 @@ let actions = {
 
   },
 
-  authUser( { commit },{ user, token} ) {
+  authUser( { commit }, { user, token } ) {
 
     return new Promise( ( resolve, reject ) => {
 

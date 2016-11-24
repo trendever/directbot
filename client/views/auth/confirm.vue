@@ -35,11 +35,11 @@
           .input-container
             .input.confirm-input.conf
               input(type='tel',
-                v-on:click="$els.confirmField.focus()"
+                v-on:click="$refs.confirmField.focus()"
                 v-on:keyup='onInput',
                 v-on:focus='onFocus',
                 v-on:keydown.enter='onButton()',
-                :ref="confirmField",
+                ref="confirmField",
                 v-model='code',
                 placeholder='9999',
                 autocomplete="off",
@@ -58,14 +58,14 @@
                 v-on:click.prevent='sendSMS') Отправить новый код
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               :disabled='isDisabled',
-              :ref="confirmBtn",
+              ref="confirmBtn",
               v-on:keydown.enter='onButton()',
               v-on:click='onButton') {{ isCompleted ? 'Продолжить' : 'Подтвердить' }}
         template(v-else)
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.accept_btn(
               :disabled='isDisabled',
-              :ref="confirmBtn",
+              ref="confirmBtn",
               v-on:keydown.enter='onButton()',
               v-on:click='onButton') {{ isCompleted ? 'Продолжить' : 'Подтвердить' }}
           .link-container
@@ -177,14 +177,11 @@ export default {
       this.$refs.confirmBtn.focus();
       this.anotherName = user.name !== this.authData.username ? user.name : '';
       this
-        .authUser(user, token)
+        .authUser( { user, token } )
         .then(() => {
           if(!this.anotherName) {
-            if (typeof Android !== 'undefined'){
-              Android.sendToken();
-            }
             if (!this.callbackOnSuccessAuth) {
-              setTimeout( () => this.$router.push({name: 'chat_list'}), 1000);
+              setTimeout( () => this.$router.push( { name: 'home' } ), 1000);
               return true;
             } else {
               this.executeCallbackOnSuccessAuth()
@@ -207,15 +204,22 @@ export default {
     },
     sendSMS() {
       this.onFocus();
+
       this.code = '';
+
       this.needNewSMS = false;
+
       setTimeout( () => this.needNewSMS = true, 7000);
+
       auth.sendPassword(this.authData.phone).then( data => {
-        this.$router.push({ name: 'comfirm-sms' })
+
+        this.$router.push({ name: 'comfirm' })
+
       })
+
     },
     closePage() {
-      mixpanel.track('Close confirm-sms Page');
+      //mixpanel.track('Close confirm-sms Page');
       if (window.history.length > 2) {
         this.$router.push(window.history.back(2));
       } else {
