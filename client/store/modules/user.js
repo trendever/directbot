@@ -214,7 +214,9 @@ let actions = {
         profile.saveUser( getValidUserObject( user, user_id ) );
 
         commit( types.USER_AUTHENTICATED, token );
-        commit( types.USER_RECEIVE_PROFILE, profile.getProfile( true ).user );
+        commit( types.USER_RECEIVE_PROFILE, {
+          profile: profile.getProfile( true ).user
+        }  );
         commit( types.USER_SET_MY_ID, user_id );
 
         resolve();
@@ -238,7 +240,7 @@ let actions = {
               profile.saveUser( getValidUserObject( user, user_id ) );
 
               commit( types.USER_AUTHENTICATED, token );
-              commit( types.USER_RECEIVE_PROFILE, user );
+              commit( types.USER_RECEIVE_PROFILE, { profile: user } );
               commit( types.USER_SET_MY_ID, user_id );
 
               resolve();
@@ -256,7 +258,9 @@ let actions = {
               profile.saveUser( getValidUserObject( user, user_id ) );
 
               commit( types.USER_AUTHENTICATED, token );
-              commit( types.USER_RECEIVE_PROFILE, profile.getProfile( true ).user );
+              commit( types.USER_RECEIVE_PROFILE, {
+                profile: profile.getProfile( true ).user
+              }  );
               commit( types.USER_SET_MY_ID, user_id );
 
               resolve();
@@ -288,7 +292,7 @@ let actions = {
         if ( user && token ) {
 
           commit( types.USER_AUTHENTICATED, token );
-          commit( types.USER_RECEIVE_PROFILE, user );
+          commit( types.USER_RECEIVE_PROFILE, { profile: user });
           commit( types.USER_SET_MY_ID, user.id );
 
         }
