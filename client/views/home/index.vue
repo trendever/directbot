@@ -145,7 +145,7 @@
     a ЖМИ СЮДА
 </template>
 <script>
-import JQuery from 'jquery';
+//import JQuery from 'jquery';
 import listen from 'event-listener'
 
 import InfoPopup from '../../components/popup/info-popup';
@@ -177,8 +177,6 @@ export default {
     '$route' (to, from) {
       this.$emit('setList')
     }
-  },
-  methods: {},
-  ready() {}
+  }
 }
 </script>
