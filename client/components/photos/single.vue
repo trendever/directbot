@@ -12,14 +12,7 @@ export default {
 
     goToProduct(){
 
-      if ( this.$route.name === 'profile' || this.$route.name === 'user' || this.$route.name === 'product_detail') {
-
-        this.$router.push( {name: 'product_detail', params: { id: this.product.id }} )
-        return;
-
-      }
-
-      this.$router.push( {name: 'profile', params: { id: this.product.shop.name } } )
+      this.$router.push( {name: 'product_detail', params: { id: this.product.id }} )
 
     }
 

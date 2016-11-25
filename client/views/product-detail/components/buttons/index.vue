@@ -21,9 +21,12 @@
 <script type="text/babel">
 
   //import config from '../../../../../config';
-  let config = {service_product_id: 7833}
+
+  let config = { service_product_id: 7833 };
+
   export default {
-    ready(){
+    created(){
+      this.loaded = true;
       this.$on('isAuthProduct',()=>{
         this.loaded = true;
       });

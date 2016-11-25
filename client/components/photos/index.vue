@@ -252,6 +252,16 @@ export default {
     }
   },
 
+  watch: {
+
+    '$route'(){
+
+      this.scrollTo(0);
+
+    }
+
+  },
+
   beforeDestroy(){
 
     this.windowListener.remove();
