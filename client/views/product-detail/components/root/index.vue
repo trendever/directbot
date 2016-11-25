@@ -12,7 +12,6 @@
       :caption="caption"
       :is-liked="isLiked"
       :last-update="lastUpdate"
-      :is-mobile="isMobile"
       :product-id="productId"
       :like="like"
       :buy="buy"
@@ -257,12 +256,6 @@ export default {
 
     },
 
-    isMobile(){
-
-      return window.browser.mobile
-
-    },
-
     listId(){
       return `product-list-of-${this.supplierName}`
     },
@@ -347,17 +340,10 @@ export default {
 
         if ( this.getOpenedProduct.instagram_images ) {
 
-          console.log(this.getOpenedProduct.instagram_images);
           const picture = this.getOpenedProduct.instagram_images.find( ( item ) => {
 
             return item.name === 'Max'
 
-          } )
-
-          const img = new Image()
-
-          img.load( picture.url, null, null, () => {
-            this.imageOpacity = 1
           } )
 
           return picture.url

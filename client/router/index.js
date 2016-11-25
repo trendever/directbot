@@ -50,6 +50,11 @@ let router = new Router({
       path: '/:id',
       component: require('views/profile/index')
     },
+    {
+      name: 'user',
+      path: '/user',
+      component: require('views/profile/index')
+    },
 	]
 })
 

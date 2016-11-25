@@ -1,13 +1,13 @@
 <template>
-  <div class="desktopLayout"  v-el:root>
+  <div class="desktopLayout"  ref="root">
 
-    <div class="product" v-el:product>
+    <div class="product" ref="product">
 
-      <div class="leftSide" v-bind:style="leftSide">
+      <div class="leftSide" :style="leftSide">
         <picture :img="picture"></picture>
       </div>
 
-      <div class="rightSide" v-bind:style="rightSide">
+      <div class="rightSide" :style="rightSide">
 
         <div class="userAndProducts">
           <user-info
@@ -23,31 +23,18 @@
               :discount-price="product.discountPrice"
             ></products>
           </template>
-          <buttons
-            :is-liked="isLiked"
-            :is-mobile="isMobile"
-            :product-id="productId"
-            :supplier-available="supplierAvailable"
-            :like="like"
-            :buy="buy"
-            :buy-promo-product="buyPromoProduct"
-          ></buttons>
+         <!--  <buttons
+           :is-liked="isLiked"
+           :is-mobile="isMobile"
+           :product-id="productId"
+           :supplier-available="supplierAvailable"
+           :like="like"
+           :buy="buy"
+           :buy-promo-product="buyPromoProduct"
+         ></buttons> -->
         </div>
         <div class="description-wrapper">
           <description :text="caption"></description>
-        </div>
-        <div class="tags-wrapper" v-if="!isDirectbot">
-          <tags
-            :tags="tags"
-            :add-tag="goToHome"
-            text-font-size="16px"
-            text-line-height="27px"
-            max-height="325px"
-            :base-height="191"
-            :margin-right="5"
-            :margin-bottom="5"
-            :is-product="true"
-          ></tags>
         </div>
       </div>
 
@@ -63,10 +50,10 @@
   import picture from '../picture/index.vue';
   import userInfo from '../user-info/index.vue';
   import products from '../products/index.vue';
-  import buttons from '../buttons/index.vue';
+  //import buttons from '../buttons/index.vue';
   import description from '../description/index.vue';
   import listener from 'event-listener';
-  import tags from 'base/tags/index.vue'
+
 
   export default {
     props: {
@@ -186,7 +173,6 @@
       products,
       buttons,
       description,
-      tags
     }
   }
 </script>

@@ -14,7 +14,7 @@
         opacityImg: 0
       }
     },
-    ready(){
+    mounted(){
 
       this.loadImg( this.img );
 

@@ -1,10 +1,12 @@
 <template>
   <div class="user-info">
-    <img class="avatar" :src="img" v-link='{name: "user", params: {id: name}}'>
+    <router-link  :to='{name: "user", params: {id: name}}'>
+      <img class="avatar" :src="img">
+    </router-link>
     <div class="description">
       <div class="userName">
-        <span class="title" v-link='{name: "user", params: {id: name}}'>Нашёл</span>
-        <span class="name" v-link='{name: "user", params: {id: name}}'>{{name}}</span>
+        <router-link class="title" :to='{name: "user", params: {id: name}}'>Нашёл</router-link>
+        <router-link class="name" :to='{name: "user", params: {id: name}}'>{{name}}</router-link>
       </div>
       <span class="code">{{code}}, {{ lastUpdate}}</span>
     </div>
