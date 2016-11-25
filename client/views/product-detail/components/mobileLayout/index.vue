@@ -1,46 +1,38 @@
 <template>
   <div class="mobileLayout">
-    <div class="wrapper" v-if="notFromUser">
-      <user-info
-        :img="avatarUrl"
-        :code="code"
-        :name="name"
-        :last-update="lastUpdate"
-      ></user-info>
-    </div>
+<!--     <div class="wrapper" v-if="notFromUser">
+  <user-info
+    :img="avatarUrl"
+    :code="code"
+    :name="name"
+    :last-update="lastUpdate"
+  ></user-info>
+</div> -->
     <div class="picture-wrapper">
       <picture :img="picture"></picture>
     </div>
-    <div class="wrapper">
-      <template v-for="product of products">
-        <products
-          :name="product.name"
-          :price="product.price"
-          :discount-price="product.discountPrice"
-        ></products>
-      </template>
-      <buttons
-        :is-liked="isLiked"
-        :is-mobile="isMobile"
-        :product-id="productId"
-        :supplier-available="supplierAvailable"
-        :like="like"
-        :buy="buy"
-        :buy-promo-product="buyPromoProduct"
-        :auth-seller-product="isAuthUserProduct"
-      ></buttons>
-    </div>
-    <div class="desc-wrapper">
-      <description :text="caption"></description>
-    </div>
-    <div class="tags-wrapper" v-if="!isDirectbot">
-      <tags
-        :tags="tags"
-        :add-tag="goToHome"
-        :base-height="170"
-        :is-product="true"
-      ></tags>
-    </div>
+  <!--   <div class="wrapper">
+    <template v-for="product of products">
+      <products
+        :name="product.name"
+        :price="product.price"
+        :discount-price="product.discountPrice"
+      ></products>
+    </template>
+    <buttons
+      :is-liked="isLiked"
+      :is-mobile="isMobile"
+      :product-id="productId"
+      :supplier-available="supplierAvailable"
+      :like="like"
+      :buy="buy"
+      :buy-promo-product="buyPromoProduct"
+      :auth-seller-product="isAuthUserProduct"
+    ></buttons>
+  </div>
+  <div class="desc-wrapper">
+    <description :text="caption"></description>
+  </div> -->
   </div>
 </template>
 
@@ -49,46 +41,53 @@
 <script type="text/babel">
 
   import picture from '../picture/index.vue';
-  import userInfo from '../user-info/index.vue';
-  import products from '../products/index.vue';
-  import buttons from '../buttons/index.vue';
-  import description from '../description/index.vue';
-  import tags from 'base/tags/index.vue'
-  import { getOpenedProduct, isAuthUserProduct } from 'vuex/getters/products'
-  import { authUserId,isFake } from 'vuex/getters/user';
+  //import userInfo from '../user-info/index.vue';
+  //import products from '../products/index.vue';
+  //import buttons from '../buttons/index.vue';
+  //import description from '../description/index.vue';
+
+
   import * as userService from 'services/user';
 
   export default {
 
     data(){
       return {
+
         authSellerProduct: false,
+
       }
 
     },
     computed:{
+
+      ...mapGetters([
+
+        'isAuthUserProduct',
+        'getOpenedProduct',
+        'authUserId',
+        'isFake'
+
+      ]),
+
       notFromUser(){
+
         if (window.entryPoint == "user"){
+
           return false;
+
         }
+
         return true
-      }
-    },
-    vuex: {
-      getters: {
-        isAuthUserProduct,
-        getOpenedProduct,
-        authUserId,
-        isFake
+
       }
     },
     components: {
       picture,
-      userInfo,
-      products,
-      buttons,
-      description,
-      tags
+      //userInfo,
+      //products,
+      //buttons,
+      //description
     },
     props: {
       products: {

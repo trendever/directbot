@@ -1,5 +1,5 @@
 <template>
-  <div class="picture" v-bind:style='{ opacity: opacityImg }' v-el:pic>
+  <div class="picture" :style='{ opacity: opacityImg }' ref="pic">
     <img :width="width" :height="height" :src="srcImg">
   </div>
 </template>
@@ -15,20 +15,29 @@
       }
     },
     ready(){
+
       this.loadImg( this.img );
-      console.log(this.$els.pic.offsetWidth);
+
     },
     methods: {
 
       loadImg( url ){
-        this.$set( 'opacityImg', 0 );
-        this.$set( 'srcImg', url );
+
+        this.opacityImg = 0;
+        this.srcImg = url;
+
         // Load and set full image.
         let img = new Image();
+
         img.load( url, null, null, () => {
-          this.$set( 'srcImg', url );
-          this.$set( 'opacityImg', 1 );
+
+          this.srcImg = url;
+
+          this.opacityImg = 1;
+
+          //
           this.$store.state.user.showRootLoader = false;
+
         } );
       }
     },

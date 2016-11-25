@@ -263,3 +263,105 @@ export const targetClass = ( event , className , callback ) => {
   callback();
 
 }
+
+
+
+export const formatPastTime = ( pasttime ) => {
+  const second = parseInt( pasttime);
+  const minute = parseInt( second / 60 );
+  const hour   = parseInt( minute / 60 );
+  const day    = parseInt( hour / 24 );
+  const month  = parseInt( day / 30 );
+  const year   = parseInt( month / 12 );
+
+  if ( second <= 60 ) {
+    return `${second} сек`;
+  }
+
+  if ( minute <= 60 ) {
+    return `${minute} мин`;
+  }
+
+
+  if ( hour < 24 ) {
+
+    if ( (hour === 1) || (hour === 21) ) {
+
+      return `${hour} час`;
+
+    }
+
+    if ( (hour > 1 && hour <= 4) || (hour >= 22 && hour <= 23) ) {
+
+      return `${hour} часа`;
+
+    }
+
+    return `${hour} часов`;
+
+  }
+
+  if ( day > 0 ) {
+
+    if ( (day === 1) || (day === 21) || (day === 31) ) {
+
+      return `${day} день`;
+
+    }
+
+    if ( (day >= 2 && day <= 4) || (day >= 22 && day <= 24) ) {
+
+      return `${day} дня`;
+
+    }
+
+    if ( (day >= 5 && day <= 20) || (day >= 26 && day <= 30) ) {
+
+      return `${day} дней`;
+
+    }
+
+  }
+
+  if ( month > 0 ) {
+
+    if ( month === 1 ) {
+
+      return `${month} меc`;
+
+    }
+
+    if ( month >= 2 && day <= 4 ) {
+
+      return `${month} мес`;
+
+    }
+
+    if(month > 12) {
+      return '1 мес';
+    }
+
+    return `${month} мес`;
+
+  }
+
+  if ( year > 0 ) {
+
+    if ( year === 1 ) {
+
+      return `${year} год`;
+
+    }
+
+    if ( year > 1 && year <= 4 ) {
+
+      return `${year} года`;
+
+    }
+
+    return `${year} лет`;
+
+  }
+
+};
+

@@ -20,6 +20,14 @@ module.exports = {
 
   postcss: function(){
     return [
+      require( `postcss-use` )(
+        {
+          modules: [
+            'postcss-autoreset',
+            'postcss-initial'
+          ]
+        }
+      ),
       require('postcss-import')({
         path: path.resolve('./client'),
         addDependencyTo: webpack

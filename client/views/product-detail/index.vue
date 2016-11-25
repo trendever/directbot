@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 
 //-header-component(
   :title='title',
@@ -14,38 +14,33 @@
 
 <script type="text/babel">
 
-import { openProduct, closeProduct, setScrollByProduct } from 'vuex/actions/products';
-import { getOpenedProduct, getScrollTopOfProduct } from 'vuex/getters/products';
-import { checkIsUserProduct } from 'vuex/actions/products';
-
 import { mapGetters, mapActions } from 'vuex';
 import store from 'root/store';
 
-//C O M P O N E N T S
-import RightNavComponent from 'base/right-nav';
-import HeaderComponent from 'components/header/header.vue';
+//import RightNavComponent from 'base/right-nav';
+//import HeaderComponent from 'components/header/header.vue';
 import PostComponent from './components/root/index.vue';
 import listener from 'event-listener';
 
 export default {
-  ready() {
+  created() {
 
     if(this.isAuth){
 
-      this.checkIsUserProduct()
+      /*this.checkIsUserProduct()
 
       .then(()=>{
 
         this.$broadcast('isAuthProduct');
 
-      })
+      })*/
 
     }
 
   },
 
   methods: {
-    ..mapActions([
+    ...mapActions([
 
       'openProduct',
       'closeProduct',
@@ -152,7 +147,7 @@ export default {
 
   },
 
-  beforeRouteEnter( { params: { id } } , to, next() ) {
+  beforeRouteEnter( { params: { id } } , to, next )  {
 
     store.dispatch('openProduct', +id ).then(()=>{
 
@@ -179,8 +174,8 @@ export default {
 
   components: {
 
-    RightNavComponent,
-    HeaderComponent,
+   // RightNavComponent,
+   // HeaderComponent,
     PostComponent
 
   },

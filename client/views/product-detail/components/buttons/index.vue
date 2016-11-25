@@ -46,23 +46,27 @@
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
-                this.$router.go( { name: 'chat', params: { id: lead.id } } )
+                this.$router.push( { name: 'chat', params: { id: lead.id } } )
               }
             }
           )
           .catch(
             ( error ) => {
               if ( error === leads.ERROR_CODES.UNATHORIZED ) {
-                this.$router.go( { name: 'signup' } )
+                this.$router.push( { name: 'signup' } )
               }
             }
           )
       }
     },
     computed: {
+
       text(){
+
         return (this.isLiked) ? 'СОХРАНЕНО' : 'СОХРАНИТЬ';
+
       }
+
     },
     props: {
       loaded: {
