@@ -139,8 +139,9 @@ export default {
 
   watch: {
 
-    $router(){
+    '$route'(){
 
+        store.dispatch('openProduct', +this.$route.params.id )
 
     }
 
@@ -155,14 +156,6 @@ export default {
     });
 
   },
-
-  canReuse( { to: { params: { id } } } ){
-    this.openProduct( +id ).then( () => {
-      this.$broadcast( 'update' )
-    } );
-    return true;
-  },
-
 
   beforeDestroy(){
     this.closeProduct();

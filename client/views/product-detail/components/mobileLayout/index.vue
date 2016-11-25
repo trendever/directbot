@@ -19,16 +19,15 @@
         :discount-price="product.discountPrice"
       ></products>
     </template>
-<!--   <buttons
-  :is-liked="isLiked"
-  :is-mobile="isMobile"
-  :product-id="productId"
-  :supplier-available="supplierAvailable"
-  :like="like"
-  :buy="buy"
-  :buy-promo-product="buyPromoProduct"
-  :auth-seller-product="isAuthUserProduct"
-></buttons> -->
+    <buttons
+      :is-liked="isLiked"
+      :product-id="productId"
+      :supplier-available="supplierAvailable"
+      :like="like"
+      :buy="buy"
+      :buy-promo-product="buyPromoProduct"
+      :auth-seller-product="isAuthUserProduct"
+    ></buttons>
 </div>
   <div class="desc-wrapper">
     <description :text="caption"></description>
@@ -43,7 +42,7 @@
   import picture from '../picture/index.vue';
   import userInfo from '../user-info/index.vue';
   import products from '../products/index.vue';
-  //import buttons from '../buttons/index.vue';
+  import buttons from '../buttons/index.vue';
   import description from '../description/index.vue';
 
   import { mapGetters, mapActions } from 'vuex';
@@ -86,7 +85,7 @@
       picture,
       userInfo,
       products,
-      //buttons,
+      buttons,
       description
     },
     props: {

@@ -49,7 +49,7 @@
     </span>
 
   </div>
-  <photos :list-id="listId" :shop-id="supplier.id"></photos>
+  <photos :list-name="listId" :shop-id="supplier.id"></photos>
 <!--   <navbar v-if="false"></navbar> -->
 </div>
   </div>

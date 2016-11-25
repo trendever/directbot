@@ -9,11 +9,13 @@ li.single-photo.flex-item(:class="className")
 export default {
 
   methods:{
+
     goToProduct(){
 
-      if ( this.$route.name === 'profile' || this.$route.name === 'user') {
+      if ( this.$route.name === 'profile' || this.$route.name === 'user' || this.$route.name === 'product_detail') {
 
         this.$router.push( {name: 'product_detail', params: { id: this.product.id }} )
+        return;
 
       }
 

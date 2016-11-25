@@ -1,5 +1,5 @@
 <template>
-<div v-if="loaded || !isAuth">
+<div v-if="loaded || !$store.getters.isAuth">
   <div class="buttons" :class="{'glued-btns': isMobile && !authSellerProduct}" v-if="!authSellerProduct">
     <div class="leftSide">
       <button class="save_btn" @click="like" :class="{ 'active': isLiked, 'default': !isLiked}">
@@ -19,18 +19,10 @@
 <style src="./style.pcss" scoped lang="postcss"></style>
 
 <script type="text/babel">
-  import { isAuth } from 'vuex/getters/user';
-  import { createLead } from 'vuex/actions/lead';
-  import config from '../../../../../config';
+
+  //import config from '../../../../../config';
+  let config = {service_product_id: 7833}
   export default {
-    vuex: {
-      getters: {
-        isAuth
-      },
-      actions: {
-        createLead
-      }
-    },
     ready(){
       this.$on('isAuthProduct',()=>{
         this.loaded = true;
@@ -41,8 +33,7 @@
 
         let productId = config.service_product_id === null ? 7833 : config.service_product_id;
 
-        this
-          .createLead( productId )
+        this.$store.dispatch('createLead',productId)
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
@@ -78,10 +69,6 @@
         default: false
       },
       isLiked: {
-        type: Boolean,
-        default: false
-      },
-      isMobile: {
         type: Boolean,
         default: false
       },
