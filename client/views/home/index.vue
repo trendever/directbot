@@ -64,25 +64,25 @@
             | уделит внимание каждому, быстро ответит.
             a.link-info(v-on:click="showPopupA = true") Ни один клиент не успеет передумать
             info-popup(:show-popup="showPopupA")
-              i.ic-close(v-if="!isMobile")
+              i.ic-close(v-on:click="showPopupA = false")
               info-screen1
         .info-box
           .hero__content__landing__icon-2
             img(src="./img/icon-2.png")
           .hero__content__landing__sub-title Выполняет  «мартышкин труд»
           .hero__content__landing__caption Больше не нужно отвечать  и спрашивать  одно и то же.
-            a.link-info Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
-            info-popup
-              i.ic-close(v-if="!isMobile")
+            a.link-info(v-on:click="showPopupB = true") Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
+            info-popup(:show-popup="showPopupB")
+              i.ic-close(v-on:click="showPopupB = false")
               info-screen2
         .info-box
           .hero__content__landing__icon-3
             img(src="./img/icon-3.png")
           .hero__content__landing__sub-title Подключается быстро,  работает самостоятельно
           .hero__content__landing__caption Подключи нашего оператора к своему  Instagram-магазину в один клик.
-            a.link-info Ничего не надо скачивать
-            info-popup
-              i.ic-close(v-if="!isMobile")
+            a.link-info(v-on:click="showPopupC = true") Ничего не надо скачивать
+            info-popup(:show-popup="showPopupC")
+              i.ic-close(v-on:click="showPopupC = false")
               info-screen3
       .hero__content__landing__title.middle Как работает наш  оператор?
       .hero__content__landing__screen-1
@@ -124,11 +124,11 @@
             img(src="./img/screen-4-no.png")
           .hero__content__landing__sub-title.info Нет сайта? Ответь  на вопросы о товарах
           .hero__content__landing__caption.store Оператор увидит посты в Instagram  и добавит их в твой
-            a.link-info  новый интернет-магазин по ссылке
+            a.link-info(v-on:click="showPopupD = true")  новый интернет-магазин по ссылке
               span.bold  xxxx.drbt.io
             info-popup
-              i.ic-close(v-if="!isMobile")
-              info-screen4
+              i.ic-close(v-on:click="showPopupD = false")
+              info-screen4(:show-popup="showPopupD")
             | Также уточнит детали и наличие товаров
   .info-block
     .title
@@ -145,10 +145,10 @@
     a ЖМИ СЮДА
 </template>
 <script>
-//import JQuery from 'jquery';
+
 import listen from 'event-listener'
 
-import InfoPopup from '../../components/popup/info-popup';
+import InfoPopup from 'components/popup/info-popup';
 import infoScreen1 from '../info-screens/info-screen-1'
 import infoScreen2 from '../info-screens/info-screen-2'
 import infoScreen3 from '../info-screens/info-screen-3'
@@ -157,7 +157,6 @@ import infoScreen4 from '../info-screens/info-screen-4'
 export default {
   data(){
     return {
-      isMobile : true,
       showPopupA: false,
       showPopupB: false,
       showPopupC: false,
@@ -172,11 +171,6 @@ export default {
     infoScreen2,
     infoScreen3,
     infoScreen4
-  },
-  watch: {
-    '$route' (to, from) {
-      this.$emit('setList')
-    }
   }
 }
 </script>

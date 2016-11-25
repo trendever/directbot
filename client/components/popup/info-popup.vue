@@ -17,6 +17,8 @@ export default {
 </script>
 <style lang="postcss">
 
+@import 'style/vars/vars.pcss';
+
   #info-popup{
     width: 100%;
     height: 100%;
