@@ -318,8 +318,8 @@ export default {
 
   @media(min-width: 751px){
 
-    width: 30%;
-    heigth: 30%;
+    width: 32%;
+    heigth: 32%;
     margin: * 5px * 5px;
 
   }
