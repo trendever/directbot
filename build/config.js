@@ -24,6 +24,7 @@ module.exports = {
         path: path.resolve('./client'),
         addDependencyTo: webpack
       }),
+      require("postcss-url")(),
       require('postcss-nested')(),
       require('postcss-comment/hookRequire')(),
       require('postcss-discard-comments')(),
