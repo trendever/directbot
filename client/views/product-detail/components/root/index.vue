@@ -1,24 +1,24 @@
 <template>
   <div>
-    <mobile-layout
-      v-if="isSmall"
-      :products="products"
-      :supplier-available="supplierAvailable"
-      :avatar-url="avatarUrl"
-      :code="code"
-      :name="mentionedName"
-      :tags="tags"
-      :picture="picture"
-      :caption="caption"
-      :is-liked="isLiked"
-      :last-update="lastUpdate"
-      :product-id="productId"
-      :like="like"
-      :buy="buy"
-      :buy-promo-product="buyPromoProduct"
-      :go-to-home="goToHome"
-    ></mobile-layout>
-<!--     <desktop-layout
+<mobile-layout
+  v-if="isSmall"
+  :products="products"
+  :supplier-available="supplierAvailable"
+  :avatar-url="avatarUrl"
+  :code="code"
+  :name="mentionedName"
+  :tags="tags"
+  :picture="picture"
+  :caption="caption"
+  :is-liked="isLiked"
+  :last-update="lastUpdate"
+  :product-id="productId"
+  :like="like"
+  :buy="buy"
+  :buy-promo-product="buyPromoProduct"
+  :go-to-home="goToHome"
+></mobile-layout>
+<desktop-layout
   v-if="!isSmall"
   :products="products"
   :supplier-available="supplierAvailable"
@@ -36,7 +36,7 @@
   :buy="buy"
   :buy-promo-product="buyPromoProduct"
   :go-to-home="goToHome"
-></desktop-layout> -->
+></desktop-layout>
 
  <div class="products" v-if="isProduct">
   <div class="title-wrapper">
@@ -65,7 +65,7 @@ import settings from 'root/settings';
 import listen from 'event-listener'
 
 import mobileLayout from '../mobileLayout/index.vue'
-//import desktopLayout from '../desktopLayout/index.vue'
+import desktopLayout from '../desktopLayout/index.vue'
 import photos from 'root/components/photos/index.vue'
 //import navbar from 'components/navbar/navbar.vue'
 
@@ -91,7 +91,7 @@ export default {
 
     mobileLayout,
 
-    //desktopLayout,
+    desktopLayout,
 
     photos,
 

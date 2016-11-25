@@ -23,15 +23,14 @@
               :discount-price="product.discountPrice"
             ></products>
           </template>
-         <!--  <buttons
-           :is-liked="isLiked"
-           :is-mobile="isMobile"
-           :product-id="productId"
-           :supplier-available="supplierAvailable"
-           :like="like"
-           :buy="buy"
-           :buy-promo-product="buyPromoProduct"
-         ></buttons> -->
+        <buttons
+          :is-liked="isLiked"
+          :product-id="productId"
+          :supplier-available="supplierAvailable"
+          :like="like"
+          :buy="buy"
+          :buy-promo-product="buyPromoProduct"
+        ></buttons>
         </div>
         <div class="description-wrapper">
           <description :text="caption"></description>
@@ -50,7 +49,7 @@
   import picture from '../picture/index.vue';
   import userInfo from '../user-info/index.vue';
   import products from '../products/index.vue';
-  //import buttons from '../buttons/index.vue';
+  import buttons from '../buttons/index.vue';
   import description from '../description/index.vue';
   import listener from 'event-listener';
 
@@ -93,10 +92,6 @@
         type: Boolean,
         default: false
       },
-      isMobile: {
-        type: Boolean,
-        default: false
-      },
       supplierAvailable: {
         type: Boolean,
         default: false
@@ -130,20 +125,20 @@
         }
       }
     },
-    ready(){
+    mounted(){
 
       const resize = () => {
 
-        const { offsetWidth } = this.$els.root;
-        const { clientWidth } = this.$els.product;
+        const { offsetWidth } = this.$refs.root;
+        const { clientWidth } = this.$refs.product;
 
         if ( offsetWidth => 750 ) {
 
           const widthLeft  = clientWidth * 0.6;
           const widthRight = clientWidth * 0.4;
 
-          this.$set( 'leftSide.width', `${ widthLeft >= 580 ? 580 : widthLeft }px` );
-          this.$set( 'rightSide.width', `${ widthLeft >= 580 ? clientWidth - 580 : widthRight }px` );
+          this.leftSide.width = `${ widthLeft >= 580 ? 580 : widthLeft }px` ;
+          this.rightSide.width = `${ widthLeft >= 580 ? clientWidth - 580 : widthRight }px` ;
 
         }
 
