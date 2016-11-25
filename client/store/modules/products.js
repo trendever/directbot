@@ -21,6 +21,12 @@ let state = {
 
 let actions = {
 
+  closeProduct( { commit, state },) {
+
+    commit(types.PRODUCTS_CLOSE_PRODUCT);
+
+  },
+
   openProduct( { commit, state }, id ){
 
     return productsService
@@ -142,6 +148,12 @@ let mutations = {
     state.openedProduct = product;
 
   },
+
+  [types.PRODUCTS_CLOSE_PRODUCT] (state) {
+
+    state.openedProduct = {};
+
+  }
 
 }
 

@@ -43,11 +43,13 @@
 
     <span class="title">
       <p class="title-not-link">Больше от </p>
-      <p class="title-link" v-link='{name: "user", params: {id: supplierName}}'>{{supplierName}}</p>
+      <router-link :to='{name: "user", params: {id: supplierName}}'>
+        <p class="title-link" >{{supplierName}}</p>
+      </router-link>
     </span>
 
   </div>
-  <photos :list-id="listId" :filter-by-shop-id="supplier.id"></photos>
+  <photos :list-id="listId" :shop-id="supplier.id"></photos>
 <!--   <navbar v-if="false"></navbar> -->
 </div>
   </div>
@@ -132,18 +134,6 @@ export default {
   },
 
   methods: {
-
-    goToHome( tag ){
-
-      this.selectTag( tag, true );
-
-      this.setComeBack( true );
-
-      this.resetScrollByListId( 'home' );
-
-      this.$router.go( { name: 'home' } );
-
-    },
 
     onUpdate(){
 
