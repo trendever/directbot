@@ -15,9 +15,9 @@ let router = new Router({
 
 	routes: [
 		{
-      name: 'home',
-		  path: '/',
-		  component: require('views/home')
+			name: 'home',
+      path: '/',
+      component: require('views/home/index.vue')
 		},
 		{
 		  name: 'chat_list',

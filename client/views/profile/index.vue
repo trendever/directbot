@@ -18,9 +18,9 @@
           .profile_info_img()
             img(:src="getUserPhoto")
           .profile_info_about(v-if="false")
-            span.profile_info_about_type Магазин #[br(v-if="isMobile")]
-            span.profile_info_about_location  Красноярск #[br(v-if="isMobile")]
-            span.profile_info_about_work-time  10.00-21.00 #[br(v-if="isMobile")]
+            span.profile_info_about_type Магазин 
+            span.profile_info_about_location  Красноярск 
+            span.profile_info_about_work-time  10.00-21.00 
             span.profile_info_about_posts-quantity  951 постов
 
         .profile_desc.less(
@@ -42,7 +42,7 @@
         .profile_inactive(v-if="false")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span #[br(v-if="isMobile")]мониторю 3 поста #[br] отправил 5 сообщений
+          span мониторю 3 поста #[br] отправил 5 сообщений
         .profile_active
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
@@ -50,9 +50,9 @@
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
         .profile_no-goods-banner(v-if="false")
-          span После подключения #[br(v-if="isMobile")]
-          span.save Directbot #[br(v-if="!isMobile")]
-          span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
+          span После подключения 
+          span.save Directbot 
+          span  начнет мониторить все  ваши новые посты  и автоматически  отвечать на вопросы покупателей
 
         //-router-link(:to="{ name: 'turn-on-bot' }")
           button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(

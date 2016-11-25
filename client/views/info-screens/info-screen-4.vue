@@ -1,8 +1,8 @@
-<style src="./styles/info-screen.pcss"></style>
-<template lang="jade">
+<!-- <style src="./styles/info-screen.pcss"></style>
+<template lang="pug">
 .info-screen
   i.ic-close(@click='closePage', v-if="isMobile")
-  p.description.fourth Да, вы не ослышались, #[br(v-if="isMobile")] мы создадим вам интернет-магазин доступный с любых устройств и наполним #[br(v-if="isMobile")] его товарами из вашего Instagram. Поможем поддерживать ассортимент актуальным, просто задавая вопросы в чате. А еще, больше не нужно беспокоиться об оплате и доставке
+  .description.fourth Да, вы не ослышались,  мы создадим вам интернет-магазин доступный с любых устройств и наполним  его товарами из вашего Instagram. Поможем поддерживать ассортимент актуальным, просто задавая вопросы в чате. А еще, больше не нужно беспокоиться об оплате и доставке
 </template>
 
 <script>
@@ -28,4 +28,4 @@ export default {
 </script>
 
 <style lang="css">
-</style>
+</style> -->
