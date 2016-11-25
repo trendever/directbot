@@ -38,7 +38,7 @@
   :go-to-home="goToHome"
 ></desktop-layout> -->
 
-<!--  <div class="products" v-if="isProduct">
+ <div class="products" v-if="isProduct">
   <div class="title-wrapper">
 
     <span class="title">
@@ -48,8 +48,8 @@
 
   </div>
   <photos :list-id="listId" :filter-by-shop-id="supplier.id"></photos>
-  <navbar v-if="false"></navbar>
-</div> -->
+<!--   <navbar v-if="false"></navbar> -->
+</div>
   </div>
 </template>
 
@@ -64,7 +64,7 @@ import listen from 'event-listener'
 
 import mobileLayout from '../mobileLayout/index.vue'
 //import desktopLayout from '../desktopLayout/index.vue'
-//import photos from 'components/photos/photos.vue'
+import photos from 'root/components/photos/index.vue'
 //import navbar from 'components/navbar/navbar.vue'
 
 
@@ -91,7 +91,7 @@ export default {
 
     //desktopLayout,
 
-    //photos,
+    photos,
 
     //navbar
 
