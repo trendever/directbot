@@ -55,7 +55,6 @@ export default {
     ...mapGetters([
 
       'getOpenedProduct',
-      'getScrollTopOfProduct',
       'isAuth'
 
     ]),
@@ -159,7 +158,6 @@ export default {
 
   canReuse( { to: { params: { id } } } ){
     this.openProduct( +id ).then( () => {
-      this.$els.scrollCnt.scrollTop = this.getScrollTopOfProduct;
       this.$broadcast( 'update' )
     } );
     return true;
@@ -167,7 +165,6 @@ export default {
 
 
   beforeDestroy(){
-    this.scrollListener.remove();
     this.closeProduct();
     this.$store.state.products.authUserProduct = false;
   },

@@ -50,8 +50,10 @@ export default {
     this.$nextTick(()=>{
 
       if(this.firstOpened) {
+
         this.scrollTo(0);
         return;
+
       }
 
       this.scrollTo(this.listScroll);
@@ -251,10 +253,6 @@ export default {
   },
 
   beforeDestroy(){
-
-    //let { idStart, idEnd } = this.$store.state.photos.lists[this.list];
-
-    //localStorage.setItem(`${ this.$route.name }.scrollCnt`, { idStart, idEnd, padding: this.padding })
 
     this.windowListener.remove();
 
