@@ -2,6 +2,7 @@
 <template lang="pug">
 #home.directbot
   .section.hero
+
     .section__content(ref="screenOne").hero__content
       .profile-header
         .profile-header__center
@@ -21,7 +22,10 @@
         button.set-up-btn ПОПРОБОВАТЬ ЗА 0
           i.ic-rub
         button(v-if="!isMobile").set-up-btn ПОДКЛЮЧИТЬ БЕСПЛАТНО
-      button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn ВХОД И РЕГИСТРАЦИЯ
+      button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
+        | ВХОД И РЕГИСТРАЦИЯ
+
+
     .hero__content__2(ref="screenTwo")
       a.how-btn(v-on:click="scrollFirst") КАКИЕ ПРОБЛЕМЫ РЕШАЕТ?
       .wrap-box
