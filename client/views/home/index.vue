@@ -19,7 +19,7 @@
           i.ic-currency-rub
           | /мес
       .hero__content__set-up
-        button.set-up-btn ПОПРОБОВАТЬ ЗА 0
+        button(v-if="isMobile", v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ ЗА 0
           i.ic-rub
         button(v-if="!isMobile").set-up-btn ПОДКЛЮЧИТЬ БЕСПЛАТНО
       button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
@@ -52,20 +52,25 @@
           .header__center
             .header__text.head Как это работает?
     .hero__content__landing__top-scheme
-      p СКАНИРУЕТ КОММЕНТАРИИ И DIRECT В INSTAGRAM
-      p БЫСТРО ОТВЕЧАЕТ КЛИЕНТАМ В DIRECT
-      p НАШ ОПЕРАТОР ВСЕ УСПЕВАЕТ И СТОИТ ВСЕГО 2990&nbsp
+      img(src="./img/insta-bot_image_mob.svg")
+      .counter
+        span.txt ОТПРАВЛЕНО
+        span.digit 186
+        span.txt СООБЩЕНИЙ
+      p.t СКАНИРУЕТ КОММЕНТАРИИ #[br] И DIRECT В INSTAGRAM
+      p.m БЫСТРО ОТВЕЧАЕТ #[br] КЛИЕНТАМ В DIRECT
+      p.b НАШ ОПЕРАТОР ВСЕ УСПЕВАЕТ #[br] И СТОИТ ВСЕГО 2990&nbsp
         i.ic-rub
-        | /МЕС, ПОТОМУ ЧТО ЕМУ ПОМОГАЕТ DIRECTBOT, АВТОМАТИЗИРУЮЩИЙ БОЛЬШИНСТВО ДЕЙСТВИЙ
-    .hero__content__landing__title.main Преимущества нашего оператора
+        | /МЕС, #[br] ПОТОМУ ЧТО ЕМУ ПОМОГАЕТ #[br] DIRECTBOT, АВТОМАТИЗИРУЮЩИЙ #[br] БОЛЬШИНСТВО ДЕЙСТВИЙ
+    .hero__content__landing__title.main Преимущества #[br] нашего оператора
       .wrapper
         .info-box
           .hero__content__landing__icon-1
             img(src="./img/icon-1.png")
-          .hero__content__landing__sub-title Отвечает всем клиентам сразу
+          .hero__content__landing__sub-title Отвечает всем #[br] клиентам сразу
           .hero__content__landing__caption Со смайлами&nbsp
             i.ic-smile &nbsp&nbsp&nbsp&nbsp&nbsp
-            | уделит внимание каждому, быстро ответит.
+            | уделит внимание каждому, быстро ответит. #[br]
             a.link-info(v-on:click="showPopupA = true") Ни один клиент не успеет передумать
             info-popup(:show-popup="showPopupA")
               i.ic-close(v-on:click="showPopupA = false")
@@ -73,8 +78,8 @@
         .info-box
           .hero__content__landing__icon-2
             img(src="./img/icon-2.png")
-          .hero__content__landing__sub-title Выполняет  «мартышкин труд»
-          .hero__content__landing__caption Больше не нужно отвечать  и спрашивать  одно и то же.
+          .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
+          .hero__content__landing__caption Больше не нужно отвечать #[br] и спрашивать одно и то же. #[br]
             a.link-info(v-on:click="showPopupB = true") Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
             info-popup(:show-popup="showPopupB")
               i.ic-close(v-on:click="showPopupB = false")
@@ -82,8 +87,8 @@
         .info-box
           .hero__content__landing__icon-3
             img(src="./img/icon-3.png")
-          .hero__content__landing__sub-title Подключается быстро,  работает самостоятельно
-          .hero__content__landing__caption Подключи нашего оператора к своему  Instagram-магазину в один клик.
+          .hero__content__landing__sub-title Подключается быстро, работает самостоятельно
+          .hero__content__landing__caption Подключи нашего оператора к своему  Instagram-магазину в один клик. #[br]
             a.link-info(v-on:click="showPopupC = true") Ничего не надо скачивать
             info-popup(:show-popup="showPopupC")
               i.ic-close(v-on:click="showPopupC = false")
@@ -95,8 +100,10 @@
       .hero__content__landing__screen-2
         span.screen-title СКАНИРУЕТ КОММЕНТАРИИ
         img(src="./img/screen-2.png")
-      .hero__content__landing__sub-title Оператор сразу видит  вопросы покупателей
-      .hero__content__landing__caption Не важно, задан вопрос в комментариях  или личном сообщении,  оператор уже будет в чате  с покупателем
+      .hero__content__landing__sub-title Оператор сразу видит #[br] вопросы покупателей
+      .hero__content__landing__caption
+        a.link-info Не важно, задан вопрос в комментариях #[br] или личном сообщении,
+        |  оператор #[br] уже будет отвечать покупателю #[br] в Direct от твоего имени
       .hero__content__landing__toggle
         .hero__content__landing__toggle__title ТЕПЕРЬ ОПЕРАТОРУ НУЖНО ЗНАТЬ,  У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
         button(v-on:click="noScreen = false, yesScreen = true").yes ДА
@@ -110,13 +117,15 @@
             span.screen-title УЗНАЕТ О ТОВАРАХ ПО АРТИКУЛУ
             img(src="./img/screen-4-yes.png")
           .hero__content__landing__sub-title.info Есть сайт? Укажи артикул  товара под постом
-          .hero__content__landing__caption Оператор узнает о деталях и наличии  товара по артикулу в описании поста.  Ссылка на сайт должна быть  в «био» инста-профиля
+          .hero__content__landing__caption Оператор узнает о деталях и наличии  товара по артикулу в описании поста.  Ссылка на сайт должна быть #[br] в «био» инста-профиля
           .info-wrap
             .hero__content__landing__screen-5
               span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
               img(src="./img/screen-5.png")
             .hero__content__landing__sub-title Оператор ответит на вопросы  и поможет купить
-            .hero__content__landing__caption Клиенты получат консультацию* и ссылку  для покупки товара в твоем  интернет-магазине**
+            .hero__content__landing__caption
+              a.link-info Клиенты получат консультацию*
+              | в твоем #[br] Instagram Direct и ссылку на товар #[br] в интернет-магазине**
             .hero__content__landing__tip *отслеживай диалог в кабинете или Instagram Direct
             .hero__content__landing__tip **еще можно покупать не выходя из Instagram Direct
         .wrap-no(v-show="noScreen")
@@ -139,13 +148,17 @@
       p Подключайся и получишь:
     .list
       ol
-        li Опытного оператора в команду,  но в 15 раз дешевле*
-        li Адаптивный интернет-магазин,  с платежами и доставкой
-        li Сервис по подбору и организации  рекламы через блогеров
+        li
+          a Личного оператора, на связи с твоими #[br] клиентами 24/7. В 15 раз дешевле*
+            img(src="./img/smile-2.png")
+        li
+          a Адаптивный интернет-магазин, #[br] с платежами и доставкой
+        li
+          a Сервис по подбору и организации #[br] рекламы через блогеров
     .tooltip
-      p *из расчета средней зарплаты оператора 45 тыс.руб.  в месяц, и это только за 8-часовой день с выходными
+      p *из расчета средней зарплаты оператора 45 тыс.руб. #[br] в месяц, и это только за 8-часовой день с выходными
   .free-connect
-    p ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
+    a ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
     a ЖМИ СЮДА
 </template>
 <script>
