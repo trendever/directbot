@@ -21,26 +21,26 @@
         button.set-up-btn ПОПРОБОВАТЬ ЗА 0
           i.ic-rub
         button(v-if="!isMobile").set-up-btn ПОДКЛЮЧИТЬ БЕСПЛАТНО
-    button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn ВХОД И РЕГИСТРАЦИЯ
-  .hero__content__2
-    a.how-btn КАКИЕ ПРОБЛЕМЫ РЕШАЕТ?
-    .wrap-box
-      .hero__content__2__title.main 2 часа ожидания
-      .hero__content__2__paragraph
-        p.top нужно в среднем, чтобы #[br] получить ответ от инста-шопа
-    .wrap-box
-      .hero__content__2__title 9 из 10 покупателей
-      .hero__content__2__paragraph
-        p спрашивают про товары #[br] в комментариях или Instagram Direct
-    .wrap-box
-      .hero__content__2__title.middle 10 из 10 инста-шопов
-      .hero__content__2__paragraph
-        p хотят свой интернет-магазин и #[br] ставить активные ссылки под постами
-    .wrap-box
-      .hero__content__2__title.bot РЕШЕНИЕ
-      .hero__content__2__paragraph
-        p.last Наш оператор ответит #[br] вашим клиентам в Instagram Direct #[br] и, если нужно, создаст сайт
-    button.shopping_trends КАК ЭТО РАБОТАЕТ?
+      button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn ВХОД И РЕГИСТРАЦИЯ
+    .hero__content__2
+      a.how-btn КАКИЕ ПРОБЛЕМЫ РЕШАЕТ?
+      .wrap-box
+        .hero__content__2__title.main 2 часа ожидания
+        .hero__content__2__paragraph
+          p.top нужно в среднем, чтобы #[br] получить ответ от инста-шопа
+      .wrap-box
+        .hero__content__2__title 9 из 10 покупателей
+        .hero__content__2__paragraph
+          p спрашивают про товары #[br] в комментариях или Instagram Direct
+      .wrap-box
+        .hero__content__2__title.middle 10 из 10 инста-шопов
+        .hero__content__2__paragraph
+          p хотят свой интернет-магазин и #[br] ставить активные ссылки под постами
+      .wrap-box
+        .hero__content__2__title.bot РЕШЕНИЕ
+        .hero__content__2__paragraph
+          p.last Наш оператор ответит #[br] вашим клиентам в Instagram Direct #[br] и, если нужно, создаст сайт
+      button.shopping_trends КАК ЭТО РАБОТАЕТ?
   .hero__content__landing
     .section.header.section__content(id="header", v-if="isMobile")
       .header__content.u-fixed.directbot-header

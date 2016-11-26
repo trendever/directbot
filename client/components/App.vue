@@ -6,10 +6,6 @@
 <script>
 import store from 'root/store';
 import 'style/fonts/trendever-icons/trendever-icons.font.js';
-import 'style/fonts/san-francisco/light/font.pcss';
-import 'style/fonts/san-francisco/regular/font.pcss';
-import 'style/fonts/san-francisco/semibold/font.pcss';
-import 'style/fonts/san-francisco/thin/font.pcss';
 import 'style/index.pcss';
 export default {
   created(){
@@ -30,8 +26,8 @@ export default {
 
 }
 
-body {
-
+body, html {
+  height: 100%;
   font-size: 14px;
   font-family: $font__family;
 }
@@ -40,6 +36,10 @@ body {
 .page {
   text-align: center;
   overflow: hidden;
+}
+
+#app{
+  height: 100%;
 }
 
 </style>
