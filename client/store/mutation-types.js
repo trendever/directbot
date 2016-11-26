@@ -24,3 +24,16 @@ export const USER_SET_USE_DAYS = 'USER_SET_USE_DAYS';
 export const USER_SET_SUPPLIER_STATUS = 'USER_SET_SUPPLIER_STATUS';
 export const USER_SHOW_MENU = 'USER_SHOW_MENU';
 
+
+
+//Lead
+export const LEAD_INIT = 'LEAD_INIT';
+export const LEAD_RECEIVE = 'LEAD_RECEIVE';
+export const LEAD_SET_TAB = 'LEAD_SET_TAB';
+export const LEAD_INC_NOTIFY = 'LEAD_INC_NOTIFY';
+export const LEAD_CLEAR_NOTIFY = 'LEAD_CLEAR_NOTIFY';
+export const LEAD_INC_LENGTH_LIST = 'LEAD_INC_LENGTH_LIST';
+export const LEAD_UPDATE = 'LEAD_UPDATE';
+export const LEAD_SET_SCROLL = 'LEAD_SET_SCROLL';
+export const LEAD_CLOSE = 'LEAD_CLOSE';
+
