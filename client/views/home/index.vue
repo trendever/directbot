@@ -2,7 +2,7 @@
 <template lang="pug">
 #home.directbot
   .section.hero
-    .section__content.hero__content
+    .section__content(ref="screenOne").hero__content
       .profile-header
         .profile-header__center
         button.profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
@@ -22,8 +22,8 @@
           i.ic-rub
         button(v-if="!isMobile").set-up-btn ПОДКЛЮЧИТЬ БЕСПЛАТНО
       button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn ВХОД И РЕГИСТРАЦИЯ
-    .hero__content__2
-      a.how-btn КАКИЕ ПРОБЛЕМЫ РЕШАЕТ?
+    .hero__content__2(ref="screenTwo")
+      a.how-btn(v-on:click="scrollFirst") КАКИЕ ПРОБЛЕМЫ РЕШАЕТ?
       .wrap-box
         .hero__content__2__title.main 2 часа ожидания
         .hero__content__2__paragraph
@@ -40,7 +40,7 @@
         .hero__content__2__title.bot РЕШЕНИЕ
         .hero__content__2__paragraph
           p.last Наш оператор ответит #[br] вашим клиентам в Instagram Direct #[br] и, если нужно, создаст сайт
-      button.shopping_trends КАК ЭТО РАБОТАЕТ?
+      button.shopping_trends(v-on:click="scrollSecond") КАК ЭТО РАБОТАЕТ?
   .hero__content__landing
     .section.header.section__content(id="header", v-if="isMobile")
       .header__content.u-fixed.directbot-header
@@ -146,17 +146,47 @@
 </template>
 <script>
 
+import Hammer from 'hammerjs';
+import JQuery from 'jquery';
 import listen from 'event-listener'
+//import settings from 'settings'
+
+let settings = {}
+
+/*import { setCallbackOnSuccessAuth } from 'vuex/actions'
+
+import { createLead } from 'vuex/actions/lead'
+
+import { isAuth } from 'vuex/getters/user.js'
+
+import { logOut } from 'vuex/actions/user.js'
+
+import { getComeBack } from 'vuex/getters/products.js'
+
+import * as leads from 'services/leads'*/
+
+
+import * as commonService from 'services/common';
+//import HeaderComponent from 'base/header/header.vue';
+
+import { targetClass } from 'root/utils';
 
 import InfoPopup from 'components/popup/info-popup';
-import infoScreen1 from '../info-screens/info-screen-1'
-import infoScreen2 from '../info-screens/info-screen-2'
-import infoScreen3 from '../info-screens/info-screen-3'
-import infoScreen4 from '../info-screens/info-screen-4'
+
+import infoScreen1 from 'views/info-screens/info-screen-1.vue';
+import infoScreen2 from 'views/info-screens/info-screen-2.vue';
+import infoScreen3 from 'views/info-screens/info-screen-3.vue';
+import infoScreen4 from 'views/info-screens/info-screen-4.vue';
+
 
 export default {
   data(){
     return {
+      inputOpened: false,
+      menuOpened: false,
+      phoneNumber: '',
+      smsSent: false,
+      phoneError: false,
       showPopupA: false,
       showPopupB: false,
       showPopupC: false,
@@ -165,12 +195,157 @@ export default {
       noScreen: false
     }
   },
-  components: {
+
+  components :{
+    //HeaderComponent,
     InfoPopup,
     infoScreen1,
     infoScreen2,
     infoScreen3,
-    infoScreen4
-  }
-}
+    infoScreen4,
+  },
+
+  mounted() {
+
+    this.outerCloseMenu = listen(document.body, 'click',(event)=>{
+
+        targetClass(event, 'profile-header__menu-links',()=>{
+            if(this.menuOpened){
+              this.menuOpened = false;
+            }
+        });
+    })
+
+    //SWIPE LOGIC
+
+    if(this.$refs.screenTwo && this.$refs.screenOne) {
+
+      let screenOne = new Hammer(this.$refs.screenOne,{touchAction: 'none'});
+      screenOne.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+
+      screenOne.on('swipeup', ()=> {
+        this.scrollFirst()
+      });
+
+      screenOne.on('swipedown', ()=> {
+        //JQuery('.scroll-cnt').animate({scrollTop: window.innerHeight},400);
+      });
+
+      let screenTwo = new Hammer(this.$refs.screenTwo,{touchAction: 'none'});
+      screenTwo.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+
+      screenTwo.on('swipeup', ()=> {
+        this.scrollSecond();
+      });
+
+      screenTwo.on('swipedown', ()=> {
+        JQuery(document.body).animate({scrollTop: 0 },450);
+      });
+
+    }
+
+  },
+  computed: {
+      getLinkTitle(){
+        if (this.phoneError){
+          return "НЕВЕРНЫЙ НОМЕР";
+        }
+        if (this.smsSent){
+          return "ОТПРАВЛЕНО";
+        }else{
+          return "ПОЛУЧИТЬ ССЫЛКУ";
+        }
+      },
+      disableButton(){
+        if (this.phoneNumber.length >= 11 && !this.phoneError){
+          return false;
+        }else{
+          return true;
+        }
+      }
+    },
+  beforeDestroy(){
+    this.outerCloseMenu.remove();
+  },
+
+  vuex: {
+/*    getters: {
+
+      isAuth,
+      getComeBack
+
+    },
+    actions: {
+
+      logOut,
+      createLead,
+      setCallbackOnSuccessAuth,
+
+    }*/
+  },
+
+  methods: {
+    touchMove(e){
+      if(this.scrollCnt.scrollTop < 2 * window.innerHeight ) {
+        e.preventDefault();
+      }
+    },
+    openInput(){
+      this.inputOpened = !this.inputOpened;
+      this.$nextTick(()=>{
+        this.$els.input.focus()
+      });
+    },
+    logout(){
+
+      this.$set('menuOpened', false);
+      this.logOut();
+      window.location = '/';
+
+    },
+    goBack(){
+      window.history.back();
+    },
+    onBuyPromoProduct() {
+      if ( !this.isAuth ) {
+        this.setCallbackOnSuccessAuth( this.onBuyPromoProduct.bind( this ) );
+        this.$router.go( { name: 'signup' } );
+
+
+      } else {
+
+        this.createLead( settings.promoProductID )
+            .then(
+              ( lead ) => {
+                if ( lead !== undefined && lead !== null ) {
+                  this.$router.go( { name: 'chat', params: { id: lead.id } } );
+                }
+              }
+            );
+      }
+    },
+    getLink(){
+
+      commonService.marketSms({phone: this.phoneNumber }).then(data=>{
+          yaCounter35346175.reachGoal('get_link');
+          this.$set('smsSent', true);
+          this.$set('phoneNumber','');
+          setTimeout( () => this.$set('smsSent', false), 3000);
+        },err=>{
+          this.$set('phoneError',true);
+          setTimeout( () => this.$set('phoneError', false), 3000);
+        }
+      );
+    },
+    scrollFirst() {
+      JQuery(document.body).animate({scrollTop: window.innerHeight},450);
+    },
+
+    scrollSecond() {
+      JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
+    },
+
+  },
+};
+
 </script>
