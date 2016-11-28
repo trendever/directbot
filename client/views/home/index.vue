@@ -173,8 +173,11 @@
     .tooltip
       p *из расчета средней зарплаты оператора 45 тыс.руб. #[br] в месяц, и это только за 8-часовой день с выходными
   .free-connect
-    a ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
-    a ЖМИ СЮДА
+    a(v-on:click="showPopupJ = true") ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
+    info-popup(:show-popup="showPopupJ")
+      i.ic-close(v-on:click="showPopupJ = false")
+      info-screen10(:show-popup="showPopupJ")
+    a(v-on:click="$router.push({name: 'auth'})") ЖМИ СЮДА
   button(v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
 </template>
 <script>
@@ -215,6 +218,7 @@ import infoScreen6 from 'views/info-screens/info-screen-6.vue';
 import infoScreen7 from 'views/info-screens/info-screen-7.vue';
 import infoScreen8 from 'views/info-screens/info-screen-8.vue';
 import infoScreen9 from 'views/info-screens/info-screen-9.vue';
+import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 
 
 export default {
@@ -234,6 +238,7 @@ export default {
       showPopupG: false,
       showPopupH: false,
       showPopupI: false,
+      showPopupJ: false,
       yesScreen: true,
       noScreen: false
     }
@@ -250,7 +255,8 @@ export default {
     infoScreen6,
     infoScreen7,
     infoScreen8,
-    infoScreen9
+    infoScreen9,
+    infoScreen10
   },
 
   mounted() {
