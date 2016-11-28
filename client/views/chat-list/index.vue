@@ -20,7 +20,7 @@
 
     .section.top.bottom
       .section__content
-        .chat-list(v-bind:style="styleObject")
+        .chat-list(v-bind:style="styleObject", ref="chatList")
             chat-list-item(v-for='lead in sortedList', :lead='lead', :key="lead.id", ref="item")
 
     //-template(v-if='!leadsArray.length && !directbot')
@@ -147,7 +147,7 @@
 
             store.dispatch('setScrollLeads', {
 
-              scrollTop: window.scrollY,
+              scrollTop: document.body.scrollTop,
               scrollHeight: document.body.scrollHeight
 
             });
@@ -155,7 +155,7 @@
             if ( this.needLoadLeads ) {
 
               const full_scroll = document.body.scrollHeight;
-              const diff_scroll = full_scroll - window.scrollY;
+              const diff_scroll = full_scroll - document.body.scrollTop;
 
               if ( diff_scroll < 2500 ) {
 
@@ -278,11 +278,7 @@
 
           const { scrollTop } = this.getScroll;
 
-          //if ( scrollTop > 0 ) {
-
             this.restoreScroll()
-
-          //}
 
         } )
 
@@ -304,7 +300,7 @@
 
 
 
-                store.dispach('loadLeads').then( () => {
+                store.dispacth('loadLeads').then( () => {
                   setTimeout(()=>{
                     this.$nextTick( () => {
 
@@ -322,7 +318,7 @@
 
             } else {
 
-              window.scrollY = scrollTop;
+              window.scrollTo = (0, scrollTop);
 
               resolve();
 
@@ -343,7 +339,7 @@
 
         return new Promise( ( resolve ) => {
 
-          const add = ( scrollHeight ) => {
+        /*  const add = ( scrollHeight ) => {
 
             if ( document.body.offsetHeight >= scrollHeight ) {
 
@@ -353,7 +349,7 @@
 
                   this.$nextTick( () => {
 
-                    add( document.body.scrollHeight );
+                    add( document.body.offsetHeight );
 
                   } );
 
@@ -377,7 +373,7 @@
 
             add( document.body.scrollHeight )
 
-          } );
+          } );*/
 
         } );
 

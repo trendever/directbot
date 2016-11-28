@@ -74,7 +74,7 @@ const mutations = {
   [types.LEAD_RECEIVE] ( state, { leads, tab }) {
 
     if ( !state.hasOwnProperty( tab ) ) {
-      console.error( `${LEAD_RECEIVE}: передан таб который не поддерживается : ${tab}`, state );
+      console.error( `${types.LEAD_RECEIVE}: передан таб который не поддерживается : ${tab}`, state );
     }
 
     if ( Array.isArray( leads ) ) {

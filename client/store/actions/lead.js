@@ -77,7 +77,7 @@ export const loadLeads = ( { commit, state }, count = getCountForLoading ) => {
           .then(
             ( { leads } ) => {
               incLengthList( { commit, state }, leads.length );
-              commit( types.LEAD_RECEIVE, leads, tab );
+              commit( types.LEAD_RECEIVE, { leads, tab } );
               resolve( leads.length );
             },
             ( error ) => {
@@ -186,7 +186,7 @@ export const onMessages = (
       .then(
         ( { lead } ) => {
           // TODO Спросить как можно определить, для текущего пользователя lead в покупаю || продаю.
-          commit( LEAD_RECEIVE, [ lead ], getGroup( state, lead ) );
+          commit( types.LEAD_RECEIVE, [ lead ], getGroup( state, lead ) );
           handler( lead );
         } )
       .catch( ( error ) => {

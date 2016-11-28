@@ -49,7 +49,7 @@
       }
     },
     mounted(){
-      console.log(this.lead);
+
       this.$on('closeDelete', ()=>{
         if(this.showDelete) this.showDelete = false;
       })
