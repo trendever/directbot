@@ -22,7 +22,7 @@
     .section.top.bottom(:class="{'little-move-up': !$root.isStandalone,'little-move-up-standalone': $root.isStandalone}")
       .section__content
         .chat-list(v-bind:style="styleObject")
-            chat-list-item(v-for='lead in leadsArray | orderBy "updated_at" -1 | cutList', :lead='lead', track-by="id", v-ref:item)
+            chat-list-item(v-for='lead in leadsList', :lead='lead', track-by="id", ref="item")
     template(v-if='!leadsArray.length && !directbot')
       .chat-list-cnt-is-empty(v-if="getTab === 'customer'")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
@@ -31,16 +31,17 @@
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  ... потому что ты пока ничего #[br] не продаешь
       .chat-list-cnt-is-empty__banner(v-if="!leadsArray.length && getTab === 'customer'") Нажми Купить&nbsp
-       span под товаром #[br]или&nbsp
-       span.want напиши @wantit&nbsp
-       span под постом в Instagram, #[br] и здесь появится шопинг-чат
+        span под товаром #[br]или&nbsp
+        span.want напиши @wantit&nbsp
+        span под постом в Instagram, #[br] и здесь появится шопинг-чат
       .chat-list-cnt-is-empty__banner.sell(v-if="!leadsArray.length && getTab === 'seller'")
-       span Напиши&nbsp
-       span.want "Покупай по комментарию @wantit&nbsp" #[br(v-if="!isMobile")]
-       span
-        #[br(v-if="isMobile")] под товарами в своем instagram,
-        #[br] чтобы продавать и видеть здесь покупателей
-       .how-to-sell-btn.chat-btn( v-link="{name: 'info-instructions-1'}") Как начать продавать?
+        span Напиши&nbsp
+        span.want
+          | "Покупай по комментарию @wantit&nbsp" #[br(v-if="isMobile")]
+        span
+          | #[br(v-if="isMobile")] под товарами в своем instagram,
+          | #[br] чтобы продавать и видеть здесь покупателей
+        .how-to-sell-btn.chat-btn( v-link="{name: 'info-instructions-1'}") Как начать продавать?
 
     //- D I R E C T  B O T
     template(v-if='!leadsArray.length && directbot')
@@ -69,13 +70,13 @@
 </template>
 
 <script type='text/babel'>
-  import AppstoreLink from 'base/appstore-link/appstore-link';
-  import appLoader from 'base/loader/loader';
-  import RightNavComponent from 'base/right-nav/index';
-  import listen from 'event-listener';
+
+  //import appLoader from 'base/loader/loader';
+  //import RightNavComponent from 'base/right-nav/index';
+  //import listen from 'event-listener';
 
 
-  import {
+/*  import {
     getLeads,
     getTab,
     getIsTab,
@@ -86,27 +87,28 @@
     getScroll,
     getHasMore,
     getCountForLoading
-  } from 'vuex/getters/lead.js';
+  } from 'vuex/getters/lead.js';*/
 
-  import { isAuth, getTooltips,isFake} from 'vuex/getters/user.js';
-  import { setTooltip } from 'vuex/actions/user.js';
+/*  import { isAuth, getTooltips,isFake} from 'vuex/getters/user.js';
+  import { setTooltip } from 'vuex/actions/user.js';*/
 
-  import {
+/*  import {
     setTab,
     loadLeads,
     leadClose,
     setScroll
-  } from 'vuex/actions/lead.js';
+  } from 'vuex/actions/lead.js';*/
 
+  import { mapGetters, mapActions } from 'vuex';
   import * as leads from 'services/leads';
   import * as messages from 'services/message';
 
-  import ScrollTop from 'base/scroll-top/scroll-top';
-  import ScrollComponent from 'base/scroll/scroll.vue'
-  import HeaderComponent from 'base/header/header.vue';
-  import NavbarComponent from 'base/navbar/navbar.vue';
-  import { setCallbackOnSuccessAuth } from 'vuex/actions';
-  import ChatListItem from './chat-list-item.vue';
+  //import ScrollTop from 'base/scroll-top/scroll-top';
+
+  //import HeaderComponent from 'base/header/header.vue';
+  //import NavbarComponent from 'base/navbar/navbar.vue';
+  //import { setCallbackOnSuccessAuth } from 'vuex/actions';
+  //import ChatListItem from './chat-list-item.vue';
 
   export default {
     props: {
@@ -116,42 +118,22 @@
       }
     },
     components: {
-      AppstoreLink,
-      appLoader,
-      ScrollTop,
-      RightNavComponent,
-      ScrollComponent,
-      HeaderComponent,
-      NavbarComponent,
-      ChatListItem
-    },
-    filters: {
-      cutList( leadsArray ){
-        return leadsArray.slice( 0, this.getLengthList );
-      }
+
+      //appLoader,
+      //ScrollTop,
+      //RightNavComponent,
+      //HeaderComponent,
+      //NavbarComponent,
+      //ChatListItem
     },
     vuex: {
-      getters: {
-        getTooltips,
-        isAuth,
-        getLeads,
-        getTab,
-        getIsTab,
-        isFake,
-        getTitle,
-        isEmptyLeads,
-        isDone,
-        getLengthList,
-        getScroll,
-        getHasMore
-      },
       actions: {
-        setTooltip,
+/*        setTooltip,
         setCallbackOnSuccessAuth,
         setTab,
         loadLeads,
         leadClose,
-        setScroll
+        setScroll*/
       }
     },
     data(){
@@ -166,13 +148,20 @@
         currentPan: 0
       }
     },
-    ready(){
+    mounted(){
+
       if (this.isFake){
+
         window.fakeAuth = {text: "чтобы просматривать список чатов", data: ""}
-        this.setCallbackOnSuccessAuth(()=>{
-          this.$router.go({name: 'chat_list'})
+
+        this.setCallbackOnSuccessAuth( () => {
+
+          this.$router.push({name: 'chat_list'})
+
         })
-        this.$router.replace( { name: 'signup' } );
+
+        this.$router.push( { name: 'signup' } );
+
       }
 
       if ( this.isAuth ) {
@@ -241,6 +230,28 @@
     },
 
     computed:{
+      ...mapGetters([
+        'isAuth',
+        'getLeads',
+        'getTab',
+        'getIsTab',
+        'isFake',
+        'getTitle',
+        'isEmptyLeads',
+        'isDone',
+        'getLengthList',
+        'getScroll',
+        'getHasMore'
+      ]),
+
+      leadList(){
+        return this.leadsArray.slice( 0, this.getLengthList ).sort((a,b)=>{
+
+          return a.updated_at - b.updated_at;
+
+        })
+
+      },
       leadsArray(){
         //return [];
         if(!this.directbot) {

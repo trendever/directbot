@@ -1,7 +1,7 @@
-<template lang="jade">
+<template lang="pug">
 .chat-list-i(@click="goToChat",
-            track-by='id',
-            v-el:chat-item)
+            :key='id',
+            ref="chatItem")
   .chat-list-i-photo(v-if="!showDelete")
     img(:src='getPhoto()')
 
@@ -24,6 +24,7 @@
 </template>
 
 <script type='text/babel'>
+
   import { urlThumbnail } from 'root/utils'
 
   import { formatPastTime } from 'views/chat/utils';
@@ -56,41 +57,37 @@
         getTab
       }
     },
-    ready(){
+    mounted(){
 
-        new Hammer(this.$els.chatItem,{ touchAction: 'auto'})
+      this.$on('closeDelete', ()=>{
+        if(this.showDelete) this.showDelete = false;
+      })
 
-        .on('swipeleft',()=>{
-          this.$dispatch('closeDeleteLead');
-          this.$set('showDelete', true);
+      new Hammer(this.$refs.chatItem,{ touchAction: 'auto'})
 
-        })
-        .on('swiperight',()=>{
+      .on('swipeleft',()=>{
+        this.$emit('closeDeleteLead');
+        this.showDelete = true;
 
-          this.$set('showDelete', false);
+      })
+      .on('swiperight',()=>{
 
-        });
+        this.showDelete = false;
 
+      });
 
-    },
-    events: {
-      'closeDelete'(){
-        if(this.showDelete){
-          this.$set('showDelete', false)
-        }
-      }
     },
     methods: {
+
       goToChat(){
 
-        let parentRefs = this.$parent.$parent.$refs.item;
+        let parentRefs = this.$parent.$refs.item;
 
         let item = parentRefs.find(item=>{
 
           return item.showDelete === true;
 
         })
-
 
         if(item) {
 
@@ -102,19 +99,18 @@
 
         if(this.showDelete) {
 
-          this.$set('showDelete', false);
+          this.showDelete = false;
           return;
 
         }
 
-        this.$router.go({name: "chat", params: {id: this.lead.id}})
+        this.$router.push({name: "chat", params: {id: this.lead.id}})
 
       },
       deleteChat(){
 
 
           let cancel_reason = this.getTab === "customer" ? 2 : 1;
-
 
           service.setEvent(this.lead.id,'CANCEL', cancel_reason)
 
