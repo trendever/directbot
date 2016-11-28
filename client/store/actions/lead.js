@@ -1,17 +1,11 @@
-import {
-  LEAD_INIT,
-  LEAD_RECEIVE,
-  LEAD_UPDATE,
-  LEAD_SET_TAB,
-  LEAD_CLEAR_NOTIFY,
-  LEAD_INC_NOTIFY,
-  LEAD_INC_LENGTH_LIST,
-  LEAD_SET_SCROLL,
-  LEAD_CLOSE
-} from '../mutation-types';
+import * as types from '../mutation-types';
+
 import * as leads from 'services/leads.js';
+
 import * as message from 'services/message';
+
 import {
+
   getOlderLead,
   getLeadByConversationId,
   getTab,
@@ -20,9 +14,11 @@ import {
   getLeads,
   getLengthList,
   getGroup
+
 } from '../getters/lead';
 
-export const init = ( { dispatch } ) => {
+
+export const init = ( { commit } ) => {
 
   return new Promise( ( resolve, reject ) => {
 
@@ -33,7 +29,7 @@ export const init = ( { dispatch } ) => {
       ] )
       .then(
         ( [countUnread, { customer, seller }] ) => {
-          dispatch( LEAD_INIT, {
+          commit( types.LEAD_INIT, {
             customer,
             seller,
             countUnread,
@@ -52,13 +48,17 @@ export const init = ( { dispatch } ) => {
 
 };
 
-export const incLengthList = ( { dispatch, state }, count = getCountForLoading ) => {
+export const incLengthList = ( { commit, state }, count = getCountForLoading ) => {
 
-  dispatch( LEAD_INC_LENGTH_LIST, count, getTab( state ) );
+  commit( LEAD_INC_LENGTH_LIST, {
+
+
+
+  } count, getTab( state ) );
 
 };
 
-export const loadLeads = ( { dispatch, state }, count = getCountForLoading ) => {
+export const loadLeads = ( { commit, state }, count = getCountForLoading ) => {
 
   return new Promise( ( resolve, reject ) => {
 
@@ -66,7 +66,7 @@ export const loadLeads = ( { dispatch, state }, count = getCountForLoading ) => 
 
     if ( getLeads( state ).length > (getLengthList( state ) + count) ) {
 
-      incLengthList( { dispatch, state }, (!getHasMore( state )) ? count * 2 : count );
+      incLengthList( { commit, state }, (!getHasMore( state )) ? count * 2 : count );
       resolve();
 
     } else {
@@ -77,8 +77,8 @@ export const loadLeads = ( { dispatch, state }, count = getCountForLoading ) => 
           .find( count, getOlderLead( state ), tab )
           .then(
             ( { leads } ) => {
-              incLengthList( { dispatch, state }, leads.length );
-              dispatch( LEAD_RECEIVE, leads, tab );
+              incLengthList( { commit, state }, leads.length );
+              commit( types.LEAD_RECEIVE, leads, tab );
               resolve( leads.length );
             },
             ( error ) => {
@@ -99,14 +99,14 @@ export const loadLeads = ( { dispatch, state }, count = getCountForLoading ) => 
 
 };
 
-export const createLead = ( { dispatch, state }, product_id ) => {
+export const createLead = ( { commit, state }, product_id ) => {
 
   return leads
     .create( product_id )
     .then(
       ( lead ) => {
-        incLengthList( { dispatch, state }, 1 );
-        dispatch( LEAD_RECEIVE, [ lead ], 'customer' );
+        incLengthList( { commit, state }, 1 );
+        commit( LEAD_RECEIVE, [ lead ], 'customer' );
         return lead;
       },
       leads.sendError
@@ -114,20 +114,20 @@ export const createLead = ( { dispatch, state }, product_id ) => {
 
 };
 
-export const setTab = ( { dispatch }, tab ) => {
+export const setTab = ( { commit }, tab ) => {
 
-  dispatch( LEAD_SET_TAB, tab, getCountForLoading );
+  commit( LEAD_SET_TAB, tab, getCountForLoading );
 
 };
 
-export const setScroll = ( { dispatch, state }, scrollTop, scrollHeight ) => {
+export const setScroll = ( { commit, state }, scrollTop, scrollHeight ) => {
 
-  dispatch( LEAD_SET_SCROLL, scrollTop, scrollHeight, getTab( state ) )
+  commit( LEAD_SET_SCROLL, scrollTop, scrollHeight, getTab( state ) )
 
 }
 
 export const onMessages = (
-  { dispatch, state },
+  { commit, state },
   { response_map:{ chat:{ id:conversation_id, members }, messages } }
 ) => {
 
@@ -141,7 +141,7 @@ export const onMessages = (
 
       const value = JSON.parse( messages[ 0 ].parts[ 0 ].content ).value;
 
-      dispatch( LEAD_UPDATE, Object.assign( {
+      commit( types.LEAD_UPDATE, Object.assign( {
         conversation_id,
         members,
         updated_at
@@ -151,11 +151,11 @@ export const onMessages = (
 
     if ( MIME === "text/plain" ) {
 
-      dispatch( LEAD_UPDATE, { conversation_id, members, parts, updated_at } );
+      commit( types.LEAD_UPDATE, { conversation_id, members, parts, updated_at } );
 
       if ( state.conversation.id !== conversation_id ) {
 
-        dispatch( LEAD_INC_NOTIFY, (lead !== undefined) ? lead.id : null );
+        commit( types.LEAD_INC_NOTIFY, (lead !== undefined) ? lead.id : null );
 
       }
 
@@ -163,11 +163,11 @@ export const onMessages = (
 
     if ( MIME === "image/base64" ) {
 
-      dispatch( LEAD_UPDATE, { conversation_id, members, parts: '', updated_at } );
+      commit( types.LEAD_UPDATE, { conversation_id, members, parts: '', updated_at } );
 
       if ( state.conversation.id !== conversation_id ) {
 
-        dispatch( LEAD_INC_NOTIFY, (lead !== undefined) ? lead.id : null );
+        commit( types.LEAD_INC_NOTIFY, (lead !== undefined) ? lead.id : null );
 
       }
     }
@@ -187,7 +187,7 @@ export const onMessages = (
       .then(
         ( { lead } ) => {
           // TODO Спросить как можно определить, для текущего пользователя lead в покупаю || продаю.
-          dispatch( LEAD_RECEIVE, [ lead ], getGroup( state, lead ) );
+          commit( LEAD_RECEIVE, [ lead ], getGroup( state, lead ) );
           handler( lead );
         } )
       .catch( ( error ) => {
@@ -198,7 +198,7 @@ export const onMessages = (
 
 };
 
-export const onMessageRead = ( { dispatch, state }, data ) => {
+export const onMessageRead = ( { commit, state }, data ) => {
 
   if ( data.response_map ) {
     if ( data.response_map.chat ) {
@@ -210,7 +210,7 @@ export const onMessageRead = ( { dispatch, state }, data ) => {
 
           if ( lead.chat ) {
 
-            dispatch( LEAD_UPDATE, {
+            commit( types.LEAD_UPDATE, {
               conversation_id: lead.chat.id,
               members: data.response_map.chat.members,
               updated_at: lead.chat.recent_message ? lead.chat.recent_message.created_at * 1e9 : null
@@ -226,14 +226,14 @@ export const onMessageRead = ( { dispatch, state }, data ) => {
 
 };
 
-export const clearNotify = ( { dispatch }, lead_id ) => {
+export const clearNotify = ( { commit }, lead_id ) => {
 
-  dispatch( LEAD_CLEAR_NOTIFY, lead_id );
+  commit( types.LEAD_CLEAR_NOTIFY, lead_id );
 
 };
 
-export const leadClose = ( { dispatch } ) => {
+export const leadClose = ( { commit } ) => {
 
-  dispatch( LEAD_CLOSE );
+  commit( types.LEAD_CLOSE );
 
 };

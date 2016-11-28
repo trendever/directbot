@@ -71,7 +71,7 @@ const mutations = {
 
   },
 
-  [types.LEAD_RECEIVE] ( state, leads, tab ) {
+  [types.LEAD_RECEIVE] ( state, { leads, tab }) {
 
     if ( !state.hasOwnProperty( tab ) ) {
       console.error( `${LEAD_RECEIVE}: передан таб который не поддерживается : ${tab}`, state );
@@ -144,7 +144,7 @@ const mutations = {
 
   },
 
-  [types.LEAD_SET_TAB] ( state, tab = 'customer', lengthList = getters.getCountForLoading ) {
+  [types.LEAD_SET_TAB] ( state, { tab = 'customer', lengthList = getters.getCountForLoading } ) {
     state.tab        = tab;
     /*state.lengthList = {
       seller: lengthList,
@@ -152,7 +152,7 @@ const mutations = {
     };*/
   },
 
-  [types.LEAD_INC_LENGTH_LIST] ( state, lengthList = getters.getCountForLoading, tab = null ) {
+  [types.LEAD_INC_LENGTH_LIST] ( state, { lengthList = getters.getCountForLoading, tab = null } ) {
 
     state.lengthList = Object.assign( {}, state.lengthList, { [ tab ]: state.lengthList[ tab ] + lengthList } );
 
@@ -236,7 +236,7 @@ const mutations = {
 
   },
 
-  [types.LEAD_SET_SCROLL] ( state, scrollTop, scrollHeight, tab ) {
+  [types.LEAD_SET_SCROLL] ( state, { scrollTop, scrollHeight, tab } ) {
 
     state.scrollTop = Object.assign( {}, state.scrollTop, { [ tab ]: scrollTop } );
     state.scrollHeight = Object.assign( {}, state.scrollHeight, { [ tab ]: scrollHeight } );

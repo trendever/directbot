@@ -4,7 +4,7 @@ import { userID } from 'vuex/getters/user.js';
 import { getCustomerName } from 'vuex/getters/chat.js';
 import { statusString } from '../../project/chat/utils';
 
-export const getTab = ( { leads } ) => {
+export const getTab = ( leads ) => {
 /*  if ( getIsTab( { leads } ) ) {
     return leads.tab;
   }*/
@@ -16,30 +16,30 @@ export const getTab = ( { leads } ) => {
   return 'customer';*/
 };
 
-export const getLengthList = ( { leads } ) => {
+export const getLengthList = ( leads ) => {
 
-  return leads.lengthList[ getTab( { leads } ) ];
-
-};
-
-export const getHasMore = ( { leads } ) => {
-
-  return leads.hasMore[ getTab( { leads } ) ];
+  return leads.lengthList[ getTab( leads ) ];
 
 };
 
-export const getScroll = ( { leads } ) => {
+export const getHasMore = ( leads ) => {
+
+  return leads.hasMore[ getTab( leads ) ];
+
+};
+
+export const getScroll = ( leads ) => {
 
   return {
-    scrollTop: leads.scrollTop[ getTab( { leads } ) ],
-    scrollHeight: leads.scrollHeight[ getTab( { leads } ) ]
+    scrollTop: leads.scrollTop[ getTab( leads ) ],
+    scrollHeight: leads.scrollHeight[ getTab( leads ) ]
   };
 
 };
 
-export const getLeads = ( { leads } ) => {
+export const getLeads = ( leads ) => {
 
-  return leads[ getTab( { leads } ) ];
+  return leads[ getTab( leads ) ];
 
 };
 
@@ -100,7 +100,7 @@ export const getOlderLead = ( state ) => {
   return Math.min.apply( Math, times );
 };
 
-export const getIsTab = ( { leads } ) => {
+export const getIsTab = ( leads ) => {
   return (leads.seller.length > 0) && (leads.customer.length > 0);
 };
 
@@ -165,7 +165,7 @@ export const getLastMessage = ( state ) => {
 
             messages[ id ] = {
 
-              message: store.getters.statusString(type, value, store.getters.getCustomerName(state)),
+              message: store.getters.statusString(type, value, store.getters.getCustomerName() ),
               user_name
 
             };
@@ -235,11 +235,11 @@ export const getLastMessage = ( state ) => {
 
 };
 
-export const getGlobalNotifyCount = state => state.leads.global_notify_count;
+export const getGlobalNotifyCount = state => state.global_notify_count;
 
-export const getNotifyCountList = state => state.leads.notify_count;
+export const getNotifyCountList = state => state.notify_count;
 
-export const isEmptyLeads = ( { leads } ) => (leads.seller.length === 0) && (leads.customer.length === 0);
+export const isEmptyLeads = ( leads ) => (leads.seller.length === 0) && (leads.customer.length === 0);
 
 export const isDone = ( state ) => state.leads.done;
 
