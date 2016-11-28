@@ -6,12 +6,12 @@
 
 <script>
 
-import store from 'root/store';
 import 'style/fonts/trendever-icons/trendever-icons.font.js';
 import 'style/index.pcss';
 
 
-//import Listener from './listener';
+import store from 'root/store';
+import Listener from './listener';
 
 export default {
 
@@ -19,7 +19,9 @@ export default {
 
     store.dispatch('authUser', { null, null } )
 
-  }
+  },
+
+
 
 }
 
