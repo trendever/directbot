@@ -2,7 +2,7 @@
 <template lang="pug">
 .info-screen
   //i.ic-close(@click='closePage', v-if="isMobile")
-  .description._4 Directbot сканирует твой Instagram на ключевые слова и уведомляет оператора #[br] о клиентах
+  .description._6 Оператор через Directbot интегрируется в ваш #[br] Instagram
 </template>
 
 <script>
