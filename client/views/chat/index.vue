@@ -8,7 +8,7 @@
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat_messages(id="chatmessages", ref="messages")
-        //-template(v-for='(msg, index) in getMessages | list', :key='index')
+        //-template(v-for='(msg, index) in messagesList', :key='index')
           div
             chat-msg-status(
               v-if='msg.parts[0].mime_type === "json/status"',
@@ -41,390 +41,368 @@
 
 <script type='text/babel'>
   //import settings from 'settings';
-  let sttings = {}
-  //import appLoader from 'base/loader/loader';
-  import listen from 'event-listener';
-  //import scrollTop from 'base/scroll-top/scroll-top.vue';
-  //actions
-/*  import {
-    setConversation,
-    loadMessage,
-    closeConversation,
-    openPopUp,
-    setConversationAction
-  } from 'vuex/actions/chat.js';
-  import { clearNotify } from 'vuex/actions/lead.js';
 
-  //getters
-  import {
-    getMessages,
-    conversationNotifyCount,
-    getId,
-    getCurrentMember,
-    getLengthList,
-    getShowMenu,
-    getShowStatusMenu,
-    imgPopUpUrl,
-    imgWidth,
-    imgHeight
-  } from 'vuex/getters/chat.js';
-  import { isDoneLead } from 'vuex/getters/lead.js';
-  import { isAuth, getUseDays } from 'vuex/getters/user.js';*/
+let sttings = {}
+import listen from 'event-listener';
+import { mapGetters, mapActions } from 'vuex';
+
+//services
+import * as messages from 'services/message';
+import * as leads from 'services/leads';
 
 
-  //services
-  import * as messages from 'services/message';
-  import * as leads from 'services/leads';
-
-
-  //components
+//components
+//import appLoader from 'base/loader/loader';
+//import scrollTop from 'base/scroll-top/scroll-top.vue';
 /*  import ChatMsgOrder from './chat-msg-order.vue';
-  import ChatMsgPayment from './chat-msg-payment.vue';
-  import ChatMsgProduct from './chat-msg-product.vue';
-  import ChatMsgProductOld from './chat-msg-product-old.vue';
-  import ChatMsgStatus from './chat-msg-status.vue';
-  import ChatMsg from './chat-msg.vue';
-  import ChatMsgImg from './chat-msg-img.vue';
-  import ChatMsgInfo from './chat-msg-info.vue';
-  import ChatBar from './chat-bar.vue';
-  import ChatHeader from './chat-header.vue';
-  import popupImg from 'base/popup-img/index.vue';*/
+import ChatMsgPayment from './chat-msg-payment.vue';
+import ChatMsgProduct from './chat-msg-product.vue';
+import ChatMsgProductOld from './chat-msg-product-old.vue';
+import ChatMsgStatus from './chat-msg-status.vue';
+import ChatMsg from './chat-msg.vue';
+import ChatMsgImg from './chat-msg-img.vue';
+import ChatMsgInfo from './chat-msg-info.vue';
+import ChatBar from './chat-bar.vue';
+import ChatHeader from './chat-header.vue';
+import popupImg from 'base/popup-img/index.vue';*/
 
-  export default {
-    props: {
-      directbot: {
-        default: false,
-        type: Boolean
-      }
-    },
+export default {
+  props: {
+    directbot: {
+      default: false,
+      type: Boolean
+    }
+  },
 
-    components: {
+  components: {
 /*      popupImg,
-      ChatHeader,
-      ChatBar,
-      ChatMsg,
-      ChatMsgOrder,
-      ChatMsgPayment,
-      ChatMsgProduct,
-      ChatMsgProductOld,
-      ChatMsgStatus,
-      ChatMsgImg,
-      ChatMsgInfo,
-      scrollTop,
-      appLoader,*/
-    },
+    ChatHeader,
+    ChatBar,
+    ChatMsg,
+    ChatMsgOrder,
+    ChatMsgPayment,
+    ChatMsgProduct,
+    ChatMsgProductOld,
+    ChatMsgStatus,
+    ChatMsgImg,
+    ChatMsgInfo,
+    scrollTop,
+    appLoader,*/
+  },
 
-    data(){
-      return {
-        needLoadMessage: true,
-        lead_id: null,
-        isMobile: window.browser.mobile,
-        showLoader: true,
-        timerId: '',
-        fullScroll: 0,
-        recursiveCount: 0
+  data(){
+    return {
+      needLoadMessage: true,
+      lead_id: null,
+      showLoader: true,
+      timerId: '',
+      fullScroll: 0,
+      recursiveCount: 0
+    }
+  },
+
+  watch: {
+    isDoneLead( done ){
+      if ( done ) {
+        return this.run();
       }
-    },
-
-    watch: {
-      isDone( done ){
-        if ( done ) {
-          return this.run();
-        }
-      }
-    },
+    }
+  },
 
 
-    created(){
-      //open chat
-      this.lead_id =  +this.$route.params.id;
-      if ( this.isDone ) {
-        if ( this.isAuth ) {
-          return this.run().then(()=>{
-            this.clearNotify(this.lead_id);
-            this.$nextTick( () => {
-                    this.goToBottom();
-                  } );
-          })
-        } else {
-          return Promise.resolve()
-        }
-      }
+  created(){
 
-
-      //Make helps
-      this.$on('goToBottom', this.goToBottom);
-
-      this.$on('addPadding', (val)=>{
-
-        this.$refs.section.style.paddingBottom = val + 'px';
-        this.$refs.scrollCnt.scrollTop = this.$refs.scrollCnt.scrollHeight;
-
-      })
-
-      //monetization
-      if(settings.activateMonetization && this.getCurrentMember.role === 2){
-        let storage = window.localStorage;
-
-        if(!storage.getItem('firstTimeChatVisited')) {
-          storage.setItem('firstTimeChatVisited', true)
-          this.$router.push({name: 'monetization'});
-        }
-
-        if(storage.getItem('supplierStatus') === 'disabled'){
-          this.$router.push({name: 'monetization'});
-        }
-      }
-    },
-    mounted(){
-
+    //open chat
+    this.lead_id =  +this.$route.params.id;
+    if ( this.isDoneLead ) {
       if ( this.isAuth ) {
-        this.onMessage      = this.onMessage.bind( this );
-        this.scrollListener = listen( this.$refs.scrollCnt, 'scroll', this.scrollHandler.bind( this ) );
-        messages.onMsg( this.onMessage );
-
+        return this.run().then(()=>{
+          this.clearNotify(this.lead_id);
+          this.$nextTick( () => {
+                  this.goToBottom();
+                } );
+        })
       } else {
-        this.$router.go( { name: 'signup' } );
+        return Promise.resolve()
       }
+    }
+
+
+    //helps
+    this.$on('goToBottom', this.goToBottom);
+    this.$on('addPadding', (val)=>{
+
+      this.$refs.section.style.paddingBottom = val + 'px';
+      window.scrollTo(0, document.body.scrollHeight);
+
+    })
+
+    //monetization
+    if(settings.activateMonetization && this.getCurrentMember.role === 2){
+      let storage = window.localStorage;
+
+      if(!storage.getItem('firstTimeChatVisited')) {
+        storage.setItem('firstTimeChatVisited', true)
+        this.$router.push({name: 'monetization'});
+      }
+
+      if(storage.getItem('supplierStatus') === 'disabled'){
+        this.$router.push({name: 'monetization'});
+      }
+    }
+  },
+
+  mounted(){
+
+    if ( this.isAuth ) {
+      this.onMessage      = this.onMessage.bind( this );
+      this.scrollListener = listen( window, 'scroll', this.scrollHandler.bind( this ) );
+      messages.onMsg( this.onMessage );
+
+    } else {
+      this.$router.push( { name: 'signup' } );
+    }
+  },
+
+  beforeDestroy() {
+    if(this.timerId) {
+      clearInterval(this.timerId);
+    }
+    if ( this.isAuth ) {
+      this.scrollListener.remove();
+      this.closeConversation();
+      messages.offMsg( this.onMessage );
+    }
+  },
+  computed: {
+
+    messagesList() {
+      const end   = this.getMessages.length;
+      const start = end - this.getLengthList - 1; // -1 потому что есть первое сообщение с датой.
+      return value.slice( (start <= 0) ? 0 : start, end );
     },
 
-    beforeDestroy() {
-      if(this.timerId) {
-        clearInterval(this.timerId);
-      }
-      if ( this.isAuth ) {
-        this.scrollListener.remove();
-        this.closeConversation();
-        messages.offMsg( this.onMessage );
-      }
+    ...mapGetters([
+
+      'imgPopUpUrl',
+      'imgWidth',
+      'imgHeight',
+      'isAuth',
+      'getUseDays',
+      'isDoneLead',
+      'getMessages',
+      'conversationNotifyCount',
+      'getId',
+      'getCurrentMember',
+      'getChatLengthList',
+      'getShowMenu',
+      'getShowStatusMenu'
+
+    ])
+
+  },
+  methods: {
+    ...mapActions([
+
+      'setConversationAction',
+      'setConversation',
+      'loadMessage',
+      'clearNotify',
+      'closeConversation',
+      'openPopUp'
+
+    ]),
+    closePopUp(){
+
+      this.openPopUp();
+
     },
 
-    vuex: {
-      actions: {
-        setConversationAction,
-        setConversation,
-        loadMessage,
-        clearNotify,
-        closeConversation,
-        openPopUp
-      },
-      getters: {
-        imgPopUpUrl,
-        imgWidth,
-        imgHeight,
-        isAuth,
-        getUseDays,
-        isDone,
-        getMessages,
-        conversationNotifyCount,
-        getId,
-        getCurrentMember,
-        getLengthList,
-        getShowMenu,
-        getShowStatusMenu
-      },
+    run(){
+      if(this.directbot) this.lead_id = +this.$route.params.id;
+
+      return this
+
+        .setConversation( this.lead_id )
+
+        .then(()=>{
+
+          return messages
+            .find(this.getId, null, 70, false)
+            .then((data)=>{
+              return data.find(message=>{
+                return message.parts[0].content === 'Привет;) да, подтверждаю!'
+              })
+            });
+
+        }).then(flagMessage=>{
+          if(!flagMessage && this.getCurrentMember.role === 1){
+            this.setConversationAction('approve');
+          }
+
+        }).then(
+          () => {
+                  this.$nextTick( () => {
+
+                    setTimeout(()=>{
+
+                      this.goToBottom();
+
+                    },30)
+
+                  } );
+          },
+          ( error ) => {
+            console.error( `[ CONVERSATION_SET ERROR ]: `, error );
+            this.$router.push( { name: 'home' } );
+          }
+        ).then(()=>{
+          //redirect if no chat room
+          if(this.$store.state.conversation.id === null){
+            this.$router.push( { name: '404'});
+          }
+
+        }).then(()=>{
+          //лоадер
+          this.showLoader = false;
+        })
     },
 
-    filters: {
-      list( value ){
+    runLoadingMessage(){
 
-        const end   = value.length;
-        const start = end - this.getLengthList - 1; // -1 потому что есть первое сообщение с датой.
-        return value.slice( (start <= 0) ? 0 : start, end );
-      }
-    },
+      return new Promise((resolve, reject) => {
 
-    methods: {
+        const add = ( scrollHeight ) => {
 
-      closePopUp(){
+           if ( document.body.offsetHeight >= scrollHeight ) {
 
-        this.openPopUp();
+              this
+                .loadMessage()
+                .then( ( messages ) => {
 
-      },
+                  if ( messages === null ) {
 
-      run(){
-        if(this.directbot) this.lead_id = +this.$route.params.id;
+                    resolve();
 
-        return this
+                  } else {
 
-          .setConversation( this.lead_id )
-
-          .then(()=>{
-
-            return messages
-              .find(this.getId, null, 70, false)
-              .then((data)=>{
-                return data.find(message=>{
-                  return message.parts[0].content === 'Привет;) да, подтверждаю!'
-                })
-              });
-
-          }).then(flagMessage=>{
-            if(!flagMessage && this.getCurrentMember.role === 1){
-              this.setConversationAction('approve');
-            }
-
-          }).then(
-            () => {
                     this.$nextTick( () => {
 
-                      setTimeout(()=>{
-
-                        this.goToBottom();
-
-                      },30)
+                      add( document.body.scrollHeight )
 
                     } );
-            },
-            ( error ) => {
-              console.error( `[ CONVERSATION_SET ERROR ]: `, error );
-              this.$router.go( { name: 'home' } );
-            }
-          ).then(()=>{
-            //redirect if no chat room
-            if(this.$store.state.conversation.id === null){
-              this.$router.go( { name: '404'});
-            }
 
-          }).then(()=>{
-            //лоадер
-            this.$set('showLoader', false);
-          })
-      },
+                  }
 
-      runLoadingMessage(){
+                });
 
-        return new Promise((resolve, reject) => {
+           } else {
 
-          const add = ( scrollHeight ) => {
+            resolve();
 
-             if ( document.body.offsetHeight >= scrollHeight ) {
+           }
 
-                this
-                  .loadMessage()
-                  .then( ( messages ) => {
+        };
 
-                    if ( messages === null ) {
+        this.$nextTick( () => {
 
-                      resolve();
+          add( document.body.scrollHeight )
 
-                    } else {
+        } );
 
-                      this.$nextTick( () => {
+      });
 
-                        add( this.$refs.scrollCnt.scrollHeight )
+    },
 
-                      } );
+    onMessage(){
+      Promise.resolve().then(()=>{
 
-                    }
+        this.$nextTick( this.goToBottom );
 
-                  });
+      })
+    },
 
-             } else {
+    isImage( mime ){
+      return mime.indexOf( 'image' ) !== -1;
+    },
 
-              resolve();
+    hasData(msg){
+      if (msg.parts[1] && msg.parts[1].mime_type === 'text/data'){
+        return true;
+      }
+      return false;
+    },
 
-             }
+    scrollHandler(){
 
-          };
+      const SHAfter = document.body.scrollHeight;
 
-          this.$nextTick( () => {
+      if ( this.needLoadMessage ) {
+        if ( document.body.scrollTop < 1500 ) {
 
-            add( this.$refs.scrollCnt.scrollHeight )
+          this.$set( 'needLoadMessage', false );
 
+          this.loadMessage().then( ( messages ) => {
+            this.$nextTick( () => {
+
+              if ( messages !== null ) {
+
+                const SHDelta                 = document.body.scrollHeight - SHAfter;
+                const percentTopOfHeight      = (document.body.scrollTop + SHDelta) / document.body.scrollHeight;
+                document.body.scrollTop = percentTopOfHeight * document.body.scrollHeight;
+                this.$set( 'needLoadMessage', true );
+
+              }
+
+            } );
           } );
 
-        });
+        }
+      }
 
-      },
+    },
+    goToBottom(){
 
-      onMessage(){
-        Promise.resolve().then(()=>{
+      let height = document.body.scrollHeight;
 
-          this.$nextTick( this.goToBottom );
+      if(this.fullScroll !==  height) {
+
+        document.body.scrollTop = height;
+
+        this.fullScroll = height;
+
+        console.log(height);
+
+        this.$nextTick(()=>{
+
+          setTimeout(()=>{
+
+            this.goToBottom();
+
+          },100);
 
         })
-      },
 
-      isImage( mime ){
-        return mime.indexOf( 'image' ) !== -1;
-      },
+      } else {
 
-      hasData(msg){
-        if (msg.parts[1] && msg.parts[1].mime_type === 'text/data'){
-          return true;
-        }
-        return false;
-      },
+        this.recursiveCount++;
 
-      scrollHandler(){
-        const SHAfter = this.$refs.scrollCnt.scrollHeight;
+        if(this.recursiveCount > 5) return;
 
-        if ( this.needLoadMessage ) {
-          if ( this.$refs.scrollCnt.scrollTop < 1500 ) {
+        this.$nextTick(()=>{
 
-            this.$set( 'needLoadMessage', false );
+          setTimeout(()=>{
 
-            this.loadMessage().then( ( messages ) => {
-              this.$nextTick( () => {
+            this.goToBottom();
 
-                if ( messages !== null ) {
+          },100);
 
-                  const SHDelta                 = this.$refs.scrollCnt.scrollHeight - SHAfter;
-                  const percentTopOfHeight      = (this.$refs.scrollCnt.scrollTop + SHDelta) / this.$refs.scrollCnt.scrollHeight;
-                  this.$refs.scrollCnt.scrollTop = percentTopOfHeight * this.$refs.scrollCnt.scrollHeight;
-                  this.$set( 'needLoadMessage', true );
-
-                }
-
-              } );
-            } );
-
-          }
-        }
-
-      },
-      goToBottom(){
-
-        let height = this.$refs.scrollCnt.scrollHeight;
-
-        if(this.fullScroll !==  height) {
-
-          this.$refs.scrollCnt.scrollTop = height;
-
-          this.fullScroll = height;
-
-          console.log(height);
-
-          this.$nextTick(()=>{
-
-            setTimeout(()=>{
-
-              this.goToBottom();
-
-            },100);
-
-          })
-
-        } else {
-
-          this.recursiveCount++;
-
-          if(this.recursiveCount > 5) return;
-
-          this.$nextTick(()=>{
-
-            setTimeout(()=>{
-
-              this.goToBottom();
-
-            },100);
-
-          })
-
-        }
+        })
 
       }
-    },
-  }
+
+    }
+  },
+}
+
 </script>

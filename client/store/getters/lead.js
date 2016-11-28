@@ -11,7 +11,7 @@ export const getLeadTab = ( leads ) => {
 
 };
 
-export const getLengthList = ( leads ) => {
+export const getLeadsLengthList = ( leads ) => {
 
   return leads.lengthList[ getLeadTab( leads ) ];
 
@@ -241,7 +241,7 @@ export const getNotifyCountList = state => state.notify_count;
 
 export const isEmptyLeads = ( state ) => (state.seller.length === 0) && (state.customer.length === 0);
 
-export const isDoneLeads = ( state ) => state.done;
+export const isDoneLead = ( state ) => state.done;
 
 export const getGroup = ( state, lead ) => lead.customer_id === store.getters.userID ? 'customer' : 'seller';
 

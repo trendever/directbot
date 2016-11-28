@@ -11,9 +11,9 @@ import {
   getMessageByLead,
   getMessages,
   getLastMessageId,
-  getCountForLoading,
+  chatCountForLoading,
   getCurrentMember
-} from 'vuex/getters/chat.js'
+} from '../getters/chat.js'
 
 import { getLeadById, getGroup, getLeadByConversationId } from '../getters/lead.js'
 
@@ -91,7 +91,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
         }
 
-        commit( types.CONVERSATION_SET, conversation_id, messages, getCountForLoading )
+        commit( types.CONVERSATION_SET, conversation_id, messages, chatCountForLoading )
 
       }
 
@@ -120,7 +120,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
             if ( lead.chat.id ) {
                console.log('Из чатов');
               return messageService
-                .find( lead.chat.id, null, getCountForLoading, true )
+                .find( lead.chat.id, null, chatCountForLoading, true )
                 .then(
                   ( messages ) => {
                     if ( Array.isArray( messages ) ) {
@@ -197,7 +197,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
             console.log('Запускается здесь');
             commit( types.LEAD_RECEIVE, [ lead ], getGroup( store.state.lead, lead ) )
             return messageService
-                .find( lead.chat.id, null, getCountForLoading )
+                .find( lead.chat.id, null, chatCountForLoading )
                 .then(
                   ( messages ) => {
                     if ( Array.isArray( messages ) ) {
@@ -246,11 +246,11 @@ export const loadMessage = (() => {
         if ( hasMore[ state.conversation.id ] ) {
 
           return messageService
-            .find( id, messages.length > 0 ? messages[ 0 ].id : undefined, getCountForLoading, true )
+            .find( id, messages.length > 0 ? messages[ 0 ].id : undefined, chatCountForLoading, true )
             .then(
               ( messages ) => {
 
-                if ( messages === null || messages.length < getCountForLoading ) {
+                if ( messages === null || messages.length < chatCountForLoading ) {
 
                   hasMore[ state.conversation.id ] = false;
 
@@ -277,7 +277,7 @@ export const loadMessage = (() => {
 
         if ( !hasMore[ state.conversation.id ] && messages.length >= state.conversation.lengthList ) {
 
-          commit( types.CONVERSATION_INC_LENGTH_LIST, getCountForLoading )
+          commit( types.CONVERSATION_INC_LENGTH_LIST, chatCountForLoading )
 
           resolve( messages );
 

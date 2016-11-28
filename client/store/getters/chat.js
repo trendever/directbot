@@ -1,14 +1,19 @@
 import * as leads from 'services/leads';
+
 import * as chat from 'services/chat';
+
 import { formatMonth } from 'views/chat/utils';
+
 import { userID } from '../getters/user.js';
+
 import { getLeadByConversationId } from '../getters/lead.js';
+
 import store from 'root/store';
 
 
 export const getId = ( conversation ) => conversation.id;
 
-export const getLengthList = ( conversation ) => conversation.lengthList;
+export const getChatLengthList = ( conversation ) => conversation.lengthList;
 
 export const getLeadId = ( state ) => {
 
@@ -349,7 +354,7 @@ export const getActionData = ( state ) => {
   return state.action.data;
 }
 
-export const getCountForLoading = 50;//(window.browser.mobile) ? 10 : 20;
+export const chatCountForLoading = 50;//(window.browser.mobile) ? 10 : 20;
 
 export const imgPopUpUrl = ( state ) => state.imgPopUpUrl;
 

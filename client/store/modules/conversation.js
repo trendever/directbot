@@ -1,6 +1,6 @@
 import * as types from '../mutation-types';
-import getters from '../getters/chat';
-import actions from '../actions/chat';
+import * as getters from '../getters/chat';
+import * as actions from '../actions/chat';
 
 // initial state
 const state = {

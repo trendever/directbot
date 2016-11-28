@@ -195,9 +195,11 @@
 
     computed:{
       ...mapGetters([
+
         //user
         'isAuth',
         'isFake',
+
         //leads
         'getLeads',
         'getLeadTab',
@@ -205,13 +207,13 @@
         'getTitle',
         'isEmptyLeads',
         'isDoneLead',
-        'getLengthList',
+        'getLeadsLengthList',
         'getScroll',
         'getHasMore'
       ]),
 
       sortedList(){
-        return this.leadsArray.slice( 0, this.getLengthList ).sort((a,b)=>{
+        return this.leadsArray.slice( 0, this.getLeadsLengthList ).sort((a,b)=>{
 
           return b.updated_at - a.updated_at;
 

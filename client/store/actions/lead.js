@@ -12,7 +12,7 @@ import {
   getHasMore,
   getCountForLoading,
   getLeads,
-  getLengthList,
+  getLeadsLengthList,
   getGroup
 
 } from '../getters/lead';
@@ -63,7 +63,7 @@ export const loadLeads = ( { commit, state }, count = getCountForLoading ) => {
 
     const tab = getLeadTab( state );
 
-    if ( getLeads( state ).length > (getLengthList( state ) + count) ) {
+    if ( getLeads( state ).length > (getLeadsLengthList( state ) + count) ) {
 
       incLengthList( { commit, state }, (!getHasMore( state )) ? count * 2 : count );
       resolve();
