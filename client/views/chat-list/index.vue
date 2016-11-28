@@ -2,7 +2,7 @@
 <template lang="pug">
 
 #chat-list
-  right-nav-component(current="chat")
+  //-right-nav-component(current="chat")
   .chat-list-cnt(v-if='isDoneLeads')
     //-header-component(:title='getTitle', :left-btn-show='false')
       .header__nav(slot='content' v-if='true')
@@ -21,8 +21,9 @@
     .section.top.bottom
       .section__content
         .chat-list(v-bind:style="styleObject")
-            chat-list-item(v-for='lead in leadsList', :lead='lead', :key="lead.id", ref="item")
-    template(v-if='!leadsArray.length && !directbot')
+            chat-list-item(v-for='lead in sortedList', :lead='lead', :key="lead.id", ref="item")
+
+    //-template(v-if='!leadsArray.length && !directbot')
       .chat-list-cnt-is-empty(v-if="getLeadTab === 'customer'")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  потому что ты пока ничего #[br] не покупаешь
@@ -43,7 +44,7 @@
         .how-to-sell-btn.chat-btn( v-link="{name: 'info-instructions-1'}") Как начать продавать?
 
     //- D I R E C T  B O T
-    template(v-if='!leadsArray.length && directbot')
+    //-template(v-if='!leadsArray.length && directbot')
       button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(v-link="{ name: 'turn-on-bot' }") ПОДКЛЮЧИТЬ БОТА
       .chat-list-cnt-is-empty__banner.directbot-banner
         span
@@ -59,12 +60,7 @@
   //-scroll-top
   //-app-loader.list-loader(v-if="!needLoadLeads")
 
-  .help-wrapper(v-if='isFirst')
-  .help(@click='isFirst=false')
-    .help__chat-list
-      .help-conteiner
-        .help-text Это шопинг-чаты, где можно напрямую#[br]  общаться с магазинами и заказывать
-        .help__chat-list-round
+
 
 </template>
 
@@ -76,7 +72,7 @@
   import * as leads from 'services/leads';
   import * as messages from 'services/message';
 
-
+  import store from 'root/store';
   import { mapGetters, mapActions } from 'vuex';
   //import ScrollTop from 'base/scroll-top/scroll-top';
 
@@ -104,10 +100,7 @@
     },
     data(){
       return {
-        isMobile: window.browser.mobile,
         needLoadLeads: true,
-        leadsArray: [],
-        isFirst: false,
         styleObject: {
           pointerEvents: 'auto'
         },
@@ -217,10 +210,10 @@
         'getHasMore'
       ]),
 
-      leadList(){
+      sortedList(){
         return this.leadsArray.slice( 0, this.getLengthList ).sort((a,b)=>{
 
-          return a.updated_at - b.updated_at;
+          return b.updated_at - a.updated_at;
 
         })
 

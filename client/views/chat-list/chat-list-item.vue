@@ -1,6 +1,5 @@
 <template lang="pug">
 .chat-list-i(@click="goToChat",
-            :key='id',
             ref="chatItem")
   .chat-list-i-photo(v-if="!showDelete")
     img(:src='getPhoto()')
@@ -25,17 +24,16 @@
 
 <script type='text/babel'>
 
+
   import { urlThumbnail } from 'root/utils'
 
   import { formatPastTime } from 'views/chat/utils';
 
-  import * as LeadsService from 'services/leads';
+  import * as leadsService from 'services/leads';
 
   import Hammer from 'hammerjs';
 
   import { mapGetters } from 'vuex';
-
-
 
   export default {
     data(){
@@ -51,7 +49,7 @@
       }
     },
     mounted(){
-
+      console.log(this.lead);
       this.$on('closeDelete', ()=>{
         if(this.showDelete) this.showDelete = false;
       })

@@ -1,20 +1,15 @@
 import store from 'root/store';
 
 ///import { getCustomerName } from 'vuex/getters/chat.js';
+
 let getCustomerName = 'Привет'
 
 import { statusString } from 'views/chat/utils';
 
 export const getLeadTab = ( leads ) => {
-/*  if ( getIsTab( { leads } ) ) {
-    return leads.tab;
-  }*/
 
   return leads.tab;
-  /*if ( leads.seller.length > 0 ) {
-    return 'seller';
-  }
-  return 'customer';*/
+
 };
 
 export const getLengthList = ( leads ) => {

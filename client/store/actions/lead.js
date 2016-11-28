@@ -50,9 +50,9 @@ export const initLead = ( { commit } ) => {
 
 export const incLengthList = ( { commit, state }, count = getCountForLoading ) => {
 
-  commit( LEAD_INC_LENGTH_LIST, {
+  commit( types.LEAD_INC_LENGTH_LIST, {
     lengthList: count,
-    tab: store.getters.getLeadTab
+    tab: getLeadTab(state)
   } );
 
 };
@@ -105,7 +105,7 @@ export const createLead = ( { commit, state }, product_id ) => {
     .then(
       ( lead ) => {
         incLengthList( { commit, state }, 1 );
-        commit( LEAD_RECEIVE, [ lead ], 'customer' );
+        commit( types.LEAD_RECEIVE, [ lead ], 'customer' );
         return lead;
       },
       leads.sendError
@@ -115,13 +115,13 @@ export const createLead = ( { commit, state }, product_id ) => {
 
 export const setTab = ( { commit }, tab ) => {
 
-  commit( LEAD_SET_TAB, tab, getCountForLoading );
+  commit( types.LEAD_SET_TAB, tab, getCountForLoading );
 
 };
 
 export const setScrollLeads = ( { commit, state }, { scrollTop, scrollHeight } ) => {
 
-  commit( LEAD_SET_SCROLL, { scrollTop, scrollHeight , tab: getLeadTab( state ) } )
+  commit( types.LEAD_SET_SCROLL, { scrollTop, scrollHeight , tab: getLeadTab( state ) } )
 
 }
 
