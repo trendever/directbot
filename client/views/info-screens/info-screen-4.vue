@@ -1,7 +1,6 @@
 <style src="./info-screen.pcss"></style>
 <template lang="pug">
 .info-screen
-  //i.ic-close(@click='closePage', v-if="isMobile")
   .description._4 Directbot сканирует твой Instagram на ключевые слова и уведомляет оператора #[br] о клиентах
 </template>
 
@@ -9,13 +8,10 @@
 export default {
   methods: {
     closePage(){
-      if(window.history.length > 3){
-        window.history.back();
-        return;
-      }
-      this.$router.push({name: 'home'})
+
+      this.$emit('info-popup.close')
     }
-  },
+  }
 }
 </script>
 
