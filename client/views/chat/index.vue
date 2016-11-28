@@ -1,51 +1,52 @@
 <style src='./styles/chat.pcss'></style>
-<template lang="jade">
-  scroll-component(v-el:scroll-cnt, class="chat-cnt")
-    .loader-center(v-if="showLoader"): app-loader
-    popup-img(v-if="imgPopUpUrl", :url="imgPopUpUrl", :width="imgWidth", :height="imgHeight", :on-close="closePopUp")
-    chat-header(:notify-count='conversationNotifyCount')
-    .chat-shadow(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu", :class="{'directbot-color': isDirectbot }")
-    .section.top.bottom(v-el:section)
-      .chat.section__content
-        .chat_messages(id="chatmessages", v-el:box-messages)
-          template(v-for='msg in getMessages | list', track-by='$index')
-            div
-              chat-msg-status(
-                v-if='msg.parts[0].mime_type === "json/status"',
-                :msg='msg')
-              chat-msg-product-old(
-                v-if='msg.parts[0].mime_type === "text/json"',
-                :msg='msg')
-              chat-msg-product(
-                v-if='msg.parts[0].mime_type === "text/plain" && hasData(msg) ',
-                :msg='msg')
-              chat-msg(
-                v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg)',
-                :msg='msg',
-                :directbot="directbot")
-              chat-msg-info(
-                v-if='msg.parts[0].mime_type === "text/html"',
-                :msg='msg')
-              chat-msg-img(
-                v-if='isImage(msg.parts[0].mime_type)',
-                :msg='msg')
-              chat-msg-payment(
-                v-if='msg.parts[0].mime_type === "json/payment" || msg.parts[0].mime_type === "json/cancel_order"', :msg='msg')
-            chat-msg-order(
-                v-if='msg.parts[0].mime_type === "json/order"',
-                :msg='msg')
+<template lang="pug">
+#chat
+  .loader-center(v-if="showLoader"): app-loader
+  //popup-img(v-if="imgPopUpUrl", :url="imgPopUpUrl", :width="imgWidth", :height="imgHeight", :on-close="closePopUp")
+  //chat-header(:notify-count='conversationNotifyCount')
+  .chat-shadow(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu", :class="{'directbot-color': isDirectbot }")
+  .section.top.bottom(ref="section")
+    .chat.section__content
+      .chat_messages(id="chatmessages", ref="messages")
+        //-template(v-for='(msg, index) in getMessages | list', :key='index')
+          div
+            chat-msg-status(
+              v-if='msg.parts[0].mime_type === "json/status"',
+              :msg='msg')
+            chat-msg-product-old(
+              v-if='msg.parts[0].mime_type === "text/json"',
+              :msg='msg')
+            chat-msg-product(
+              v-if='msg.parts[0].mime_type === "text/plain" && hasData(msg) ',
+              :msg='msg')
+            chat-msg(
+              v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg)',
+              :msg='msg',
+              :directbot="directbot")
+            chat-msg-info(
+              v-if='msg.parts[0].mime_type === "text/html"',
+              :msg='msg')
+            chat-msg-img(
+              v-if='isImage(msg.parts[0].mime_type)',
+              :msg='msg')
+            chat-msg-payment(
+              v-if='msg.parts[0].mime_type === "json/payment" || msg.parts[0].mime_type === "json/cancel_order"', :msg='msg')
+          chat-msg-order(
+              v-if='msg.parts[0].mime_type === "json/order"',
+              :msg='msg')
 
-    chat-bar
-  scroll-top(:to-up="false")
+  //-chat-bar
+  //-scroll-top(:to-up="false")
 </template>
 
 <script type='text/babel'>
-  import settings from 'settings';
-  import appLoader from 'base/loader/loader';
+  //import settings from 'settings';
+  let sttings = {}
+  //import appLoader from 'base/loader/loader';
   import listen from 'event-listener';
-  import scrollTop from 'base/scroll-top/scroll-top.vue';
+  //import scrollTop from 'base/scroll-top/scroll-top.vue';
   //actions
-  import {
+/*  import {
     setConversation,
     loadMessage,
     closeConversation,
@@ -67,17 +68,17 @@
     imgWidth,
     imgHeight
   } from 'vuex/getters/chat.js';
-  import { isDone } from 'vuex/getters/lead.js';
-  import { isAuth, getUseDays } from 'vuex/getters/user.js';
+  import { isDoneLead } from 'vuex/getters/lead.js';
+  import { isAuth, getUseDays } from 'vuex/getters/user.js';*/
 
 
   //services
   import * as messages from 'services/message';
   import * as leads from 'services/leads';
 
-  import ScrollComponent from 'base/scroll/scroll.vue'
+
   //components
-  import ChatMsgOrder from './chat-msg-order.vue';
+/*  import ChatMsgOrder from './chat-msg-order.vue';
   import ChatMsgPayment from './chat-msg-payment.vue';
   import ChatMsgProduct from './chat-msg-product.vue';
   import ChatMsgProductOld from './chat-msg-product-old.vue';
@@ -87,7 +88,7 @@
   import ChatMsgInfo from './chat-msg-info.vue';
   import ChatBar from './chat-bar.vue';
   import ChatHeader from './chat-header.vue';
-  import popupImg from 'base/popup-img/index.vue';
+  import popupImg from 'base/popup-img/index.vue';*/
 
   export default {
     props: {
@@ -98,8 +99,7 @@
     },
 
     components: {
-      ScrollComponent,
-      popupImg,
+/*      popupImg,
       ChatHeader,
       ChatBar,
       ChatMsg,
@@ -111,7 +111,7 @@
       ChatMsgImg,
       ChatMsgInfo,
       scrollTop,
-      appLoader,
+      appLoader,*/
     },
 
     data(){
@@ -133,66 +133,54 @@
         }
       }
     },
-    route: {
-      data( { to: { params: { id:lead_id } } } ) {
-        this.$set( 'lead_id', +lead_id );
-        if ( this.isDone ) {
-          if ( this.isAuth ) {
-            return this.run().then(()=>{
-              this.clearNotify(this.lead_id);
-              this.$nextTick( () => {
-                      this.goToBottom();
-                    } );
-            })
-          } else {
-            return Promise.resolve()
-          }
-        }
-      },
-    },
+
+
     created(){
+      //open chat
+      this.lead_id =  +this.$route.params.id;
+      if ( this.isDone ) {
+        if ( this.isAuth ) {
+          return this.run().then(()=>{
+            this.clearNotify(this.lead_id);
+            this.$nextTick( () => {
+                    this.goToBottom();
+                  } );
+          })
+        } else {
+          return Promise.resolve()
+        }
+      }
+
+
+      //Make helps
+      this.$on('goToBottom', this.goToBottom);
+
+      this.$on('addPadding', (val)=>{
+
+        this.$refs.section.style.paddingBottom = val + 'px';
+        this.$refs.scrollCnt.scrollTop = this.$refs.scrollCnt.scrollHeight;
+
+      })
+
+      //monetization
       if(settings.activateMonetization && this.getCurrentMember.role === 2){
         let storage = window.localStorage;
 
         if(!storage.getItem('firstTimeChatVisited')) {
           storage.setItem('firstTimeChatVisited', true)
-          this.$router.go({name: 'monetization'});
+          this.$router.push({name: 'monetization'});
         }
 
         if(storage.getItem('supplierStatus') === 'disabled'){
-          this.$router.go({name: 'monetization'});
-        }
-      }
-      /*
-      /*D I R E C T B O T
-      */
-      if(this.directbot){
-        if ( this.isDone ) {
-          if ( this.isAuth ) {
-            return this.run().then(()=>{
-              this.clearNotify(this.lead_id);
-              this.$nextTick( () => {
-                      this.goToBottom();
-                    } );
-            })
-          } else {
-            return Promise.resolve()
-          }
+          this.$router.push({name: 'monetization'});
         }
       }
     },
-    ready(){
-
-      this.$on('goToBottom', this.goToBottom);
-      this.$on('addPadding', (val)=>{
-        this.$els.section.style.paddingBottom = val + 'px';
-        this.$els.scrollCnt.scrollTop = this.$els.scrollCnt.scrollHeight;
-
-      })
+    mounted(){
 
       if ( this.isAuth ) {
         this.onMessage      = this.onMessage.bind( this );
-        this.scrollListener = listen( this.$els.scrollCnt, 'scroll', this.scrollHandler.bind( this ) );
+        this.scrollListener = listen( this.$refs.scrollCnt, 'scroll', this.scrollHandler.bind( this ) );
         messages.onMsg( this.onMessage );
 
       } else {
@@ -256,7 +244,9 @@
 
       run(){
         if(this.directbot) this.lead_id = +this.$route.params.id;
+
         return this
+
           .setConversation( this.lead_id )
 
           .then(()=>{
@@ -322,7 +312,7 @@
 
                       this.$nextTick( () => {
 
-                        add( this.$els.scrollCnt.scrollHeight )
+                        add( this.$refs.scrollCnt.scrollHeight )
 
                       } );
 
@@ -340,7 +330,7 @@
 
           this.$nextTick( () => {
 
-            add( this.$els.scrollCnt.scrollHeight )
+            add( this.$refs.scrollCnt.scrollHeight )
 
           } );
 
@@ -368,10 +358,10 @@
       },
 
       scrollHandler(){
-        const SHAfter = this.$els.scrollCnt.scrollHeight;
+        const SHAfter = this.$refs.scrollCnt.scrollHeight;
 
         if ( this.needLoadMessage ) {
-          if ( this.$els.scrollCnt.scrollTop < 1500 ) {
+          if ( this.$refs.scrollCnt.scrollTop < 1500 ) {
 
             this.$set( 'needLoadMessage', false );
 
@@ -380,9 +370,9 @@
 
                 if ( messages !== null ) {
 
-                  const SHDelta                 = this.$els.scrollCnt.scrollHeight - SHAfter;
-                  const percentTopOfHeight      = (this.$els.scrollCnt.scrollTop + SHDelta) / this.$els.scrollCnt.scrollHeight;
-                  this.$els.scrollCnt.scrollTop = percentTopOfHeight * this.$els.scrollCnt.scrollHeight;
+                  const SHDelta                 = this.$refs.scrollCnt.scrollHeight - SHAfter;
+                  const percentTopOfHeight      = (this.$refs.scrollCnt.scrollTop + SHDelta) / this.$refs.scrollCnt.scrollHeight;
+                  this.$refs.scrollCnt.scrollTop = percentTopOfHeight * this.$refs.scrollCnt.scrollHeight;
                   this.$set( 'needLoadMessage', true );
 
                 }
@@ -396,11 +386,11 @@
       },
       goToBottom(){
 
-        let height = this.$els.scrollCnt.scrollHeight;
+        let height = this.$refs.scrollCnt.scrollHeight;
 
         if(this.fullScroll !==  height) {
 
-          this.$els.scrollCnt.scrollTop = height;
+          this.$refs.scrollCnt.scrollTop = height;
 
           this.fullScroll = height;
 

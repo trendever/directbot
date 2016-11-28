@@ -1,11 +1,9 @@
 import * as types from '../mutation-types'
-
 import * as messageService from 'services/message.js'
-
 import * as leads from 'services/leads.js'
-
 import * as chat from 'services/chat.js'
 
+import store from 'root/store';
 
 import {
   getId,
@@ -17,12 +15,10 @@ import {
   getCurrentMember
 } from 'vuex/getters/chat.js'
 
+import { getLeadById, getGroup, getLeadByConversationId } from '../getters/lead.js'
 
-import { getLeadById, getGroup, getLeadByConversationId } from 'vuex/getters/lead.js'
 
-import { userID } from 'vuex/getters/user.js'
-
-export const setConversation = ( { dispatch, state }, lead_id ) => {
+export const setConversation = ( { commit, state }, lead_id ) => {
 
   function chatJoin( lead_id, callBack ) {
     /**
@@ -95,7 +91,7 @@ export const setConversation = ( { dispatch, state }, lead_id ) => {
 
         }
 
-        dispatch( CONVERSATION_SET, conversation_id, messages, getCountForLoading )
+        commit( types.CONVERSATION_SET, conversation_id, messages, getCountForLoading )
 
       }
 
@@ -103,7 +99,7 @@ export const setConversation = ( { dispatch, state }, lead_id ) => {
 
   }
 
-  const lead = getLeadById( state, lead_id )
+  const lead = getLeadById(store.state.lead, lead_id)
 
   if ( lead !== null ) {
 
@@ -111,11 +107,11 @@ export const setConversation = ( { dispatch, state }, lead_id ) => {
      * Переход состраницы списка чатов.
      * */
 
-    if ( isJoined( state, lead ) ) {
+    if ( isJoined( store.state.conversation, lead ) ) {
 
       return new Promise( ( resolve, reject ) => {
 
-        const messages = getMessageByLead( state, lead )
+        const messages = getMessageByLead( store.state.conversation, lead )
 
         if ( /*messages === null*/ !state.conversation.allInit[lead.chat.id] ) {
 
@@ -157,13 +153,13 @@ export const setConversation = ( { dispatch, state }, lead_id ) => {
 
         if ( lead.chat ) {
 
-          dispatch( LEAD_UPDATE, {
+          commit( types.LEAD_UPDATE, {
             conversation_id: lead.chat.id,
             members: lead.chat.members,
             updated_at: lead.chat.recent_message.created_at * 1e9
           } )
 
-          return setConversation( { dispatch, state }, lead_id )
+          return setConversation( { commit, state }, lead_id )
 
         }
 
@@ -189,9 +185,9 @@ export const setConversation = ( { dispatch, state }, lead_id ) => {
 
               return chatJoin( lead_id, ( { lead } ) => {
 
-                dispatch( LEAD_RECEIVE, [ lead ], getGroup( state, lead ) )
+                commit( types.LEAD_RECEIVE, [ lead ], getGroup( store.state.lead, lead ) )
 
-                return setConversation( { dispatch, state }, lead_id )
+                return setConversation( { commit, state }, lead_id )
 
               } )
 
@@ -199,7 +195,7 @@ export const setConversation = ( { dispatch, state }, lead_id ) => {
 
           } else {
             console.log('Запускается здесь');
-            dispatch( LEAD_RECEIVE, [ lead ], getGroup( state, lead ) )
+            commit( types.LEAD_RECEIVE, [ lead ], getGroup( store.state.lead, lead ) )
             return messageService
                 .find( lead.chat.id, null, getCountForLoading )
                 .then(
@@ -232,7 +228,7 @@ export const loadMessage = (() => {
 
   const hasMore = {};
 
-  return ( { dispatch, state } ) => {
+  return ( { commit, state } ) => {
 
     if ( !hasMore.hasOwnProperty( state.conversation.id ) ) {
 
@@ -262,8 +258,8 @@ export const loadMessage = (() => {
 
                 if ( Array.isArray( messages ) ) {
 
-                  dispatch( CONVERSATION_LOAD_MESSAGE, messages )
-                  dispatch( CONVERSATION_INC_LENGTH_LIST, messages.length )
+                  commit( types.CONVERSATION_LOAD_MESSAGE, messages )
+                  commit( types.CONVERSATION_INC_LENGTH_LIST, messages.length )
                   resolve( messages )
 
                 }
@@ -281,7 +277,7 @@ export const loadMessage = (() => {
 
         if ( !hasMore[ state.conversation.id ] && messages.length >= state.conversation.lengthList ) {
 
-          dispatch( CONVERSATION_INC_LENGTH_LIST, getCountForLoading )
+          commit( types.CONVERSATION_INC_LENGTH_LIST, getCountForLoading )
 
           resolve( messages );
 
@@ -305,7 +301,7 @@ export const loadMessage = (() => {
 
 })();
 
-export const createMessage = ( { dispatch, state }, conversation_id, text, mime_type ) => {
+export const createMessage = ( { commit, state }, conversation_id, text, mime_type ) => {
 
   const beforeLoadId = Math.random()
 
@@ -314,7 +310,7 @@ export const createMessage = ( { dispatch, state }, conversation_id, text, mime_
       beforeLoadId,
       loaded: false,
       conversation_id: conversation_id,
-      user_id: userID( state ),
+      user_id: store.getters.userID,
       parts: [
         {
           content: text,
@@ -324,18 +320,18 @@ export const createMessage = ( { dispatch, state }, conversation_id, text, mime_
       created_at: null,
       id: Date.now() + beforeLoadId,
       user: {
-        user_id: userID( state )
+        user_id: store.getters.userID( state )
       }
     }
   ]
 
-  dispatch( CONVERSATION_RECEIVE_MESSAGE, rowMessage, conversation_id )
+  commit( types.CONVERSATION_RECEIVE_MESSAGE, rowMessage, conversation_id )
 
   return messageService
     .create( conversation_id, text, mime_type )
     .then( ( { chat, messages, error } ) => {
 
-      dispatch( CONVERSATION_CONFIRM_MSG, beforeLoadId, messages[ 0 ], conversation_id )
+      commit( types.CONVERSATION_CONFIRM_MSG, beforeLoadId, messages[ 0 ], conversation_id )
 
     } )
     .catch( ( error ) => {
@@ -346,7 +342,7 @@ export const createMessage = ( { dispatch, state }, conversation_id, text, mime_
 
 }
 
-export const receiveMessage = ( { dispatch, state }, conversation_id, messages ) => {
+export const receiveMessage = ( { commit, state }, conversation_id, messages ) => {
 
   if ( Array.isArray( messages ) ) {
 
@@ -356,9 +352,9 @@ export const receiveMessage = ( { dispatch, state }, conversation_id, messages )
 
       const msgUserId = msg.user ? msg.user.user_id : null
 
-      dispatch( CONVERSATION_RECEIVE_MESSAGE, messages, conversation_id )
+      commit( types.CONVERSATION_RECEIVE_MESSAGE, messages, conversation_id )
 
-      if ( userID( state ) !== msgUserId ) {
+      if ( store.getters.userID( state ) !== msgUserId ) {
 
         if ( state.conversation.id === msg.conversation_id ) {
 
@@ -396,7 +392,7 @@ export const receiveMessage = ( { dispatch, state }, conversation_id, messages )
 
       if ( msg.parts[ 0 ].mime_type === 'json/status' ) {
 
-        dispatch( CONVERSATION_CONFIRM_STATUS_MSG, messages, conversation_id )
+        commit( types.CONVERSATION_CONFIRM_STATUS_MSG, messages, conversation_id )
 
       }
 
@@ -406,7 +402,7 @@ export const receiveMessage = ( { dispatch, state }, conversation_id, messages )
 
 }
 
-export const addPreLoadMessage = ( { dispatch, state }, base64, base64WithPrefix, MIME, { width, height } ) => {
+export const addPreLoadMessage = ( { commit, state }, base64, base64WithPrefix, MIME, { width, height } ) => {
 
   const beforeLoadId = Math.random()
 
@@ -416,9 +412,9 @@ export const addPreLoadMessage = ( { dispatch, state }, base64, base64WithPrefix
     loaded: false,
     conversation_id: getId( state ),
     created_at: null,
-    user_id: userID( state ),
+    user_id: store.getters.userID( state ),
     user: {
-      user_id: userID( state )
+      user_id: store.getters.userID( state )
     },
     parts: [
       {
@@ -432,17 +428,17 @@ export const addPreLoadMessage = ( { dispatch, state }, base64, base64WithPrefix
     ]
   }
 
-  dispatch( CONVERSATION_RECEIVE_MESSAGE, [ preLoadMessage ], getId( state ) )
+  commit( types.CONVERSATION_RECEIVE_MESSAGE, [ preLoadMessage ], getId( state ) )
 
   messageService.create( getId( state ), base64, MIME ).then( ( { messages } ) => {
 
-    dispatch( CONVERSATION_CONFIRM_MSG, beforeLoadId, messages[ 0 ], getId( state ) )
+    commit( types.CONVERSATION_CONFIRM_MSG, beforeLoadId, messages[ 0 ], getId( state ) )
 
   }, messageService.sendError )
 
 }
 
-export const setStatus = ( { dispatch, state }, status, type, cancel_reason = null ) => {
+export const setStatus = ( { commit, state }, status, type, cancel_reason = null ) => {
 
   const statusMap = {
     COMPLETE: 'COMPLETED',
@@ -455,7 +451,7 @@ export const setStatus = ( { dispatch, state }, status, type, cancel_reason = nu
 
   const { parts } = messages[ messages.length - 1 ]
 
-  dispatch( CONVERSATION_SEND_STATUS )
+  commit( types.CONVERSATION_SEND_STATUS )
 
   /**
    * Добавлять одинаковый статус нет необходимости.
@@ -487,11 +483,11 @@ export const setStatus = ( { dispatch, state }, status, type, cancel_reason = nu
     }
   ]
 
-  const lead = getLeadByConversationId( state, state.conversation.id )
+  const lead = getLeadByConversationId(store.state.lead, state.conversation.id )
 
   if ( lead !== null ) {
 
-    dispatch( CONVERSATION_RECEIVE_MESSAGE, dirtyStatusMessage, state.conversation.id )
+    commit( types.CONVERSATION_RECEIVE_MESSAGE, dirtyStatusMessage, state.conversation.id )
 
     return new Promise( ( resolve, reject ) => {
       leads
@@ -514,7 +510,7 @@ export const setStatus = ( { dispatch, state }, status, type, cancel_reason = nu
 
 }
 
-export const onMessages = ( { dispatch, state }, data ) => {
+export const onMessages = ( { commit, state }, data ) => {
 
   if ( data.response_map ) {
 
@@ -523,7 +519,7 @@ export const onMessages = ( { dispatch, state }, data ) => {
       const conversation_id = data.response_map.chat.id
       const messages        = data.response_map.messages
 
-      return receiveMessage( { dispatch, state }, conversation_id, messages )
+      return receiveMessage( { commit, state }, conversation_id, messages )
 
     }
 
@@ -533,48 +529,48 @@ export const onMessages = ( { dispatch, state }, data ) => {
 
 }
 
-export const setShowMenu = ( { dispatch }, showMenu ) => {
+export const setShowMenu = ( { commit }, showMenu ) => {
 
-  dispatch( CONVERSATION_SET_SHOW_MENU, showMenu )
-
-}
-
-export const setShowStatusMenu = ( { dispatch }, showStatusMenu ) => {
-
-  dispatch( CONVERSATION_SET_SHOW_STATUS_MENU, showStatusMenu )
+  commit( types.CONVERSATION_SET_SHOW_MENU, showMenu )
 
 }
 
-export const setShowCancelMenu = ( { dispatch }, showCancelMenu ) => {
+export const setShowStatusMenu = ( { commit }, showStatusMenu ) => {
 
-  dispatch( CONVERSATION_SET_SHOW_CANCEL_MENU, showCancelMenu );
-
-}
-
-export const closeConversation = ( { dispatch } ) => {
-  dispatch(CONVERSATION_SET_ACTION, '');
-  dispatch( CONVERSATION_CLOSE );
+  commit( types.CONVERSATION_SET_SHOW_STATUS_MENU, showStatusMenu )
 
 }
 
-export const openPopUp = ( { dispatch }, url = false, width = 0, height = 0 ) => {
+export const setShowCancelMenu = ( { commit }, showCancelMenu ) => {
 
-  dispatch( CONVERSATION_OPEN_IMG_POPUP, url, width, height );
+  commit( types.CONVERSATION_SET_SHOW_CANCEL_MENU, showCancelMenu );
 
 }
 
-export const setConversationAction = (({dispatch}, value)=>{
+export const closeConversation = ( { commit } ) => {
+  commit(types.CONVERSATION_SET_ACTION, '');
+  commit( types.CONVERSATION_CLOSE );
 
-  dispatch( CONVERSATION_SET_ACTION, value);
+}
+
+export const openPopUp = ( { commit }, url = false, width = 0, height = 0 ) => {
+
+  commit( types.CONVERSATION_OPEN_IMG_POPUP, url, width, height );
+
+}
+
+export const setConversationAction = (({commit}, value)=>{
+
+  commit( types.CONVERSATION_SET_ACTION, value);
 
 })
 
-export const setConversationActionData = (({dispatch}, value)=>{
+export const setConversationActionData = (({commit}, value)=>{
 
-  dispatch( CONVERSATION_SET_ACTION_DATA, value);
+  commit( types.CONVERSATION_SET_ACTION_DATA, value);
 
 })
 
-export const setConversationImgLoader = ({dispatch}, value) => {
-  dispatch( CONVERSATION_SET_IMG_LOADER, value);
+export const setConversationImgLoader = ({commit}, value) => {
+  commit( types.CONVERSATION_SET_IMG_LOADER, value);
 }

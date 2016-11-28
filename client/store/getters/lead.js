@@ -1,10 +1,9 @@
 import store from 'root/store';
 
-///import { getCustomerName } from 'vuex/getters/chat.js';
-
-let getCustomerName = 'Привет'
+import { getCustomerName } from './chat.js';
 
 import { statusString } from 'views/chat/utils';
+
 
 export const getLeadTab = ( leads ) => {
 

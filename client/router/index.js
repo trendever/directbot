@@ -25,6 +25,11 @@ let router = new Router({
 		  component: require('views/chat-list')
 		},
     {
+      name: 'chat',
+      path: '/chat/:id',
+      components: require('views/chat/index')
+    },
+    {
       name: 'auth',
       path: '/auth',
       component: require('views/auth/index')

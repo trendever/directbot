@@ -1,5 +1,5 @@
 <style src='./styles/chat-bar.pcss'></style>
-<template lang="jade">
+<template lang="pug">
 div
   .loader-center(v-if="imgLoader"): app-loader
   menu-component(v-if='getShowMenu && !getShowStatusMenu')

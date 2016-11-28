@@ -204,7 +204,7 @@
         'getIsTab',
         'getTitle',
         'isEmptyLeads',
-        'isDoneLeads',
+        'isDoneLead',
         'getLengthList',
         'getScroll',
         'getHasMore'

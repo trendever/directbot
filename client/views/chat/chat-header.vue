@@ -1,5 +1,5 @@
 <style src='./styles/chat-header.pcss'></style>
-<template lang="jade">
+<template lang="pug">
 div
   header-component(:notify-count='getGlobalNotifyCount')
 

@@ -1,5 +1,5 @@
 <style src='./styles/chat-msg.pcss'></style>
-<template lang="jade">
+<template lang="pug">
 
 .chat-row(:class='getSide')
   span(class='bubble_info bubble_info_time') {{ datetime }}

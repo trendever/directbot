@@ -1,5 +1,5 @@
 <style src='./styles/chat-bar.pcss'></style>
-<template lang="jade">
+<template lang="pug">
 
 div.chat-bar
   .chat-approve-btn.noaction(v-if='getAction === "approve" && getCurrentMember.role === 1', @click='approveChat($event)') ПОДТВЕРДИТЬ
@@ -93,7 +93,7 @@ chat-menu(v-if="isMobile")
       if(this.$els.inputMsg) {
 
         this.$els.inputMsg.blur();
-         
+
       }
 
       if ( this.scrollEvent ) {
@@ -238,7 +238,7 @@ chat-menu(v-if="isMobile")
 
           let id = this.$route.params.id;
 
-          
+
 
         } )
 

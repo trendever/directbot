@@ -1,6 +1,6 @@
 <style src='./styles/chat-msg-status.pcss'></style>
 <style src='./styles/chat-bar.pcss'></style>
-<template lang="jade">
+<template lang="pug">
 .chat-row.__center
   .chat-msg-status
     span

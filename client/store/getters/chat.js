@@ -1,10 +1,10 @@
 import * as leads from 'services/leads';
 import * as chat from 'services/chat';
 import { formatMonth } from 'views/chat/utils';
-
-import { userID } from 'vuex/getters/user.js';
-
+import { userID } from '../getters/user.js';
 import { getLeadByConversationId } from '../getters/lead.js';
+import store from 'root/store';
+
 
 export const getId = ( conversation ) => conversation.id;
 
@@ -12,7 +12,7 @@ export const getLengthList = ( conversation ) => conversation.lengthList;
 
 export const getLeadId = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead ) {
 
@@ -26,7 +26,7 @@ export const getLeadId = ( state ) => {
 
 export const getCustomerName = ( state ) => {
 
-  const lead = store.getters.getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead ) {
 
@@ -62,7 +62,7 @@ export const getCustomerName = ( state ) => {
 
 export const getCustomerId = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.conversation.id );
 
   if ( lead ) {
 
@@ -120,7 +120,7 @@ export const getMessageByLead = ( { conversation }, lead ) => {
 
 };
 
-export const getMessages = ( { conversation:{ id, all } } ) => {
+export const getMessages = ( { id, all } ) => {
 
   const messages = all[ id ];
 
@@ -134,15 +134,15 @@ export const getMessages = ( { conversation:{ id, all } } ) => {
 
 };
 
-export const getShowMenu = ( { conversation } ) => conversation.showMenu;
+export const getShowMenu = ( conversation ) => conversation.showMenu;
 
-export const getShowStatusMenu = ( { conversation } ) => conversation.showStatusMenu;
+export const getShowStatusMenu = ( conversation ) => conversation.showStatusMenu;
 
-export const getShowCancelMenu = ( { conversation } ) => conversation.showCancelMenu;
+export const getShowCancelMenu = ( conversation ) => conversation.showCancelMenu;
 
 export const getStatus = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead !== null ) {
 
@@ -169,7 +169,7 @@ export const getStatusName = ( state ) => {
 
 export const getPhoto = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead !== null ) {
 
@@ -182,7 +182,7 @@ export const getPhoto = ( state ) => {
 
 export const getShopName = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead !== null ) {
 
@@ -196,7 +196,7 @@ export const getShopName = ( state ) => {
 
 export const getShopId = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead !== null ) {
 
@@ -208,7 +208,7 @@ export const getShopId = ( state ) => {
 
 };
 
-export const getCurrentMember = ( state, lead = getLeadByConversationId( state, state.conversation.id ) ) => {
+export const getCurrentMember = ( state, lead = getLeadByConversationId( store.state.leads, state.id ) ) => {
 
   if ( lead ) {
 
@@ -246,7 +246,7 @@ export const getCurrentMember = ( state, lead = getLeadByConversationId( state, 
 
 export const getLastMessageId = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   const { user_id } = getCurrentMember( state );
 
@@ -271,7 +271,7 @@ export const conversationNotifyCount = state => state.leads.global_notify_count;
 
 export const getInviteShop = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead ) {
 
@@ -295,7 +295,7 @@ export const getInviteShop = ( state ) => {
 
 export const getInviteCustomer = ( state ) => {
 
-  const lead = getLeadByConversationId( state, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead ) {
 
@@ -318,7 +318,8 @@ export const isJoined = ( state, lead ) => {
     if ( lead.chat ) {
 
       const { members } = lead.chat;
-      const currentUserId = userID( state );
+
+      const currentUserId = userID( store.state.user );
 
       for ( let i = members.length; i; i-- ) {
 
@@ -341,19 +342,19 @@ export const isJoined = ( state, lead ) => {
 };
 
 export const getAction = ( state ) => {
-  return state.conversation.action.type;
+  return state.action.type;
 }
 
 export const getActionData = ( state ) => {
-  return state.conversation.action.data;
+  return state.action.data;
 }
 
 export const getCountForLoading = 50;//(window.browser.mobile) ? 10 : 20;
 
-export const imgPopUpUrl = ( state ) => state.conversation.imgPopUpUrl;
+export const imgPopUpUrl = ( state ) => state.imgPopUpUrl;
 
-export const imgWidth = ( state ) => state.conversation.imgWidth;
+export const imgWidth = ( state ) => state.imgWidth;
 
-export const imgHeight = ( state ) => state.conversation.imgHeight;
+export const imgHeight = ( state ) => state.imgHeight;
 
-export const imgLoader = ( state ) => state.conversation.imgLoader;
+export const imgLoader = ( state ) => state.imgLoader;

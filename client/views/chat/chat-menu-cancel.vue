@@ -1,5 +1,5 @@
 <style src='./styles/chat-bar.pcss'></style>
-<template lang="jade">
+<template lang="pug">
 menu-component
   div.menu-items(slot='items')
     .menu_i(v-for="reason in cancelReasons" @click='setStatus("CANCEL", "lead.state.changed", reason.id)')

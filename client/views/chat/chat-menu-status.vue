@@ -1,5 +1,5 @@
 <style src='./styles/chat-bar.pcss'></style>
-<template lang="jade">
+<template lang="pug">
 menu-component
   div.status-items(slot='items')
     .menu_i.__bg-green(@click='setStatus("COMPLETE", "lead.state.changed")')

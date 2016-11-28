@@ -1,5 +1,5 @@
 <style src='./styles/chat-msg-status.pcss'></style>
-<template lang="jade">
+<template lang="pug">
   .chat-row.__center(v-if="isHide && text !== null")
     .chat-msg-status
       span {{text}} 
