@@ -53,7 +53,7 @@ let getters = {
 
 let actions = {
 
-  setScroll({ commit }, count) {
+  setScrollList({ commit }, count) {
 
     commit( types.PRODUCTS_SET_LIST_SCROLL, count)
 

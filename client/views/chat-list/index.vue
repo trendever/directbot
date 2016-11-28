@@ -167,7 +167,7 @@
 
             }, 200 );
 
-            store.dispatch('setScroll', {
+            store.dispatch('setScrollLeads', {
 
               scrollTop: window.scrollY,
               scrollHeight: document.body.scrollHeight
