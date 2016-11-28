@@ -1,87 +1,35 @@
-@import 'base/vars/vars.pcss';
-
-.standalone .header {
-  height: 129px;
-
-  &__content{
-    height: 129px;
-  }
-  .wrapper {
-    height: 100%;
-    padding-top: 40px;
-  }
-
-  &__notify-count{
-    top: 60px;
-  }
-
-  &__menu-links{
-    top: 40px;
-  }
-}
-
-.standalone .header-right{
-  top: 49px;
-}
-
-.standalone .header__arrow{
-  top: 40px!important;
-}
-
-.standalone .header__menu-icon{
-  top: 53px;
-}
-
-.standalone .chat-header_photo{
-  top: 48px;
-}
+@import 'style/vars/vars.pcss';
 
 .header {
-  z-index: 10;
   top: 0;
   right: 0;
   left: 0;
+  z-index: 10;
 
   .wrapper{
     width: 100%;
     height: 100%;
-    background-color: #31bebc;
-
-    &.directbot-color {
-      background-color: $color__blue
-    }
+    background-color: $color__blue;
 
     .header__use-days {
       position: absolute 18px * * 30px;
-      font-family: $font__family__semibold;
-
       color: $color-orange;
-
-      .standalone & {
-          top: 60px;
-      }
+      font-family: $font__family__semibold;
 
       .days-count {
         font-size: 44px;
       }
-
       span {
         font-size: 30px;
       }
     }
   }
-
   &__content {
     position: relative;
-
     display: flex;
-
-    text-align: center;
-
-
     justify-content: space-between;
-
     height: 50px;
+    text-align: center;
 
     @media(--mobile) {
       height: 129px;
@@ -91,30 +39,58 @@
     position: absolute;
     top: 0px;
     right: 25px;
-    background-image: url('icons/options.svg');
-    background-repeat: no-repeat;
-    background-size: 55px;
     width: 65px;
     height: 65px;
+    background-image: url('icons/options.svg');
+    background-size: 55px;
+    background-repeat: no-repeat;
+
     @media(--mobile) {
-      background-size: 65px;
-      width: 65px;
-      height: 65px;
       top: 20px;
       right: 25px;
+      width: 65px;
+      height: 65px;
+      background-size: 65px;
     }
   }
   &__arrow {
     display: none;
-    //врtменная логика пока не ясно куда надо а куда не надо
+
+    @media(--mobile) {
+      position: absolute 0 * 0 0;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      text-decoration: none;
+      cursor: pointer;
+
+      &__ic {
+        width: 26px;
+        height: 26px;
+        color: $color__white;
+        font-size: 26px;
+        transition: all 0.3s ease-in-out;
+
+        @media(--mobile) {
+          width: 42px;
+          height: 42px;
+          font-size: 42px;
+        }
+
+        // mods
+        &._up {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    //временная логика пока не ясно куда надо а куда не надо
     &.show-desktop-arrow {
       display: flex;
-      padding: 0 30px;
-
-      cursor: pointer;
-      text-decoration: none;
-
       align-items: center;
+      padding: 0 30px;
+      text-decoration: none;
+      cursor: pointer;
 
       @media(--mobile) {
         position: absolute 0 * 0 0;
@@ -123,55 +99,16 @@
       i {
         width: 26px;
         height: 26px;
-
-        transition: all 0.3s ease-in-out;
-
         color: $color__white;
-
         font-size: 26px;
+        transition: all 0.3s ease-in-out;
 
         @media(--mobile) {
           width: 42px;
           height: 42px;
-
           font-size: 42px;
         }
-        // mods
-        &._up {
-          transform: rotate(90deg);
-        }
-      }
-    }
 
-
-    @media(--mobile) {
-      position: absolute 0 * 0 0;
-
-      display: flex;
-
-      padding: 0 30px;
-
-      cursor: pointer;
-      text-decoration: none;
-
-      align-items: center;
-
-      &__ic {
-        width: 26px;
-        height: 26px;
-
-        transition: all 0.3s ease-in-out;
-
-        color: $color__white;
-
-        font-size: 26px;
-
-        @media(--mobile) {
-          width: 42px;
-          height: 42px;
-
-          font-size: 42px;
-        }
         // mods
         &._up {
           transform: rotate(90deg);
@@ -181,23 +118,15 @@
   }
   &__notify-count {
     position: absolute 11px * 0 65px;
-
     display: none;
-
+    align-items: center;
+    justify-content: center;
+    padding: 0px 6px;
     min-width: 26px;
     height: 26px;
-    padding: 0px 6px;
-
     border-radius: 25px;
     background: white;
 
-    justify-content: center;
-    align-items: center;
-    span {
-      color: $color__green;
-
-      font-size: 20px;
-    }
     @media(--mobile) {
       top: 23px;
       left: 85px;
@@ -209,115 +138,112 @@
         font-size: 28px;
       }
     }
+
+    span {
+      color: $color__green;
+      font-size: 20px;
+    }
   }
   &__center {
     display: flex;
-
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     cursor: default;
 
-    justify-content: center;
-    align-items: center;
-
   }
-
   &__left-logo{
     position: absolute;
-    left: 30px;
     top: 9px;
+    left: 30px;
+
     @media(--mobile) {
       display: none;
     }
+
     img{
       width: 134px;
       height: 33px;
     }
   }
-
   &-right {
     position: absolute;
-    display: none;
     top: 5px;
+    display: none;
 
     @media(--mobile) {
-      display: block;
       top: 10px;
       right: 25px;
+      display: block;
     }
-
     @media screen and (max-width:1026px) and (min-width: 751px){
-      display:block;
       right: 80px;
+      display:block;
     }
 
     img {
-      cursor: pointer;
-      @media(--mobile) {
-        size: 70px;
-        border-radius: 70px;
-      }
-      size: 40px;
       border-radius: 40px;
+      cursor: pointer;
+      size: 40px;
+
+      @media(--mobile) {
+        border-radius: 70px;
+        size: 70px;
+      }
     }
   }
-
   &__text {
-    //padding-top: 0.1563em; // 10% for centered
-    color: $color__white;
     position: relative;
-    font-size: 28px;
-    font-family: $font__family__semibold;
-
-    height: 50px;
-    line-height: 50px;
     max-width: calc(100% - 220px);
-    //overflow: hidden;
-    word-wrap: normal;
+    height: 50px;
+    color: $color__white;
     text-overflow: ellipsis;
     white-space: nowrap;
-
-    .center-avatar{
-      size: 40px;
-      border-radius:40px;
-      position: absolute 4px * * -50px;
-
-    }
-
-    &.active {
-      cursor: pointer;
-    }
+    word-wrap: normal;
+    font-size: 28px;
+    font-family: $font__family__semibold;
+    line-height: 50px;
 
     @media(--mobile) {
-      //padding-top: 0.2125em; // 10% for centered
+      max-width: calc(100% - 270px);
+      height: 89px;
       font-size: 36px;
       line-height: 89px;
-      height: 89px;
-      max-width: calc(100% - 270px);
+    }
+
+    .center-avatar{
+      position: absolute 4px * * -50px;
+      border-radius:40px;
+      size: 40px;
+
+    }
+    &.active {
+      cursor: pointer;
     }
   }
   &__nav {
     display: flex;
-
+    justify-content: center;
     width: 100%;
     height: 100%;
 
-    justify-content: center;
     &__i {
       display: flex;
-
-      width: 30%;
-      height: 100%;
-
-      cursor: pointer;
-      text-align: center;
-
       align-items: center;
       justify-content: center;
+      width: 30%;
+      height: 100%;
+      text-align: center;
+      cursor: pointer;
+
+      @media(--mobile){
+        width: 50%;
+      }
 
       span {
-        color: rgba(255,255,255,.5);
         height: 53%;
+        color: rgba(255,255,255,.5);
         line-height: 100%;
 
         @media (--mobile) {
@@ -325,16 +251,12 @@
         }
 
       }
-
       &._active {
         cursor: default;
+
         span {
           color: $color__white;
         }
-      }
-
-      @media(--mobile){
-        width: 50%;
       }
     }
   }
@@ -343,21 +265,23 @@
 
 
 .header {
-
   &__logo {
-    margin: -3px auto 7px auto;
-    float: left;
     position: relative;
     z-index: 2;
-    &.center {
-      margin-left: auto;
-      margin-right: auto;
-    }
+    float: left;
+    margin: -3px auto 7px auto;
 
+  @media(--mobile) {
+    margin: 18px auto 7px auto;
+  }
+
+    &.center {
+      margin-right: auto;
+      margin-left: auto;
+    }
     &.left {
       margin-left: 25px;
     }
-
     a {
       display:block;
       width: 150px;
@@ -367,29 +291,24 @@
        width: 290px;
      }
    }
-
    img{
     width: 100%;
     height: 56px;
    }
-  @media(--mobile) {
-    margin: 18px auto 7px auto;
-  }
 }
 }
 
 .header__content {
-
   max-width: none !important;
-
-  &.u-fixed{
-    width: 100%;
-    z-index: 100;
-    max-width: 1050px;
-  }
 
   @media(--mobile) {
     height:89px;
+  }
+
+  &.u-fixed{
+    z-index: 100;
+    max-width: 1050px;
+    width: 100%;
   }
 }
 

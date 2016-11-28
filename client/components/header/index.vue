@@ -1,4 +1,4 @@
-<style src='./header.pcss'></style>
+<!-- <style src='./header.pcss'></style>
 <template lang="pug">
 #header
   slot
@@ -53,4 +53,4 @@ export default {
 }
 
 
-</style>
+</style> -->
