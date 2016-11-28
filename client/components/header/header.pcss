@@ -1,0 +1,398 @@
+@import 'base/vars/vars.pcss';
+
+.standalone .header {
+  height: 129px;
+
+  &__content{
+    height: 129px;
+  }
+  .wrapper {
+    height: 100%;
+    padding-top: 40px;
+  }
+
+  &__notify-count{
+    top: 60px;
+  }
+
+  &__menu-links{
+    top: 40px;
+  }
+}
+
+.standalone .header-right{
+  top: 49px;
+}
+
+.standalone .header__arrow{
+  top: 40px!important;
+}
+
+.standalone .header__menu-icon{
+  top: 53px;
+}
+
+.standalone .chat-header_photo{
+  top: 48px;
+}
+
+.header {
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  .wrapper{
+    width: 100%;
+    height: 100%;
+    background-color: #31bebc;
+
+    &.directbot-color {
+      background-color: $color__blue
+    }
+
+    .header__use-days {
+      position: absolute 18px * * 30px;
+      font-family: $font__family__semibold;
+
+      color: $color-orange;
+
+      .standalone & {
+          top: 60px;
+      }
+
+      .days-count {
+        font-size: 44px;
+      }
+
+      span {
+        font-size: 30px;
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+
+    display: flex;
+
+    text-align: center;
+
+
+    justify-content: space-between;
+
+    height: 50px;
+
+    @media(--mobile) {
+      height: 129px;
+    }
+  }
+  &_settings_btn{
+    position: absolute;
+    top: 0px;
+    right: 25px;
+    background-image: url('icons/options.svg');
+    background-repeat: no-repeat;
+    background-size: 55px;
+    width: 65px;
+    height: 65px;
+    @media(--mobile) {
+      background-size: 65px;
+      width: 65px;
+      height: 65px;
+      top: 20px;
+      right: 25px;
+    }
+  }
+  &__arrow {
+    display: none;
+    //врtменная логика пока не ясно куда надо а куда не надо
+    &.show-desktop-arrow {
+      display: flex;
+      padding: 0 30px;
+
+      cursor: pointer;
+      text-decoration: none;
+
+      align-items: center;
+
+      @media(--mobile) {
+        position: absolute 0 * 0 0;
+      }
+
+      i {
+        width: 26px;
+        height: 26px;
+
+        transition: all 0.3s ease-in-out;
+
+        color: $color__white;
+
+        font-size: 26px;
+
+        @media(--mobile) {
+          width: 42px;
+          height: 42px;
+
+          font-size: 42px;
+        }
+        // mods
+        &._up {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+
+    @media(--mobile) {
+      position: absolute 0 * 0 0;
+
+      display: flex;
+
+      padding: 0 30px;
+
+      cursor: pointer;
+      text-decoration: none;
+
+      align-items: center;
+
+      &__ic {
+        width: 26px;
+        height: 26px;
+
+        transition: all 0.3s ease-in-out;
+
+        color: $color__white;
+
+        font-size: 26px;
+
+        @media(--mobile) {
+          width: 42px;
+          height: 42px;
+
+          font-size: 42px;
+        }
+        // mods
+        &._up {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+  &__notify-count {
+    position: absolute 11px * 0 65px;
+
+    display: none;
+
+    min-width: 26px;
+    height: 26px;
+    padding: 0px 6px;
+
+    border-radius: 25px;
+    background: white;
+
+    justify-content: center;
+    align-items: center;
+    span {
+      color: $color__green;
+
+      font-size: 20px;
+    }
+    @media(--mobile) {
+      top: 23px;
+      left: 85px;
+      display: flex;
+      min-width: 46px;
+      height: 46px;
+
+      span {
+        font-size: 28px;
+      }
+    }
+  }
+  &__center {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+    cursor: default;
+
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  &__left-logo{
+    position: absolute;
+    left: 30px;
+    top: 9px;
+    @media(--mobile) {
+      display: none;
+    }
+    img{
+      width: 134px;
+      height: 33px;
+    }
+  }
+
+  &-right {
+    position: absolute;
+    display: none;
+    top: 5px;
+
+    @media(--mobile) {
+      display: block;
+      top: 10px;
+      right: 25px;
+    }
+
+    @media screen and (max-width:1026px) and (min-width: 751px){
+      display:block;
+      right: 80px;
+    }
+
+    img {
+      cursor: pointer;
+      @media(--mobile) {
+        size: 70px;
+        border-radius: 70px;
+      }
+      size: 40px;
+      border-radius: 40px;
+    }
+  }
+
+  &__text {
+    //padding-top: 0.1563em; // 10% for centered
+    color: $color__white;
+    position: relative;
+    font-size: 28px;
+    font-family: $font__family__semibold;
+
+    height: 50px;
+    line-height: 50px;
+    max-width: calc(100% - 220px);
+    //overflow: hidden;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    .center-avatar{
+      size: 40px;
+      border-radius:40px;
+      position: absolute 4px * * -50px;
+
+    }
+
+    &.active {
+      cursor: pointer;
+    }
+
+    @media(--mobile) {
+      //padding-top: 0.2125em; // 10% for centered
+      font-size: 36px;
+      line-height: 89px;
+      height: 89px;
+      max-width: calc(100% - 270px);
+    }
+  }
+  &__nav {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    &__i {
+      display: flex;
+
+      width: 30%;
+      height: 100%;
+
+      cursor: pointer;
+      text-align: center;
+
+      align-items: center;
+      justify-content: center;
+
+      span {
+        color: rgba(255,255,255,.5);
+        height: 53%;
+        line-height: 100%;
+
+        @media (--mobile) {
+          height: 44%;
+        }
+
+      }
+
+      &._active {
+        cursor: default;
+        span {
+          color: $color__white;
+        }
+      }
+
+      @media(--mobile){
+        width: 50%;
+      }
+    }
+  }
+}
+
+
+
+.header {
+
+  &__logo {
+    margin: -3px auto 7px auto;
+    float: left;
+    position: relative;
+    z-index: 2;
+    &.center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &.left {
+      margin-left: 25px;
+    }
+
+    a {
+      display:block;
+      width: 150px;
+      height:32.14px;
+
+      @media(--mobile) {
+       width: 290px;
+     }
+   }
+
+   img{
+    width: 100%;
+    height: 56px;
+   }
+  @media(--mobile) {
+    margin: 18px auto 7px auto;
+  }
+}
+}
+
+.header__content {
+
+  max-width: none !important;
+
+  &.u-fixed{
+    width: 100%;
+    z-index: 100;
+    max-width: 1050px;
+  }
+
+  @media(--mobile) {
+    height:89px;
+  }
+}
+
+.headersignup{
+  margin-top: 13px!important;
+}
