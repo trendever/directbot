@@ -1,0 +1,145 @@
+@import 'base/vars/vars.pcss';
+.chat-header {
+  /*
+  /*Стрелка и каунтер
+  */
+  //дублирую так как нодо только в этом компоненте
+  @media(--mobile) {
+    .chat-header_arrow {
+
+      .standalone & {
+
+        top: 65px;
+        
+      }
+
+      position: absolute 25px * * 0px;
+
+      display: flex;
+
+      padding: 0 30px;
+
+      cursor: pointer;
+      text-decoration: none;
+
+      align-items: center;
+
+      &_ic {
+        width: 42px;
+        height: 42px;
+
+        color: $color__white;
+
+        font-size: 42px;
+
+      }
+
+
+
+    }
+    .chat-header_notify-count {
+      display:none
+    }
+  }
+
+
+  @media screen and (min-width: 751px) {
+
+    &_arrow {
+
+      position: absolute 13px * * 170px;
+
+      display: flex;
+
+      padding: 0 30px;
+
+      cursor: pointer;
+      text-decoration: none;
+
+      align-items: center;
+
+      &_ic {
+        width: 26px;
+        height: 26px;
+
+        color: $color__white;
+
+        font-size: 26px;
+
+      }
+
+    }
+
+    &_notify-count {
+      position: absolute 12px * 0 234px;
+      min-width: 26px;
+      height: 26px;
+      padding: 1px 6px;
+
+      border-radius: 25px;
+      background: white;
+
+      justify-content: center;
+      align-items: center;
+
+      span {
+        color: $color__green;
+        font-size: 15px;
+        line-height: 24px;
+      }
+    }
+  }
+  /****************************/
+
+  &_cnt {
+    color: white;
+
+    &_t {
+      cursor: pointer;
+      font-size: 26px;
+      line-height: 31.2px;
+
+      @media(--mobile) {
+        font-size: 36px;
+        line-height: 42px;
+        font-family: $font__family__semibold;
+      }
+    }
+    &_info {
+      margin-top: -4px;
+
+      font-size: 16px;
+      line-height: 19.2px;
+
+      @media(--mobile) {
+        margin-top: 4px;
+
+        font-size: 28px;
+        font-family: $font__family__light;
+        line-height: 33.6px;
+
+      }
+      &-text:after{
+        content:'#'
+      }
+    }
+  }
+  &_photo {
+    cursor: pointer;
+    position: absolute 7px 30px 0 *;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    size: calc(70px / 2);
+    img {
+      width: 100%;
+    }
+    @media(--mobile) {
+      top: 10px;
+
+      size: 70px;
+    }
+  }
+}

@@ -1,16 +1,18 @@
 <template lang="pug">
 #app
   router-view
+  listener
 </template>
 
 <script>
+
 import store from 'root/store';
 import 'style/fonts/trendever-icons/trendever-icons.font.js';
-import 'style/fonts/san-francisco/light/font.pcss';
-import 'style/fonts/san-francisco/regular/font.pcss';
-import 'style/fonts/san-francisco/semibold/font.pcss';
-import 'style/fonts/san-francisco/thin/font.pcss';
 import 'style/index.pcss';
+
+
+//import Listener from './listener';
+
 export default {
   created(){
 
@@ -18,6 +20,7 @@ export default {
 
   }
 }
+
 </script>
 
 <style lang="postcss">

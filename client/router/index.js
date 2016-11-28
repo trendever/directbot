@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ChatList from '../views/ChatList'
+  '
 Vue.use(Router)
 
 let router = new Router({
@@ -22,7 +22,7 @@ let router = new Router({
 		{
 		  name: 'chat_list',
 		  path: '/chat',
-		  component: ChatList
+		  component: require('views/chat-list')
 		},
     {
       name: 'auth',
