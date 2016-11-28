@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
 #listener
 </template>
 
@@ -9,7 +9,7 @@
   import * as leads from 'services/leads'
 
   import store from 'root/store';
-  import { mapGettes } from 'vuex';
+  import { mapGetters } from 'vuex';
   //import * as product from 'vuex/actions/products.js'
   //import * as lead from 'vuex/actions/lead.js'
   //import * as chat from 'vuex/actions/chat.js'
@@ -25,7 +25,7 @@
       this.onProductNew  = this.onProductNew.bind( this )
       this.on            = this.on.bind( this )
       this.off           = this.off.bind( this )
-      if ( isAuth ) {
+      if ( this.isAuth ) {
         this.on()
       }
     },
@@ -59,7 +59,7 @@
       }
     },
     computed: {
-      ...mapGettes([
+      ...mapGetters([
         'isAuth'
       ])
     },

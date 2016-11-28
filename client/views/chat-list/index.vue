@@ -8,11 +8,11 @@
       .header__nav(slot='content' v-if='true')
         .header__nav__i.header__text(
           v-if="!directbot",
-          :class='{_active: getTab === "customer"}',
+          :class='{_active: getLeadTab === "customer"}',
           @click='$store.dispatch('setTab',"customer"));'
           span Покупаю
         .header__nav__i.header__text(
-          :class='{_active: getTab === "seller"}',
+          :class='{_active: getLeadTab === "seller"}',
           @click='setTab("seller");')
           span(v-if="!directbot") Продаю
           span(v-if="directbot") Чаты с покупателями
@@ -21,19 +21,19 @@
     .section.top.bottom(:class="{'little-move-up': !$root.isStandalone,'little-move-up-standalone': $root.isStandalone}")
       .section__content
         .chat-list(v-bind:style="styleObject")
-            chat-list-item(v-for='lead in leadsList', :lead='lead', track-by="id", ref="item")
+            chat-list-item(v-for='lead in leadsList', :lead='lead', :key="lead.id", ref="item")
     template(v-if='!leadsArray.length && !directbot')
-      .chat-list-cnt-is-empty(v-if="getTab === 'customer'")
+      .chat-list-cnt-is-empty(v-if="getLeadTab === 'customer'")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  потому что ты пока ничего #[br] не покупаешь
-      .chat-list-cnt-is-empty(v-if="getTab === 'seller'")
+      .chat-list-cnt-is-empty(v-if="getLeadTab === 'seller'")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  ... потому что ты пока ничего #[br] не продаешь
-      .chat-list-cnt-is-empty__banner(v-if="!leadsArray.length && getTab === 'customer'") Нажми Купить&nbsp
+      .chat-list-cnt-is-empty__banner(v-if="!leadsArray.length && getLeadTab === 'customer'") Нажми Купить&nbsp
         span под товаром #[br]или&nbsp
         span.want напиши @wantit&nbsp
         span под постом в Instagram, #[br] и здесь появится шопинг-чат
-      .chat-list-cnt-is-empty__banner.sell(v-if="!leadsArray.length && getTab === 'seller'")
+      .chat-list-cnt-is-empty__banner.sell(v-if="!leadsArray.length && getLeadTab === 'seller'")
         span Напиши&nbsp
         span.want
           | "Покупай по комментарию @wantit&nbsp" #[br(v-if="isMobile")]
@@ -77,7 +77,7 @@
 
 /*  import {
     getLeads,
-    getTab,
+    getLeadTab,
     getIsTab,
     getTitle,
     isEmptyLeads,
@@ -222,7 +222,7 @@
         'isFake',
         //leads
         'getLeads',
-        'getTab',
+        'getLeadTab',
         'getIsTab',
         'getTitle',
         'isEmptyLeads',
@@ -409,7 +409,7 @@
 
     watch: {
 
-      getTab(){
+      getLeadTab(){
 
         this.run();
 

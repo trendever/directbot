@@ -14,7 +14,9 @@ import store from 'root/store';
 import Listener from './listener';
 
 export default {
-
+  components: {
+    Listener
+  },
   created(){
 
     store.dispatch('authUser', { null, null } )

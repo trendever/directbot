@@ -18,7 +18,7 @@ import {
 } from '../getters/lead';
 
 
-export const init = ( { commit } ) => {
+export const initLead = ( { commit } ) => {
 
   return new Promise( ( resolve, reject ) => {
 
@@ -51,10 +51,9 @@ export const init = ( { commit } ) => {
 export const incLengthList = ( { commit, state }, count = getCountForLoading ) => {
 
   commit( LEAD_INC_LENGTH_LIST, {
-
-
-
-  } count, getTab( state ) );
+    lengthList: count,
+    tab: store.getters.getLeadTab
+  } );
 
 };
 

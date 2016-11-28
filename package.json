@@ -12,6 +12,7 @@
   "author": "A.Lopan",
   "license": "MIT",
   "dependencies": {
+    "ba-linkify": "^1.0.1",
     "jwt-decode": "^2.1.0",
     "sockjs-client": "^1.1.1",
     "vue": "^2.0.0",

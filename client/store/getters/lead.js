@@ -1,8 +1,9 @@
 import store from 'root/store';
 
-import { userID } from 'vuex/getters/user.js';
-import { getCustomerName } from 'vuex/getters/chat.js';
-import { statusString } from '../../project/chat/utils';
+///import { getCustomerName } from 'vuex/getters/chat.js';
+let getCustomerName = 'Привет'
+
+import { statusString } from 'views/chat/utils';
 
 export const getTab = ( leads ) => {
 /*  if ( getIsTab( { leads } ) ) {
@@ -56,10 +57,15 @@ export const getLeadByConversationId = (function() {
     }
 
     const leadGroup = [ 'seller', 'customer' ];
+
     const finder    = ( { chat } ) => {
+
       if ( chat !== null ) {
+
         return chat.id === conversation_id;
+
       }
+
     };
 
     for ( let i = leadGroup.length; i; i-- ) {
@@ -165,7 +171,7 @@ export const getLastMessage = ( state ) => {
 
             messages[ id ] = {
 
-              message: store.getters.statusString(type, value, store.getters.getCustomerName() ),
+              message: statusString(type, value, getCustomerName ),
               user_name
 
             };
@@ -243,6 +249,6 @@ export const isEmptyLeads = ( leads ) => (leads.seller.length === 0) && (leads.c
 
 export const isDoneLeads = ( state ) => state.leads.done;
 
-export const getGroup = ( state, lead ) => lead.customer_id === store.getters.userID( state ) ? 'customer' : 'seller';
+export const getGroup = ( state, lead ) => lead.customer_id === store.getters.userID ? 'customer' : 'seller';
 
 export const getCountForLoading = (window.browser.mobile) ? 6 : 12;
