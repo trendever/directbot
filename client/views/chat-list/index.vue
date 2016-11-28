@@ -17,11 +17,10 @@
           span(v-if="!directbot") Продаю
           span(v-if="directbot") Чаты с покупателями
 
-
     .section.top.bottom
       .section__content
         .chat-list(v-bind:style="styleObject", ref="chatList")
-            chat-list-item(v-for='lead in sortedList', :lead='lead', :key="lead.id", ref="item")
+            chat-list-item(v-for='lead in getLeads', :lead='lead', :key="lead.id", ref="item")
 
     //-template(v-if='!leadsArray.length && !directbot')
       .chat-list-cnt-is-empty(v-if="getLeadTab === 'customer'")
