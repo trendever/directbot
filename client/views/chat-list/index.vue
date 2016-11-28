@@ -99,19 +99,17 @@
         currentPan: 0
       }
     },
-
     created(){
 
-/*      if(this.isAuthUserSupplier) {
+      if(this.isAuthUserSupplier) {
 
         store.dispatch('setTab', "seller")
 
       } else {
 
         store.dispatch('setTab', "customer")
-
       }
-*/
+
     },
 
     mounted(){
@@ -206,7 +204,7 @@
         //user
         'isAuth',
         'isFake',
-
+        'isAuthUserSupplier',
         //leads
         'getLeads',
         'getLeadTab',
@@ -374,7 +372,6 @@
     },
 
     watch: {
-
       getLeadTab(){
 
         this.run();

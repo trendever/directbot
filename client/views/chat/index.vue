@@ -1,7 +1,7 @@
 <style src='./styles/chat.pcss'></style>
 <template lang="pug">
 #chat
-  .loader-center(v-if="showLoader"): app-loader
+  //.loader-center(v-if="showLoader"): app-loader
   //popup-img(v-if="imgPopUpUrl", :url="imgPopUpUrl", :width="imgWidth", :height="imgHeight", :on-close="closePopUp")
   //chat-header(:notify-count='conversationNotifyCount')
   .chat-shadow(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu", :class="{'directbot-color': isDirectbot }")
@@ -42,7 +42,7 @@
 <script type='text/babel'>
   //import settings from 'settings';
 
-let sttings = {}
+let settings = {}
 import listen from 'event-listener';
 import { mapGetters, mapActions } from 'vuex';
 
@@ -111,7 +111,6 @@ export default {
 
 
   created(){
-
     //open chat
     this.lead_id =  +this.$route.params.id;
     if ( this.isDoneLead ) {

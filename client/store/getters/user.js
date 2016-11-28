@@ -6,8 +6,10 @@ export const isAuth = ( user ) => {
 
 export const isAuthUserSupplier = ( user ) => {
 
-  if (user.all[user.myId].supplier !== null) {
+  if (user.all[user.myId].supplier_of !== null) {
+
     return true;
+
   }
 
   return false;

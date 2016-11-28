@@ -40,8 +40,10 @@
       },
       onMessage( data ) {
         store.dispatch('onMessagesLead', data );
-        //this.onMessagesChat( data )
+        store.dispatch('onMessagesChat', data);
+
       },
+
       onMessageRead( data ) {
         store.dispatch('onMessageReadLead', data );
       },
@@ -70,7 +72,6 @@
     },
     vuex: {
       actions: {
-        //onMessagesChat: chat.onMessages,
         //onProductNewProduct: product.setLike
       },
 

@@ -179,7 +179,7 @@ const addServiceMessage = (function() {
 // mutations
 const mutations = {
 
-  [types.CONVERSATION_SET] ( state, id, messages = null, lengthList = 50 ) {
+  [types.CONVERSATION_SET] ( state, { id, messages = null, lengthList = 50 } ) {
 
     if ( !state.all.hasOwnProperty( id ) ) {
       state.all[ id ]     = [];
@@ -221,7 +221,7 @@ const mutations = {
 
   },
 
-  [types.CONVERSATION_RECEIVE_MESSAGE] ( state, messages, id ) {
+  [types.CONVERSATION_RECEIVE_MESSAGE] ( state, { messages, id } ) {
 
     console.time( 'CONVERSATION_RECEIVE_MESSAGE' );
 
@@ -256,7 +256,7 @@ const mutations = {
 
   },
 
-  [types.CONVERSATION_CONFIRM_MSG] ( state, beforeLoadId, newMessage, id ) {
+  [types.CONVERSATION_CONFIRM_MSG] ( state, { beforeLoadId, newMessage, id } ) {
 
     if ( state.all.hasOwnProperty( id ) ) {
 
@@ -293,7 +293,7 @@ const mutations = {
 
   },
 
-  [types.CONVERSATION_CONFIRM_STATUS_MSG] ( state, messages, id ){
+  [types.CONVERSATION_CONFIRM_STATUS_MSG] ( state, { messages, id }){
 
     console.time( 'CONVERSATION_CONFIRM_STATUS_MSG' );
 
@@ -349,7 +349,7 @@ const mutations = {
     state.showCancelMenu = showCancelMenu;
   },
 
-  [types.CONVERSATION_OPEN_IMG_POPUP] ( state, url, width, height ){
+  [types.CONVERSATION_OPEN_IMG_POPUP] ( state, { url, width, height }){
 
     state.imgPopUpUrl = url;
     state.imgWidth    = width;

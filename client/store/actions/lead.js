@@ -125,7 +125,7 @@ export const setScrollLeads = ( { commit, state }, { scrollTop, scrollHeight } )
 
 }
 
-export const onMessages = (
+export const onMessagesLead = (
   { commit, state },
   { response_map:{ chat:{ id:conversation_id, members }, messages } }
 ) => {

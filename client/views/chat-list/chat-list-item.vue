@@ -37,7 +37,6 @@ import { mapGetters } from 'vuex';
 
 export default {
   data(){
-
     return {
       showDelete: false
     };
@@ -79,27 +78,21 @@ export default {
       let parentRefs = this.$parent.$refs.item;
 
       let item = parentRefs.find(item=>{
-
         return item.showDelete === true;
-
       })
 
       if(item) {
-
         item.showDelete = false;
         return;
-
       }
 
 
       if(this.showDelete) {
-
         this.showDelete = false;
         return;
-
       }
 
-      this.$router.push({name: "chat", params: {id: this.lead.id}})
+      this.$router.push({name: "chat", params: { id: this.lead.id }} )
 
     },
     deleteChat(){

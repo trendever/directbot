@@ -24,11 +24,11 @@ let router = new Router({
 		  path: '/chat',
 		  component: require('views/chat-list')
 		},
-/*    {
+    {
       name: 'chat',
       path: '/chat/:id',
-      components: require('views/chat/index')
-    },*/
+      component: require('views/chat/index')
+    },
     {
       name: 'auth',
       path: '/auth',

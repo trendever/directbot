@@ -145,6 +145,7 @@ const mutations = {
   },
 
   [types.LEAD_SET_TAB] ( state, { tab = 'customer', lengthList = getters.getCountForLoading } ) {
+
     state.tab        = tab;
     /*state.lengthList = {
       seller: lengthList,

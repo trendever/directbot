@@ -91,7 +91,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
         }
 
-        commit( types.CONVERSATION_SET, conversation_id, messages, chatCountForLoading )
+        commit( types.CONVERSATION_SET, { id: conversation_id, messages, lengthList: chatCountForLoading } )
 
       }
 
@@ -99,7 +99,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
   }
 
-  const lead = getLeadById(store.state.lead, lead_id)
+  const lead = getLeadById(store.state.leads, lead_id)
 
   if ( lead !== null ) {
 
@@ -185,7 +185,10 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
               return chatJoin( lead_id, ( { lead } ) => {
 
-                commit( types.LEAD_RECEIVE, [ lead ], getGroup( store.state.lead, lead ) )
+                commit( types.LEAD_RECEIVE, {
+                  leads: [ lead ],
+                  tab: getGroup( store.state.leads, lead )
+                } )
 
                 return setConversation( { commit, state }, lead_id )
 
@@ -195,7 +198,10 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
           } else {
             console.log('Запускается здесь');
-            commit( types.LEAD_RECEIVE, [ lead ], getGroup( store.state.lead, lead ) )
+            commit( types.LEAD_RECEIVE, {
+              leads: [ lead ],
+              tab: getGroup( store.state.leads, lead )
+             } )
             return messageService
                 .find( lead.chat.id, null, chatCountForLoading )
                 .then(
@@ -331,7 +337,7 @@ export const createMessage = ( { commit, state }, conversation_id, text, mime_ty
     .create( conversation_id, text, mime_type )
     .then( ( { chat, messages, error } ) => {
 
-      commit( types.CONVERSATION_CONFIRM_MSG, beforeLoadId, messages[ 0 ], conversation_id )
+      commit( types.CONVERSATION_CONFIRM_MSG, { beforeLoadId, newMessage: messages[ 0 ], id: conversation_id } )
 
     } )
     .catch( ( error ) => {
@@ -352,7 +358,7 @@ export const receiveMessage = ( { commit, state }, conversation_id, messages ) =
 
       const msgUserId = msg.user ? msg.user.user_id : null
 
-      commit( types.CONVERSATION_RECEIVE_MESSAGE, messages, conversation_id )
+      commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages, id: conversation_id } )
 
       if ( store.getters.userID( state ) !== msgUserId ) {
 
@@ -392,7 +398,7 @@ export const receiveMessage = ( { commit, state }, conversation_id, messages ) =
 
       if ( msg.parts[ 0 ].mime_type === 'json/status' ) {
 
-        commit( types.CONVERSATION_CONFIRM_STATUS_MSG, messages, conversation_id )
+        commit( types.CONVERSATION_CONFIRM_STATUS_MSG,{ messages, id: conversation_id })
 
       }
 
@@ -428,11 +434,11 @@ export const addPreLoadMessage = ( { commit, state }, base64, base64WithPrefix, 
     ]
   }
 
-  commit( types.CONVERSATION_RECEIVE_MESSAGE, [ preLoadMessage ], getId( state ) )
+  commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages: [ preLoadMessage ], id: getId( state ) } )
 
   messageService.create( getId( state ), base64, MIME ).then( ( { messages } ) => {
 
-    commit( types.CONVERSATION_CONFIRM_MSG, beforeLoadId, messages[ 0 ], getId( state ) )
+    commit( types.CONVERSATION_CONFIRM_MSG, { beforeLoadId, newMessage: messages[ 0 ], id: getId( state ) })
 
   }, messageService.sendError )
 
@@ -483,7 +489,7 @@ export const setStatus = ( { commit, state }, status, type, cancel_reason = null
     }
   ]
 
-  const lead = getLeadByConversationId(store.state.lead, state.conversation.id )
+  const lead = getLeadByConversationId(store.state.leads, state.conversation.id )
 
   if ( lead !== null ) {
 
@@ -510,7 +516,7 @@ export const setStatus = ( { commit, state }, status, type, cancel_reason = null
 
 }
 
-export const onMessages = ( { commit, state }, data ) => {
+export const onMessagesChat = ( { commit, state },  data  ) => {
 
   if ( data.response_map ) {
 
@@ -555,7 +561,7 @@ export const closeConversation = ( { commit } ) => {
 
 export const openPopUp = ( { commit }, url = false, width = 0, height = 0 ) => {
 
-  commit( types.CONVERSATION_OPEN_IMG_POPUP, url, width, height );
+  commit( types.CONVERSATION_OPEN_IMG_POPUP, { url, width, height } );
 
 }
 
