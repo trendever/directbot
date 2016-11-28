@@ -4,6 +4,16 @@ export const isAuth = ( user ) => {
 
 };
 
+export const isAuthUserSupplier = ( user ) => {
+
+  if (user.all[user.myId].supplier !== null) {
+    return true;
+  }
+
+  return false;
+
+}
+
 export const isDone = ( user ) => {
 
   return user.done;

@@ -4,13 +4,13 @@ import auth from './modules/auth';
 import products from './modules/products';
 import user from './modules/user';
 import leads from './modules/leads';
-import conversation from './modules/conversation';
+//import conversation from './modules/conversation';
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    conversation,
+    //conversation,
     leads,
     products,
     auth,

@@ -3,7 +3,7 @@
 
 #chat-list
   //-right-nav-component(current="chat")
-  .chat-list-cnt(v-if='isDoneLeads')
+  .chat-list-cnt(v-if='isDoneLead')
     //-header-component(:title='getTitle', :left-btn-show='false')
       .header__nav(slot='content' v-if='true')
         .header__nav__i.header__text(
@@ -20,8 +20,7 @@
     .section.top.bottom
       .section__content
         .chat-list(v-bind:style="styleObject", ref="chatList")
-            chat-list-item(v-for='lead in getLeads', :lead='lead', :key="lead.id", ref="item")
-
+          chat-list-item(v-for='lead in sortedList', :lead='lead', :key="lead.id", ref="item")
     //-template(v-if='!leadsArray.length && !directbot')
       .chat-list-cnt-is-empty(v-if="getLeadTab === 'customer'")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
@@ -72,6 +71,7 @@
   import * as messages from 'services/message';
 
   import store from 'root/store';
+
   import { mapGetters, mapActions } from 'vuex';
   //import ScrollTop from 'base/scroll-top/scroll-top';
 
@@ -81,14 +81,7 @@
   import ChatListItem from './chat-list-item.vue';
 
   export default {
-    props: {
-      directbot: {
-        type: Boolean,
-        default: false
-      }
-    },
     components: {
-
       //appLoader,
       //ScrollTop,
       //RightNavComponent,
@@ -106,6 +99,21 @@
         currentPan: 0
       }
     },
+
+    created(){
+
+/*      if(this.isAuthUserSupplier) {
+
+        store.dispatch('setTab', "seller")
+
+      } else {
+
+        store.dispatch('setTab', "customer")
+
+      }
+*/
+    },
+
     mounted(){
 
       if (this.isFake){
@@ -213,44 +221,27 @@
 
       sortedList(){
         return this.leadsArray.slice( 0, this.getLeadsLengthList ).sort((a,b)=>{
-
           return b.updated_at - a.updated_at;
-
         })
-
       },
       leadsArray(){
-        //return [];
-        if(!this.directbot) {
 
-          if(this.$store.state.leads.tab === 'customer') {
-            let leads = this.getLeads.filter(item=>{
-              return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
-            });
+        if(this.$store.state.leads.tab === 'customer') {
+          let leads = this.getLeads.filter(item=>{
+            return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
+          });
 
-            return leads;
-          }
-
-          if(this.$store.state.leads.tab === 'seller') {
-            let leads = this.getLeads.filter(item=>{
-              return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
-            });
-
-            return leads;
-          }
+          return leads;
         }
 
-        /**
-        /*D I R E C T B O T
-        */
-        if(this.directbot) {
-          store.dispatch('setTab',"seller");
-          return this.$store.state.leads.seller;
+        if(this.$store.state.leads.tab === 'seller') {
 
+          let leads = this.getLeads.filter(item=>{
+            return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
+          });
+
+          return leads;
         }
-      },
-      showTooltip(){
-        return (this.isEmptyLeads && this.getTooltips.chats) ? true : false;
       }
     },
     events:{
