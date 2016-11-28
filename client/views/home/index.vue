@@ -93,7 +93,7 @@
             info-popup(:show-popup="showPopupC")
               i.ic-close(v-on:click="showPopupC = false")
               info-screen3
-      .hero__content__landing__title.middle Как работает наш  оператор?
+      .hero__content__landing__title.middle Что делает наш  оператор?
       .hero__content__landing__screen-1
         span.screen-title СКАНИРУЕТ INSTAGRAM DIRECT
         img(src="./img/screen-1.png")
@@ -102,10 +102,13 @@
         img(src="./img/screen-2.png")
       .hero__content__landing__sub-title Оператор сразу видит #[br] вопросы покупателей
       .hero__content__landing__caption
-        a.link-info Не важно, задан вопрос в комментариях #[br] или личном сообщении,
+        a.link-info(v-on:click="showPopupD = true") Не важно, задан вопрос в комментариях #[br] или личном сообщении,
         |  оператор #[br] уже будет отвечать покупателю #[br] в Direct от твоего имени
+        info-popup(:show-popup="showPopupD")
+          i.ic-close(v-on:click="showPopupD = false")
+          info-screen4(:show-popup="showPopupD")
       .hero__content__landing__toggle
-        .hero__content__landing__toggle__title ТЕПЕРЬ ОПЕРАТОРУ НУЖНО ЗНАТЬ,  У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
+        .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ,  У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
         button(v-on:click="noScreen = false, yesScreen = true").yes ДА
         button(v-on:click="yesScreen = false, noScreen = true").no НЕТ
       .toggle-box
@@ -124,8 +127,11 @@
               img(src="./img/screen-5.png")
             .hero__content__landing__sub-title Оператор ответит на вопросы  и поможет купить
             .hero__content__landing__caption
-              a.link-info Клиенты получат консультацию*
-              | в твоем #[br] Instagram Direct и ссылку на товар #[br] в интернет-магазине**
+              a.link-info(v-on:click="showPopupF = true") Клиенты получат консультацию*
+              |  в твоем #[br] Instagram Direct и ссылку на товар #[br] в интернет-магазине**
+              info-popup(:show-popup="showPopupF")
+                i.ic-close(v-on:click="showPopupF = false")
+                info-screen6(:show-popup="showPopupF")
             .hero__content__landing__tip *отслеживай диалог в кабинете или Instagram Direct
             .hero__content__landing__tip **еще можно покупать не выходя из Instagram Direct
         .wrap-no(v-show="noScreen")
@@ -136,12 +142,12 @@
             span.screen-title СПРАШИВАЕТ О ТОВАРАХ В ЧАТЕ
             img(src="./img/screen-4-no.png")
           .hero__content__landing__sub-title.info Нет сайта? Ответь  на вопросы о товарах
-          .hero__content__landing__caption.store Оператор увидит посты в Instagram  и добавит их в твой
-            a.link-info(v-on:click="showPopupD = true")  новый интернет-магазин по ссылке
-              span.bold  xxxx.drbt.io
-            info-popup
-              i.ic-close(v-on:click="showPopupD = false")
-              info-screen4(:show-popup="showPopupD")
+          .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br] и добавит их в твой
+            a.link-info(v-on:click="showPopupE = true")  новый интернет-магазин по ссылке
+              span.bold  xxxx.drbt.io #[br]
+            info-popup(:show-popup="showPopupE")
+              i.ic-close(v-on:click="showPopupE = false")
+              info-screen5(:show-popup="showPopupE")
             | Также уточнит детали и наличие товаров
   .info-block
     .title
@@ -149,17 +155,27 @@
     .list
       ol
         li
-          a Личного оператора, на связи с твоими #[br] клиентами 24/7. В 15 раз дешевле*
+          a(v-on:click="showPopupG = true") Личного оператора, на связи с твоими #[br] клиентами 24/7. В 15 раз дешевле*
             img(src="./img/smile-2.png")
+          info-popup(:show-popup="showPopupG")
+            i.ic-close(v-on:click="showPopupG = false")
+            info-screen7(:show-popup="showPopupG")
         li
-          a Адаптивный интернет-магазин, #[br] с платежами и доставкой
+          a(v-on:click="showPopupH = true") Адаптивный интернет-магазин, #[br] с платежами и доставкой
+          info-popup(:show-popup="showPopupH")
+            i.ic-close(v-on:click="showPopupH = false")
+            info-screen8(:show-popup="showPopupH")
         li
-          a Сервис по подбору и организации #[br] рекламы через блогеров
+          a(v-on:click="showPopupI = true") Сервис по подбору и организации #[br] рекламы через блогеров
+          info-popup(:show-popup="showPopupI")
+            i.ic-close(v-on:click="showPopupI = false")
+            info-screen9(:show-popup="showPopupI")
     .tooltip
       p *из расчета средней зарплаты оператора 45 тыс.руб. #[br] в месяц, и это только за 8-часовой день с выходными
   .free-connect
     a ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
     a ЖМИ СЮДА
+  button(v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
 </template>
 <script>
 
@@ -194,6 +210,11 @@ import infoScreen1 from 'views/info-screens/info-screen-1.vue';
 import infoScreen2 from 'views/info-screens/info-screen-2.vue';
 import infoScreen3 from 'views/info-screens/info-screen-3.vue';
 import infoScreen4 from 'views/info-screens/info-screen-4.vue';
+import infoScreen5 from 'views/info-screens/info-screen-5.vue';
+import infoScreen6 from 'views/info-screens/info-screen-6.vue';
+import infoScreen7 from 'views/info-screens/info-screen-7.vue';
+import infoScreen8 from 'views/info-screens/info-screen-8.vue';
+import infoScreen9 from 'views/info-screens/info-screen-9.vue';
 
 
 export default {
@@ -208,6 +229,11 @@ export default {
       showPopupB: false,
       showPopupC: false,
       showPopupD: false,
+      showPopupE: false,
+      showPopupF: false,
+      showPopupG: false,
+      showPopupH: false,
+      showPopupI: false,
       yesScreen: true,
       noScreen: false
     }
@@ -220,6 +246,11 @@ export default {
     infoScreen2,
     infoScreen3,
     infoScreen4,
+    infoScreen5,
+    infoScreen6,
+    infoScreen7,
+    infoScreen8,
+    infoScreen9
   },
 
   mounted() {
