@@ -1191,7 +1191,20 @@
 						color: $color__white;
 						cursor: pointer;
 					}
+          &:focus{
+            background-color: $color__blue;
+						color: $color__white;
+            outline: none;
+          }
+          &:active{
+            background-color: $color__blue;
+						color: $color__white;
+          }
 				}
+        .activeBtn{
+          background-color: $color__blue;
+          color: $color__white;
+        }
 					.yes{
 						margin-right: 10px;
 						@media(--mobile) {

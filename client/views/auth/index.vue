@@ -252,6 +252,7 @@ export default {
 #auth {
 
   height: 100%;
+  overflow: hidden;
 
   form {
 

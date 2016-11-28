@@ -109,8 +109,8 @@
           info-screen4(:show-popup="showPopupD")
       .hero__content__landing__toggle
         .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ,  У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
-        button(v-on:click="noScreen = false, yesScreen = true").yes ДА
-        button(v-on:click="yesScreen = false, noScreen = true").no НЕТ
+        button(v-on:click="noScreen = false, yesScreen = true").yes.toggleBtn.activeBtn ДА
+        button(v-on:click="yesScreen = false, noScreen = true").no.toggleBtn НЕТ
       .toggle-box
         .wrap-yes(v-show="yesScreen")
           .hero__content__landing__screen-3
@@ -289,9 +289,11 @@ export default {
       screenTwo.on('swipedown', ()=> {
         JQuery(document.body).animate({scrollTop: 0 },450);
       });
-
     }
-
+    JQuery('.toggleBtn').on('click', function() {
+        JQuery('.toggleBtn').not(this).removeClass('activeBtn');
+        JQuery(this).toggleClass('activeBtn');
+    });
   },
   computed: {
       getLinkTitle(){
@@ -391,9 +393,8 @@ export default {
 
     scrollSecond() {
       JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
-    },
-
-  },
+    }
+  }
 };
 
 </script>
