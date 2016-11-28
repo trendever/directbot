@@ -44,12 +44,6 @@ let router = new Router({
 
 router.beforeEach((to, from, next)=>{
 
-/*  localStorage.setItem(`${from.name}.scroll`, window.scrollY);
-
-  let item = `${to.name}.scroll`;
-
-  window.scrollTo(0, +localStorage.getItem(item));*/
-
   next();
 
 });

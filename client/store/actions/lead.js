@@ -120,9 +120,9 @@ export const setTab = ( { commit }, tab ) => {
 
 };
 
-export const setScroll = ( { commit, state }, scrollTop, scrollHeight ) => {
+export const setScroll = ( { commit, state }, { scrollTop, scrollHeight } ) => {
 
-  commit( LEAD_SET_SCROLL, scrollTop, scrollHeight, getTab( state ) )
+  commit( LEAD_SET_SCROLL, { scrollTop, scrollHeight , tab: getTab( state ) } )
 
 }
 

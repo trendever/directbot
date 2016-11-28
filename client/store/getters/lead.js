@@ -241,7 +241,7 @@ export const getNotifyCountList = state => state.notify_count;
 
 export const isEmptyLeads = ( leads ) => (leads.seller.length === 0) && (leads.customer.length === 0);
 
-export const isDone = ( state ) => state.leads.done;
+export const isDoneLeads = ( state ) => state.leads.done;
 
 export const getGroup = ( state, lead ) => lead.customer_id === store.getters.userID( state ) ? 'customer' : 'seller';
 

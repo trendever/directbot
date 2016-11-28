@@ -14,17 +14,21 @@ import 'style/index.pcss';
 //import Listener from './listener';
 
 export default {
+
   created(){
 
     store.dispatch('authUser', { null, null } )
 
   }
+
 }
 
 </script>
 
 <style lang="postcss">
-@import '../style/vars/fonts.pcss';
+
+@import 'style/vars/fonts.pcss';
+
 * {
 
   box-sizing: border-box;
@@ -37,12 +41,7 @@ body {
 
   font-size: 14px;
   font-family: $font__family;
-}
 
-
-.page {
-  text-align: center;
-  overflow: hidden;
 }
 
 </style>

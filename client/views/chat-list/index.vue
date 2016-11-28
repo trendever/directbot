@@ -3,14 +3,13 @@
 
 #chat-list
   right-nav-component(current="chat")
-  .chat-list-cnt(v-if='isDone')
+  .chat-list-cnt(v-if='isDoneLeads')
     //-header-component(:title='getTitle', :left-btn-show='false')
       .header__nav(slot='content' v-if='true')
         .header__nav__i.header__text(
           v-if="!directbot",
           :class='{_active: getTab === "customer"}',
-          @click='setTab("customer");',
-          @touch='setTab("customer");')
+          @click='$store.dispatch('setTab',"customer"));'
           span Покупаю
         .header__nav__i.header__text(
           :class='{_active: getTab === "seller"}',
@@ -82,22 +81,13 @@
     getIsTab,
     getTitle,
     isEmptyLeads,
-    isDone,
+    isDoneLeads,
     getLengthList,
     getScroll,
     getHasMore,
     getCountForLoading
   } from 'vuex/getters/lead.js';*/
 
-/*  import { isAuth, getTooltips,isFake} from 'vuex/getters/user.js';
-  import { setTooltip } from 'vuex/actions/user.js';*/
-
-/*  import {
-    setTab,
-    loadLeads,
-    leadClose,
-    setScroll
-  } from 'vuex/actions/lead.js';*/
 
   import { mapGetters, mapActions } from 'vuex';
   import * as leads from 'services/leads';
@@ -107,7 +97,7 @@
 
   //import HeaderComponent from 'base/header/header.vue';
   //import NavbarComponent from 'base/navbar/navbar.vue';
-  //import { setCallbackOnSuccessAuth } from 'vuex/actions';
+
   //import ChatListItem from './chat-list-item.vue';
 
   export default {
@@ -125,16 +115,7 @@
       //HeaderComponent,
       //NavbarComponent,
       //ChatListItem
-    },
-    vuex: {
-      actions: {
-/*        setTooltip,
-        setCallbackOnSuccessAuth,
-        setTab,
-        loadLeads,
-        leadClose,
-        setScroll*/
-      }
+
     },
     data(){
       return {
@@ -152,9 +133,9 @@
 
       if (this.isFake){
 
-        window.fakeAuth = {text: "чтобы просматривать список чатов", data: ""}
+        window.fakeAuth = {text: "чтобы просматривать список чатов", data: "" }
 
-        this.setCallbackOnSuccessAuth( () => {
+        store.dispatch('setCallbackOnSuccessAuth', () => {
 
           this.$router.push({name: 'chat_list'})
 
@@ -166,7 +147,7 @@
 
       if ( this.isAuth ) {
 
-        this.scrollListener = listen( this.$els.scrollCnt, 'scroll', (() => {
+        this.scrollListener = listen( window , 'scroll', (() => {
 
           let timerId = null;
 
@@ -178,28 +159,33 @@
 
             }
 
-            this.$set( 'styleObject.pointerEvents', 'none' );
+            this.styleObject.pointerEvents = 'none';
 
             timerId = setTimeout( () => {
 
-              this.$set( 'styleObject.pointerEvents', 'auto' );
+              this.styleObject.pointerEvents = 'auto';
 
             }, 200 );
 
-            this.setScroll( this.$els.scrollCnt.scrollTop, this.$els.scrollCnt.scrollHeight );
+            store.dispatch('setScroll', {
+
+              scrollTop: window.scrollY,
+              scrollHeight: document.body.scrollHeight
+
+            });
 
             if ( this.needLoadLeads ) {
 
-              const full_scroll = this.$els.scrollCnt.scrollHeight;
-              const diff_scroll = full_scroll - this.$els.scrollCnt.scrollTop;
+              const full_scroll = document.body.scrollHeight;
+              const diff_scroll = full_scroll - window.scrollY;
 
               if ( diff_scroll < 2500 ) {
 
-                this.$set( 'needLoadLeads', false );
+                this.needLoadLeads = false;
 
-                this.loadLeads().then( () => {
+                store.dispatch('loadLeads').then( () => {
 
-                  this.$set( 'needLoadLeads', true );
+                  this.needLoadLeads = true;
 
                 } );
 
@@ -216,12 +202,12 @@
         this.run();
 
       } else {
-        this.$router.go( { name: 'signup' } );
+        this.$router.push( { name: 'signup' } );
       }
     },
     beforeDestroy(){
       if ( this.isAuth ) {
-        this.leadClose();
+        store.dispatch('leadClose');
         leads.offEvent( this.onEvent );
       }
       if (this.scrollListener){
@@ -231,14 +217,16 @@
 
     computed:{
       ...mapGetters([
+        //user
         'isAuth',
+        'isFake',
+        //leads
         'getLeads',
         'getTab',
         'getIsTab',
-        'isFake',
         'getTitle',
         'isEmptyLeads',
-        'isDone',
+        'isDoneLeads',
         'getLengthList',
         'getScroll',
         'getHasMore'
@@ -277,7 +265,7 @@
         /*D I R E C T B O T
         */
         if(this.directbot) {
-          this.setTab("seller");
+          store.dispatch('setTab',"seller");
           return this.$store.state.leads.seller;
 
         }
@@ -338,13 +326,13 @@
 
 
 
-                this.loadLeads().then( () => {
+                store.dispach('loadLeads').then( () => {
                   setTimeout(()=>{
                     this.$nextTick( () => {
 
                       if(this.$els.scrollCnt !== null) {
 
-                        add( this.$els.scrollCnt.scrollHeight );
+                        add( document.body.scrollHeight );
 
                       }
 
@@ -356,7 +344,7 @@
 
             } else {
 
-              this.$els.scrollCnt.scrollTop = scrollTop;
+              window.scrollY = scrollTop;
 
               resolve();
 
@@ -366,7 +354,7 @@
 
           this.$nextTick( () => {
 
-            add( this.$els.scrollCnt.scrollHeight );
+            add( document.body.scrollHeight );
 
           } );
 
@@ -381,13 +369,13 @@
 
             if ( document.body.offsetHeight >= scrollHeight ) {
 
-              this.loadLeads().then( () => {
+              store.dispatch('loadLeads').then( () => {
 
                 if ( this.getHasMore ) {
 
                   this.$nextTick( () => {
 
-                    add( this.$els.scrollCnt.scrollHeight );
+                    add( document.body.scrollHeight );
 
                   } );
 
@@ -409,7 +397,7 @@
 
           this.$nextTick( () => {
 
-            add( this.$els.scrollCnt.scrollHeight )
+            add( document.body.scrollHeight )
 
           } );
 
