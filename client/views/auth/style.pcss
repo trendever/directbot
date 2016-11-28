@@ -3,29 +3,34 @@
 .signup {
   position:relative;
   overflow:hidden;
-  color: #FFF;
-  background-color: $color__dark-blue;
-  font-size: 24px;
-  line-height: 1.2;
   min-height:100vh;
   height:auto !important;
+  background-color: $color__dark-blue;
+  color: #FFF;
+  font-size: 24px;
   font-family: $font__family__light;
+  line-height: 1.2;
 
+  @media(max-width:1279px) {
+    padding: 40px 30px 130px 30px;
+    font-size: 36px;
+  }
 
   .signup__close {
     position: absolute;
-    z-index: 100;
     top: 23px;
     right: -24px;
-    size: 70px;
-    cursor: pointer;
+    z-index: 100;
     color: white;
+    cursor: pointer;
+    size: 70px;
+
     @media(--tabletandless) {
-      font-size: 36px;
-      width: 36px;
-      height: 36px;
       top: 30px;
       right: 30px;
+      width: 36px;
+      height: 36px;
+      font-size: 36px;
     }
   }
   .thanks-wrap{
@@ -33,35 +38,27 @@
       font-size: 40px;
     }
   }
-
   .link-bottom {
-      opacity:.4;
-      margin-top: 20px;
         position: absolute;
-        left: 155px;
         bottom: 139px;
+        left: 155px;
+      margin-top: 20px;
+      opacity:.4;
+
         @media(--tabletandless) {
           position: relative;
-          left: 0;
           bottom: 0;
+          left: 0;
         }
         @media(--smalldesktop){
           bottom: 155px;
         }
   }
-
-  @media(max-width:1279px) {
-    padding: 40px 30px 130px 30px;
-    font-size: 36px;
-  }
-
   .btn-container {
     padding:0 50px;
   }
-
   .input__clear-btn {
     right: 0;
-
     height: 48px;
 
     i {
@@ -76,32 +73,30 @@
     height: 3rem;
     font-size: 24px;
     font-family: $font__family__light;
-    &::-webkit-input-placeholder{opacity: .4; color: #fff;font-family: $font__family__light;}
-    &::-moz-placeholder{opacity: .4; color: #fff;font-family: $font__family__light;}
-    &:-moz-placeholder{opacity: .4; color: #fff;font-family: $font__family__light;}
-    &:-ms-input-placeholder{opacity: .4; color: #fff;font-family: $font__family__light;}
 
     @media(--tabletandless) {
       height: 4rem;
       font-size: 36px;
     }
+
+    &::-webkit-input-placeholder{ color: #fff;font-family: $font__family__light;opacity: .4;}
+    &::-moz-placeholder{ color: #fff;font-family: $font__family__light;opacity: .4;}
+    &:-moz-placeholder{ color: #fff;font-family: $font__family__light;opacity: .4;}
+    &:-ms-input-placeholder{ color: #fff;font-family: $font__family__light;opacity: .4;}
   }
   .input.confirm-input input{
     height: 6rem !important;
   }
   h1.accept {
     margin-bottom: 77px;
-
     text-align: left;
-
     font-size: 32px !important;
 
     @media(--tabletandless) {
       margin-bottom: 0;
-
       text-align: center;
-      font-family: $font__family__semibold;
       font-size: 40px !important;
+      font-family: $font__family__semibold;
 
     }
   }
@@ -122,11 +117,10 @@
       position: static;
       transform: none;
     }
-
      @media(--tabletandless) {
       position: static;
-      transform: none;
       width: 100%;
+      transform: none;
      }
   }
   &.confirm h1 {
@@ -134,9 +128,7 @@
 
     @media(--tabletandless) {
       margin-bottom: 0;
-
       text-align: center;
-
       font-size: 54px;
     }
   }
@@ -144,46 +136,44 @@
     position: static;
     right: 0;
     bottom: 120px;
-    height:auto !important;
     left: 0;
-    width: 520px;
     padding: 20px 0;
     padding-top: 0;
+    width: 520px;
+    height:auto !important;
     text-align: center;
 
     @media(--smalldesktop) {
       margin:0 auto;
     }
-
     @media(--tabletandless) {
       float: none;
-
-      width: 100%;
       margin-right: 0;
+      width: 100%;
     }
   }
   &.confirm .bottom-container {
     position: auto;
-    width: 100%;
     padding-top: 60px;
     padding-bottom: 0;
-
-
-    .link-bottom {
-      display: inline-block !important;
-      @media(--tabletandless) {
-        display:inline-block !important;
-        position: relative;
-        left: 0;
-        bottom: 0;
-      }
-    }
+    width: 100%;
 
     @media(--tabletandless) {
       position: absolute;
       bottom: 0;
       left: 0;
       padding-bottom: 138px;
+    }
+
+    .link-bottom {
+      display: inline-block !important;
+
+      @media(--tabletandless) {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        display:inline-block !important;
+      }
     }
   }
   .input-container {
@@ -223,16 +213,16 @@
   .column-desktop-50 {
     position: relative;
     padding-top: 57%;
-    @media(--smalldesktop) {
-      width:auto;
-      padding-top: 10%;
-    }
 
+    @media(--smalldesktop) {
+      padding-top: 10%;
+      width:auto;
+    }
     @media(--tabletandless) {
       position: static;
-      width: 100%;
       margin-top:0;
       padding-top: 0;
+      width: 100%;
     }
 
   }
@@ -241,11 +231,11 @@
 
     @media(--smalldesktop) {
       width:auto;
+
       h1{
         text-align:center;
       }
     }
-
     @media(--tabletandless) {
       padding: 0;
       height: auto;
@@ -253,41 +243,40 @@
   }
   .column-desktop-right {
     float: right;
-    width: 100%;
     margin-top: -60px;
+    width: 100%;
 
     @media(min-width:1441px) {
       margin-right:0;
     }
-
     @media(--smalldesktop) {
-      width: auto;
-      margin-right:0;
       float:none;
+      margin-right:0;
       padding-top: 50%;
+      width: auto;
     }
-
     @media(--tabletandless) {
       float: none;
     }
     @media(--tabletandless) { margin-top: 0; }
   }
   .logo{
-    width: 180px;
-    height: 200px;
     position: absolute;
     top: 43px;
-    left: 0;
     right: 0;
+    left: 0;
     margin: 0 auto;
+    width: 180px;
+    height: 200px;
+
     @media(--tabletandless) {
       position: relative;
+      top: 0;
+      left: 0;
       display: block;
       margin: 95px auto 100px auto;
       width: 190px;
       height: 211px;
-      left: 0;
-      top: 0;
     }
     @media(--smalldesktop){
       top: 10px;
@@ -295,19 +284,20 @@
   }
   .paragraph{
     position: absolute;
-    left: 0;
     right: 0;
+    left: 0;
     margin: 0 auto;
-    font-size: 24px;
-    font-family: $font__family__light;
     padding-top: 17px;
     text-align: center;
+    font-size: 24px;
+    font-family: $font__family__light;
+
     @media(--tabletandless) {
       position: relative;
-      display: block;
-      font-size: 36px;
-      padding-top: 0px;
       left: 0;
+      display: block;
+      padding-top: 0px;
+      font-size: 36px;
     }
     @media(--smalldesktop) {
       top: 240px;
@@ -321,21 +311,19 @@
 
   }
   .btn.fast__big__btn {
-    width: 420px;
-    height: 60px;
     margin: 10px 0;
     margin-top: 63px;
-
-    font-family: $font__family__light;
-    font-size: 24px;
-    line-height: 1em;
+    width: 420px;
+    height: 60px;
     text-transform: uppercase;
+    font-size: 24px;
+    font-family: $font__family__light;
+    line-height: 1em;
 
     @media(--tabletandless) {
+      margin-top: 0;
       width: 490px;
       height: 100px;
-      margin-top: 0;
-
       font-size: 36px;
       line-height: 1em;
     }
@@ -344,20 +332,20 @@
 
 .confirm .middle-container {
   padding-top: 60px;
-
-  text-align: center;
   height: 200px;
+  text-align: center;
 
   @media(--tabletandless) {
     position: absolute;
     top: 40%; right: 0; left: 0;
     padding-top: 60px;
-    transform: translateY(-50%);
     text-align: center;
+    transform: translateY(-50%);
   }
 }
 #mid{
   padding-top: 145px !important;
+
     @media(--tabletandless) {
       top: 41% !important;
       padding-top: 0px !important;
@@ -366,6 +354,7 @@
 .confirm .middle-container.has-another-name {
   @media (--tabletandless) {
     top: 41%;
+
     h1 {
       margin-bottom: 30px;
     }
@@ -373,8 +362,8 @@
 }
 
 .confirm .confirm-input {
-  text-align: center;
   margin-left:0;
+  text-align: center;
 }
 
 .input.confirm-input {
@@ -394,7 +383,6 @@
 
   @media(--tabletandless) {
     margin-bottom: -5px;
-
     font-size: 56px;
   }
 }
@@ -405,21 +393,20 @@
 
 .btn-container-mobile{
   position: fixed;
-  bottom: 0;
-  width: 100%;
-  left: 0;
   right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 
   div.link-div{
     padding-bottom: 70px !important;
   }
-
   button.btn.btn_fixed-bottom{
     @media(--tabletandless) {
       position: relative;
+      margin-bottom: 0;
       width: 100%;
       border-radius: 0;
-      margin-bottom: 0;
     }
   }
 }
@@ -428,10 +415,10 @@
   @media(--tabletandless) {
     position: fixed !important;
     bottom: 0;
-    width: 100%;
     left: 0;
-    border-radius: 0;
     margin-bottom: 0;
+    width: 100%;
+    border-radius: 0;
   }
 }
 
@@ -439,63 +426,60 @@
   position:relative;
   margin-left: 50px;
 
+  @media(--tabletandless) {
+    margin-left:40px;
+    padding-left:0;
+    width:580px;
+  }
+
   .ic-close {
     right:0;
     left:auto;
     margin-top: -10px;
   }
-
-  @media(--tabletandless) {
-    width:580px;
-    padding-left:0;
-    margin-left:40px;
-  }
   &:last-child{
     margin-top: 32px !important;
   }
-
   i {
     position:absolute;
     top: 50%;
-    margin-top: -17px;
     left: -47px;
+    margin-top: -17px;
 
     @media(--tabletandless) {
       left:-91px;
     }
   }
   .ic-insta-name {
-    font-size:28px;
     left:-47px;
+    font-size:28px;
 
     @media(--tabletandless) {
       left: -79px;
-      font-size: 44px;
       margin-top: -22px;
+      font-size: 44px;
     }
   }
-
   .ic-mobile-phone {
-    font-size:36px;
     left: -51px;
     margin-top: -23px;
+    font-size:36px;
 
     @media(--tabletandless) {
-      font-size: 61px;
       left: -89px;
       margin-top:-30px;
+      font-size: 61px;
     }
   }
-
   .ic-user {
-    font-size:28px;
-    margin-top:-14px;
     left:-46px;
+    margin-top:-14px;
+    font-size:28px;
 
     @media(--tabletandless) {
-      font-size: 40px;
-      margin-top: -20px;
       left: -77px;
+      margin-top: -20px;
+      font-size: 40px;
     }
   }
 }
@@ -505,6 +489,7 @@
 #conf_inp{
   height: 45px !important;
   text-indent: 10px;
+
   @media(--tabletandless) {
     height: 6rem !important;
     text-indent: 10px;
@@ -512,39 +497,36 @@
 }
 .accept_btn{
   @media (min-width: 1024px){
-
+    margin-top: 274px !important;
     width: 420px !important;
     height: 60px !important;
-    margin-top: 274px !important;
 
   }
 }
 .new_sms{
-  display: inline-block !important;
+  right: 0 !important;
   bottom: 90px !important;
   left: 0 !important;
-  right: 0 !important;
-  width: 232px;
+  display: inline-block !important;
   margin: 0 auto;
+  width: 232px;
 
   @media(--smalldesktop) {
     bottom: 220px !important;
   }
   @media(--tabletandless) {
-    width: auto !important;
     bottom: 230px;
+    width: auto !important;
   }
 }
 
 .link-container {
   display: inline-block;
-
   width: 100%;
   width: 420px;
-
   text-align: center;
 
-  @media(--mobile) {
+  @media(--tabletandless) {
     width: 490px;
     height: 55px;
   }
@@ -552,28 +534,19 @@
 
 .link-bottom {
   display: inline-block;
-
   height: 34px;
-
-  text-align: center;
-  text-decoration: none;
-
-  opacity: .5;
-  color: $color__white;
   border-color: white;
   border-bottom: 1px solid;
-
+  color: $color__white;
+  text-align: center;
+  text-decoration: none;
   font-size: 24px;
   line-height: 34px;
+  opacity: .5;
 
-  @media(--mobile) {
+  @media(--tabletandless) {
     height: 44px;
-
     line-height: 44px;
-    // height: 54px;
-    // line-height: 54px;
-  }
-  @media(--mobile) {
     font-size: 36px;
   }
 }
