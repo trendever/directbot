@@ -5,7 +5,7 @@ let getCustomerName = 'Привет'
 
 import { statusString } from 'views/chat/utils';
 
-export const getTab = ( leads ) => {
+export const getLeadTab = ( leads ) => {
 /*  if ( getIsTab( { leads } ) ) {
     return leads.tab;
   }*/
@@ -19,28 +19,28 @@ export const getTab = ( leads ) => {
 
 export const getLengthList = ( leads ) => {
 
-  return leads.lengthList[ getTab( leads ) ];
+  return leads.lengthList[ getLeadTab( leads ) ];
 
 };
 
 export const getHasMore = ( leads ) => {
 
-  return leads.hasMore[ getTab( leads ) ];
+  return leads.hasMore[ getLeadTab( leads ) ];
 
 };
 
 export const getScroll = ( leads ) => {
 
   return {
-    scrollTop: leads.scrollTop[ getTab( leads ) ],
-    scrollHeight: leads.scrollHeight[ getTab( leads ) ]
+    scrollTop: leads.scrollTop[ getLeadTab( leads ) ],
+    scrollHeight: leads.scrollHeight[ getLeadTab( leads ) ]
   };
 
 };
 
 export const getLeads = ( leads ) => {
 
-  return leads[ getTab( leads ) ];
+  return leads[ getLeadTab( leads ) ];
 
 };
 
@@ -120,7 +120,7 @@ export const getTitle = ( state ) => {
   return {
     seller: 'Чаты с покупателями',
     customer: 'Шопинг-чаты'
-  }[ getTab( state ) ];*/
+  }[ getLeadTab( state ) ];*/
 };
 
 export const getLastMessage = ( state ) => {
@@ -245,9 +245,9 @@ export const getGlobalNotifyCount = state => state.global_notify_count;
 
 export const getNotifyCountList = state => state.notify_count;
 
-export const isEmptyLeads = ( leads ) => (leads.seller.length === 0) && (leads.customer.length === 0);
+export const isEmptyLeads = ( state ) => (state.seller.length === 0) && (state.customer.length === 0);
 
-export const isDoneLeads = ( state ) => state.leads.done;
+export const isDoneLeads = ( state ) => state.done;
 
 export const getGroup = ( state, lead ) => lead.customer_id === store.getters.userID ? 'customer' : 'seller';
 

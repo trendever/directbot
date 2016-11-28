@@ -18,7 +18,7 @@
           span(v-if="directbot") Чаты с покупателями
 
 
-    .section.top.bottom(:class="{'little-move-up': !$root.isStandalone,'little-move-up-standalone': $root.isStandalone}")
+    .section.top.bottom
       .section__content
         .chat-list(v-bind:style="styleObject")
             chat-list-item(v-for='lead in leadsList', :lead='lead', :key="lead.id", ref="item")
@@ -72,33 +72,18 @@
 
   //import appLoader from 'base/loader/loader';
   //import RightNavComponent from 'base/right-nav/index';
-  //import listen from 'event-listener';
-
-
-/*  import {
-    getLeads,
-    getLeadTab,
-    getIsTab,
-    getTitle,
-    isEmptyLeads,
-    isDoneLeads,
-    getLengthList,
-    getScroll,
-    getHasMore,
-    getCountForLoading
-  } from 'vuex/getters/lead.js';*/
-
-
-  import { mapGetters, mapActions } from 'vuex';
+  import listen from 'event-listener';
   import * as leads from 'services/leads';
   import * as messages from 'services/message';
 
+
+  import { mapGetters, mapActions } from 'vuex';
   //import ScrollTop from 'base/scroll-top/scroll-top';
 
   //import HeaderComponent from 'base/header/header.vue';
   //import NavbarComponent from 'base/navbar/navbar.vue';
 
-  //import ChatListItem from './chat-list-item.vue';
+  import ChatListItem from './chat-list-item.vue';
 
   export default {
     props: {
@@ -114,7 +99,7 @@
       //RightNavComponent,
       //HeaderComponent,
       //NavbarComponent,
-      //ChatListItem
+      ChatListItem
 
     },
     data(){

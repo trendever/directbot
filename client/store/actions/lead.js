@@ -8,7 +8,7 @@ import {
 
   getOlderLead,
   getLeadByConversationId,
-  getTab,
+  getLeadTab,
   getHasMore,
   getCountForLoading,
   getLeads,
@@ -61,7 +61,7 @@ export const loadLeads = ( { commit, state }, count = getCountForLoading ) => {
 
   return new Promise( ( resolve, reject ) => {
 
-    const tab = getTab( state );
+    const tab = getLeadTab( state );
 
     if ( getLeads( state ).length > (getLengthList( state ) + count) ) {
 
@@ -121,7 +121,7 @@ export const setTab = ( { commit }, tab ) => {
 
 export const setScrollLeads = ( { commit, state }, { scrollTop, scrollHeight } ) => {
 
-  commit( LEAD_SET_SCROLL, { scrollTop, scrollHeight , tab: getTab( state ) } )
+  commit( LEAD_SET_SCROLL, { scrollTop, scrollHeight , tab: getLeadTab( state ) } )
 
 }
 

@@ -16,7 +16,7 @@
     .body-last-msg
       p
         b(v-if="recentMessage.user_name.length > 0") {{recentMessage.user_name}}:
-        | {{{ recentMessage.message }}}
+          span(v-html="recentMessage.message")
       .body-notify(v-if='unreadCount')
         span {{ unreadCount }}
   .chat-list-i-delete(:class="{'open-delete': showDelete}", @click.stop="deleteChat") Удалить
@@ -29,13 +29,13 @@
 
   import { formatPastTime } from 'views/chat/utils';
 
-  import * as service from 'services/leads';
-
-  import { getNotifyCountList, getLastMessage } from 'vuex/getters/lead.js';
+  import * as LeadsService from 'services/leads';
 
   import Hammer from 'hammerjs';
 
-  import { getTab } from 'vuex/getters/lead';
+  import { mapGetters } from 'vuex';
+
+
 
   export default {
     data(){
@@ -48,13 +48,6 @@
       lead: {
         type: Object,
         required: true
-      }
-    },
-    vuex: {
-      getters: {
-        getNotifyCountList,
-        getLastMessage,
-        getTab
       }
     },
     mounted(){
@@ -110,12 +103,12 @@
       deleteChat(){
 
 
-          let cancel_reason = this.getTab === "customer" ? 2 : 1;
+          let cancel_reason = this.getLeadTab === "customer" ? 2 : 1;
 
-          service.setEvent(this.lead.id,'CANCEL', cancel_reason)
+          leadsService.setEvent(this.lead.id,'CANCEL', cancel_reason)
 
           .then(()=> {
-            if(this.getTab === "customer") {
+            if(this.getLeadTab === "customer") {
 
               let customerLeads = this.$store.state.leads.customer;
               let lead = customerLeads.filter(item=>{
@@ -129,7 +122,7 @@
 
             }
 
-            if(this.getTab === "seller") {
+            if(this.getLeadTab === "seller") {
 
               let sellerLeads = this.$store.state.leads.seller;
               let lead = sellerLeads.filter(item=>{
@@ -177,6 +170,11 @@
       }
     },
     computed: {
+      ...mapGetters([
+        'getNotifyCountList',
+        'getLastMessage',
+        'getLeadTab'
+      ]),
       unreadCount(){
         return this.getNotifyCountList[ this.lead.id ];
       },
@@ -192,7 +190,7 @@
         }
       },
       status(){
-        return service.getStatus( this.lead.status ).name
+        return leadsService.getStatus( this.lead.status ).name
       },
       dataTime(){
         if ( this.lead.chat !== null ) {
@@ -201,8 +199,8 @@
       },
       title(){
         if ( this.lead.chat !== null ) {
-          if ( this.lead.user_role === service.USER_ROLES.CUSTOMER.key
-            || this.lead.user_role === service.USER_ROLES.SUPPLIER.key ) {
+          if ( this.lead.user_role === leadsService.USER_ROLES.CUSTOMER.key
+            || this.lead.user_role === leadsService.USER_ROLES.SUPPLIER.key ) {
             return this.lead.shop.instagram_username
           }
           let customer_name = this.lead.chat.members.find( ( { user_id } ) => this.lead.customer_id === user_id ).name;
