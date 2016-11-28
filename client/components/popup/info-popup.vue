@@ -19,11 +19,6 @@ export default {
 
 @import 'style/vars/vars.pcss';
 
-@font-face {
-	font-family: Parker;
-	src: url(./fonts/Parker.ttf);
-}
-
 
   #info-popup{
     width: 100%;
@@ -39,7 +34,6 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
       overflow: hidden;
-      font-family: Parker;
 
         @media(--mobile){
           width: 100%;
