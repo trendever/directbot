@@ -2,7 +2,8 @@
 <template lang="pug">
 #home.directbot
   .section.hero
-
+    div.hero-popup(v-if="showPopup")
+      iframe#popupiframe(v-bind:src="popupUrl")
     .section__content(ref="screenOne").hero__content
       .profile-header
         .profile-header__center
@@ -71,20 +72,20 @@
           .hero__content__landing__caption Со смайлами&nbsp
             i.ic-smile &nbsp&nbsp&nbsp&nbsp&nbsp
             | уделит внимание #[br(v-if="!isMobile")] каждому, быстро ответит. #[br]
-            router-link.link-info(:to="{name: 'popup', params: { id: 'is1' } }") Ни один клиент не успеет передумать
+            a.link-info(@click="openPopup('is1')") Ни один клиент не успеет передумать
         .info-box
           .hero__content__landing__icon-2
             img(src="./img/icon-2.png")
           .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
           .hero__content__landing__caption Больше не нужно отвечать #[br(v-if="isMobile")] и спрашивать #[br(v-if="!isMobile")] одно и то же. #[br(v-if="isMobile")]
-            router-link.link-info(:to="{name: 'popup', params: { id: 'is2' } }")
+            a.link-info(@click="openPopup('is2')")
               | Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
         .info-box
           .hero__content__landing__icon-3
             img(src="./img/icon-3.png")
           .hero__content__landing__sub-title Подключается быстро, работает самостоятельно
           .hero__content__landing__caption Подключи нашего оператора к своему  Instagram-магазину в один клик. #[br]
-            router-link.link-info(:to="{name: 'popup', params: { id: 'is3' } }")
+            a.link-info(@click="openPopup('is3')")
               | Ничего не надо скачивать
       .hero__content__landing__title.middle Что делает наш  оператор?
       .hero__content__landing__screen-1
@@ -95,7 +96,7 @@
         img(src="./img/screen-2.png")
       .hero__content__landing__sub-title.deskST Оператор сразу #[br(v-if="!isMobile")] видит #[br(v-if="isMobile")] вопросы покупателей
       .hero__content__landing__caption.deskCap
-        router-link.link-info(:to="{name: 'popup', params: { id: 'is4' } }") Не важно, задан вопрос в комментариях #[br] или личном сообщении,
+        a.link-info(@click="openPopup('is4')") Не важно, задан вопрос в комментариях #[br] или личном сообщении,
         span  оператор #[br(v-if="isMobile")] уже будет #[br(v-if="!isMobile")] отвечать покупателю #[br(v-if="isMobile")] в Direct от твоего имени
       .hero__content__landing__toggle
         .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ, #[br(v-if="!isMobile")] У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
@@ -117,7 +118,7 @@
               img(src="./img/screen-5.png")
             .hero__content__landing__sub-title.lastST Оператор ответит на вопросы #[br(v-if="!isMobile")] и поможет купить
             .hero__content__landing__caption.lastCap
-              router-link.link-info(:to="{name: 'popup', params: { id: 'is5' } }") Клиенты получат консультацию* #[br(v-if="!isMobile")]
+              a.link-info(@click="openPopup('is5')") Клиенты получат консультацию* #[br(v-if="!isMobile")]
               span  в твоем #[br(v-if="isMobile")] Instagram Direct и ссылку #[br(v-if="!isMobile")] на товар #[br(v-if="isMobile")] в интернет-магазине**
             .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
             .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
@@ -130,7 +131,7 @@
             img(src="./img/screen-4-no.png")
           .hero__content__landing__sub-title.info Нет сайта? Ответь #[br(v-if="!isMobile")] на вопросы о товарах
           .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br] и добавит их в твой
-            router-link.link-info(:to="{name: 'popup', params: { id: 'is6' } }")
+            a.link-info(@click="openPopup('is6')")
               |  новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
               span.bold  xxxx.drbt.io #[br]
   .info-block
@@ -139,19 +140,19 @@
     .list
       ol
         li
-          router-link.link-info(:to="{name: 'popup', params: { id: 'is7' } }")
+          a.link-info(@click="openPopup('is7')")
             | Личного оператора, на связи с твоими #[br(v-if="isMobile")] клиентами 24/7. В 15 раз дешевле*
             img(src="./img/smile-2.png")
         li
-          router-link.link-info(:to="{name: 'popup', params: { id: 'is8' } }")
+          a.link-info(@click="openPopup('is8')")
             | Адаптивный интернет-магазин, #[br(v-if="isMobile")] с платежами и доставкой
         li
-          router-link.link-info(:to="{name: 'popup', params: { id: 'is9' } }")
+          a.link-info(@click="openPopup('is9')")
             | Сервис по подбору и организации #[br(v-if="isMobile")] рекламы через блогеров
     .tooltip
       p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, #[br(v-if="!isMobile")] и это только за 8-часовой день с выходными
   .free-connect
-    router-link.link-info(:to="{name: 'popup', params: { id: 'is10' } }")
+    a.link-info(@click="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? #[br(v-if="!isMobile")] ИЛИ ТЫ САМ ОПЕРАТОР? #[br(v-if="!isMobile")]
     a(v-on:click="$router.push({name: 'auth'})") ЖМИ СЮДА
   .free-wrap
@@ -194,14 +195,22 @@ export default {
       smsSent: false,
       phoneError: false,
       yesScreen: true,
-      noScreen: false
+      noScreen: false,
+      showPopup: false,
+      popupUrl: ""
     }
   },
 
   mounted() {
+    this.$root.$on('postMessage',(msg) => {
+      let fra = document.getElementById("popupiframe");
+      if(fra && msg.data && msg.data.name == "Close" && msg.source == fra.contentWindow) {
+        this.showPopup = false;
+        this.popupUrl = "";
+      }
+    });
 
     this.outerCloseMenu = listen(document.body, 'click',(event)=>{
-
         targetClass(event, 'profile-header__menu-links',()=>{
             if(this.menuOpened){
               this.menuOpened = false;
@@ -280,6 +289,15 @@ export default {
   },
 
   methods: {
+    openPopup(target){
+      if (this.isMobile){
+        this.$router.push({ name: 'popup', params: { id: target }})
+      }else{
+        this.showPopup = true;
+        this.popupUrl = window.location.origin + "/popup/" + target;
+      }
+      
+    },
     touchMove(e){
       if(this.scrollCnt.scrollTop < 2 * window.innerHeight ) {
         e.preventDefault();
@@ -304,7 +322,7 @@ export default {
     onBuyPromoProduct() {
       if ( !this.isAuth ) {
         this.setCallbackOnSuccessAuth( this.onBuyPromoProduct.bind( this ) );
-        this.$router.go( { name: 'signup' } );
+        this.$router.push( { name: 'signup' } );
 
 
       } else {
@@ -313,7 +331,7 @@ export default {
             .then(
               ( lead ) => {
                 if ( lead !== undefined && lead !== null ) {
-                  this.$router.go( { name: 'chat', params: { id: lead.id } } );
+                  this.$router.push( { name: 'chat', params: { id: lead.id } } );
                 }
               }
             );

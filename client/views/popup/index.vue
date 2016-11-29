@@ -26,7 +26,11 @@ export default {
 	},
 	methods:{
 		closeView(){
-			history.back();
+			if (this.isMobile){
+				history.back();
+			}else{
+				parent.postMessage({name:"Close"}, "*");
+			}
 		}
 	},
 	components:{

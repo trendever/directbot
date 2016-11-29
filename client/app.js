@@ -21,4 +21,5 @@ Vue.mixin({
   }
 });
 
+
 export {app, router, store}
