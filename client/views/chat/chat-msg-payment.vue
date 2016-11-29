@@ -12,12 +12,11 @@
     template(v-else)
       span
         | <b>{{getCancelName}}</b> отменил перевод
-      
+
 </template>
 
 <script>
-  import { getShopName, getCustomerName,getAction, getActionData } from 'vuex/getters/chat.js';
-  import {setConversationAction} from 'vuex/actions/chat.js'
+  import { mapGetters } from 'vuex';
   import { getPaymentAmmount } from 'project/payment/functions.js';
 
   export default{
@@ -25,10 +24,10 @@
       if (this.getAction == 'pay' || this.getAction == 'pendingpayment'){
         let _payid = JSON.parse(this.msg.parts[0].content).pay_id;
         if (this.getActionData.id == _payid){
-          this.setConversationAction("base");
+          this$store.dispatch('setConversationAction',"base");
         }
       }
-      
+
       return {}
     },
     props: {
@@ -37,18 +36,15 @@
         required: true
       }
     },
-    vuex: { 
-      getters: {
-        getShopName,
-        getCustomerName,
-        getActionData,
-        getAction
-      },
-      actions: {
-        setConversationAction
-      }
-    },
     computed: {
+      ...mapGetters([
+
+        'getShopName',
+        'getCustomerName',
+        'getActionData',
+        'getAction'
+
+      ]),
       donePayment(){
         return this.msg.parts[0].mime_type === 'json/payment';
       },

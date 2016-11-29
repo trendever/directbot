@@ -8,7 +8,7 @@
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat_messages(id="chatmessages", ref="messages")
-        //-template(v-for='(msg, index) in messagesList', :key='index')
+        div(v-for='(msg, index) in messagesList', :key='index')
           div
             chat-msg-status(
               v-if='msg.parts[0].mime_type === "json/status"',
@@ -26,7 +26,7 @@
             chat-msg-info(
               v-if='msg.parts[0].mime_type === "text/html"',
               :msg='msg')
-            chat-msg-img(
+            //-chat-msg-img(
               v-if='isImage(msg.parts[0].mime_type)',
               :msg='msg')
             chat-msg-payment(
@@ -178,7 +178,7 @@ export default {
     messagesList() {
       const end   = this.getMessages.length;
       const start = end - this.getLengthList - 1; // -1 потому что есть первое сообщение с датой.
-      return value.slice( (start <= 0) ? 0 : start, end );
+      return this.getMessages.slice( (start <= 0) ? 0 : start, end );
     },
 
     ...mapGetters([
@@ -218,7 +218,6 @@ export default {
     },
 
     run(){
-      if(this.directbot) this.lead_id = +this.$route.params.id;
 
       return this
 

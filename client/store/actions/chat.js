@@ -62,7 +62,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
             const msg = messages[ messages.length - 1 ]
 
-            if ( state.leads.notify_count[ lead_id ] ) {
+            if ( store.state.leads.notify_count[ lead_id ] ) {
 
               const currentRole  = getCurrentMember( state, lead ).role
               const customerRole = chat.MEMBER_ROLES.CUSTOMER
@@ -113,12 +113,12 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
         const messages = getMessageByLead( store.state.conversation, lead )
 
-        if ( /*messages === null*/ !state.conversation.allInit[lead.chat.id] ) {
+        if ( /*messages === null*/ !state.allInit[lead.chat.id] ) {
 
           if ( lead.chat ) {
 
             if ( lead.chat.id ) {
-               console.log('Из чатов');
+              console.log('Из чатов');
               return messageService
                 .find( lead.chat.id, null, chatCountForLoading, true )
                 .then(
@@ -236,20 +236,20 @@ export const loadMessage = (() => {
 
   return ( { commit, state } ) => {
 
-    if ( !hasMore.hasOwnProperty( state.conversation.id ) ) {
+    if ( !hasMore.hasOwnProperty( state.id ) ) {
 
-      hasMore[ state.conversation.id ] = true
+      hasMore[ state.id ] = true
 
     }
 
     return new Promise( ( resolve, reject ) => {
 
       const messages = getMessages( state )
-      const id       = state.conversation.id
+      const id       = state.id
 
       if ( Array.isArray( messages ) ) {
 
-        if ( hasMore[ state.conversation.id ] ) {
+        if ( hasMore[ state.id ] ) {
 
           return messageService
             .find( id, messages.length > 0 ? messages[ 0 ].id : undefined, chatCountForLoading, true )
@@ -258,7 +258,7 @@ export const loadMessage = (() => {
 
                 if ( messages === null || messages.length < chatCountForLoading ) {
 
-                  hasMore[ state.conversation.id ] = false;
+                  hasMore[ state.id ] = false;
 
                 }
 
@@ -281,7 +281,7 @@ export const loadMessage = (() => {
 
         }
 
-        if ( !hasMore[ state.conversation.id ] && messages.length >= state.conversation.lengthList ) {
+        if ( !hasMore[ state.id ] && messages.length >= state.lengthList ) {
 
           commit( types.CONVERSATION_INC_LENGTH_LIST, chatCountForLoading )
 
@@ -326,12 +326,12 @@ export const createMessage = ( { commit, state }, conversation_id, text, mime_ty
       created_at: null,
       id: Date.now() + beforeLoadId,
       user: {
-        user_id: store.getters.userID( state )
+        user_id: userID( store.state.user )
       }
     }
   ]
 
-  commit( types.CONVERSATION_RECEIVE_MESSAGE, rowMessage, conversation_id )
+  commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages: rowMessage, id: conversation_id } )
 
   return messageService
     .create( conversation_id, text, mime_type )

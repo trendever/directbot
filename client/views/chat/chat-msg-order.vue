@@ -1,35 +1,38 @@
 <style src='./styles/chat-msg-status.pcss'></style>
 <style src='./styles/chat-bar.pcss'></style>
 <template lang="pug">
-.chat-row.__center
-  .chat-msg-status
-    span
-     | {{getUsernameRaw}} отправил запрос на получение {{getAmmount | curency_spaces}}
-     i.ic-currency-rub
+#chat-msg-order
+  .chat-row.__center
+    .chat-msg-status
+      span
+       | {{getUsernameRaw}} отправил запрос на получение {{getAmmount | curency_spaces}}
+       i.ic-currency-rub
 
-.chat-approve-btn(v-if='showPayButton' )
-  .btn-payment(@click="pay")
-    span ОТПРАВИТЬ {{getAmmount | curency_spaces}} ₽
-  .btn-cancel(@click="cancel") <i class="ic-close"></i>
+  .chat-approve-btn(v-if='showPayButton' )
+    .btn-payment(@click="pay")
+      span ОТПРАВИТЬ {{getAmmount | curency_spaces}} ₽
+    .btn-cancel(@click="cancel") <i class="ic-close"></i>
 
-.chat-pending-btn(v-if='showPendingButton' )
-  .btn-payment
-    span ЗАПРОШЕНО {{getAmmount | curency_spaces}} ₽
-  .btn-cancel(@click="cancel") <i class="ic-close"></i>
+  .chat-pending-btn(v-if='showPendingButton' )
+    .btn-payment
+      span ЗАПРОШЕНО {{getAmmount | curency_spaces}} ₽
+    .btn-cancel(@click="cancel") <i class="ic-close"></i>
 
 iframe.payment-window(v-if='showPayButton', id="paymentIframe" v-bind:src="payLink" v-show="showPaymentWindow")
 
 </template>
 
 <script type='text/babel'>
-  import { getCurrentMember, getShopName, getLastMessageId, getLeadId, getCustomerName,getCustomerId,getAction} from 'vuex/getters/chat.js';
-  import {setConversationAction,setConversationActionData} from 'vuex/actions/chat.js'
-  import { user } from 'vuex/getters/user.js';
+
+
+  import { mapGetters } from 'vuex';
+
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
   import { formatTime, formatDatetime, escapeHtml, wrapLink } from './utils';
   import * as cardService from 'services/card';
-  import { getPaymentAmmount } from 'project/payment/functions.js';
+
+  //import { getPaymentAmmount } from 'project/payment/functions.js';
 
   export default{
     data() {
@@ -82,23 +85,13 @@ iframe.payment-window(v-if='showPayButton', id="paymentIframe" v-bind:src="payLi
         required: true
       }
     },
-    vuex: {
-      actions: {
-        setConversationAction,
-        setConversationActionData
-      },
-      getters: {
-        getAction,
-        getShopName,
-        getCurrentMember,
-        getLastMessageId,
-        getCustomerName,
-        getCustomerId,
-        user,
-        getLeadId
-      }
-    },
     methods:{
+      ...mapActions([
+        //chat
+        'setConversationAction',
+        'setConversationActionData'
+
+      ]),
       pay(){
         cardService.createPayment({
           id: +this.payId,
@@ -119,6 +112,18 @@ iframe.payment-window(v-if='showPayButton', id="paymentIframe" v-bind:src="payLi
       }
     },
     computed: {
+      ...mapGetters([
+        //user
+        'getAction',
+        'getShopName',
+        'getCurrentMember',
+        'getLastMessageId',
+        'getCustomerName',
+        'getCustomerId',
+        'getLeadId'
+        //chat
+        'user'
+      ]),
       isDone(){
         if (this.msg.parts[1] || this.canceled){
           return true;

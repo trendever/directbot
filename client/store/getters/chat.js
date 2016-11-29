@@ -101,7 +101,7 @@ export const getCustomerId = ( state ) => {
 
 };
 
-export const getMessageByLead = ( { conversation }, lead ) => {
+export const getMessageByLead = ( conversation , lead ) => {
 
   if ( lead.chat ) {
 

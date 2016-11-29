@@ -27,12 +27,11 @@
 </template>
 
 <script type='text/babel'>
-  import { navigateTolink } from 'utils';
-  import { getCurrentMember, getShopName, getLastMessageId } from 'vuex/getters/chat.js';
-  import { user } from 'vuex/getters/user.js';
+  import { navigateTolink } from 'root/utils';
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
   import { formatTime, formatDatetime, escapeHtml, wrapLink } from './utils';
+  import { mapGetters } from 'vuex';
 
   export default{
     props: {
@@ -59,6 +58,15 @@
       }
     },
     computed: {
+      ...mapGetters([
+        //chat
+        'getShopName',
+        'getCurrentMember',
+        'getLastMessageId',
+        //user
+        'user'
+
+      ]),
       isLoaded(){
         if( 'loaded' in this.msg){
           return this.msg.loaded;

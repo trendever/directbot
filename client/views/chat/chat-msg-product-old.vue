@@ -33,7 +33,7 @@
   import { formatTime } from './utils';
   import { user } from 'vuex/getters/user.js';
   import * as leads from 'services/leads';
-  import { getCurrentMember, getLastMessageId, getShopName } from 'vuex/getters/chat.js';
+  import { mapGetters } from 'vuex';
   export default{
     props: {
       msg: {
@@ -41,15 +41,16 @@
         required: true
       }
     },
-    vuex: {
-      getters: {
-        getShopName,
-        getCurrentMember,
-        getLastMessageId,
-        user
-      }
-    },
+
     computed: {
+      ...mapGetters([
+        //chat
+        'getShopName',
+        'getCurrentMember',
+        'getLastMessageId',
+        //user
+        'user'
+      ]),
       getUsername() {
         if ( this.isCustomer ) {
           return `<b>${this.msg.user.name}</b>`

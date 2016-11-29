@@ -26,9 +26,10 @@
 
 <script type='text/babel'>
   import { formatTime, formatDatetime, escapeHtml, wrapLink } from './utils';
-  import { user } from 'vuex/getters/user.js';
+
   import * as leads from 'services/leads';
-  import { getCurrentMember, getLastMessageId, getCustomerName, getCustomerId, getShopName } from 'vuex/getters/chat.js';
+  import { mapGetters } from 'vuex';
+
   export default{
     props: {
       msg: {
@@ -38,15 +39,20 @@
     },
     vuex: {
       getters: {
-        getShopName,
-        getCurrentMember,
-        getCustomerId,
-        getCustomerName,
-        getLastMessageId,
-        user
+
       }
     },
     computed: {
+      mapGetters([
+        //chat
+        'getShopName',
+        'getCurrentMember',
+        'getCustomerId',
+        'getCustomerName',
+        'getLastMessageId',
+        //user
+        'user'
+      ]),
       getUsername() {
         if (this.getCustomerName.indexOf("customer_") >= 0){
           return `<b>${this.getCustomerName.replace("customer_","client")}</b>`

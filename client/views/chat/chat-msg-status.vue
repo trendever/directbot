@@ -2,12 +2,12 @@
 <template lang="pug">
   .chat-row.__center(v-if="isHide && text !== null")
     .chat-msg-status
-      span {{text}} 
-      
+      span {{text}}
+
 </template>
 
 <script>
-  import { getCurrentMember, getCustomerName } from 'vuex/getters/chat.js';
+  import { mapGetters } from 'vuex';
   import * as leads from 'services/leads';
   import { statusString } from './utils';
 
@@ -18,13 +18,13 @@
         required: true
       }
     },
-    vuex: {
-      getters: {
-        getCurrentMember,
-        getCustomerName
-      }
-    },
     computed: {
+      ...mapGetters([
+        //chat
+        'getCurrentMember',
+        'getCustomerName'
+
+      ]),
       isHide(){
 
         if ( this.getCurrentMember !== null ) {

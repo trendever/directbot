@@ -8,19 +8,18 @@
   .chat-msg.bubble(:class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage }')
     .chat-msg_t(
         v-if='!isOwnMessage && !isClosest',
-        :class='{"chat-msg_t-customer-color":isCustomer}'
+        :class='{"chat-msg_t-customer-color":isCustomer}',
         v-link='{name: "user", params: {id: getUserNameLink}}',
+        v-html="getUsername"
       )
-      | {{{ getUsername }}}
     .chat-msg-wrap
-      p.chat-msg_txt
-        | {{{ getMessage }}}
+      p.chat-msg_txt(v-html="getMessage")
+
 
 </template>
 
 <script type='text/babel'>
-  import { getCurrentMember, getShopName, getLastMessageId } from 'vuex/getters/chat.js';
-  import { user } from 'vuex/getters/user.js';
+  import { mapGetters } from 'vuex';
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
   import { formatTime, formatDatetime, escapeHtml, wrapLink } from './utils';
@@ -32,15 +31,14 @@
         required: true
       }
     },
-    vuex: {
-      getters: {
-        getShopName,
-        getCurrentMember,
-        getLastMessageId,
-        user
-      }
-    },
+
     computed: {
+      mapGetters([
+        'getShopName',
+        'getCurrentMember',
+        'getLastMessageId',
+        'user'
+      ]),
       isLoaded(){
         if( 'loaded' in this.msg){
           return this.msg.loaded;
