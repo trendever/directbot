@@ -115,7 +115,7 @@ export const createLead = ( { commit, state }, product_id ) => {
 
 export const setTab = ( { commit }, tab ) => {
 
-  commit( types.LEAD_SET_TAB, tab, getCountForLoading );
+  commit( types.LEAD_SET_TAB, { tab, lengthList: getCountForLoading } );
 
 };
 

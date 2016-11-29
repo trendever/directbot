@@ -222,8 +222,9 @@
           return b.updated_at - a.updated_at;
         })
       },
-      leadsArray(){
 
+      leadsArray(){
+        //проверка на удаленные лиды
         if(this.$store.state.leads.tab === 'customer') {
           let leads = this.getLeads.filter(item=>{
             return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
@@ -242,7 +243,8 @@
         }
       }
     },
-    events:{
+    events: {
+
       'closeDeleteLead'(){
 
         this.$broadcast('closeDelete');
@@ -308,7 +310,7 @@
 
             } else {
 
-              window.scrollTo = (0, scrollTop);
+              window.scrollTo(0, scrollTop);
 
               resolve();
 
@@ -364,6 +366,7 @@
             add( document.body.scrollHeight )
 
           } );*/
+          resolve()
 
         } );
 
