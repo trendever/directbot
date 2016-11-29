@@ -152,7 +152,7 @@ export const onMessagesLead = (
 
       commit( types.LEAD_UPDATE, { conversation_id, members, parts, updated_at } );
 
-      if ( state.conversation.id !== conversation_id ) {
+      if ( state.id !== conversation_id ) {
 
         commit( types.LEAD_INC_NOTIFY, (lead !== undefined) ? lead.id : null );
 
@@ -164,7 +164,7 @@ export const onMessagesLead = (
 
       commit( types.LEAD_UPDATE, { conversation_id, members, parts: '', updated_at } );
 
-      if ( state.conversation.id !== conversation_id ) {
+      if ( state.id !== conversation_id ) {
 
         commit( types.LEAD_INC_NOTIFY, (lead !== undefined) ? lead.id : null );
 
