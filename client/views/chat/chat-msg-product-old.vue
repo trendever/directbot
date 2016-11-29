@@ -7,21 +7,21 @@
     i(:class='{"ic-check": isSent, "ic-check-double": isRead}')
   .bubble(:class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage}')
     .chat-msg-product-wrap
-      a.chat-msg-product(v-link="{name: 'product_detail', params: {id: product.id}}")
+      router-link.chat-msg-product(:to="{name: 'product_detail', params: {id: product.id}}")
         .chat-msg-product-photo
           img(:src="photo")
       .chat-msg-description
-        .chat-msg_t(
-            v-link='{name: "user", params: {id: getUserNameLink}}',
+        router-link.chat-msg_t(
+            :to='{name: "user", params: {id: getUserNameLink}}',
             v-if='!isOwnMessage && !isClosest',
             :class='{"chat-msg_t-customer-color":isCustomer}',
             v-html="getUsername"
           )
         .chat-msg-product(
-            v-link='{name: "product_detail", params: {id: product.id}}'
+            :to='{name: "product_detail", params: {id: product.id}}'
           )
           .chat-msg-product-txt(:class="{'-closest':isClosest}")
-            a(v-link='{name: "product_detail", params: {id: product.id}}', v-html="titles")
+            router-link(:to='{name: "product_detail", params: {id: product.id}}', v-html="titles")
             br(v-if="titles")
             span(v-html="description")
 

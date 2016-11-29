@@ -7,19 +7,19 @@
     i(:class='{"ic-check": isSent, "ic-check-double": isRead}')
   .bubble(:class='{"chat-msg-not-closest":!isClosest && !isAfterServiceMessage}')
     .chat-msg-product-wrap
-      a.chat-msg-product(v-link="{name: 'product_detail', params: {id: product.id}}")
+      router-link.chat-msg-product(:to="{name: 'product_detail', params: {id: product.id}}")
         .chat-msg-product-photo
           img(:src="product.image")
       .chat-msg-description
-        .chat-msg_t(
-            v-link='{name: "user", params: {id: getUserNameLink}}',
+        router-link.chat-msg_t(
+            :to='{name: "user", params: {id: getUserNameLink}}',
             v-if='!isOwnMessage && !isClosest',
             :class='{"chat-msg_t-customer-color":isCustomer}',
             v-html="getUsername"
           )
 
-        .chat-msg-product(
-            v-link='{name: "product_detail", params: {id: product.id}}'
+        router-link.chat-msg-product(
+            :to='{name: "product_detail", params: {id: product.id}}'
           )
           .chat-msg-product-txt(:class="{'-closest':isClosest}", v-html="getMessage")
 
@@ -41,11 +41,11 @@
     computed: {
       ...mapGetters([
         //chat
-        'getShopName',
-        'getCurrentMember',
-        'getCustomerId',
+        //'getShopName',
+        //'getCurrentMember',
+        //'getCustomerId',
         'getCustomerName',
-        'getLastMessageId',
+        //'getLastMessageId',
         //user
         'user'
       ]),

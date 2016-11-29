@@ -225,7 +225,7 @@ export const getCurrentMember = ( state, lead = getLeadByConversationId( store.s
 
           const result = lead.chat.members.find( ( { user_id } ) => {
 
-            return user_id === state.user.id;
+            return user_id === store.state.user.id;
 
           } );
 

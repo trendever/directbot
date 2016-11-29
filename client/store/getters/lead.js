@@ -50,6 +50,7 @@ export const getLeadByConversationId = (function() {
 
     }
 
+
     const leadGroup = [ 'seller', 'customer' ];
 
     const finder    = ( { chat } ) => {
@@ -64,7 +65,7 @@ export const getLeadByConversationId = (function() {
 
     for ( let i = leadGroup.length; i; i-- ) {
 
-      const result = state.leads[ leadGroup[ i - 1 ] ].find( finder );
+      const result = state[ leadGroup[ i - 1 ] ].find( finder )
 
       if ( result ) {
 
@@ -74,7 +75,6 @@ export const getLeadByConversationId = (function() {
       }
 
     }
-
     return null;
 
   }

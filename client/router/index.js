@@ -40,6 +40,12 @@ let router = new Router({
       component: require('views/auth/confirm')
     },
     {
+      name: 'user',
+      path: '/:id',
+      require: require('views/profile/index')
+
+    },
+    {
       name: 'profile',
       path: '/:id',
       component: require('views/profile/index')
