@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import ChatList from '../views/ChatList'
+import Popup from '../views/popup/index'
 Vue.use(Router)
 
 let router = new Router({
@@ -35,6 +36,11 @@ let router = new Router({
       component: require('views/auth/confirm')
     },
     {
+      name: 'popup',
+      path: '/popup/:id',
+      component: Popup
+    },
+    {
       name: 'profile',
       path: '/:id',
       component: require('views/profile/index')
@@ -44,11 +50,11 @@ let router = new Router({
 
 router.beforeEach((to, from, next)=>{
 
-/*  localStorage.setItem(`${from.name}.scroll`, window.scrollY);
+  localStorage.setItem(`${from.name}.scroll`, window.scrollY);
 
   let item = `${to.name}.scroll`;
 
-  window.scrollTo(0, +localStorage.getItem(item));*/
+  window.scrollTo(0, +localStorage.getItem(item));
 
   next();
 

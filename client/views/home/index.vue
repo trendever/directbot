@@ -43,6 +43,7 @@
         .hero__content__2__paragraph
           p.last Наш оператор ответит #[br] вашим клиентам в Instagram Direct #[br] и, если нужно, создаст сайт
       button.shopping_trends(v-on:click="scrollSecond") КАК ЭТО РАБОТАЕТ?
+  .hero__content__bg
   .hero__content__landing
     .section.header.section__content(id="header", v-if="isMobile")
       .header__content.u-fixed.directbot-header
@@ -70,114 +71,91 @@
           .hero__content__landing__caption Со смайлами&nbsp
             i.ic-smile &nbsp&nbsp&nbsp&nbsp&nbsp
             | уделит внимание #[br(v-if="!isMobile")] каждому, быстро ответит. #[br]
-            a.link-info(v-on:click="showPopupA = true") Ни один клиент не успеет передумать
-            info-popup(:show-popup="showPopupA")
-              i.ic-close(v-on:click="showPopupA = false")
-              info-screen1
+            router-link.link-info(:to="{name: 'popup', params: { id: 'is1' } }") Ни один клиент не успеет передумать
         .info-box
           .hero__content__landing__icon-2
             img(src="./img/icon-2.png")
           .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
           .hero__content__landing__caption Больше не нужно отвечать #[br(v-if="isMobile")] и спрашивать #[br(v-if="!isMobile")] одно и то же. #[br(v-if="isMobile")]
-            a.link-info(v-on:click="showPopupB = true") Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
-            info-popup(:show-popup="showPopupB")
-              i.ic-close(v-on:click="showPopupB = false")
-              info-screen2
+            router-link.link-info(:to="{name: 'popup', params: { id: 'is2' } }")
+              | Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
         .info-box
           .hero__content__landing__icon-3
             img(src="./img/icon-3.png")
           .hero__content__landing__sub-title Подключается быстро, работает самостоятельно
           .hero__content__landing__caption Подключи нашего оператора к своему  Instagram-магазину в один клик. #[br]
-            a.link-info(v-on:click="showPopupC = true") Ничего не надо скачивать
-            info-popup(:show-popup="showPopupC")
-              i.ic-close(v-on:click="showPopupC = false")
-              info-screen3
+            router-link.link-info(:to="{name: 'popup', params: { id: 'is3' } }")
+              | Ничего не надо скачивать
       .hero__content__landing__title.middle Что делает наш  оператор?
       .hero__content__landing__screen-1
-        span.screen-title СКАНИРУЕТ INSTAGRAM DIRECT
+        span.screen-title СКАНИРУЕТ #[br(v-if="!isMobile")] INSTAGRAM DIRECT
         img(src="./img/screen-1.png")
       .hero__content__landing__screen-2
-        span.screen-title СКАНИРУЕТ КОММЕНТАРИИ
+        span.screen-title СКАНИРУЕТ #[br(v-if="!isMobile")] КОММЕНТАРИИ
         img(src="./img/screen-2.png")
-      .hero__content__landing__sub-title Оператор сразу видит #[br] вопросы покупателей
-      .hero__content__landing__caption
-        a.link-info(v-on:click="showPopupD = true") Не важно, задан вопрос в комментариях #[br] или личном сообщении,
-        |  оператор #[br] уже будет отвечать покупателю #[br] в Direct от твоего имени
-        info-popup(:show-popup="showPopupD")
-          i.ic-close(v-on:click="showPopupD = false")
-          info-screen4(:show-popup="showPopupD")
+      .hero__content__landing__sub-title.deskST Оператор сразу #[br(v-if="!isMobile")] видит #[br(v-if="isMobile")] вопросы покупателей
+      .hero__content__landing__caption.deskCap
+        router-link.link-info(:to="{name: 'popup', params: { id: 'is4' } }") Не важно, задан вопрос в комментариях #[br] или личном сообщении,
+        span  оператор #[br(v-if="isMobile")] уже будет #[br(v-if="!isMobile")] отвечать покупателю #[br(v-if="isMobile")] в Direct от твоего имени
       .hero__content__landing__toggle
-        .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ,  У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
+        .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ, #[br(v-if="!isMobile")] У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
         button(v-on:click="noScreen = false, yesScreen = true").yes.toggleBtn.activeBtn ДА
         button(v-on:click="yesScreen = false, noScreen = true").no.toggleBtn НЕТ
       .toggle-box
         .wrap-yes(v-show="yesScreen")
           .hero__content__landing__screen-3
-            span.screen-title ИЗУЧИТ ТВОЙ ИНТЕРНЕТ-МАГАЗИН
+            span.screen-title ИЗУЧИТ ТВОЙ #[br(v-if="!isMobile")] ИНТЕРНЕТ-МАГАЗИН
             img(src="./img/screen-3-yes.png")
           .hero__content__landing__screen-4
-            span.screen-title УЗНАЕТ О ТОВАРАХ ПО АРТИКУЛУ
+            span.screen-title УЗНАЕТ О ТОВАРАХ #[br(v-if="!isMobile")] ПО АРТИКУЛУ
             img(src="./img/screen-4-yes.png")
-          .hero__content__landing__sub-title.info Есть сайт? Укажи артикул  товара под постом
-          .hero__content__landing__caption Оператор узнает о деталях и наличии  товара по артикулу в описании поста.  Ссылка на сайт должна быть #[br] в «био» инста-профиля
+          .hero__content__landing__sub-title.info-title Есть сайт? Укажи #[br(v-if="!isMobile")] артикул товара под постом
+          .hero__content__landing__caption.info-cap Оператор узнает о деталях и наличии #[br(v-if="!isMobile")] товара по артикулу в описании поста. #[br(v-if="!isMobile")] Ссылка на сайт должна быть #[br] в «био» инста-профиля
           .info-wrap
             .hero__content__landing__screen-5
-              span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
+              span.screen-title ОТВЕЧАЕТ В #[br(v-if="!isMobile")] INSTAGRAM DIRECT
               img(src="./img/screen-5.png")
-            .hero__content__landing__sub-title Оператор ответит на вопросы  и поможет купить
-            .hero__content__landing__caption
-              a.link-info(v-on:click="showPopupF = true") Клиенты получат консультацию*
-              |  в твоем #[br] Instagram Direct и ссылку на товар #[br] в интернет-магазине**
-              info-popup(:show-popup="showPopupF")
-                i.ic-close(v-on:click="showPopupF = false")
-                info-screen6(:show-popup="showPopupF")
-            .hero__content__landing__tip *отслеживай диалог в кабинете или Instagram Direct
-            .hero__content__landing__tip **еще можно покупать не выходя из Instagram Direct
+            .hero__content__landing__sub-title.lastST Оператор ответит на вопросы #[br(v-if="!isMobile")] и поможет купить
+            .hero__content__landing__caption.lastCap
+              router-link.link-info(:to="{name: 'popup', params: { id: 'is5' } }") Клиенты получат консультацию* #[br(v-if="!isMobile")]
+              span  в твоем #[br(v-if="isMobile")] Instagram Direct и ссылку #[br(v-if="!isMobile")] на товар #[br(v-if="isMobile")] в интернет-магазине**
+            .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
+            .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
         .wrap-no(v-show="noScreen")
           .hero__content__landing__screen-3
-            span.screen-title СОЗДАСТ ИНТЕРНЕТ-МАГАЗИН
+            span.screen-title СОЗДАСТ #[br(v-if="!isMobile")] ИНТЕРНЕТ-МАГАЗИН
             img(src="./img/screen-3-no.png")
           .hero__content__landing__screen-4
-            span.screen-title СПРАШИВАЕТ О ТОВАРАХ В ЧАТЕ
+            span.screen-title СПРАШИВАЕТ #[br(v-if="!isMobile")] О ТОВАРАХ В ЧАТЕ
             img(src="./img/screen-4-no.png")
-          .hero__content__landing__sub-title.info Нет сайта? Ответь  на вопросы о товарах
+          .hero__content__landing__sub-title.info Нет сайта? Ответь #[br(v-if="!isMobile")] на вопросы о товарах
           .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br] и добавит их в твой
-            a.link-info(v-on:click="showPopupE = true")  новый интернет-магазин по ссылке
+            router-link.link-info(:to="{name: 'popup', params: { id: 'is6' } }")
+              |  новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
               span.bold  xxxx.drbt.io #[br]
-            info-popup(:show-popup="showPopupE")
-              i.ic-close(v-on:click="showPopupE = false")
-              info-screen5(:show-popup="showPopupE")
-            | Также уточнит детали и наличие товаров
   .info-block
     .title
       p Подключайся и получишь:
     .list
       ol
         li
-          a(v-on:click="showPopupG = true") Личного оператора, на связи с твоими #[br] клиентами 24/7. В 15 раз дешевле*
+          router-link.link-info(:to="{name: 'popup', params: { id: 'is7' } }")
+            | Личного оператора, на связи с твоими #[br(v-if="isMobile")] клиентами 24/7. В 15 раз дешевле*
             img(src="./img/smile-2.png")
-          info-popup(:show-popup="showPopupG")
-            i.ic-close(v-on:click="showPopupG = false")
-            info-screen7(:show-popup="showPopupG")
         li
-          a(v-on:click="showPopupH = true") Адаптивный интернет-магазин, #[br] с платежами и доставкой
-          info-popup(:show-popup="showPopupH")
-            i.ic-close(v-on:click="showPopupH = false")
-            info-screen8(:show-popup="showPopupH")
+          router-link.link-info(:to="{name: 'popup', params: { id: 'is8' } }")
+            | Адаптивный интернет-магазин, #[br(v-if="isMobile")] с платежами и доставкой
         li
-          a(v-on:click="showPopupI = true") Сервис по подбору и организации #[br] рекламы через блогеров
-          info-popup(:show-popup="showPopupI")
-            i.ic-close(v-on:click="showPopupI = false")
-            info-screen9(:show-popup="showPopupI")
+          router-link.link-info(:to="{name: 'popup', params: { id: 'is9' } }")
+            | Сервис по подбору и организации #[br(v-if="isMobile")] рекламы через блогеров
     .tooltip
-      p *из расчета средней зарплаты оператора 45 тыс.руб. #[br] в месяц, и это только за 8-часовой день с выходными
+      p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, #[br(v-if="!isMobile")] и это только за 8-часовой день с выходными
   .free-connect
-    a(v-on:click="showPopupJ = true") ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
-    info-popup(:show-popup="showPopupJ")
-      i.ic-close(v-on:click="showPopupJ = false")
-      info-screen10(:show-popup="showPopupJ")
+    router-link.link-info(:to="{name: 'popup', params: { id: 'is10' } }")
+      | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? #[br(v-if="!isMobile")] ИЛИ ТЫ САМ ОПЕРАТОР? #[br(v-if="!isMobile")]
     a(v-on:click="$router.push({name: 'auth'})") ЖМИ СЮДА
-  button(v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
+  .free-wrap
+    button(v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
 </template>
 <script>
 
@@ -206,19 +184,6 @@ import * as commonService from 'services/common';
 
 import { targetClass } from 'root/utils';
 
-import InfoPopup from 'components/popup/info-popup';
-
-import infoScreen1 from 'views/info-screens/info-screen-1.vue';
-import infoScreen2 from 'views/info-screens/info-screen-2.vue';
-import infoScreen3 from 'views/info-screens/info-screen-3.vue';
-import infoScreen4 from 'views/info-screens/info-screen-4.vue';
-import infoScreen5 from 'views/info-screens/info-screen-5.vue';
-import infoScreen6 from 'views/info-screens/info-screen-6.vue';
-import infoScreen7 from 'views/info-screens/info-screen-7.vue';
-import infoScreen8 from 'views/info-screens/info-screen-8.vue';
-import infoScreen9 from 'views/info-screens/info-screen-9.vue';
-import infoScreen10 from 'views/info-screens/info-screen-10.vue';
-
 
 export default {
   data(){
@@ -228,34 +193,9 @@ export default {
       phoneNumber: '',
       smsSent: false,
       phoneError: false,
-      showPopupA: false,
-      showPopupB: false,
-      showPopupC: false,
-      showPopupD: false,
-      showPopupE: false,
-      showPopupF: false,
-      showPopupG: false,
-      showPopupH: false,
-      showPopupI: false,
-      showPopupJ: false,
       yesScreen: true,
       noScreen: false
     }
-  },
-
-  components :{
-    //HeaderComponent,
-    InfoPopup,
-    infoScreen1,
-    infoScreen2,
-    infoScreen3,
-    infoScreen4,
-    infoScreen5,
-    infoScreen6,
-    infoScreen7,
-    infoScreen8,
-    infoScreen9,
-    infoScreen10
   },
 
   mounted() {
