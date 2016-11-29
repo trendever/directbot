@@ -105,7 +105,7 @@ export const createLead = ( { commit, state }, product_id ) => {
     .then(
       ( lead ) => {
         incLengthList( { commit, state }, 1 );
-        commit( types.LEAD_RECEIVE, [ lead ], 'customer' );
+        commit( types.LEAD_RECEIVE, {leads: [ lead ], tab: 'customer'} );
         return lead;
       },
       leads.sendError
@@ -127,7 +127,7 @@ export const setScrollLeads = ( { commit, state }, { scrollTop, scrollHeight } )
 
 export const onMessagesLead = (
   { commit, state },
-  { response_map:{ chat:{ id:conversation_id, members }, messages } }
+   { response_map:{ chat:{ id:conversation_id, members }, messages } }
 ) => {
 
   function handler( lead ) {
@@ -186,7 +186,7 @@ export const onMessagesLead = (
       .then(
         ( { lead } ) => {
           // TODO Спросить как можно определить, для текущего пользователя lead в покупаю || продаю.
-          commit( types.LEAD_RECEIVE, [ lead ], getGroup( state, lead ) );
+          commit( types.LEAD_RECEIVE, { leads: [ lead ], tab: getGroup( state, lead ) } );
           handler( lead );
         } )
       .catch( ( error ) => {

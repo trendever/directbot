@@ -39,13 +39,13 @@
         //this.onProductNewProduct( response_map.object_list[ 0 ], true );
       },
       onMessage( data ) {
-        store.dispatch('onMessagesLead', { data });
-        store.dispatch('onMessagesChat', { data });
+        store.dispatch('onMessagesLead', data );
+        store.dispatch('onMessagesChat', data );
 
       },
 
       onMessageRead( data ) {
-        store.dispatch('onMessageReadLead',{ data } );
+        store.dispatch('onMessageReadLead', data );
       },
       on() {
         store.dispatch('initLead').then( () => {

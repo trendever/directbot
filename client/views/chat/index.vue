@@ -339,7 +339,7 @@ export default {
       if ( this.needLoadMessage ) {
         if ( document.body.scrollTop < 1500 ) {
 
-          this.$set( 'needLoadMessage', false );
+          this.needLoadMessage =  false;
 
           this.loadMessage().then( ( messages ) => {
             this.$nextTick( () => {
