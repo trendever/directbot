@@ -1,0 +1,244 @@
+@import 'style/vars/vars.pcss';
+
+.standalone .payment-window{
+  padding-top: 40px;
+  background: #12302d;
+}
+
+iframe.payment-window{
+  position: absolute;
+  width: 100%;
+  background: white;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50000;
+}
+
+
+.loader-center {
+  position: fixed 0 * * 0;
+  z-index: 100;
+  background: rgba(49, 190, 188, 0.15);
+  width: 100%;
+  height: 100%;
+  #app-loader {
+    transform: translate(-50%, -50%);
+    position: absolute 50% * * 50%;
+  }
+}
+
+.chat-approve-btn {
+  font-family: "San Francisco Light";
+  position: fixed * 0 0 0!important;
+  margin-bottom: 0px!important;
+  height: 60px;
+  color: #12302d;
+  background: $color-orange;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 60px;
+  cursor: pointer;
+  width: 550px;
+  line-height: 67px;
+  width: 420px;
+  margin:0 auto;
+  border-radius: 5px;
+  text-align: right;
+
+  &.noaction{
+    text-align: center;
+  }
+
+  @media(--mobile) {
+    line-height: 100px !important;
+    height: 100px;
+    width: 100% !important;
+    font-size: 2.4rem;
+  }
+
+}
+
+.chat-pending-btn {
+  font-family: $font__family__light;
+  position: fixed * 0 0 0!important;
+  margin-bottom: 0px!important;
+  height: 60px;
+  color: $color__gray-dark;
+  background-color: $color__gray-lighter;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 60px;
+  cursor: pointer;
+  width: 550px;
+  line-height: 67px;
+  width: 420px;
+  margin:0 auto;
+  border-radius: 5px;
+  text-align: right;
+  &.noaction{
+    text-align: center;
+  }
+  @media(--mobile) {
+    line-height: 100px !important;
+    height: 100px;
+    width: 100% !important;
+    font-size: 2.4rem;
+  }
+}
+
+
+
+.btn-payment{
+  width: 100%;
+  text-align: center;
+
+}
+
+.btn-cancel{
+  width: 20%;
+  margin-top: -60px;
+  float: right;
+  padding-right: 25px;
+  padding-top: 15px;
+  @media(--mobile) {
+    padding-right: 28px;
+    padding-top: 36px;
+    margin-top: -99.5px;
+  }
+  .ic-close{
+    font-size: 20px;
+    @media(--mobile) {
+      font-size: 26px;
+    }
+  }
+}
+
+.chat-bar {
+  position: fixed * 0 0 0;
+  display: table;
+  min-height: 50px;
+  background: $color__white;
+  vertical-align: middle;
+
+  @media(--mobile) {
+    min-height: 90px;
+  }
+
+  &_menu-btn {
+    display: table-cell;
+    padding: 12px 15px 12px 15px;
+    width:50px;
+    height: 50px;
+    vertical-align: bottom;
+    cursor: pointer;
+
+    @media (--mobile) {
+      padding: 20px 30px;
+      width:100px;
+      height: 90px;
+      vertical-align: bottom;
+    }
+
+    i {
+      color: #31BEBC;
+      font-size: 33px;
+
+      @media(--mobile){
+        font-size: 55px;
+      }
+    }
+    &:hover {
+      //background: rgba(0, 0, 0, 0.02);
+    }
+
+    &.directbot-color {
+      i {
+        color: $color__blue;
+      }
+    }
+  }
+  &_input {
+    display: table-cell;
+    margin: 9px 0;
+    padding: 1px 0;
+    min-height: 32px;
+    width: 100%;
+    vertical-align: middle;
+
+    @media(--mobile){
+      margin: 16px 0;
+      min-height: 58px;
+      width: 530px;
+      padding: 17px 0;
+    }
+
+    textarea {
+      overflow-y: hidden;
+      margin-bottom: -4px;
+      padding: 6px;
+      width: 100%;
+      height: 32px;
+      outline: none;
+      border: 1px solid $color__gray-dark;
+      border-radius: 8px;
+      color: $color__gray-dark;
+      font-size: 16px;
+      line-height: 19.2px;
+      resize: none;
+      font-family: "San Francisco Light";
+      @media(--mobile){
+        padding: 12px 18px;
+        height: 58px;
+        font-size: 32px;
+        line-height: 33.6px;
+      }
+    }
+    &:first-child {
+      margin-left: 15px;
+    }
+  }
+  &_send-btn {
+    display: table-cell;
+    padding: 0 15px;
+    width: 60px;
+    height: 50px;
+    vertical-align: bottom;
+    padding-bottom: 13px;
+    cursor: pointer;
+    padding-left: 27px;
+
+    @media(--mobile){
+      vertical-align: bottom;
+      width: 120px;
+      height: 90px;
+      padding-bottom: 20px;
+    }
+
+    i {
+      color: $color__gray-dark;
+      font-size: 30px;
+
+      @media(--mobile){
+
+        margin-top: 17px;
+        font-size: 55px;
+      }
+    }
+    &:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    &.__active i {
+      color: $color__green;
+    }
+
+
+    &.directbot-color.__active {
+      i {
+
+        color: $color__blue;
+
+      }
+    }
+  }
+}

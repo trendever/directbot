@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
-import ChatList from '../views/ChatList'
 import Popup from '../views/popup/index'
 
 Vue.use(Router)
@@ -27,19 +25,26 @@ let router = new Router({
       path: '/',
       component: require('views/home/index.vue')
 		},
-
 		{
 		  name: 'chat_list',
 		  path: '/chat',
-		  component: require('views/ChatList')
+		  component: require('views/chat-list')
 		},
-
+    {
+      name: 'chat',
+      path: '/chat/:id',
+      component: require('views/chat/index')
+    },
     {
       name: 'auth',
       path: '/auth',
       component: require('views/auth/index')
     },
 
+    {
+      name: 'chat_zoom',
+      path: '/chat_zoom',
+    },
     {
       name: 'confirm',
       path: '/confirm',
@@ -56,6 +61,12 @@ let router = new Router({
       name: 'popup',
       path: '/popup/:id',
       component: Popup
+    },
+    {
+      name: 'user',
+      path: '/:id',
+      require: require('views/profile/index')
+
     },
     {
       name: 'profile',

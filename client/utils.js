@@ -266,6 +266,7 @@ export const targetClass = ( event , className , callback ) => {
 
 
 
+
 export const formatPastTime = ( pasttime ) => {
   const second = parseInt( pasttime);
   const minute = parseInt( second / 60 );
@@ -364,4 +365,16 @@ export const formatPastTime = ( pasttime ) => {
   }
 
 };
+
+
+export const  navigateTolink = (href, newTab) => {
+
+  let a = document.createElement('a');
+    a.href = href;
+    if (newTab) {
+      a.setAttribute('target', '_blank');
+    }
+  a.click();
+
+}
 

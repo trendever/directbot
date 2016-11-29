@@ -1,23 +1,38 @@
 <template lang="pug">
 #app
   router-view
+  listener
 </template>
 
 <script>
-import store from 'root/store';
+
 import 'style/fonts/trendever-icons/trendever-icons.font.js';
 import 'style/index.pcss';
+
+
+import store from 'root/store';
+import Listener from './listener';
+
 export default {
+  components: {
+    Listener
+  },
   created(){
 
     store.dispatch('authUser', { null, null } )
 
-  }
+  },
+
+
+
 }
+
 </script>
 
 <style lang="postcss">
-@import '../style/vars/fonts.pcss';
+
+@import 'style/vars/fonts.pcss';
+
 * {
 
   box-sizing: border-box;
@@ -30,12 +45,7 @@ body, html {
   height: 100%;
   font-size: 14px;
   font-family: $font__family;
-}
 
-
-.page {
-  text-align: center;
-  overflow: hidden;
 }
 
 #app{

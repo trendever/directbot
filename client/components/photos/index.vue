@@ -107,7 +107,7 @@ export default {
 
             this.oldScroll = window.scrollY;
 
-            this.setScroll(window.scrollY);
+            this.setScrollList(window.scrollY);
 
             if(this.off || !direction) return;
 
