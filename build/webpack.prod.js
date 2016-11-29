@@ -48,6 +48,16 @@ base.plugins.push(
   })
 )
 
+base.module.loaders.push(
+  {
+    test: /\.font\.(js|json)$/,
+    loader: ExtractTextPlugin.extract([
+      "css",
+      "fontgen?fileName=static/fonts/[fontname].[hash:7][ext]"
+    ])
+  }
+)
+
 // extrac css in standalone .css files
 base.module.loaders.push({
   test: /\.css$/,
@@ -62,5 +72,7 @@ base.vue.loaders.css = ExtractTextPlugin.extract({
   loader: 'css-loader?-autoprefixer',
   fallbackLoader: 'vue-style-loader'
 })
+
+
 
 module.exports = base
