@@ -11,7 +11,7 @@ import 'style/index.pcss';
 
 
 import store from 'root/store';
-import Listener from './listener';
+import Listener from './Listener.vue';
 
 export default {
   components: {
