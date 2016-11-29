@@ -32,6 +32,10 @@
       }
     },
 
+    mounted(){
+      this.$emit('goToBottom');
+    },
+
     computed: {
       ...mapGetters([
         'getShopName',

@@ -36,6 +36,9 @@
         required: true
       }
     },
+    mounted(){
+      this.$emit('goToBottom');
+    },
     computed: {
       ...mapGetters([
 

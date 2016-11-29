@@ -79,6 +79,9 @@
         showPaymentWindow: false
       }
     },
+    mounted(){
+      this.$emit('goToBottom');
+    },
     props: {
       msg: {
         type: Object,

@@ -62,7 +62,10 @@
     },
     mounted(){
 
-      this.scroll = document.querySelector( '.scroll-cnt' );
+      this.addPadding();
+
+      this.scroll = document.body;
+
       if ( !window.browser.mobile ) {
 
         this.sendMessage = listen( window, 'keydown', ( event ) => {

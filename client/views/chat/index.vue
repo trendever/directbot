@@ -12,28 +12,37 @@
           div
             chat-msg-status(
               v-if='msg.parts[0].mime_type === "json/status"',
-              :msg='msg')
+              :msg='msg',
+              v-on:goToBottom="goToBottom")
             chat-msg-product-old(
               v-if='msg.parts[0].mime_type === "text/json"',
-              :msg='msg')
+              :msg='msg',
+              v-on:goToBottom="goToBottom")
             chat-msg-product(
               v-if='msg.parts[0].mime_type === "text/plain" && hasData(msg) ',
-              :msg='msg')
+              :msg='msg',
+              v-on:goToBottom="goToBottom")
             chat-msg(
               v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg)',
               :msg='msg',
-              :directbot="directbot")
+              :directbot="directbot",
+              v-on:goToBottom="goToBottom")
             chat-msg-info(
               v-if='msg.parts[0].mime_type === "text/html"',
-              :msg='msg')
+              :msg='msg',
+              v-on:goToBottom="goToBottom")
             chat-msg-img(
               v-if='isImage(msg.parts[0].mime_type)',
-              :msg='msg')
+              :msg='msg',
+              v-on:goToBottom="goToBottom")
             chat-msg-payment(
-              v-if='msg.parts[0].mime_type === "json/payment" || msg.parts[0].mime_type === "json/cancel_order"', :msg='msg')
+              v-if='msg.parts[0].mime_type === "json/payment" || msg.parts[0].mime_type === "json/cancel_order"',
+              :msg='msg',
+              v-on:goToBottom="goToBottom")
           chat-msg-order(
               v-if='msg.parts[0].mime_type === "json/order"',
-              :msg='msg')
+              :msg='msg',
+              v-on:goToBottom="goToBottom")
 
   chat-bar(v-on:addPadding="addPadding")
   //-scroll-top(:to-up="false")
@@ -349,7 +358,7 @@ export default {
                 const SHDelta                 = document.body.scrollHeight - SHAfter;
                 const percentTopOfHeight      = (document.body.scrollTop + SHDelta) / document.body.scrollHeight;
                 document.body.scrollTop = percentTopOfHeight * document.body.scrollHeight;
-                this.$set( 'needLoadMessage', true );
+                this.needLoadMessage = true;
 
               }
 
@@ -370,36 +379,16 @@ export default {
 
         this.fullScroll = height;
 
-        console.log(height);
-
         this.$nextTick(()=>{
 
           setTimeout(()=>{
 
             this.goToBottom();
 
-          },100);
+          }, 100 );
 
         })
-
-      } else {
-
-        this.recursiveCount++;
-
-        if(this.recursiveCount > 5) return;
-
-        this.$nextTick(()=>{
-
-          setTimeout(()=>{
-
-            this.goToBottom();
-
-          },100);
-
-        })
-
       }
-
     }
   },
 }

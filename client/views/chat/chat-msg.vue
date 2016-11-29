@@ -51,6 +51,9 @@
         navigateTolink(`http://instagram.com/${this.getUserNameLink}`, true);
       }
     },
+    mounted(){
+      this.$emit('goToBottom');
+    },
     computed: {
       ...mapGetters([
         //chat

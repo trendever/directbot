@@ -51,6 +51,9 @@
         }
       }
     },
+    mounted(){
+      this.$emit('goToBottom');
+    },
 
     methods:{
       ...mapActions([
