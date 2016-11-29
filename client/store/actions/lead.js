@@ -197,7 +197,7 @@ export const onMessagesLead = (
 
 };
 
-export const onMessageReadLead = ( { commit, state }, { data }) => {
+export const onMessageReadLead = ( { commit, state }, data ) => {
 
   if ( data.response_map ) {
     if ( data.response_map.chat ) {

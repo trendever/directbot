@@ -1,6 +1,7 @@
 import * as types from '../mutation-types';
 import * as getters from '../getters/lead.js';
 import * as actions from '../actions/lead.js';
+import Vue from 'vue';
 
 // initial state
 const state = {
@@ -93,7 +94,9 @@ const mutations = {
 
           if ( state[ tab ][ i - 1 ].id === leads[ j - 1 ].id ) {
 
-            state[ tab ].$set( i - 1, leads[ j - 1 ] );
+            Vue.set(state[ tab ],i - 1, leads[ j - 1 ] )
+
+            //state[ tab ].$set( i - 1, leads[ j - 1 ] );
 
             matchedId.push( leads[ j - 1 ].id );
 
@@ -188,7 +191,9 @@ const mutations = {
                 if ( status !== null ) {
                   lead.status = status;
                 }
-                groups[ groupsIndex ].$set( index, lead );
+
+                Vue.set(groups[ groupsIndex ], index, lead)
+                //groups[ groupsIndex ].$set( index, lead );
               }
 
             }

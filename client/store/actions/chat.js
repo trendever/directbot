@@ -318,7 +318,7 @@ export const createMessage = ( { commit, state },{ conversation_id, text, mime_t
       beforeLoadId,
       loaded: false,
       conversation_id: conversation_id,
-      user_id: store.getters.userID,
+      user_id: userID (store.state.user),
       parts: [
         {
           content: text,
@@ -362,7 +362,7 @@ export const receiveMessage = ( { commit, state }, conversation_id, messages ) =
 
       commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages, id: conversation_id } )
 
-      if ( store.getters.userID( state ) !== msgUserId ) {
+      if ( userID( store.state.user ) !== msgUserId ) {
 
         if ( state.conversation.id === msg.conversation_id ) {
 
