@@ -19,9 +19,7 @@
           i.ic-currency-rub
           | /мес
       .hero__content__set-up
-        button(v-if="isMobile", v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ ЗА 0
-          i.ic-rub
-        button(v-if="!isMobile").set-up-btn ПОДКЛЮЧИТЬ БЕСПЛАТНО
+        button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
       button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
         | ВХОД И РЕГИСТРАЦИЯ
 
@@ -39,8 +37,8 @@
       .wrap-box
         .hero__content__2__title.middle 10 из 10 инста-шопов
         .hero__content__2__paragraph
-          p хотят свой интернет-магазин и #[br] ставить активные ссылки под постами
-      .wrap-box
+          p хотят свой интернет-магазин и #[br(v-if="isMobile")] ставить #[br(v-if="!isMobile")] активные ссылки под постами
+      .wrap-box(v-if="isMobile")
         .hero__content__2__title.bot РЕШЕНИЕ
         .hero__content__2__paragraph
           p.last Наш оператор ответит #[br] вашим клиентам в Instagram Direct #[br] и, если нужно, создаст сайт
@@ -52,17 +50,18 @@
           .header__center
             .header__text.head Как это работает?
     .hero__content__landing__top-scheme
-      img(src="./img/insta-bot_image_mob.svg")
+      img(src="./img/insta-bot_image_mob.svg", v-if="isMobile")
       .counter
         span.txt ОТПРАВЛЕНО
         span.digit 186
         span.txt СООБЩЕНИЙ
       p.t СКАНИРУЕТ КОММЕНТАРИИ #[br] И DIRECT В INSTAGRAM
       p.m БЫСТРО ОТВЕЧАЕТ #[br] КЛИЕНТАМ В DIRECT
-      p.b НАШ ОПЕРАТОР ВСЕ УСПЕВАЕТ #[br] И СТОИТ ВСЕГО 2990&nbsp
+      img(src="./img/insta-bot_image_desk.svg", v-if="!isMobile")
+      p.b НАШ ОПЕРАТОР ВСЕ УСПЕВАЕТ #[br(v-if="isMobile")] И СТОИТ ВСЕГО 2990&nbsp
         i.ic-rub
-        | /МЕС, #[br] ПОТОМУ ЧТО ЕМУ ПОМОГАЕТ #[br] DIRECTBOT, АВТОМАТИЗИРУЮЩИЙ #[br] БОЛЬШИНСТВО ДЕЙСТВИЙ
-    .hero__content__landing__title.main Преимущества #[br] нашего оператора
+        | /МЕС, #[br] ПОТОМУ ЧТО ЕМУ ПОМОГАЕТ #[br(v-if="isMobile")] DIRECTBOT, #[br(v-if="!isMobile")] АВТОМАТИЗИРУЮЩИЙ #[br(v-if="isMobile")] БОЛЬШИНСТВО ДЕЙСТВИЙ
+    .hero__content__landing__title.main Преимущества #[br(v-if="isMobile")] нашего оператора
       .wrapper
         .info-box
           .hero__content__landing__icon-1
@@ -70,7 +69,7 @@
           .hero__content__landing__sub-title Отвечает всем #[br] клиентам сразу
           .hero__content__landing__caption Со смайлами&nbsp
             i.ic-smile &nbsp&nbsp&nbsp&nbsp&nbsp
-            | уделит внимание каждому, быстро ответит. #[br]
+            | уделит внимание #[br(v-if="!isMobile")] каждому, быстро ответит. #[br]
             a.link-info(v-on:click="showPopupA = true") Ни один клиент не успеет передумать
             info-popup(:show-popup="showPopupA")
               i.ic-close(v-on:click="showPopupA = false")
@@ -79,7 +78,7 @@
           .hero__content__landing__icon-2
             img(src="./img/icon-2.png")
           .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
-          .hero__content__landing__caption Больше не нужно отвечать #[br] и спрашивать одно и то же. #[br]
+          .hero__content__landing__caption Больше не нужно отвечать #[br(v-if="isMobile")] и спрашивать #[br(v-if="!isMobile")] одно и то же. #[br(v-if="isMobile")]
             a.link-info(v-on:click="showPopupB = true") Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
             info-popup(:show-popup="showPopupB")
               i.ic-close(v-on:click="showPopupB = false")
