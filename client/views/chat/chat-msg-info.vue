@@ -33,7 +33,7 @@
     },
 
     computed: {
-      mapGetters([
+      ...mapGetters([
         'getShopName',
         'getCurrentMember',
         'getLastMessageId',

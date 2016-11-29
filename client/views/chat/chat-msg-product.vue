@@ -14,14 +14,15 @@
         .chat-msg_t(
             v-link='{name: "user", params: {id: getUserNameLink}}',
             v-if='!isOwnMessage && !isClosest',
-            :class='{"chat-msg_t-customer-color":isCustomer}'
+            :class='{"chat-msg_t-customer-color":isCustomer}',
+            v-html="getUsername"
           )
-            | {{{ getUsername }}}
+
         .chat-msg-product(
             v-link='{name: "product_detail", params: {id: product.id}}'
           )
-          .chat-msg-product-txt(:class="{'-closest':isClosest}")
-            |{{{ getMessage }}}
+          .chat-msg-product-txt(:class="{'-closest':isClosest}", v-html="getMessage")
+
 </template>
 
 <script type='text/babel'>
@@ -37,13 +38,8 @@
         required: true
       }
     },
-    vuex: {
-      getters: {
-
-      }
-    },
     computed: {
-      mapGetters([
+      ...mapGetters([
         //chat
         'getShopName',
         'getCurrentMember',

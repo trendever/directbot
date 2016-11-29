@@ -1,5 +1,5 @@
 <style src='./styles/chat-msg.pcss'></style>
-<template lang="jade">
+<template lang="pug">
 
 .chat-row(:class='getSide')
   span(class='bubble_info bubble_info_time') {{ datetime }}
@@ -9,18 +9,20 @@
     .chat-msg_t(
         v-if='!isOwnMessage && !isClosest && !directbot',
         :class='{"chat-msg_t-customer-color":isCustomer}',
-        v-link='{name: "user", params: {id: getUserNameLink}}'
+        v-link='{name: "user", params: {id: getUserNameLink}}',
+        v-html="getUsername"
       )
-      | {{{ getUsername }}}
+
     .chat-msg_t(
         v-if='!isOwnMessage && !isClosest && directbot',
         :class='{"chat-msg_t-customer-color":isCustomer}',
         v-on:click="goInstagramProfile"
+        v-html="getUsername"
       )
-      | {{{ getUsername }}}
+
     .chat-msg-wrap
-      p.chat-msg_txt
-        | {{{ getMessage }}}
+      p.chat-msg_txt(v-html="getMessage")
+
 
 
 
@@ -42,14 +44,6 @@
       msg: {
         type: Object,
         required: true
-      }
-    },
-    vuex: {
-      getters: {
-        getShopName,
-        getCurrentMember,
-        getLastMessageId,
-        user
       }
     },
     methods:{

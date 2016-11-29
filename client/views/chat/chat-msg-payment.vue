@@ -17,7 +17,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import { getPaymentAmmount } from 'project/payment/functions.js';
+  import { getPaymentAmmount } from 'views/payment/functions.js';
 
   export default{
     data(){

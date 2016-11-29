@@ -18,14 +18,14 @@
       span ЗАПРОШЕНО {{getAmmount | curency_spaces}} ₽
     .btn-cancel(@click="cancel") <i class="ic-close"></i>
 
-iframe.payment-window(v-if='showPayButton', id="paymentIframe" v-bind:src="payLink" v-show="showPaymentWindow")
+  iframe.payment-window(v-if='showPayButton', id="paymentIframe" v-bind:src="payLink" v-show="showPaymentWindow")
 
 </template>
 
 <script type='text/babel'>
 
 
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex';
 
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
@@ -120,7 +120,7 @@ iframe.payment-window(v-if='showPayButton', id="paymentIframe" v-bind:src="payLi
         'getLastMessageId',
         'getCustomerName',
         'getCustomerId',
-        'getLeadId'
+        'getLeadId',
         //chat
         'user'
       ]),

@@ -54,17 +54,17 @@ import * as leads from 'services/leads';
 //components
 //import appLoader from 'base/loader/loader';
 //import scrollTop from 'base/scroll-top/scroll-top.vue';
-/*  import ChatMsgOrder from './chat-msg-order.vue';
+import ChatMsgOrder from './chat-msg-order.vue';
 import ChatMsgPayment from './chat-msg-payment.vue';
 import ChatMsgProduct from './chat-msg-product.vue';
 import ChatMsgProductOld from './chat-msg-product-old.vue';
 import ChatMsgStatus from './chat-msg-status.vue';
 import ChatMsg from './chat-msg.vue';
-import ChatMsgImg from './chat-msg-img.vue';
+//import ChatMsgImg from './chat-msg-img.vue';
 import ChatMsgInfo from './chat-msg-info.vue';
-import ChatBar from './chat-bar.vue';
-import ChatHeader from './chat-header.vue';
-import popupImg from 'base/popup-img/index.vue';*/
+//import ChatBar from './chat-bar.vue';
+//import ChatHeader from './chat-header.vue';
+//import popupImg from 'base/popup-img/index.vue';
 
 export default {
   props: {
@@ -75,19 +75,19 @@ export default {
   },
 
   components: {
-/*      popupImg,
-    ChatHeader,
-    ChatBar,
+    //popupImg,
+    //ChatHeader,
+    //ChatBar,
     ChatMsg,
     ChatMsgOrder,
     ChatMsgPayment,
     ChatMsgProduct,
     ChatMsgProductOld,
     ChatMsgStatus,
-    ChatMsgImg,
+    //ChatMsgImg,
     ChatMsgInfo,
-    scrollTop,
-    appLoader,*/
+    //scrollTop,
+    //appLoader,
   },
 
   data(){

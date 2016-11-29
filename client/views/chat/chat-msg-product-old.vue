@@ -14,24 +14,23 @@
         .chat-msg_t(
             v-link='{name: "user", params: {id: getUserNameLink}}',
             v-if='!isOwnMessage && !isClosest',
-            :class='{"chat-msg_t-customer-color":isCustomer}'
+            :class='{"chat-msg_t-customer-color":isCustomer}',
+            v-html="getUsername"
           )
-            | {{{ getUsername }}}
         .chat-msg-product(
             v-link='{name: "product_detail", params: {id: product.id}}'
           )
           .chat-msg-product-txt(:class="{'-closest':isClosest}")
-            a(v-link='{name: "product_detail", params: {id: product.id}}')
-              |{{{ titles }}}
+            a(v-link='{name: "product_detail", params: {id: product.id}}', v-html="titles")
             br(v-if="titles")
-            span
-              |{{{ description }}}
+            span(v-html="description")
+
 </template>
 
 <script type='text/babel'>
-  import { formatDatetime } from 'utils';
+  import { formatDatetime } from 'root/utils';
   import { formatTime } from './utils';
-  import { user } from 'vuex/getters/user.js';
+
   import * as leads from 'services/leads';
   import { mapGetters } from 'vuex';
   export default{
