@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import ChatList from '../views/ChatList'
+import Popup from '../views/popup/index'
 Vue.use(Router)
 
 let router = new Router({
@@ -33,6 +34,11 @@ let router = new Router({
       name: 'confirm',
       path: '/confirm',
       component: require('views/auth/confirm')
+    },
+    {
+      name: 'popup',
+      path: '/popup/:id',
+      component: Popup
     },
     {
       name: 'profile',
