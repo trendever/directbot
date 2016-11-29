@@ -309,7 +309,7 @@ export const loadMessage = (() => {
 
 })();
 
-export const createMessage = ( { commit, state }, conversation_id, text, mime_type ) => {
+export const createMessage = ( { commit, state },{ conversation_id, text, mime_type } ) => {
 
   const beforeLoadId = Math.random()
 

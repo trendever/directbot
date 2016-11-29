@@ -35,7 +35,7 @@
               v-if='msg.parts[0].mime_type === "json/order"',
               :msg='msg')
 
-  chat-bar
+  chat-bar(v-on:addPadding="addPadding")
   //-scroll-top(:to-up="false")
 </template>
 
@@ -129,12 +129,6 @@ export default {
 
     //helps
     this.$on('goToBottom', this.goToBottom);
-    this.$on('addPadding', (val)=>{
-
-      this.$refs.section.style.paddingBottom = val + 'px';
-      window.scrollTo(0, document.body.scrollHeight);
-
-    })
 
     //monetization
     if(settings.activateMonetization && this.getCurrentMember.role === 2){
@@ -211,6 +205,13 @@ export default {
       'openPopUp'
 
     ]),
+
+    addPadding(val){
+
+      this.$refs.section.style.paddingBottom = val + 'px';
+      window.scrollTo(0, document.body.scrollHeight);
+
+    },
     closePopUp(){
 
       this.openPopUp();

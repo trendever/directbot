@@ -74,7 +74,7 @@
           }
           if ( event.shiftKey && event.keyCode === 13 ) {
 
-            this.$set( 'txtMsg', this.txtMsg )
+            this.txtMsg = this.txtMsg;
 
           }
 
@@ -114,6 +114,7 @@
       addPadding(){
 
         this.$emit('addPadding', this.$refs.bar.offsetHeight)
+
       },
       openChatmenu(){
 
@@ -210,7 +211,7 @@
 
         this.txtMsg = ''
 
-        const promise = this.createMessage( this.getId, txtMsg, 'text/plain' )
+        const promise = this.createMessage({ conversation_id: this.getId, text:txtMsg, mime_type: 'text/plain' } )
         promise.then( () => {
           if (
             this.getStatus === leads.STATUSES.NEW.key &&
