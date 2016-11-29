@@ -15,6 +15,8 @@ import {
   getCurrentMember
 } from '../getters/chat.js'
 
+import { userID } from '../getters/user.js'
+
 import { getLeadById, getGroup, getLeadByConversationId } from '../getters/lead.js'
 
 

@@ -67,7 +67,7 @@ export const getCustomerName = ( state ) => {
 
 export const getCustomerId = ( state ) => {
 
-  const lead = getLeadByConversationId( store.state.leads, state.conversation.id );
+  const lead = getLeadByConversationId( store.state.leads, state.id );
 
   if ( lead ) {
 

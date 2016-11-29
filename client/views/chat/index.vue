@@ -26,7 +26,7 @@
             chat-msg-info(
               v-if='msg.parts[0].mime_type === "text/html"',
               :msg='msg')
-            //-chat-msg-img(
+            chat-msg-img(
               v-if='isImage(msg.parts[0].mime_type)',
               :msg='msg')
             chat-msg-payment(
@@ -35,7 +35,7 @@
               v-if='msg.parts[0].mime_type === "json/order"',
               :msg='msg')
 
-  //-chat-bar
+  chat-bar
   //-scroll-top(:to-up="false")
 </template>
 
@@ -60,9 +60,9 @@ import ChatMsgProduct from './chat-msg-product.vue';
 import ChatMsgProductOld from './chat-msg-product-old.vue';
 import ChatMsgStatus from './chat-msg-status.vue';
 import ChatMsg from './chat-msg.vue';
-//import ChatMsgImg from './chat-msg-img.vue';
+import ChatMsgImg from './chat-msg-img.vue';
 import ChatMsgInfo from './chat-msg-info.vue';
-//import ChatBar from './chat-bar.vue';
+import ChatBar from './chat-bar.vue';
 //import ChatHeader from './chat-header.vue';
 //import popupImg from 'base/popup-img/index.vue';
 
@@ -77,14 +77,14 @@ export default {
   components: {
     //popupImg,
     //ChatHeader,
-    //ChatBar,
+    ChatBar,
     ChatMsg,
     ChatMsgOrder,
     ChatMsgPayment,
     ChatMsgProduct,
     ChatMsgProductOld,
     ChatMsgStatus,
-    //ChatMsgImg,
+    ChatMsgImg,
     ChatMsgInfo,
     //scrollTop,
     //appLoader,

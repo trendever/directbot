@@ -9,37 +9,37 @@ menu-component
 </template>
 
 <script>
-  import { setStatus, setShowStatusMenu, setShowCancelMenu } from 'vuex/actions/chat.js';
+import { mapActions } from 'vuex';
+import MenuComponent from 'components/menu/menu.vue';
+import * as leadService from 'services/leads';
 
-  import MenuComponent from 'base/menu/menu.vue';
-  import * as leadService from 'services/leads';
-
-  export default{
-    data(){
-      return {
-        cancelReasons: []
-      }
-    },
-    vuex: {
-      actions: {
-        setStatus,
-        setShowStatusMenu,
-        setShowCancelMenu,
-      }
-    },
-    components: {
-      MenuComponent
-    },
-    ready(){
-      leadService.getCancelReasons().then(data=>{
-
-        let reasons = data.reasons.filter(item=>{
-          return item.id !== 1 && item.id !== 2;
-        });
-
-        this.$set('cancelReasons', reasons);
-
-      })
+export default{
+  data(){
+    return {
+      cancelReasons: []
     }
+  },
+  components: {
+    MenuComponent
+  },
+  methods: {
+    ...mapActions([
+      //chat
+      'setStatus',
+      'setShowStatusMenu',
+      'setShowCancelMenu',
+    ])
+  },
+  mounted(){
+    leadService.getCancelReasons().then(data=>{
+
+      let reasons = data.reasons.filter(item=>{
+        return item.id !== 1 && item.id !== 2;
+      });
+
+      this.cancelReasons = reasons;
+
+    })
   }
+}
 </script>

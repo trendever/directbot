@@ -19,6 +19,12 @@ let router = new Router({
       path: '/',
       component: require('views/home/index.vue')
 		},
+    {
+
+      name: 'product_detail',
+      path: '/product',
+
+    },
 		{
 		  name: 'chat_list',
 		  path: '/chat',
@@ -33,6 +39,10 @@ let router = new Router({
       name: 'auth',
       path: '/auth',
       component: require('views/auth/index')
+    },
+    {
+      name: 'chat_zoom',
+      path: '/chat_zoom',
     },
     {
       name: 'confirm',

@@ -1,70 +1,66 @@
 <style src='./styles/chat-bar.pcss'></style>
 <template lang="pug">
-
-div.chat-bar
-  .chat-approve-btn.noaction(v-if='getAction === "approve" && getCurrentMember.role === 1', @click='approveChat($event)') ПОДТВЕРДИТЬ
-  .chat-bar.section__content(v-if="getAction !== 'approve' && getAction !== 'pay' && getAction !== 'pendingpayment' ", id="inputbar")
-    .chat-bar_menu-btn(@click.stop='openChatmenu', :class="{'directbot-color': directbot}")
-      i.ic-chat_menu
-    .chat-bar_input(v-el:bar)
-      textarea(placeholder='Введите сообщение',
-               v-model='txtMsg',
-               v-on:keyup="addPadding",
-               v-el:input-msg,
-               v-on:click="$els.inputMsg.focus()",
-               @focus='focusInput',
-               @blur='blurInput($event)')
-    .chat-bar_send-btn(v-on:mousedown='send($event)',
-                       v-on:touchstart='send($event)',
-                       :class='{"__active": !!txtMsg, "directbot-color": directbot}')
-      i.ic-send-plane
-    chat-menu(v-if="!isMobile")
-chat-menu(v-if="isMobile")
+#chat-bar
+  .chat-bar
+    .chat-approve-btn.noaction(v-if='getAction === "approve" && getCurrentMember.role === 1', @click='approveChat($event)') ПОДТВЕРДИТЬ
+    .chat-bar.section__content(v-if="getAction !== 'approve' && getAction !== 'pay' && getAction !== 'pendingpayment' ", id="inputbar")
+      .chat-bar_menu-btn(@click.stop='openChatmenu', :class="{'directbot-color': directbot}")
+        i.ic-chat_menu
+      .chat-bar_input(ref="bar")
+        textarea(placeholder='Введите сообщение',
+                 v-model='txtMsg',
+                 v-on:keyup="addPadding",
+                 ref="inputMsg",
+                 v-on:click="$refs.inputMsg.focus()",
+                 @focus='focusInput',
+                 @blur='blurInput($event)')
+      .chat-bar_send-btn(v-on:mousedown='send($event)',
+                         v-on:touchstart='send($event)',
+                         :class='{"__active": !!txtMsg, "directbot-color": directbot}')
+        i.ic-send-plane
+      chat-menu(v-if="!isMobile")
+  chat-menu(v-if="isMobile")
 
 </template>
 
 <script type='text/babel'>
-  import settings from 'settings';
+
   import listen from 'event-listener'
-  import store from 'vuex/store'
-  import {
-    getAction,
-    getId,
-    getLeadId,
-    getCurrentMember,
-    getStatus,
-    getShowMenu,
-    getShopName
-  } from 'vuex/getters/chat.js'
 
-  import { getUseDays, isFake } from 'vuex/getters/user';
+  import store from 'root/store'
 
-  import {
-    setConversationAction,
-    createMessage,
-    setShowMenu,
-    setStatus
-  } from 'vuex/actions/chat.js'
+  import { mapActions, mapGetters } from 'vuex';
 
   import * as service from 'services/message'
   import * as leads from 'services/leads'
   import * as cardService from 'services/card';
-  import ChatMenu from './chat-menu.vue'
-  import { setCallbackOnSuccessAuth } from 'vuex/actions';
 
+  import ChatMenu from './chat-menu.vue'
 
   export default{
     data(){
       return {
         txtMsg: '',
-        isMobile: window.browser.mobile,
-        directbot: settings.directbotActive,
+        directbot: true,
         fakeRegCount: 0,
-        isMobile: window.browser.mobile
       }
     },
-
-    ready(){
+    computed: {
+      ...mapGetters([
+        //user
+        'isFake',
+        'getUseDays',
+        //chat
+        'getAction',
+        'getId',
+        'getCurrentMember',
+        'getShowMenu',
+        'getStatus',
+        'getShopName',
+        'getLeadId'
+      ]),
+    },
+    mounted(){
 
       this.scroll = document.querySelector( '.scroll-cnt' );
       if ( !window.browser.mobile ) {
@@ -90,9 +86,9 @@ chat-menu(v-if="isMobile")
 
     beforeDestroy() {
 
-      if(this.$els.inputMsg) {
+      if(this.$refs.inputMsg) {
 
-        this.$els.inputMsg.blur();
+        this.$refs.inputMsg.blur();
 
       }
 
@@ -103,32 +99,21 @@ chat-menu(v-if="isMobile")
         this.sendMessage.remove()
       }
     },
-
-    vuex: {
-      actions: {
-        setConversationAction,
-        setCallbackOnSuccessAuth,
-        createMessage,
-        setShowMenu,
-        setStatus
-      },
-      getters: {
-        isFake,
-        getUseDays,
-        getAction,
-        getId,
-        getCurrentMember,
-        getShowMenu,
-        getStatus,
-        getShopName,
-        getLeadId
-      }
-    },
-
     methods: {
+      ...mapActions([
+        //auth
+        'setCallbackOnSuccessAuth',
+        //chat
+        'setConversationAction',
+        'createMessage',
+        'setShowMenu',
+        'setStatus'
+
+      ]),
+
       addPadding(){
 
-        this.$dispatch('addPadding', this.$els.bar.offsetHeight)
+        this.$emit('addPadding', this.$refs.bar.offsetHeight)
       },
       openChatmenu(){
 
@@ -209,7 +194,7 @@ chat-menu(v-if="isMobile")
       },
 
       send ( event ) {
-        this.$dispatch('addPadding', 110)
+        this.$emit('addPadding', 110)
 
         if(event) {
 
@@ -263,7 +248,7 @@ chat-menu(v-if="isMobile")
           let id = this.$route.params.id;
           window.fakeAuth = {text: "чтобы не пропустить ответ от", data: this.getShopName}
           this.setCallbackOnSuccessAuth(()=>{
-            this.$router.go({name: 'chat', params: { id }})
+            this.$router.push({name: 'chat', params: { id }})
           })
           this.$router.replace( { name: 'signup' } );
         }
@@ -280,7 +265,7 @@ chat-menu(v-if="isMobile")
     watch: {
       txtMsg( msg ) {
         this.$nextTick( () => {
-          let inputMsg          = this.$els.inputMsg
+          let inputMsg          = this.$refs.inputMsg
           const textHeight      = window.matchMedia( '(max-width: 750px)' ).matches ? 58 : 32
           const inpHeight       = inputMsg.scrollHeight
           inputMsg.style.height = (msg ? (inpHeight <= textHeight) ? textHeight : inpHeight : textHeight) + 'px'

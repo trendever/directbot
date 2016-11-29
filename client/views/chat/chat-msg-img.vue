@@ -7,12 +7,13 @@
     i(:class='{"ic-check": isLoaded && !isRead, "ic-check-double": isRead, "ic-clock": !isLoaded}')
   .chat-msg.bubble.bubble-img(
     :class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage}')
-    .chat-msg_t(
-        v-link='{name: "user", params: {id: getUserNameLink}}',
+    router-link.chat-msg_t(
+        :to='{name: "user", params: {id: getUserNameLink}}',
         v-if='!isOwnMessage && !isClosest',
-        :class='{"chat-msg_t-customer-color":isCustomer}'
+        :class='{"chat-msg_t-customer-color":isCustomer}',
+        v-html="getUsername"
     )
-      | {{{ getUsername }}}
+
     img(
         @click="open",
         :src='getImg',
@@ -24,13 +25,15 @@
 </template>
 
 <script type='text/babel'>
-  import { getCurrentMember, getShopName, getLastMessageId } from 'vuex/getters/chat.js';
-  import { openPopUp } from 'vuex/actions/chat.js';
+
+  import { mapGetters, mapActions } from 'vuex';
+
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
+
   import { formatTime } from './utils';
-  import { ratioFit } from 'utils';
-  import { user } from 'vuex/getters/user.js';
+  import { ratioFit } from 'root/utils';
+
 
   export default{
     props: {
@@ -39,19 +42,6 @@
         required: true
       }
     },
-
-    vuex: {
-      actions:{
-        openPopUp
-      },
-      getters: {
-        getShopName,
-        getCurrentMember,
-        getLastMessageId,
-        user
-      }
-    },
-
     data(){
       return {
         showLargeImg: false,
@@ -63,6 +53,9 @@
     },
 
     methods:{
+      ...mapActions([
+        'openPopUp'
+      ]),
 
       open(){
 
@@ -70,11 +63,11 @@
 
         if ( msgParts.mime_type === 'image/json') {
 
-          let {width, height} = JSON.parse( msgParts.content );
+          let { width, height } = JSON.parse( msgParts.content );
 
           this.openPopUp( this.getImg, width, height );
 
-          this.$router.go({name: 'chat_zoom', query: { chatid: this.$route.params.id}})
+          this.$router.push({name: 'chat_zoom', query: { chatid: this.$route.params.id}})
         }
 
         if (msgParts.mime_type  === 'image/base64')  {
@@ -83,7 +76,7 @@
 
           this.openPopUp( this.getImg, width, height );
 
-          this.$router.go({name: 'chat_zoom', query: { chatid: this.$route.params.id}})
+          this.$router.push({name: 'chat_zoom', query: { chatid: this.$route.params.id}})
 
 
         }
@@ -92,7 +85,14 @@
     },
 
     computed: {
-
+      ...mapGetters([
+        //chat
+        'getShopName',
+        'getCurrentMember',
+        'getLastMessageId',
+        //user
+        'user'
+      ]),
       isLoaded(){
 
         if( 'loaded' in this.msg){

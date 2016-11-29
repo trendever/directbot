@@ -1,7 +1,7 @@
 <style src='./styles/chat-bar.pcss'></style>
 <template lang="pug">
 div
-  .loader-center(v-if="imgLoader"): app-loader
+  //.loader-center(v-if="imgLoader"): app-loader
   menu-component(v-if='getShowMenu && !getShowStatusMenu')
     div.menu-items(slot='items', :class="{'directbot-color': isDirectbot}")
 
@@ -32,76 +32,32 @@ div
 
 <script type='text/babel'>
   import listen from 'event-listener';
-  import store from 'vuex/store';
-  import { targetClass } from 'utils';
-  import {
-    getShopId,
-    getCurrentMember,
-    getLeadId,
-    getShowMenu,
-    getShowStatusMenu,
-    getShowCancelMenu,
-    getInviteShop,
-    getCustomerId,
-    getInviteCustomer,
-    getAction,
-    imgLoader,
-  } from 'vuex/getters/chat.js';
+  import store from 'root/store';
 
-  import { setConversationImgLoader } from 'vuex/actions/chat';
-  import { setPayment} from 'vuex/actions/user';
-
-  import {
-    setShowMenu,
-    setShowStatusMenu,
-    addPreLoadMessage,
-    setShowCancelMenu,
-  } from 'vuex/actions/chat.js';
   import * as leads from 'services/leads';
   import * as service from 'services/chat';
-  import { ratioFit } from 'utils';
-
-  import MenuComponent from 'base/menu/menu.vue';
+  import { ratioFit, targetClass } from 'root/utils';
+  import { mapActions, mapGetters } from 'vuex';
+  import MenuComponent from 'components/menu/menu.vue';
   import ChatMenuStatus from './chat-menu-status.vue';
   import ChatMenuCancel from './chat-menu-cancel.vue';
-  import AppLoader from 'base/loader/loader';
+  //import AppLoader from 'base/loader/loader';
 
   export default{
-    vuex: {
-      actions: {
-        setConversationImgLoader,
-        setShowMenu,
-        setShowStatusMenu,
-        setShowCancelMenu,
-        addPreLoadMessage,
-        setPayment
-      },
-      getters: {
-        getCustomerId,
-        imgLoader,
-        getShopId,
-        getCurrentMember,
-        getLeadId,
-        getShowMenu,
-        getShowStatusMenu,
-        getShowCancelMenu,
-        getInviteShop,
-        getInviteCustomer,
-        getAction,
-      }
-    },
     data(){
       return {
+        isDirectbot: true,
         loadImg: false
       }
     },
-    ready(){
-      let scrollCnt = document.querySelector('.scroll-cnt');
+    mounted(){
 
-      this.outerCloseMenu = listen(scrollCnt, 'click',(e)=>{
+      this.outerCloseMenu = listen(document.body, 'click',(e)=>{
 
         targetClass(e, 'menu-cnt', ()=>{
-          if(getShowMenu) {
+
+          if(this.getShowMenu) {
+
              this.setShowMenu(false);
              this.setShowStatusMenu(false);
              this.setShowCancelMenu(false);
@@ -115,9 +71,19 @@ div
       this.outerCloseMenu.remove();
     },
     methods: {
+      ...mapActions([
+        //chat
+        'setConversationImgLoader',
+        'setShowMenu',
+        'setShowStatusMenu',
+        'setShowCancelMenu',
+        'addPreLoadMessage',
+        //user
+        'setPayment'
+      ]),
       openPayment(){
         this.setPayment({shopId: this.paymentShopId(),leadId: this.getLeadId});
-        this.$router.go( { name: 'payment'} );
+        this.$router.push( { name: 'payment'} );
       },
       paymentShopId(){
         //если простой покупатель
@@ -157,7 +123,7 @@ div
 
                 window.scrollTo( 0, document.body.scrollHeight );
 
-                this.$dispatch('goToBottom');
+                this.$emit('goToBottom');
 
               } );
 
@@ -188,6 +154,23 @@ div
     },
 
     computed: {
+
+      ...mapGetters([
+        //chat
+        'getCustomerId',
+        'imgLoader',
+        'getShopId',
+        'getCurrentMember',
+        'getLeadId',
+        'getShowMenu',
+        'getShowStatusMenu',
+        'getShowCancelMenu',
+        'getInviteShop',
+        'getInviteCustomer',
+        'getAction',
+
+      ]),
+
       noActivePayments(){
         console.log("NO ACTIVE")
         console.log(this.getAction !== 'pendingpayment');
@@ -205,7 +188,7 @@ div
     },
 
     components: {
-      AppLoader,
+      //AppLoader,
       MenuComponent,
       ChatMenuStatus,
       ChatMenuCancel

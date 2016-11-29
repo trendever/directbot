@@ -15,19 +15,21 @@ menu-component
 </template>
 
 <script>
-  import { setStatus, setShowStatusMenu, setShowCancelMenu, setShowMenu } from 'vuex/actions/chat.js';
+  import { mapActions } from 'vuex';
 
-  import MenuComponent from 'base/menu/menu.vue';
+  import MenuComponent from 'components/menu/menu.vue';
   import * as leads from 'services/leads';
 
   export default{
-    vuex: {
-      actions: {
-        setShowMenu,
-        setStatus,
-        setShowStatusMenu,
-        setShowCancelMenu
-      }
+    methods: {
+      ...mapActions([
+        //chat
+        'setShowMenu',
+        'setStatus',
+        'setShowStatusMenu',
+        'setShowCancelMenu'
+
+      ])
     },
     components: {
       MenuComponent
