@@ -106,7 +106,8 @@ export default {
       showLoader: true,
       timerId: '',
       fullScroll: 0,
-      recursiveCount: 0
+      noGoBottom: false,
+
     }
   },
 
@@ -157,13 +158,19 @@ export default {
   mounted(){
 
     if ( this.isAuth ) {
+
       this.onMessage      = this.onMessage.bind( this );
+
       this.scrollListener = listen( window, 'scroll', this.scrollHandler.bind( this ) );
+
       messages.onMsg( this.onMessage );
 
     } else {
+
       this.$router.push( { name: 'signup' } );
+
     }
+
   },
 
   beforeDestroy() {
@@ -323,6 +330,7 @@ export default {
     },
 
     onMessage(){
+
       Promise.resolve().then(()=>{
 
         this.$nextTick( this.goToBottom );
@@ -347,7 +355,7 @@ export default {
 
       if ( this.needLoadMessage ) {
         if ( document.body.scrollTop < 1500 ) {
-
+          this.noGoBottom = true;
           this.needLoadMessage =  false;
 
           this.loadMessage().then( ( messages ) => {
@@ -363,13 +371,19 @@ export default {
               }
 
             } );
-          } );
+          } ).then(()=>{
+
+            this.noGoBottom = false;
+
+          })
 
         }
       }
 
     },
     goToBottom(){
+
+      if(this.noGoBottom) return;
 
       let height = document.body.scrollHeight;
 
