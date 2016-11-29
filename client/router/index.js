@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import ChatList from '../views/ChatList'
 import Popup from '../views/popup/index'
+
 Vue.use(Router)
 
 let router = new Router({
@@ -19,26 +21,37 @@ let router = new Router({
 	},
 
 	routes: [
+
 		{
 			name: 'home',
       path: '/',
       component: require('views/home/index.vue')
 		},
+
 		{
 		  name: 'chat_list',
 		  path: '/chat',
-		  component: ChatList
+		  component: require('views/ChatList')
 		},
+
     {
       name: 'auth',
       path: '/auth',
       component: require('views/auth/index')
     },
+
     {
       name: 'confirm',
       path: '/confirm',
       component: require('views/auth/confirm')
     },
+
+    {
+      name: 'product_detail',
+      path: '/product/:id',
+      component: require('views/product-detail/index.vue')
+    },
+
     {
       name: 'popup',
       path: '/popup/:id',
@@ -47,6 +60,11 @@ let router = new Router({
     {
       name: 'profile',
       path: '/:id',
+      component: require('views/profile/index')
+    },
+    {
+      name: 'user',
+      path: '/user',
       component: require('views/profile/index')
     },
 	]

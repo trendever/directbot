@@ -1,13 +1,22 @@
 <template lang="pug">
 li.single-photo.flex-item(:class="className")
-  router-link(:to="{name: 'profile', params: { id: product.shop.name } }")
-    img(:src="thumb")
+  img(:src="thumb" v-on:click="goToProduct")
 
 </template>
 
 <script>
+
 export default {
 
+  methods:{
+
+    goToProduct(){
+
+      this.$router.push( {name: 'product_detail', params: { id: this.product.id }} )
+
+    }
+
+  },
   computed:{
 
     thumb(){
@@ -22,6 +31,8 @@ export default {
     }
 
   },
+
 	props: ['product', 'class-name']
+
 }
 </script>

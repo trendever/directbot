@@ -50,8 +50,10 @@ export default {
     this.$nextTick(()=>{
 
       if(this.firstOpened) {
+
         this.scrollTo(0);
         return;
+
       }
 
       this.scrollTo(this.listScroll);
@@ -250,11 +252,17 @@ export default {
     }
   },
 
+  watch: {
+
+    '$route'(){
+
+      this.scrollTo(0);
+
+    }
+
+  },
+
   beforeDestroy(){
-
-    //let { idStart, idEnd } = this.$store.state.photos.lists[this.list];
-
-    //localStorage.setItem(`${ this.$route.name }.scrollCnt`, { idStart, idEnd, padding: this.padding })
 
     this.windowListener.remove();
 
@@ -310,8 +318,8 @@ export default {
 
   @media(min-width: 751px){
 
-    width: 30%;
-    heigth: 30%;
+    width: 32%;
+    heigth: 32%;
     margin: * 5px * 5px;
 
   }

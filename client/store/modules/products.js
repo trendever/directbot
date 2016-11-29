@@ -1,4 +1,5 @@
-import * as products from 'services/products';
+import * as getters from '../getters/products';
+import * as productsService from 'services/products';
 import * as types from '../mutation-types';
 
 let state = {
@@ -12,46 +13,33 @@ let state = {
 
   },
 
-  listId: ''
+  listId: '',
+
+  openedProduct: {}
 
 }
-
-
-let getters = {
-
-  listId(state) {
-
-    return state.list;
-
-  },
-
-  listProducts(state) {
-
-    if(state.lists.hasOwnProperty(state.listId)) {
-
-      return state.lists[state.listId].products;
-
-    }
-
-
-  },
-
-  listScroll(state) {
-
-    if(state.lists.hasOwnProperty(state.listId)) {
-
-      return state.lists[state.listId].scroll;
-
-    }
-
-    return null;
-
-  },
-
-}
-
 
 let actions = {
+
+  closeProduct( { commit, state },) {
+
+    commit(types.PRODUCTS_CLOSE_PRODUCT);
+
+  },
+
+  openProduct( { commit, state }, id ){
+
+    return productsService
+      .get( id )
+      .then( ( product ) => {
+        commit( types.PRODUCTS_SET_OPENED_PRODUCT, product );
+      } )
+      .catch( ( error ) => {
+        productsService.sendError( error, { state, id } );
+      } );
+
+  },
+
 
   setScroll({ commit }, count) {
 
@@ -69,7 +57,7 @@ let actions = {
 
     }
 
-    return products.find( { shop_id, limit }).then(data=>{
+    return productsService.find( { shop_id, limit }).then(data=>{
 
       commit( types.PRODUCTS_ADD_LIST, { listId , data } );
 
@@ -87,7 +75,7 @@ let actions = {
 
   increaseLength({commit}, { shop_id, offset }){
 
-    return products.find( { shop_id, offset } ).then(data=>{
+    return productsService.find( { shop_id, offset } ).then(data=>{
 
       commit(types.PRODUCTS_INCREASE_LIST_LENGTH, data)
 
@@ -153,6 +141,17 @@ let mutations = {
       lists[listId].products.push(item);
 
     })
+
+  },
+  [types.PRODUCTS_SET_OPENED_PRODUCT] ( state, product ) {
+
+    state.openedProduct = product;
+
+  },
+
+  [types.PRODUCTS_CLOSE_PRODUCT] (state) {
+
+    state.openedProduct = {};
 
   }
 
