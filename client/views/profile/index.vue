@@ -73,7 +73,7 @@
 <script>
 import store from 'root/store';
 import photos from 'components/photos/index';
-import headerComponent from 'components/header';
+//import headerComponent from 'components/header';
 
 import { mapActions, mapGetters } from 'vuex';
 
@@ -86,14 +86,13 @@ export default {
       getAuthUser: {}
     }
   },
-  beforeRouteEnter( { params: { id } }, to, next) {
 
-    store
-      .dispatch('openProfile', id)
-      .then(()=>{
-        next();
-      })
+  beforeCreate() {
+
+    store.dispatch('openProfile', this.$route.params.id)
+
   },
+
   computed: {
     ...mapGetters([
       'userShopId',
@@ -103,7 +102,7 @@ export default {
   },
   components: {
     photos,
-    headerComponent
+    //headerComponent
   }
 }
 </script>

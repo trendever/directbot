@@ -166,6 +166,7 @@ export const openProfile = ( { commit, state }, id ) => {
         resolve();
 
       } else {
+
         userService
           .get( requestData )
           .then( ( user ) => {
@@ -187,7 +188,7 @@ export const openProfile = ( { commit, state }, id ) => {
       }
 
     } else {
-      console.log(JSON.parse(JSON.stringify(state)))
+
       commit( types.USER_SET_PROFILE, state.myId );
       commit( types.USER_SET_PHOTOS_CONFIG, {
 
