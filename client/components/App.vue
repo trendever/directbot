@@ -16,22 +16,22 @@ import Listener from './Listener.vue';
 export default {
   data(){
     return {
-
       authDone: false,
-
     }
-
   },
   components: {
     Listener
   },
 
   beforeCreate(){
+
     store
       .dispatch('authUser', { null, null } )
       .then( () => {
         this.authDone = true;
+
       })
+
   }
 }
 

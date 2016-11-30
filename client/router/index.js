@@ -63,6 +63,11 @@ let router = new Router({
       component: Popup
     },
     {
+      name: 'list',
+      path: '/list',
+      component: require('views/test/list.vue')
+    },
+    {
       name: 'profile',
       path: '/profile',
       component: require('views/profile/index')
