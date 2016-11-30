@@ -14,17 +14,22 @@ import store from 'root/store';
 import Listener from './Listener.vue';
 
 export default {
+
   components: {
     Listener
   },
-  created(){
 
-    store.dispatch('authUser', { null, null } )
+  routeBeforeEnter(from, to, next){
+
+    store
+    .dispatch('authUser', { null, null } )
+    .then(()=>{
+
+      next();
+
+    })
 
   },
-
-
-
 }
 
 </script>

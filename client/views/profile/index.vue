@@ -18,9 +18,9 @@
           .profile_info_img()
             img(:src="getUserPhoto")
           .profile_info_about(v-if="false")
-            span.profile_info_about_type Магазин 
-            span.profile_info_about_location  Красноярск 
-            span.profile_info_about_work-time  10.00-21.00 
+            span.profile_info_about_type Магазин
+            span.profile_info_about_location  Красноярск
+            span.profile_info_about_work-time  10.00-21.00
             span.profile_info_about_posts-quantity  951 постов
 
         .profile_desc.less(
@@ -28,7 +28,7 @@
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
           .profile_desc_t(v-if="getSlogan") {{getSlogan}}
-          .profile_desc_caption(v-if="getUserCaption") {{getUserCaption | captionSpaces}}
+          .profile_desc_caption(v-if="getUserCaption") {{getUserCaption | captionSpaces }}
 
         .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
           .insta-link-text ссылка на эту витрину
@@ -50,8 +50,8 @@
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
         .profile_no-goods-banner(v-if="false")
-          span После подключения 
-          span.save Directbot 
+          span После подключения
+          span.save Directbot
           span  начнет мониторить все  ваши новые посты  и автоматически  отвечать на вопросы покупателей
 
         //-router-link(:to="{ name: 'turn-on-bot' }")
@@ -87,6 +87,7 @@ export default {
     }
   },
   beforeRouteEnter( { params: { id } }, to, next) {
+
     store
       .dispatch('openProfile', id)
       .then(()=>{
@@ -103,7 +104,7 @@ export default {
   components: {
     photos,
     headerComponent
-  },
+  }
 }
 </script>
 

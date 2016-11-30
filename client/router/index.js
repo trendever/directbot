@@ -65,7 +65,7 @@ let router = new Router({
     {
       name: 'profile',
       path: '/profile',
-      require: require('views/profile/index')
+      component: require('views/profile/index')
 
     },
     {
