@@ -118,7 +118,7 @@
               img(src="./img/screen-5.png")
             .hero__content__landing__sub-title.lastST Оператор ответит на вопросы #[br(v-if="!isMobile")] и поможет купить
             .hero__content__landing__caption.lastCap
-              a.link-info(@click="openPopup('is5')") Клиенты получат консультацию* #[br(v-if="!isMobile")]
+              a.link-info(@click="openPopup('is6')") Клиенты получат консультацию* #[br(v-if="!isMobile")]
               span  в твоем #[br(v-if="isMobile")] Instagram Direct и ссылку #[br(v-if="!isMobile")] на товар #[br(v-if="isMobile")] в интернет-магазине**
             .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
             .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
@@ -131,7 +131,7 @@
             img(src="./img/screen-4-no.png")
           .hero__content__landing__sub-title.info Нет сайта? Ответь #[br(v-if="!isMobile")] на вопросы о товарах
           .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br] и добавит их в твой
-            a.link-info(@click="openPopup('is6')")
+            a.link-info(@click="openPopup('is5')")
               |  новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
               span.bold  xxxx.drbt.io #[br]
   .info-block
@@ -296,7 +296,7 @@ export default {
         this.showPopup = true;
         this.popupUrl = window.location.origin + "/popup/" + target;
       }
-      
+
     },
     touchMove(e){
       if(this.scrollCnt.scrollTop < 2 * window.innerHeight ) {

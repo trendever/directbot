@@ -1,7 +1,7 @@
 <style src="./info-screen.pcss"></style>
 <template lang="pug">
 .info-screen
-  .description._10 DIRECTBOT - это eCommerce платформа для InstАgram магазинов, к которой #[br] вы можете подключить #[br] себя и команду
+  .description._10 DIRECTBOT - это eCommerce платформа для InstАgram магазинов, к которой #[br(v-if="isMobile")] вы можете подключить #[br(v-if="isMobile")] себя и команду
 </template>
 
 <script>
