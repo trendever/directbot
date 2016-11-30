@@ -1,7 +1,7 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
 #profile
-  header-component(:title='getUserName', :left-btn-show='true').directbot-header
+  //-header-component(:title='getUserName', :left-btn-show='true').directbot-header
       div.profile-right-menu(slot="content", v-if="isMobile && $route.name === 'profile'")
         i.ic-options_menu(@click="buyTg")
       div.profile-days(slot="content")
@@ -15,8 +15,9 @@
       .profile
         .profile_info
 
-          .profile_info_img()
-            img(:src="getUserPhoto")
+          .profile_info_img
+            router-link(:to="{ name: 'list'}")
+              img(:src="getUserPhoto")
           .profile_info_about(v-if="false")
             span.profile_info_about_type Магазин
             span.profile_info_about_location  Красноярск
@@ -39,11 +40,11 @@
         button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
 
       template(v-if="loaded")
-        .profile_inactive(v-if="false")
+        .profile_inactive(v-if="directbotActive && isSelfPage")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
           span мониторю 3 поста #[br] отправил 5 сообщений
-        .profile_active
+        .profile_active(v-if="directbotInactive && isSelfPage")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
@@ -63,7 +64,7 @@
 
         a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
-  photos(:shopId="userShopId", :listName="getPhotoConfig.listId")
+  photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
 
   .directbot-navbar(v-if="isMobile")
     //-navbar-component(:current='listId')
@@ -81,26 +82,48 @@ export default {
 
 
   data(){
+
     return {
+      direcbotActive: true,
+      directbotInactive: false,
       loaded: true,
-      getAuthUser: {}
+      getAuthUser: {},
+      anotherId: 1, //пустая лента без единого товара
+      listId: '',
     }
+
   },
 
-  beforeCreate() {
+  beforeRouteEnter({ params: { id }, name }, to, next ){
 
-    store.dispatch('openProfile', this.$route.params.id)
+    store.dispatch('openProfile', id).then(()=>{
+
+      next();
+
+    })
 
   },
 
   computed: {
+
+    isSelfPage(){
+
+      return this.$route.name === 'profile';
+
+    },
+
     ...mapGetters([
+
       'userShopId',
       'getUserName',
       'getPhotoConfig'
+
     ])
+
   },
+
   components: {
+
     photos,
     //headerComponent
   }

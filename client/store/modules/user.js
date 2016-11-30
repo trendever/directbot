@@ -93,8 +93,11 @@ const mutations = {
   },
 
   [types.USER_SET_PHOTOS_CONFIG] ( state, { listId, photoFilter, id = state.myId } ) {
+
     if ( state.all.hasOwnProperty( id ) ) {
+
       state.photoConfigs = Object.assign( {}, state.photoConfigs, { [id]: { listId, photoFilter } } );
+
     } else {
       console.warn( `[ USER_SET_PHOTOS_CONFIG ] - profile with id: ${id}, not found.`, {
         state,

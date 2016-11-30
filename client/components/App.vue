@@ -28,6 +28,7 @@ export default {
     store
       .dispatch('authUser', { null, null } )
       .then( () => {
+
         this.authDone = true;
 
       })

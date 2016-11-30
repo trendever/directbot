@@ -13,10 +13,8 @@ export default {
     goToProduct(){
 
       if(this.$route.name === 'list') {
-
         this.$router.push( {name: 'user', params: { id: this.product.shop.name }} )
         return;
-
       }
 
       this.$router.push( {name: 'product_detail', params: { id: this.product.id }} )

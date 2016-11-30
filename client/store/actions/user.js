@@ -189,13 +189,17 @@ export const openProfile = ( { commit, state }, id ) => {
 
     } else {
 
-      commit( types.USER_SET_PROFILE, state.myId );
-      commit( types.USER_SET_PHOTOS_CONFIG, {
+      Promise.resolve().then(()=>{
 
-        listId: photosConfig.listId,
-        photoFilter:photosConfig.photosFilter
+        commit( types.USER_SET_PROFILE, id );
+        commit( types.USER_SET_PHOTOS_CONFIG, {
 
-      });
+          listId: photosConfig.listId,
+          photoFilter:photosConfig.photosFilter
+
+        });
+
+      })
 
       resolve();
     }
