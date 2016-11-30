@@ -12,12 +12,16 @@
 
   .section.top.bottom.db-bottom
     .section__content(v-cloak)
+
       .profile
+
+
         .profile_info
 
-          .profile_info_img
-            router-link(:to="{ name: 'list'}")
-              img(:src="getUserPhoto")
+
+          .profile_info_img(@click="$router.push({name: 'list'})")
+            img(:src="getUserPhoto")
+
           .profile_info_about(v-if="false")
             span.profile_info_about_type Магазин
             span.profile_info_about_location  Красноярск
@@ -28,8 +32,8 @@
           v-on:click="this.isMoreClass = !this.isMoreClass",
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
-          .profile_desc_t(v-if="getSlogan") {{getSlogan}}
-          .profile_desc_caption(v-if="getUserCaption") {{getUserCaption | captionSpaces }}
+          .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
+          .profile_desc_caption(v-if="getUserCaption") {{ getUserCaption | captionSpaces }}
 
         .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
           .insta-link-text ссылка на эту витрину
@@ -39,7 +43,11 @@
           v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
         button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
 
+
+
       template(v-if="loaded")
+
+
         .profile_inactive(v-if="directbotActive && isSelfPage")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
@@ -50,7 +58,9 @@
           .text-box
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
-        .profile_no-goods-banner(v-if="false")
+
+
+        .profile_no-goods-banner(v-if="isSelfPage && !userShopId")
           span После подключения
           span.save Directbot
           span  начнет мониторить все  ваши новые посты  и автоматически  отвечать на вопросы покупателей
@@ -65,7 +75,6 @@
         a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
   photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
-
   .directbot-navbar(v-if="isMobile")
     //-navbar-component(:current='listId')
 
