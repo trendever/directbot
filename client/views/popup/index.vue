@@ -74,10 +74,13 @@ export default {
 		i.ic-close{
 				position: absolute;
 				color: $color__white;
-				font-size: 34px;
+				font-size: 24px;
 				top: 30px;
 				right: 30px;
-		  cursor: pointer;
+		  	cursor: pointer;
+					@media(--mobile){
+						font-size: 34px;
+					}
 		}
 	}
 </style>
