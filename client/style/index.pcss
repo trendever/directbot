@@ -17,33 +17,14 @@ body {
   font: 400 16px $font__family;
 }
 
-.fake-status-bar {
-  position: absolute 0 0 * 0;
-  height: 40px;
-  z-index: 10000;
-
-}
-
-.app {
-  height: 100%;
-}
 
 * {
   box-sizing: border-box;
 }
 
 
-.standalone .section{
-  &.top {
-    padding-top: 0px;
-
-    @media (--mobile) {
-      padding-top: 10px;
-    }
-  }
-}
-
 .section {
+
   &__content {
     box-sizing: border-box;
     max-width: 1050px;
@@ -77,4 +58,5 @@ body {
     }
   }
 }
+
 
