@@ -178,11 +178,11 @@ export default {
 
 <style lang="postcss">
 .section__content {
+
     box-sizing: border-box;
     max-width: 1050px;
     margin: 0 auto;
     position: relative;
 }
-
 
 </style>
