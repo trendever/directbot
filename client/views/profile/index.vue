@@ -1,12 +1,13 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
 #profile
-  //-header-component(:title='getUserName', :left-btn-show='true').directbot-header
+  header-component(:title='getUserName', :left-btn-show='true').directbot-header
       div.profile-right-menu(slot="content", v-if="isMobile && $route.name === 'profile'")
         i.ic-options_menu(@click="buyTg")
       div.profile-days(slot="content")
         span 3
         span.day д
+
   .directbot-right-nav
     //-right-nav-component(current="profile")
 
@@ -83,7 +84,7 @@
 <script>
 import store from 'root/store';
 import photos from 'components/photos/index';
-//import headerComponent from 'components/header';
+import headerComponent from 'components/header';
 
 import { mapActions, mapGetters } from 'vuex';
 
@@ -135,7 +136,7 @@ export default {
   components: {
 
     photos,
-    //headerComponent
+    headerComponent
   }
 }
 </script>

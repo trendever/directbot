@@ -1,44 +1,45 @@
-<!-- <style src='./header.pcss'></style>
+<style src='./header.pcss'></style>
 <template lang="pug">
 #header
-  slot
+
   .section.header.section__content
     .header__content.u-fixed
-      .wrapper
-        .header__arrow
 
+      .wrapper
+
+
+        .header__arrow(v-if="arrowLeft")
           i.header__arrow__ic.ic-arrow-left
 
-        .header__notify-count
+        .header__notify-count(v-if="$route.name === 'chat_list'")
           span
-
-        .header__use-days
-          .days-count
-            span д
-
 
         .header__center
           .header__left-logo
            a
-            img(src="../img/logo-main.svg")
+            img
           .header__text
           .header__text.active
             img.center-avatar
-          slot
+          slot(name="center-content")
 
-        slot
 
         .header-right
           img
+
+
+        slot(name="content")
+
+
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-
-    };
-  }
+  props: {
+    arrowLeft: {
+      default: false,
+    }
+  },
 };
 </script>
 
@@ -47,10 +48,11 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #header {
+
   position: relative;
   height: 50px;
   background: $color__blue;
+
 }
 
-
-</style> -->
+</style>
