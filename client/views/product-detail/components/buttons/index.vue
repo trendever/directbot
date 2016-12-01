@@ -25,6 +25,11 @@
   let config = { service_product_id: 7833 };
 
   export default {
+    data(){
+      return {
+        loaded: false
+      }
+    },
     created(){
       this.loaded = true;
       this.$on('isAuthProduct',()=>{
@@ -63,10 +68,6 @@
 
     },
     props: {
-      loaded: {
-        type: Boolean,
-        default: false
-      },
       authSellerProduct: {
         type: Boolean,
         default: false
