@@ -6,10 +6,14 @@
     :page="page",
     :avatar-url='avatarUrl',
     :show-desktop-arrow="false")
-    //right-nav-component(slot="content", current="")
+
+    right-nav-component(slot="content", current="")
+
   .section.main.top.little-padding
     .section__content
       post-component
+
+
 </template>
 
 <script type="text/babel">
@@ -17,8 +21,7 @@
 import { mapGetters, mapActions } from 'vuex';
 import store from 'root/store';
 
-//import RightNavComponent from 'base/right-nav';
-
+import RightNavComponent from 'compoents/right-nav';
 import HeaderComponent from 'components/header/index.vue';
 import PostComponent from './components/root/index.vue';
 
@@ -168,7 +171,7 @@ export default {
 
   components: {
 
-   // RightNavComponent,
+    RightNavComponent,
     HeaderComponent,
     PostComponent
 
