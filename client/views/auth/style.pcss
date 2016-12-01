@@ -142,15 +142,17 @@
   }
   &.confirm .bottom-container {
     position: auto;
-    padding-top: 60px;
+    padding-top: 0px;
     padding-bottom: 0;
     width: 100%;
+    margin-top: -21px;
 
     @media(--tabletandless) {
       position: absolute;
       bottom: 0;
       left: 0;
       padding-bottom: 138px;
+      margin-top: 0px;
     }
 
     .link-bottom {
@@ -281,7 +283,7 @@
 }
 
 .confirm .middle-container {
-  padding-top: 60px;
+  padding-top: 9px;
   height: 200px;
   text-align: center;
 
@@ -292,9 +294,13 @@
     text-align: center;
     transform: translateY(-50%);
   }
+  p{
+    @media(--mobile){
+      font-size: 36px;
+    }
+  }
 }
 #mid{
-  padding-top: 145px !important;
 
     @media(--tabletandless) {
       top: 41% !important;
@@ -452,7 +458,7 @@
 }
 .new_sms{
   right: 0 !important;
-  bottom: 90px !important;
+  bottom: -7px !important;
   left: 0 !important;
   display: inline-block !important;
   margin: 0 auto;
@@ -492,4 +498,7 @@
     line-height: 44px;
     font-size: 36px;
   }
+}
+.accept_btn{
+  margin-left: 0px !important;
 }
