@@ -3,7 +3,7 @@
 #profile
   header-component(:title='getUserName', :left-btn-show='true').directbot-header
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
-        i.ic-options_menu(@click="buyTg")
+        i.ic-options_menu(@click="openOptions")
       div.profile-days(slot="content" v-if="isSelfPage")
         span 3
         span.day д
@@ -34,7 +34,7 @@
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
-          .profile_desc_caption(v-if="getUserCaption") {{ getUserCaption | captionSpaces }}
+          .profile_desc_caption(v-if="getUserCaption") {{ captionSpaces(getUserCaption) }}
 
         .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
           .insta-link-text ссылка на эту витрину
@@ -111,6 +111,18 @@ export default {
       next();
 
     })
+
+  },
+
+  methods: {
+
+    openOptions(){
+      return;
+    },
+
+    captionSpaces(val){
+      return val.replace(/\r\n\r\n/g,"<br/><br/>");
+    }
 
   },
 
