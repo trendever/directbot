@@ -202,6 +202,7 @@ export default {
   },
 
   mounted() {
+
     this.$root.$on('postMessage',(msg) => {
       let fra = document.getElementById("popupiframe");
       if(fra && msg.data && msg.data.name == "Close" && msg.source == fra.contentWindow) {
@@ -209,14 +210,6 @@ export default {
         this.popupUrl = "";
       }
     });
-
-    this.outerCloseMenu = listen(document.body, 'click',(event)=>{
-        targetClass(event, 'profile-header__menu-links',()=>{
-            if(this.menuOpened){
-              this.menuOpened = false;
-            }
-        });
-    })
 
     //SWIPE LOGIC
 
@@ -227,10 +220,6 @@ export default {
 
       screenOne.on('swipeup', ()=> {
         this.scrollFirst()
-      });
-
-      screenOne.on('swipedown', ()=> {
-        //JQuery('.scroll-cnt').animate({scrollTop: window.innerHeight},400);
       });
 
       let screenTwo = new Hammer(this.$refs.screenTwo,{touchAction: 'none'});
@@ -244,10 +233,12 @@ export default {
         JQuery(document.body).animate({scrollTop: 0 },450);
       });
     }
+
     JQuery('.toggleBtn').on('click', function() {
         JQuery('.toggleBtn').not(this).removeClass('activeBtn');
         JQuery(this).toggleClass('activeBtn');
     });
+
   },
   computed: {
       getLinkTitle(){
@@ -268,9 +259,6 @@ export default {
         }
       }
     },
-  beforeDestroy(){
-    this.outerCloseMenu.remove();
-  },
 
   vuex: {
 /*    getters: {
@@ -311,32 +299,11 @@ export default {
     },
     logout(){
 
-      this.$set('menuOpened', false);
       this.logOut();
       window.location = '/';
 
     },
-    goBack(){
-      window.history.back();
-    },
-    onBuyPromoProduct() {
-      if ( !this.isAuth ) {
-        this.setCallbackOnSuccessAuth( this.onBuyPromoProduct.bind( this ) );
-        this.$router.push( { name: 'signup' } );
 
-
-      } else {
-
-        this.createLead( settings.promoProductID )
-            .then(
-              ( lead ) => {
-                if ( lead !== undefined && lead !== null ) {
-                  this.$router.push( { name: 'chat', params: { id: lead.id } } );
-                }
-              }
-            );
-      }
-    },
     getLink(){
 
       commonService.marketSms({phone: this.phoneNumber }).then(data=>{

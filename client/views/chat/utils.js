@@ -1,4 +1,4 @@
-// import linkify from 'ba-linkify'
+import linkify from 'ba-linkify'
 
 export const formatDatetime = unixtime => {
   let date    = new Date( unixtime * 1000 );

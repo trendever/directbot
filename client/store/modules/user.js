@@ -3,24 +3,7 @@ import * as profile from 'services/profile';
 
 import * as types from '../mutation-types';
 import * as getters from '../getters/user';
-
-function getValidUserObject( user, user_id ) {
-
-  if ( user.hasOwnProperty( 'id' ) ) {
-    return user;
-  }
-
-  if ( user.hasOwnProperty( 'User' ) ) {
-    return user.User;
-  }
-
-  if ( user.hasOwnProperty( 'Shop' ) ) {
-    return user.Shop;
-  }
-
-  return { id: user_id }
-
-};
+import * as actions from '../actions/user';
 
 function picProfile( profile ) {
 
@@ -82,233 +65,7 @@ const state = {
 };
 
 
-let actions = {
-  closeProfile( { commit } ){
 
-    commit( types.USER_CLOSE_PROFILE );
-
-  },
-  logOut ( { commit } ){
-
-    //removeToken();
-
-    commit( types.USER_LOGOUT )
-
-  },
-  openProfile( { commit, state }, id ) {
-
-    return new Promise( ( resolve, reject ) => {
-
-      if ( typeof id === 'undefined' ) {
-
-        commit( types.USER_SET_PROFILE, id );
-
-      }
-
-      const requestData = {
-        user_id: null,
-        instagram_name: null
-      };
-
-      const photosConfig = {
-        listId: 'profile',
-        photosFilter: {
-          user_id: null,
-          instagram_name: getters.getUserName( state )
-        }
-      };
-
-
-      if ( typeof id === 'string' ) {
-          requestData.instagram_name               = id;
-          photosConfig.listId                      = `profile_${ id }`;
-          photosConfig.photosFilter.instagram_name = id;
-      }
-
-      if ( requestData.user_id !== null || requestData.instagram_name !== null ) {
-
-        const cacheProfile = getters.getProfile( state, id );
-
-        if ( cacheProfile !== null ) {
-
-          commit( types.USER_SET_PHOTOS_CONFIG, {
-
-                listId: photosConfig.listId,
-
-                photosFilter: photosConfig.photosFilter,
-
-                id: id });
-
-          commit( types.USER_SET_PROFILE, id );
-
-          resolve();
-
-        } else {
-
-          userService
-
-            .get( requestData )
-
-            .then( ( user ) => {
-
-              commit( types.USER_RECEIVE_PROFILE, {
-
-                profile: getValidUserObject( user, id ),
-
-                id } );
-
-              commit( types.USER_SET_PHOTOS_CONFIG, {
-
-                listId: photosConfig.listId,
-
-                photosFilter: photosConfig.photosFilter,
-
-                id });
-
-              commit( types.USER_SET_PROFILE, id );
-
-              resolve();
-            } )
-            .catch( error => {
-              reject( error );
-              console.error(
-                new Error( 'User doesn`t exists or opened incorect url' ),
-                {
-                  extra: { errorData: error, username: id }
-                }
-              );
-            } );
-
-        }
-
-      } else {
-
-        commit( types.USER_SET_PROFILE );
-
-        commit( types.USER_SET_PHOTOS_CONFIG, {
-
-          listId:photosConfig.listId,
-
-          photosFilter: photosConfig.photosFilter
-
-        } );
-
-        resolve();
-
-      }
-
-    } );
-
-  },
-
-  authUser( { commit }, { user, token } ) {
-
-    return new Promise( ( resolve, reject ) => {
-
-      const { user: cookieUser } = profile.getProfile();
-
-      if ( typeof token === 'string' && user ) {
-
-        const user_id = profile.saveToken( token );
-
-        profile.saveUser( getValidUserObject( user, user_id ) );
-
-        commit( types.USER_AUTHENTICATED, token );
-        commit( types.USER_RECEIVE_PROFILE, {
-          profile: profile.getProfile( true ).user
-        }  );
-        commit( types.USER_SET_MY_ID, user_id );
-
-        resolve();
-
-        return null;
-
-      }
-
-      if ( typeof token === 'string' ) {
-
-        const user_id = profile.saveToken( token );
-
-        if ( Number.isFinite( user_id ) ) {
-
-          if ( cookieUser !== null ) {
-
-            if ( user_id === cookieUser.id ) {
-
-              const { user } = profile.getProfile( true );
-
-              profile.saveUser( getValidUserObject( user, user_id ) );
-
-              commit( types.USER_AUTHENTICATED, token );
-              commit( types.USER_RECEIVE_PROFILE, { profile: user } );
-              commit( types.USER_SET_MY_ID, user_id );
-
-              resolve();
-
-              return null;
-
-            }
-
-          }
-
-          return userService
-            .get( { user_id } )
-            .then( ( user ) => {
-
-              profile.saveUser( getValidUserObject( user, user_id ) );
-
-              commit( types.USER_AUTHENTICATED, token );
-              commit( types.USER_RECEIVE_PROFILE, {
-                profile: profile.getProfile( true ).user
-              }  );
-              commit( types.USER_SET_MY_ID, user_id );
-
-              resolve();
-
-            } )
-            .catch( ( error ) => {
-              if ( error === 1 ) {
-                console.error( '[ USER_NOT_FOUND ]', { user_id } );
-              } else {
-                console.error( '[ USER_UNDEFINED_ERROR ]', error );
-              }
-              reject( error );
-            } );
-
-        } else {
-
-          console.warn( '[ TOKEN IS NOT CORRECT ]', { token } );
-
-          reject( '[ TOKEN IS NOT CORRECT ]', { token } );
-
-          return null;
-
-        }
-
-      } else {
-
-        const { user, token } = profile.getProfile();
-
-        if ( user && token ) {
-
-          commit( types.USER_AUTHENTICATED, token );
-          commit( types.USER_RECEIVE_PROFILE, { profile: user });
-          commit( types.USER_SET_MY_ID, user.id );
-
-        }
-
-        resolve();
-
-        return null;
-
-      }
-
-    } );
-
-  }
-
-
-}
 
 // mutations
 const mutations = {
@@ -323,15 +80,24 @@ const mutations = {
   [types.USER_RECEIVE_PROFILE] ( state, { profile, id = null } ) {
     state.all = Object.assign( {}, state.all, { [(id !== null) ? id : profile.id]: picProfile( profile ) } );
   },
-  [types.USER_SET_PROFILE] ( state, id = state.myId ) {
+  [types.USER_SET_PROFILE] ( state, id = state.myId) {
+
     if ( state.all.hasOwnProperty( id ) ) {
+
       state.id = id;
+
     }
+
     state.done = true;
+
   },
+
   [types.USER_SET_PHOTOS_CONFIG] ( state, { listId, photoFilter, id = state.myId } ) {
+
     if ( state.all.hasOwnProperty( id ) ) {
+
       state.photoConfigs = Object.assign( {}, state.photoConfigs, { [id]: { listId, photoFilter } } );
+
     } else {
       console.warn( `[ USER_SET_PHOTOS_CONFIG ] - profile with id: ${id}, not found.`, {
         state,
@@ -356,9 +122,6 @@ const mutations = {
   },
   [types.USER_SET_MY_CURRENT_LIST]( state , list ){
     state.myCurrentList = list;
-  },
-  [types.USER_SET_TOOLTIP](state, name, value) {
-    state.tooltips[name] = value;
   },
   [types.USER_SET_PAYMENT](state,value){
     state.payment = value;

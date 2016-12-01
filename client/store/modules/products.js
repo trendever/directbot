@@ -41,7 +41,7 @@ let actions = {
   },
 
 
-  setScrollList({ commit }, count) {
+  setScrollToList({ commit }, count) {
 
     commit( types.PRODUCTS_SET_LIST_SCROLL, count)
 
@@ -73,7 +73,7 @@ let actions = {
 
   },
 
-  increaseLength({commit}, { shop_id, offset }){
+  increaseListLength({commit}, { shop_id, offset }){
 
     return productsService.find( { shop_id, offset } ).then(data=>{
 

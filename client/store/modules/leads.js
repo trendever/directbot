@@ -60,11 +60,12 @@ const mutations = {
       customer: lengthList <= customer.length
     }
 
-/*    if(seller.length) {
+    //check super seller
+    if(seller.length) {
 
       state.tab = "seller";
 
-    }*/
+    }
 
     checkUnreadMessage( seller );
     checkUnreadMessage( customer );

@@ -78,17 +78,20 @@ export default {
 
     ...mapActions([
 
-      'increaseLength',
+      'increaseListLength',
       'openList',
       'closeList',
-      'setScroll'
+      'setScrollToList'
 
     ]),
 
     simpleScroll(){
       //to have 0 scroll when first load
+
       if(!this.$store.state.products.lists.hasOwnProperty(this.listName)) {
+
         this.firstOpened = true;
+
       }
 
       this.openList( {
@@ -107,7 +110,7 @@ export default {
 
             this.oldScroll = window.scrollY;
 
-            this.setScrollList(window.scrollY);
+            this.setScrollToList(window.scrollY);
 
             if(this.off || !direction) return;
 
@@ -117,7 +120,7 @@ export default {
 
               this.offset += 20;
 
-              this.increaseLength( {
+              this.increaseListLength( {
 
                 shop_id: this.shopId,
 

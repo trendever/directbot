@@ -2,9 +2,9 @@
   <div class="products" v-if="isName">
     <div class="name">{{name}}</div>
     <div class="numbers" v-if="!isNotPrice">
-      <span class="price" v-if="price !== null && discountPrice !== null">{{ price }}</span>
-      <span class="discountPrice" v-if="discountPrice !== null">{{ discountPrice }}</span>
-      <span class="discountPrice" v-if="discountPrice === null && price !== null">{{ price }}</span>
+      <span class="price" v-if="price !== null && discountPrice !== null">{{ curency_spaces(price) }}</span>
+      <span class="discountPrice" v-if="discountPrice !== null">{{ curency_spaces(discountPrice) }}</span>
+      <span class="discountPrice" v-if="discountPrice === null && price !== null">{{ curency_spaces(price) }}</span>
       <i class="ic-currency-rub rub"></i>
     </div>
   </div>
@@ -13,6 +13,8 @@
 <style src="./style.pcss" scoped lang="postcss"></style>
 
 <script type="text/babel">
+import { curency_spaces } from 'root/filters';
+
   export default {
     props: {
       name: {
@@ -27,6 +29,10 @@
         type: Number,
         default: null
       },
+    },
+    methods:{
+      curency_spaces
+
     },
     computed: {
       isName(){

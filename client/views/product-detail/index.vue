@@ -20,6 +20,9 @@ import store from 'root/store';
 //import RightNavComponent from 'base/right-nav';
 //import HeaderComponent from 'components/header/header.vue';
 import PostComponent from './components/root/index.vue';
+
+
+
 import listener from 'event-listener';
 
 export default {

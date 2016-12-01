@@ -1,7 +1,7 @@
 <template lang="pug">
 #app
-  router-view
-  listener
+  router-view(v-if="authDone")
+  listener(v-if="authDone")
 </template>
 
 <script>
@@ -14,17 +14,26 @@ import store from 'root/store';
 import Listener from './Listener.vue';
 
 export default {
+  data(){
+    return {
+      authDone: false,
+    }
+  },
   components: {
     Listener
   },
-  created(){
 
-    store.dispatch('authUser', { null, null } )
+  beforeCreate(){
 
-  },
+    store
+      .dispatch('authUser', { null, null } )
+      .then( () => {
 
+        this.authDone = true;
 
+      })
 
+  }
 }
 
 </script>

@@ -9,7 +9,7 @@
     .body-title {{ title }}
 
     .body-status-time
-      .body-status ({{ status | lowercase }})
+      .body-status ( {{ status.toLowerCase() }} )
       .body-time {{ dataTime }}
 
     .body-last-msg
@@ -24,8 +24,7 @@
 
 <script type='text/babel'>
 
-
-import { urlThumbnail } from 'root/utils'
+import { urlThumbnail } from 'root/utils';
 
 import { formatPastTime } from 'views/chat/utils';
 
