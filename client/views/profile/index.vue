@@ -2,9 +2,9 @@
 <template lang="pug">
 #profile
   header-component(:title='getUserName', :left-btn-show='true').directbot-header
-      div.profile-right-menu(slot="content", v-if="isMobile && $route.name === 'profile'")
+      div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
         i.ic-options_menu(@click="buyTg")
-      div.profile-days(slot="content")
+      div.profile-days(slot="content" v-if="isSelfPage")
         span 3
         span.day д
 
