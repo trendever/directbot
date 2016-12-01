@@ -9,7 +9,7 @@
         span.day д
 
   .directbot-right-nav
-    //-right-nav-component(current="profile")
+    right-nav-component(current="profile")
 
   .section.top.bottom.db-bottom
     .section__content(v-cloak)
@@ -76,17 +76,21 @@
         a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
   photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
+
   .directbot-navbar(v-if="isMobile")
-    //-navbar-component(:current='listId')
+    navbar-component(:current='profile')
 
 </template>
 
 <script>
+
 import store from 'root/store';
+import { mapActions, mapGetters } from 'vuex';
+
 import photos from 'components/photos/index';
 import headerComponent from 'components/header';
-
-import { mapActions, mapGetters } from 'vuex';
+import RightNavComponent from 'components/right-nav';
+import NavbarComponent from 'components/navbar/navbar';
 
 export default {
 
@@ -94,12 +98,13 @@ export default {
   data(){
 
     return {
+
       direcbotActive: true,
       directbotInactive: false,
       loaded: true,
       getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
-      listId: '',
+
     }
 
   },
@@ -150,7 +155,9 @@ export default {
   components: {
 
     photos,
-    headerComponent
+    headerComponent,
+    RightNavComponent,
+    NavbarComponent
   }
 }
 </script>

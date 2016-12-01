@@ -1,9 +1,9 @@
 <style src='./styles/chat-header.pcss'></style>
 <template lang="pug">
-div
+#chat-header
   header-component(:notify-count='getGlobalNotifyCount')
 
-    .chat-header(slot='content')
+    .chat-header(slot='center-content')
       .chat-header_arrow(@click='leftBtnAction')
         i.chat-header_arrow_ic.ic-arrow-left
 
@@ -11,7 +11,7 @@ div
         span {{ getGlobalNotifyCount }}
 
       .chat-header_cnt(v-show='getShopName')
-        .chat-header_cnt_t(v-link='{name: "user", params: {id: getShopName}}') {{ getShopName }}
+        .chat-header_cnt_t(@click="$router.push({name: 'user', params: {id: getShopName}})") {{ getShopName }}
         .chat-header_cnt_info
           span.chat-header_cnt_info-text
           | {{ getLeadId }},
@@ -19,28 +19,17 @@ div
 
       .chat-header_photo
         img(
-        v-link='{name: "user", params: {id: getShopName}}',
-        :src='userImage',
-        v-on:error='onUserImageError',)
+        :src='userImage'
+        v-on:error='onUserImageError',
+        @click="$router.push({name: 'user', params: {id: getShopName}})")
+
 </template>
 
 <script type='text/babel'>
+  import { mapGetters } from 'vuex';
+  import { urlThumbnail } from 'root/utils'
 
-  import { urlThumbnail } from 'utils'
-
-  import {
-    getStatusName,
-    getId,
-    getLeadId,
-    getShopName,
-    getPhoto
-  } from 'vuex/getters/chat.js';
-
-  import { getGlobalNotifyCount } from 'vuex/getters/lead.js'
-
-  import {isFake} from 'vuex/getters/user.js'
-
-  import HeaderComponent from 'base/header/header.vue'
+  import HeaderComponent from 'components/header'
 
   export default {
     data(){
@@ -51,33 +40,31 @@ div
     methods: {
        onUserImageError(){
         console.warn(`Load user photo has failed. Chat id: ${this.getId}`);
-         this.$set('userImage', require('base/img/logo.png'));
+         //this.userImage = require('base/img/logo.png');
       },
       leftBtnAction(){
         if (this.isFake){
           if (this.$route.name === window.before.name && window.before.prev){
-            this.$router.go({ name: window.before.prev.name, params: window.before.prev.params})
+            this.$router.push({ name: window.before.prev.name, params: window.before.prev.params})
             return;
           }
-          this.$router.go({ name: window.before.name, params: window.before.params})
+          this.$router.push({ name: window.before.name, params: window.before.params})
         }else{
-          this.$router.go({name: "chat_list"})
+          this.$router.push({name: "chat_list"})
         }
       }
     },
 
-    vuex: {
-      getters: {
-        getId,
-        getLeadId,
-        getStatusName,
-        getShopName,
-        getPhoto,
-        isFake,
-        getGlobalNotifyCount
-      }
-    },
     computed: {
+      ...mapGetters([
+        'getId',
+        'getLeadId',
+        'getStatusName',
+        'getShopName',
+        'getPhoto',
+        'isFake',
+        'getGlobalNotifyCount'
+      ]),
       getStatus(){
         if ( this.getStatusName !== null ) {
           return this.getStatusName.toLowerCase();
@@ -89,7 +76,7 @@ div
     },
     watch:{
       getPhoto(val){
-        this.$set('userImage', val);
+        this.userImage = val;
       }
     }
   }

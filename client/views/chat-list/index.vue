@@ -2,20 +2,24 @@
 <template lang="pug">
 
 #chat-list
-  //-right-nav-component(current="chat")
+  right-nav-component(current="chat")
   .chat-list-cnt(v-if='isDoneLead')
-    //-header-component(:title='getTitle', :left-btn-show='false')
-      .header__nav(slot='content' v-if='true')
+
+    header-component(:title='getTitle', :left-btn-show='false')
+
+      .header__nav(slot='center-content')
+
         .header__nav__i.header__text(
-          v-if="!directbot",
           :class='{_active: getLeadTab === "customer"}',
-          @click='$store.dispatch('setTab',"customer"));'
-          span Покупаю
+          @click='$store.dispatch("setTab","customer")',
+          v-if="getLeadTab === 'customer'")
+          span Чаты с продавцами
+
         .header__nav__i.header__text(
           :class='{_active: getLeadTab === "seller"}',
-          @click='setTab("seller");')
-          span(v-if="!directbot") Продаю
-          span(v-if="directbot") Чаты с покупателями
+          @click='$store.dispatch("setTab", "seller")',
+          v-if="getLeadTab === 'seller'")
+          span Чаты с покупателями
 
     .section.top.bottom
       .section__content
@@ -54,7 +58,8 @@
       .chat-list-cnt-is-empty
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  ... потому что ты пока ничего #[br] не продаешь
-  //-navbar-component(current='chat')
+  .directbot-navbar(v-if="isMobile")
+    navbar-component(current='chat')
   //-scroll-top
   //-app-loader.list-loader(v-if="!needLoadLeads")
 
@@ -65,7 +70,6 @@
 <script type='text/babel'>
 
   //import appLoader from 'base/loader/loader';
-  //import RightNavComponent from 'base/right-nav/index';
   import listen from 'event-listener';
   import * as leads from 'services/leads';
   import * as messages from 'services/message';
@@ -75,8 +79,10 @@
   import { mapGetters, mapActions } from 'vuex';
   //import ScrollTop from 'base/scroll-top/scroll-top';
 
-  //import HeaderComponent from 'base/header/header.vue';
-  //import NavbarComponent from 'base/navbar/navbar.vue';
+
+  import HeaderComponent from 'components/header/index.vue';
+  import NavbarComponent from 'components/navbar/navbar.vue';
+  import RightNavComponent from 'components/right-nav';
 
   import ChatListItem from './chat-list-item.vue';
 
@@ -84,9 +90,9 @@
     components: {
       //appLoader,
       //ScrollTop,
-      //RightNavComponent,
-      //HeaderComponent,
-      //NavbarComponent,
+      RightNavComponent,
+      HeaderComponent,
+      NavbarComponent,
       ChatListItem
 
     },

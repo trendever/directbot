@@ -1,15 +1,19 @@
 <template lang="pug">
+#product-detail
+  header-component(
+    :title='title',
+    :center-text-link="centerTextLink",
+    :page="page",
+    :avatar-url='avatarUrl',
+    :show-desktop-arrow="false")
 
-//-header-component(
-  :title='title',
-  :center-text-link="centerTextLink",
-  :page="page",
-  :avatar-url='avatarUrl',
-  :show-desktop-arrow="false")
-  right-nav-component(slot="content", current="")
-.section.main.top.little-padding
-  .section__content
-    post-component
+    right-nav-component(slot="content", current="")
+
+  .section.main.top.little-padding
+    .section__content
+      post-component
+
+
 </template>
 
 <script type="text/babel">
@@ -17,8 +21,8 @@
 import { mapGetters, mapActions } from 'vuex';
 import store from 'root/store';
 
-//import RightNavComponent from 'base/right-nav';
-//import HeaderComponent from 'components/header/header.vue';
+import RightNavComponent from 'components/right-nav';
+import HeaderComponent from 'components/header/index.vue';
 import PostComponent from './components/root/index.vue';
 
 
@@ -167,8 +171,8 @@ export default {
 
   components: {
 
-   // RightNavComponent,
-   // HeaderComponent,
+    RightNavComponent,
+    HeaderComponent,
     PostComponent
 
   },
@@ -177,11 +181,11 @@ export default {
 
 <style lang="postcss">
 .section__content {
+
     box-sizing: border-box;
     max-width: 1050px;
     margin: 0 auto;
     position: relative;
 }
-
 
 </style>

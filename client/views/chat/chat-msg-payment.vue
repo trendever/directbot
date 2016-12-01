@@ -4,7 +4,7 @@
   .chat-msg-status
     template(v-if='donePayment')
       span(v-if="succes")
-       | {{getPaymentNames.from}} отправил {{getAmmount | curency_spaces}}
+       | {{getPaymentNames.from}} отправил {{ curency_spaces(getAmmount) }}
        i.ic-currency-rub
        |  на карту {{getPaymentNames.to}}
       span(v-else)
@@ -18,7 +18,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import { getPaymentAmmount } from 'views/payment/functions.js';
-
+  import { curency_spaces } from 'root/filters';
   export default{
     data(){
       if (this.getAction == 'pay' || this.getAction == 'pendingpayment'){
@@ -38,6 +38,11 @@
     },
     mounted(){
       this.$emit('goToBottom');
+    },
+    methods: {
+
+      curency_spaces
+
     },
     computed: {
       ...mapGetters([

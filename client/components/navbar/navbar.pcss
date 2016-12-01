@@ -2,29 +2,32 @@
 .navbar-cnt {
   .navbar {
     position: fixed;
+    z-index: 9;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 9;
-    align-items: center;
+
     height: 50px;
+
     border-top: 1px solid $color__gray;
     background: #f7f7f7;
 
     @media(--mobile) {
       height: 98px;
     }
-
+    align-items: center;
     &_i {
-      display: inline-block;
       width: calc(100% / 3);
-      text-align: center;
+      display: inline-block;
+
       cursor: pointer;
+      text-align: center;
 
       &_wrap {
         position: relative;
-        display: inline-block;
         height: 100%;
+
+        display: inline-block;
 
         i.ic-gallery_menu_active  {
           margin-top: 2px;
@@ -34,28 +37,35 @@
           margin-top: 2px;
           margin-left: 5px;
         }
+
         &_ic {
           display: inline-block;
           margin-top: 6px;
           margin-bottom: 5px;
-          color: #929292;
-          font-size: 21px;
-          size: 21px;
 
+          color: #929292;
+
+          font-size: 21px;
+
+          size: 21px;
           @media(--mobile) {
             margin-top: 10px;
             font-size: 44px;
+
             size: 44px;
           }
         }
         &_t {
+          transition: $btn-transition;
+
           color: #929292;
+
           font-size: 14px;
           font-family: "San Francisco Light";
-          transition: $btn-transition;
 
           @media(--mobile) {
             padding-top: 6px;
+
             font-size: 24px;
           }
         }
@@ -63,17 +73,19 @@
           position: absolute;
           top: -3px;
           left: 20px;
-          z-index: 1150;
           display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0 3px;
           min-width: 16px;
           height: 16px;
+          padding: 0 3px;
+
           border-radius: 15px;
           background: #ef3758;
+
           font-size: 10px;
 
+          align-items: center;
+          justify-content: center;
+          z-index: 1150;
           @media(--mobile) {
             top: -18px;
             left: 32px;
@@ -82,7 +94,6 @@
             border-radius: 45px;
             font-size: 28px;
           }
-
           span {
             color: white;
           }
@@ -101,20 +112,24 @@
 
           &.__chat_ic {
             display: inline-block;
+
             vertical-align: middle;
+
+            //background: url('../../base/img/chats_active.svg');
+            //background-size: 100%;
+
             size: 21px;
-
-            @media (--mobile) {
-              size: 44px;
-            }
-
             &:before {
               display: none;
+
               content: '';
             }
             &:after{
-              content: url(../../base/img/chats_active.svg);
+              content: url(./icons/chats_active.svg);
 
+            }
+            @media (--mobile) {
+              size: 44px;
             }
           }
         }
