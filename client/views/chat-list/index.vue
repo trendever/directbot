@@ -2,7 +2,7 @@
 <template lang="pug">
 
 #chat-list
-  //-right-nav-component(current="chat")
+  right-nav-component(current="chat")
   .chat-list-cnt(v-if='isDoneLead')
 
     header-component(:title='getTitle', :left-btn-show='false')
@@ -58,7 +58,8 @@
       .chat-list-cnt-is-empty
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  ... потому что ты пока ничего #[br] не продаешь
-  //-navbar-component(current='chat')
+  .directbot-navbar(v-if="isMobile")
+    navbar-component(current='chat')
   //-scroll-top
   //-app-loader.list-loader(v-if="!needLoadLeads")
 
@@ -80,8 +81,8 @@
 
 
   import HeaderComponent from 'components/header/index.vue';
-  //import NavbarComponent from 'base/navbar/navbar.vue';
-  //import RightNavComponent from 'base/right-nav/index';
+  import NavbarComponent from 'components/navbar/navbar.vue';
+  import RightNavComponent from 'components/right-nav';
 
   import ChatListItem from './chat-list-item.vue';
 
@@ -89,9 +90,9 @@
     components: {
       //appLoader,
       //ScrollTop,
-      //RightNavComponent,
+      RightNavComponent,
       HeaderComponent,
-      //NavbarComponent,
+      NavbarComponent,
       ChatListItem
 
     },

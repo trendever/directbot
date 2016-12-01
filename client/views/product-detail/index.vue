@@ -21,7 +21,7 @@
 import { mapGetters, mapActions } from 'vuex';
 import store from 'root/store';
 
-import RightNavComponent from 'compoents/right-nav';
+import RightNavComponent from 'components/right-nav';
 import HeaderComponent from 'components/header/index.vue';
 import PostComponent from './components/root/index.vue';
 

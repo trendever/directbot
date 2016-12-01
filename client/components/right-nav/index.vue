@@ -14,10 +14,10 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex';
 export default {
   computed:{
-    ..mapGetters([
+    ...mapGetters([
       'isAuth',
       'getGlobalNotifyCount'
     ])
@@ -34,7 +34,7 @@ export default {
 
 <style lang="postcss">
 
-@import 'base/vars/vars.pcss';
+@import 'style/vars/vars.pcss';
 
 .right-nav {
 
