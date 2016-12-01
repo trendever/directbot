@@ -4,18 +4,22 @@
 #chat-list
   //-right-nav-component(current="chat")
   .chat-list-cnt(v-if='isDoneLead')
-    //-header-component(:title='getTitle', :left-btn-show='false')
-      .header__nav(slot='content' v-if='true')
+
+    header-component(:title='getTitle', :left-btn-show='false')
+
+      .header__nav(slot='center-content')
+
         .header__nav__i.header__text(
-          v-if="!directbot",
           :class='{_active: getLeadTab === "customer"}',
-          @click='$store.dispatch('setTab',"customer"));'
-          span Покупаю
+          @click='$store.dispatch("setTab","customer")',
+          v-if="getLeadTab === 'customer'")
+          span Чаты с продавцами
+
         .header__nav__i.header__text(
           :class='{_active: getLeadTab === "seller"}',
-          @click='setTab("seller");')
-          span(v-if="!directbot") Продаю
-          span(v-if="directbot") Чаты с покупателями
+          @click='$store.dispatch("setTab", "seller")',
+          v-if="getLeadTab === 'seller'")
+          span Чаты с покупателями
 
     .section.top.bottom
       .section__content
@@ -75,7 +79,7 @@
   import { mapGetters, mapActions } from 'vuex';
   //import ScrollTop from 'base/scroll-top/scroll-top';
 
-  //import HeaderComponent from 'base/header/header.vue';
+  import HeaderComponent from 'components/header/index.vue';
   //import NavbarComponent from 'base/navbar/navbar.vue';
 
   import ChatListItem from './chat-list-item.vue';
@@ -85,7 +89,7 @@
       //appLoader,
       //ScrollTop,
       //RightNavComponent,
-      //HeaderComponent,
+      HeaderComponent,
       //NavbarComponent,
       ChatListItem
 

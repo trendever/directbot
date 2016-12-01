@@ -1,15 +1,15 @@
 <template lang="pug">
-
-//-header-component(
-  :title='title',
-  :center-text-link="centerTextLink",
-  :page="page",
-  :avatar-url='avatarUrl',
-  :show-desktop-arrow="false")
-  right-nav-component(slot="content", current="")
-.section.main.top.little-padding
-  .section__content
-    post-component
+#product-detail
+  header-component(
+    :title='title',
+    :center-text-link="centerTextLink",
+    :page="page",
+    :avatar-url='avatarUrl',
+    :show-desktop-arrow="false")
+    //right-nav-component(slot="content", current="")
+  .section.main.top.little-padding
+    .section__content
+      post-component
 </template>
 
 <script type="text/babel">
@@ -18,7 +18,8 @@ import { mapGetters, mapActions } from 'vuex';
 import store from 'root/store';
 
 //import RightNavComponent from 'base/right-nav';
-//import HeaderComponent from 'components/header/header.vue';
+
+import HeaderComponent from 'components/header/index.vue';
 import PostComponent from './components/root/index.vue';
 
 
@@ -168,7 +169,7 @@ export default {
   components: {
 
    // RightNavComponent,
-   // HeaderComponent,
+    HeaderComponent,
     PostComponent
 
   },
