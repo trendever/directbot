@@ -127,7 +127,9 @@ export default {
       'userShopId',
       'getUserName',
       'getPhotoConfig',
-      'getUserPhoto'
+      'getUserPhoto',
+      'getSlogan',
+      'getUserCaption'
 
     ])
 
