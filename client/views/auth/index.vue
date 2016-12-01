@@ -8,7 +8,7 @@
         h1.accept Вход и регистрация
       .column-desktop-50.column-desktop-right(v-if="showTitleSlider")
         img(src="./img/directbot.png").logo
-        p.paragraph Перед подключением оператора, #[br] создайте или войдите #[br] в свою учетную запись
+        p.paragraph Перед подключением оператора, #[br] создайте или войдите #[br(v-if="isMobile")] в свою #[br(v-if="!isMobile")] учетную запись
       .column-desktop-50
         .bottom-container(:class='{"opened-key-board":!showTitleSlider}')
           .input-container
