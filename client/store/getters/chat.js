@@ -272,7 +272,7 @@ export const getLastMessageId = ( state ) => {
 
 };
 
-export const conversationNotifyCount = state => state.leads.global_notify_count;
+export const conversationNotifyCount = state => state.global_notify_count;
 
 export const getInviteShop = ( state ) => {
 

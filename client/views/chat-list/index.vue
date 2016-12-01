@@ -69,7 +69,6 @@
 <script type='text/babel'>
 
   //import appLoader from 'base/loader/loader';
-  //import RightNavComponent from 'base/right-nav/index';
   import listen from 'event-listener';
   import * as leads from 'services/leads';
   import * as messages from 'services/message';
@@ -79,8 +78,10 @@
   import { mapGetters, mapActions } from 'vuex';
   //import ScrollTop from 'base/scroll-top/scroll-top';
 
+
   import HeaderComponent from 'components/header/index.vue';
   //import NavbarComponent from 'base/navbar/navbar.vue';
+  //import RightNavComponent from 'base/right-nav/index';
 
   import ChatListItem from './chat-list-item.vue';
 

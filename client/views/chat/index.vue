@@ -3,8 +3,10 @@
 #chat
   //.loader-center(v-if="showLoader"): app-loader
   //popup-img(v-if="imgPopUpUrl", :url="imgPopUpUrl", :width="imgWidth", :height="imgHeight", :on-close="closePopUp")
-  //chat-header(:notify-count='conversationNotifyCount')
+
+  chat-header(:notify-count='conversationNotifyCount')
   .chat-shadow(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu", :class="{'directbot-color': isDirectbot }")
+
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat_messages(id="chatmessages", ref="messages")
@@ -72,7 +74,7 @@ import ChatMsg from './chat-msg.vue';
 import ChatMsgImg from './chat-msg-img.vue';
 import ChatMsgInfo from './chat-msg-info.vue';
 import ChatBar from './chat-bar.vue';
-//import ChatHeader from './chat-header.vue';
+import ChatHeader from './chat-header.vue';
 //import popupImg from 'base/popup-img/index.vue';
 
 export default {
@@ -85,7 +87,7 @@ export default {
 
   components: {
     //popupImg,
-    //ChatHeader,
+    ChatHeader,
     ChatBar,
     ChatMsg,
     ChatMsgOrder,

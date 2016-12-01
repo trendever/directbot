@@ -5,17 +5,17 @@
   .chat-row.__center
     .chat-msg-status
       span
-       | {{getUsernameRaw}} отправил запрос на получение {{getAmmount | curency_spaces}}
+       | {{getUsernameRaw}} отправил запрос на получение {{curency_spaces(getAmmount)}}
        i.ic-currency-rub
 
   .chat-approve-btn(v-if='showPayButton' )
     .btn-payment(@click="pay")
-      span ОТПРАВИТЬ {{getAmmount | curency_spaces}} ₽
+      span ОТПРАВИТЬ {{curency_spaces(getAmmount)}} ₽
     .btn-cancel(@click="cancel") <i class="ic-close"></i>
 
   .chat-pending-btn(v-if='showPendingButton' )
     .btn-payment
-      span ЗАПРОШЕНО {{getAmmount | curency_spaces}} ₽
+      span ЗАПРОШЕНО {{curency_spaces(getAmmount)}} ₽
     .btn-cancel(@click="cancel") <i class="ic-close"></i>
 
   iframe.payment-window(v-if='showPayButton', id="paymentIframe" v-bind:src="payLink" v-show="showPaymentWindow")
@@ -26,13 +26,13 @@
 
 
   import { mapGetters, mapActions } from 'vuex';
-
+  import { curency_spaces } from 'root/filters';
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
   import { formatTime, formatDatetime, escapeHtml, wrapLink } from './utils';
   import * as cardService from 'services/card';
 
-  //import { getPaymentAmmount } from 'project/payment/functions.js';
+  import { getPaymentAmmount } from 'views/payment/functions.js';
 
   export default{
     data() {
@@ -89,6 +89,7 @@
       }
     },
     methods:{
+      curency_spaces,
       ...mapActions([
         //chat
         'setConversationAction',
