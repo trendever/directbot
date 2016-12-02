@@ -141,3 +141,30 @@
     }
   }
 }
+
+
+.directbot-navbar{
+  .navbar-cnt{
+    @media(--mobile) {
+      display: inline-block;
+    }
+    .navbar_i{
+      width: 50%;
+      &:first-child{
+        display: none;
+      }
+
+      &__active{
+        .navbar_i_wrap_ic{
+          color: $color__blue !important;
+        }
+      }
+    }
+  }
+}
+.directbot-navbar .navbar-cnt .navbar_i.__active .navbar_i_wrap_ic, .navbar-cnt .navbar_i.__active .navbar_i_wrap_t{
+  color: $color__blue !important;
+}
+.directbot-right-nav .right-nav .right-nav_i:last-child{
+  display: none !important;
+}

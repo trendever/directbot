@@ -51,9 +51,8 @@
 </template>
 
 <script type='text/babel'>
-  //import settings from 'settings';
+import settings from 'root/settings';
 
-let settings = {}
 import listen from 'event-listener';
 import { mapGetters, mapActions } from 'vuex';
 
