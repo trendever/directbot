@@ -2,7 +2,7 @@
 <template lang="pug">
 
 #chat-list
-  right-nav-component(current="chat")
+
   .chat-list-cnt(v-if='isDoneLead')
 
     header-component(:title='getTitle', :left-btn-show='false')
@@ -58,9 +58,12 @@
       .chat-list-cnt-is-empty
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  ... потому что ты пока ничего #[br] не продаешь
+        
   .directbot-navbar(v-if="isMobile")
     navbar-component(current='chat')
-      
+  .directbot-right-nav
+    right-nav-component(current="chat")
+
   scroll-top
   //-app-loader.list-loader(v-if="!needLoadLeads")
 

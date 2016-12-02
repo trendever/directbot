@@ -1,14 +1,23 @@
 <template lang="pug">
 .right-nav(v-if="isAuth && !isMobile")
-  router-link.right-nav_i(:class='{"__active": current=="profile"}', :to='{name: "profile"}', v-if="$route.name !== 'profile'")
+
+  .right-nav_i(:class='{"__active": current=="profile"}', 
+    @click="$router.push({name: 'profile'})", 
+    v-if="$route.name !== 'profile'")
     i.ic-user_menu
-  .right-nav_i.menu__btn(v-if="$route.name === 'profile'", v-on:click.stop="$store.dispatch('setShowMenu', 'true')")
+
+  .right-nav_i.menu__btn(v-if="$route.name === 'profile'", 
+    @click.stop="$store.dispatch('setShowMenu', 'true')")
     i.ic-options_menu
-  router-link.right-nav_i(:class='{"__active": current=="chat"}', :to='{name: "chat_list"}')
+
+  .right-nav_i(:class='{"__active": current=="chat"}', 
+    @click="$router.push({name: 'chat_list'})")
     i.ic-chats_menu
     .notify-cout(v-if="getGlobalNotifyCount")
       span {{ getGlobalNotifyCount }}
-  router-link.right-nav_i(:class='{"__active": current=="feed"}', :to='{name: "home"}')
+
+  .right-nav_i(:class='{"__active": current=="feed"}', 
+    @click="$router.push({name: 'home'})")
     i.ic-gallery_menu
 
 </template>
