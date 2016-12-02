@@ -55,7 +55,7 @@ export default {
     cursor:pointer;
 
     &:hover {
-      background: $color__dark-green;
+      background: $color__light-blue;
     }
 
     &.menu__btn {
@@ -65,7 +65,7 @@ export default {
     }
 
     &.__active {
-      background: $color__dark-green;
+      background: $color__light-blue;
     }
     i.ic-user_menu{
       width: 50px;
