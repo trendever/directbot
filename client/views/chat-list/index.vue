@@ -60,7 +60,8 @@
         span  ... потому что ты пока ничего #[br] не продаешь
   .directbot-navbar(v-if="isMobile")
     navbar-component(current='chat')
-  //-scroll-top
+      
+  scroll-top
   //-app-loader.list-loader(v-if="!needLoadLeads")
 
 
@@ -77,7 +78,7 @@
   import store from 'root/store';
 
   import { mapGetters, mapActions } from 'vuex';
-  //import ScrollTop from 'base/scroll-top/scroll-top';
+  import ScrollTop from 'components/scroll-top';
 
 
   import HeaderComponent from 'components/header/index.vue';
@@ -89,7 +90,7 @@
   export default {
     components: {
       //appLoader,
-      //ScrollTop,
+      ScrollTop,
       RightNavComponent,
       HeaderComponent,
       NavbarComponent,

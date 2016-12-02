@@ -1,0 +1,62 @@
+@import 'style/vars/vars.pcss';
+
+.scroll-top {
+  position: fixed;
+  font-size: 40px;
+  size: 75px;
+  color: white;
+  padding-top: 18px;
+  text-align: center;
+  background: rgba(24, 92, 90, 0.701961);
+  border-radius: 50%;
+  bottom: 60px;
+  right: 203px;
+  z-index: 10;
+  cursor: pointer;
+
+  &.directbot-color {
+    background:$color__blue;
+    opacity: .7;
+
+  }
+
+  i {
+    display: inline-block;
+  }
+
+  @media(--smalldesktop) {
+    right: 10px;
+  }
+
+  @media(--tabletandless) {
+    right: 20px;
+  }
+  @media(--mobile) {
+    bottom: 110px;
+    size: 100px;
+    padding-top: 29px;
+  }
+  &:after{
+    content: '';
+    padding: 40px 0px 75px 95px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &.product__detail {
+    @media(--tabletandless) {
+      bottom: 130px;
+    }
+  }
+  &.__fly {
+    bottom: 160px;
+    right: 20px;
+    @media(--tabletandless) {
+      bottom: 160px;
+    }
+  }
+}
+
+.arrow__down {
+  transform: rotate(180deg)  translateY(-3px) translateX(1px);
+}

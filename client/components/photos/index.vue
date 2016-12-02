@@ -3,6 +3,9 @@
   ul.photos-flex(:style="{ paddingTop: space + 'px'}")
     template(v-for="photo, index in listProducts")
       single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index")
+
+  scroll-top
+
 </template>
 
 <script>
@@ -11,6 +14,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 import listen from 'event-listener';
 import single from './single.vue';
+import scrollTop from 'components/scroll-top';
 
 import * as products from 'services/products.js';
 
@@ -275,7 +279,8 @@ export default {
 
   components:{
 
-    single
+    single,
+    scrollTop
 
   },
 }

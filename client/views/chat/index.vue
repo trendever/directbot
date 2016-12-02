@@ -47,7 +47,7 @@
               v-on:goToBottom="goToBottom")
 
   chat-bar(v-on:addPadding="addPadding")
-  //-scroll-top(:to-up="false")
+  scroll-top(:to-up="false")
 </template>
 
 <script type='text/babel'>
@@ -64,7 +64,7 @@ import * as leads from 'services/leads';
 
 //components
 //import appLoader from 'base/loader/loader';
-//import scrollTop from 'base/scroll-top/scroll-top.vue';
+import scrollTop from 'components/scroll-top';
 import ChatMsgOrder from './chat-msg-order.vue';
 import ChatMsgPayment from './chat-msg-payment.vue';
 import ChatMsgProduct from './chat-msg-product.vue';
@@ -97,7 +97,7 @@ export default {
     ChatMsgStatus,
     ChatMsgImg,
     ChatMsgInfo,
-    //scrollTop,
+    scrollTop,
     //appLoader,
   },
 
