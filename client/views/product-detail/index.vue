@@ -7,7 +7,8 @@
     :avatar-url='avatarUrl',
     :show-desktop-arrow="false")
 
-    right-nav-component(slot="content", current="")
+    .directbot-right-nav(slot="content")
+      right-nav-component
 
   .section.main.top.little-padding
     .section__content
