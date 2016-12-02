@@ -29,9 +29,7 @@
             span.profile_info_about_work-time  10.00-21.00
             span.profile_info_about_posts-quantity  951 постов
 
-        .profile_desc.less(
-          v-on:click="this.isMoreClass = !this.isMoreClass",
-          v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
+        .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption") {{ captionSpaces(getUserCaption) }}
@@ -62,9 +60,10 @@
 
 
         .profile_no-goods-banner(v-if="isSelfPage && !userShopId")
+          i.ic-close(v-on:click="hideBanner", v-show="showBanner = false")
           span После подключения
-          span.save Directbot
-          span  начнет мониторить все  ваши новые посты  и автоматически  отвечать на вопросы покупателей
+          span.save &nbspоператор #[br(v-if="!isMobile")]
+          span  начнет мониторить все  ваши новые посты #[br(v-if="!isMobile")] и автоматически  отвечать на вопросы покупателей
 
         //-router-link(:to="{ name: 'turn-on-bot' }")
           button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
@@ -96,6 +95,7 @@ export default {
 
 
   data(){
+  let showBanner = (window.localStorage.getItem('isMainBannerShow') === null) ? true : false;
 
     return {
 
@@ -104,6 +104,8 @@ export default {
       loaded: true,
       getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
+      isMoreClass: false,
+      showBanner: showBanner
 
     }
 
@@ -127,6 +129,11 @@ export default {
 
     captionSpaces(val){
       return val.replace(/\r\n\r\n/g,"<br/><br/>");
+    },
+
+    hideBanner(){
+      window.localStorage.setItem('isMainBannerShow',false);
+      this.showBanner = false;
     }
 
   },
