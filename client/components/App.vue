@@ -1,5 +1,5 @@
 <template lang="pug">
-#app
+#app.directbot
   router-view(v-if="authDone")
   listener(v-if="authDone")
 </template>

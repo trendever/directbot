@@ -1,5 +1,5 @@
 <style src="./style.pcss"></style>
-<template lang="jade">
+<template lang="pug">
  .monetization
 
   i.ic-close(@click='closePage')
@@ -40,17 +40,19 @@
 </template>
 
 <script>
-import { getUseDays } from 'vuex/getters/user';
+
 export default {
   data(){
     return {
       dealType: ''
     }
   },
-  vuex: {
-    getters: {
-      getUseDays
+  computed: {
+
+    getUseDays(){
+      return this.$store.getters.getUseDays;
     }
+
   },
   methods:{
     closePage(){

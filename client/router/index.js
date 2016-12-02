@@ -68,6 +68,16 @@ let router = new Router({
       component: require('views/test/list.vue')
     },
     {
+      name: 'monetization',
+      path: '/monetization',
+      component: require('views/monetization')
+    },
+    {
+      name: 'connect-bot',
+      path: '/connect-bot',
+      component: require('views/connect-bot')
+    },
+    {
       name: 'profile',
       path: '/profile',
       component: require('views/profile/index')
