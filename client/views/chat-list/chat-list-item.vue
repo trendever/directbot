@@ -15,7 +15,7 @@
     .body-last-msg
       p
         b(v-if="recentMessage.user_name.length > 0") {{recentMessage.user_name}}:
-          span(v-html="recentMessage.message")
+        span(v-html="recentMessage.message")
       .body-notify(v-if='unreadCount')
         span {{ unreadCount }}
   .chat-list-i-delete(:class="{'open-delete': showDelete}", @click.stop="deleteChat") Удалить
