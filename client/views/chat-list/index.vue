@@ -300,23 +300,19 @@
 
             if ( targetHeight < ( scrollTop + 1000 ) ) {
 
+                store.dispatch('loadLeads').then( () => {
 
-
-                store.dispacth('loadLeads').then( () => {
                   setTimeout(()=>{
+
                     this.$nextTick( () => {
 
-                      if(this.$els.scrollCnt !== null) {
-
-                        add( document.body.scrollHeight );
-
-                      }
+                      add( document.body.scrollHeight );
 
                     } );
+
                   },1)
+
                 } )
-
-
 
             } else {
 
