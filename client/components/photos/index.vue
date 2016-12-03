@@ -332,11 +332,6 @@ export default {
 
   }
 
-  color: white;
-  font-weight: bold;
-  font-size: 3em;
-  text-align: center;
-
   img {
     width: 100%;
   }
