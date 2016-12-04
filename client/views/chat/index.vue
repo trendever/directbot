@@ -5,10 +5,10 @@
   //popup-img(v-if="imgPopUpUrl", :url="imgPopUpUrl", :width="imgWidth", :height="imgHeight", :on-close="closePopUp")
 
   chat-header(:notify-count='conversationNotifyCount')
-  .chat-shadow(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu", :class="{'directbot-color': isDirectbot }")
 
   .section.top.bottom(ref="section")
     .chat.section__content
+      .chat-shadow.directbot-color(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu")
       .chat_messages(id="chatmessages", ref="messages")
         div(v-for='(msg, index) in messagesList', :key='index')
           div
