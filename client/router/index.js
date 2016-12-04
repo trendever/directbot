@@ -30,21 +30,26 @@ let router = new Router({
 		  path: '/chat',
 		  component: require('views/chat-list')
 		},
+
+    //CHAT
+    {
+      name: 'chat_zoom',
+      path: '/chat/zoom',
+      component: require('components/popup-img/routed')
+    },
     {
       name: 'chat',
       path: '/chat/:id',
       component: require('views/chat/index')
     },
+
+    //AUTH
     {
       name: 'auth',
       path: '/auth',
       component: require('views/auth/index')
     },
 
-    {
-      name: 'chat_zoom',
-      path: '/chat_zoom',
-    },
     {
       name: 'confirm',
       path: '/confirm',

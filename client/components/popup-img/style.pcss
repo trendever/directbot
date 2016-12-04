@@ -1,0 +1,68 @@
+@import 'style/vars/vars.pcss';
+
+@use postcss-autoreset {
+  reset: {
+    all: initial;
+    sizes: 0;
+  }
+}
+
+@use postcss-initial {
+  reset: inherited;
+}
+
+.img-container {
+
+  display: block;
+  position: absolute;
+  size: 100%;
+
+}
+
+.img-keeper {
+
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  box-sizing: border-box;
+  padding: 1px;
+  background-color: $color__white;
+  z-index: $z-index-popup-container;
+  @media(--mobile) {
+
+    background:initial;
+    padding: 0;
+
+  }
+
+  @media(--ipad) {
+    background:initial;
+  }
+
+
+}
+
+.picture {
+
+  size: 100%;
+
+  &.hide-move-left {
+    position: absolute;
+    top: 3000px;
+    left: 3000px;
+  }
+}
+
+
+
+.close-block{
+
+  position: absolute;
+  z-index: 1040;
+  size: 100%;
+
+}
+
+
+
