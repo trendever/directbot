@@ -11,7 +11,7 @@ div
       //-.menu_i(v-if='canCallSupplier', @click='callSupplier()')
         .menu_i_t Позвать магазин в чат
 
-      .menu_i(v-if='notCustomer', @click='setShowStatusMenu(true)')
+      .menu_i(v-if='notCustomer', @click.stop='setShowStatusMenu(true)')
         .menu_i_t Изменить статус заказа
 
       .menu_i(@click='openPayment()' v-if="noActivePayments")
@@ -52,7 +52,7 @@ div
     },
     mounted(){
 
-/*      this.outerCloseMenu = listen(document.body, 'click',(e)=>{
+      this.outerCloseMenu = listen(document.body, 'click',(e)=>{
 
         targetClass(e, 'menu-cnt', ()=>{
 
@@ -65,10 +65,15 @@ div
 
         });
 
-      })*/
+      })
+
     },
     beforeDestroy(){
-      this.outerCloseMenu.remove();
+      if(this.outerCloseMenu) {
+
+        this.outerCloseMenu.remove();
+
+      }
     },
     methods: {
       ...mapActions([

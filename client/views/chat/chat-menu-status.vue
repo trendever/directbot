@@ -8,7 +8,7 @@ menu-component
       .menu_i_t.__txt-white На доставке
     .menu_i.__bg-orange(@click='setStatus("SUBMIT", "lead.state.changed")')
       .menu_i_t.__txt-white Подтвержден
-    .menu_i.__bg-red(@click='setShowCancelMenu(true)')
+    .menu_i.__bg-red(@click.stop='setShowCancelMenu(true)')
       .menu_i_t.__txt-white Отменен
     .menu_i(@click.stop='setShowMenu(true)')
       .menu_i_t.__txt-green Назад

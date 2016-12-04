@@ -4,7 +4,7 @@ menu-component
   div.menu-items(slot='items')
     .menu_i(v-for="reason in cancelReasons" @click='setStatus("CANCEL", "lead.state.changed", reason.id)')
       .menu_i_t {{ reason.name }}
-    .menu_i(@click='setShowCancelMenu(false),setShowStatusMenu(true)')
+    .menu_i(@click.stop='setShowCancelMenu(false), setShowStatusMenu(true)')
       .menu_i_t.__txt-green Назад
 </template>
 

@@ -5,7 +5,6 @@
   //popup-img(v-if="imgPopUpUrl", :url="imgPopUpUrl", :width="imgWidth", :height="imgHeight", :on-close="closePopUp")
 
   chat-header(:notify-count='conversationNotifyCount')
-
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat-shadow.directbot-color(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu")
