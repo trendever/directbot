@@ -357,6 +357,14 @@ const mutations = {
 
   },
 
+  [types.CONVERSATION_CLOSE_IMG_POPUP] ( state){
+
+    state.imgPopUpUrl = '';
+    state.imgWidth    = 0;
+    state.imgHeight   = 0;
+
+  },
+
   [types.CONVERSATION_SEND_STATUS] ( state ) {
     state.showMenu       = false;
     state.showStatusMenu = false;

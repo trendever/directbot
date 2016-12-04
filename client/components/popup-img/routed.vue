@@ -23,9 +23,13 @@ export default {
   methods: {
     closePopUp(){
       let id = this.$route.query.chatid;
-      if(id){
+
+      if ( id ) {
+
         this.$router.replace({name: 'chat', params: {id: id}});
-        this.$store.dispatch('openPopUp');
+
+        this.$store.dispatch('closeImgPopUp');
+
       }
     }
   }

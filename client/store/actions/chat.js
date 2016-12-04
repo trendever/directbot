@@ -561,9 +561,15 @@ export const closeConversation = ( { commit } ) => {
 
 }
 
-export const openPopUp = ( { commit }, url = false, width = 0, height = 0 ) => {
+export const openPopUp = ( { commit }, { url = false, width = 0, height = 0 } ) => {
 
   commit( types.CONVERSATION_OPEN_IMG_POPUP, { url, width, height } );
+
+}
+
+export const closeImgPopUp = ( { commit }) => {
+
+  commit( types.CONVERSATION_CLOSE_IMG_POPUP);
 
 }
 

@@ -2,7 +2,6 @@
 <template lang="pug">
 #chat
   //.loader-center(v-if="showLoader"): app-loader
-  //popup-img(v-if="imgPopUpUrl", :url="imgPopUpUrl", :width="imgWidth", :height="imgHeight", :on-close="closePopUp")
 
   chat-header(:notify-count='conversationNotifyCount')
   .section.top.bottom(ref="section")

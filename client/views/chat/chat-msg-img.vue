@@ -68,7 +68,7 @@
 
           let { width, height } = JSON.parse( msgParts.content );
 
-          this.openPopUp( this.getImg, width, height );
+          this.openPopUp({ url: this.getImg, width, height });
 
           this.$router.push({name: 'chat_zoom', query: { chatid: this.$route.params.id}})
         }
@@ -77,7 +77,7 @@
 
           let {width, height} = msgParts.content;
 
-          this.openPopUp( this.getImg, width, height );
+          this.openPopUp({ url: this.getImg, width, height });
 
           this.$router.push({name: 'chat_zoom', query: { chatid: this.$route.params.id}})
 
