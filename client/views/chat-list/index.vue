@@ -59,7 +59,7 @@
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  ... потому что ты пока ничего #[br] не продаешь
 
-  .directbot-navbar(v-if="isMobile && getAuthUser.supplier_of")
+  .directbot-navbar(v-if="isMobile && getAuthUser.supplier_of $$ isAuth")
     navbar-component(current='chat')
   .directbot-right-nav
     right-nav-component(current="chat")

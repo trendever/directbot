@@ -72,7 +72,7 @@
 
   photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
 
-  .directbot-navbar(v-if="isMobile && getAuthUser.supplier_of")
+  .directbot-navbar(v-if="isMobile && getAuthUser.supplier_of && isAuth")
     navbar-component(:current='profile')
 
 </template>
