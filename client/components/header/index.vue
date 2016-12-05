@@ -1,6 +1,6 @@
 <style src='./header.pcss'></style>
 <template lang="pug">
-.section.header.section__content
+.header
     .header__content
       .wrapper.directbot-color
         .header__arrow(
