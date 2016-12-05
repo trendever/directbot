@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "ba-linkify": "^1.0.1",
+    "clipboard": "^1.5.15",
     "jwt-decode": "^2.1.0",
     "sockjs-client": "^1.1.1",
     "vue": "^2.0.0",
