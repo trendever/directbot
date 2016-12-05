@@ -149,7 +149,12 @@ export default {
 
     '$route'(){
 
-        store.dispatch('openProduct', +this.$route.params.id )
+        store
+          .dispatch('openProduct', +this.$route.params.id )
+          .then(()=>{
+            window.scrollTo(0,0);
+          })
+
 
     }
 
