@@ -1,6 +1,6 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
-li.single-photo.flex-item.photo__container(v-if='!error', @click="goToProduct")
+div.single-photo.photo__container(v-if='!error', @click="goToProduct")
   .photo__img-space
     img.photo__img(
         :src='thumb',

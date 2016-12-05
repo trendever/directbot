@@ -556,6 +556,7 @@ export const setShowCancelMenu = ( { commit }, showCancelMenu ) => {
 }
 
 export const closeConversation = ( { commit } ) => {
+
   commit(types.CONVERSATION_SET_ACTION, '');
   commit( types.CONVERSATION_CLOSE );
 
