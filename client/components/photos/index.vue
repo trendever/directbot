@@ -2,7 +2,7 @@
 .photos
   template(v-for="photo, index in listProducts")
     single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index")
-
+  div#test | 123
   scroll-top
 
 </template>
@@ -88,6 +88,12 @@ export default {
 
     ]),
 
+    checkVisible(elm) {
+      var rect = elm.getBoundingClientRect();
+      var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+      return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
+    },
+
     simpleScroll(){
       //to have 0 scroll when first load
 
@@ -98,12 +104,20 @@ export default {
       }
 
       this.openList( {
-
         listId: this.listName,
-
         shop_id: this.shopId
-
-      } )
+      } ).then(()=>{
+        let elem = document.getElementById("test")
+        this.windowListener = listen( window , 'scroll', () => {
+          if (this.checkVisible(elem)){
+            this.offset += 20;
+            this.increaseListLength( {
+              shop_id: this.shopId,
+              offset: this.offset
+            });
+          }
+        });
+      });
 
     },
 
