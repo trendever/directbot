@@ -103,57 +103,12 @@ export default {
 
         shop_id: this.shopId
 
-      } ).then( () => {
-
-        this.$nextTick(()=>{
-
-          this.windowListener = listen( window , 'scroll', () => {
-
-            let direction = window.scrollY - this.oldScroll < 0 ? false : true;
-
-            this.oldScroll = window.scrollY;
-
-            this.setScrollToList(window.scrollY);
-
-            if(this.off || !direction) return;
-
-            if(window.scrollY > document.body.scrollHeight/2) {
-
-              this.off = true;
-
-              this.offset += 20;
-
-              this.increaseListLength( {
-
-                shop_id: this.shopId,
-
-                offset: this.offset
-
-              }).then(()=>{
-
-                this.scrollTo(this.listScroll);
-
-                this.off = false;
-
-              })
-
-            }
-
-          })
-
-        })
-
-      })
+      } )
 
     },
 
     scrollTo(value){
-
       window.scrollTo(0,value);
-
-    },
-
-    infiniteScroll(){
     }
   },
 
@@ -169,7 +124,7 @@ export default {
 
   beforeDestroy(){
 
-    this.windowListener.remove();
+    //this.windowListener.remove();
 
     //this.closeList();
 

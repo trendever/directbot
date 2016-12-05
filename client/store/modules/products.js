@@ -47,7 +47,7 @@ let actions = {
 
   },
 
-  openList({ commit, state }, { listId, shop_id = null, limit = 30 } ) {
+  openList({ commit, state }, { listId, shop_id = null, limit = 50 } ) {
 
     if(state.lists[listId]) {
 
