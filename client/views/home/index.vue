@@ -51,7 +51,7 @@
       img(src="./img/insta-bot_image_mob.svg", v-if="isMobile")
       .counter
         span.txt ОТПРАВЛЕНО
-        span.digit 186
+        span.digit#counter
         span.txt СООБЩЕНИЙ
       p.t СКАНИРУЕТ КОММЕНТАРИИ #[br] И DIRECT В INSTAGRAM
       p.m БЫСТРО ОТВЕЧАЕТ #[br] КЛИЕНТАМ В DIRECT
@@ -234,6 +234,13 @@ export default {
         JQuery('.toggleBtn').not(this).removeClass('activeBtn');
         JQuery(this).toggleClass('activeBtn');
     });
+
+      // Counter
+      function myCounter() {
+          let c = Math.floor((Math.random() * 100) + 1);
+          document.getElementById("counter").innerHTML = c++;
+      }
+      setInterval(myCounter, 1000);
 
   },
   computed: {

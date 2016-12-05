@@ -54,7 +54,6 @@
           .text-box
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
-
         .profile_no-goods-banner(v-if="isSelfPage && !userShopId")
           i.ic-close(v-on:click="hideBanner", v-show="showBanner = false")
           span После подключения
