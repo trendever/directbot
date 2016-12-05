@@ -115,14 +115,9 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
       },
       suppliername(){
         if(this.product.shop){
-
           return this.product.shop.name;
-
         }
-
         return this.product.supplier.instagram_username;
-
-
       }
     }
   }
