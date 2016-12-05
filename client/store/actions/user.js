@@ -1,4 +1,5 @@
 import * as userService from 'services/user';
+import * as shopService from 'services/shop';
 import * as profile from 'services/profile.js';
 import * as types from '../mutation-types';
 import { getUserName, getProfile } from '../getters/user.js';
@@ -167,7 +168,7 @@ export const openProfile = ( { commit, state }, id ) => {
 
       } else {
 
-        userService
+        shopService
           .get( requestData )
           .then( ( user ) => {
             commit( types.USER_RECEIVE_PROFILE,{ profile: getValidUserObject( user, id ), id } );

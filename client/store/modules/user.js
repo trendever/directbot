@@ -9,6 +9,26 @@ function picProfile( profile ) {
 
   return Object.assign(
     {
+      //shop_retrieve
+      instagram_fullname: profile.instagram_fullname,
+      instagram_id: profile.instagram_id,
+      instagram_username: profile.instagram_username,
+      plan_expires_at: profile.plan_expires_at,
+      plan_id: profile.plan_id,
+      shipping_rules: profile.shipping_rules,
+      supplier: profile.supplier,
+      supplier_id: profile.supplier_id,
+      suspended: profile.suspended,
+      instagram_avatar_url: profile.instagram_avatar_url,
+      id: profile.id,
+      created_at: profile.created_at,
+      avatar_url: profile.avatar_url
+
+    },
+
+    {
+      //user retrieve
+
       id: profile.id,
       instagram_id: profile.instagram_id,
       instagram_username: profile.instagram_username,
@@ -19,18 +39,7 @@ function picProfile( profile ) {
       name: profile.name,
       email: profile.email,
       phone: profile.phone,
-    },
 
-    (profile.supplier)?
-
-    {
-      supplier: profile.supplier
-    }
-
-    :
-
-    {
-      supplier: profile.supplier
     },
 
     (profile.supplier_of) ?
