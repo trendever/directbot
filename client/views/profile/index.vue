@@ -16,9 +16,7 @@
 
       .profile
 
-
         .profile_info
-
 
           .profile_info_img(@click="$router.push({name: 'list'})")
             img(:src="getUserPhoto")
@@ -32,7 +30,7 @@
         .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
-          .profile_desc_caption(v-if="getUserCaption") {{ captionSpaces(getUserCaption) }}
+          .profile_desc_caption(v-if="getUserCaption") {{ caption_spaces(getUserCaption) }}
 
         .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
           .insta-link-text ссылка на эту витрину
@@ -46,7 +44,6 @@
 
       template(v-if="loaded")
 
-
         .profile_inactive(v-if="directbotActive && isSelfPage")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
@@ -57,7 +54,6 @@
           .text-box
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
-
 
         .profile_no-goods-banner(v-if="isSelfPage && !userShopId")
           i.ic-close(v-on:click="hideBanner", v-show="showBanner = false")
@@ -85,6 +81,7 @@
 
 import store from 'root/store';
 import { mapActions, mapGetters } from 'vuex';
+import { caption_spaces } from 'root/filters';
 
 import photos from 'components/photos/index';
 import headerComponent from 'components/header';
@@ -95,6 +92,7 @@ export default {
 
 
   data(){
+
   let showBanner = (window.localStorage.getItem('isMainBannerShow') === null) ? true : false;
 
     return {
@@ -123,12 +121,10 @@ export default {
 
   methods: {
 
+    caption_spaces,
+
     openOptions(){
       return;
-    },
-
-    captionSpaces(val){
-      return val.replace(/\r\n\r\n/g,"<br/><br/>");
     },
 
     hideBanner(){
