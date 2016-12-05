@@ -1,14 +1,7 @@
 <template>
 <div v-if="loaded || !$store.getters.isAuth">
   <div class="buttons" :class="{'glued-btns': isMobile && !authSellerProduct}" v-if="!authSellerProduct">
-    <div class="leftSide">
-      <button class="save_btn" @click="like" :class="{ 'active': isLiked, 'default': !isLiked}">
-      {{text}}
-      </button>
-    </div>
-    <div class="rightSide">
       <button class="buy_btn" @click="buy">КУПИТЬ</button>
-    </div>
   </div>
 
   <div class="find-bloger" v-if="authSellerProduct" @click="buyServiceProduct">Найти блогера</div>

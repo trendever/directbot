@@ -43,8 +43,8 @@
 
     <span class="title">
       <p class="title-not-link">Больше от </p>
-      <router-link :to='{name: "user", params: {id: supplierName}}'>
-        <p class="title-link" >{{supplierName}}</p>
+      <router-link :to='{name: "user", params: {id: supplierName}}' class="title-link">
+        <p>{{supplierName}}</p>
       </router-link>
     </span>
 
