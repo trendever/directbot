@@ -30,7 +30,7 @@
         .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
-          .profile_desc_caption(v-if="getUserCaption") {{ caption_spaces(getUserCaption) }}
+          .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
         .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
           .insta-link-text ссылка на эту витрину
