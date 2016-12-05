@@ -51,11 +51,11 @@ export const user = ( user ) => {
 
 export const userShopId =  (state) => {
 
-  let shops = user(state).supplier_of
+  let shop = user(state).supplier
 
-  if(shops !== null) {
+  if(shop !== null) {
 
-    return shops[0];
+    return shop.id;
 
   }
 

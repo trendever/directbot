@@ -20,6 +20,19 @@ function picProfile( profile ) {
       email: profile.email,
       phone: profile.phone,
     },
+
+    (profile.supplier)?
+
+    {
+      supplier: profile.supplier
+    }
+
+    :
+
+    {
+      supplier: profile.supplier
+    },
+
     (profile.supplier_of) ?
     {
       supplier_of: profile.supplier_of

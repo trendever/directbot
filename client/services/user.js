@@ -56,7 +56,7 @@ export function get({ user_id, instagram_name }) {
 
     channel.req('retrieve', 'shop', { user_id, instagram_name })
     .then( data => {
-      resolve(data.response_map.profile);
+      resolve(data.response_map.shop);
     }).catch( error => {
       reject({ code: ERROR_CODES.NOT_FOUND, response: error });
     });
