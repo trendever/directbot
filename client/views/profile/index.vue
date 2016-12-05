@@ -59,8 +59,8 @@
             p.light мониторю 3 поста #[br] отправил 5 сообщений
 
 
-        .profile_no-goods-banner(v-if="isSelfPage && !userShopId")
-          i.ic-close(v-on:click="hideBanner", v-show="showBanner = false")
+        .profile_no-goods-banner(v-if="isSelfPage && !userShopId", v-show="showBanner")
+          i.ic-close(v-on:click="showBanner = false")
           span После подключения
           span.save &nbspоператор #[br(v-if="!isMobile")]
           span  начнет мониторить все  ваши новые посты #[br(v-if="!isMobile")] и автоматически  отвечать на вопросы покупателей
