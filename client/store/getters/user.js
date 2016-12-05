@@ -51,7 +51,7 @@ export const user = ( user ) => {
 
 export const userShopId =  (state) => {
 
-  let shop = user(state).supplier
+  let shop = user(state)
 
   if(shop !== null) {
 
