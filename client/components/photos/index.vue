@@ -1,8 +1,8 @@
 <template lang="pug">
 .photos
   template(v-for="photo, index in listProducts")
-    single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index")
-  div#test | 123
+    single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index", :class-data="index%2")
+  div#infinitie
   scroll-top
 
 </template>
@@ -89,8 +89,8 @@ export default {
     ]),
 
     checkVisible(elm) {
-      var rect = elm.getBoundingClientRect();
-      var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+      let rect = elm.getBoundingClientRect();
+      let viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
       return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
     },
 
@@ -107,7 +107,7 @@ export default {
         listId: this.listName,
         shop_id: this.shopId
       } ).then(()=>{
-        let elem = document.getElementById("test")
+        let elem = document.getElementById("infinitie")
         this.windowListener = listen( window , 'scroll', () => {
           if (this.checkVisible(elem)){
             this.offset += 20;
@@ -118,7 +118,6 @@ export default {
           }
         });
       });
-
     },
 
     scrollTo(value){
@@ -126,19 +125,9 @@ export default {
     }
   },
 
-  watch: {
-
-    '$route'(){
-
-      this.scrollTo(0);
-
-    }
-
-  },
-
   beforeDestroy(){
 
-    //this.windowListener.remove();
+    this.windowListener.remove();
 
     //this.closeList();
 
@@ -152,57 +141,3 @@ export default {
   },
 }
 </script>
-
-<style type="pcss">
-
-@import 'style/vars/vars.pcss';
-
-.photos-flex{
-  padding: 0;
-  margin: 0;
-  list-style: none;
-
-
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-
-  -webkit-flex-flow: row wrap;
-  justify-content: center;
-
-  @media(min-width: 1050px){
-
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
- }
-
-
- li.flex-item {
-
-  @media(--mobile) {
-
-    width: 48%;
-    height: 48%;
-    margin: * 2px * 2px;
-
-  }
-
-  @media(min-width: 751px){
-
-    width: 32%;
-    heigth: 32%;
-    margin: * 5px * 5px;
-
-  }
-
-  img {
-    width: 100%;
-  }
-}
-
-
-</style>
