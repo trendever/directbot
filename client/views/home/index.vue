@@ -51,7 +51,7 @@
       img(src="./img/insta-bot_image_mob.svg", v-if="isMobile")
       .counter
         span.txt ОТПРАВЛЕНО
-        span.digit#counter
+        span.digit#counter {{ counter }}
         span.txt СООБЩЕНИЙ
       p.t СКАНИРУЕТ КОММЕНТАРИИ #[br] И DIRECT В INSTAGRAM
       p.m БЫСТРО ОТВЕЧАЕТ #[br] КЛИЕНТАМ В DIRECT
@@ -193,11 +193,14 @@ export default {
       yesScreen: true,
       noScreen: false,
       showPopup: false,
-      popupUrl: ""
+      popupUrl: "",
+      counter: 0
     }
   },
 
   mounted() {
+
+    this.timeID = this.count();
 
     this.$root.$on('postMessage',(msg) => {
       let fra = document.getElementById("popupiframe");
@@ -235,15 +238,14 @@ export default {
         JQuery(this).toggleClass('activeBtn');
     });
 
-      // Counter
-      function myCounter() {
-          let c = Math.floor((Math.random() * 100) + 1);
-          document.getElementById("counter").innerHTML = c++;
-      }
-      setInterval(myCounter, 1000);
+  },
+  beforeDestroy(){
+
+    clearInterval(this.timeID);
 
   },
   computed: {
+
       getLinkTitle(){
         if (this.phoneError){
           return "НЕВЕРНЫЙ НОМЕР";
@@ -280,6 +282,17 @@ export default {
   },
 
   methods: {
+    count(){
+
+      return setInterval(()=>{
+
+        this.counter++;
+
+        console.log(this.counter)
+
+      },1000)
+
+    },
     openPopup(target){
       if (this.isMobile){
         this.$router.push({ name: 'popup', params: { id: target }})
