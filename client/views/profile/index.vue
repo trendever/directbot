@@ -142,6 +142,7 @@ export default {
     },
 
     ...mapGetters([
+      'isAuth',
       'getAuthUser',
       'userShopId',
       'getUserName',
