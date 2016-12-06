@@ -1,41 +1,42 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
- .monetization
+.monetization
+  .monetization__wrap
+    i.ic-close(@click='closePage')
+    .monetization__days-block
+      .monetization__days-to-end(:class="{is__end: getUseDays === 0}") {{ getUseDays }} 3
+      .monetization__text.end-txt
+        | дня осталось до конца #[br] пробного периода
+    .monetization__plans
+      .monetization__text.bot
+        | Выбор тарифного плана
+      .monetization__btn.first(@click="dealType = 'month-type'")
+       button(:class="{make__choice: dealType === 'month-type'}")
+         span.bold 1390
+           i.ic-rub
+         span.bold  ЗА 7 ДНЕЙ #[br]
+         span.light 5940
+           i.ic-rub
+         span.light  ЦЕНА В МЕСЯЦ
+      .monetization__btn(@click="dealType = 'percent-type'")
+       button(:class="{make__choice: dealType === 'percent-type'}")
+         span.bold 4990
+           i.ic-rub
+         span.bold  ЗА 30 ДНЕЙ
+      .monetization__btn(@click="dealType = 'percent-type'")
+        button(:class="{make__choice: dealType === 'percent-type'}")
+          span.bold 8990
+            i.ic-rub
+          span.bold  ЗА 90 ДНЕЙ #[br]
+          span.light 2990
+            i.ic-rub
+          span.light  ЦЕНА В МЕСЯЦ
+      .monetization__zero-days-link(v-if="false")
+        a(href="#") У меня есть вопросы
+      .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
 
-  i.ic-close(@click='closePage')
-  .monetization__days-to-end(:class="{is__end: getUseDays === 0}") {{ getUseDays }} 3
-  .monetization__text
-    | дня осталось до конца #[br.first-br] пробного периода
-  .monetization__text.bot
-    | Выбери подходящий #[br] тарифный план
-  .monetization__btn(@click="dealType = 'month-type'")
-   button(:class="{make__choice: dealType === 'month-type'}")
-     span.bold 1390
-       i.ic-currency-rub
-     span.bold  ЗА 7 ДНЕЙ #[br]
-     span.light 5940
-       i.ic-currency-rub
-     span.light  ЦЕНА В МЕСЯЦ
-  .monetization__btn(@click="dealType = 'percent-type'")
-   button(:class="{make__choice: dealType === 'percent-type'}")
-     span.bold 4990
-       i.ic-currency-rub
-     span.bold  ЗА 30 ДНЕЙ #[br]
-     span.light САМЫЙ ПОПУЛЯРНЫЙ ТАРИФ
-  .monetization__btn(@click="dealType = 'percent-type'")
-    button(:class="{make__choice: dealType === 'percent-type'}")
-      span.bold 8990
-        i.ic-currency-rub
-      span.bold  ЗА 90 ДНЕЙ #[br]
-      span.light 2990
-        i.ic-currency-rub
-      span.light  ЦЕНА В МЕСЯЦ
-  .monetization__zero-days-link(v-if="false")
-    a(href="#") У меня есть вопросы
-  .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
-
-   button(v-if="getUseDays !== 0 && !dealType", @click="closePage") ПОКА НЕ УВЕРЕН
-   button(v-if="getUseDays === 0 || dealType", @click="accept") ПОДТВЕРДИТЬ
+       button(v-if="getUseDays !== 0 && !dealType", @click="closePage") ПОКА НЕ УВЕРЕН
+       button(v-if="getUseDays === 0 || dealType", @click="accept") ПОДТВЕРДИТЬ
 
 </template>
 
