@@ -1,7 +1,7 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
 #profile
-  header-component(:title='getUserName', :left-btn-show='true').directbot-header
+  header-component(:title='getUserName', :left-btn-show='false').directbot-header
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
         i.ic-options_menu(@click="openOptions")
       div.profile-days(slot="content" v-if="isSelfPage")
