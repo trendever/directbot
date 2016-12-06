@@ -86,7 +86,7 @@
 
   photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
 
-  .directbot-navbar(v-if="isMobile && isAuth && getAuthUser.supplier_of")
+  .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='profile')
 
 </template>
@@ -131,11 +131,22 @@ export default {
 
   beforeRouteEnter({ params: { id }, name }, to, next ){
 
+    let instagram_username, user_id;
+
+    let user = profileService.getProfile().user;
+
     if(name === 'profile'){
-      id = profileService.getProfile().user.instagram_username;
+
+      instagram_username = user.instagram_username;
     }
 
-    store.dispatch('openProfile', id).then(()=>{
+    if(user.supplier_of === null) {
+
+      instagram_username = null;
+
+    }
+
+    store.dispatch('openProfile', { user_id, instagram_username }).then(()=>{
       next();
     })
 
