@@ -86,7 +86,7 @@
 
   photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
 
-  .directbot-navbar(v-if="isMobile && isAuth && getAuthUser.supplier_of")
+  .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='profile')
 
 </template>
@@ -134,7 +134,6 @@ export default {
     let instagram_username, user_id;
 
     let user = profileService.getProfile().user;
-
 
     if(name === 'profile'){
 
