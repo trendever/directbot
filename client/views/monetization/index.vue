@@ -4,7 +4,7 @@
   .monetization__wrap
     i.ic-close(@click='closePage')
     .monetization__days-block
-      .monetization__days-to-end(:class="{is__end: getUseDays === 0}") {{ getUseDays }} 3
+      .monetization__days-to-end(:class="{is__end: getUseDays === 0}") {{ getUseDays }}
       .monetization__text.end-txt
         | дня осталось до конца #[br] пробного периода
     .monetization__plans
@@ -22,7 +22,8 @@
        button(:class="{make__choice: dealType === 'percent-type'}")
          span.bold 4990
            i.ic-rub
-         span.bold  ЗА 30 ДНЕЙ
+         span.bold  ЗА 30 ДНЕЙ #[br]
+         span.light САМЫЙ ПОПУЛЯРНЫЙ ТАРИФ
       .monetization__btn(@click="dealType = 'percent-type'")
         button(:class="{make__choice: dealType === 'percent-type'}")
           span.bold 8990
@@ -51,7 +52,8 @@ export default {
   computed: {
 
     getUseDays(){
-      return this.$store.getters.getUseDays;
+      return 0;
+      //return this.$store.getters.getUseDays;
     }
 
   },
