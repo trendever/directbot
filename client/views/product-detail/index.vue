@@ -5,7 +5,9 @@
     :center-text-link="centerTextLink",
     :page="page",
     :avatar-url='avatarUrl',
-    :show-desktop-arrow="false")
+    :show-desktop-arrow="false",
+    :left-btn-show="true",
+    :back-link="{name: 'user', params: { id: getOpenedProduct.supplier.instagram_username }}")
 
     .directbot-right-nav(slot="content")
       right-nav-component
