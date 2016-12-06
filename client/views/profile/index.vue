@@ -22,7 +22,7 @@
             img(:src="getUserPhoto")
 
           .profile_info_about
-            span.profile_info_about_type {{ Магазин }}
+            span.profile_info_about_type Магазин
             span.profile_info_about_location  {{ user.location}}
             span.profile_info_about_work-time  {{ user.working_time }}
             span.profile_info_about_posts-quantity {{ user.products_count }} постов
