@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
 import { mapActions, mapGetters } from 'vuex';
@@ -119,10 +120,12 @@ export default {
 
   beforeRouteEnter({ params: { id }, name }, to, next ){
 
+    if(name === 'profile'){
+      id = profileService.getProfile().user.instagram_username;
+    }
+
     store.dispatch('openProfile', id).then(()=>{
-
       next();
-
     })
 
   },
