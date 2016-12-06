@@ -56,7 +56,7 @@
       p.t СКАНИРУЕТ КОММЕНТАРИИ #[br] И DIRECT В INSTAGRAM
       p.m БЫСТРО ОТВЕЧАЕТ #[br] КЛИЕНТАМ В DIRECT
       img(src="./img/insta-bot_image_desk.svg", v-if="!isMobile")
-      p.b НАШ ОПЕРАТОР ВСЕ УСПЕВАЕТ #[br(v-if="isMobile")] И СТОИТ ВСЕГО 2990&nbsp
+      p.b НАШ ОПЕРАТОР ВСЕ УСПЕВАЕТ #[br(v-if="isMobile")] И СТОИТ ВСЕГО 3990&nbsp
         i.ic-rub
         | /МЕС, #[br] ПОТОМУ ЧТО ЕМУ ПОМОГАЕТ #[br(v-if="isMobile")] DIRECTBOT, #[br(v-if="!isMobile")] АВТОМАТИЗИРУЮЩИЙ #[br(v-if="isMobile")] БОЛЬШИНСТВО ДЕЙСТВИЙ
     .hero__content__landing__title.main Преимущества #[br(v-if="isMobile")] нашего оператора
@@ -146,11 +146,10 @@
           a.link-info(@click="openPopup('is9')")
             | Сервис по подбору и организации #[br(v-if="isMobile")] рекламы через блогеров
     .tooltip
-      p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, #[br(v-if="!isMobile")] и это только за 8-часовой день с выходными
+      p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, и это только за 8-часовой день с выходными
   .free-connect
     a.link-info(@click="openPopup('is10')")
-      | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР? #[br(v-if="!isMobile")]
-    a(v-on:click="$router.push({name: 'auth'})") ЖМИ СЮДА
+      | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
   .free-wrap
     button(v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
 </template>
