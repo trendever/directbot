@@ -153,14 +153,15 @@
     },
     computed:{
       isNotEmptyHistory(){
-
-        if (window.before && window.before.prev){
-          if (this.$route.name == window.before.name){
-            return window.before.name != window.before.prev.name
+        if(window.before && this.$route.name) {
+          if (window.before && window.before.prev){
+            if (this.$route.name == window.before.name){
+              return window.before.name != window.before.prev.name
+            }
+            return true
+          }else{
+            return false;
           }
-          return true
-        }else{
-          return false;
         }
       }
     },
@@ -183,11 +184,19 @@
 
 
         if (!this.backLink) {
-          if (this.$route.name === window.before.name && window.before.prev){
-            this.$router.push({ name: window.before.prev.name, params: window.before.prev.params})
-            return;
+
+          if(this.$route && window.before) {
+
+            if (this.$route.name === window.before.name && window.before.prev){
+
+              this.$router.push({ name: window.before.prev.name, params: window.before.prev.params})
+              return;
+
+            }
+
+            this.$router.push({ name: window.before.name, params: window.before.params})
+
           }
-          this.$router.push({ name: window.before.name, params: window.before.params})
 
         } else {
 
