@@ -2,8 +2,17 @@
 <template lang="pug">
 #profile
   header-component(:title='getUserName', :left-btn-show='false').directbot-header
+
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
-        i.ic-options_menu(@click="openOptions")
+
+        i.ic-options_menu(@click="showProfileMenu = true")
+
+        menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+            .item
+              .text.__txt-blue Отмена
+            .item
+              .text.__txt-red(@click.stop="logout") Выход
+
       div.profile-days(slot="content" v-if="isSelfPage")
         span 3
         span.day д
@@ -94,6 +103,7 @@ import headerComponent from 'components/header';
 import RightNavComponent from 'components/right-nav';
 import NavbarComponent from 'components/navbar/navbar';
 import nativePopup from 'components/popup/native';
+import MenuSample from 'components/menu/menu-sample';
 
 export default {
 
@@ -112,7 +122,8 @@ export default {
       isMoreClass: false,
       showBanner: showBanner,
       copyMessage: '',
-      showCopyMessage: false
+      showCopyMessage: false,
+      showProfileMenu: false
 
     }
 
@@ -171,14 +182,12 @@ export default {
   },
 
   methods: {
-
-    caption_spaces,
-
     logout(){
-
-      return;
+      this.$store.dispatch('logOut')
+      this.$router.push({name: 'home'})
 
     },
+    caption_spaces,
 
     openOptions(){
       return;
@@ -219,7 +228,8 @@ export default {
     photos,
     headerComponent,
     RightNavComponent,
-    NavbarComponent
+    NavbarComponent,
+    MenuSample
   }
 }
 </script>
