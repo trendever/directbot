@@ -37,7 +37,7 @@
           .insta-link(:ref="instaLink") {{ getUserName }}.drbt.io
 
         //-button.turn-on-bot-btn-desk.blue-btn(
-          v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ БОТА
+          v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ
         button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
 
 
@@ -62,7 +62,7 @@
 
         //-router-link(:to="{ name: 'turn-on-bot' }")
           button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
-          v-if="getAuthUser.supplier_of === null && isMobile") ПОДКЛЮЧИТЬ БОТА
+          v-if="getAuthUser.supplier_of === null && isMobile") ПОДКЛЮЧИТЬ ОПЕРАТОРА
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
