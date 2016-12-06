@@ -6,8 +6,6 @@ Vue.use(Router)
 
 let router = new Router({
 
-	saveScrollPosition: true,
-
 	mode: 'history',
 
 	scrollBehavior (to, from, savedPosition) {
