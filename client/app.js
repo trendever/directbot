@@ -16,7 +16,8 @@ const app = new Vue({
 Vue.mixin({
   data(){
     return {
-      isMobile: window.browser.mobile
+    	landingCounter: 0,
+    	isMobile: window.browser.mobile
     }
   }
 });

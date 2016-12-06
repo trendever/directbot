@@ -10,7 +10,7 @@
     .directbot-right-nav(slot="content")
       right-nav-component
 
-  .section.main.top.little-padding
+  .section.main.product
     .section__content
       post-component
 
