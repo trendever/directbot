@@ -51,7 +51,7 @@
       img(src="./img/insta-bot_image_mob.svg", v-if="isMobile")
       .counter
         span.txt ОТПРАВЛЕНО
-        span.digit#counter {{ counter }}
+        span.digit#counter {{ landingCounter }}
         span.txt СООБЩЕНИЙ
       p.t СКАНИРУЕТ КОММЕНТАРИИ #[br] И DIRECT В INSTAGRAM
       p.m БЫСТРО ОТВЕЧАЕТ #[br] КЛИЕНТАМ В DIRECT
@@ -192,8 +192,7 @@ export default {
       yesScreen: true,
       noScreen: false,
       showPopup: false,
-      popupUrl: "",
-      counter: 0
+      popupUrl: ""
     }
   },
 
@@ -264,31 +263,11 @@ export default {
       }
     },
 
-  vuex: {
-/*    getters: {
-
-      isAuth,
-      getComeBack
-
-    },
-    actions: {
-
-      logOut,
-      createLead,
-      setCallbackOnSuccessAuth,
-
-    }*/
-  },
-
   methods: {
     count(){
 
       return setInterval(()=>{
-
-        this.counter++;
-
-        console.log(this.counter)
-
+        this.landingCounter += [1,3,5][Math.round(Math.random()*10/4)];
       },1000)
 
     },

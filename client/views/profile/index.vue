@@ -32,9 +32,15 @@
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
-        .profile_insta-link(v-if="$route.name === 'profile' && shopId !== 1 && isMobile")
+        .profile_insta-link(v-if="isSelfPage && isMobile")
+
           .insta-link-text ссылка на эту витрину
-          .insta-link(:ref="instaLink") {{ getUserName }}.drbt.io
+          .insta-link(ref="instaLink") {{ getUserName }}.drbt.io
+          native-popup(:show-popup="showCopyMessage")
+            .title-text.title-font Ссылка скопирована
+            .main-text {{copyMessage}}
+            .button-text(v-on:click.stop="showCopyMessage = false")
+              span OK
 
         //-button.turn-on-bot-btn-desk.blue-btn(
           v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ
@@ -77,7 +83,7 @@
 </template>
 
 <script>
-
+import clipboard from 'clipboard';
 import store from 'root/store';
 import { mapActions, mapGetters } from 'vuex';
 import { caption_spaces } from 'root/filters';
@@ -86,6 +92,7 @@ import photos from 'components/photos/index';
 import headerComponent from 'components/header';
 import RightNavComponent from 'components/right-nav';
 import NavbarComponent from 'components/navbar/navbar';
+import nativePopup from 'components/popup/native';
 
 export default {
 
@@ -102,7 +109,9 @@ export default {
       getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
       isMoreClass: false,
-      showBanner: showBanner
+      showBanner: showBanner,
+      copyMessage: '',
+      showCopyMessage: false
 
     }
 
@@ -118,9 +127,55 @@ export default {
 
   },
 
+  mounted(){
+
+    if(this.isSelfPage && this.isMobile) {
+
+      this.$nextTick(()=>{
+
+        let self = this;
+
+        self.copy =  new clipboard('.profile_insta-link', {
+
+            text(trigger){
+
+              return self.$refs.instaLink.textContent;
+
+            }
+          })
+
+        self.copy.on('success',()=>{
+          self.copyMessage = `Ссылка ${self.getUserName}.tndvr.com скопирована для вставки.`;
+          self.showCopyMessage = true;
+
+        })
+
+        self.copy.on('error', () =>{
+          self.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
+          self.showCopyMessage = true;
+          self.copy.destroy();
+          self.copy = false;
+        });
+
+      })
+
+    }
+
+  },
+
+  beforeDestroy(){
+    if (this.copy) this.copy.destroy();
+  },
+
   methods: {
 
     caption_spaces,
+
+    logout(){
+
+      return;
+
+    },
 
     openOptions(){
       return;
@@ -142,6 +197,7 @@ export default {
     },
 
     ...mapGetters([
+      'isAuth',
       'getAuthUser',
       'userShopId',
       'getUserName',
@@ -155,7 +211,7 @@ export default {
   },
 
   components: {
-
+    nativePopup,
     photos,
     headerComponent,
     RightNavComponent,
