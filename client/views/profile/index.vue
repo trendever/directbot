@@ -21,11 +21,11 @@
           .profile_info_img(@click="$router.push({name: 'list'})")
             img(:src="getUserPhoto")
 
-          .profile_info_about(v-if="false")
-            span.profile_info_about_type Магазин
-            span.profile_info_about_location  Красноярск
-            span.profile_info_about_work-time  10.00-21.00
-            span.profile_info_about_posts-quantity  951 постов
+          .profile_info_about
+            span.profile_info_about_type {{ Магазин }}
+            span.profile_info_about_location  {{ user.location}}
+            span.profile_info_about_work-time  {{ user.working_time }}
+            span.profile_info_about_posts-quantity {{ user.products_count }} постов
 
         .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
@@ -200,6 +200,7 @@ export default {
     },
 
     ...mapGetters([
+      'user',
       'isAuth',
       'getAuthUser',
       'userShopId',

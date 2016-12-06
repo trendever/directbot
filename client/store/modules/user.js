@@ -22,7 +22,11 @@ function picProfile( profile ) {
       instagram_avatar_url: profile.instagram_avatar_url,
       id: profile.id,
       created_at: profile.created_at,
-      avatar_url: profile.avatar_url
+      avatar_url: profile.avatar_url,
+      location  : profile.location,
+      working_time  : profile.working_time,
+      products_count: profile.products_count
+
 
     },
 
