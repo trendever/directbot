@@ -564,13 +564,16 @@
 
 	    text-align: center;
 
-	    background: url(./img/Bgr-blue.png) no-repeat;
+	    background: url(./img/Bgr-blue-new.png) no-repeat;
 
 	    background-size: cover;
+
+      background-position-x: -2px;
 
 	    @media(--tabletandless) {
 	      background: url(./img/blue_bgr.png) no-repeat;
 	      background-size: cover;
+        background-position-x: 0px;
 	      height: 45.5%;
 	    }
 
@@ -677,6 +680,7 @@
 					font-family: $font__family__light;
 
             i.ic-currency-rub{
+              padding-top: 2px;
               @media(--mobile) {
                 font-size: 40px;
                 padding-top: 5px;
@@ -1281,6 +1285,7 @@
 
           &:hover{
             cursor: pointer;
+            border-bottom: none;
           }
 				}
 	    }
@@ -1589,6 +1594,7 @@
 
             &:hover{
               cursor: pointer;
+              border-bottom: 1px solid transparent;
             }
         }
 			}
@@ -1626,6 +1632,7 @@
 
         &:hover{
           cursor: pointer;
+          border-bottom: 1px solid transparent;
         }
 			}
 		}

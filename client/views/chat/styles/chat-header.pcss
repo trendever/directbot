@@ -10,7 +10,7 @@
       .standalone & {
 
         top: 65px;
-        
+
       }
 
       position: absolute 25px * * 0px;
@@ -77,15 +77,17 @@
       padding: 1px 6px;
 
       border-radius: 25px;
-      background: white;
 
       justify-content: center;
       align-items: center;
 
       span {
-        color: $color__green;
-        font-size: 15px;
+        color: $color__white;
+        font-size: 26px;
         line-height: 24px;
+          @media(--mobile) {
+            font-size: 36px;
+          }
       }
     }
   }
