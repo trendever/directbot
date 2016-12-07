@@ -83,7 +83,7 @@
 
         //- a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
-  photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
+  photos(:shopId="userShopId || anotherId", :listName="listId")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='profile')
@@ -130,6 +130,8 @@ export default {
 
   beforeRouteEnter({ params: { id }, name }, to, next ){
 
+
+
     let instagram_username;
 
     let user = profileService.getProfile().user;
@@ -155,8 +157,14 @@ export default {
     })
 
   },
+  created(){
+    if(!this.isAuth){
+      this.$router.push({name: 'auth'})
+    }
 
+  },
   mounted(){
+
 
     if(this.isSelfPage && this.isMobile) {
 
@@ -216,7 +224,13 @@ export default {
   },
 
   computed: {
+    listId() {
 
+      if(this.getPhotoConfig) return this.getPhotoConfig.listId;
+
+
+
+    },
     isSelfPage(){
 
       return this.$route.name === 'profile';
