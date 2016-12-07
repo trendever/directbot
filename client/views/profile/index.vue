@@ -130,6 +130,13 @@ export default {
 
   beforeRouteEnter({ params: { id }, name }, to, next ){
 
+    if(!store.getters.isAuth){
+      next(vm=>{
+        vm.$router.push({name: 'auth'})
+      })
+      return;
+    }
+
 
 
     let instagram_username;
@@ -155,12 +162,6 @@ export default {
     store.dispatch('openProfile', instagram_username ).then(()=>{
       next();
     })
-
-  },
-  created(){
-    if(!this.isAuth){
-      this.$router.push({name: 'auth'})
-    }
 
   },
   mounted(){
