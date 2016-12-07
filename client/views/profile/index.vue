@@ -82,8 +82,6 @@
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
 
-        a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
-
   photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
 
   .directbot-navbar(v-if="isMobile && isAuth")
@@ -131,22 +129,23 @@ export default {
 
   beforeRouteEnter({ params: { id }, name }, to, next ){
 
-    let instagram_username, user_id;
+    let instagram_username;
 
     let user = profileService.getProfile().user;
 
-    if(name === 'profile'){
+    if(name === 'profile') {
 
       instagram_username = user.instagram_username;
     }
 
-    if(user.supplier_of === null) {
+    if(id) instagram_username = id
 
-      instagram_username = null;
+    if(!user.supplier_of && name === 'profile') {
 
+      instagram_username = null
     }
 
-    store.dispatch('openProfile', { user_id, instagram_username }).then(()=>{
+    store.dispatch('openProfile', instagram_username ).then(()=>{
       next();
     })
 
