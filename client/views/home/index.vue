@@ -18,7 +18,7 @@
         span.bold Оператор вашего #[br] магазина в Instagram #[br]
         span.light 24 часа, 7 дней, 3990&nbsp
           i.ic-currency-rub
-          | /мес
+          | /месяц
       .hero__content__set-up
         button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
       button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
@@ -65,8 +65,7 @@
           .hero__content__landing__icon-1
             img(src="./img/icon-1.png")
           .hero__content__landing__sub-title Отвечает всем #[br] клиентам сразу
-          .hero__content__landing__caption Со смайлами&nbsp
-            i.ic-smile &nbsp&nbsp&nbsp&nbsp&nbsp
+          .hero__content__landing__caption Со смайлами&nbsp &#128526 &nbsp
             | уделит внимание #[br(v-if="!isMobile")] каждому, быстро ответит. #[br]
             a.link-info(@click="openPopup('is1')") Ни один клиент не успеет передумать
         .info-box
@@ -137,8 +136,7 @@
       ol
         li
           a.link-info(@click="openPopup('is7')")
-            | Личного оператора, на связи с твоими #[br(v-if="isMobile")] клиентами 24/7. В 15 раз дешевле*
-            img(src="./img/smile-2.png")
+            | Личного оператора, на связи с твоими #[br(v-if="isMobile")] клиентами 24/7. В 15 раз дешевле* &#128563
         li
           a.link-info(@click="openPopup('is8')")
             | Адаптивный интернет-магазин, #[br(v-if="isMobile")] с платежами и доставкой
