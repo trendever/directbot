@@ -130,29 +130,38 @@ export default {
 
   beforeRouteEnter({ params: { id }, name }, to, next ){
 
-    if(!store.getters.isAuth){
-      next(vm=>{
-        vm.$router.push({name: 'auth'})
-      })
-      return;
-    }
-
-
-
     let instagram_username;
 
     let user = profileService.getProfile().user;
+    let token = profileService.getProfile().token;
 
-    if(user) {
+    if(user && token) {
 
       if(name === 'profile') {
 
         instagram_username = user.instagram_username;
+
       }
 
       if(!user.supplier_of && name === 'profile') {
 
         instagram_username = null
+      }
+
+    }
+
+    if(!token) {
+
+      if(name === 'profile'){
+
+        next(vm=>{
+
+          vm.$router.push({name: 'auth'})
+
+        })
+
+        return;
+
       }
 
     }
