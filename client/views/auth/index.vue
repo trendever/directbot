@@ -132,7 +132,7 @@ export default {
       this.save();
 
       if (window.history.length > 2) {
-        this.$router.push(window.history.back());
+        window.history.back();
       } else {
         this.$router.push({name: 'home'});
       }
