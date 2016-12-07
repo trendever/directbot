@@ -142,7 +142,16 @@ export const getPhotoConfig = ( user ) => {
 
   } else {
 
+    if(user.id === null){
+
+      //незарегистрированный посетитель
+      console.log('[незарегистрированый посетитель]')
+
+    } else {
+
     console.warn( `[ GET PHOTO CONFIG FOR PROFILE ] - profile with id: ${user.id}, not found`, user );
+
+    }
 
   }
 

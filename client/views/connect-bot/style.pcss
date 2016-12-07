@@ -1,13 +1,4 @@
 @import 'style/vars/vars.pcss';
-
-.standalone .turn-on-bot{
-  padding-top: 80px;
-
-  .turn-on-bot__close{
-    top: 65px;
-    right: 30px;
-  }
-}
 .directbot{
   .turn-on-bot {
     position:relative;
@@ -26,28 +17,25 @@
     .turn-on-bot__close {
       position: absolute;
       z-index: 100;
-      top: 30px;
-      right: 30px;
+      top: 22px;
+      right: 22px;
       text-align:center;
-
-      size: 70px;
-
       cursor: pointer;
-
       color: white;
-
       align-items: center;
       justify-content: center;
       @media(--mobile) {
         font-size: 36px;
-        width: 36px;
-        height: 36px;
+        top: 30px;
+        right: 30px;
       }
     }
 
     .link-bottom {
-        opacity:.4;
-        margin-top: 20px;
+      opacity:.4;
+        @media(--tabletandless) {
+          margin-top: 20px;
+        }
     }
 
     @media(max-width:1279px) {
@@ -120,11 +108,11 @@
         padding-top: 0px;
       }
 
-       @media(--tabletandless) {
+      @media(--tabletandless) {
         position: static;
         transform: none;
         padding-top: 0px;
-       }
+      }
     }
     &.confirm h1 {
       text-align: center;
@@ -181,9 +169,11 @@
       }
     }
     .input-container {
-      padding: 20px 50px;
+      margin-top: 135px;
+      padding: 15px 50px;
 
       @media(--mobile) {
+        margin: 0;
         padding: 35px 15px 20px 50px;
       }
     }
@@ -234,10 +224,10 @@
 
     }
     .column-desktop-50.header {
-      padding: 0px 0px 0px 179px;
-
+      display: inline-block;
+      padding-left: 180px;
+      width:auto;
       @media(--smalldesktop) {
-        width:auto;
         margin-top: 0px;
         h1{
           text-align:center;
@@ -245,6 +235,7 @@
       }
 
       @media(--tabletandless) {
+        display: block;
         padding: 0;
         margin-top: 0px;
         height: auto;
@@ -255,64 +246,52 @@
       width: 44%;
       margin-top: -39px;
       padding-left: 4px;
-        @media(--mobile) {
-          width: 55%;
-          margin-right:8%;
-          margin-top: -60px;
-          padding-left: 0px;
-        }
-
-      @media(min-width:1441px) {
-        margin-right:0;
-      }
-
-      @media(--smalldesktop) {
-        width: auto;
-        margin-right:0;
-        float:none;
-      }
 
       @media(--tabletandless) {
         float: none;
+        width: auto;
       }
-      @media(--mobile) { margin-top: 0; }
     }
     .logo{
       width: 133px;
       height: 147px;
-        @media(--mobile) {
-          display: block;
-          margin: 62px auto 55px auto;
-          width: 190px;
-          height: 211px;
-        }
+      margin-top: 45px;
+      @media(--mobile) {
+        display: block;
+        margin: 100px auto 55px auto;
+        width: 190px;
+        height: 211px;
+      }
     }
     .paragraph{
       text-align: left;
       font-size: 24px;
       font-family: $font__family__light;
       padding-top: 14px;
-        @media(--mobile) {
-          text-align: center;
-          font-size: 36px;
-          padding-top: 0px;
-        }
+      @media(--mobile) {
+        text-align: center;
+        font-size: 36px;
+        padding-top: 0px;
+        margin-bottom: 55px;
+      }
       .bold{
         font-family: $font__family__semibold;
       }
       .light{
 
-          @media(--mobile) {
-            line-height: 47px;
-          }
+        @media(--mobile) {
+          line-height: 47px;
+        }
       }
     }
     .enter-code-screen{
       color: $color-orange;
     }
     .code-accept{
-      margin-top: 125px;
-      margin-bottom: 63px;
+      margin-bottom: 123px;
+        @media(--tabletandless) {
+          margin-top: 125px;
+        }
     }
     .desktop-text-right {
       text-align: left;
@@ -416,13 +395,17 @@
   }
 
   .btn-container button.btn.btn_fixed-bottom{
+    font-size: 24px;
+    margin-top: 16px;
     @media(--tabletandless) {
       position: fixed !important;
       bottom: 0;
       width: 100%;
+      height: 100px;
       left: 0;
       border-radius: 0;
-      margin-bottom: 0;
+      margin: 0;
+      font-size: 36px;
     }
   }
 
@@ -443,19 +426,20 @@
     }
     &:last-child{
       margin-top: 19px;
-        @media(--mobile) {
-          margin-top: 38px;
-        }
+      @media(--mobile) {
+        margin-top: 38px;
+      }
     }
 
     i {
       position:absolute;
-      top: 50%;
+      top: 61%;
       margin-top: -17px;
       left: -47px;
 
       @media(--mobile) {
         left:-91px;
+        top: 50%;
       }
     }
     .ic-insta-name {
@@ -471,7 +455,7 @@
 
     .ic-pass {
       font-size:36px;
-      left: -51px;
+      left: -46px;
       margin-top: -23px;
 
       @media(--mobile) {
@@ -505,20 +489,28 @@
     margin-top: -37px;
   }
   #code{
-    margin-top: 120px !important;
+    margin-top: 32px !important;
+      @media(--tabletandless) {
+        margin-top: 70px !important;
+      }
   }
   #pass-inp{
     margin-top: 0px;
-      @media(--mobile) {
-        margin-top: 38px !important;
-      }
+    @media(--mobile) {
+      margin-top: 38px !important;
+    }
   }
   .clear{
     top: 50% !important;
   }
   .new-sms{
     a{
-      height: 48px;
+      height: 35px;
+      margin-top: -3px;
+        @media(--tabletandless) {
+          height: 48px;
+          margin-top: 0px;
+        }
     }
   }
 }
