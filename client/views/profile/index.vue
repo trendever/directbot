@@ -21,16 +21,19 @@
           .profile_info_img(@click="$router.push({name: 'list'})")
             img(:src="getUserPhoto")
 
-          .profile_info_about(v-if="false")
-            span.profile_info_about_type Магазин
-            span.profile_info_about_location  Красноярск
-            span.profile_info_about_work-time  10.00-21.00
-            span.profile_info_about_posts-quantity  951 постов
+          .profile_info_about
+            span.profile_info_about_type Магазин&nbsp #[br(v-if="isMobile")]
+              span(v-if="!isMobile") |
+            span.profile_info_about_location  Красноярск&nbsp #[br(v-if="isMobile")]
+              span(v-if="!isMobile") |
+            span.profile_info_about_work-time  10.00-21.00 #[br(v-if="isMobile")]
+            span.profile_info_about_posts-quantity(v-if="isMobile")  951 постов
 
         .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
+        .profile_more-btn(v-if="isMobile") Подробнее
 
         .profile_insta-link(v-if="isSelfPage && isMobile")
 
@@ -42,7 +45,7 @@
             .button-text(v-on:click.stop="showCopyMessage = false")
               span OK
 
-        //-button.turn-on-bot-btn-desk.blue-btn(
+        button.turn-on-bot-btn-desk.blue-btn(
           v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ
         button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
 
@@ -50,7 +53,7 @@
 
       template(v-if="loaded")
 
-        .profile_inactive(v-if="directbotActive && isSelfPage")
+        .profile_inactive(v-if="isSelfPage")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
           span мониторю 3 поста #[br] отправил 5 сообщений
@@ -60,22 +63,21 @@
           .text-box
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
-        .profile_no-goods-banner(v-if="isSelfPage && !userShopId")
-          i.ic-close(v-on:click="hideBanner", v-show="showBanner = false")
-          span После подключения
+        .profile_no-goods-banner(v-if="isSelfPage")
+          i.ic-close
+          span После подключения #[br(v-if="isMobile")]
           span.save &nbspоператор #[br(v-if="!isMobile")]
-          span  начнет мониторить все  ваши новые посты #[br(v-if="!isMobile")] и автоматически  отвечать на вопросы покупателей
+          span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
-        //-router-link(:to="{ name: 'turn-on-bot' }")
-          button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
-          v-if="getAuthUser.supplier_of === null && isMobile") ПОДКЛЮЧИТЬ ОПЕРАТОРА
+
+      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(v-if="isSelfPage && isMobile") ПОДКЛЮЧИТЬ ОПЕРАТОРА
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
 
-        a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
+        //- a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
-  photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
+  photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId", v-if="false")
 
   .directbot-navbar(v-if="isMobile && isAuth && getAuthUser.supplier_of")
     navbar-component(:current='profile')

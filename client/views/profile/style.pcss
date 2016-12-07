@@ -27,6 +27,7 @@
     font-family: $font__family__semibold;
     font-size: 28px;
     left: 225px;
+    top: 7px;
       @media(--mobile) {
         top: 19px;
         left: 30px;
@@ -101,6 +102,38 @@
             height: 100%;
           }
         }
+        &_about{
+          position: absolute;
+          top: 20px;
+          left: 160px;
+            @media(--tabletandless) {
+              left: 223px;
+            }
+
+            span{
+              color: $color__gray-dark;
+              font-size: 16px;
+                @media(--tabletandless) {
+                  font-size: 28px;
+                }
+
+                &:first-child{
+                  @media(--tabletandless) {
+                    padding-top: 4px;
+                    display: block;
+                  }
+                }
+
+                &:after{
+                  @media(--tabletandless) {
+                    content: '';
+                    position: relative;
+                    display: block;
+                    padding-bottom: 8px;
+                  }
+                }
+            }
+        }
       }
 
       &_inactive{
@@ -118,9 +151,9 @@
           top: 0;
           right: 0;
           width: 80%;
+          height: 710px;
           font-size: 32px;
-          height: 690px;
-          margin-top: 25px;
+          margin-top: 32px;
         }
         img{
           width: 113px;
@@ -140,7 +173,7 @@
           font-family: $font__family__semibold;
           margin-bottom: 2px;
             @media(--mobile) {
-              display: inline-block;
+              display: block;
               margin-bottom: 4px;
             }
         }
@@ -249,6 +282,11 @@
           position: absolute;
           top: 24px;
           right: 24px;
+            @media(--tabletandless){
+              font-size: 32px;
+              top: 30px;
+              right: 30px;
+            }
 
           &:hover{
             cursor: pointer;
@@ -289,12 +327,22 @@
           word-wrap: break-word;
         }
       }
+      &_more-btn{
+        text-align: center;
+        font-size: 32px;
+        color: $color__gray-dark;
+        border-bottom: 1px solid $color__gray-light;
+        width: 165px;
+        margin: 0 auto 32px auto;
+      }
     }
 
   .turn-on-bot-btn{
       @media(--mobile) {
-        z-index: 20;
+        position: fixed;
+        z-index: 1;
         bottom: 98px !important;
+        margin-bottom: 0px !important;
       }
   }
   .blue-btn{
@@ -351,7 +399,7 @@
     max-height: 94px;
     position: relative;
     @media(--mobile) {
-      max-height: 290px;
+      max-height: 285px;
     }
   }
   .less::after{
