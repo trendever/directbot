@@ -194,29 +194,6 @@ export default {
       return this.getMessages.slice( (start <= 0) ? 0 : start, end );
     },
 
-    getCurrentMember() {
-
-      let leads = this.$store.state.leads
-
-      let currentId = this.$store.state.conversation.id;
-
-      let lead = [leads.seller,...leads.customer].find( ( { chat:{ id } } )=>{
-
-        return id === currentId
-
-      })
-
-
-      let user = lead.chat.members.find( ( { user_id } )=>{
-
-        return user_id = this.$store.state.user.myId;
-      })
-
-      console.log(JSON.parse(JSON.stringify(user)))
-      return user;
-
-    },
-
     ...mapGetters([
 
       'imgPopUpUrl',
@@ -228,7 +205,7 @@ export default {
       'getMessages',
       'conversationNotifyCount',
       'getId',
-      //'getCurrentMember',
+      'getCurrentMember',
       'getChatLengthList',
       'getShowMenu',
       'getShowStatusMenu'
