@@ -30,7 +30,7 @@
           .profile_info_img(@click="$router.push({name: 'list'})")
             img(:src="getUserPhoto")
 
-          .profile_info_about
+          .profile_info_about(v-if="location && working_time && user.products_count")
             span.profile_info_about_type Магазин&nbsp #[br(v-if="isMobile")]
               span(v-if="!isMobile") |
             span.profile_info_about_location  {{ user.location}}&nbsp #[br(v-if="isMobile")]
