@@ -65,7 +65,10 @@ export function find( conversation_id, from_message_id, limit = 50, direction) {
 
         if (direction) {
 
+          if(data.response_map.messages){
+
           resolve(data.response_map.messages.reverse());
+          }
 
         }
 
@@ -76,6 +79,7 @@ export function find( conversation_id, from_message_id, limit = 50, direction) {
         reject(data.response_map.error);
       }
     }).catch( error => {
+
       if (error.log_map.code_key === '403') {
         reject(ERROR_CODES.UNATHORIZED);
       }

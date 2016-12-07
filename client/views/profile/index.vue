@@ -83,7 +83,7 @@
 
         //- a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
-  photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId", v-if="false")
+  photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='profile')

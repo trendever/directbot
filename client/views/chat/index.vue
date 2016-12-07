@@ -129,6 +129,7 @@ export default {
           this.$nextTick( () => {
                   this.goToBottom();
                 } );
+
         })
       } else {
         return Promise.resolve()
@@ -234,7 +235,7 @@ export default {
     },
 
     run(){
-
+      console.log(1)
       return this
 
         .setConversation( this.lead_id )
