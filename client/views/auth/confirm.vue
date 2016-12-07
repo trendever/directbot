@@ -181,7 +181,7 @@ export default {
         .then(() => {
           if(!this.anotherName) {
             if (!this.callbackOnSuccessAuth) {
-              setTimeout( () => this.$router.push( { name: 'home' } ), 1000);
+              setTimeout( () => this.$router.push( { name: 'profile' } ), 1000);
               return true;
             } else {
               this.executeCallbackOnSuccessAuth()

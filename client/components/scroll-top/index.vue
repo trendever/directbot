@@ -7,7 +7,7 @@
 <script type="text/babel">
   import settings from 'root/settings';
   import listen from 'event-listener';
-
+  import JQuery from 'jquery';
 
   export default {
     props:{
@@ -48,7 +48,7 @@
       up() {
 
         if(this.toUp){
-
+          JQuery(document.body).animate({scrollTop: 0},450);
           window.scrollTo(0,0);
 
         } else {

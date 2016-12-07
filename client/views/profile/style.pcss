@@ -133,6 +133,27 @@
                   }
                 }
             }
+            &_type{
+              position: relative;
+              &:after{
+                content: '|';
+                position: absolute;
+                  @media(--tabletandless) {
+                    display: none;
+                  }
+              }
+            }
+            /*&_location{
+              position: relative;
+              &:after{
+                content: '|';
+                position: absolute;
+                left: 0;
+                  @media(--tabletandless) {
+                    display: none;
+                  }
+              }
+            }*/
         }
       }
 
@@ -326,14 +347,6 @@
           margin-top: 8px;
           word-wrap: break-word;
         }
-      }
-      &_more-btn{
-        text-align: center;
-        font-size: 32px;
-        color: $color__gray-dark;
-        border-bottom: 1px solid $color__gray-light;
-        width: 165px;
-        margin: 0 auto 32px auto;
       }
     }
 

@@ -1,9 +1,18 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
 #profile
-  header-component(:title='getUserName', :left-btn-show='true').directbot-header
+  header-component(:title='getUserName', :left-btn-show='false').directbot-header
+
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
-        i.ic-options_menu(@click="openOptions")
+
+        i.ic-options_menu(@click="showProfileMenu = true")
+
+        menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+            .item
+              .text.__txt-blue Отмена
+            .item
+              .text.__txt-red(@click.stop="logout") Выход
+
       div.profile-days(slot="content" v-if="isSelfPage")
         span 3
         span.day д
@@ -23,17 +32,14 @@
 
           .profile_info_about
             span.profile_info_about_type Магазин&nbsp #[br(v-if="isMobile")]
-              span(v-if="!isMobile") |
-            span.profile_info_about_location  Красноярск&nbsp #[br(v-if="isMobile")]
-              span(v-if="!isMobile") |
-            span.profile_info_about_work-time  10.00-21.00 #[br(v-if="isMobile")]
-            span.profile_info_about_posts-quantity(v-if="isMobile")  951 постов
+            span.profile_info_about_location  {{ user.location}}&nbsp #[br(v-if="isMobile")]
+            span.profile_info_about_work-time  {{ user.working_time }} #[br(v-if="isMobile")]
+            span.profile_info_about_posts-quantity(v-if="isMobile")  {{ user.products_count }} постов
 
         .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
-        .profile_more-btn(v-if="isMobile") Подробнее
 
         .profile_insta-link(v-if="isSelfPage && isMobile")
 
@@ -79,12 +85,13 @@
 
   photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId", v-if="false")
 
-  .directbot-navbar(v-if="isMobile && isAuth && getAuthUser.supplier_of")
-    navbar-component(:current='profile')
+  .directbot-navbar(v-if="isMobile && isAuth")
+    navbar-component(current='profile')
 
 </template>
 
 <script>
+import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
 import { mapActions, mapGetters } from 'vuex';
@@ -95,6 +102,7 @@ import headerComponent from 'components/header';
 import RightNavComponent from 'components/right-nav';
 import NavbarComponent from 'components/navbar/navbar';
 import nativePopup from 'components/popup/native';
+import MenuSample from 'components/menu/menu-sample';
 
 export default {
 
@@ -113,7 +121,8 @@ export default {
       isMoreClass: false,
       showBanner: showBanner,
       copyMessage: '',
-      showCopyMessage: false
+      showCopyMessage: false,
+      showProfileMenu: false
 
     }
 
@@ -121,10 +130,24 @@ export default {
 
   beforeRouteEnter({ params: { id }, name }, to, next ){
 
-    store.dispatch('openProfile', id).then(()=>{
+    let instagram_username;
 
+    let user = profileService.getProfile().user;
+
+    if(name === 'profile') {
+
+      instagram_username = user.instagram_username;
+    }
+
+    if(id) instagram_username = id
+
+    if(!user.supplier_of && name === 'profile') {
+
+      instagram_username = null
+    }
+
+    store.dispatch('openProfile', instagram_username ).then(()=>{
       next();
-
     })
 
   },
@@ -170,14 +193,12 @@ export default {
   },
 
   methods: {
-
-    caption_spaces,
-
     logout(){
-
-      return;
+      this.$store.dispatch('logOut')
+      this.$router.push({name: 'home'})
 
     },
+    caption_spaces,
 
     openOptions(){
       return;
@@ -199,6 +220,7 @@ export default {
     },
 
     ...mapGetters([
+      'user',
       'isAuth',
       'getAuthUser',
       'userShopId',
@@ -217,7 +239,8 @@ export default {
     photos,
     headerComponent,
     RightNavComponent,
-    NavbarComponent
+    NavbarComponent,
+    MenuSample
   }
 }
 </script>

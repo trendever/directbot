@@ -49,7 +49,7 @@
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               v-on:click='sendSMS') Отправить sms-код
-            .link-container
+            .link-container(v-if="false")
               a.link-bottom( v-on:click.prevent='onClickLink') Мне нужна помощь
 
 </template>
