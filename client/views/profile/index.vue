@@ -32,7 +32,9 @@
 
           .profile_info_about
             span.profile_info_about_type Магазин&nbsp #[br(v-if="isMobile")]
+              span(v-if="!isMobile") |
             span.profile_info_about_location  {{ user.location}}&nbsp #[br(v-if="isMobile")]
+              span(v-if="!isMobile") |
             span.profile_info_about_work-time  {{ user.working_time }} #[br(v-if="isMobile")]
             span.profile_info_about_posts-quantity(v-if="isMobile")  {{ user.products_count }} постов
 
@@ -52,7 +54,7 @@
               span OK
 
         button.turn-on-bot-btn-desk.blue-btn(
-          v-link="{ name: 'turn-on-bot' }", v-if="!isMobile") ПОДКЛЮЧИТЬ
+          @click="$router.push({name: 'connect-bot'})", v-if="!isMobile") ПОДКЛЮЧИТЬ
         button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
 
 
@@ -76,7 +78,7 @@
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
 
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(v-if="isSelfPage && isMobile") ПОДКЛЮЧИТЬ ОПЕРАТОРА
+      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})", v-if="isSelfPage && isMobile") ПОДКЛЮЧИТЬ ОПЕРАТОРА
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
