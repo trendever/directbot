@@ -4,58 +4,55 @@
   .monetization__wrap
     i.ic-close(@click='closePage')
     .monetization__days-block
-      .monetization__days-to-end(:class="{is__end: getUseDays === 0}") {{ getUseDays }} 3
+      .monetization__days-to-end(:class="{is__end: getUseDays === 0}") {{ getUseDays }}
       .monetization__text.end-txt
         | дня осталось до конца #[br] пробного периода
     .monetization__plans
       .monetization__text.bot
         | Выбор тарифного плана
-      .monetization__btn.first(@click="dealType = 'month-type'")
-       button(:class="{make__choice: dealType === 'month-type'}")
-         span.bold 1390
-           i.ic-rub
-         span.bold  ЗА 7 ДНЕЙ #[br]
-         span.light 5940
-           i.ic-rub
-         span.light  ЦЕНА В МЕСЯЦ
-      .monetization__btn(@click="dealType = 'percent-type'")
-       button(:class="{make__choice: dealType === 'percent-type'}")
-         span.bold 4990
-           i.ic-rub
-         span.bold  ЗА 30 ДНЕЙ
-      .monetization__btn(@click="dealType = 'percent-type'")
-        button(:class="{make__choice: dealType === 'percent-type'}")
-          span.bold 8990
-            i.ic-rub
-          span.bold  ЗА 90 ДНЕЙ #[br]
-          span.light 2990
-            i.ic-rub
-          span.light  ЦЕНА В МЕСЯЦ
-      .monetization__zero-days-link(v-if="false")
+      template(v-for="plan in plans")
+        .monetization__btn(@click="selectPlan(plan.id)")
+          button(:class="{make__choice: selectedPlan === plan.id}")
+            span.bold {{plan.subscription_price}}
+              i.ic-rub
+            span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
+            div(v-html="plan.about")
+      .monetization__zero-days-link
         a(href="#") У меня есть вопросы
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
 
-       button(v-if="getUseDays !== 0 && !dealType", @click="closePage") ПОКА НЕ УВЕРЕН
-       button(v-if="getUseDays === 0 || dealType", @click="accept") ПОДТВЕРДИТЬ
+       button(v-if="selectedPlan === 0") ПОКА НЕ УВЕРЕН
+       button(v-else) ПОДТВЕРДИТЬ
 
 </template>
 
 <script>
+import * as monetization from 'services/monetization';
+
 
 export default {
   data(){
+    monetization.plans_list().then((data)=>{
+      console.log("monetization")
+      this.plans = data.plans;
+      console.log(this.plans)
+    });
     return {
-      dealType: ''
+      dealType: '',
+      plans: [],
+      selectedPlan: 0
     }
   },
   computed: {
-
     getUseDays(){
-      return this.$store.getters.getUseDays;
+      return 0;
+      //return this.$store.getters.getUseDays;
     }
-
   },
   methods:{
+    selectPlan(plan_id){
+      this.selectedPlan = (this.selectedPlan === plan_id) ? 0 : plan_id;
+    },
     closePage(){
       if(window.history.length > 3){
         window.history.back();

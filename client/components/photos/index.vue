@@ -127,10 +127,11 @@ export default {
 
   beforeDestroy(){
 
-    this.windowListener.remove();
+    if(this.windowListener.remove){
+      this.windowListener.remove()
+    }
 
     //this.closeList();
-
   },
 
   components:{

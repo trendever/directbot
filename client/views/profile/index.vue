@@ -85,7 +85,7 @@
 
         //- a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
-  photos(:shopId="userShopId || anotherId", :listName="getPhotoConfig.listId", v-if="false")
+  photos(:shopId="userShopId || anotherId", :listName="listId")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='profile')
@@ -135,26 +135,48 @@ export default {
     let instagram_username;
 
     let user = profileService.getProfile().user;
+    let token = profileService.getProfile().token;
 
-    if(name === 'profile') {
+    if(user && token) {
 
-      instagram_username = user.instagram_username;
+      if(name === 'profile') {
+
+        instagram_username = user.instagram_username;
+
+      }
+
+      if(!user.supplier_of && name === 'profile') {
+
+        instagram_username = null
+      }
+
     }
 
-    if(id) instagram_username = id
+    if(!token) {
 
-    if(!user.supplier_of && name === 'profile') {
+      if(name === 'profile'){
 
-      instagram_username = null
+        next(vm=>{
+
+          vm.$router.push({name: 'auth'})
+
+        })
+
+        return;
+
+      }
+
     }
+
+    if (id) instagram_username = id
 
     store.dispatch('openProfile', instagram_username ).then(()=>{
       next();
     })
 
   },
-
   mounted(){
+
 
     if(this.isSelfPage && this.isMobile) {
 
@@ -214,7 +236,13 @@ export default {
   },
 
   computed: {
+    listId() {
 
+      if(this.getPhotoConfig) return this.getPhotoConfig.listId;
+
+
+
+    },
     isSelfPage(){
 
       return this.$route.name === 'profile';
