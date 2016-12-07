@@ -27,15 +27,15 @@ var config = {
   /**
    * Other
    */
-  directbot_active: true,
-
   activate_monetization: false,
 
-  edit_product_id: null, ////th4754
+  edit_product_id: 32929,
 
-  service_product_id: null,
+  service_product_id: 32158,
 
-  promo_product_id: 21499
+  promo_product_id: 21499,
+
+  monetization_help_id: 32069
 
 };
 
