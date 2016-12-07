@@ -134,17 +134,21 @@ export default {
 
     let user = profileService.getProfile().user;
 
-    if(name === 'profile') {
+    if(user) {
 
-      instagram_username = user.instagram_username;
+      if(name === 'profile') {
+
+        instagram_username = user.instagram_username;
+      }
+
+      if(!user.supplier_of && name === 'profile') {
+
+        instagram_username = null
+      }
+
     }
 
-    if(id) instagram_username = id
-
-    if(!user.supplier_of && name === 'profile') {
-
-      instagram_username = null
-    }
+    if (id) instagram_username = id
 
     store.dispatch('openProfile', instagram_username ).then(()=>{
       next();
