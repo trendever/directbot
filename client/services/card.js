@@ -60,7 +60,9 @@ export function createOrder({ amount, currency, lead_id, card }) {
 }
 
 export function createPayment({ id, lead_id }) {
-
+    console.log("PAYMENT SERVICE")
+    console.log(id)
+    console.log(lead_id)
     return new Promise((resolve, reject)=>{
         channel.req('create', 'payment', { id, lead_id })
             .then(data => {

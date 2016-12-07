@@ -28,6 +28,12 @@ let router = new Router({
 		  path: '/chat',
 		  component: require('views/chat-list')
 		},
+    //FAKE CHAT
+    {
+      name: 'fake_chat',
+      path: '/chat/0/payed/:result',
+      component: require('views/fakechat/index.vue')
+    },
 
     //CHAT
     {

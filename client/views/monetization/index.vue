@@ -22,25 +22,29 @@
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
 
        button(v-if="selectedPlan === 0") ПОКА НЕ УВЕРЕН
-       button(v-else) ПОДТВЕРДИТЬ
+       button(v-else @click="getPlan") ПОДТВЕРДИТЬ
 
 </template>
 
 <script>
 import * as monetization from 'services/monetization';
+import {createPayment} from 'services/card';
 
 
 export default {
   data(){
     monetization.plans_list().then((data)=>{
-      console.log("monetization")
       this.plans = data.plans;
-      console.log(this.plans)
+      data.plans.forEach((plan)=>{
+        this.plansAmmounts[plan.id] = plan.subscription_price;
+      });
     });
     return {
       dealType: '',
       plans: [],
-      selectedPlan: 0
+      plansAmmounts: [],
+      selectedPlan: 0,
+      selectedAmmount: 0
     }
   },
   computed: {
@@ -52,6 +56,22 @@ export default {
   methods:{
     selectPlan(plan_id){
       this.selectedPlan = (this.selectedPlan === plan_id) ? 0 : plan_id;
+    },
+    getPlan(){
+      monetization.coins_offers().then((data)=>{
+        let selectedAmmount = this.plansAmmounts[this.selectedPlan];
+        let offer = data.offers.find((offer) => offer.price === selectedAmmount);
+
+        monetization.buy_coins(offer.id,"payture_ewallet").then((result)=>{
+          this.pay(result.order_id);
+        });
+      });
+    },
+    pay(order_id){
+      createPayment({id: order_id,lead_id: 0}).then((result)=>{
+        let redirect_url = result.redirect_url;
+        window.location = redirect_url;
+      });
     },
     closePage(){
       if(window.history.length > 3){
