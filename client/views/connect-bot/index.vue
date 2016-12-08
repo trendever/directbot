@@ -79,7 +79,15 @@ export default {
 
     connectBot(){
 
-      accountService.add( this.login, this.password )
+      accountService.add( this.login, this.password ).then(data=>{
+
+        if(data.need_code === false && data.success){
+
+          this.$router.push({name: 'profile'});
+
+        }
+
+      })
 
 
     }
