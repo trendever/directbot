@@ -67,14 +67,14 @@
                 :class=' {error: errorLogin} ',
                 @keydown.enter='connectBot()',
                 v-model='login',
-                placeholder='t.skirt')
+                placeholder='Введите свое Instagram имя')
               .input__clear-btn(
                 v-if='login',
                 @click='login = ""')
                 i.ic-close.clear
             .input.phone(v-if="!needConfirmCode", id="pass-inp")
               i.ic-pass
-              input(type='tel',
+              input(type='text',
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
