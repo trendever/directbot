@@ -30,8 +30,8 @@ export function add(username, password) {
 
     }).catch( error => {
 
-      	console.error('ADD ACCOUNT', error);
-
+      console.error('ADD ACCOUNT', error);
+      reject()
     });
 
   });
@@ -48,7 +48,7 @@ export function list({ role = 'User', with_invalids, with_non_owned }) {
     }).catch( error => {
 
         console.error('LIST ACCOUNT', error);
-
+        reject()
     });
 
   });
@@ -66,7 +66,7 @@ export function confirm(code) {
     }).catch( error => {
 
         console.error('CONFIRM ACCOUNT', error);
-
+        reject()
     });
 
   });

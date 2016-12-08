@@ -93,6 +93,7 @@ export default {
     connectBot(){
       this.connectProcess = true;
       accountService
+
         .add( this.login, this.password )
 
         .then(data=>{
