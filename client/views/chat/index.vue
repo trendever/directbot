@@ -143,19 +143,6 @@ export default {
     //helps
     this.$on('goToBottom', this.goToBottom);
 
-    //monetization
-    if(settings.activateMonetization && this.getCurrentMember.role === 2){
-      let storage = window.localStorage;
-
-      if(!storage.getItem('firstTimeChatVisited')) {
-        storage.setItem('firstTimeChatVisited', true)
-        this.$router.push({name: 'monetization'});
-      }
-
-      if(storage.getItem('supplierStatus') === 'disabled'){
-        this.$router.push({name: 'monetization'});
-      }
-    }
   },
 
   mounted(){

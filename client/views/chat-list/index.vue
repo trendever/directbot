@@ -109,20 +109,6 @@
         currentPan: 0
       }
     },
-    created(){
-
-      //Эта логика в LEAD_INIT
-
-/*      if(this.isAuthUserSupplier) {
-
-        store.dispatch('setTab', "seller")
-
-      } else {
-
-        store.dispatch('setTab', "customer")
-      }*/
-
-    },
 
     mounted(){
 

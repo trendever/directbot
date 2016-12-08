@@ -1,6 +1,6 @@
 import config from '../config'
 
-var settings = {
+export const settings = {
 	
   promoProductID: config.promo_product_id,
 
@@ -11,5 +11,3 @@ var settings = {
   activateMonetization: config.activate_monetization
 
 }
-
-module.exports = settings;

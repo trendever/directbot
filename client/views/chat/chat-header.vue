@@ -1,7 +1,8 @@
 <style src='./styles/chat-header.pcss'></style>
 <template lang="pug">
 #chat-header
-  header-component(:notify-count='getGlobalNotifyCount')
+  header-component(v-if="disableNotifier", :notify-count='0')
+  header-component(v-else, :notify-count='getGlobalNotifyCount')
 
     .chat-header(slot='center-content')
       .chat-header_arrow(@click='leftBtnAction')
@@ -52,6 +53,13 @@
         }else{
           this.$router.push({name: "chat_list"})
         }
+      }
+    },
+
+    props:{
+      disableNotifier: {
+        type: Boolean,
+        default: false
       }
     },
 

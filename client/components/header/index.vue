@@ -15,7 +15,7 @@
           span {{ notifyCount }}
 
         .header__use-days(
-          v-if='$route.name === "profile" && isMobile && activeMonetization && $store.getters.getUseDays !== -1',
+          v-if='$route.name === "profile" && isMobile',
            @click="$router.push( {name: 'home'} )")
 
           .days-count {{ $store.getters.getUseDays }}
@@ -59,7 +59,6 @@
   export default {
     data(){
       return {
-        activeMonetization: settings.activateMonetization,
         is_visible: false,
         is_action_up: false,
         scrollEvent: null,
