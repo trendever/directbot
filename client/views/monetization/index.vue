@@ -30,7 +30,6 @@
 import * as monetization from 'services/monetization';
 import {createPayment} from 'services/card';
 
-
 export default {
   data(){
     monetization.plans_list().then((data)=>{
@@ -61,7 +60,6 @@ export default {
       monetization.coins_offers().then((data)=>{
         let selectedAmmount = this.plansAmmounts[this.selectedPlan];
         let offer = data.offers.find((offer) => offer.price === selectedAmmount);
-
         monetization.buy_coins(offer.id,"payture_ewallet").then((result)=>{
           this.pay(result.order_id);
         });
