@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import * as accountService from 'services/account';
 import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
@@ -170,9 +171,24 @@ export default {
 
     if (id) instagram_username = id
 
-    store.dispatch('openProfile', instagram_username ).then(()=>{
-      next();
-    })
+    store.dispatch('openProfile', instagram_username )
+
+      .then(()=>{
+
+        accountService
+          .list()
+          .then(()=>{
+
+            next( vm =>{
+
+              vm.botActivity = false;
+
+            })
+
+          })
+
+
+      })
 
   },
   mounted(){

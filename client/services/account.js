@@ -21,6 +21,7 @@ export function add(username, password) {
 
   	request.prefer_email = true;
 
+
     channel.req('add', 'account', request).then( data => {
 
   		console.log("ADD ACCOUNT");
@@ -36,11 +37,9 @@ export function add(username, password) {
   });
 }
 
-export function list({ role, with_invalids, with_non_owned }) {
+export function list({ role = 'User', with_invalids, with_non_owned }) {
 
   return new Promise( (resolve, reject) => {
-
-    role = "User";
 
     channel.req('list', 'account', { role, with_invalids, with_non_owned }).then( data => {
 

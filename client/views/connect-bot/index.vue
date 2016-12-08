@@ -92,10 +92,8 @@ export default {
         .then(data=>{
 
           if(!data.need_code && data.success){
-
             this.$router.push( { name: 'profile' } );
             return;
-
           }
 
           if(data.need_code){
