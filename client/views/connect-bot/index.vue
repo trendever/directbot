@@ -63,7 +63,7 @@
               @click='connectBot') ПОДКЛЮЧИТЬ ОПЕРАТОРА
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               v-if="needConfirmCode",
-              @click='connectBot') ПОДТВЕРДИТЬ
+              @click='confirmCode') ПОДТВЕРДИТЬ
             .link-container.new-sms
               a.link-bottom(href='#')
                 | Мне нужна помощь
@@ -107,12 +107,17 @@ export default {
 
     },
 
-    confirm() {
+    confirmCode() {
 
       accountService
         .confirm(this.code).then(data=>{
 
+          if(data !== null) {
 
+            this.$router.push( { name: 'profile' } );
+            return;
+
+          }
 
         })
 
