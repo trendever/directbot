@@ -3,7 +3,7 @@
 
 #connect-bot
   .turn-on-bot(:style='{ height: height }')
-    .turn-on-bot__close(): i.ic-close
+    .turn-on-bot__close(@click="$router.push({name:'profile'})"): i.ic-close
     .section
       .column-desktop-50.header
         h1.accept Подключение оператора
@@ -76,17 +76,22 @@
 
 <script type='text/babel'>
 import * as accountService from 'services/account';
+import * as profileService from 'services/profile';
 
 export default {
 
   data(){
+
+    let instagram_username = profileService.getProfile().user.instagram_username;
+
     return {
       code: '',
       password: '',
-      login: '',
+      login: instagram_username || '',
       needConfirmCode: false,
       connectProcess: false
     }
+
   },
   methods:{
 
