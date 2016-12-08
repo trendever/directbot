@@ -71,8 +71,8 @@
           .text-box
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
-        .profile_no-goods-banner
-          i.ic-close(v-if="!botActivity")
+        .profile_no-goods-banner(v-if="!botActivity")
+          i.ic-close
           span После подключения #[br(v-if="isMobile")]
           span.save &nbspоператор #[br(v-if="!isMobile")]
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей

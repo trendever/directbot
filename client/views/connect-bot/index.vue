@@ -121,7 +121,7 @@ export default {
     return {
       code: '',
       password: '',
-      login: instagram_username || '',
+      login: '' || instagram_username,
       needConfirmCode: false,
       connectProcess: false,
       helpPopup: false
