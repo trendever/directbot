@@ -40,7 +40,7 @@
                 i.ic-close.clear
             .input.phone(v-if="!needConfirmCode", id="pass-inp")
               i.ic-pass
-              input(type='tel',
+              input(type='text',
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
