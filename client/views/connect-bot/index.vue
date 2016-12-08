@@ -74,7 +74,7 @@
                 i.ic-close.clear
             .input.phone(v-if="!needConfirmCode", id="pass-inp")
               i.ic-pass
-              input(type='text',
+              input(type='password',
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
@@ -84,7 +84,8 @@
                 v-model='password',
                 placeholder='Введите пароль от Instagram')
               .input__clear-btn(
-                v-if='phone')
+                v-if='password',
+                @click='password = ""')
                 i.ic-close.clear
             .input(id="code", v-if="needConfirmCode")
               i.ic-code
