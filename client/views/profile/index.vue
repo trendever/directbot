@@ -72,13 +72,16 @@
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
         .profile_no-goods-banner
-          i.ic-close
+          i.ic-close(v-if="!botActivity")
           span После подключения #[br(v-if="isMobile")]
           span.save &nbspоператор #[br(v-if="!isMobile")]
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
 
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})", v-if="isSelfPage && isMobile") ПОДКЛЮЧИТЬ ОПЕРАТОРА
+      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
+        @click="$router.push({name: 'connect-bot'})",
+         v-if="isSelfPage && isMobile && !botActivity"
+        ) ПОДКЛЮЧИТЬ ОПЕРАТОРА
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
