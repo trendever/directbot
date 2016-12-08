@@ -61,11 +61,11 @@
 
       template(v-if="loaded && isSelfPage")
 
-        .profile_inactive
+        .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
           span мониторю 3 поста #[br] отправил 5 сообщений
-        .profile_active(v-if="directbotInactive")
+        .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
@@ -116,8 +116,7 @@ export default {
 
     return {
 
-      direcbotActive: true,
-      directbotInactive: false,
+      botActivity: false,
       loaded: true,
       getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
@@ -176,12 +175,17 @@ export default {
       .then(()=>{
 
         accountService
-          .list()
-          .then(()=>{
+          .list({})
+
+          .then(data=>{
 
             next( vm =>{
 
-              vm.botActivity = false;
+              if(data !== null) {
+
+                vm.botActivity = true;
+
+              }
 
             })
 
