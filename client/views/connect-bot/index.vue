@@ -31,7 +31,7 @@
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorLogin} ',
-                @keydown.enter='sendSMS()',
+                @keydown.enter='connectBot()',
                 v-model='login',
                 placeholder='t.skirt')
               .input__clear-btn(
@@ -46,8 +46,8 @@
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorPhone} ',
-                @keydown.enter='sendSMS()',
-                v-model='phone',
+                @keydown.enter='connectBot()',
+                v-model='password',
                 placeholder='Введите пароль от Instagram')
               .input__clear-btn(
                 v-if='phone')
@@ -58,14 +58,33 @@
                 placeholder='Введите код')
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
-              @click='sendSMS') ПОДКЛЮЧИТЬ ОПЕРАТОРА
+              @click='connectBot') ПОДКЛЮЧИТЬ ОПЕРАТОРА
             .link-container.new-sms
               a.link-bottom(href='#')
                 | Мне нужна помощь
 </template>
 
 <script type='text/babel'>
+import * as accountService from 'services/account';
+
 export default {
+
+  data(){
+    return {
+      password: '',
+      login: ''
+    }
+  },
+  methods:{
+
+    connectBot(){
+
+      accountService.add( login, password )
+
+
+    }
+
+  }
 
 }
 </script>
