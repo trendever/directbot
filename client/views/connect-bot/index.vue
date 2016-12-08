@@ -79,7 +79,7 @@ export default {
 
     connectBot(){
 
-      accountService.add( login, password )
+      accountService.add( this.login, this.password )
 
 
     }

@@ -25,7 +25,7 @@ export function add(username, password) {
 
   		console.log("ADD ACCOUNT");
 
-  		resolve(data);
+  		resolve(data.response_map);
 
     }).catch( error => {
 
@@ -44,7 +44,7 @@ export function list({ role, with_invalids, with_non_owned }) {
 
     channel.req('list', 'account', { role, with_invalids, with_non_owned }).then( data => {
 
-      resolve(data);
+      resolve(data.response_map);
 
     }).catch( error => {
 
@@ -62,7 +62,7 @@ export function confirm(code) {
 
     channel.req('confirm', 'account', { code } ).then( data => {
 
-      resolve(data);
+      resolve(data.response_map);
 
     }).catch( error => {
 
