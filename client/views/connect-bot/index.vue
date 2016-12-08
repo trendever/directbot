@@ -55,18 +55,23 @@
             .input(id="code", v-if="needConfirmCode")
               i.ic-code
               input(
-                v-model="code"
+                v-model="code",
+                @keydown.enter='confirmCode',
                 placeholder='Введите код')
           .btn-container
+
+            button.btn.btn_primary.__red.__xl.fast__big__btn.btn_fixed-bottom(
+              v-if="connectProcess") ПОДКЛЮЧЕНИЕ...
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
-              v-if="!needConfirmCode",
+              v-if="!needConfirmCode && !connectProcess",
               @click='connectBot') ПОДКЛЮЧИТЬ ОПЕРАТОРА
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
-              v-if="needConfirmCode",
+              v-if="needConfirmCode && !connectProcess",
               @click='confirmCode') ПОДТВЕРДИТЬ
             .link-container.new-sms
               a.link-bottom(href='#')
                 | Мне нужна помощь
+
 </template>
 
 <script type='text/babel'>
@@ -79,18 +84,19 @@ export default {
       code: '',
       password: '',
       login: '',
-      needConfirmCode: false
+      needConfirmCode: false,
+      connectProcess: false
     }
   },
   methods:{
 
     connectBot(){
-
+      this.connectProcess = true;
       accountService
         .add( this.login, this.password )
 
         .then(data=>{
-
+          this.connectProcess = false;
           if(!data.need_code && data.success){
             this.$router.push( { name: 'profile' } );
             return;
@@ -102,16 +108,19 @@ export default {
 
           }
 
-      })
+        }).catch(err=>{
+          this.connectProcess = false;
+        })
 
 
     },
 
     confirmCode() {
-
+      this.connectProcess = true;
       accountService
-        .confirm(this.code).then(data=>{
-
+        .confirm(this.code)
+        .then(data=>{
+          this.connectProcess = false;
           if(data !== null) {
 
             this.$router.push( { name: 'profile' } );
@@ -119,6 +128,9 @@ export default {
 
           }
 
+        })
+        .catch(err=>{
+          this.connectProcess = false;
         })
 
     }
