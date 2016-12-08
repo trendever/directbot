@@ -28,17 +28,18 @@
     .hero__content__2(ref="screenTwo")
       a.how-btn(v-on:click="scrollFirst") КАКИЕ ПРОБЛЕМЫ РЕШАЕТ?
       .wrap-box
-        .hero__content__2__title.main 2 часа ожидания
+        .hero__content__2__title.main 10 из 10 инста-шопов
         .hero__content__2__paragraph
-          p.top нужно в среднем, #[br(v-if="!isMobile")] чтобы #[br(v-if="isMobile")] получить ответ #[br(v-if="!isMobile")] от инста-шопа
+          p хотят свой интернет-магазин #[br(v-if="!isMobile")] и #[br(v-if="isMobile")] ставить активные ссылки #[br(v-if="!isMobile")] под постами
+
       .wrap-box
         .hero__content__2__title 9 из 10 покупателей
         .hero__content__2__paragraph
           p спрашивают про товары #[br] в комментариях #[br(v-if="!isMobile")] или Instagram Direct
       .wrap-box
-        .hero__content__2__title.middle 10 из 10 инста-шопов
+        .hero__content__2__title.middle 2 часа ожидания
         .hero__content__2__paragraph
-          p хотят свой интернет-магазин #[br(v-if="!isMobile")] и #[br(v-if="isMobile")] ставить активные ссылки #[br(v-if="!isMobile")] под постами
+          p.top нужно в среднем, #[br(v-if="!isMobile")] чтобы #[br(v-if="isMobile")] получить ответ #[br(v-if="!isMobile")] от инста-шопа
       button.shopping_trends(v-on:click="scrollSecond") РЕШЕНИЕ
   .hero__content__bg
   .hero__content__landing
@@ -60,75 +61,75 @@
         i.ic-rub
         | /МЕС, #[br] ПОТОМУ ЧТО ЕМУ ПОМОГАЕТ #[br(v-if="isMobile")] DIRECTBOT, #[br(v-if="!isMobile")] АВТОМАТИЗИРУЮЩИЙ #[br(v-if="isMobile")] БОЛЬШИНСТВО ДЕЙСТВИЙ
     .hero__content__landing__title.main Преимущества #[br(v-if="isMobile")] нашего оператора
-      .wrapper
-        .info-box
-          .hero__content__landing__icon-1
-            img(src="./img/icon-1.png")
-          .hero__content__landing__sub-title Отвечает всем #[br] клиентам сразу
-          .hero__content__landing__caption Со смайлами&nbsp &#128526 &nbsp
-            | уделит внимание #[br(v-if="!isMobile")] каждому, быстро ответит. #[br]
-            a.link-info(@click="openPopup('is1')") Ни один клиент не успеет передумать
-        .info-box
-          .hero__content__landing__icon-2
-            img(src="./img/icon-2.png")
-          .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
-          .hero__content__landing__caption Больше не нужно отвечать #[br(v-if="isMobile")] и спрашивать #[br(v-if="!isMobile")] одно и то же. #[br(v-if="isMobile")]
-            a.link-info(@click="openPopup('is2')")
-              | Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
-        .info-box
-          .hero__content__landing__icon-3
-            img(src="./img/icon-3.png")
-          .hero__content__landing__sub-title Подключается быстро, работает самостоятельно
-          .hero__content__landing__caption Подключи нашего оператора к своему  Instagram-магазину в один клик. #[br]
-            a.link-info(@click="openPopup('is3')")
-              | Ничего не надо скачивать
-      .hero__content__landing__title.middle Что делает #[br(v-if="isMobile")] наш  оператор?
-      .hero__content__landing__screen-1
-        span.screen-title СКАНИРУЕТ #[br(v-if="!isMobile")] INSTAGRAM DIRECT
-        img(src="./img/screen-1.png")
-      .hero__content__landing__screen-2
-        span.screen-title СКАНИРУЕТ #[br(v-if="!isMobile")] КОММЕНТАРИИ
-        img(src="./img/screen-2.png")
-      .hero__content__landing__sub-title.deskST Оператор сразу видит #[br(v-if="isMobile")] вопросы покупателей
-      .hero__content__landing__caption.deskCap
-        a.link-info(@click="openPopup('is4')") Не важно, задан вопрос в комментариях #[br(v-if="isMobile")] или личном сообщении, #[br(v-if="!isMobile")]
-        span  оператор #[br(v-if="isMobile")] уже будет отвечать покупателю #[br(v-if="isMobile")] в Direct от твоего имени
-      .hero__content__landing__toggle
-        .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ, #[br] У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
-        button(v-on:click="noScreen = false, yesScreen = true").yes.toggleBtn.activeBtn ДА
-        button(v-on:click="yesScreen = false, noScreen = true").no.toggleBtn НЕТ
-      .toggle-box
-        .wrap-yes(v-show="yesScreen")
-          .hero__content__landing__screen-3
-            span.screen-title ИЗУЧИТ ТВОЙ #[br(v-if="!isMobile")] ИНТЕРНЕТ-МАГАЗИН
-            img(src="./img/screen-3-yes.png")
-          .hero__content__landing__screen-4
-            span.screen-title УЗНАЕТ О ТОВАРАХ #[br(v-if="!isMobile")] ПО АРТИКУЛУ
-            img(src="./img/screen-4-yes.png")
-          .hero__content__landing__sub-title.info-title Есть сайт? Укажи артикул товара под постом
-          .hero__content__landing__caption.info-cap Оператор узнает о деталях и наличии товара по артикулу в описании поста. #[br(v-if="!isMobile")] Ссылка на сайт должна быть #[br(v-if="isMobile")] в «био» инста-профиля
-          .info-wrap
-            .hero__content__landing__screen-5
-              span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
-              img(src="./img/screen-5.png")
-            .hero__content__landing__sub-title.lastST Оператор ответит на вопросы и поможет купить
-            .hero__content__landing__caption.lastCap
-              a.link-info(@click="openPopup('is6')") Клиенты получат консультацию*
-              span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
-            .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
-            .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
-        .wrap-no(v-show="noScreen")
-          .hero__content__landing__screen-3
-            span.screen-title СОЗДАСТ #[br(v-if="!isMobile")] ИНТЕРНЕТ-МАГАЗИН
-            img(src="./img/screen-3-no.png")
-          .hero__content__landing__screen-4
-            span.screen-title СПРАШИВАЕТ #[br(v-if="!isMobile")] О ТОВАРАХ В ЧАТЕ
-            img(src="./img/screen-4-no.png")
-          .hero__content__landing__sub-title.info Нет сайта? Ответь на вопросы о товарах
-          .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой #[br(v-if="!isMobile")]
-            a.link-info(@click="openPopup('is5')")
-              |  новый интернет-магазин по ссылке
-              span.bold  xxxx.drbt.io #[br]
+    .wrapper
+      .info-box
+        .hero__content__landing__icon-1
+          img(src="./img/icon-1.png")
+        .hero__content__landing__sub-title Отвечает всем #[br] клиентам сразу
+        .hero__content__landing__caption Со смайлами&nbsp &#128526 &nbsp
+          | уделит внимание #[br(v-if="!isMobile")] каждому, быстро ответит. #[br]
+          a.link-info(@click="openPopup('is1')") Ни один клиент не успеет передумать
+      .info-box
+        .hero__content__landing__icon-2
+          img(src="./img/icon-2.png")
+        .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
+        .hero__content__landing__caption Больше не нужно отвечать #[br(v-if="isMobile")] и спрашивать #[br(v-if="!isMobile")] одно и то же. #[br(v-if="isMobile")]
+          a.link-info(@click="openPopup('is2')")
+            | Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
+      .info-box
+        .hero__content__landing__icon-3
+          img(src="./img/icon-3.png")
+        .hero__content__landing__sub-title Подключается быстро, работает самостоятельно
+        .hero__content__landing__caption Подключи нашего оператора к своему  Instagram-магазину в один клик. #[br]
+          a.link-info(@click="openPopup('is3')")
+            | Ничего не надо скачивать
+    .hero__content__landing__title.middle Что делает #[br(v-if="isMobile")] наш  оператор?
+    .hero__content__landing__screen-1
+      span.screen-title СКАНИРУЕТ #[br(v-if="!isMobile")] INSTAGRAM DIRECT
+      img(src="./img/screen-1.png")
+    .hero__content__landing__screen-2
+      span.screen-title СКАНИРУЕТ #[br(v-if="!isMobile")] КОММЕНТАРИИ
+      img(src="./img/screen-2.png")
+    .hero__content__landing__sub-title.deskST Оператор сразу видит #[br(v-if="isMobile")] вопросы покупателей
+    .hero__content__landing__caption.deskCap
+      a.link-info(@click="openPopup('is4')") Не важно, задан вопрос в комментариях #[br(v-if="isMobile")] или личном сообщении, #[br(v-if="!isMobile")]
+      span  оператор #[br(v-if="isMobile")] уже будет отвечать покупателю #[br(v-if="isMobile")] в Direct от твоего имени
+    .hero__content__landing__toggle
+      .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ, #[br] У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
+      button(v-on:click="noScreen = false, yesScreen = true").yes.toggleBtn.activeBtn ДА
+      button(v-on:click="yesScreen = false, noScreen = true").no.toggleBtn НЕТ
+    .toggle-box
+      .wrap-yes(v-show="yesScreen")
+        .hero__content__landing__screen-3
+          span.screen-title ИЗУЧИТ ТВОЙ #[br(v-if="!isMobile")] ИНТЕРНЕТ-МАГАЗИН
+          img(src="./img/screen-3-yes.png")
+        .hero__content__landing__screen-4
+          span.screen-title УЗНАЕТ О ТОВАРАХ #[br(v-if="!isMobile")] ПО АРТИКУЛУ
+          img(src="./img/screen-4-yes.png")
+        .hero__content__landing__sub-title.info-title Есть сайт? Укажи артикул товара под постом
+        .hero__content__landing__caption.info-cap Оператор узнает о деталях и наличии товара по артикулу в описании поста. #[br(v-if="!isMobile")] Ссылка на сайт должна быть #[br(v-if="isMobile")] в «био» инста-профиля
+      .wrap-no(v-show="noScreen")
+        .hero__content__landing__screen-3
+          span.screen-title СОЗДАСТ #[br(v-if="!isMobile")] ИНТЕРНЕТ-МАГАЗИН
+          img(src="./img/screen-3-no.png")
+        .hero__content__landing__screen-4
+          span.screen-title СПРАШИВАЕТ #[br(v-if="!isMobile")] О ТОВАРАХ В ЧАТЕ
+          img(src="./img/screen-4-no.png")
+        .hero__content__landing__sub-title.info Нет сайта? Ответь на вопросы о товарах
+        .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой #[br(v-if="!isMobile")]
+          a.link-info(@click="openPopup('is5')")
+            |  новый интернет-магазин по ссылке
+            span.bold  xxxx.drbt.io #[br]
+            .info-wrap
+      .hero__content__landing__screen-5
+        span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
+        img(src="./img/screen-5.png")
+      .hero__content__landing__sub-title.lastST Оператор ответит на вопросы и поможет купить
+      .hero__content__landing__caption.lastCap
+        a.link-info(@click="openPopup('is6')") Клиенты получат консультацию*
+        span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
+      .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
+      .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
   .info-block
     .title
       p Подключайся и получишь:
@@ -136,7 +137,7 @@
       ol
         li
           a.link-info(@click="openPopup('is7')")
-            | Личного оператора, на связи с твоими #[br(v-if="isMobile")] клиентами 24/7. В 15 раз дешевле* &#128563
+            | Личного оператора, на связи с твоими #[br(v-if="isMobile")] клиентами 24/7. В 10+ раз дешевле*
         li
           a.link-info(@click="openPopup('is8')")
             | Адаптивный интернет-магазин, #[br(v-if="isMobile")] с платежами и доставкой

@@ -13,19 +13,19 @@
           :class='{_active: getLeadTab === "customer"}',
           @click='$store.dispatch("setTab","customer")',
           v-if="getLeadTab === 'customer'")
-          span Чаты с продавцами
+          span Чаты с покупателями
 
         .header__nav__i.header__text(
           :class='{_active: getLeadTab === "seller"}',
           @click='$store.dispatch("setTab", "seller")',
           v-if="getLeadTab === 'seller'")
-          span Чаты с покупателями
+          span Чаты с продавцами
 
     .section.top.bottom
       .section__content
         .chat-list(v-bind:style="styleObject", ref="chatList")
           chat-list-item(v-for='lead in sortedList', :lead='lead', :key="lead.id", ref="item")
-    //-template(v-if='!leadsArray.length && !directbot')
+    template(v-if='!leadsArray.length && !directbot')
       .chat-list-cnt-is-empty(v-if="getLeadTab === 'customer'")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span  потому что ты пока ничего #[br] не покупаешь
