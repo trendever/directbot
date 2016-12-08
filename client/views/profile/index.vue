@@ -1,21 +1,22 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
 #profile
+
   header-component(:title='getUserName', :left-btn-show='false').directbot-header
 
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
 
         i.ic-options_menu(@click="showProfileMenu = true")
 
-        menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
-            .item
-              .text.__txt-blue Отмена
-            .item
-              .text.__txt-red(@click.stop="logout") Выход
-
       div.profile-days(slot="content" v-if="isSelfPage")
         span 3
         span.day д
+
+  menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+    .item
+      .text.__txt-blue Отмена
+    .item
+      .text.__txt-red(@click.stop="logout") Выход
 
   .directbot-right-nav
     right-nav-component(current="profile")
