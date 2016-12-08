@@ -147,7 +147,7 @@ export default {
     onButton() {
       if(this.anotherName){
         if (!this.callbackOnSuccessAuth) {
-              this.$router.push({name: 'chat_list'}), 1000;
+              this.$router.push({name: 'profile'}), 1000;
               return;
             } else {
               this.executeCallbackOnSuccessAuth()

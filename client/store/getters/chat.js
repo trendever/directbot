@@ -213,7 +213,39 @@ export const getShopId = ( state ) => {
 
 };
 
-export const getCurrentMember = ( state, lead = getLeadByConversationId( store.state.leads, state.id ) ) => {
+export const getCurrentMember = ( state ) => {
+
+  let leads = store.state.leads
+
+    let currentId = store.state.conversation.id;
+
+    let lead = leads.seller.concat(leads.customer).find( ( { chat:{ id } } )=>{
+
+      return id === currentId
+
+    })
+
+  if(lead) {
+
+    let user = lead.chat.members.find( ( { user_id } )=>{
+
+      return user_id === store.state.user.myId;
+
+    })
+
+    return user;
+
+
+  } else {
+
+    return { role: '' };
+
+  }
+
+
+}
+
+export const getCurrentMemberTemp = ( state, lead = getLeadByConversationId( store.state.leads, state.id ) ) => {
 
   if ( lead ) {
 

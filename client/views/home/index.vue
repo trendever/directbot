@@ -156,29 +156,11 @@
 
 import Hammer from 'hammerjs';
 import JQuery from 'jquery';
-import listen from 'event-listener'
-//import settings from 'settings'
-
-let settings = {}
-
-/*import { setCallbackOnSuccessAuth } from 'vuex/actions'
-
-import { createLead } from 'vuex/actions/lead'
-
-import { isAuth } from 'vuex/getters/user.js'
-
-import { logOut } from 'vuex/actions/user.js'
-
-import { getComeBack } from 'vuex/getters/products.js'
-
-import * as leads from 'services/leads'*/
+import listen from 'event-listener';
 
 
+import settings from 'root/settings';
 import * as commonService from 'services/common';
-//import HeaderComponent from 'base/header/header.vue';
-
-import { targetClass } from 'root/utils';
-
 
 export default {
   data(){
@@ -194,7 +176,11 @@ export default {
       popupUrl: ""
     }
   },
-
+  created(){
+    if(this.$store.getters.isAuth) {
+      this.$router.replace({name: 'profile'});
+    }
+  },
   mounted() {
 
     this.timeID = this.count();

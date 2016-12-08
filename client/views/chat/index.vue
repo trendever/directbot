@@ -123,12 +123,15 @@ export default {
     //open chat
     this.lead_id =  +this.$route.params.id;
     if ( this.isDoneLead ) {
+
+
       if ( this.isAuth ) {
         return this.run().then(()=>{
           this.clearNotify(this.lead_id);
           this.$nextTick( () => {
                   this.goToBottom();
                 } );
+
 
         })
       } else {
@@ -235,7 +238,7 @@ export default {
     },
 
     run(){
-      console.log(1)
+
       return this
 
         .setConversation( this.lead_id )
@@ -269,7 +272,7 @@ export default {
           },
           ( error ) => {
             console.error( `[ CONVERSATION_SET ERROR ]: `, error );
-            this.$router.push( { name: 'home' } );
+            //this.$router.push( { name: 'home' } );
           }
         ).then(()=>{
           //redirect if no chat room

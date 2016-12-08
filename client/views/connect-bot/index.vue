@@ -3,7 +3,7 @@
 
 #connect-bot
   .turn-on-bot(:style='{ height: height }')
-    .turn-on-bot__close(@click='closePage'): i.ic-close
+    .turn-on-bot__close(): i.ic-close
     .section
       .column-desktop-50.header
         h1.accept Подключение оператора
@@ -31,9 +31,7 @@
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorLogin} ',
-                @focus='onFocusLogin',
                 @keydown.enter='sendSMS()',
-                v-on:blur="blurInput",
                 v-model='login',
                 placeholder='t.skirt')
               .input__clear-btn(
@@ -48,14 +46,11 @@
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorPhone} ',
-                @focus='onFocusPhone',
                 @keydown.enter='sendSMS()',
-                v-on:blur="blurInput",
                 v-model='phone',
                 placeholder='Введите пароль от Instagram')
               .input__clear-btn(
-                v-if='phone',
-                @click='phone = ""')
+                v-if='phone')
                 i.ic-close.clear
             .input(id="code", v-if="false")
               i.ic-code
@@ -65,11 +60,12 @@
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               @click='sendSMS') ПОДКЛЮЧИТЬ ОПЕРАТОРА
             .link-container.new-sms
-              a.link-bottom(href='#',
-                @click.prevent='onClickLink')
-                | Прислать новый смс
+              a.link-bottom(href='#')
+                | Мне нужна помощь
 </template>
 
 <script type='text/babel'>
+export default {
 
+}
 </script>

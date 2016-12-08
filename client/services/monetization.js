@@ -18,6 +18,19 @@ export function get_plan(plan_id){
 
 }
 
+export function getTransactionsLog(){
+	return new Promise((resolve,reject)=>{
+		channel
+			.req( 'log' , 'coins' , {} )
+
+			.then( data => {
+
+				resolve( data.response_map )
+
+			} )
+	});
+}
+
 export function plans_list (currency){
 
 	return new Promise((resolve, reject)=>{
