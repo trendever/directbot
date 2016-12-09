@@ -177,12 +177,11 @@ export default {
     store.dispatch('openProfile', instagram_username )
 
       .then(()=>{
-
         accountService
           .list({})
 
           .then(data=>{
-
+            console.log(data);
             next( vm =>{
 
               if(data !== null) {

@@ -14,14 +14,6 @@
         .header__notify-count(v-if='notifyCount')
           span {{ notifyCount }}
 
-        .header__use-days(
-          v-if='$route.name === "profile" && isMobile',
-           @click="$router.push( {name: 'home'} )")
-
-          .days-count {{ $store.getters.getUseDays }}
-            span д
-
-
         .header__center
 
           .header__left-logo
