@@ -61,7 +61,7 @@
 
 import { ratioFit, formatPastTime} from 'root/utils'
 
-import settings from 'root/settings';
+import {settings} from 'root/settings';
 import listen from 'event-listener'
 
 import mobileLayout from '../mobileLayout/index.vue'

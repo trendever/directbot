@@ -1,7 +1,6 @@
 import config from '../config'
 
-var settings = {
-
+export const settings = {
   promoProductID: config.promo_product_id,
 
   editProductID: config.edit_product_id,
@@ -13,5 +12,3 @@ var settings = {
   monetizationHelpID: config.monetization_help_id
 
 }
-
-module.exports = settings;

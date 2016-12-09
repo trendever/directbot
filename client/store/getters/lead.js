@@ -38,6 +38,10 @@ export const getLeads = ( leads ) => {
 
 };
 
+export const getAllLeads = ( leads ) => {
+  return leads;
+};
+
 export const getLeadByConversationId = (function() {
 
   const memoize = {};
