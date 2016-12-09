@@ -1,7 +1,7 @@
 <style src='./style.pcss'></style>
 <template lang="pug">
 
-#connect-bot(:style="{height: containerHeight }")
+#connect-bot
 
   .help-popup(v-if="helpPopup")
     .close(@click.stop="helpPopup = false"): i.ic-close
@@ -37,7 +37,7 @@
 
 
 
-  .turn-on-bot(:style='{ height: height }')
+  .turn-on-bot(:style='{ height: containerHeight }')
     .turn-on-bot__close(@click="$router.push({name:'profile'})"): i.ic-close
     .section
       .column-desktop-50.header
@@ -113,6 +113,7 @@
 <script type='text/babel'>
 import * as accountService from 'services/account';
 import * as profileService from 'services/profile';
+import listen from 'event-listener';
 
 export default {
 
