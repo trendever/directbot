@@ -5,7 +5,7 @@
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat_messages(id="chatmessages", ref="messages")
-        div(v-for='(msg, index) in getMessages', :key='index')
+        div(v-for='(msg, index) in getFakeMessages', :key='index')
           div
             chat-msg(
               :type="getMessageType(msg.parts[0].mime_type)",
@@ -38,15 +38,13 @@ export default {
     return {
       fullScroll: 0,
       noGoBottom: false,
-      test: 123123
+      coinsLog: []
     }
   },
   beforeDestroy() {
     messages.offMsg( this.onMessage );
   },
   mounted(){
-    console.log("TEST!")
-    console.log(this.test)
     this.onMessage = this.onMessage.bind( this );
     messages.onMsg( this.onMessage );
     this.runFakeChat();
@@ -55,7 +53,33 @@ export default {
       ...mapGetters([
         'getAllLeads',
         'getMessages',
-      ])
+        'userID'
+      ]),
+      getFakeMessages(){
+        let messages = [];
+        messages.push(...this.getMessages);
+
+        //Merge сообщений монетизации в чат
+        this.coinsLog.forEach((elem)=>{
+          let time = elem.created_at;
+          let coinsPartsObject = {content: "monetization text",mime_type:"text/coins"}
+          let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: this.userID}};
+          messages.push(coinsMessageObject)
+          messages.sort((x,y)=>{
+            if (x.user && y.user){
+              if (x.user.user_id != this.userID && y.user.user_id != this.userID){
+                return 0;  
+              }else{
+                return x.created_at > y.created_at;
+              }
+            }
+            return 0;
+          });
+        });
+        console.log("!MESSAGES!")
+        console.log(messages);
+        return messages;
+      }
   },
   methods:{
     runFakeChat(){
@@ -75,8 +99,7 @@ export default {
       }).then((lead_id)=>{
         if (lead_id){
           getTransactionsLog().then((data)=>{
-            console.log("COINS LOG");
-            console.log(data.transactions);
+            this.coinsLog = data.transactions;
           })
         }else{
           console.log("NO LEAD WITH SERVICE PRODUCT")
@@ -86,6 +109,7 @@ export default {
     getMessageType(mime_type){
       switch (mime_type){
         case "text/plain": return "text";break;
+        case "text/coins": return "coins";break;
         default: return "notext";break;
       }
     },
