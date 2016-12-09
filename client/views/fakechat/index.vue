@@ -68,7 +68,7 @@ export default {
           messages.sort((x,y)=>{
             if (x.user && y.user){
               if (x.user.user_id != this.userID && y.user.user_id != this.userID){
-                return 0;  
+                return 0;
               }else{
                 return x.created_at > y.created_at;
               }
@@ -84,7 +84,8 @@ export default {
   methods:{
     runFakeChat(){
       this.loadLeads().then((leads)=>{
-        let found_lead = this.getAllLeads.customer.find(elem=>elem.products[0].id === settings.monetizationProductID);
+        let productId = settings.monetizationProductID
+        let found_lead = this.getAllLeads.customer.find(elem=>elem.products[0].id === productId);
         let lead_id = 0;
         //Если есть купленный сервисный товар (по монетизации)
         if (found_lead){
@@ -92,10 +93,17 @@ export default {
           this.run(lead_id);
         }else{
           //Если его нет - покупаем новый
-
-          //Здесь нужно присвоинть новый полученный лид переменной lead_id
+          this.createLead(productId).then(lead=> {
+            if ( lead !== undefined && lead !== null ) {
+            //Здесь нужно присвоинть новый полученный лид переменной lead_id
+              lead_id = lead.id;
+              this.run(lead_id);
+            }
+          })
         }
+
         return lead_id
+
       }).then((lead_id)=>{
         if (lead_id){
           getTransactionsLog().then((data)=>{
@@ -115,7 +123,8 @@ export default {
     },
     ...mapActions([
       'setConversation',
-      'loadLeads'
+      'loadLeads',
+      'createLead'
     ]),
     run(lead_id){
       return this.setConversation( lead_id ).then(
