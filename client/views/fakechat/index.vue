@@ -49,31 +49,7 @@ export default {
     console.log(this.test)
     this.onMessage = this.onMessage.bind( this );
     messages.onMsg( this.onMessage );
-    this.loadLeads().then((leads)=>{
-      let found_lead = this.getAllLeads.customer.find(elem=>elem.products[0].id === settings.monetizationProductID);
-      let lead_id = 0;
-      //Если есть купленный сервисный товар (по монетизации)
-      if (found_lead){
-        lead_id = found_lead.id;
-        this.run(lead_id);
-      }else{
-        //Если его нет - покупаем новый
-
-        //Здесь нужно присвоинть новый полученный лид переменной lead_id
-      }
-      return lead_id
-    }).then((lead_id)=>{
-      if (lead_id){
-        getTransactionsLog().then((data)=>{
-          console.log("COINS LOG");
-          console.log(data.transactions);
-        })
-      }else{
-        console.log("NO LEAD WITH SERVICE PRODUCT")
-      }
-    });
-    
-    //this.getAllLeads.customer.find(elem=>elem.)
+    this.runFakeChat();
   },
   computed:{
       ...mapGetters([
@@ -82,6 +58,31 @@ export default {
       ])
   },
   methods:{
+    runFakeChat(){
+      this.loadLeads().then((leads)=>{
+        let found_lead = this.getAllLeads.customer.find(elem=>elem.products[0].id === settings.monetizationProductID);
+        let lead_id = 0;
+        //Если есть купленный сервисный товар (по монетизации)
+        if (found_lead){
+          lead_id = found_lead.id;
+          this.run(lead_id);
+        }else{
+          //Если его нет - покупаем новый
+
+          //Здесь нужно присвоинть новый полученный лид переменной lead_id
+        }
+        return lead_id
+      }).then((lead_id)=>{
+        if (lead_id){
+          getTransactionsLog().then((data)=>{
+            console.log("COINS LOG");
+            console.log(data.transactions);
+          })
+        }else{
+          console.log("NO LEAD WITH SERVICE PRODUCT")
+        }
+      });
+    },
     getMessageType(mime_type){
       switch (mime_type){
         case "text/plain": return "text";break;
