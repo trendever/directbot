@@ -111,6 +111,20 @@ import NavbarComponent from 'components/navbar/navbar';
 import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
 
+
+function getDaysOver(val) {
+
+  let connectAgo = val * 1000;
+
+  let difference = Date.now() - connectAgo;
+
+  console.log(difference);
+
+
+}
+
+
+
 export default {
 
 
@@ -181,11 +195,11 @@ export default {
           .list({})
 
           .then(data=>{
-            console.log(data);
+
             next( vm =>{
 
               if(data !== null) {
-
+                getDaysOver(data[0].created_at_ago)
                 vm.botActivity = true;
 
               }
