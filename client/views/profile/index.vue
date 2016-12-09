@@ -9,7 +9,7 @@
         i.ic-options_menu(@click="showProfileMenu = true")
 
       div.profile-days(slot="content" v-if="isSelfPage")
-        span 3
+        span {{ daysOver }}
         span.day д
 
   menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
@@ -111,20 +111,6 @@ import NavbarComponent from 'components/navbar/navbar';
 import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
 
-
-function getDaysOver(val) {
-
-  let connectAgo = val * 1000;
-
-  let difference = Date.now() - connectAgo;
-
-  console.log(difference);
-
-
-}
-
-
-
 export default {
 
 
@@ -142,7 +128,8 @@ export default {
       showBanner: showBanner,
       copyMessage: '',
       showCopyMessage: false,
-      showProfileMenu: false
+      showProfileMenu: false,
+      daysOver: 0
 
     }
 
@@ -199,7 +186,8 @@ export default {
             next( vm =>{
 
               if(data !== null) {
-                getDaysOver(data[0].created_at_ago)
+
+                vm.daysOver = getDaysOver(data[0].created_at_ago)
                 vm.botActivity = true;
 
               }
@@ -310,6 +298,28 @@ export default {
     MenuSample
   }
 }
+
+
+function getDaysOver(val) {
+
+  let day = 3600 * 24;
+
+  if(val < day) {
+    return 3;
+  }
+  if(val < day * 2 ) {
+    return 2;
+  }
+  if(val < day * 3 ) {
+    return 1;
+  }
+  if(val > day * 3) {
+
+    return 0;
+  }
+
+}
+
 </script>
 
 
