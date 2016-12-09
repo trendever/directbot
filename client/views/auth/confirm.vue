@@ -2,7 +2,7 @@
 <template lang="pug">
 
 #confirm
-  .signup.confirm(:style='{ height: height }')
+  .signup.confirm(:style='{ height: containerHeight }')
     .signup__close.__hello(v-on:click='closePage'): i.ic-close
     .section
       h1.accept(v-if='!isCompleted') Подтвердите телефон
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import listen from 'event-listener';
 import { mapActions, mapGetters } from 'vuex';
 
 import store from 'root/store';
@@ -97,11 +98,10 @@ export default {
       code: '',
       errorCode: false,
       isCompleted: false,
-      height: '',
+      containerHeight: '',
       text_header: TEXT_HEADER.DEFAULT,
       needNewSMS: false,
-      anotherName: '',
-      isMobile: window.browser.mobile
+      anotherName: ''
     };
   },
 
@@ -109,16 +109,32 @@ export default {
 
     if (!store.getters.authData.phone && !store.getters.authData.username){
       next(vm=>{
-        vm.$router.push({name: 'auth'});
+        vm.$router.push( { name: 'auth' } );
       });
     }
 
     next();
   },
 
-  ready() {
-    this.height = `${ document.body.scrollHeight }px`;
-    this.$refs.confirmField.focus();
+  mounted() {
+
+    this.$nextTick(()=>{
+      //прилипание кнопки
+      this.containerHeight = `${ document.body.scrollHeight }px`;
+      const onResize = () => {
+        this.containerHeight = `${ document.body.scrollHeight }px`;
+      };
+      this.resize = listen( window, 'resize', onResize );
+      onResize();
+
+
+
+      this.$refs.confirmField.focus();
+    })
+
+  },
+  beforeDestroy(){
+    this.resize.remove();
   },
   computed: {
     isDisabled() {
