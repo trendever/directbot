@@ -50,36 +50,38 @@ export default {
     this.runFakeChat();
   },
   computed:{
-      ...mapGetters([
-        'getAllLeads',
-        'getMessages',
-        'userID'
-      ]),
-      getFakeMessages(){
-        let messages = [];
-        messages.push(...this.getMessages);
 
-        //Merge сообщений монетизации в чат
-        this.coinsLog.forEach((elem)=>{
-          let time = elem.created_at;
-          let coinsPartsObject = {content: "monetization text",mime_type:"text/coins"}
-          let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: this.userID}};
-          messages.push(coinsMessageObject)
-          messages.sort((x,y)=>{
-            if (x.user && y.user){
-              if (x.user.user_id != this.userID && y.user.user_id != this.userID){
-                return 0;
-              }else{
-                return x.created_at > y.created_at;
-              }
+    ...mapGetters([
+      'getAllLeads',
+      'getMessages',
+      'userID'
+    ]),
+
+    getFakeMessages(){
+      let messages = [];
+      messages.push(...this.getMessages);
+
+      //Merge сообщений монетизации в чат
+      this.coinsLog.forEach((elem)=>{
+        let time = elem.created_at;
+        let coinsPartsObject = {content: "monetization text",mime_type:"text/coins"}
+        let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: this.userID}};
+        messages.push(coinsMessageObject)
+        messages.sort((x,y)=>{
+          if (x.user && y.user){
+            if (x.user.user_id != this.userID && y.user.user_id != this.userID){
+              return 0;
+            }else{
+              return x.created_at > y.created_at;
             }
-            return 0;
-          });
+          }
+          return 0;
         });
-        console.log("!MESSAGES!")
-        console.log(messages);
-        return messages;
-      }
+      });
+      console.log("!MESSAGES!")
+      console.log(messages);
+      return messages;
+    }
   },
   methods:{
     runFakeChat(){
@@ -90,14 +92,13 @@ export default {
         //Если есть купленный сервисный товар (по монетизации)
         if (found_lead){
           lead_id = found_lead.id;
-          this.run(lead_id);
+
         }else{
           //Если его нет - покупаем новый
           this.createLead(productId).then(lead=> {
             if ( lead !== undefined && lead !== null ) {
             //Здесь нужно присвоинть новый полученный лид переменной lead_id
               lead_id = lead.id;
-              this.run(lead_id);
             }
           })
         }
@@ -105,6 +106,7 @@ export default {
         return lead_id
 
       }).then((lead_id)=>{
+        this.run(lead_id);
         if (lead_id){
           getTransactionsLog().then((data)=>{
             this.coinsLog = data.transactions;
