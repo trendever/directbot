@@ -351,7 +351,10 @@ export const createMessage = ( { commit, state },{ conversation_id, text, mime_t
 }
 
 export const receiveMessage = ( { commit, state }, conversation_id, messages ) => {
-
+  console.log("RECEIVE MESSAGE!");
+  console.log(conversation_id);
+  console.log("MESSAGES");
+  console.log(messages);
   if ( Array.isArray( messages ) ) {
 
     if ( messages.length > 0 ) {
@@ -361,6 +364,10 @@ export const receiveMessage = ( { commit, state }, conversation_id, messages ) =
       const msgUserId = msg.user ? msg.user.user_id : null
 
       commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages, id: conversation_id } )
+
+
+      console.log(msg.conversation_id)
+      console.log(msg)
 
       if ( userID( store.state.user ) !== msgUserId ) {
 
@@ -519,7 +526,6 @@ export const setStatus = ( { commit, state }, status, type, cancel_reason = null
 }
 
 export const onMessagesChat = ( { commit, state },  data  ) => {
-
   if ( data.response_map ) {
 
     if ( data.response_map.chat && data.response_map.messages ) {

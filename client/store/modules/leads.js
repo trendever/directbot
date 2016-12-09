@@ -73,7 +73,7 @@ const mutations = {
   },
 
   [types.LEAD_RECEIVE] ( state, { leads, tab }) {
-
+    console.log("LEADS RECIEVE HERE");
     if ( !state.hasOwnProperty( tab ) ) {
       console.error( `${types.LEAD_RECEIVE}: передан таб который не поддерживается : ${tab}`, state );
     }
@@ -148,7 +148,7 @@ const mutations = {
   },
 
   [types.LEAD_SET_TAB] ( state, { tab = 'customer', lengthList = getters.getCountForLoading } ) {
-
+    console.log("LEAD SET TAB");
     state.tab        = tab;
     /*state.lengthList = {
       seller: lengthList,
