@@ -1,6 +1,6 @@
 import config from '../config'
 
-export const settings = {
+export default {
   promoProductID: config.promo_product_id,
 
   editProductID: config.edit_product_id,
