@@ -22,7 +22,7 @@ import ChatHeader from '../chat/chat-header.vue';
 import ChatMsg from './chat-msg.vue';
 import {getTransactionsLog} from 'services/monetization';
 import { mapActions,mapGetters } from 'vuex';
-import {settings} from 'root/settings.js';
+import settings from 'root/settings.js';
 import * as messages from 'services/message';4
 
 export default {
@@ -34,7 +34,7 @@ export default {
   },
   data(){
     console.log(this.$route.params.result)
-    
+
     return {
       fullScroll: 0,
       noGoBottom: false,
