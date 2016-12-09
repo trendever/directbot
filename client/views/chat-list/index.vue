@@ -25,39 +25,22 @@
       .section__content
         .chat-list(v-bind:style="styleObject", ref="chatList")
           chat-list-item(v-for='lead in sortedList', :lead='lead', :key="lead.id", ref="item")
-    template(v-if='!leadsArray.length && !directbot')
-      .chat-list-cnt-is-empty(v-if="getLeadTab === 'customer'")
-        .chat-list-cnt-is-empty__container Нет чатов,#[br]
-        span  потому что ты пока ничего #[br] не покупаешь
-      .chat-list-cnt-is-empty(v-if="getLeadTab === 'seller'")
-        .chat-list-cnt-is-empty__container Нет чатов,#[br]
-        span  ... потому что ты пока ничего #[br] не продаешь
-      .chat-list-cnt-is-empty__banner(v-if="!leadsArray.length && getLeadTab === 'customer'") Нажми Купить&nbsp
-        span под товаром #[br]или&nbsp
-        span.want напиши @wantit&nbsp
-        span под постом в Instagram, #[br] и здесь появится шопинг-чат
-      .chat-list-cnt-is-empty__banner.sell(v-if="!leadsArray.length && getLeadTab === 'seller'")
-        span Напиши&nbsp
-        span.want
-          | "Покупай по комментарию @wantit&nbsp" #[br(v-if="isMobile")]
-        span
-          | #[br(v-if="isMobile")] под товарами в своем instagram,
-          | #[br] чтобы продавать и видеть здесь покупателей
-        .how-to-sell-btn.chat-btn( v-link="{name: 'info-instructions-1'}") Как начать продавать?
 
-    //- D I R E C T  B O T
-    //-template(v-if='!leadsArray.length && directbot')
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(v-link="{ name: 'turn-on-bot' }") ПОДКЛЮЧИТЬ БОТА
+
+
+
+
       .chat-list-cnt-is-empty__banner.directbot-banner
         span
-          | После подключения бота, здесь будет #[br]
+          | После подключения оператора, #[br(v-if="!isMobile")] здесь будет #[br(v-if="isMobile")]
           | список чатов с покупателями как в #[br]
         span.want
           | Instagram Direct
 
       .chat-list-cnt-is-empty
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
-        span  ... потому что ты пока ничего #[br] не продаешь
+        span потому что ты пока #[br] ничего не продаешь
+      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ ОПЕРАТОРА
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')

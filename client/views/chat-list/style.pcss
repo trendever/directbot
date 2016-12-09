@@ -2,16 +2,16 @@
 
 
 .section.top.bottom.little-move-up {
-    @media (--mobile) {
-      padding-top: 91px;
-    }
+  @media (--mobile) {
+    padding-top: 91px;
+  }
 }
 
 .section.top.bottom.little-move-up-standalone {
-    @media (--mobile) {
-      padding-top:3px;
+  @media (--mobile) {
+    padding-top:3px;
 
-    }
+  }
 }
 
 .how-to-sell-btn {
@@ -57,8 +57,8 @@
   }
 }
 .list-loader {
-   position: fixed 50% * * 50% ;
-   transform: translate(-50%, -50%);
+  position: fixed 50% * * 50% ;
+  transform: translate(-50%, -50%);
 }
 .chat-list-cnt {
   .chat-appstore-link {
@@ -89,15 +89,18 @@
     color: $color__gray;
     font-size: 24px;
     font-family: $font__family__light;
-    margin-top: -32px;
-    padding-top: 240px;
+    margin-top: -40px;
+    padding-top: 215px;
     background: url("img/chats_inactive.svg") no-repeat 50% 0;
     -webkit-background-size: 190px;
     background-size: 190px;
     color: $color__gray-dark;
-    line-height: 38px;
-    @media(--mobile) {
+    line-height: 30px;
+    @media(--tabletandless) {
       font-size:32px;
+      margin-top: -42px;
+      padding-top: 220px;
+      line-height: 38px;
     }
 
     &__container {
@@ -120,29 +123,19 @@
       background-color: $color__gray-lighter;
       bottom: 0px;
       padding-top: 20px;
-      padding-bottom: 20px;
+      padding-bottom: 31px;
       color: $color__gray-dark;
       font-family: $font__family__light;
-      //line-height: 30px;
       height: auto;
       @media(--mobile) {
-        &.directbot-banner {
-
-         bottom: 198px;
-         line-height: 38px;
-         padding-top: 45px;
-
-        }
-
-
         display: block;
         position: absolute;
         font-size: 32px;
         width: 100%;
         text-align: center;
         background-color: $color__gray-lighter;
-        bottom: 98px;
-        padding-top: 40px;
+        bottom: 197px;
+        padding-top: 47px;
         padding-bottom: 40px;
         color: $color__gray-dark;
         line-height: 38px;
@@ -367,4 +360,22 @@
       }
     }
   }
+}
+.turn-on-bot-btn{
+  position: absolute;
+  border-radius: 5px;
+  font-size: 24px;
+  height: 60px !important;
+  width: 420px !important;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+    @media(--tabletandless) {
+      border-radius: 0px;
+      font-size: 36px;
+      bottom: 48px;
+      height: 100px !important;
+      width: 100% !important;
+    }
 }
