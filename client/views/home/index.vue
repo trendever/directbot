@@ -119,7 +119,9 @@
         .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой #[br(v-if="!isMobile")]
           a.link-info(@click="openPopup('is5')")
             |  новый интернет-магазин по ссылке
-            span.bold  xxxx.drbt.io #[br]
+            span.bold  tskirt.drbt.io* #[br]
+          span Также уточнит детали и наличие товаров #[br(v-if="isMobile")]
+          span.tip *это ссылка на примере инстаграм-магазина tskirt
             .info-wrap
       .hero__content__landing__screen-5
         span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
