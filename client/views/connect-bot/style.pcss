@@ -1,4 +1,56 @@
 @import 'style/vars/vars.pcss';
+
+#connect-bot {
+
+  .help-popup {
+
+    position: fixed;
+    z-index: 200;
+    size: 100%;
+    background: $color__dark-blue;
+    color: white;
+
+    .close {
+      position: absolute 10px 10px * *;
+      font-size: 36px;
+      padding: 20px;
+    }
+
+    .title {
+      margin: 40px * 40px *;
+      text-align: center;
+      font-size: 40px;
+      font-family: $font__family__semibold;
+
+    }
+
+    .content {
+
+      width: 95%;
+      margin: 0 auto;
+      padding-left: 4%;
+      font-size: 36px;
+
+
+      ul {
+
+        list-style: initial;
+
+        li {
+          font-family: $font__family__light;
+          line-height: 45px;
+          margin-top: 30px;
+
+          a {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+
 .directbot{
   .turn-on-bot {
     position:relative;
@@ -197,6 +249,12 @@
       margin: 10px 0;
       font-size: 36px;
     }
+    .btn.__red {
+      background: $color__red__true;
+      margin: 10px 0;
+      font-size: 36px;
+    }
+
     .error {
       color: #FFDE1E;
     }

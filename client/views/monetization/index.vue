@@ -18,7 +18,7 @@
             span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
             div(v-html="plan.about")
       .monetization__zero-days-link
-        a(href="#") У меня есть вопросы
+        a(@click="getHelp") У меня есть вопросы
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
 
        button(v-if="selectedPlan === 0") ПОКА НЕ УВЕРЕН
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import settings from 'root/settings';
 import * as monetization from 'services/monetization';
 import {createPayment} from 'services/card';
 
@@ -54,6 +55,17 @@ export default {
     }
   },
   methods:{
+    getHelp(){
+      this.$store
+        .dispatch('createLead', settings.monetizationHelpID)
+        .then(
+            ( lead ) => {
+              if ( lead !== undefined && lead !== null ) {
+                this.$router.push( { name: 'chat', params: { id: lead.id } } )
+              }
+            }
+          )
+    },
     selectPlan(plan_id){
       this.selectedPlan = (this.selectedPlan === plan_id) ? 0 : plan_id;
     },

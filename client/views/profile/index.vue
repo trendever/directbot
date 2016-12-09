@@ -1,21 +1,22 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
 #profile
+
   header-component(:title='getUserName', :left-btn-show='false').directbot-header
 
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
 
         i.ic-options_menu(@click="showProfileMenu = true")
 
-        menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
-            .item
-              .text.__txt-blue Отмена
-            .item
-              .text.__txt-red(@click.stop="logout") Выход
-
       div.profile-days(slot="content" v-if="isSelfPage")
         span 3
         span.day д
+
+  menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+    .item
+      .text.__txt-blue Отмена
+    .item
+      .text.__txt-red(@click.stop="logout") Выход
 
   .directbot-right-nav
     right-nav-component(current="profile")
@@ -61,24 +62,27 @@
 
       template(v-if="loaded && isSelfPage")
 
-        .profile_inactive
+        .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
           span мониторю 3 поста #[br] отправил 5 сообщений
-        .profile_active(v-if="directbotInactive")
+        .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
             p.light мониторю 3 поста #[br] отправил 5 сообщений
-        .profile_no-goods-banner
+        .profile_no-goods-banner(v-if="!botActivity")
           i.ic-close
           span После подключения #[br(v-if="isMobile")]
           span.save &nbspоператор #[br(v-if="!isMobile")]
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
 
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})", v-if="isSelfPage && isMobile") ПОДКЛЮЧИТЬ ОПЕРАТОРА
+      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
+        @click="$router.push({name: 'connect-bot'})",
+         v-if="isSelfPage && isMobile && !botActivity"
+        ) ПОДКЛЮЧИТЬ ОПЕРАТОРА
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
@@ -93,6 +97,7 @@
 </template>
 
 <script>
+import * as accountService from 'services/account';
 import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
@@ -115,8 +120,7 @@ export default {
 
     return {
 
-      direcbotActive: true,
-      directbotInactive: false,
+      botActivity: false,
       loaded: true,
       getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
@@ -170,9 +174,29 @@ export default {
 
     if (id) instagram_username = id
 
-    store.dispatch('openProfile', instagram_username ).then(()=>{
-      next();
-    })
+    store.dispatch('openProfile', instagram_username )
+
+      .then(()=>{
+
+        accountService
+          .list({})
+
+          .then(data=>{
+
+            next( vm =>{
+
+              if(data !== null) {
+
+                vm.botActivity = true;
+
+              }
+
+            })
+
+          })
+
+
+      })
 
   },
   mounted(){

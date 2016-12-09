@@ -14,16 +14,61 @@ export function add(username, password) {
   // CONFIG = config ? config : CONFIG;
 
   return new Promise( (resolve, reject) => {
-  	let request = {username,password}
+
+  	let request = { username, password }
+
   	request.role = "User";
+
   	request.prefer_email = true;
 
+
     channel.req('add', 'account', request).then( data => {
-		console.log("ADD ACCOUNT");
-		console.log(data);
+
+  		console.log("ADD ACCOUNT");
+
+  		resolve(data.response_map);
+
     }).catch( error => {
-      	console.error('ADD ACCOUNT', error);
+
+      console.error('ADD ACCOUNT', error);
+      reject()
     });
 
   });
+}
+
+export function list({ role = 'User', with_invalids, with_non_owned }) {
+
+  return new Promise( (resolve, reject) => {
+
+    channel.req('list', 'account', { role, with_invalids, with_non_owned }).then( data => {
+
+      resolve(data.response_map);
+
+    }).catch( error => {
+
+        console.error('LIST ACCOUNT', error);
+        reject()
+    });
+
+  });
+}
+
+
+export function confirm(code) {
+
+  return new Promise( (resolve, reject) => {
+
+    channel.req('confirm', 'account', { code } ).then( data => {
+
+      resolve(data.response_map);
+
+    }).catch( error => {
+
+        console.error('CONFIRM ACCOUNT', error);
+        reject()
+    });
+
+  });
+
 }
