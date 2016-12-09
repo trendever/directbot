@@ -23,7 +23,7 @@ import ChatMsg from './chat-msg.vue';
 import {getTransactionsLog} from 'services/monetization';
 import { mapActions,mapGetters } from 'vuex';
 import settings from 'root/settings.js';
-import * as messages from 'services/message';4
+import * as messages from 'services/message';
 
 export default {
   components: {
