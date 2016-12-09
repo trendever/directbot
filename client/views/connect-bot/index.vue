@@ -1,7 +1,7 @@
 <style src='./style.pcss'></style>
 <template lang="pug">
 
-#connect-bot
+#connect-bot(:style="{height: containerHeight }")
 
   .help-popup(v-if="helpPopup")
     .close(@click.stop="helpPopup = false"): i.ic-close
@@ -126,9 +126,29 @@ export default {
       login: '' || instagram_username,
       needConfirmCode: false,
       connectProcess: false,
-      helpPopup: false
+      helpPopup: false,
+      containerHeight: ''
     }
 
+  },
+  mounted(){
+
+    this.$nextTick(()=>{
+
+      //прилипание кнопки
+      this.containerHeight = `${ document.body.scrollHeight }px`;
+      const onResize = () => {
+        this.containerHeight = `${ document.body.scrollHeight }px`;
+      };
+      this.resize = listen( window, 'resize', onResize );
+      onResize();
+
+    })
+
+  },
+
+  beforeDestroy(){
+    this.resize.remove()
   },
   methods:{
 
