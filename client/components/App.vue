@@ -1,8 +1,8 @@
 <template lang="pug">
 #app.directbot
-  router-view(v-if="authDone")
+  router-view(v-if="authDone && monetizationDone")
   listener(v-if="authDone")
-  monetization(v-if="authDone")
+  monetization(v-if="authDone", v-on:checkbot="monetizationDone = true")
 </template>
 
 <script>
@@ -19,6 +19,7 @@ export default {
   data(){
     return {
       authDone: false,
+      monetizationDone: false
     }
   },
   components: {

@@ -53,10 +53,11 @@ let actions = {
             if( days > 0) status = 'test';
 
             commit( types.MONETIZATION_SET_STATUS, { status, days, activity: true } )
-
+            resolve()
           } else {
 
             commit( types.MONETIZATION_SET_STATUS, {} )
+            resolve()
 
           }
 
