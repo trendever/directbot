@@ -2,7 +2,7 @@
 #app.directbot
   router-view(v-if="authDone")
   listener(v-if="authDone")
-  monetization(v-if="$store.getters.isAuth")
+  monetization(v-if="authDone")
 </template>
 
 <script>
