@@ -184,38 +184,7 @@ export default {
   },
   mounted(){
 
-
-    if(this.isSelfPage && this.isMobile) {
-
-      this.$nextTick(()=>{
-
-        let self = this;
-
-        self.copy =  new clipboard('.profile_insta-link', {
-
-            text(trigger){
-
-              return self.$refs.instaLink.textContent;
-
-            }
-          })
-
-        self.copy.on('success',()=>{
-          self.copyMessage = `Ссылка ${self.getUserName}.tndvr.com скопирована для вставки.`;
-          self.showCopyMessage = true;
-
-        })
-
-        self.copy.on('error', () =>{
-          self.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
-          self.showCopyMessage = true;
-          self.copy.destroy();
-          self.copy = false;
-        });
-
-      })
-
-    }
+    this.clipboardLogic();
 
   },
 
@@ -224,12 +193,44 @@ export default {
   },
 
   methods: {
+
+    //filter
+    caption_spaces,
+
+    //methods
+    clipboardLogic(){
+      if(this.isSelfPage && this.isMobile) {
+
+          let self = this;
+
+          this.$nextTick(()=>{
+            this.copy =  new clipboard('.profile_insta-link', {
+                text(trigger){
+                  return self.$refs.instaLink.textContent;
+                }
+              })
+
+            this.copy.on('success',()=>{
+              this.copyMessage = `Ссылка ${this.getUserName}.tndvr.com скопирована для вставки.`;
+              this.showCopyMessage = true;
+
+            })
+
+            this.copy.on('error', () =>{
+              this.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
+              this.showCopyMessage = true;
+              this.copy.destroy();
+              this.copy = false;
+            });
+
+          })
+      }
+    },
     logout(){
       this.$store.dispatch('logOut')
       this.$router.push({name: 'home'})
 
     },
-    caption_spaces,
 
     openOptions(){
       return;
