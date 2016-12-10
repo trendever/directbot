@@ -42,15 +42,23 @@ let actions = {
 
     return new Promise((resolve, reject)=>{
 
-        accountService.list({}).then(data=>{
+        accountService.list({}).then( data => {
 
-        let days = getDaysOver(data[0].created_at_ago)
+          if( data !== null ) {
 
-        if( days === 0) status = 'test-over'
+            let days = getDaysOver(data[0].created_at_ago)
 
-        if( days > 0) status = 'test'
+            if( days === 0) status = 'test-over';
 
-        commit(types.MONETIZATION_SET_STATUS, { status, days })
+            if( days > 0) status = 'test';
+
+            commit( types.MONETIZATION_SET_STATUS, { status, days } )
+
+          } else {
+
+            commit( types.MONETIZATION_SET_STATUS, {} )
+
+          }
 
       })
 
@@ -64,7 +72,7 @@ let actions = {
 let mutations = {
 
 
-  [types.MONETIZATION_SET_STATUS]( state, { status, days } ){
+  [types.MONETIZATION_SET_STATUS]( state, { status = null, days = null } ){
 
     state.status = status;
     state.days = days;
