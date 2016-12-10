@@ -2,6 +2,7 @@
 #app.directbot
   router-view(v-if="authDone")
   listener(v-if="authDone")
+  monetization(v-if="$store.getters.isAuth")
 </template>
 
 <script>
@@ -12,6 +13,7 @@ import 'style/index.pcss';
 
 import store from 'root/store';
 import Listener from './Listener.vue';
+import Monetization from './Monetization.vue';
 
 export default {
   data(){
@@ -20,7 +22,8 @@ export default {
     }
   },
   components: {
-    Listener
+    Listener,
+    Monetization
   },
 
   beforeCreate(){
@@ -28,7 +31,6 @@ export default {
     store
       .dispatch('authUser', { null, null } )
       .then( () => {
-
         this.authDone = true;
 
       })
