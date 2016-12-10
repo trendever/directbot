@@ -8,18 +8,27 @@
 <script>
 export default {
 
-  beforeCreate(){
+  created(){
 
-    this.$store.dispatch('setMonetization')
+    this.checkbot();
+    this.$root.$on('checkbot-after-confirm',this.checkbot)
 
-      .then(()=>{
-        //Показывать части сайта после проверки с сервера
-        this.$emit('checkbot');
-      })
+  },
 
-      .catch(()=>{
-        this.$emit('checkbot');
-      })
+  methods:{
+
+    checkbot(){
+
+      this.$store.dispatch('setMonetization')
+        .then(()=>{
+          //Показывать части сайта после проверки с сервера
+          this.$emit('checkbot');
+        })
+        .catch(()=>{
+          this.$emit('checkbot');
+        })
+
+    }
 
   }
 

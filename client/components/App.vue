@@ -33,9 +33,7 @@ export default {
       .dispatch('authUser', { null, null } )
       .then( () => {
         this.authDone = true;
-
       })
-
   }
 }
 

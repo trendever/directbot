@@ -184,7 +184,7 @@ export default {
   },
 
   created(){
-    if(this.monemonetizationTestOver) {
+    if(this.monetizationTestOver) {
       this.$router.replace({name: 'connect-bot'});
     }
   },
@@ -278,7 +278,7 @@ export default {
       //monetization
       'monetizationDays',
       'botActivity',
-      'monemonetizationTestOver'
+      'monetizationTestOver'
 
     ])
 

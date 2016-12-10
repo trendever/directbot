@@ -195,6 +195,7 @@ export default {
       this
         .authUser( { user, token } )
         .then(() => {
+          this.$root.$emit('checkbot-after-confirm')
           if(!this.anotherName) {
             if (!this.callbackOnSuccessAuth) {
               setTimeout( () => this.$router.push( { name: 'profile' } ), 1000);
