@@ -42,26 +42,27 @@ let actions = {
 
     return new Promise((resolve, reject)=>{
 
-        accountService.list({}).then( data => {
+        accountService
+          .list({})
+          .then( data => {
 
-          if( data !== null ) {
+            if( data !== null ) {
 
-            let days = getDaysOver(data[0].created_at_ago)
+              let days = getDaysOver(data[0].created_at_ago)
 
-            if( days === 0) status = 'test-over';
+              if( days === 0) status = 'test-over';
 
-            if( days > 0) status = 'test';
+              if( days > 0) status = 'test';
 
-            commit( types.MONETIZATION_SET_STATUS, { status, days, activity: true } )
-            resolve()
-          } else {
+              commit( types.MONETIZATION_SET_STATUS, { status, days, activity: true } )
+              resolve()
+            }
+          })
 
+          .catch(err => {
             commit( types.MONETIZATION_SET_STATUS, {} )
-            resolve()
-
-          }
-
-      })
+            reject()
+          })
 
     })
 

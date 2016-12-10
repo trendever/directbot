@@ -182,6 +182,13 @@ export default {
       })
 
   },
+
+  created(){
+    if(this.monemonetizationTestOver) {
+      this.$router.replace({name: 'connect-bot'});
+    }
+  },
+
   mounted(){
 
     this.clipboardLogic();
@@ -270,7 +277,8 @@ export default {
 
       //monetization
       'monetizationDays',
-      'botActivity'
+      'botActivity',
+      'monemonetizationTestOver'
 
     ])
 
