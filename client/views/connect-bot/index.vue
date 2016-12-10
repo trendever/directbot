@@ -162,6 +162,7 @@ export default {
         .then(data=>{
           this.connectProcess = false;
           if(!data.need_code && data.success){
+            this.$root.$emit('checkbot-after')
             this.$router.push( { name: 'profile' } );
             return;
           }
@@ -186,7 +187,7 @@ export default {
         .then(data=>{
           this.connectProcess = false;
           if(data !== null) {
-
+            this.$root.$emit('checkbot-after')
             this.$router.push( { name: 'profile' } );
             return;
 
