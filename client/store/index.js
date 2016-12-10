@@ -5,6 +5,7 @@ import products from './modules/products';
 import user from './modules/user';
 import leads from './modules/leads';
 import conversation from './modules/conversation';
+import monetization from './modules/monetization';
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ const store = new Vuex.Store({
     leads,
     products,
     auth,
-    user
+    user,
+    monetization
   }
 })
 
