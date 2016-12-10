@@ -9,7 +9,7 @@
         i.ic-options_menu(@click="showProfileMenu = true")
 
       div.profile-days(slot="content" v-if="isSelfPage")
-        span {{ daysOver }}
+        span {{ monetizationDays }}
         span.day д
 
   menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
@@ -120,7 +120,6 @@ export default {
 
     return {
 
-      botActivity: false,
       loaded: true,
       getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
@@ -129,7 +128,6 @@ export default {
       copyMessage: '',
       showCopyMessage: false,
       showProfileMenu: false,
-      daysOver: 0
 
     }
 
@@ -175,27 +173,11 @@ export default {
 
     if (id) instagram_username = id
 
-    store.dispatch('openProfile', instagram_username )
-
+    store
+      .dispatch('openProfile', instagram_username )
       .then(()=>{
-        accountService
-          .list({})
 
-          .then(data=>{
-
-            next( vm =>{
-
-              if(data !== null) {
-
-                vm.daysOver = getDaysOver(data[0].created_at_ago)
-                vm.botActivity = true;
-
-              }
-
-            })
-
-          })
-
+        next();
 
       })
 
@@ -283,7 +265,11 @@ export default {
       'getPhotoConfig',
       'getUserPhoto',
       'getSlogan',
-      'getUserCaption'
+      'getUserCaption',
+
+      //monetization
+      'monetizationDays',
+      'botActivity'
 
     ])
 
@@ -299,26 +285,6 @@ export default {
   }
 }
 
-
-function getDaysOver(val) {
-
-  let day = 3600 * 24;
-
-  if(val < day) {
-    return 3;
-  }
-  if(val < day * 2 ) {
-    return 2;
-  }
-  if(val < day * 3 ) {
-    return 1;
-  }
-  if(val > day * 3) {
-
-    return 0;
-  }
-
-}
 
 </script>
 

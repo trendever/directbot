@@ -15,7 +15,8 @@ function getDaysOver(val) {
 let state = {
 
   status: '',// test | test-over | active | disable
-  days: 0
+  days: 0,
+  activity: false
 
 }
 
@@ -28,7 +29,9 @@ let getters = {
 
   monetizationTestOver: state => state.status === 'test-over',
 
-  monetizationActive: state => state.status === 'active'
+  monetizationActive: state => state.status === 'active',
+
+  botActivity: state => state.activity
 
 }
 
@@ -63,9 +66,9 @@ let mutations = {
 
   [types.MONETIZATION_SET_STATUS]( state, { status, days } ){
 
-    alert(1)
     state.status = status;
     state.days = days;
+    state.activity = true;
 
   }
 
