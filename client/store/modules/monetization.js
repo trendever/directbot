@@ -52,7 +52,7 @@ let actions = {
 
             if( days > 0) status = 'test';
 
-            commit( types.MONETIZATION_SET_STATUS, { status, days } )
+            commit( types.MONETIZATION_SET_STATUS, { status, days, activity: true } )
 
           } else {
 
@@ -72,11 +72,11 @@ let actions = {
 let mutations = {
 
 
-  [types.MONETIZATION_SET_STATUS]( state, { status = null, days = null } ){
+  [types.MONETIZATION_SET_STATUS]( state, { status = null, days = null, activity = false } ){
 
     state.status = status;
     state.days = days;
-    state.activity = true;
+    state.activity = activity;
 
   }
 
