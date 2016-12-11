@@ -11,7 +11,7 @@ export default {
   created(){
 
     this.checkbot();
-    this.$root.$on('checkbot-after-confirm',this.checkbot)
+    this.$root.$on('checkbot-after',this.checkbot)
 
   },
 
