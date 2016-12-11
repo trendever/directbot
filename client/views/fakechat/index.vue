@@ -8,7 +8,7 @@
         div(v-for='(msg, index) in getFakeMessages', :key='index')
           div
             chat-msg(
-              :type="getMessageType(msg.parts[0].mime_type)",
+              :type="msg.parts[0].mime_type",
               :msg='msg')
   chat-bar(v-on:addPadding="addPadding")
   scroll-top(:to-up="false")
@@ -24,6 +24,7 @@ import {getTransactionsLog} from 'services/monetization';
 import { mapActions,mapGetters } from 'vuex';
 import settings from 'root/settings.js';
 import * as messages from 'services/message';
+
 
 export default {
   components: {
@@ -119,13 +120,6 @@ export default {
           console.log("NO LEAD WITH SERVICE PRODUCT")
         }
       });
-    },
-    getMessageType(mime_type){
-      switch (mime_type){
-        case "text/plain": return "text";break;
-        case "text/coins": return "coins";break;
-        default: return "notext";break;
-      }
     },
     ...mapActions([
       'setConversation',

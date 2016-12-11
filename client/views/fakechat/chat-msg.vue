@@ -1,6 +1,6 @@
 <style src='./styles/chat-msg.pcss'></style>
 <template lang="pug">
-.chat-row(:class='getSide', v-if="typeAllow")
+.chat-row(:class='getSide')
   span(class='bubble_info bubble_info_time') {{ datetime }}
   .bubble_info.bubble_info_status(v-if='isOwnMessage')
     i(:class='{"ic-check": isLoaded && !isRead, "ic-check-double": isRead, "ic-clock": !isLoaded}')
@@ -15,11 +15,16 @@
       p.chat-msg_txt(v-html="getMessage")
 
 
+    .chat-msg-get(v-if="TEXT_PLAIN")
+      h1 привет
+
+
 
 
 </template>
 
 <script type='text/babel'>
+  import types from './msg-types';
   import { navigateTolink } from 'root/utils';
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
@@ -27,6 +32,18 @@
   import { mapGetters } from 'vuex';
 
   export default{
+    data(){
+
+      return Object.assign(
+
+      {
+
+
+      },
+
+      types)
+
+    },
     props: {
       type: {
         type: String,
@@ -40,10 +57,25 @@
     methods:{
       goInstagramProfile(){
         navigateTolink(`http://instagram.com/${this.getUserNameLink}`, true);
-      }
+      },
+      setMessageType(){
+        for (let key in types) {
+          if( types[key] === this.type ) this[key] = true;
+        }
+        let save;
+        for (let key in types) {
+          if( typeof this[key] === 'boolean' ) save = key;
+        }
+        for (let key in types) {
+          this[key] = false;
+        }
+        if(save) this[save] = true;
+      },
     },
     mounted(){
-      console.log(this.type)
+
+      this.setMessageType()
+
     },
     computed: {
       ...mapGetters([
@@ -55,10 +87,6 @@
         'user'
 
       ]),
-      typeAllow(){
-        let allowed_types = ["text","coins"];
-        return (allowed_types.indexOf(this.type) >= 0) ? true : false;
-      },
       isLoaded(){
         if( 'loaded' in this.msg){
           return this.msg.loaded;
