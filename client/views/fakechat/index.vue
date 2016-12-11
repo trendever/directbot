@@ -62,22 +62,26 @@ export default {
       messages.push(...this.getMessages);
 
       //Merge сообщений монетизации в чат
-      this.coinsLog.forEach((elem)=>{
-        let time = elem.created_at;
-        let coinsPartsObject = {content: "monetization text",mime_type:"text/coins"}
-        let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: this.userID}};
-        messages.push(coinsMessageObject)
-        messages.sort((x,y)=>{
-          if (x.user && y.user){
-            if (x.user.user_id != this.userID && y.user.user_id != this.userID){
-              return 0;
-            }else{
-              return x.created_at > y.created_at;
+
+      if(this.coinsLog) {
+
+        this.coinsLog.forEach((elem)=>{
+          let time = elem.created_at;
+          let coinsPartsObject = {content: "monetization text",mime_type:"text/coins"}
+          let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: this.userID}};
+          messages.push(coinsMessageObject)
+          messages.sort((x,y)=>{
+            if (x.user && y.user){
+              if (x.user.user_id != this.userID && y.user.user_id != this.userID){
+                return 0;
+              }else{
+                return x.created_at > y.created_at;
+              }
             }
-          }
-          return 0;
+            return 0;
+          });
         });
-      });
+      }
       console.log("!MESSAGES!")
       console.log(messages);
       return messages;
