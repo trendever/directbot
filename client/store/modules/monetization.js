@@ -56,7 +56,13 @@ let actions = {
 
               commit( types.MONETIZATION_SET_STATUS, { status, days, activity: true } )
               resolve()
+            } else {
+
+              commit( types.MONETIZATION_SET_STATUS, {} )
+              resolve()
+
             }
+
           })
 
           .catch(err => {
