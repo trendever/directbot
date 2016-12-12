@@ -2,6 +2,7 @@
 <template lang="pug">
 #chat
   chat-header(:disable-notifier='true')
+
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat_messages(id="chatmessages", ref="messages")
@@ -10,8 +11,12 @@
             chat-msg(
               :type="msg.parts[0].mime_type",
               :msg='msg')
+
   chat-bar(v-on:addPadding="addPadding")
+
   scroll-top(:to-up="false")
+
+
 </template>
 
 <script type='text/babel'>

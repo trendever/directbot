@@ -3,31 +3,38 @@
 .chat-row(:class='getSide')
 
   span(class='bubble_info bubble_info_time') {{ datetime }}
+
   .bubble_info.bubble_info_status(v-if='isOwnMessage')
     i(:class='{"ic-check": isLoaded && !isRead, "ic-check-double": isRead, "ic-clock": !isLoaded}')
+
   .chat-msg.bubble(:class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage }')
-    .chat-msg_t(
-        v-if='!isOwnMessage && !isClosest',
-        :class='{"chat-msg_t-customer-color":isCustomer}',
-        v-on:click="goInstagramProfile"
-        v-html="getUsername"
-      )
-    .chat-msg-wrap
-      p.chat-msg_txt(v-html="getMessage")
 
-    .chat-msg-get(v-if="TEXT_PLAIN")
+    template(v-if="TEXT_PLAIN")
+
+      .chat-msg_t(
+          v-if='!isOwnMessage && !isClosest',
+          :class='{"chat-msg_t-customer-color":isCustomer}',
+          v-on:click="goInstagramProfile"
+          v-html="getUsername"
+        )
+
+      .chat-msg-wrap
+        p.chat-msg_txt(v-html="getMessage")
 
 
-    img-message(v-if="TEXT_PLAIN")
+    product-message(v-if="TEXT_JSON || TEXT_PLAIN && hasData")
 
-    status-message(v-if="TEXT_PLAIN")
+    img-message
 
-    order-message(v-if="JSON_STATUS")
+    info-message(v-if="TEXT_HTML")
 
-    status-message(v-if="JSON_STATUS")
 
-    product-message(v-if="JSON_STATUS")
 
+  order-message(v-if="JSON_ORDER")
+
+  status-message(v-if="JSON_STATUS")
+
+  payment-message(v-if="JSON_PAYMENT || JSON_CANCEL_ORDER")
 
 
 
@@ -43,7 +50,22 @@
   import { formatTime, formatDatetime, escapeHtml, wrapLink } from '../chat/utils';
   import { mapGetters } from 'vuex';
 
+  import imgMessage from './messages/img';
+  import infoMessage from './messages/info';
+  import orderMessage from './messages/order';
+  import paymentMessage from './messages/payment';
+  import productMessage from './messages/product';
+  import statusMessage from './messages/status';
+
   export default{
+    components: {
+      infoMessage,
+      orderMessage,
+      paymentMessage,
+      productMessage,
+      statusMessage,
+      imgMessage
+    },
     data(){
 
       return Object.assign(
@@ -100,6 +122,13 @@
         'user'
 
       ]),
+
+      hasData(){
+        if (this.msg.parts[1] && this.msg.parts[1].mime_type === 'text/data'){
+          return true;
+        }
+        return false;
+      },
       isLoaded(){
         if( 'loaded' in this.msg){
           return this.msg.loaded;

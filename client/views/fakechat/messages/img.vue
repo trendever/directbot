@@ -1,5 +1,5 @@
 <template lang="pug">
-#order-message
+#img-message
   slot
 </template>
 

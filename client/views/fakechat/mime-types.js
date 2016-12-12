@@ -2,6 +2,8 @@ export default {
 
   JSON_ORDER: "json/order",
 
+  JSON_CANCEL_ORDER: "json/cancel_order",
+
   JSON_STATUS: "json/status",
 
   JSON_PAYMENT: "json/payment",
