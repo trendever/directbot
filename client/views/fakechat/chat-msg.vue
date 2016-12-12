@@ -1,6 +1,7 @@
 <style src='./styles/chat-msg.pcss'></style>
 <template lang="pug">
 .chat-row(:class='getSide')
+
   span(class='bubble_info bubble_info_time') {{ datetime }}
   .bubble_info.bubble_info_status(v-if='isOwnMessage')
     i(:class='{"ic-check": isLoaded && !isRead, "ic-check-double": isRead, "ic-clock": !isLoaded}')
@@ -14,9 +15,20 @@
     .chat-msg-wrap
       p.chat-msg_txt(v-html="getMessage")
 
-
     .chat-msg-get(v-if="TEXT_PLAIN")
-      h1 привет
+
+
+    img-message(v-if="TEXT_PLAIN")
+
+    status-message(v-if="TEXT_PLAIN")
+
+    order-message(v-if="JSON_STATUS")
+
+    status-message(v-if="JSON_STATUS")
+
+    product-message(v-if="JSON_STATUS")
+
+
 
 
 
@@ -24,7 +36,7 @@
 </template>
 
 <script type='text/babel'>
-  import types from './msg-types';
+  import types from './mime-types';
   import { navigateTolink } from 'root/utils';
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
@@ -70,9 +82,10 @@
           this[key] = false;
         }
         if(save) this[save] = true;
+        else console.warn['not used mime_type']
       },
     },
-    mounted(){
+    created(){
 
       this.setMessageType()
 
