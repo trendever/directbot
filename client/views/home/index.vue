@@ -26,40 +26,47 @@
 
 
     .hero__content__2(ref="screenTwo")
-      a.how-btn(v-on:click="scrollFirst") КАКИЕ ПРОБЛЕМЫ РЕШАЕТ?
+      a.how-btn(v-on:click="scrollFirst") КОМУ НУЖЕН DIRECTBOT?
       .wrap-box
-        .hero__content__2__title.main 10 из 10 инста-шопов
+        .hero__content__2__digit.one 1
+        .hero__content__2__title.main Крупным #[br(v-if="isMobile")] интернет-магазинам
         .hero__content__2__paragraph
-          p хотят свой интернет-магазин #[br(v-if="!isMobile")] и #[br(v-if="isMobile")] ставить активные ссылки #[br(v-if="!isMobile")] под постами
+          p со своим сайтом, кто не успевает #[br(v-if="isMobile")] отвечать клиентам в Instagram #[br(v-if="isMobile")] и давать ссылку на товар
 
       .wrap-box
-        .hero__content__2__title 9 из 10 покупателей
+        .hero__content__2__digit 2
+        .hero__content__2__title Продавцам #[br(v-if="isMobile")] в Instagram-магазинах,
         .hero__content__2__paragraph
-          p спрашивают про товары #[br] в комментариях #[br(v-if="!isMobile")] или Instagram Direct
+          p которым надоело отвечать #[br(v-if="isMobile")] одно и то же в комментариях #[br(v-if="isMobile")] и Instagram Direct
       .wrap-box
-        .hero__content__2__title.middle 2 часа ожидания
+        .hero__content__2__digit 3
+        .hero__content__2__title.middle Начинающим #[br(v-if="isMobile")] Instagram-магазинам,
         .hero__content__2__paragraph
-          p.top нужно в среднем, #[br(v-if="!isMobile")] чтобы #[br(v-if="isMobile")] получить ответ #[br(v-if="!isMobile")] от инста-шопа
-      button.shopping_trends(v-on:click="scrollSecond") РЕШЕНИЕ
+          p.top кому нужен свой сайт #[br(v-if="isMobile")] с платежами и блогеры #[br(v-if="isMobile")] для рекламы
+      button.shopping_trends(v-on:click="scrollSecond") КАК ЭТО РАБОТАЕТ?
   .hero__content__bg
   .hero__content__landing
     .section.header.section__content(id="header", v-if="isMobile")
       .header__content.u-fixed.directbot-header
         .wrapper.directbot-wrap
           .header__center
-            .header__text.head Как это работает?
+            .header__text.head Союз человека и робота
     .hero__content__landing__top-scheme
+      .text-box.top-box 1. Directbot сканирует комментарии #[br(v-if="isMobile")] и Direct в Instagram
       img(src="./img/insta-bot_image_mob.svg", v-if="isMobile")
       .counter
         span.txt ОТПРАВЛЕНО
         span.digit#counter {{ landingCounter }}
         span.txt СООБЩЕНИЙ
-      p.t СКАНИРУЕТ КОММЕНТАРИИ #[br] И DIRECT В INSTAGRAM
-      p.m БЫСТРО ОТВЕЧАЕТ #[br] КЛИЕНТАМ В DIRECT
+      .text-box.middle-box 2. Бот определяет клиентов #[br(v-if="isMobile")] и предлагает варианты ответов
       img(src="./img/insta-bot_image_desk.svg", v-if="!isMobile")
-      p.b НАШ ОПЕРАТОР ВСЕ УСПЕВАЕТ #[br(v-if="isMobile")] И СТОИТ ВСЕГО 3990&nbsp
-        i.ic-rub
-        | /МЕС, #[br] ПОТОМУ ЧТО ЕМУ ПОМОГАЕТ #[br(v-if="isMobile")] DIRECTBOT, #[br(v-if="!isMobile")] АВТОМАТИЗИРУЮЩИЙ #[br(v-if="isMobile")] БОЛЬШИНСТВО ДЕЙСТВИЙ
+      .text-box.bottom-box 3. Персональный чат-оператор #[br(v-if="isMobile")] отвечает от имени магазина в Instagram
+    .hero__content__landing__sub-title По запросу магазин #[br(v-if="isMobile")] получит личную витрину* #[br(v-if="isMobile")] внутри Directbot, с услугами
+    .hero__content__landing__top-list
+      ul
+        li Раскрутки и рекламы у блогеров
+        li Онлайн платежей
+        li Организации доставки
     .hero__content__landing__title.main Преимущества #[br(v-if="isMobile")] нашего оператора
     .wrapper
       .info-box
@@ -153,6 +160,7 @@
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
   .free-wrap
     button(v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
+    button.ask-btn СПРОСИТЬ
 </template>
 <script>
 
