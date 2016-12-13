@@ -139,10 +139,6 @@ export default {
       }
     }
 
-
-    //helps
-    this.$on('goToBottom', this.goToBottom);
-
   },
 
   mounted(){
