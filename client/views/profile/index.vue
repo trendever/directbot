@@ -185,7 +185,7 @@ export default {
 
   created(){
     if(this.monetizationTestOver) {
-      this.$router.replace({name: 'connect-bot'});
+      //this.$router.replace({name: 'connect-bot'});
     }
   },
 

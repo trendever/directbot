@@ -4,7 +4,7 @@ import * as chat from 'services/chat';
 
 import { formatMonth } from 'views/chat/utils';
 
-import { userID } from '../getters/user.js';
+import { authUserId } from '../getters/user.js';
 
 import { getLeadByConversationId } from '../getters/lead.js';
 
@@ -356,7 +356,7 @@ export const isJoined = ( state, lead ) => {
 
       const { members } = lead.chat;
 
-      const currentUserId = userID( store.state.user );
+      const currentUserId = authUserId( store.state.user );
 
       for ( let i = members.length; i; i-- ) {
 

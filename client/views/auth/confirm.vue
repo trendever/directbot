@@ -163,12 +163,12 @@ export default {
     onButton() {
       if(this.anotherName){
         if (!this.callbackOnSuccessAuth) {
-              this.$router.push({name: 'profile'}), 1000;
-              return;
-            } else {
-              this.executeCallbackOnSuccessAuth()
-              return;
-            }
+            setTimeout(()=>{ this.$router.push({name: 'profile'}) }, 1000);
+            return;
+          } else {
+            this.executeCallbackOnSuccessAuth()
+            return;
+          }
       }
       if (this.isDisabled) {
         return;
@@ -191,7 +191,13 @@ export default {
     onComplete(user, token) {
       this.isCompleted = true;
       this.$refs.confirmBtn.focus();
-      this.anotherName = user.name !== this.authData.username ? user.name : '';
+
+      if(user.instagram_username) {
+        if(user.instagram_username !== this.authData.username){
+          this.anotherName = user.instagram_username;
+        }
+      }
+
       this
         .authUser( { user, token } )
         .then(() => {

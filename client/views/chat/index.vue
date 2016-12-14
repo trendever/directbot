@@ -139,10 +139,6 @@ export default {
       }
     }
 
-
-    //helps
-    this.$on('goToBottom', this.goToBottom);
-
   },
 
   mounted(){
@@ -243,6 +239,7 @@ export default {
         }).then(flagMessage=>{
           if(!flagMessage && this.getCurrentMember.role === 1){
             this.setConversationAction('approve');
+            this.$root.$emit('chatEvent','approveButtonHasCome');
           }
 
         }).then(

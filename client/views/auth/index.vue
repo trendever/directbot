@@ -6,9 +6,21 @@
     .section
       .column-desktop-50.header(v-if="showTitleSlider")
         h1.accept Вход и регистрация
-      .column-desktop-50.column-desktop-right(v-if="showTitleSlider")
+
+      .column-desktop-50.column-desktop-right(v-if="showTitleSlider && !fakeReg")
         img(src="./img/directbot.png").logo
         p.paragraph Перед подключением оператора, #[br] создайте или войдите #[br(v-if="isMobile")] в свою #[br(v-if="!isMobile")] учетную запись
+
+      template(v-if="fakeReg")
+        //-.logo
+          img(src="./img/auth-logo.png")
+        .reg
+          p Войдите или зарегистрируйтесь,
+            br
+            | {{fakeText}}
+            br
+            span.bold {{fakeData}}
+
       .column-desktop-50
         .bottom-container(:class='{"opened-key-board":!showTitleSlider}')
           .input-container
@@ -75,6 +87,7 @@ const TEXT_LINK = {
 
 const PLACEHOLDER = {
   instagramMode: 'Введите свое Instagram имя',
+  fakeMode: 'Instagram имя (не обязательно)',
   withoutInstagramMode: 'Введите свое имя',
   errorPhoneFormat: 'Введите верный номер',
   errorLoginFormat: 'Только латинские буквы...',
@@ -93,7 +106,6 @@ export default {
       errorPhone: false,
       height: 'static',
       textLink: TEXT_LINK.instagramMode,
-      placeholder: PLACEHOLDER.instagramMode,
       instagram: true,
       showTitleSlider: true
     }
@@ -120,16 +132,44 @@ export default {
     ...mapGetters([
       'authData',
       'callbackOnSuccessAuth',
-    ])
+      'isFake',
+    ]),
+    placeholder(){
+      return this.isFake ? PLACEHOLDER.fakeMode : PLACEHOLDER.instagramMode;
+    },
+    fakeReg(){
+      if (window.fakeAuth){
+        return true;
+      }
+      return false;
+    },
+    fakeText(){
+      if(window.fakeAuth) return window.fakeAuth.text;
+
+    },
+    fakeData(){
+      if(window.fakeAuth) return window.fakeAuth.data;
+    }
   },
   methods: {
     ...mapActions([
       'saveAuthData',
-      'signup'
+      'signup',
+      'setData',
+      'signin'
     ]),
     closePage() {
       //mixpanel.track('Close Signup Page');
       this.save();
+
+      if (this.isFake){
+        console.log("CLOSE AUTH CLICK")
+        console.log(window.before)
+        if (window.before.name === "chat_list" || window.before.name === "profile"){
+        this.$router.push({ name: "home"})
+            return
+        }
+      }
 
       if (window.history.length > 2) {
         window.history.back();
@@ -147,7 +187,13 @@ export default {
     },
 
     sendSMS() {
-      if(!this.login) {
+
+      if(this.login === null) {
+        this.login = '';
+      }
+
+
+      if(!this.login && !this.isFake) {
         this.login = '';
         this.errorLogin = true;
         this.login = PLACEHOLDER['errorNoLogin'];
@@ -176,14 +222,27 @@ export default {
 
       this.save();
 
-      this.signup().then( ()=> {
 
-        this.$router.push({ name: 'confirm' });
-
-      }).catch( (error) => {
-
-        this.onErrorPhone();
-      })
+      if (this.isFake){
+        this.setData().then( ()=> {
+          this.$router.push({ name: 'confirm' });
+        }).catch( (error) => {
+          this.signin().then( ()=> {
+            this.setCallbackOnSuccessAuth(()=>{
+              this.$router.push({name: 'home'});
+            })
+            this.$router.push({ name: 'confirm' });
+          }).catch( (error) => {
+             this.onErrorPhone();
+          })
+        })
+      }else{
+        this.signup().then( ()=> {
+          this.$router.push({ name: 'comfirm' });
+        }).catch( (error) => {
+          this.onErrorPhone();
+        })
+      }
 
     },
 

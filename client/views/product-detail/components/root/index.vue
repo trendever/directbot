@@ -165,7 +165,7 @@ export default {
         }
 
 
-        this.setLike();
+        //this.setLike();
 
       }
 
@@ -185,9 +185,9 @@ export default {
     _buy( productId ){
 
       if ( !this.isAuth ) {
-/*        auth.fakeRegister().then(({token,user})=>{
-          this.authUser(user, token).then( () => { this._buy(productId) } );
-        });*/
+        auth.fakeRegister().then(({token,user})=>{
+          this.authUser( { user, token }).then( () => { this._buy(productId) } );
+        });
 
       } else {
 
@@ -196,14 +196,14 @@ export default {
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
-                this.$router.go( { name: 'chat', params: { id: lead.id } } )
+                this.$router.push( { name: 'chat', params: { id: lead.id } } )
               }
             }
           )
           .catch(
             ( error ) => {
               if ( error === leads.ERROR_CODES.UNATHORIZED ) {
-                this.$router.go( { name: 'signup' } )
+                this.$router.push( { name: 'signup' } )
               }
             }
           )
@@ -214,7 +214,7 @@ export default {
 
       'authUser',
       ///'resetScrollByListId',
-      'setLike',
+      //'setLike',
       'createLead',
       'setCallbackOnSuccessAuth',
       'setCallBackAfterLoading'
@@ -229,8 +229,8 @@ export default {
       'getOpenedProduct',
       //'callAfterLoading',
       //'isLiked',
-      //'isFake',
-      //'isAuth'
+      'isFake',
+      'isAuth'
 
     ]),
 

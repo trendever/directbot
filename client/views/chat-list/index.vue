@@ -37,7 +37,7 @@
         span.want
           | Instagram Direct
 
-      .chat-list-cnt-is-empty
+      .chat-list-cnt-is-empty(v-if="!sortedList.length")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span потому что ты пока #[br] ничего не продаешь
       button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ ОПЕРАТОРА

@@ -37,7 +37,12 @@
       }
     },
     mounted(){
-      this.$emit('goToBottom');
+      this.$nextTick(()=>{
+
+        this.$emit('goToBottom');
+
+      })
+
     },
     methods: {
 
