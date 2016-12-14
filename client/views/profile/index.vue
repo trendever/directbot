@@ -129,6 +129,7 @@ export default {
       copyMessage: '',
       showCopyMessage: false,
       showProfileMenu: false,
+      timeID: null
 
     }
 
@@ -199,6 +200,7 @@ export default {
 
   beforeDestroy(){
     if (this.copy) this.copy.destroy();
+    clearInterval(this.timeID);
   },
 
   methods: {
@@ -208,40 +210,34 @@ export default {
 
     //methods
     updateProductsLogic(){
-      setInterval(()=>{
+      this.timeID = setInterval(()=>{
         productsService.lastProduct({ shop_id: this.userShopId })
         .then(data=>{
           let product = this.listProducts.some( item=> { return +item.id === data.id } )
           if ( !product ) eventHub.$emit('updatePhotos');
         })
-      }, 3 * 1000)
+      }, 15 * 1000)
     },
 
     clipboardLogic(){
       if(this.isSelfPage && this.isMobile) {
-
           let self = this;
-
           this.$nextTick(()=>{
             this.copy =  new clipboard('.profile_insta-link', {
                 text(trigger){
                   return self.$refs.instaLink.textContent;
                 }
               })
-
             this.copy.on('success',()=>{
               this.copyMessage = `Ссылка ${this.getUserName}.tndvr.com скопирована для вставки.`;
               this.showCopyMessage = true;
-
             })
-
             this.copy.on('error', () =>{
               this.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
               this.showCopyMessage = true;
               this.copy.destroy();
               this.copy = false;
             });
-
           })
       }
     },
