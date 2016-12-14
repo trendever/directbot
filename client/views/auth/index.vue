@@ -7,19 +7,20 @@
       .column-desktop-50.header(v-if="showTitleSlider")
         h1.accept Вход и регистрация
 
-      .column-desktop-50.column-desktop-right(v-if="showTitleSlider && !fakeReg")
-        img(src="./img/directbot.png").logo
-        p.paragraph Перед подключением оператора, #[br] создайте или войдите #[br(v-if="isMobile")] в свою #[br(v-if="!isMobile")] учетную запись
+      .column-desktop-50.column-desktop-right
+        template(v-if="showTitleSlider && !fakeReg")
+          img(src="./img/directbot.png").logo
+          p.paragraph Перед подключением оператора, #[br] создайте или войдите #[br(v-if="isMobile")] в свою #[br(v-if="!isMobile")] учетную запись
 
-      template(v-if="fakeReg")
-        //-.logo
-          img(src="./img/auth-logo.png")
-        .reg
-          p Войдите или зарегистрируйтесь,
-            br
-            | {{fakeText}}
-            br
-            span.bold {{fakeData}}
+        template(v-if="fakeReg")
+          .logo.fake-logo
+            img(src="./img/auth-logo.png")
+          .reg
+            p Войдите или зарегистрируйтесь,
+              br
+              | {{fakeText}}
+              br
+              span.bold {{fakeData}}
 
       .column-desktop-50
         .bottom-container(:class='{"opened-key-board":!showTitleSlider}')
