@@ -113,13 +113,10 @@ export function lastProduct( { shop_id } ) {
     channel.req('lastid', 'product',  { shop_id } )
 
     .then(data => {
-
       resolve(data.response_map);
-
     })
 
     .catch( error => {
-
       console.error('products lastId', error);
       reject(ERROR_CODES.SERVER_ERROR);
 

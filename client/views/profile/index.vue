@@ -97,7 +97,8 @@
 </template>
 
 <script>
-import * as accountService from 'services/account';
+import * as productsService from 'services/products';
+
 import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
@@ -192,6 +193,7 @@ export default {
   mounted(){
 
     this.clipboardLogic();
+    this.updateProductsLogic();
 
   },
 
@@ -203,6 +205,31 @@ export default {
 
     //filter
     caption_spaces,
+
+    updateProductsLogic(){
+
+      setInterval(()=>{
+
+        productsService.lastProduct({ shop_id: this.userShopId })
+
+        .then(data=>{
+
+          let product = this.listProducts.some(item=>{
+
+            return +item.id === data.id;
+
+          })
+
+          if ( product ) {
+
+            eventHub.$emit('updatePhotos');
+          }
+
+        })
+
+      }, 3 * 1000)
+
+    },
 
     //methods
     clipboardLogic(){
@@ -278,7 +305,9 @@ export default {
       //monetization
       'monetizationDays',
       'botActivity',
-      'monetizationTestOver'
+      'monetizationTestOver',
+      //products
+      'listProducts'
 
     ])
 

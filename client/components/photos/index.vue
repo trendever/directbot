@@ -44,6 +44,10 @@ export default {
 
   created(){
 
+    eventHub.$on('updatePhotos',()=>{
+
+    });
+
     this.simpleScroll()
 
   },

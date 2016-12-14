@@ -22,5 +22,7 @@ Vue.mixin({
   }
 });
 
+window.eventHub = new Vue()
+
 
 export {app, router, store}
