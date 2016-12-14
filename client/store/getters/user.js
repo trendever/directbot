@@ -23,8 +23,11 @@ export const isDone = ( user ) => {
 };
 
 export const isFake = ( state ) => {
-  if (state.all[state.myId].phone){
-    return false;
+
+  if(state.all[state.myId]){
+    if (state.all[state.myId].phone){
+      return false;
+    }
   }
 
   const userData = user( state );
