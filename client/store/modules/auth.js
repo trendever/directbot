@@ -43,6 +43,16 @@ let actions = {
 
   },
 
+  signin({ commit, state }){
+    return new Promise((resolve, reject) => {
+      auth.sendPassword(state.auth.phone).then( () => {
+        resolve(true);
+      }).catch( error => {
+        console.log(error);
+      });
+    });
+  },
+
   signup({ commit, state }){
 
     return new Promise((resolve, reject) => {

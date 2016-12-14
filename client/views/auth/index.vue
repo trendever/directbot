@@ -75,6 +75,7 @@ const TEXT_LINK = {
 
 const PLACEHOLDER = {
   instagramMode: 'Введите свое Instagram имя',
+  fakeMode: 'Instagram имя (не обязательно)',
   withoutInstagramMode: 'Введите свое имя',
   errorPhoneFormat: 'Введите верный номер',
   errorLoginFormat: 'Только латинские буквы...',
@@ -93,7 +94,7 @@ export default {
       errorPhone: false,
       height: 'static',
       textLink: TEXT_LINK.instagramMode,
-      placeholder: PLACEHOLDER.instagramMode,
+      placeholder: (this.isFake) ? PLACEHOLDER.fakeMode : PLACEHOLDER.instagramMode,
       instagram: true,
       showTitleSlider: true
     }
@@ -120,16 +121,29 @@ export default {
     ...mapGetters([
       'authData',
       'callbackOnSuccessAuth',
+      'isFake',
+
     ])
   },
   methods: {
     ...mapActions([
       'saveAuthData',
-      'signup'
+      'signup',
+      'setData',
+      'signin'
     ]),
     closePage() {
       //mixpanel.track('Close Signup Page');
       this.save();
+
+      if (this.isFake){
+        console.log("CLOSE AUTH CLICK")
+        console.log(window.before)
+        if (window.before.name === "chat_list" || window.before.name === "profile"){
+        this.$router.push({ name: "home"})
+            return
+        }
+      }
 
       if (window.history.length > 2) {
         window.history.back();
@@ -147,7 +161,8 @@ export default {
     },
 
     sendSMS() {
-      if(!this.login) {
+
+      if(!this.login && !this.isFake) {
         this.login = '';
         this.errorLogin = true;
         this.login = PLACEHOLDER['errorNoLogin'];
@@ -176,14 +191,27 @@ export default {
 
       this.save();
 
-      this.signup().then( ()=> {
 
-        this.$router.push({ name: 'confirm' });
-
-      }).catch( (error) => {
-
-        this.onErrorPhone();
-      })
+      if (this.isFake){
+        this.setData().then( ()=> {
+          this.$router.push({ name: 'comfirm' });
+        }).catch( (error) => {
+          this.signin().then( ()=> {
+            this.setCallbackOnSuccessAuth(()=>{
+              this.$router.push({name: 'home'});
+            })
+            this.$router.push({ name: 'comfirm' });
+          }).catch( (error) => {
+             this.onErrorPhone();
+          })
+        })
+      }else{
+        this.signup().then( ()=> {
+          this.$router.push({ name: 'comfirm' });
+        }).catch( (error) => {
+          this.onErrorPhone();
+        })
+      }
 
     },
 
