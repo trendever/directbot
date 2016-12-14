@@ -48,6 +48,7 @@
     computed: {
       ...mapGetters([
         //user
+        'user',
         'isFake',
         'getUseDays',
         //chat
@@ -58,7 +59,7 @@
         'getStatus',
         'getShopName',
         'getLeadId'
-      ]),
+      ])
     },
     mounted(){
 
@@ -254,7 +255,7 @@
           this.setCallbackOnSuccessAuth(()=>{
             this.$router.push({name: 'chat', params: { id }})
           })
-          this.$router.replace( { name: 'signup' } );
+          this.$router.replace( { name: 'auth' } );
         }
 
         this.txtMsg = 'Привет;) да, подтверждаю!';
