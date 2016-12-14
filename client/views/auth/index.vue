@@ -134,7 +134,9 @@ export default {
       'callbackOnSuccessAuth',
       'isFake',
     ]),
-    placeholder:() => (this.isFake) ? PLACEHOLDER.fakeMode : PLACEHOLDER.instagramMode,
+    placeholder(){
+      return this.isFake ? PLACEHOLDER.fakeMode : PLACEHOLDER.instagramMode;
+    },
     fakeReg(){
       if (window.fakeAuth){
         return true;
