@@ -196,7 +196,7 @@ export default {
   },
 
   mounted(){
-
+    alert(this.$route.params.id)
     this.clipboardLogic();
     this.updateProductsLogic();
 
@@ -214,13 +214,15 @@ export default {
 
     //methods
     updateProductsLogic(){
-      this.timeID = setInterval(()=>{
-        productsService.lastProduct({ shop_id: this.userShopId })
-        .then(data=>{
-          let product = this.listProducts.some( item=> { return +item.id === data.id } )
-          if ( !product ) eventHub.$emit('updatePhotos');
-        })
-      }, 15 * 1000)
+      if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
+        this.timeID = setInterval(()=>{
+          productsService.lastProduct({ shop_id: this.userShopId })
+          .then(data=>{
+            let product = this.listProducts.some( item=> { return +item.id === data.id } )
+            if ( !product ) eventHub.$emit('updatePhotos');
+          })
+        }, 15 * 1000)
+      }
     },
 
     clipboardLogic(){
