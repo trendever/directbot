@@ -47,9 +47,9 @@ let actions = {
 
   },
 
-  openList({ commit, state }, { listId, shop_id = null, limit = 30 } ) {
+  openList({ commit, state }, { listId, shop_id = null, limit = 30, updateInstagram } ) {
 
-    if(state.lists[listId]) {
+    if(state.lists[listId] && !updateInstagram) {
 
       commit( types.PRODUCTS_SET_LIST, listId );
 

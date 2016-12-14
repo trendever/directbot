@@ -206,32 +206,17 @@ export default {
     //filter
     caption_spaces,
 
+    //methods
     updateProductsLogic(){
-
       setInterval(()=>{
-
         productsService.lastProduct({ shop_id: this.userShopId })
-
         .then(data=>{
-
-          let product = this.listProducts.some(item=>{
-
-            return +item.id === data.id;
-
-          })
-
-          if ( product ) {
-
-            eventHub.$emit('updatePhotos');
-          }
-
+          let product = this.listProducts.some( item=> { return +item.id === data.id } )
+          if ( !product ) eventHub.$emit('updatePhotos');
         })
-
       }, 3 * 1000)
-
     },
 
-    //methods
     clipboardLogic(){
       if(this.isSelfPage && this.isMobile) {
 

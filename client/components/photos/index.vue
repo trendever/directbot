@@ -44,11 +44,13 @@ export default {
 
   created(){
 
-    eventHub.$on('updatePhotos',()=>{
+    eventHub.$on('updatePhotos', () => {
+      console.log('new Product');
+      this.simpleScroll( { updateInstagram: true } )
 
     });
 
-    this.simpleScroll()
+    this.simpleScroll({})
 
   },
 
@@ -98,7 +100,7 @@ export default {
       return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
     },
 
-    simpleScroll(){
+    simpleScroll( { updateInstagram = false } ){
       //to have 0 scroll when first load
 
       if(!this.$store.state.products.lists.hasOwnProperty(this.listName)) {
@@ -109,7 +111,8 @@ export default {
 
       this.openList( {
         listId: this.listName,
-        shop_id: this.shopId
+        shop_id: this.shopId,
+        updateInstagram
       } ).then(()=>{
         let elem = document.getElementById("infinitie")
         this.windowListener = listen( window , 'scroll', () => {
