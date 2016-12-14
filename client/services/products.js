@@ -106,6 +106,28 @@ export const sendError = ( errorCode, state = null ) => {
   } );
 }*/
 
+export function lastProduct( { shop_id } ) {
+
+  return new Promise( ( resolve, reject ) => {
+
+    channel.req('lastid', 'product',  { shop_id } )
+
+    .then(data => {
+
+      resolve(data.response_map);
+
+    })
+
+    .catch( error => {
+
+      console.error('products lastId', error);
+      reject(ERROR_CODES.SERVER_ERROR);
+
+    });
+  })
+}
+
+
 export function find( { query, tags, shop_id, mentioner_id, limit, offset } ) {
 
   return new Promise( ( resolve, reject ) => {
