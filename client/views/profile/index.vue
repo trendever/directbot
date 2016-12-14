@@ -31,13 +31,17 @@
           .profile_info_img(@click="$router.push({name: 'list'})")
             img(:src="getUserPhoto")
 
-          .profile_info_about(v-if="location && working_time && user.products_count")
-            span.profile_info_about_type Магазин&nbsp #[br(v-if="isMobile")]
-              span(v-if="!isMobile") |
-            span.profile_info_about_location  {{ user.location}}&nbsp #[br(v-if="isMobile")]
-              span(v-if="!isMobile") |
-            span.profile_info_about_work-time  {{ user.working_time }} #[br(v-if="isMobile")]
-            span.profile_info_about_posts-quantity(v-if="isMobile")  {{ user.products_count }} постов
+
+          .profile_info_about
+            span.profile_info_about_type
+              | Магазин
+            span.profile_info_about_location(v-if="user.location")
+              | {{ user.location}}
+            span.profile_info_about_work-time(v-if="user.working_time")
+              |  {{ user.working_time }}
+            span.profile_info_about_posts-quantity(v-if="user.products_count")
+              |  {{ user.products_count }} постов
+
 
         .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
