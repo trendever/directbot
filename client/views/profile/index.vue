@@ -196,7 +196,7 @@ export default {
   },
 
   mounted(){
-    alert(this.$route.params.id)
+
     this.clipboardLogic();
     this.updateProductsLogic();
 
