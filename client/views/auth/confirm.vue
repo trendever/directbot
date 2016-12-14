@@ -163,12 +163,12 @@ export default {
     onButton() {
       if(this.anotherName){
         if (!this.callbackOnSuccessAuth) {
-              this.$router.push({name: 'profile'}), 1000;
-              return;
-            } else {
-              this.executeCallbackOnSuccessAuth()
-              return;
-            }
+            setTimeout(()=>{ this.$router.push({name: 'profile'}) }, 1000);
+            return;
+          } else {
+            this.executeCallbackOnSuccessAuth()
+            return;
+          }
       }
       if (this.isDisabled) {
         return;

@@ -268,6 +268,7 @@
             this.$router.push({name: 'chat', params: { id }})
           })
           this.$router.replace( { name: 'auth' } );
+
         }
 
         this.txtMsg = 'Привет;) да, подтверждаю!';

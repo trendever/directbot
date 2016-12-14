@@ -122,9 +122,9 @@ let actions = {
 
   executeCallbackOnSuccessAuth({ commit, state }){
 
-    if (state.auth.callbackOnSuccess) {
+    if (state.callbackOnSuccess) {
 
-      state.auth.callbackOnSuccess()
+      state.callbackOnSuccess()
 
       commit(types.AUTH_CLEAR_CALLBACK_ON_SUCCEESS);
 
