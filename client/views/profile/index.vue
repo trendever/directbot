@@ -154,7 +154,7 @@ export default {
 
       }
 
-      if(!user.supplier_of && name === 'profile') {
+      if(!user.instagram_id && name === 'profile') {
 
         instagram_username = null
       }
