@@ -154,11 +154,6 @@ export default {
 
       }
 
-      if(!user.instagram_id && name === 'profile') {
-
-        instagram_username = null
-      }
-
     }
 
     if(!token) {
@@ -184,6 +179,11 @@ export default {
       .then(()=>{
 
         next();
+
+      })
+      .catch(()=>{
+        //если пользователь без профиля instagram
+        next()
 
       })
 
