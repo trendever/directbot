@@ -87,8 +87,6 @@
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
 
-      a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
-
   photos(:shopId="userShopId || anotherId", :listName="listId")
 
   .directbot-navbar(v-if="isMobile && isAuth")
