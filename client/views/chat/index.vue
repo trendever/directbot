@@ -104,9 +104,7 @@ export default {
       lead_id: null,
       showLoader: true,
       timerId: '',
-      fullScroll: 0,
-      noGoBottom: false,
-
+      fullScroll: 0
     }
   },
 
@@ -341,7 +339,6 @@ export default {
 
       if ( this.needLoadMessage ) {
         if ( document.body.scrollTop < 1500 ) {
-          this.noGoBottom = true;
           this.needLoadMessage =  false;
 
           this.loadMessage().then( ( messages ) => {
@@ -357,19 +354,13 @@ export default {
               }
 
             } );
-          } ).then(()=>{
-
-            this.noGoBottom = false;
-
-          })
+          } )
 
         }
       }
 
     },
     goToBottom(){
-
-      if(this.noGoBottom) return;
 
       let height = document.body.scrollHeight;
 
