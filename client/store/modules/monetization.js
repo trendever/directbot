@@ -16,9 +16,11 @@ let state = {
 
   status: '',// test | test-over | active | disable
   days: 0,
-  activity: false
+  activity: false,
+  stats: []
 
 }
+
 
 
 let getters = {
@@ -31,12 +33,18 @@ let getters = {
 
   monetizationActive: state => state.status === 'active',
 
-  botActivity: state => state.activity
+  botActivity: state => state.activity,
+
+  getStats: state => state.stats
 
 }
 
 
 let actions = {
+
+  closeStat( { state } , value){
+    state.stats.push(value)
+  },
 
   setMonetization( { commit, state }, value ){
 

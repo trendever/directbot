@@ -77,8 +77,8 @@
             p.bold Активирован #[br]
             p.light(v-if="!postsCount") нет активных постов, ожидаю..
             p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] отправил 5 сообщений
-        .profile_no-goods-banner(v-if="!botActivity")
-          i.ic-close
+        .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1")
+          i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
           span.save &nbspоператор #[br(v-if="!isMobile")]
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
@@ -209,7 +209,6 @@ export default {
     //filter
     caption_spaces,
 
-    //methods
     updateProductsLogic(){
       if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
         this.timeID = setInterval(()=>{
@@ -286,6 +285,7 @@ export default {
     },
 
     ...mapGetters([
+      'getStats',
       //leads
       'getAllLeads',
       //user
