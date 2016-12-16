@@ -13,13 +13,13 @@
           :class='{_active: getLeadTab === "customer"}',
           @click='$store.dispatch("setTab","customer")',
           v-if="getLeadTab === 'customer'")
-          span Чаты с покупателями
+          span Чаты с продавцами
 
         .header__nav__i.header__text(
           :class='{_active: getLeadTab === "seller"}',
           @click='$store.dispatch("setTab", "seller")',
           v-if="getLeadTab === 'seller'")
-          span Чаты с продавцами
+          span Чаты с покупателями
 
     .section.top.bottom
       .section__content
@@ -216,11 +216,18 @@
       leadsArray(){
         //проверка на удаленные лиды
         if(this.$store.state.leads.tab === 'customer') {
-          let leads = this.getLeads.filter(item=>{
-            return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
-          });
 
-          return leads;
+          // let leads = this.getLeads.filter(item=> {
+
+          //   return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
+
+          // });
+
+          //только чаты с продавцами
+          this.$store.dispatch('setTab', 'seller');
+
+          return [];
+
         }
 
         if(this.$store.state.leads.tab === 'seller') {
