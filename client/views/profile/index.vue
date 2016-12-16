@@ -69,13 +69,14 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю 3 поста #[br] отправил 5 сообщений
+          span мониторю {{  postsCount }} поста #[br] отправил 5 сообщений
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
-            p.light мониторю 3 поста #[br] отправил 5 сообщений
+            p.light(v-if="!postsCount") нет активных постов, ожидаю..
+            p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] отправил 5 сообщений
         .profile_no-goods-banner(v-if="!botActivity")
           i.ic-close
           span После подключения #[br(v-if="isMobile")]
@@ -263,6 +264,11 @@ export default {
   },
 
   computed: {
+    postsCount() {
+
+      this.getAllLeads.seller.length;
+
+    },
     listId() {
 
       if(this.getPhotoConfig) return this.getPhotoConfig.listId;
@@ -277,6 +283,9 @@ export default {
     },
 
     ...mapGetters([
+      //leads
+      'getAllLeads',
+      //user
       'user',
       'isAuth',
       'getAuthUser',
