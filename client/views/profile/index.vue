@@ -69,7 +69,7 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю {{  postsCount || 4 }} поста #[br] отправил 5 сообщений
+          span мониторю {{  postsCount }}  постов #[br] отправил {{ messagesCount }} сообщений
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
@@ -262,9 +262,14 @@ export default {
   },
 
   computed: {
+    messagesCount(){
+
+      return 0;
+
+    },
     postsCount() {
 
-      this.getAllLeads.seller.length;
+      return this.getAllLeads.seller.length;
 
     },
     listId() {
