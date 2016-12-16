@@ -9,7 +9,7 @@
         i.ic-options_menu(@click="showProfileMenu = true")
 
       div.profile-days(slot="content" v-if="isSelfPage")
-        span {{ monetizationDays }}
+        span {{ monetizationDays === null ? 3 : monetizationDays}}
         span.day д
 
   menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
