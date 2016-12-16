@@ -32,14 +32,14 @@
             img(:src="getUserPhoto")
 
 
-          .profile_info_about
+          .profile_info_about(v-if="user.location && user.working_time && user.products_count")
             span.profile_info_about_type
               | Магазин
-            span.profile_info_about_location(v-if="user.location")
+            span.profile_info_about_location)
               | {{ user.location}}
-            span.profile_info_about_work-time(v-if="user.working_time")
+            span.profile_info_about_work-time
               |  {{ user.working_time }}
-            span.profile_info_about_posts-quantity(v-if="user.products_count")
+            span.profile_info_about_posts-quantity
               |  {{ user.products_count }} постов
 
 
