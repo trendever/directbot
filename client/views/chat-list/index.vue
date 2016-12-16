@@ -43,8 +43,8 @@
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span потому что ты пока #[br] ничего не продаешь
 
-
-      connect-button(v-if="!botActivity && !sortedList.length")
+      template(v-if="!botActivity")
+        connect-button(v-if="!sortedList.length")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')
