@@ -31,13 +31,17 @@
           .profile_info_img(@click="$router.push({name: 'list'})")
             img(:src="getUserPhoto")
 
-          .profile_info_about(v-if="location && working_time && user.products_count")
-            span.profile_info_about_type Магазин&nbsp #[br(v-if="isMobile")]
-              span(v-if="!isMobile") |
-            span.profile_info_about_location  {{ user.location}}&nbsp #[br(v-if="isMobile")]
-              span(v-if="!isMobile") |
-            span.profile_info_about_work-time  {{ user.working_time }} #[br(v-if="isMobile")]
-            span.profile_info_about_posts-quantity(v-if="isMobile")  {{ user.products_count }} постов
+
+          .profile_info_about
+            span.profile_info_about_type
+              | Магазин
+            span.profile_info_about_location(v-if="user.location")
+              | {{ user.location}}
+            span.profile_info_about_work-time(v-if="user.working_time")
+              |  {{ user.working_time }}
+            span.profile_info_about_posts-quantity(v-if="user.products_count")
+              |  {{ user.products_count }} постов
+
 
         .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
 
@@ -95,7 +99,8 @@
 </template>
 
 <script>
-import * as accountService from 'services/account';
+import * as productsService from 'services/products';
+
 import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
@@ -126,6 +131,7 @@ export default {
       copyMessage: '',
       showCopyMessage: false,
       showProfileMenu: false,
+      timeID: null
 
     }
 
@@ -144,11 +150,6 @@ export default {
 
         instagram_username = user.instagram_username;
 
-      }
-
-      if(!user.supplier_of && name === 'profile') {
-
-        instagram_username = null
       }
 
     }
@@ -178,6 +179,11 @@ export default {
         next();
 
       })
+      .catch(()=>{
+        //если пользователь без профиля instagram
+        next()
+
+      })
 
   },
 
@@ -190,11 +196,13 @@ export default {
   mounted(){
 
     this.clipboardLogic();
+    this.updateProductsLogic();
 
   },
 
   beforeDestroy(){
     if (this.copy) this.copy.destroy();
+    clearInterval(this.timeID);
   },
 
   methods: {
@@ -203,31 +211,37 @@ export default {
     caption_spaces,
 
     //methods
+    updateProductsLogic(){
+      if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
+        this.timeID = setInterval(()=>{
+          productsService.lastProduct({ shop_id: this.userShopId })
+          .then(data=>{
+            let product = this.listProducts.some( item=> { return +item.id === data.id } )
+            if ( !product ) eventHub.$emit('updatePhotos');
+          })
+        }, 15 * 1000)
+      }
+    },
+
     clipboardLogic(){
       if(this.isSelfPage && this.isMobile) {
-
           let self = this;
-
           this.$nextTick(()=>{
             this.copy =  new clipboard('.profile_insta-link', {
                 text(trigger){
                   return self.$refs.instaLink.textContent;
                 }
               })
-
             this.copy.on('success',()=>{
               this.copyMessage = `Ссылка ${this.getUserName}.tndvr.com скопирована для вставки.`;
               this.showCopyMessage = true;
-
             })
-
             this.copy.on('error', () =>{
               this.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
               this.showCopyMessage = true;
               this.copy.destroy();
               this.copy = false;
             });
-
           })
       }
     },
@@ -276,7 +290,9 @@ export default {
       //monetization
       'monetizationDays',
       'botActivity',
-      'monetizationTestOver'
+      'monetizationTestOver',
+      //products
+      'listProducts'
 
     ])
 

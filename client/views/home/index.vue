@@ -15,7 +15,7 @@
       .hero__content__center-logo(v-if="!isMobile")
         img(src="./img/directbot-main-logo.png")
       .hero__content__description
-        span.bold Оператор вашего #[br] магазина в Instagram #[br]
+        span.bold Оператор вашего #[br(v-if="isMobile")] магазина в Instagram #[br]
         span.light 24 часа, 7 дней, 3990&nbsp
           i.ic-currency-rub
           | /месяц
@@ -27,46 +27,49 @@
 
     .hero__content__2(ref="screenTwo")
       a.how-btn(v-on:click="scrollFirst") КОМУ НУЖЕН DIRECTBOT?
+      .head-title(v-if="!isMobile") Кому нужен Directbot?
       .wrap-box
         .hero__content__2__digit.one 1
-        .hero__content__2__title.main Крупным #[br(v-if="isMobile")] интернет-магазинам
+        .hero__content__2__title.main Крупным #[br] интернет-магазинам
         .hero__content__2__paragraph
-          p со своим сайтом, кто не успевает #[br(v-if="isMobile")] отвечать клиентам в Instagram #[br(v-if="isMobile")] и давать ссылку на товар
+          p со своим сайтом, кто не успевает #[br] отвечать клиентам в Instagram #[br] и давать ссылку на товар
+          p(v-if="!isMobile").bold-txt 2 часа ожидания #[br]
+          p(v-if="!isMobile").light-txt нужно в среднем, чтобы #[br] получить ответ от инста-шопа
 
       .wrap-box
-        .hero__content__2__digit 2
-        .hero__content__2__title Продавцам #[br(v-if="isMobile")] в Instagram-магазинах,
+        .hero__content__2__digit.two 2
+        .hero__content__2__title Продавцам #[br] в Instagram-магазинах,
         .hero__content__2__paragraph
-          p которым надоело отвечать #[br(v-if="isMobile")] одно и то же в комментариях #[br(v-if="isMobile")] и Instagram Direct
+          p которым надоело отвечать #[br] одно и то же в комментариях #[br] и Instagram Direct
+          p(v-if="!isMobile").bold-txt 9 из 10 покупателей #[br]
+          p(v-if="!isMobile").light-txt спрашивают про товары #[br] в комментариях или Instagram Direct
       .wrap-box
-        .hero__content__2__digit 3
-        .hero__content__2__title.middle Начинающим #[br(v-if="isMobile")] Instagram-магазинам,
+        .hero__content__2__digit.three 3
+        .hero__content__2__title.middle Начинающим #[br] Instagram-магазинам,
         .hero__content__2__paragraph
-          p.top кому нужен свой сайт #[br(v-if="isMobile")] с платежами и блогеры #[br(v-if="isMobile")] для рекламы
+          p.top кому нужно управлять #[br] продажами и быстро #[br] отвечать клиентам
+          p(v-if="!isMobile").bold-txt 10 из 10 инста-шопов #[br]
+          p(v-if="!isMobile").light-txt хотят свой интернет-магазин #[br] и ставить активные ссылки под постами
       button.shopping_trends(v-on:click="scrollSecond") КАК ЭТО РАБОТАЕТ?
   .hero__content__bg
+  .hero__content__bg-bottom
   .hero__content__landing
     .section.header.section__content(id="header", v-if="isMobile")
       .header__content.u-fixed.directbot-header
         .wrapper.directbot-wrap
           .header__center
             .header__text.head Союз человека и робота
+    .head-title(v-if="!isMobile") Союз человека и робота
     .hero__content__landing__top-scheme
-      .text-box.top-box 1. Directbot сканирует комментарии #[br(v-if="isMobile")] и Direct в Instagram
+      .text-box.top-box 1. Directbot сканирует комментарии #[br(v-if="isMobile")] и Direct в Instagram у магазина
       img(src="./img/insta-bot_image_mob.svg", v-if="isMobile")
       .counter
         span.txt ОТПРАВЛЕНО
         span.digit#counter {{ landingCounter }}
         span.txt СООБЩЕНИЙ
-      .text-box.middle-box 2. Бот определяет клиентов #[br(v-if="isMobile")] и предлагает варианты ответов
+      .text-box.middle-box 2. Бот определяет клиентов #[br(v-if="isMobile")] и находит информацию о товарах
       img(src="./img/insta-bot_image_desk.svg", v-if="!isMobile")
       .text-box.bottom-box 3. Персональный чат-оператор #[br(v-if="isMobile")] отвечает от имени магазина в Instagram
-    .hero__content__landing__sub-title По запросу магазин #[br(v-if="isMobile")] получит личную витрину* #[br(v-if="isMobile")] внутри Directbot, с услугами
-    .hero__content__landing__top-list
-      ul
-        li Раскрутки и рекламы у блогеров
-        li Онлайн платежей
-        li Организации доставки
     .hero__content__landing__title.main Преимущества #[br(v-if="isMobile")] нашего оператора
     .wrapper
       .info-box
@@ -82,7 +85,7 @@
         .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
         .hero__content__landing__caption Больше не нужно отвечать #[br(v-if="isMobile")] и спрашивать #[br(v-if="!isMobile")] одно и то же. #[br(v-if="isMobile")]
           a.link-info(@click="openPopup('is2')")
-            | Оператор даст ссылку на сайт,  уточнит  наличие, узнает размеры и адрес
+            | Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
       .info-box
         .hero__content__landing__icon-3
           img(src="./img/icon-3.png")
@@ -102,7 +105,7 @@
       a.link-info(@click="openPopup('is4')") Не важно, задан вопрос в комментариях #[br(v-if="isMobile")] или личном сообщении, #[br(v-if="!isMobile")]
       span  оператор #[br(v-if="isMobile")] уже будет отвечать покупателю #[br(v-if="isMobile")] в Direct от твоего имени
     .hero__content__landing__toggle
-      .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ, #[br] У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
+      .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ, #[br(v-if="isMobile")] У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
       button(v-on:click="noScreen = false, yesScreen = true").yes.toggleBtn.activeBtn ДА
       button(v-on:click="yesScreen = false, noScreen = true").no.toggleBtn НЕТ
     .toggle-box
@@ -123,11 +126,11 @@
           span.screen-title СПРАШИВАЕТ #[br(v-if="!isMobile")] О ТОВАРАХ В ЧАТЕ
           img(src="./img/screen-4-no.png")
         .hero__content__landing__sub-title.info Нет сайта? Ответь на вопросы о товарах
-        .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой #[br(v-if="!isMobile")]
+        .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой
           a.link-info(@click="openPopup('is5')")
-            |  новый интернет-магазин по ссылке
-            span.bold  tskirt.drbt.io* #[br]
-          span Также уточнит детали и наличие товаров #[br(v-if="isMobile")]
+            |  новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
+            span.bold  tskirt.drbt.io*. #[br(v-if="isMobile")]
+          span Также уточнит детали и наличие товаров #[br]
           span.tip *это ссылка на примере инстаграм-магазина tskirt
             .info-wrap
       .hero__content__landing__screen-5
@@ -160,7 +163,8 @@
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
   .free-wrap
     button(v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
-    button.ask-btn СПРОСИТЬ
+    button(v-if="isMobile").ask-btn СПРОСИТЬ
+    button(v-if="!isMobile").ask-btn СПРОСИТЬ В ЧАТЕ
 </template>
 <script>
 
@@ -263,7 +267,7 @@ export default {
 
       return setInterval(()=>{
         this.landingCounter += [1,3,5][Math.round(Math.random()*10/4)];
-      },1000)
+      },4000)
 
     },
     openPopup(target){

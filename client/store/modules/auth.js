@@ -43,6 +43,16 @@ let actions = {
 
   },
 
+  signin({ commit, state }){
+    return new Promise((resolve, reject) => {
+      auth.sendPassword(state.auth.phone).then( () => {
+        resolve(true);
+      }).catch( error => {
+        console.log(error);
+      });
+    });
+  },
+
   signup({ commit, state }){
 
     return new Promise((resolve, reject) => {
@@ -112,9 +122,9 @@ let actions = {
 
   executeCallbackOnSuccessAuth({ commit, state }){
 
-    if (state.auth.callbackOnSuccess) {
+    if (state.callbackOnSuccess) {
 
-      state.auth.callbackOnSuccess()
+      state.callbackOnSuccess()
 
       commit(types.AUTH_CLEAR_CALLBACK_ON_SUCCEESS);
 

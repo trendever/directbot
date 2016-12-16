@@ -43,6 +43,7 @@
         txtMsg: '',
         directbot: true,
         fakeRegCount: 0,
+        forceApprove: false
       }
     },
     computed: {
@@ -58,8 +59,9 @@
         'getStatus',
         'getShopName',
         'getLeadId'
-      ]),
+      ])
     },
+
     mounted(){
 
       this.addPadding();
@@ -84,6 +86,10 @@
         } )
 
       }
+
+      this.$nextTick(()=>{
+        if(window.fakeUserRegistrationDone) this.approveChat();
+      })
 
     },
 
@@ -248,18 +254,21 @@
         } )
       },
       approveChat(e){
-        if (this.isFake){
+        if (this.isFake && !this.forceApprove){
           let id = this.$route.params.id;
           window.fakeAuth = {text: "чтобы не пропустить ответ от", data: this.getShopName}
           this.setCallbackOnSuccessAuth(()=>{
+            window.fakeUserRegistrationDone = true;
             this.$router.push({name: 'chat', params: { id }})
           })
-          this.$router.replace( { name: 'signup' } );
+          this.$router.replace( { name: 'auth' } );
+          return;
+
         }
 
         this.txtMsg = 'Привет;) да, подтверждаю!';
 
-        e.target.hidden = true;
+        if (e) e.target.hidden = true;
 
         this.send();
 

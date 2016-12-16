@@ -49,11 +49,11 @@
     computed: {
       ...mapGetters([
         //chat
-        //'getShopName',
-        //'getCurrentMember',
-        //'getCustomerId',
+        'getShopName',
+        'getCurrentMember',
+        'getCustomerId',
         'getCustomerName',
-        //'getLastMessageId',
+        'getLastMessageId',
         //user
         'user'
       ]),

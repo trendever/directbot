@@ -177,13 +177,23 @@ export const openProfile = ( { commit, state }, id ) => {
             resolve();
           } )
           .catch( error => {
-            reject( error );
-            console.error(
-              new Error( 'User doesn`t exists or opened incorect url' ),
-              {
-                extra: { errorData: error, username: id }
-              }
-            );
+
+            userService
+              .get(requestData)
+              .then(user=>{
+                commit( types.USER_RECEIVE_PROFILE,{ profile: getValidUserObject( user, id ), id } );
+                commit( types.USER_SET_PHOTOS_CONFIG, { listId: photosConfig.listId, photoFilter:photosConfig.photosFilter, id });
+                commit( types.USER_SET_PROFILE, id );
+              })
+              .then(()=>{
+                console.warn(
+                  new Error( '[SHOP doesn`t exists so use user.get service' ),
+                  {
+                    extra: { errorData: error, username: id }
+                  }
+                );
+                reject( error );
+              })
           } );
 
       }

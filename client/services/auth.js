@@ -129,3 +129,16 @@ export function confirmByCode( phone, password ) {
 
   } );
 }
+
+export function fakeRegister() {
+
+  return new Promise( (resolve, reject) => {
+
+    channel.req('fakeregister', 'auth', {}).then( data => {
+      resolve(data.response_map);
+    }).catch( error => {
+      reject();
+    });
+
+  });
+}

@@ -1,5 +1,9 @@
 import channel from './channel/channel.js';
 
+export const ERROR_CODES = {
+  NOT_FOUND: 1,
+};
+
 export function get({ user_id, instagram_name }) {
 
   return new Promise( (resolve, reject) => {

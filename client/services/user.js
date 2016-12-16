@@ -54,7 +54,7 @@ export function get({ user_id, instagram_name }) {
 
   return new Promise( (resolve, reject) => {
 
-    channel.req('retrieve', 'get', { user_id, instagram_name })
+    channel.req('retrieve', 'user', { user_id, instagram_name })
     .then( data => {
       resolve(data.response_map.profile);
     }).catch( error => {

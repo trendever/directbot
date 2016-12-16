@@ -30,7 +30,7 @@
 
 
 
-      .chat-list-cnt-is-empty__banner.directbot-banner
+      .chat-list-cnt-is-empty__banner.directbot-banner(v-if="!botActivity")
         span
           | После подключения оператора, #[br(v-if="!isMobile")] здесь будет #[br(v-if="isMobile")]
           | список чатов с покупателями как в #[br]
@@ -40,7 +40,7 @@
       .chat-list-cnt-is-empty(v-if="!sortedList.length")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span потому что ты пока #[br] ничего не продаешь
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ ОПЕРАТОРА
+      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})", v-if="!botActivity") ПОДКЛЮЧИТЬ ОПЕРАТОРА
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')
@@ -181,7 +181,7 @@
 
     computed:{
       ...mapGetters([
-
+        'botActivity',
         //user
         'getAuthUser',
         'isAuth',
