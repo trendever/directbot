@@ -69,7 +69,7 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю {{  postsCount }} поста #[br] отправил 5 сообщений
+          span мониторю {{  postsCount || 4 }} поста #[br] отправил 5 сообщений
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
@@ -84,10 +84,7 @@
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
 
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
-        @click="$router.push({name: 'connect-bot'})",
-         v-if="isSelfPage && isMobile && !botActivity"
-        ) ПОДКЛЮЧИТЬ ОПЕРАТОРА
+      connect-button(v-if="isSelfPage && isMobile && !botActivity")
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
@@ -114,6 +111,7 @@ import RightNavComponent from 'components/right-nav';
 import NavbarComponent from 'components/navbar/navbar';
 import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
+import ConnectButton from 'components/connect-button';
 
 export default {
 
@@ -308,6 +306,7 @@ export default {
   },
 
   components: {
+    ConnectButton,
     nativePopup,
     photos,
     headerComponent,

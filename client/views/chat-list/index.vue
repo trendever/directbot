@@ -40,7 +40,9 @@
       .chat-list-cnt-is-empty(v-if="!sortedList.length")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span потому что ты пока #[br] ничего не продаешь
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})", v-if="!botActivity") ПОДКЛЮЧИТЬ ОПЕРАТОРА
+
+
+      connect-button(v-if="!botActivity")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')
@@ -70,6 +72,7 @@
   import HeaderComponent from 'components/header/index.vue';
   import NavbarComponent from 'components/navbar/navbar.vue';
   import RightNavComponent from 'components/right-nav';
+  import ConnectButton from 'components/connect-button';
 
   import ChatListItem from './chat-list-item.vue';
 
@@ -80,7 +83,8 @@
       RightNavComponent,
       HeaderComponent,
       NavbarComponent,
-      ChatListItem
+      ChatListItem,
+      ConnectButton
 
     },
     data(){
