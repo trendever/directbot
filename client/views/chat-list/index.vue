@@ -44,7 +44,7 @@
         span потому что ты пока #[br] ничего не продаешь
 
 
-      connect-button(v-if="!botActivity")
+      connect-button(v-if="!botActivity && !sortedList.length")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')
