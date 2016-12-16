@@ -35,7 +35,7 @@
           .profile_info_about(v-if="user.location && user.working_time && user.products_count")
             span.profile_info_about_type
               | Магазин
-            span.profile_info_about_location)
+            span.profile_info_about_location
               | {{ user.location}}
             span.profile_info_about_work-time
               |  {{ user.working_time }}

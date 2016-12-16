@@ -31,8 +31,9 @@
 
 
       .chat-list-cnt-is-empty__banner.directbot-banner(
-        v-if="!botActivity && getStats.indexOf('chat-banner') === -1",
-        @click="$store.dispatch('closeStat', 'chat-banner')")
+        v-if="!botActivity && getStats.indexOf('chat-banner') === -1", :class="{'turn-bottom': sortedList.length}")
+
+        i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
         span
           | После подключения оператора, #[br(v-if="!isMobile")] здесь будет #[br(v-if="isMobile")]
           | список чатов с покупателями как в #[br]
