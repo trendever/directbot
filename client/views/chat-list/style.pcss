@@ -116,7 +116,11 @@
     &__banner{
 
       &.turn-bottom {
-        bottom:97px;
+        position: fixed;
+        bottom: 0;
+        @media( --mobile) {
+          bottom:97px;
+        }
       }
 
       i.ic-close {
