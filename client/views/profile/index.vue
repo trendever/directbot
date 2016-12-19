@@ -14,6 +14,8 @@
 
   menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item
+      .text(@click="buyService") Поддержка
+    .item
       .text.__txt-blue Отмена
     .item
       .text.__txt-red(@click.stop="logout") Выход
@@ -98,7 +100,7 @@
 
 <script>
 import * as productsService from 'services/products';
-
+import settings from 'root/settings';
 import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
@@ -208,6 +210,18 @@ export default {
 
     //filter
     caption_spaces,
+
+    buyService(){
+      this.$store.dispatch('createLead', settings.supportID )
+          .then(
+            ( lead ) => {
+              if ( lead !== undefined && lead !== null ) {
+                this.$router.push( { name: 'chat', params: { id: lead.id } } )
+              }
+            }
+          )
+
+    },
 
     updateProductsLogic(){
       if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {

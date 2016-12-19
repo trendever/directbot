@@ -1,6 +1,9 @@
 import config from '../config'
 
 export default {
+
+  supportID: config.support_id || 37318,
+
   promoProductID: config.promo_product_id,
 
   editProductID: config.edit_product_id,
