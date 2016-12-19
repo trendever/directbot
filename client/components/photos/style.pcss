@@ -16,7 +16,10 @@
 
 .photos.columns {
 
-  column-count: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+/*   column-count: 3;
 
   column-gap: 0px;
 
@@ -24,7 +27,7 @@
 
     column-count: 2;
 
-  }
+  } */
 
 }
 
@@ -34,6 +37,7 @@
 }
 
 .photo {
+
 
   &__img-space {
 
@@ -53,7 +57,14 @@
       display: inline-block;
 
       background: whitesmoke;
-      width: 100%;
+
+      @media (--mobile) {
+        width: calc(50% - 2px);
+      }
+
+      width: calc(33.333% - 2px);
+      margin-left: 1px;
+
       margin-bottom: 5px;
 
       vertical-align: top;
