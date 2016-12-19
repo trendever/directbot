@@ -546,6 +546,21 @@
   src: url(./font/PFKidsPro-GradeFive.ttf);
 }
 
+#home{
+  background-image: url(./img/faces-02.jpg), url(./img/faces-01.jpg), url(./img/faces-03.jpg), url(./img/faces-04.png), url(./img/faces-07.jpg), url(./img/faces-06.png), url(./img/faces-05.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 190px 433px, 168px 450px, 177px 449px, 178px 559px, 250px 170px, 363px 432px, 176px 465px;
+  background-size: 178px 433px, 177px 445px, 177px 449px, 178px 559px, 218px 137px, 363px 432px, 176px 465px;
+  background-position: 0px 1307px, right 1108px, right 2539px, 0px 2807px, right 3093px, right 4166px, 0px 4524px;
+
+  @media(--tabletandless) {
+    background-image: none;
+  }
+  @media(--smalldesktopH) {
+    background-image: none;
+  }
+}
+
 .directbot{
   height: 100%;
 }
@@ -873,6 +888,7 @@
     @media(--tabletandless) {
       color: $color__white;
       font-size: 36px;
+      font-family: $font__family__semibold;
       margin-top: -3px;
     }
   }
@@ -1005,12 +1021,12 @@
         display: block;
         float: none;
         font-size: 36px;
-        margin: 32px 0px 0px 0px;
+        margin: 42px 0px 0px 0px;
         height: 124px;
         width: 624px;
         padding: 12px 20px;
         line-height: 45px;
-        z-index: 10;
+        z-index: -1;
       }
       &:after{
         content: '';
@@ -1045,7 +1061,7 @@
         width: 624px;
         top: 507px;
         padding: 14px 20px;
-        margin: 32px 0px 0px 0px;
+        margin: 42px 0px 0px 0px;
       }
       &:after{
         content: '';
@@ -1167,10 +1183,10 @@
       position: absolute;
       top: 131px;
       right: 275px;
-      z-index: 100;
+      z-index: 0;
 
       @media(--tabletandless){
-        top: 715px;
+        top: 725px;
         left: 288px;
         right: auto;
       }
@@ -1256,7 +1272,7 @@
   .main{
     margin-top: 145px;
     @media(--tabletandless) {
-      margin-top: 116px;
+      margin-top: 126px;
     }
   }
   .middle{
@@ -1535,12 +1551,12 @@
   &__caption{
     font-size: 24px;
     line-height: 32px;
+    color: #595959;
     position: relative;
     @media(--tabletandless) {
       text-align: center;
       font-size: 36px;
       font-family: $font__family__light;
-      color: #595959;
       margin-top: 8px;
       line-height: normal;
       padding-top: 0px;
@@ -1674,6 +1690,7 @@
       @media(--tabletandless) {
         margin-right: 0px;
         margin-top: 0px;
+        padding: 0;
       }
     }
     .info-box:nth-child(2){
@@ -1958,12 +1975,13 @@
     margin-top: 0px;
   }
 }
+
 button.try-free{
   width: 275px !important;
   height: 40px !important;
   font-size: 16px;
   margin-top: 20px;
-  margin-bottom: 0px;
+  margin-bottom: 0px !important;
   line-height: normal !important;
   padding: 0;
   @media(--tabletandless){
@@ -1975,6 +1993,7 @@ button.try-free{
     height: 100px !important;
     font-size: 36px;
     margin-top: 0px;
+    margin-bottom: 50px !important;
     line-height: 100px !important;
   }
 }
@@ -2005,6 +2024,8 @@ button.try-free{
     background-color: $color__blue;
   }
   &:hover{
-    background-color: $color__light-blue;
+    cursor: pointer;
+    background-color: $color__white;
+    color: $color__blue;
   }
 }

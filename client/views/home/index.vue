@@ -162,8 +162,9 @@
     a.link-info(@click="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
   .free-wrap
-    button(v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
-    button(v-if="isMobile").ask-btn СПРОСИТЬ
+    button( :style="{zIndex: showBtns ? 190 : 0}",
+      v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
+    button(v-if="isMobile", :style="{zIndex: showBtns ? 190 : 0}").ask-btn СПРОСИТЬ
     button(v-if="!isMobile").ask-btn СПРОСИТЬ В ЧАТЕ
 </template>
 <script>
@@ -179,6 +180,7 @@ import * as commonService from 'services/common';
 export default {
   data(){
     return {
+      showBtns: false,
       inputOpened: false,
       menuOpened: false,
       phoneNumber: '',
@@ -235,14 +237,29 @@ export default {
         JQuery(this).toggleClass('activeBtn');
     });
 
+    //Scroll
+
+    this.scrollHandler = listen(window, 'scroll',()=>{
+
+      if( this.isMobile) {
+
+        this.showBtns = document.body.scrollTop > window.innerHeight
+
+      } else {
+
+        this.showBtns = true;
+
+      }
+
+    })
+
   },
   beforeDestroy(){
-
+    this.scrollHandler.remove();
     clearInterval(this.timeID);
 
   },
   computed: {
-
       getLinkTitle(){
         if (this.phoneError){
           return "НЕВЕРНЫЙ НОМЕР";

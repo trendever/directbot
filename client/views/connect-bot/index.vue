@@ -75,18 +75,34 @@
                 i.ic-close.clear
             .input.phone(v-if="!needConfirmCode", id="pass-inp")
               i.ic-pass
-              input(type='password',
+
+              input(
+                v-if='!errorPassword',
+                type="password"
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
                 spellcheck="false",
-                :class=' {error: errorPhone} ',
+                :class=' {error: errorPassword} ',
                 @keydown.enter='connectBot()',
                 v-model='password',
                 placeholder='Введите пароль от Instagram')
+
+              input(
+                v-if="errorPassword"
+                type='text',
+                autocomplete="off",
+                autocorrect="off",
+                autocapitalize="off",
+                spellcheck="false",
+                :class=' {error: errorPassword} ',
+                @keydown.enter='connectBot()',
+                v-model='password',
+                placeholder='Введите пароль от Instagram')
+
               .input__clear-btn(
                 v-if='password',
-                @click='password = ""')
+                @click='password = "", errorPassword=false')
                 i.ic-close.clear
             .input(id="code", v-if="needConfirmCode")
               i.ic-code
@@ -128,7 +144,8 @@ export default {
       needConfirmCode: false,
       connectProcess: false,
       helpPopup: false,
-      containerHeight: ''
+      containerHeight: '',
+      errorPassword: ''
     }
 
   },
@@ -174,7 +191,11 @@ export default {
           }
 
         }).catch(err=>{
+
+          this.errorPassword = this.password = "Неверный пароль"
+          this.secretPassword = true;
           this.connectProcess = false;
+
         })
 
 

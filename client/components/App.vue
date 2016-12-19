@@ -52,10 +52,13 @@ export default {
 }
 
 body, html {
-  height: 100%;
+  height: auto;
   font-size: 14px;
   font-family: $font__family;
 
+  @media screen and (max-width:1023px) {
+    height: 100%;
+  }
 }
 
 #app{
