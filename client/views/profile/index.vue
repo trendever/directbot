@@ -59,8 +59,8 @@
               span OK
 
         button.turn-on-bot-btn-desk.blue-btn(
-          @click="$router.push({name: 'connect-bot'})", v-if="!isMobile") ПОДКЛЮЧИТЬ
-        button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
+          @click="$router.push({name: 'connect-bot'})", v-if="!isMobile && isAuth") ПОДКЛЮЧИТЬ
+        button.find-bloger-btn.blue-btn(v-if="!isMobile && isAuth") НАЙТИ БЛОГЕРА
 
 
 
