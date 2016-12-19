@@ -98,7 +98,8 @@
                 :class=' {error: errorPassword} ',
                 @keydown.enter='connectBot()',
                 v-model='password',
-                placeholder='Введите пароль от Instagram')
+                placeholder='Введите пароль от Instagram',
+                @click='password = "", errorPassword=false')
 
               .input__clear-btn(
                 v-if='password',
