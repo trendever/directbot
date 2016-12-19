@@ -8,7 +8,7 @@
 
         i.ic-options_menu(@click="showProfileMenu = true")
 
-      div.profile-days(slot="content" v-if="isSelfPage")
+      div.profile-days(slot="content" v-if="isSelfPage && monetizationDays !== null")
         span {{ monetizationDays }}
         span.day д
 
@@ -32,14 +32,14 @@
             img(:src="getUserPhoto")
 
 
-          .profile_info_about
+          .profile_info_about(v-if="user.location && user.working_time && user.products_count")
             span.profile_info_about_type
               | Магазин
-            span.profile_info_about_location(v-if="user.location")
+            span.profile_info_about_location
               | {{ user.location}}
-            span.profile_info_about_work-time(v-if="user.working_time")
+            span.profile_info_about_work-time
               |  {{ user.working_time }}
-            span.profile_info_about_posts-quantity(v-if="user.products_count")
+            span.profile_info_about_posts-quantity
               |  {{ user.products_count }} постов
 
 
@@ -69,29 +69,25 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю 3 поста #[br] отправил 5 сообщений
+          span мониторю {{  postsCount }}  постов #[br] отправил {{ messagesCount }} сообщений
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
-            p.light мониторю 3 поста #[br] отправил 5 сообщений
-        .profile_no-goods-banner(v-if="!botActivity")
-          i.ic-close
+            p.light(v-if="!postsCount") нет активных постов, ожидаю..
+            p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] отправил 5 сообщений
+        .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1")
+          i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
           span.save &nbspоператор #[br(v-if="!isMobile")]
           span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
 
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(
-        @click="$router.push({name: 'connect-bot'})",
-         v-if="isSelfPage && isMobile && !botActivity"
-        ) ПОДКЛЮЧИТЬ ОПЕРАТОРА
+      connect-button(v-if="isSelfPage && isMobile && !botActivity")
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
-
-      a(class='profile-header__menu-link', @click="logout", v-if="isAuth") Выход
 
   photos(:shopId="userShopId || anotherId", :listName="listId")
 
@@ -115,6 +111,7 @@ import RightNavComponent from 'components/right-nav';
 import NavbarComponent from 'components/navbar/navbar';
 import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
+import ConnectButton from 'components/connect-button';
 
 export default {
 
@@ -212,7 +209,6 @@ export default {
     //filter
     caption_spaces,
 
-    //methods
     updateProductsLogic(){
       if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
         this.timeID = setInterval(()=>{
@@ -265,6 +261,16 @@ export default {
   },
 
   computed: {
+    messagesCount(){
+
+      return 0;
+
+    },
+    postsCount() {
+
+      return this.getAllLeads.seller.length;
+
+    },
     listId() {
 
       if(this.getPhotoConfig) return this.getPhotoConfig.listId;
@@ -279,6 +285,10 @@ export default {
     },
 
     ...mapGetters([
+      'getStats',
+      //leads
+      'getAllLeads',
+      //user
       'user',
       'isAuth',
       'getAuthUser',
@@ -301,6 +311,7 @@ export default {
   },
 
   components: {
+    ConnectButton,
     nativePopup,
     photos,
     headerComponent,

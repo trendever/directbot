@@ -13,13 +13,13 @@
           :class='{_active: getLeadTab === "customer"}',
           @click='$store.dispatch("setTab","customer")',
           v-if="getLeadTab === 'customer'")
-          span Чаты с покупателями
+          span Чаты с продавцами
 
         .header__nav__i.header__text(
           :class='{_active: getLeadTab === "seller"}',
           @click='$store.dispatch("setTab", "seller")',
           v-if="getLeadTab === 'seller'")
-          span Чаты с продавцами
+          span Чаты с покупателями
 
     .section.top.bottom
       .section__content
@@ -30,7 +30,10 @@
 
 
 
-      .chat-list-cnt-is-empty__banner.directbot-banner
+      .chat-list-cnt-is-empty__banner.directbot-banner(
+        v-if="!botActivity && getStats.indexOf('chat-banner') === -1", :class="{'turn-bottom': sortedList.length}")
+
+        i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
         span
           | После подключения оператора, #[br(v-if="!isMobile")] здесь будет #[br(v-if="isMobile")]
           | список чатов с покупателями как в #[br]
@@ -40,7 +43,9 @@
       .chat-list-cnt-is-empty(v-if="!sortedList.length")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
         span потому что ты пока #[br] ничего не продаешь
-      button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn(@click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ ОПЕРАТОРА
+
+      template(v-if="!botActivity")
+        connect-button(v-if="!sortedList.length")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')
@@ -70,6 +75,7 @@
   import HeaderComponent from 'components/header/index.vue';
   import NavbarComponent from 'components/navbar/navbar.vue';
   import RightNavComponent from 'components/right-nav';
+  import ConnectButton from 'components/connect-button';
 
   import ChatListItem from './chat-list-item.vue';
 
@@ -80,7 +86,8 @@
       RightNavComponent,
       HeaderComponent,
       NavbarComponent,
-      ChatListItem
+      ChatListItem,
+      ConnectButton
 
     },
     data(){
@@ -181,7 +188,8 @@
 
     computed:{
       ...mapGetters([
-
+        'getStats',
+        'botActivity',
         //user
         'getAuthUser',
         'isAuth',
@@ -208,11 +216,18 @@
       leadsArray(){
         //проверка на удаленные лиды
         if(this.$store.state.leads.tab === 'customer') {
-          let leads = this.getLeads.filter(item=>{
-            return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
-          });
 
-          return leads;
+          // let leads = this.getLeads.filter(item=> {
+
+          //   return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
+
+          // });
+
+          //только чаты с продавцами
+          this.$store.dispatch('setTab', 'seller');
+
+          return [];
+
         }
 
         if(this.$store.state.leads.tab === 'seller') {

@@ -114,6 +114,18 @@
       }
     }
     &__banner{
+
+      &.turn-bottom {
+        bottom:97px;
+      }
+
+      i.ic-close {
+
+        position: absolute 0 0 * *;
+        padding: 15px;
+
+
+      }
       z-index: 10;
       display: block;
       position: absolute;
@@ -129,10 +141,10 @@
       height: auto;
       @media(--mobile) {
         display: block;
-        position: absolute;
+        position: fixed;
         font-size: 32px;
         width: 100%;
-        text-align: center;
+        //text-align: center;
         background-color: $color__gray-lighter;
         bottom: 197px;
         padding-top: 47px;

@@ -50,7 +50,7 @@ const mutations = {
     state.seller              = seller;
     state.customer            = customer;
     state.done                = true;
-    state.global_notify_count = countUnread;
+    state.global_notify_count = state.tab === 'customer' ? 0 : countUnread;
     state.lengthList          = {
       seller: lengthList,
       customer: lengthList
