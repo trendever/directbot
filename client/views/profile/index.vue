@@ -194,6 +194,20 @@ export default {
 
   },
 
+  watch:{
+    '$route'(to, from) {
+      if(from.name === 'user') {
+        let user = profileService.getProfile().user
+        let id = user.instagram_name ? user.instagram_name : user.id;
+
+        store.dispatch('openProfile', id );
+        this.userShopId = id;
+        window.eventHub.$emit('updatePhotos', id)
+      }
+    }
+
+  },
+
   created(){
     if(this.monetizationTestOver) {
       //this.$router.replace({name: 'connect-bot'});

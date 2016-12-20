@@ -44,7 +44,15 @@ export default {
 
   created(){
 
-    eventHub.$on('updatePhotos', () => {
+    window.eventHub.$on('updatePhotos', id => {
+
+      if(id){
+        this.listName = 'profile';
+        this.simpleScroll({})
+        return;
+
+      }
+
       console.log('new Product');
       this.simpleScroll( { updateInstagram: true } )
 
