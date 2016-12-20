@@ -1,4 +1,5 @@
 import SockJS from 'sockjs-client'
+import settings from 'root/settings';
 
 export default class {
   constructor() {
@@ -13,7 +14,7 @@ export default class {
   init(onOpen, onMessage) {
     var self = this;
     
-    self.sock = new SockJS("https://dev.trendever.com/channel");
+    self.sock = new SockJS(settings.socket_server);
     self.sock.onmessage = function(data) {
         var ctx = JSON.parse(data.data);
         if (!ctx) {
