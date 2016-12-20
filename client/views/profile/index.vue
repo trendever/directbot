@@ -6,7 +6,7 @@
 
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
 
-        i.ic-options_menu(@click="showProfileMenu = true")
+        i.ic-options_menu(@click.stop="showProfileMenu = true")
 
       div.profile-days(slot="content" v-if="isSelfPage && monetizationDays !== null")
         span {{ monetizationDays }}
@@ -14,14 +14,14 @@
 
   menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item
-      .text(@click="buyService") Поддержка
+      .text(@click.stop="buyService") Поддержка
     .item
       .text.__txt-blue Отмена
     .item
       .text.__txt-red(@click.stop="logout") Выход
 
   .directbot-right-nav
-    right-nav-component(current="profile")
+    right-nav-component(current="profile" v-on:open-profile-menu="showProfileMenu = true")
 
   .section.top.bottom.db-bottom
     .section__content(v-cloak)
@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import listen from 'event-listener';
 import * as productsService from 'services/products';
 import settings from 'root/settings';
 import * as profileService from 'services/profile';
@@ -132,7 +133,8 @@ export default {
       copyMessage: '',
       showCopyMessage: false,
       showProfileMenu: false,
-      timeID: null
+      timeID: null,
+      bodyListner: ''
 
     }
 
@@ -192,6 +194,10 @@ export default {
     if(this.monetizationTestOver) {
       //this.$router.replace({name: 'connect-bot'});
     }
+
+    this.bodyListner = listen(document.body, 'click',()=>{
+      this.showProfileMenu = false
+    })
   },
 
   mounted(){
@@ -202,6 +208,7 @@ export default {
   },
 
   beforeDestroy(){
+    this.bodyListner.remove();
     if (this.copy) this.copy.destroy();
     clearInterval(this.timeID);
   },

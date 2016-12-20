@@ -2,8 +2,8 @@
 #menu-sample(v-if="opened", @click="$emit('close')")
   .content
     slot
-      .item
-        .text Выход
+    //-.item
+      .text Выход
 
 </template>
 
@@ -24,26 +24,87 @@
 
 #menu-sample {
 
-  @media (--mobile) {
+  &::after, &::before {
+    transform: rotate(180deg);
+  }
 
+  &::before {
+    content: '';
+    position: absolute -13px 23px * *;
+    size: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-top: 13px solid $color__gray-light;
+
+  }
+
+  &::after {
+    content: '';
+    position: absolute -12px 23px * *;
+    z-index: 9999;
+    size: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-top: 13px solid #F0F0F0;
+
+  }
+
+
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: #ececec;
+  position: absolute 60px 10px * * ;
+  z-index: 150;
+  height: auto;
+  width: 210px;
+
+
+  @media ( min-width: 751px) {
+
+    box-shadow: 1px 1px 5px #595959;
+
+  }
+
+  @media (--mobile) {
     position: fixed 0 0 * 0;
     z-index: 120;
     size: 100%;
     width: 100%;
     height: 100%;
     background: rgba(94, 139, 206,.6);
-
   }
 
   .content {
 
+    :first-child{
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+    }
+
+    :last-child {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
     .item {
 
+      &:hover {
+        background: #dedede;
+        cursor: pointer;
+        .text {
+          color: $color__blue
+        }
+      }
+
       font-family: $font__family__regular;
-      text-align: center;
-      background: white;
+      text-align: left;
+      font-size: 24px;
+      line-height: 45px;
+      height: 45px;
 
       @media (--mobile) {
+        background: white;
+        text-align: center;
         font-size: 36px;
         line-height: 97px;
         height: 97px;
@@ -52,14 +113,15 @@
       .text {
 
         color: #595959;
+        padding-left: 30px;
 
         &.__txt-blue {
             color: $color__blue;
         }
+
         &.__txt-red {
             color: $color__red;
         }
-
       }
     }
   }
