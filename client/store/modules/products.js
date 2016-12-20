@@ -53,7 +53,7 @@ let actions = {
 
       commit( types.PRODUCTS_SET_LIST, listId );
 
-      return;
+      return Promise.resolve();
 
     }
 

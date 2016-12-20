@@ -195,15 +195,25 @@ export default {
   },
 
   watch:{
+
     '$route'(to, from) {
+
       if(from.name === 'user') {
+
         let user = profileService.getProfile().user
+
         let id = user.instagram_name ? user.instagram_name : user.id;
 
         store.dispatch('openProfile', id );
+
         this.userShopId = id;
+
         window.eventHub.$emit('updatePhotos', id)
+
+        this.listId = 'profile';
+
       }
+
     }
 
   },
@@ -313,8 +323,6 @@ export default {
     listId() {
 
       if(this.getPhotoConfig) return this.getPhotoConfig.listId;
-
-
 
     },
     isSelfPage(){
