@@ -1,5 +1,5 @@
 <template lang="pug">
-.photos
+.photos.columns
   template(v-for="photo, index in listProducts")
     single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index", :class-data="index%2")
   div#infinitie
@@ -38,7 +38,7 @@ export default {
       windowListener: {},
       space: 0,
       off: false,
-      offset: 0
+      offset: 0,
     }
   },
 
@@ -72,7 +72,6 @@ export default {
   },
 
   computed: {
-
     ...mapGetters([
 
       'listId',
