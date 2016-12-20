@@ -12,6 +12,8 @@ export default {
 
   activateMonetization: config.activate_monetization,
 
-  monetizationHelpID: config.monetization_help_id
+  monetizationHelpID: config.monetization_help_id,
+
+  socket_server: config.socket_server
 
 }
