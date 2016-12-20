@@ -175,18 +175,23 @@ export default {
 
     if (id) instagram_username = id
 
+
+    let replace = instagram_username.replace(new RegExp("-", 'g'),"_");
+
     store
-      .dispatch('openProfile', instagram_username )
+      .dispatch('openProfile', replace )
       .then(()=>{
 
         next();
 
       })
-      .catch(()=>{
-        //если пользователь без профиля instagram
-        next()
 
-      })
+      .catch( () => {
+
+        next();
+
+      });
+
 
   },
 
