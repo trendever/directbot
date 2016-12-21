@@ -71,14 +71,14 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю {{  postsCount }}  постов #[br] отправил {{ messagesCount }} сообщений
+          span мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
-            p.light(v-if="!postsCount") нет активных постов, ожидаю..
-            p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] отправил 5 сообщений
+            p.light(v-if="!chatsCount") нет активных постов, ожидаю..
+            p.light(v-if="chatsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
         .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
@@ -194,6 +194,30 @@ export default {
 
   },
 
+  watch:{
+
+    '$route'(to, from) {
+
+      if(from.name === 'user') {
+
+        let user = profileService.getProfile().user
+
+        let id = user.instagram_name ? user.instagram_name : user.id;
+
+        store.dispatch('openProfile', id );
+
+        this.userShopId = id;
+
+        window.eventHub.$emit('updatePhotos', id)
+
+        this.listId = 'profile';
+
+      }
+
+    }
+
+  },
+
   created(){
     if(this.monetizationTestOver) {
       //this.$router.replace({name: 'connect-bot'});
@@ -286,21 +310,24 @@ export default {
   },
 
   computed: {
-    messagesCount(){
 
-      return 0;
+    postsCount(){
+
+      let count = this.user.products_count;
+      let length = this.listProducts.length;
+      return count > length ? count : length;
 
     },
-    postsCount() {
+
+    chatsCount() {
 
       return this.getAllLeads.seller.length;
 
     },
+
     listId() {
 
       if(this.getPhotoConfig) return this.getPhotoConfig.listId;
-
-
 
     },
     isSelfPage(){

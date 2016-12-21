@@ -37,15 +37,22 @@ export default {
       oldScroll: 0,
       windowListener: {},
       space: 0,
-      off: false,
-      offset: 0,
+      off: false
     }
   },
 
   created(){
 
-    eventHub.$on('updatePhotos', () => {
-      console.log('new Product');
+    window.eventHub.$on('updatePhotos', id => {
+
+      if(id){
+
+        this.simpleScroll({})
+        return;
+
+      }
+
+      console.log('new products');
       this.simpleScroll( { updateInstagram: true } )
 
     });
@@ -72,6 +79,15 @@ export default {
   },
 
   computed: {
+    offset(){
+
+      if(this.listProducts){
+
+        return this.listProducts.length || 0;
+
+      }
+
+    },
     ...mapGetters([
 
       'listId',
@@ -113,17 +129,24 @@ export default {
         shop_id: this.shopId,
         updateInstagram
       } ).then(()=>{
+
         let elem = document.getElementById("infinitie")
+
         this.windowListener = listen( window , 'scroll', () => {
+
           if (this.checkVisible(elem)){
-            this.offset += 20;
+
             this.increaseListLength( {
               shop_id: this.shopId,
-              offset: this.offset
-            });
+              offset: this.offset + 30
+            })
+
           }
+
         });
+
       });
+
     },
 
     scrollTo(value){

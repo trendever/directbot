@@ -11,7 +11,7 @@
         .chat-msg-product-photo
           img(:src="product.image")
       .chat-msg-description
-        router-link.chat-msg_t(
+        router-link.chat-msg_t.product-username(
             :to='{name: "user", params: {id: getUserNameLink}}',
             v-if='!isOwnMessage && !isClosest',
             :class='{"chat-msg_t-customer-color":isCustomer}',
@@ -58,6 +58,10 @@
         'user'
       ]),
       getUsername() {
+
+        if(this.getCustomerName === 'directbotio'){
+          return '<b class="_blue">directbotio</b>';
+        }
         if (this.getCustomerName.indexOf("customer_") >= 0){
           return `<b>${this.getCustomerName.replace("customer_","client")}</b>`
         }
