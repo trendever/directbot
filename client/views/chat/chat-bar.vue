@@ -204,7 +204,10 @@
       },
 
       send ( event ) {
-        this.$emit('addPadding', 110)
+
+        if(!this.isMobile) this.$emit('addPadding', 57)
+
+        else this.$emit('addPadding', 95)
 
         if(event) {
 
