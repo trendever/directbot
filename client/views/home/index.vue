@@ -25,7 +25,7 @@
         | ВХОД И РЕГИСТРАЦИЯ
 
 
-    .hero__content__2(ref="screenTwo" v-cloak)
+    .hero__content__2(ref="screenTwo")
       a.how-btn(v-on:click="scrollFirst") КОМУ НУЖЕН DIRECTBOT?
       .head-title(v-if="!isMobile") Кому нужен Directbot?
       .wrap-box
@@ -53,7 +53,7 @@
       button.shopping_trends(v-on:click="scrollSecond") КАК ЭТО РАБОТАЕТ?
   .hero__content__bg
   .hero__content__bg-bottom
-  .hero__content__landing(v-cloak)
+  .hero__content__landing
     .section.header.section__content(id="header", v-if="isMobile")
       .header__content.u-fixed.directbot-header
         .wrapper.directbot-wrap
@@ -142,7 +142,7 @@
         span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
       .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
       .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
-  .info-block(v-cloak)
+  .info-block
     .title
       p Подключайся и получишь:
     .list
@@ -158,10 +158,10 @@
             | Сервис по подбору и организации #[br(v-if="isMobile")] рекламы через блогеров
     .tooltip
       p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, и это только за 8-часовой день с выходными
-  .free-connect(v-cloak)
+  .free-connect
     a.link-info(@click="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
-  .free-wrap(v-cloak)
+  .free-wrap
     button( :style="{zIndex: showBtns ? 190 : 0}",
       v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
     button(v-if="isMobile", :style="{zIndex: showBtns ? 190 : 0}").ask-btn СПРОСИТЬ
