@@ -37,7 +37,8 @@ export default {
       oldScroll: 0,
       windowListener: {},
       space: 0,
-      off: false
+      off: false,
+      load: false
     }
   },
 
@@ -135,10 +136,15 @@ export default {
         this.windowListener = listen( window , 'scroll', () => {
 
           if (this.checkVisible(elem)){
-
+            if (this.load) return;
+            this.load = true;
             this.increaseListLength( {
               shop_id: this.shopId,
               offset: this.offset + 30
+            }).then(()=>{
+
+              setTimeout(()=> { this.load = false },100);
+
             })
 
           }
