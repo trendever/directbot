@@ -71,14 +71,14 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю {{ user.products_count  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
+          span мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
             p.light(v-if="!chatsCount") нет активных постов, ожидаю..
-            p.light(v-if="chatsCount") мониторю {{  user.products_count }} поста #[br] общаюсь в {{ chatsCount }} чатах
+            p.light(v-if="chatsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
         .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
@@ -310,11 +310,15 @@ export default {
   },
 
   computed: {
-    messagesCount(){
 
-      return 0;
+    postsCount(){
+
+      let count = this.user.products_count;
+      let length = this.listProducts.length;
+      return count > length ? count : length;
 
     },
+
     chatsCount() {
 
       return this.getAllLeads.seller.length;
