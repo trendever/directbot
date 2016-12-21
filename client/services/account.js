@@ -47,7 +47,7 @@ export function list({ role = 'User', with_invalids, with_non_owned }) {
 
     }).catch( error => {
 
-        console.error('LIST ACCOUNT', error);
+        console.warn('LIST ACCOUNT', error);
         reject()
     });
 
