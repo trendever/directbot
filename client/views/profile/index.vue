@@ -313,9 +313,15 @@ export default {
 
     postsCount(){
 
-      let count = this.user.products_count;
-      let length = this.listProducts.length;
-      return count > length ? count : length;
+      if(this.user && this.listProducts) {
+
+        let count = this.user.products_count;
+        let length = this.listProducts.length;
+        return count > length ? count : length;
+      }
+      return 0;
+
+
 
     },
 
