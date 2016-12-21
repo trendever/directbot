@@ -71,14 +71,14 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю {{  listProducts.length }}  постов #[br] общаюсь в {{ postsCount }} чатах
+          span мониторю {{  postsCount }}  постов #[br] общаюсь в {{ chatsCount }} чатах
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
-            p.light(v-if="!postsCount") нет активных постов, ожидаю..
-            p.light(v-if="postsCount") мониторю {{  listProducts.length }} поста #[br] общаюсь в {{ postsCount }} чатах
+            p.light(v-if="!chatsCount") нет активных постов, ожидаю..
+            p.light(v-if="chatsCount") мониторю {{ postsCount  }} поста #[br] общаюсь в {{ chatsCount }} чатах
         .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
@@ -315,11 +315,20 @@ export default {
       return 0;
 
     },
-    postsCount() {
+    chatsCount() {
 
       return this.getAllLeads.seller.length;
 
     },
+    postsCount(){
+      if(this.listProducts){
+
+        return this.listProducts.length
+
+      }
+
+    },
+
     listId() {
 
       if(this.getPhotoConfig) return this.getPhotoConfig.listId;
