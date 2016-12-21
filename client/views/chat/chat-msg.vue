@@ -39,7 +39,7 @@
     props: {
       directbot: {
         type: Boolean,
-        default: false
+        default: true
       },
       msg: {
         type: Object,
