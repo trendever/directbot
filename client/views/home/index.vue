@@ -173,7 +173,8 @@ import Hammer from 'hammerjs';
 import JQuery from 'jquery';
 import listen from 'event-listener';
 
-
+import { mapGetters } from 'vuex';
+import * as authService from 'services/auth';
 import settings from 'root/settings';
 import * as commonService from 'services/common';
 
@@ -193,7 +194,7 @@ export default {
     }
   },
   created(){
-    if(this.$store.getters.isAuth) {
+    if(this.isAuth) {
       this.$router.replace({name: 'profile'});
     }
   },
@@ -260,6 +261,9 @@ export default {
 
   },
   computed: {
+      ...mapGetters([
+        'isAuth'
+      ]),
       getLinkTitle(){
         if (this.phoneError){
           return "НЕВЕРНЫЙ НОМЕР";
@@ -281,11 +285,20 @@ export default {
 
   methods: {
     ask(){
-      this.$store.dispatch('createLead',settings.infoID).then(lead=>{
-        this.$router.push({name: 'chat', params: { id: lead.id} })
-      }).catch(()=>{
-        console.log('error')
-      })
+      if ( !this.isAuth ) {
+        authService
+          .fakeRegister()
+          .then(({token,user})=>{
+            this.$store.dispatch('authUser', { user, token })
+              .then( () => {
+                this.$store.dispatch('createLead',settings.infoID).then(lead=>{
+                  this.$router.push({name: 'chat', params: { id: lead.id} })
+                }).catch(()=>{
+                  console.log('error')
+                })
+              })
+        });
+      }
     },
     count(){
 
