@@ -261,21 +261,32 @@ export default {
     },
 
     updateProductsLogic(){
+
+      function update(vm){
+        productsService.lastProduct({ shop_id: vm.supplierProfileID })
+          .then(data=>{
+            let product = vm.listProducts.some( item=> { return +item.id === data.id } )
+            if ( !product ) eventHub.$emit('updatePhotos');
+          })
+      }
+
+
+
       if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
         this.timeID = setInterval(()=>{
           if(!this.supplierProfileID) {
             userService.get({}).then( user=> {
-              if(user.supplier_of) this.supplierProfileID = user.supplier_of[0];
+              if(user.supplier_of) {
+                this.supplierProfileID = user.supplier_of[0];
+                update(this);
+              }
             })
           } else {
-            productsService.lastProduct({ shop_id: this.userShopId })
-            .then(data=>{
-              let product = this.listProducts.some( item=> { return +item.id === data.id } )
-              if ( !product ) eventHub.$emit('updatePhotos');
-            })
+            update(this);
           }
         }, 15 * 1000)
       }
+
     },
 
     clipboardLogic(){
