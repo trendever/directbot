@@ -100,6 +100,7 @@
 
 <script>
 import listen from 'event-listener';
+import * as userService from 'services/user';
 import * as productsService from 'services/products';
 import settings from 'root/settings';
 import * as profileService from 'services/profile';
@@ -134,7 +135,8 @@ export default {
       showCopyMessage: false,
       showProfileMenu: false,
       timeID: null,
-      bodyListner: ''
+      bodyListner: '',
+      supplierProfileID: 0
 
     }
 
@@ -261,11 +263,17 @@ export default {
     updateProductsLogic(){
       if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
         this.timeID = setInterval(()=>{
-          productsService.lastProduct({ shop_id: this.userShopId })
-          .then(data=>{
-            let product = this.listProducts.some( item=> { return +item.id === data.id } )
-            if ( !product ) eventHub.$emit('updatePhotos');
-          })
+          if(!this.supplierProfileID) {
+            userService.get({}).then( user=> {
+              if(user.supplier_of) this.supplierProfileID = user.supplier_of[0];
+            })
+          } else {
+            productsService.lastProduct({ shop_id: this.userShopId })
+            .then(data=>{
+              let product = this.listProducts.some( item=> { return +item.id === data.id } )
+              if ( !product ) eventHub.$emit('updatePhotos');
+            })
+          }
         }, 15 * 1000)
       }
     },
