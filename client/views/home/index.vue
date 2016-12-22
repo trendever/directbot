@@ -164,8 +164,8 @@
   .free-wrap
     button( :style="{zIndex: showBtns ? 190 : 0}",
       v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
-    button(v-if="isMobile", :style="{zIndex: showBtns ? 190 : 0}").ask-btn СПРОСИТЬ
-    button(v-if="!isMobile").ask-btn СПРОСИТЬ В ЧАТЕ
+    button(v-if="isMobile", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
+    button(v-if="!isMobile", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
 </template>
 <script>
 
@@ -280,6 +280,13 @@ export default {
     },
 
   methods: {
+    ask(){
+      this.$store.dispatch('createLead',settings.infoID).then(lead=>{
+        this.$router.push({name: 'chat', params: { id: lead.id} })
+      }).catch(()=>{
+        console.log('error')
+      })
+    },
     count(){
 
       return setInterval(()=>{
