@@ -292,6 +292,7 @@ export default {
             this.$store.dispatch('authUser', { user, token })
               .then( () => {
                 this.$store.dispatch('createLead',settings.infoID).then(lead=>{
+                  window.infoQuestions = true;
                   this.$router.push({name: 'chat', params: { id: lead.id} })
                 }).catch(()=>{
                   console.log('error')

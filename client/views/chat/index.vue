@@ -225,7 +225,7 @@ export default {
         .setConversation( this.lead_id )
 
         .then(()=>{
-
+          if(window.infoQuestions) return true;
           return messages
             .find(this.getId, null, 70, false)
             .then((data)=>{
