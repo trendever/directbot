@@ -44,6 +44,13 @@
          //this.userImage = require('base/img/logo.png');
       },
       leftBtnAction(){
+
+        if(window.infoQuestions){
+          this.$store.dispatch('logOut')
+          this.$router.push({name: 'home'})
+          return;
+        }
+
         if (this.isFake){
           if (this.$route.name === window.before.name && window.before.prev){
             this.$router.push({ name: window.before.prev.name, params: window.before.prev.params})
