@@ -63,6 +63,13 @@
       }
     },
 
+    beforeDestroy(){
+      if(window.infoQuestions){
+        this.$store.dispatch('logOut')
+        this.$router.push({name: 'home'})
+      }
+    },
+
     props:{
       disableNotifier: {
         type: Boolean,
