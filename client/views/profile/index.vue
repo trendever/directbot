@@ -6,7 +6,7 @@
 
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
 
-        i.ic-options_menu(@click="showProfileMenu = true")
+        i.ic-options_menu(@click.stop="showProfileMenu = true")
 
       div.profile-days(slot="content" v-if="isSelfPage && monetizationDays !== null")
         span {{ monetizationDays }}
@@ -14,12 +14,14 @@
 
   menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item
+      .text(@click.stop="buyService") Поддержка
+    .item
       .text.__txt-blue Отмена
     .item
       .text.__txt-red(@click.stop="logout") Выход
 
   .directbot-right-nav
-    right-nav-component(current="profile")
+    right-nav-component(current="profile" v-on:open-profile-menu="showProfileMenu = true")
 
   .section.top.bottom.db-bottom
     .section__content(v-cloak)
@@ -59,8 +61,8 @@
               span OK
 
         button.turn-on-bot-btn-desk.blue-btn(
-          @click="$router.push({name: 'connect-bot'})", v-if="!isMobile") ПОДКЛЮЧИТЬ
-        button.find-bloger-btn.blue-btn(v-if="!isMobile") НАЙТИ БЛОГЕРА
+          @click="$router.push({name: 'connect-bot'})", v-if="!isMobile && isAuth") ПОДКЛЮЧИТЬ
+        button.find-bloger-btn.blue-btn(v-if="!isMobile && isAuth") НАЙТИ БЛОГЕРА
 
 
 
@@ -69,14 +71,14 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю {{  postsCount }}  постов #[br] отправил {{ messagesCount }} сообщений
+          span мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
-            p.light(v-if="!postsCount") нет активных постов, ожидаю..
-            p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] отправил 5 сообщений
+            p.light(v-if="!chatsCount") нет активных постов, ожидаю..
+            p.light(v-if="chatsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
         .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
@@ -97,8 +99,10 @@
 </template>
 
 <script>
+import listen from 'event-listener';
+import * as userService from 'services/user';
 import * as productsService from 'services/products';
-
+import settings from 'root/settings';
 import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
@@ -130,7 +134,9 @@ export default {
       copyMessage: '',
       showCopyMessage: false,
       showProfileMenu: false,
-      timeID: null
+      timeID: null,
+      bodyListner: '',
+      supplierProfileID: 0
 
     }
 
@@ -171,18 +177,46 @@ export default {
 
     if (id) instagram_username = id
 
+    let replace = instagram_username ? instagram_username.replace(new RegExp("-", 'g'),"_") : null;
+
     store
-      .dispatch('openProfile', instagram_username )
+      .dispatch('openProfile', replace  )
       .then(()=>{
 
         next();
 
       })
-      .catch(()=>{
-        //если пользователь без профиля instagram
-        next()
 
-      })
+      .catch( () => {
+
+        next();
+
+      });
+
+
+  },
+
+  watch:{
+
+    '$route'(to, from) {
+
+      if(from.name === 'user') {
+
+        let user = profileService.getProfile().user
+
+        let id = user.instagram_name ? user.instagram_name : user.id;
+
+        store.dispatch('openProfile', id );
+
+        this.userShopId = id;
+
+        window.eventHub.$emit('updatePhotos', id)
+
+        this.listId = 'profile';
+
+      }
+
+    }
 
   },
 
@@ -190,6 +224,10 @@ export default {
     if(this.monetizationTestOver) {
       //this.$router.replace({name: 'connect-bot'});
     }
+
+    this.bodyListner = listen(document.body, 'click',()=>{
+      this.showProfileMenu = false
+    })
   },
 
   mounted(){
@@ -200,6 +238,7 @@ export default {
   },
 
   beforeDestroy(){
+    this.bodyListner.remove();
     if (this.copy) this.copy.destroy();
     clearInterval(this.timeID);
   },
@@ -209,16 +248,45 @@ export default {
     //filter
     caption_spaces,
 
+    buyService(){
+      this.$store.dispatch('createLead', settings.supportID )
+          .then(
+            ( lead ) => {
+              if ( lead !== undefined && lead !== null ) {
+                this.$router.push( { name: 'chat', params: { id: lead.id } } )
+              }
+            }
+          )
+
+    },
+
     updateProductsLogic(){
-      if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
-        this.timeID = setInterval(()=>{
-          productsService.lastProduct({ shop_id: this.userShopId })
+
+      function update(vm){
+        productsService.lastProduct({ shop_id: vm.supplierProfileID })
           .then(data=>{
-            let product = this.listProducts.some( item=> { return +item.id === data.id } )
+            let product = vm.listProducts.some( item=> { return +item.id === data.id } )
             if ( !product ) eventHub.$emit('updatePhotos');
           })
+      }
+
+
+
+      if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
+        this.timeID = setInterval(()=>{
+          if(!this.supplierProfileID) {
+            userService.get({}).then( user=> {
+              if(user.supplier_of) {
+                this.supplierProfileID = user.supplier_of[0];
+                update(this);
+              }
+            })
+          } else {
+            update(this);
+          }
         }, 15 * 1000)
       }
+
     },
 
     clipboardLogic(){
@@ -261,21 +329,30 @@ export default {
   },
 
   computed: {
-    messagesCount(){
 
+    postsCount(){
+
+      if(this.user && this.listProducts) {
+
+        let count = this.user.products_count;
+        let length = this.listProducts.length;
+        return count > length ? count : length;
+      }
       return 0;
 
+
+
     },
-    postsCount() {
+
+    chatsCount() {
 
       return this.getAllLeads.seller.length;
 
     },
+
     listId() {
 
       if(this.getPhotoConfig) return this.getPhotoConfig.listId;
-
-
 
     },
     isSelfPage(){

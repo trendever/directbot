@@ -39,7 +39,7 @@
     props: {
       directbot: {
         type: Boolean,
-        default: false
+        default: true
       },
       msg: {
         type: Object,
@@ -96,6 +96,9 @@
       },
       getUsername() {
         //сервисные сообщения
+        if(this.msg.user.name === 'directbotio'){
+          return '<b class="_blue">directbotio</b>';
+        }
         if(this.msg.user.name === 'trendever'){
           return '<b>trendever</b>';
         }

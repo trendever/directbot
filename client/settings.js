@@ -1,6 +1,11 @@
 import config from '../config'
 
 export default {
+
+  infoID: config.info_id || 21499,
+
+  supportID: config.support_id || 37318,
+
   promoProductID: config.promo_product_id,
 
   editProductID: config.edit_product_id,
@@ -9,6 +14,8 @@ export default {
 
   activateMonetization: config.activate_monetization,
 
-  monetizationHelpID: config.monetization_help_id
+  monetizationHelpID: config.monetization_help_id,
+
+  socket_server: config.socket_server
 
 }

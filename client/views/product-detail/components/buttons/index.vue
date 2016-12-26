@@ -30,6 +30,7 @@
       });
     },
     methods:{
+
       buyServiceProduct(){
 
         let productId = config.service_product_id === null ? 7833 : config.service_product_id;

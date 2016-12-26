@@ -27,6 +27,10 @@ var config = {
   /**
    * Other
    */
+  info_id: null,
+
+  support_id: null,
+
   activate_monetization: false,
 
   edit_product_id: 32929,

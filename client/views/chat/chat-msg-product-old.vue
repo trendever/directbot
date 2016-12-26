@@ -58,6 +58,9 @@
         'user'
       ]),
       getUsername() {
+        if(this.msg.user.name === 'directbotio'){
+          return '<b class="_blue">directbotio</b>';
+        }
         if ( this.isCustomer ) {
           return `<b>${this.msg.user.name}</b>`
         }

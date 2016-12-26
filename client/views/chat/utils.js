@@ -223,3 +223,33 @@ export const statusString = ( type, value, customerName ) => {
   }
 
 };
+
+
+
+
+export const getUserName = ( vm) => {
+
+  //сервисные сообщения
+  if(vm.msg.user.name === 'directbotio'){
+    return '<b class="_blue">directbotio</b>';
+  }
+  if(vm.msg.user.name === 'trendever'){
+    return '<b>trendever</b>';
+  }
+  if (vm.isCustomer) {
+    if (vm.msg.user.name.indexOf("customer_") >= 0){
+      return `<b>${vm.msg.user.name.replace("customer_","client")}</b>`
+    }
+    return `<b>${vm.msg.user.name}</b>`
+  }
+  if (vm.msg.user.role === leads.USER_ROLES.SUPPLIER.key) {
+    return `<b>${vm.getShopName}</b>`
+  }
+  if ( vm.getCurrentMember !== null ) {
+    if(vm.getCurrentMember.role === leads.USER_ROLES.CUSTOMER.key){
+      return `<b>${vm.getShopName}</b>`
+    }
+  }
+  return `<b>${vm.getShopName}</b> (${vm.msg.user.name})`
+
+}

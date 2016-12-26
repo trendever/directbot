@@ -19,6 +19,11 @@ export default {
 
     checkbot(){
 
+      if(!this.$store.getters.isAuth) {
+        this.$emit('checkbot');
+        return;
+      }
+
       this.$store.dispatch('setMonetization')
         .then(()=>{
           //Показывать части сайта после проверки с сервера

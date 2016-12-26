@@ -15,12 +15,15 @@ html,
 body {
 
   font: 400 16px $font__family;
+  height: 100%;
 }
 
 
 * {
   box-sizing: border-box;
 }
+
+
 
 
 .section {
@@ -30,9 +33,10 @@ body {
     max-width: 1050px;
     margin: 0 auto;
     position: relative;
-
+    padding-top: 50px;
     @media(--mobile) {
       max-width: 750px;
+      padding-top: 0px;
     }
   }
 

@@ -164,8 +164,8 @@
   .free-wrap
     button( :style="{zIndex: showBtns ? 190 : 0}",
       v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
-    button(v-if="isMobile", :style="{zIndex: showBtns ? 190 : 0}").ask-btn СПРОСИТЬ
-    button(v-if="!isMobile").ask-btn СПРОСИТЬ В ЧАТЕ
+    button(v-if="isMobile", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
+    button(v-if="!isMobile", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
 </template>
 <script>
 
@@ -173,7 +173,8 @@ import Hammer from 'hammerjs';
 import JQuery from 'jquery';
 import listen from 'event-listener';
 
-
+import { mapGetters } from 'vuex';
+import * as authService from 'services/auth';
 import settings from 'root/settings';
 import * as commonService from 'services/common';
 
@@ -193,7 +194,7 @@ export default {
     }
   },
   created(){
-    if(this.$store.getters.isAuth) {
+    if(this.isAuth) {
       this.$router.replace({name: 'profile'});
     }
   },
@@ -260,6 +261,9 @@ export default {
 
   },
   computed: {
+      ...mapGetters([
+        'isAuth'
+      ]),
       getLinkTitle(){
         if (this.phoneError){
           return "НЕВЕРНЫЙ НОМЕР";
@@ -280,6 +284,23 @@ export default {
     },
 
   methods: {
+    ask(){
+      if ( !this.isAuth ) {
+        authService
+          .fakeRegister()
+          .then(({token,user})=>{
+            this.$store.dispatch('authUser', { user, token })
+              .then( () => {
+                this.$store.dispatch('createLead',settings.infoID).then(lead=>{
+                  window.infoQuestions = true;
+                  this.$router.push({name: 'chat', params: { id: lead.id} })
+                }).catch(()=>{
+                  console.log('error')
+                })
+              })
+        });
+      }
+    },
     count(){
 
       return setInterval(()=>{

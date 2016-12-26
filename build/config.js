@@ -8,10 +8,10 @@ module.exports = {
   title: 'trendever2',
   vendor: Object.keys(pkg.dependencies),
   babel: {
-    babelrc: false,
+    babelrc: true,
     presets: [
       ['es2015', {modules: false}],
-      'stage-1'
+      'stage-2'
     ],
     plugins: [
       'transform-vue-jsx'

@@ -98,7 +98,8 @@
                 :class=' {error: errorPassword} ',
                 @keydown.enter='connectBot()',
                 v-model='password',
-                placeholder='Введите пароль от Instagram')
+                placeholder='Введите пароль от Instagram',
+                @click='password = "", errorPassword=false')
 
               .input__clear-btn(
                 v-if='password',
@@ -204,7 +205,7 @@ export default {
     confirmCode() {
       this.connectProcess = true;
       accountService
-        .confirm(this.code)
+        .confirm(this.login,this.code)
         .then(data=>{
           this.connectProcess = false;
           if(data !== null) {

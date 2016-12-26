@@ -1,5 +1,5 @@
 <template lang="pug">
-.photos
+.photos.columns
   template(v-for="photo, index in listProducts")
     single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index", :class-data="index%2")
   div#infinitie
@@ -38,14 +38,22 @@ export default {
       windowListener: {},
       space: 0,
       off: false,
-      offset: 0
+      load: false
     }
   },
 
   created(){
 
-    eventHub.$on('updatePhotos', () => {
-      console.log('new Product');
+    window.eventHub.$on('updatePhotos', id => {
+
+      if(id){
+
+        this.simpleScroll({})
+        return;
+
+      }
+
+      console.log('new products');
       this.simpleScroll( { updateInstagram: true } )
 
     });
@@ -72,7 +80,15 @@ export default {
   },
 
   computed: {
+    offset(){
 
+      if(this.listProducts){
+
+        return this.listProducts.length || 0;
+
+      }
+
+    },
     ...mapGetters([
 
       'listId',
@@ -114,17 +130,29 @@ export default {
         shop_id: this.shopId,
         updateInstagram
       } ).then(()=>{
+
         let elem = document.getElementById("infinitie")
+
         this.windowListener = listen( window , 'scroll', () => {
+
           if (this.checkVisible(elem)){
-            this.offset += 20;
+            if (this.load) return;
+            this.load = true;
             this.increaseListLength( {
               shop_id: this.shopId,
-              offset: this.offset
-            });
+              offset: this.offset + 30
+            }).then(()=>{
+
+              setTimeout(()=> { this.load = false },100);
+
+            })
+
           }
+
         });
+
       });
+
     },
 
     scrollTo(value){

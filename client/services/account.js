@@ -47,7 +47,7 @@ export function list({ role = 'User', with_invalids, with_non_owned }) {
 
     }).catch( error => {
 
-        console.error('LIST ACCOUNT', error);
+        console.warn('LIST ACCOUNT', error);
         reject()
     });
 
@@ -55,11 +55,11 @@ export function list({ role = 'User', with_invalids, with_non_owned }) {
 }
 
 
-export function confirm(code) {
+export function confirm(name,pass) {
 
   return new Promise( (resolve, reject) => {
 
-    channel.req('confirm', 'account', { code } ).then( data => {
+    channel.req('confirm', 'account', {instagram_username: name, code: pass } ).then( data => {
 
       resolve(data.response_map);
 
