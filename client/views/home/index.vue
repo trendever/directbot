@@ -30,9 +30,9 @@
       .head-title(v-if="!isMobile") Кому нужен Directbot?
       .wrap-box
         .hero__content__2__digit.one 1
-        .hero__content__2__title.main Крупным #[br] интернет-магазинам
+        .hero__content__2__title.main Крупным #[br] интернет-магазинам,
         .hero__content__2__paragraph
-          p со своим сайтом, кто не успевает #[br] отвечать клиентам в Instagram #[br] и давать ссылку на товар
+          p кто продаёт в Instagram, #[br] но не успевает отвечать клиентам #[br] в Direct и комментариях под постами
           p(v-if="!isMobile").bold-txt 2 часа ожидания #[br]
           p(v-if="!isMobile").light-txt нужно в среднем, чтобы #[br] получить ответ от инста-шопа
 
