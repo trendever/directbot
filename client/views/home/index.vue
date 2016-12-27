@@ -30,9 +30,9 @@
       .head-title(v-if="!isMobile") Кому нужен Directbot?
       .wrap-box
         .hero__content__2__digit.one 1
-        .hero__content__2__title.main Крупным #[br] интернет-магазинам
+        .hero__content__2__title.main Крупным #[br] интернет-магазинам,
         .hero__content__2__paragraph
-          p со своим сайтом, кто не успевает #[br] отвечать клиентам в Instagram #[br] и давать ссылку на товар
+          p кто продаёт в Instagram, #[br] но не успевает отвечать клиентам #[br] в Direct и комментариях под постами
           p(v-if="!isMobile").bold-txt 2 часа ожидания #[br]
           p(v-if="!isMobile").light-txt нужно в среднем, чтобы #[br] получить ответ от инста-шопа
 
@@ -162,9 +162,9 @@
     a.link-info(@click="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
   .free-wrap
-    button( :style="{zIndex: showBtns ? 190 : 0}",
+    button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
       v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
-    button(v-if="isMobile", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
+    button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
     button(v-if="!isMobile", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
 </template>
 <script>
