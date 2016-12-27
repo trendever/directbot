@@ -83,7 +83,9 @@
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
           span.save &nbspоператор #[br(v-if="!isMobile")]
-          span  начнет мониторить все #[br(v-if="isMobile")] ваши новые посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
+          span(v-if="isMobile").save начнет мониторить #[br(v-if="isMobile")]
+          span(v-if="!isMobile") начнет мониторить
+          span &nbspвсе ваши посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
 
 
       connect-button(v-if="isSelfPage && isMobile && !botActivity")
