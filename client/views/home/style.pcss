@@ -562,7 +562,9 @@
 }
 
 .directbot{
-  height: 100%;
+  @media(--tabletandless) {
+    height: 100%;
+  }
 }
 //Start first welcome screen on mobile and header on desktop
 .hero {
@@ -975,6 +977,7 @@
     text-align: center;
     margin: 40px auto;
     width: 80%;
+    color: $color__gray-dark;
   }
 
   //styles for the header on mob
@@ -1091,6 +1094,7 @@
       float: none;
       width: 476px;
       height: 88px;
+      padding-top: 13px;
       @media(--tabletandless) {
         height: 137px;
         line-height: 47px;
@@ -1626,6 +1630,7 @@
   &__tip{
     font-size: 16px;
     font-family: $font__family__light;
+    color: $color__gray-dark;
     @media(--tabletandless) {
       font-size: 28px;
       margin-top: 14px;
@@ -1934,6 +1939,9 @@
       width: auto;
       margin: 0;
     }
+    p{
+      color: $color__gray-dark;
+    }
   }
 }
 
@@ -2026,6 +2034,6 @@ button.try-free{
   &:hover{
     cursor: pointer;
     background-color: $color__white;
-    color: $color__blue;
+    color: $color__dark-blue;
   }
 }
