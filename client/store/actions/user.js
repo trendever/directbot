@@ -25,12 +25,12 @@ export const getValidUserObject = ( user, user_id ) => {
 };
 
 export const authUser = ( { commit }, { user, token } ) => {
-
-  if(user.is_fake) {
-
-    localStorage.setItem('fake_user', JSON.stringify(user));
-    localStorage.setItem('fake_token', token);
-
+  
+  if(user) {
+    if(user.is_fake) {
+      localStorage.setItem('fake_user', JSON.stringify(user));
+      localStorage.setItem('fake_token', token);
+    }
   }
 
   return new Promise( ( resolve, reject ) => {
@@ -124,7 +124,7 @@ export const authUser = ( { commit }, { user, token } ) => {
       {
 
         user: localStorage.getItem('fake_token'),
-        token: localStorage.getItem('fake_user')
+        token: JSON.parse(localStorage.getItem('fake_user'))
 
       }
 
