@@ -19,7 +19,7 @@ let state = {
 
 let getters = {
 
-fakeAction: state => state.fakeAction,
+fakeAction: state => state.fakeAction || localStorage.getItem('fake_action'),
 
 authData(state){
   return {
@@ -165,7 +165,7 @@ let mutations = {
   },
 
   [types.AUTH_SET_FAKE_ACTION] (state, value) {
-
+    localStorage.setItem('fake_action', value);
     state.fakeAction = value;
 
   }

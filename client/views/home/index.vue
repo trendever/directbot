@@ -194,7 +194,7 @@ export default {
     }
   },
   created(){
-    if(this.isAuth) {
+    if(this.isAuth && !this.isFake) {
       this.$router.replace({name: 'profile'});
     }
   },
@@ -262,7 +262,8 @@ export default {
   },
   computed: {
       ...mapGetters([
-        'isAuth'
+        'isAuth',
+        'isFake'
       ]),
       getLinkTitle(){
         if (this.phoneError){
@@ -285,22 +286,38 @@ export default {
 
   methods: {
     ask(){
+
+      let dispatch = this.$store.dispatch.bind(this);
+
+      function openChat(vm){
+        dispatch('createLead',settings.infoID)
+          .then(lead=>{
+            dispatch('setFakeAction', 'chat-info');
+            vm.$router.push({name: 'chat', params: { id: lead.id} })
+          },err => console.log(err))
+      }
+
+      if(localStorage.getItem('fake_token') && localStorage.getItem('fake_user')) {
+        dispatch('authUser', { null, null })
+          .then( () => {
+            openChat(this);
+          })
+        return;
+      }
+
       if ( !this.isAuth ) {
         authService
           .fakeRegister()
           .then(({token,user})=>{
-            this.$store.dispatch('authUser', { user, token })
+            dispatch('authUser', { user, token })
               .then( () => {
-                this.$store.dispatch('createLead',settings.infoID).then(lead=>{
-                  window.infoQuestions = true;
-                  this.$router.push({name: 'chat', params: { id: lead.id} })
-                }).catch(()=>{
-                  console.log('error')
-                })
+                openChat(this)
               })
         });
       }
+
     },
+
     count(){
 
       return setInterval(()=>{
@@ -308,6 +325,7 @@ export default {
       },4000)
 
     },
+
     openPopup(target){
       if (this.isMobile){
         this.$router.push({ name: 'popup', params: { id: target }})
@@ -317,22 +335,18 @@ export default {
       }
 
     },
+
     touchMove(e){
       if(this.scrollCnt.scrollTop < 2 * window.innerHeight ) {
         e.preventDefault();
       }
     },
+
     openInput(){
       this.inputOpened = !this.inputOpened;
       this.$nextTick(()=>{
         this.$els.input.focus()
       });
-    },
-    logout(){
-
-      this.logOut();
-      window.location = '/';
-
     },
 
     getLink(){

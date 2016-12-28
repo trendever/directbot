@@ -123,8 +123,8 @@ export const authUser = ( { commit }, { user, token } ) => {
 
       {
 
-        user: localStorage.getItem('fake_token'),
-        token: JSON.parse(localStorage.getItem('fake_user'))
+        token: localStorage.getItem('fake_token'),
+        user: JSON.parse(localStorage.getItem('fake_user'))
 
       }
 
