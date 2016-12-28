@@ -1,7 +1,7 @@
 <style src='./navbar.pcss'></style>
 <template lang="pug">
 
-.navbar-cnt(v-if='isAuth && isMobile')
+.navbar-cnt(v-if='isAuth && isMobile && !isFake')
   .navbar.section__content
     .navbar_i(:class='{"__active": current=="feed"}', @click='$router.push({name: "home"}), scrollTop')
       .navbar_i_wrap
