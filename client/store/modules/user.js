@@ -25,8 +25,9 @@ function picProfile( profile ) {
       avatar_url: profile.avatar_url,
       location  : profile.location,
       working_time  : profile.working_time,
-      products_count: profile.products_count
+      products_count: profile.products_count,
 
+      is_fake: profile.is_fake
 
     },
 
