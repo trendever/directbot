@@ -26,6 +26,13 @@ export const getValidUserObject = ( user, user_id ) => {
 
 export const authUser = ( { commit }, { user, token } ) => {
 
+  if(user.is_fake) {
+
+    localStorage.setItem('fake_user', JSON.stringify(user));
+    localStorage.setItem('fake_token', token);
+
+  }
+
   return new Promise( ( resolve, reject ) => {
 
     const { user: cookieUser } = profile.getProfile();
@@ -106,7 +113,21 @@ export const authUser = ( { commit }, { user, token } ) => {
 
     } else {
 
-      const { user, token } = profile.getProfile();
+      const { user, token } = profile.getProfile().token
+
+      ? 
+
+        profile.getProfile()
+
+      :
+
+      {
+
+        user: localStorage.getItem('fake_token'),
+        token: localStorage.getItem('fake_user')
+
+      }
+
 
       if ( user && token ) {
 
