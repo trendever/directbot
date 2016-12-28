@@ -48,6 +48,7 @@
     computed: {
       ...mapGetters([
         //user
+        'fakeAction',
         'isFake',
         'getUseDays',
         //chat
@@ -256,7 +257,7 @@
         } )
       },
       approveChat(e){
-        
+
         if (this.isFake && this.fakeAction === 'chat-product'){
 
           let id = this.$route.params.id;

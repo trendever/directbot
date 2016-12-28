@@ -203,8 +203,6 @@ export default {
         .then(() => {
           this.$root.$emit('checkbot-after')
 
-          localStorage.removeItem('fake_user');
-          localStorage.removeItem('fake_token');
           localStorage.removeItem('fake_action');
           
           if(!this.anotherName) {
