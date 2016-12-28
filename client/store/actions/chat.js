@@ -371,7 +371,7 @@ export const receiveMessage = ( { commit, state }, conversation_id, messages ) =
 
       if ( userID( store.state.user ) !== msgUserId ) {
 
-        if ( state.conversation.id === msg.conversation_id ) {
+        if ( state.id === msg.conversation_id ) {
 
           if ( getLastMessageId( state ) !== msg.id ) {
 
@@ -486,7 +486,7 @@ export const setStatus = ( { commit, state }, status, type, cancel_reason = null
     {
       dirty: true,
       id: Date.now() + Math.random(),
-      conversation_id: state.conversation.id,
+      conversation_id: state.id,
       parts: [ {
         content: JSON.stringify( {
           type: type,
@@ -498,11 +498,11 @@ export const setStatus = ( { commit, state }, status, type, cancel_reason = null
     }
   ]
 
-  const lead = getLeadByConversationId(store.state.leads, state.conversation.id )
+  const lead = getLeadByConversationId(store.state.leads, state.id )
 
   if ( lead !== null ) {
 
-    commit( types.CONVERSATION_RECEIVE_MESSAGE, dirtyStatusMessage, state.conversation.id )
+    commit( types.CONVERSATION_RECEIVE_MESSAGE, dirtyStatusMessage, state.id )
 
     return new Promise( ( resolve, reject ) => {
       leads
@@ -518,7 +518,7 @@ export const setStatus = ( { commit, state }, status, type, cancel_reason = null
   } else {
 
     console.error( '[ ACTION/CHAT ] - В момент установки статуса lead не может быть null.', {
-      conversation_id: state.conversation.id
+      conversation_id: state.id
     } )
 
   }
