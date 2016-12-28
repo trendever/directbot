@@ -169,9 +169,6 @@ export default {
       messages.offMsg( this.onMessage );
     }
 
-    if(this.isFake) {
-      this.$store.dispatch('logOut');
-    }
   },
   computed: {
 
@@ -232,7 +229,7 @@ export default {
         .setConversation( this.lead_id )
 
         .then(()=>{
-          if(this.fakeAction === 'chat-info') return true;
+          if(this.fakeAction === 'chat-info' && this.isFake) return true;
           return messages
             .find(this.getId, null, 70, false)
             .then((data)=>{

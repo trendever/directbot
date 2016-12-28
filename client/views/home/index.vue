@@ -297,11 +297,8 @@ export default {
           },err => console.log(err))
       }
 
-      if(localStorage.getItem('fake_token') && localStorage.getItem('fake_user')) {
-        dispatch('authUser', { null, null })
-          .then( () => {
-            openChat(this);
-          })
+      if(this.isFake && this.isAuth) {
+        openChat(this);
         return;
       }
 

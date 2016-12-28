@@ -42,8 +42,7 @@
       return {
         txtMsg: '',
         directbot: true,
-        fakeRegCount: 0,
-        forceApprove: false
+        fakeRegCount: 0
       }
     },
     computed: {
@@ -257,13 +256,16 @@
         } )
       },
       approveChat(e){
-        if (this.isFake && !this.forceApprove){
+        
+        if (this.isFake && this.fakeAction === 'chat-product'){
+
           let id = this.$route.params.id;
           window.fakeAuth = {text: "чтобы не пропустить ответ от", data: this.getShopName}
           this.setCallbackOnSuccessAuth(()=>{
             window.fakeUserRegistrationDone = true;
             this.$router.push({name: 'chat', params: { id }})
           })
+
           this.$router.replace( { name: 'auth' } );
           return;
 
