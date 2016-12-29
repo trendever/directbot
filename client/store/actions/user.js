@@ -25,7 +25,7 @@ export const getValidUserObject = ( user, user_id ) => {
 };
 
 export const authUser = ( { commit }, { user, token } ) => {
-
+  
   return new Promise( ( resolve, reject ) => {
 
     const { user: cookieUser } = profile.getProfile();
@@ -107,6 +107,7 @@ export const authUser = ( { commit }, { user, token } ) => {
     } else {
 
       const { user, token } = profile.getProfile();
+
 
       if ( user && token ) {
 

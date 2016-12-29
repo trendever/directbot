@@ -52,15 +52,25 @@
         }
 
         if (this.isFake){
-          if (this.$route.name === window.before.name && window.before.prev){
-            this.$router.push({ name: window.before.prev.name, params: window.before.prev.params})
-            return;
+
+          if(window.before) {
+            if (this.$route.name === window.before.name && window.before.prev){
+              this.$router.push({ name: window.before.prev.name, params: window.before.prev.params})
+              return;
+            }
+            this.$router.push({ name: window.before.name, params: window.before.params})  
           }
-          this.$router.push({ name: window.before.name, params: window.before.params})
+
+          this.$router.push({name: "home"})
+
         }else{
+
           this.$router.push({name: "chat_list"})
+
         }
+
       }
+
     },
 
     beforeDestroy(){

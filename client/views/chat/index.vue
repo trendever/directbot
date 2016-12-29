@@ -158,14 +158,17 @@ export default {
   },
 
   beforeDestroy() {
+
     if(this.timerId) {
       clearInterval(this.timerId);
     }
+
     if ( this.isAuth ) {
       this.scrollListener.remove();
       this.closeConversation();
       messages.offMsg( this.onMessage );
     }
+
   },
   computed: {
 
@@ -176,7 +179,8 @@ export default {
     },
 
     ...mapGetters([
-
+      'fakeAction',
+      'isFake',
       'imgPopUpUrl',
       'imgWidth',
       'imgHeight',
@@ -225,7 +229,7 @@ export default {
         .setConversation( this.lead_id )
 
         .then(()=>{
-          if(window.infoQuestions) return true;
+          if(this.fakeAction === 'chat-info' && this.isFake) return true;
           return messages
             .find(this.getId, null, 70, false)
             .then((data)=>{

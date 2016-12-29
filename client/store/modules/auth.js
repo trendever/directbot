@@ -10,12 +10,16 @@ let state = {
 
   instagram: true,
 
-  callbackOnSuccess: null, // function
+  callbackOnSuccess: null, // function,
+
+  fakeAction: '', // chat-info || chat-product
 
 };
 
 
 let getters = {
+
+fakeAction: state => state.fakeAction || localStorage.getItem('fake_action'),
 
 authData(state){
   return {
@@ -34,6 +38,12 @@ callbackOnSuccessAuth(state){
 
 
 let actions = {
+
+  setFakeAction({ commit }, value) {
+
+    commit(types.AUTH_SET_FAKE_ACTION, value);
+
+  },
 
   saveAuthData({ commit }, { phone, username, instagram }){
 
@@ -153,6 +163,12 @@ let mutations = {
   [types.AUTH_CLEAR_CALLBACK_ON_SUCCEESS] (state) {
     state.callbackOnSuccess = null
   },
+
+  [types.AUTH_SET_FAKE_ACTION] (state, value) {
+    localStorage.setItem('fake_action', value);
+    state.fakeAction = value;
+
+  }
 
 };
 

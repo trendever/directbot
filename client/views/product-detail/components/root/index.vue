@@ -185,7 +185,8 @@ export default {
     _buy( productId ){
 
       if ( !this.isAuth ) {
-        auth.fakeRegister().then(({token,user})=>{
+
+        auth.fakeRegister().then( ( { token, user } ) => {
           this.authUser( { user, token }).then( () => { this._buy(productId) } );
         });
 
@@ -196,6 +197,7 @@ export default {
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
+                if(this.isFake) this.$store.dispatch('setFakeAction', 'chat-product')
                 this.$router.push( { name: 'chat', params: { id: lead.id } } )
               }
             }
