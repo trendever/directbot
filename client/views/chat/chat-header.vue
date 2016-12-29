@@ -45,29 +45,22 @@
       },
       leftBtnAction(){
 
-        if(window.infoQuestions){
-          this.$store.dispatch('logOut')
-          this.$router.push({name: 'home'})
-          return;
-        }
-
-        if (this.isFake){
-
-          if(window.before) {
-            if (this.$route.name === window.before.name && window.before.prev){
-              this.$router.push({ name: window.before.prev.name, params: window.before.prev.params})
-              return;
-            }
-            this.$router.push({ name: window.before.name, params: window.before.params})  
-          }
+        if (this.isFake && this.fakeAction === 'chat-info'){
 
           this.$router.push({name: "home"})
-
-        }else{
-
-          this.$router.push({name: "chat_list"})
+          return;
 
         }
+
+        if (this.isFake && this.fakeAction === 'chat-product'){
+
+          this.$router.push({name: "product_detail", params: { id: this.$route.query.product }})
+          return;
+
+        }
+
+        this.$router.push({name: "chat_list"})
+
 
       }
 
@@ -89,6 +82,7 @@
 
     computed: {
       ...mapGetters([
+        'fakeAction',
         'getId',
         'getLeadId',
         'getStatusName',

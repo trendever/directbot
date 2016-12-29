@@ -198,10 +198,27 @@ export default {
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
                 if(this.isFake) this.$store.dispatch('setFakeAction', 'chat-product')
-                this.$router.push( { name: 'chat', params: { id: lead.id } } )
+
+                let path = Object.assign(
+
+                  {
+                    name: 'chat',
+                    params: { id: lead.id },
+                  },
+
+                  this.isFake ?
+
+                  { query: { product: this.productId } }
+
+                  :
+
+                  {})
+
+
+                this.$router.push(path)
+
               }
-            }
-          )
+          })
           .catch(
             ( error ) => {
               if ( error === leads.ERROR_CODES.UNATHORIZED ) {
