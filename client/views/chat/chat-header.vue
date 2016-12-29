@@ -59,7 +59,7 @@
 
         }
 
-        this.$router.push({name: "chat_list"})
+        this.$router.push({name: "product_detail"})
 
 
       }
