@@ -161,7 +161,7 @@
   .free-connect
     a.link-info(@click="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
-  .free-wrap
+  .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
     button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
       v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
     button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
@@ -241,17 +241,7 @@ export default {
     //Scroll
 
     this.scrollHandler = listen(window, 'scroll',()=>{
-
-      if( this.isMobile) {
-
-        this.showBtns = document.body.scrollTop > window.innerHeight
-
-      } else {
-
-        this.showBtns = true;
-
-      }
-
+      this.showBtns = document.body.scrollTop > window.innerHeight;
     })
 
   },
