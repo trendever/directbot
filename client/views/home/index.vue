@@ -190,7 +190,8 @@ export default {
       yesScreen: true,
       noScreen: false,
       showPopup: false,
-      popupUrl: ""
+      popupUrl: "",
+      landingCounter: 4783
     }
   },
   created(){
