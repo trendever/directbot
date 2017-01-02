@@ -581,7 +581,7 @@
 
     text-align: center;
 
-    background: url(./img/Bgr_clg-blue.png) no-repeat;
+    background: url(./img/Bgr_clg-blue-larger.png) no-repeat;
 
     background-size: 100% 453px;
 
@@ -592,6 +592,12 @@
       background-size: cover;
       background-position-x: 0px;
       height: 45.5%;
+    }
+
+    @media (min-width: 800px) {
+      background-repeat:no-repeat;
+      background-size:auto;
+      background-position:center top;
     }
     &:after{
       content: '';
