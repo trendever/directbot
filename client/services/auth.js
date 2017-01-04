@@ -53,8 +53,8 @@ export function setData(phone, username, instagram) {
 
     channel.req('set_data', 'user', request).then( data => {
       resolve(true);
-    }).catch( error => {
-      reject();
+    }).catch( errorData => {
+      reject(errorData);
     });
 
   });

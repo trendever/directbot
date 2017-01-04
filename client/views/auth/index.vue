@@ -94,7 +94,8 @@ const PLACEHOLDER = {
   errorLoginFormat: 'Только латинские буквы...',
   errorNoLogin: 'Введите свое имя',
   errorNoPhone: 'Введите номер телефона',
-  errorNoData: 'Заполните поле'
+  errorNoData: 'Заполните поле',
+  errorDublicateFormat: 'Телефонный номер занят'
 }
 
 export default {
@@ -109,6 +110,7 @@ export default {
       textLink: TEXT_LINK.instagramMode,
       instagram: true,
       showTitleSlider: true,
+      dublicate: false
     }
   },
   mounted() {
@@ -230,7 +232,14 @@ export default {
       if (this.isFake && window.fakeAuth){
         this.setData().then( ()=> {
           this.$router.push({ name: 'confirm' });
-        }).catch( (error) => {
+        }).catch( (errorData) => {
+
+          if(errorData.log_list){
+           if( errorData.log_list[0].user_msg === 'rpc error: code = 2 desc = User exists'){
+            this.dublicate = true;
+           }
+          }
+
           this.signin().then( ()=> {
             this.setCallbackOnSuccessAuth(()=>{
               this.$router.push({name: 'home'});
@@ -258,7 +267,7 @@ export default {
     onErrorPhone() {
       this.phone = '';
       this.errorPhone = true;
-      this.phone = PLACEHOLDER['errorPhoneFormat'];
+      this.phone = this.dublicate ? PLACEHOLDER['errorDublicateFormat'] : PLACEHOLDER['errorPhoneFormat'];
     },
 
     // remove error class from <input> phone
@@ -270,7 +279,6 @@ export default {
         this.phone = '';
       };
     },
-
     onErrorLogin() {
       this.login =  TEXT_LINK['errorLoginMesage'];
       this.errorLogin =  true;
