@@ -103,15 +103,19 @@ export const getCustomerId = ( state ) => {
 
 export const getMessageByLead = ( conversation , lead ) => {
 
-  if ( lead.chat ) {
+  if(lead) {
 
-    if ( lead.chat.id ) {
+    if ( lead.chat ) {
 
-      if ( conversation.all.hasOwnProperty( lead.chat.id ) ) {
+      if ( lead.chat.id ) {
 
-        if ( Array.isArray( conversation.all[ lead.chat.id ] ) ) {
+        if ( conversation.all.hasOwnProperty( lead.chat.id ) ) {
 
-          return conversation.all[ lead.chat.id ];
+          if ( Array.isArray( conversation.all[ lead.chat.id ] ) ) {
+
+            return conversation.all[ lead.chat.id ];
+
+          }
 
         }
 
@@ -120,6 +124,7 @@ export const getMessageByLead = ( conversation , lead ) => {
     }
 
   }
+
 
   return null;
 
@@ -287,20 +292,25 @@ export const getLastMessageId = ( state ) => {
 
   const { user_id } = getCurrentMember( state );
 
-  if ( lead.chat ) {
+  if ( lead ) {
 
-    if ( lead.chat.members ) {
+    if ( lead.chat ) {
 
-      return lead
-        .chat
-        .members
-        .filter( member => member.user_id !== user_id )
-        .map( member => member.last_message_id )
-        .sort( ( a, b ) => b - a )[ 0 ];
+      if ( lead.chat.members ) {
+
+        return lead
+          .chat
+          .members
+          .filter( member => member.user_id !== user_id )
+          .map( member => member.last_message_id )
+          .sort( ( a, b ) => b - a )[ 0 ];
+
+      }
 
     }
 
   }
+
 
 };
 
@@ -323,6 +333,7 @@ export const getInviteShop = ( state ) => {
     }
 
   }
+
 
   console.warn( 'Нет лида или  магазина или поставщика', lead );
 

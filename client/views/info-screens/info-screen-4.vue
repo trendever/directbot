@@ -4,16 +4,3 @@
   .description._4 Directbot сканирует твой #[br(v-if="!isMobile")] Instagram на ключевые слова #[br(v-if="!isMobile")] и уведомляет оператора #[br(v-if="isMobile")] о клиентах
 </template>
 
-<script>
-export default {
-  methods: {
-    closePage(){
-
-      this.$emit('info-popup.close')
-    }
-  }
-}
-</script>
-
-<style lang="css">
-</style>

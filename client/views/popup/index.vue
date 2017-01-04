@@ -1,8 +1,8 @@
 <template lang="pug">
 #info-popup
 	.popup-content
-		i.ic-close(v-on:click="closeView")
-		component(v-bind:is="currentView")
+		i.ic-close(v-on:click="$router.push({ name: 'home'})")
+		component(v-bind:is="$route.params.id")
 
 </template>
 
@@ -19,20 +19,6 @@ import infoScreen9 from 'views/info-screens/info-screen-9.vue';
 import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 
 export default {
-	data(){
-		return {
-			currentView: this.$route.params.id
-		}
-	},
-	methods:{
-		closeView(){
-			if (this.isMobile){
-				history.back();
-			}else{
-				parent.postMessage({name:"Close"}, "*");
-			}
-		}
-	},
 	components:{
 		"is1" : infoScreen1,
 		"is2" : infoScreen2,
@@ -53,7 +39,7 @@ export default {
 	#info-popup{
 		width: 100%;
 		height: 100%;
-		z-index: 110;
+		z-index: 310;
 		position: fixed 0 0 * 0;
 
 		.popup-content{

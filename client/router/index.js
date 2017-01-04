@@ -10,6 +10,8 @@ let router = new Router({
 
 	scrollBehavior (to, from, savedPosition) {
 
+    if(to.name === 'home-info') return;
+
     let item = `${to.name}.scroll`;
 
     window.scrollTo(0, +localStorage.getItem(item));
@@ -17,11 +19,28 @@ let router = new Router({
 	},
 
 	routes: [
-
+    { path: '/', redirect: { name: 'home' }},
 		{
 			name: 'home',
-      path: '/',
-      component: require('views/home/index.vue')
+      path: '/home',
+      component: require('views/home/index.vue'),
+      children: [
+        {
+          path: '',
+          component: {
+              render(createElement) {
+              return createElement('div', '')
+            },
+          }
+        },
+
+        {
+          name: 'home-info',
+          path: ':id',
+          component:  Popup
+        }
+
+      ]
 		},
 		{
 		  name: 'chat_list',
@@ -101,7 +120,9 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next)=>{
-
+  if(from.name === 'home-info')
+    localStorage.setItem(`home.scroll`, window.scrollY);
+  else
   localStorage.setItem(`${from.name}.scroll`, window.scrollY);
 
   next();

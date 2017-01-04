@@ -1,9 +1,8 @@
 <style src='./style.pcss'></style>
 <template lang="pug">
 #home.directbot
+  router-view
   .section.hero
-    div.hero-popup(v-if="showPopup")
-      iframe#popupiframe(v-bind:src="popupUrl")
     .section__content(ref="screenOne").hero__content
       .profile-header
         .profile-header__center
@@ -204,6 +203,7 @@ export default {
     this.timeID = this.count();
 
     this.$root.$on('postMessage',(msg) => {
+      this.showPopup = false;
       let fra = document.getElementById("popupiframe");
       if(fra && msg.data && msg.data.name == "Close" && msg.source == fra.contentWindow) {
         this.showPopup = false;
@@ -315,13 +315,7 @@ export default {
     },
 
     openPopup(target){
-      if (this.isMobile){
-        this.$router.push({ name: 'popup', params: { id: target }})
-      }else{
-        this.showPopup = true;
-        this.popupUrl = window.location.origin + "/popup/" + target;
-      }
-
+      this.$router.push({ name: 'home-info', params: { id: target }})
     },
 
     touchMove(e){

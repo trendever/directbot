@@ -4,16 +4,3 @@
   .description._6 Оператор через Directbot интегрируется в ваш #[br] Instagram
 </template>
 
-<script>
-export default {
-  methods: {
-    closePage(){
-
-      this.$emit('info-popup.close')
-    }
-  }
-}
-</script>
-
-<style lang="css">
-</style>
