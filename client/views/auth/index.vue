@@ -108,10 +108,9 @@ export default {
       height: 'static',
       textLink: TEXT_LINK.instagramMode,
       instagram: true,
-      showTitleSlider: true
+      showTitleSlider: true,
     }
   },
-
   mounted() {
     this.$nextTick(()=>{
       this.height = `${ document.body.scrollHeight }px`;
@@ -136,7 +135,7 @@ export default {
       'isFake',
     ]),
     placeholder(){
-      return this.isFake ? PLACEHOLDER.fakeMode : PLACEHOLDER.instagramMode;
+      return this.isFake && window.fakeAuth ? PLACEHOLDER.fakeMode : PLACEHOLDER.instagramMode;
     },
     fakeReg(){
       if (window.fakeAuth){
@@ -228,7 +227,7 @@ export default {
       this.save();
 
 
-      if (this.isFake){
+      if (this.isFake && window.fakeAuth){
         this.setData().then( ()=> {
           this.$router.push({ name: 'confirm' });
         }).catch( (error) => {
