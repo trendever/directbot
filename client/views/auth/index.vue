@@ -164,11 +164,15 @@ export default {
       this.save();
 
       if (this.isFake){
-        console.log("CLOSE AUTH CLICK")
-        console.log(window.before)
-        if (window.before.name === "chat_list" || window.before.name === "profile"){
-        this.$router.push({ name: "home"})
-            return
+        if(window.before) {
+          if (window.before.name === "chat_list" || window.before.name === "profile"){
+          this.$router.push({ name: "home"})
+          return
+          }
+        } else {
+
+          this.$router.go(-1);
+          return
         }
       }
 
