@@ -130,7 +130,7 @@ export default {
         shop_id: this.shopId,
         updateInstagram
       } ).then(()=>{
-
+        if(this.listProducts.length) window.eventHub.$emit('hide-grey');
         let elem = document.getElementById("infinitie")
 
         this.windowListener = listen( window , 'scroll', () => {
