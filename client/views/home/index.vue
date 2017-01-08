@@ -243,7 +243,13 @@ export default {
 
     this.scrollHandler = listen(window, 'scroll',()=>{
       this.showBtns = document.body.scrollTop > window.innerHeight;
-    })
+    });
+
+      if(window.browser.instagram) {
+        document.querySelector('.hero__content').classList.add("insta-scr1");
+        document.querySelector('.hero__content__2').classList.add("insta-scr2");
+        document.querySelector('.hero__content__landing').classList.add("insta-landing");
+      };
 
   },
   beforeDestroy(){
