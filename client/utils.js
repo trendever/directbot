@@ -186,6 +186,7 @@ export const browser = {
   ipod4: /ipod.*OS 4/i.test(_ua),
   ipad: /ipad/i.test(_ua),
   ios: /iphone|ipod|ipad/.test(_ua),
+  instagram: /instagram/i.test(_ua),
   android: /android/i.test(_ua),
   bada: /bada/i.test(_ua),
   mobile: /iphone|ipod|ipad|opera mini|opera mobi|iemobile|android/i.test(_ua),
@@ -377,4 +378,3 @@ export const  navigateTolink = (href, newTab) => {
   a.click();
 
 }
-
