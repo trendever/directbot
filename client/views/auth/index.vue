@@ -5,7 +5,8 @@
     .signup__close.__hello(v-on:click='closePage'): i.ic-close
     .section
       .column-desktop-50.header(v-if="showTitleSlider")
-        h1.accept Вход и регистрация
+        h1.accept(v-if="!fakeReg") Вход и регистрация
+        h1.accept(v-if="fakeReg") Регистрация
 
       .column-desktop-50.column-desktop-right
         template(v-if="showTitleSlider && !fakeReg")
@@ -40,7 +41,7 @@
                 :placeholder='placeholder')
               .input__clear-btn(
                 v-if='login',
-                v-on:click='login = ""')
+                v-on:click='login = "", dublicate = false')
                 i.ic-close.clear
             .input.phone
               i.ic-mobile-phone
@@ -57,7 +58,7 @@
                 placeholder='Введите номер телефона')
               .input__clear-btn(
                 v-if='phone',
-                v-on:click='phone = ""')
+                v-on:click='phone = "", dublicate = false')
                 i.ic-close.clear
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
@@ -95,7 +96,10 @@ const PLACEHOLDER = {
   errorNoLogin: 'Введите свое имя',
   errorNoPhone: 'Введите номер телефона',
   errorNoData: 'Заполните поле',
-  errorDublicateFormat: 'Телефонный номер занят'
+  errorDublicateFormat: [
+  'Имя или номер',
+  'уже заняты'
+  ]
 }
 
 export default {
@@ -247,6 +251,7 @@ export default {
             this.$router.push({ name: 'confirm' });
           }).catch( (error) => {
              this.onErrorPhone();
+             this.onErrorLogin()
           })
         })
       }else{
@@ -254,6 +259,7 @@ export default {
           this.$router.push({ name: 'confirm' });
         }).catch( (error) => {
           this.onErrorPhone();
+
         })
       }
 
@@ -267,7 +273,7 @@ export default {
     onErrorPhone() {
       this.phone = '';
       this.errorPhone = true;
-      this.phone = this.dublicate ? PLACEHOLDER['errorDublicateFormat'] : PLACEHOLDER['errorPhoneFormat'];
+      this.phone = this.dublicate ? PLACEHOLDER['errorDublicateFormat'][1] : PLACEHOLDER['errorPhoneFormat'];
     },
 
     // remove error class from <input> phone
@@ -280,7 +286,7 @@ export default {
       };
     },
     onErrorLogin() {
-      this.login =  TEXT_LINK['errorLoginMesage'];
+      this.login = this.dublicate ? PLACEHOLDER['errorDublicateFormat'][0] : TEXT_LINK['errorLoginMesage'];
       this.errorLogin =  true;
     },
 

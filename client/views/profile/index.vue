@@ -79,7 +79,7 @@
             p.bold Активирован #[br]
             p.light(v-if="!chatsCount") нет активных постов, ожидаю..
             p.light(v-if="chatsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
-        .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1")
+        .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1 && !hideGrey")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
           span.save &nbspоператор #[br(v-if="!isMobile")]
@@ -127,7 +127,7 @@ export default {
   let showBanner = (window.localStorage.getItem('isMainBannerShow') === null) ? true : false;
 
     return {
-
+      hideGrey: false,
       loaded: true,
       getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
@@ -233,6 +233,7 @@ export default {
   },
 
   mounted(){
+    window.eventHub.$on('hide-grey',() => { this.hideGrey = true });
 
     this.clipboardLogic();
     this.updateProductsLogic();
