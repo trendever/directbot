@@ -75,21 +75,21 @@
         .hero__content__landing__icon-1
           img(src="./img/icon-1.png")
         .hero__content__landing__sub-title Отвечает всем #[br] клиентам сразу
-        .hero__content__landing__caption Со смайлами&nbsp &#128526 &nbsp
-          | уделит внимание #[br(v-if="!isMobile")] каждому, быстро ответит. #[br]
-          a.link-info(@click="openPopup('is1')") Ни один клиент не успеет передумать
+        .hero__content__landing__caption Со &#128526 смайлами #[br(v-if="!isMobile")]
+          | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
+          a.link-info(@click="openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
       .info-box
         .hero__content__landing__icon-2
           img(src="./img/icon-2.png")
         .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
-        .hero__content__landing__caption Больше не нужно отвечать #[br(v-if="isMobile")] и спрашивать #[br(v-if="!isMobile")] одно и то же. #[br(v-if="isMobile")]
+        .hero__content__landing__caption Больше не нужно отвечать #[br] и спрашивать одно и то же. #[br]
           a.link-info(@click="openPopup('is2')")
             | Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
       .info-box
         .hero__content__landing__icon-3
           img(src="./img/icon-3.png")
-        .hero__content__landing__sub-title Подключается быстро, работает самостоятельно
-        .hero__content__landing__caption Подключи нашего оператора к своему  Instagram-магазину в один клик. #[br]
+        .hero__content__landing__sub-title Подключается #[br(v-if="!isMobile")] в один клик
+        .hero__content__landing__caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
           a.link-info(@click="openPopup('is3')")
             | Ничего не надо скачивать
     .hero__content__landing__title.middle Что делает #[br(v-if="isMobile")] наш  оператор?
