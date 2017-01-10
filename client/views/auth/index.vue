@@ -175,8 +175,8 @@ export default {
           return
           }
         } else {
-
-          this.$router.go(-1);
+          window.history.back();
+          //this.$router.go(-1);
           return
         }
       }
