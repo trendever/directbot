@@ -529,23 +529,15 @@
   font-family: GradeFive;
   src: url(./font/PFKidsPro-GradeFive.ttf);
 }
-.insta-scr1 {
+/*.insta-scr1 {
   height: 42% !important;
-
-  @media(--iphone5) {
-    height: 40% !important;
-  }
 }
 .insta-scr2 {
   height: 49.3% !important;
-
-  @media(--iphone5) {
-    height: 47.3% !important;
-  }
 }
 .insta-landing {
   margin-top: -232px !important;
-}
+}*/
 #home{
   background-image: url(./img/faces-02.jpg), url(./img/faces-01.jpg), url(./img/faces-03.jpg), url(./img/faces-04.png), url(./img/faces-07.jpg), url(./img/faces-06.png), url(./img/faces-05.png);
   background-repeat: no-repeat;
@@ -571,7 +563,7 @@
   position: relative;
   z-index: 101;
   @media(--tabletandless){
-    height: 200%;
+    height: 100%;
   }
   &__content {
     position: relative;
@@ -581,17 +573,39 @@
 
     text-align: center;
 
-    background: url(./img/Bgr_clg-blue-larger.png) no-repeat;
+    background: url(./img/Bgr_clg-blue_1440.png) no-repeat;
 
     background-size: 100% 453px;
 
     background-position-x: -2px;
 
     @media(--tabletandless) {
-      background: url(./img/Bgr_clg_mob.jpg) no-repeat;
+      background: url(./img/Bgr_clg_mob.jpg), no-repeat;
       background-size: cover;
       background-position-x: 0px;
-      height: 45.5%;
+      height: 100%;
+    }
+
+    @media(--largedesktop) {
+      background: url(./img/Bgr_clg-blue-larger.png) no-repeat;
+      background-size: 100% 453px;
+    }
+
+    .how-btn {
+      display: none;
+      @media(--tabletandless) {
+        background-image: url(./img/Pattern_bgr_mob.svg);
+        display: inline-block;
+        height: 100px;
+        width: 100%;
+        font-size: 36px;
+        color: #fff;
+        font-family: $font__family__light;
+        padding-top: 30px;
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+      }
     }
 
     &:after{
@@ -770,6 +784,9 @@
 //End first welcome screen on mobile and header on desktop
 
 //Start second welcome screen on mobile and bottom part of desktop header
+.container {
+  height: 100%;
+}
 .hero__content__2{
   display: -webkit-flex;
   display: -ms-flex;
@@ -778,11 +795,12 @@
   top: 572px;
   width: 100%;
   justify-content: space-around;
+  z-index: 1002;
   @media(--tabletandless){
     position: relative;
     top:0;
     display: inline-block !important;
-    height: 54.5%;
+    height: 100%;
     text-align: center;
     background-image: url(./img/Pattern_bgr_mob.svg);
     background-repeat: no-repeat;
@@ -829,6 +847,10 @@
     margin: 5px 0px 43px 140px;
     @media(--tabletandless) {
       margin: 40px auto 0px;
+    }
+
+    @media(--iphone5) {
+      margin-top: 10px;
     }
   }
   .two{
@@ -980,6 +1002,10 @@
     margin: 40px auto;
     width: 80%;
     color: $color__gray-dark;
+
+    @media(--tabletandless) {
+      width: 100%;
+    }
   }
 
   //styles for the header on mob
@@ -1004,9 +1030,6 @@
   &__top-scheme{
     width: 100%;
     position: relative;
-    @media(--tabletandless) {
-      padding-top: 115px;
-    }
 
     .text-box{
       float: left;
@@ -1064,7 +1087,7 @@
         position: absolute;
         height: 132px;
         width: 624px;
-        top: 507px;
+        top: 350px;
         padding: 14px 20px;
         margin: 42px 0px 0px 0px;
       }
@@ -1194,7 +1217,7 @@
       z-index: 0;
 
       @media(--tabletandless){
-        top: 735px;
+        top: 577px;
         left: 288px;
         right: auto;
       }
@@ -1828,10 +1851,11 @@
 .enter__btn{
   display: none !important;
   @media(--tabletandless) {
+    border-radius: 0px;
     display: inline-block !important;
     margin-bottom: 0px !important;
     position: absolute;
-    bottom: 0;
+    bottom: 99px;
     left: 0;
     width: 100% !important;
     font-size: 36px !important;
