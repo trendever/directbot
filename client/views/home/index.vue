@@ -22,10 +22,11 @@
         button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
       button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
         | ВХОД И РЕГИСТРАЦИЯ
-
-
-    .hero__content__2(ref="screenTwo")
       a.how-btn(v-on:click="scrollFirst") КОМУ НУЖЕН DIRECTBOT?
+
+  .container
+    .hero__content__2(ref="screenTwo")
+      //-a.how-btn(v-on:click="scrollFirst") КОМУ НУЖЕН DIRECTBOT?
       .head-title(v-if="!isMobile") Кому нужен Directbot?
       .wrap-box
         .hero__content__2__digit.one 1
@@ -53,12 +54,7 @@
   .hero__content__bg
   .hero__content__bg-bottom
   .hero__content__landing
-    .section.header.section__content(id="header", v-if="isMobile")
-      .header__content.u-fixed.directbot-header
-        .wrapper.directbot-wrap
-          .header__center
-            .header__text.head Союз человека и робота
-    .head-title(v-if="!isMobile") Союз человека и робота
+    .head-title Союз человека и робота
     .hero__content__landing__top-scheme
       .text-box.top-box 1. Directbot сканирует комментарии #[br(v-if="isMobile")] и Direct в Instagram у магазина
       img(src="./img/insta-bot_image_mob.svg", v-if="isMobile")
