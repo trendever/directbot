@@ -213,26 +213,26 @@ export default {
 
     //SWIPE LOGIC
 
-    if(this.$refs.screenTwo && this.$refs.screenOne) {
+    /*if(this.$refs.screenTwo && this.$refs.screenOne) {
 
       let screenOne = new Hammer(this.$refs.screenOne,{touchAction: 'none'});
       screenOne.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
 
       screenOne.on('swipeup', ()=> {
-        //this.scrollFirst()
+        this.scrollFirst()
       });
 
       let screenTwo = new Hammer(this.$refs.screenTwo,{touchAction: 'none'});
       screenTwo.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
 
       screenTwo.on('swipeup', ()=> {
-        //this.scrollSecond();
+        this.scrollSecond();
       });
 
       screenTwo.on('swipedown', ()=> {
-        //JQuery(document.body).animate({scrollTop: 0 },450);
+        JQuery(document.body).animate({scrollTop: 0 },450);
       });
-    }
+    }*/
 
     JQuery('.toggleBtn').on('click', function() {
         JQuery('.toggleBtn').not(this).removeClass('activeBtn');
