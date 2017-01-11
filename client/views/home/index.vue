@@ -73,20 +73,20 @@
         .hero__content__landing__sub-title Отвечает всем #[br] клиентам сразу
         .hero__content__landing__caption Со &#128526 смайлами #[br(v-if="!isMobile")]
           | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
-          a.link-info(@click="openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
+          a.link-info(@click.stop="openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
       .info-box
         .hero__content__landing__icon-2
           img(src="./img/icon-2.png")
         .hero__content__landing__sub-title Выполняет #[br] «мартышкин труд»
         .hero__content__landing__caption Больше не нужно отвечать #[br] и спрашивать одно и то же. #[br]
-          a.link-info(@click="openPopup('is2')")
+          a.link-info(@click.stop="openPopup('is2')")
             | Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
       .info-box
         .hero__content__landing__icon-3
           img(src="./img/icon-3.png")
         .hero__content__landing__sub-title Подключается #[br(v-if="!isMobile")] в один клик
         .hero__content__landing__caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
-          a.link-info(@click="openPopup('is3')")
+          a.link-info(@click.stop="openPopup('is3')")
             | Ничего не надо скачивать
     .hero__content__landing__title.middle Что делает #[br(v-if="isMobile")] наш  оператор?
     .hero__content__landing__screen-1
@@ -97,7 +97,7 @@
       img(src="./img/screen-2.png")
     .hero__content__landing__sub-title.deskST Оператор сразу видит #[br(v-if="isMobile")] вопросы покупателей
     .hero__content__landing__caption.deskCap
-      a.link-info(@click="openPopup('is4')") Не важно, задан вопрос в комментариях #[br(v-if="isMobile")] или личном сообщении, #[br(v-if="!isMobile")]
+      a.link-info(@click.stop="openPopup('is4')") Не важно, задан вопрос в комментариях #[br(v-if="isMobile")] или личном сообщении, #[br(v-if="!isMobile")]
       span  оператор #[br(v-if="isMobile")] уже будет отвечать покупателю #[br(v-if="isMobile")] в Direct от твоего имени
     .hero__content__landing__toggle
       .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ, #[br(v-if="isMobile")] У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
@@ -122,7 +122,7 @@
           img(src="./img/screen-4-no.png")
         .hero__content__landing__sub-title.info Нет сайта? Ответь на вопросы о товарах
         .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой
-          a.link-info(@click="openPopup('is5')")
+          a.link-info(@click.stop="openPopup('is5')")
             |  новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
             span.bold  tskirt.drbt.io*. #[br(v-if="isMobile")]
           span Также уточнит детали и наличие товаров #[br]
@@ -133,7 +133,7 @@
         img(src="./img/screen-5.png")
       .hero__content__landing__sub-title.lastST Оператор ответит на вопросы и поможет купить
       .hero__content__landing__caption.lastCap
-        a.link-info(@click="openPopup('is6')") Клиенты получат консультацию*
+        a.link-info(@click.stop="openPopup('is6')") Клиенты получат консультацию*
         span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
       .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
       .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
@@ -143,18 +143,18 @@
     .list
       ol
         li
-          a.link-info(@click="openPopup('is7')")
+          a.link-info(@click.stop="openPopup('is7')")
             | Личного оператора, на связи с твоими #[br(v-if="isMobile")] клиентами 24/7. В 10+ раз дешевле*
         li
-          a.link-info(@click="openPopup('is8')")
+          a.link-info(@click.stop="openPopup('is8')")
             | Адаптивный интернет-магазин, #[br(v-if="isMobile")] с платежами и доставкой
         li
-          a.link-info(@click="openPopup('is9')")
+          a.link-info(@click.stop="openPopup('is9')")
             | Сервис по подбору и организации #[br(v-if="isMobile")] рекламы через блогеров
     .tooltip
       p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, и это только за 8-часовой день с выходными
   .free-connect
-    a.link-info(@click="openPopup('is10')")
+    a.link-info(@click.stop="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
   .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
     button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
@@ -209,7 +209,7 @@ export default {
 
     //SWIPE LOGIC
 
-    if(this.$refs.screenTwo && this.$refs.screenOne) {
+    /*if(this.$refs.screenTwo && this.$refs.screenOne) {
 
       let screenOne = new Hammer(this.$refs.screenOne,{touchAction: 'none'});
       screenOne.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
@@ -228,7 +228,7 @@ export default {
       screenTwo.on('swipedown', ()=> {
         JQuery(document.body).animate({scrollTop: 0 },450);
       });
-    }
+    }*/
 
     JQuery('.toggleBtn').on('click', function() {
         JQuery('.toggleBtn').not(this).removeClass('activeBtn');

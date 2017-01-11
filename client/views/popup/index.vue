@@ -18,7 +18,15 @@ import infoScreen8 from 'views/info-screens/info-screen-8.vue';
 import infoScreen9 from 'views/info-screens/info-screen-9.vue';
 import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 
+import listen from 'event-listener';
+
 export default {
+  created(){
+    this.outerClick = listen(document.body, 'click', () => this.$router.push({name: 'home'}))
+  },
+  beforeDestroy(){
+    this.outerClick.remove()
+  },
 	components:{
 		"is1" : infoScreen1,
 		"is2" : infoScreen2,

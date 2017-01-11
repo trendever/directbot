@@ -60,7 +60,7 @@ const addServiceMessage = (function() {
   let lastDate = null;
 
   return ( messages ) => {
-
+    if(!messages) return;
     console.time( 'addServiceMessage' );
 
     let lastUserId   = null;
