@@ -2,14 +2,15 @@
 <template lang="pug">
 #chat-header
   header-component(v-if="disableNotifier", :notify-count='0')
-  header-component(v-else, :notify-count='getGlobalNotifyCount')
+
+  header-component(v-else :notify-count="unreadCount")
 
     .chat-header(slot='center-content')
       .chat-header_arrow(@click='leftBtnAction')
         i.chat-header_arrow_ic.ic-arrow-left
 
       .chat-header_notify-count(v-if='getGlobalNotifyCount')
-        span {{ getGlobalNotifyCount }}
+        span {{ unreadCount }}
 
       .chat-header_cnt(v-show='getShopName')
         .chat-header_cnt_t(@click="$router.push({name: 'user', params: {id: getShopName}})") {{ getShopName }}
@@ -81,6 +82,9 @@
     },
 
     computed: {
+      unreadCount(){
+        return this.isFake ? 0 : this.getGlobalNotifyCount;
+      },
       ...mapGetters([
         'fakeAction',
         'getId',
