@@ -53,6 +53,7 @@
       button.shopping_trends(v-on:click="scrollSecond") КАК ЭТО РАБОТАЕТ?
   .hero__content__bg
   .hero__content__bg-bottom
+  .hero__content__bg-bottom-2
   .hero__content__landing
     .head-title Союз человека и робота
     .hero__content__landing__top-scheme
@@ -137,22 +138,30 @@
         span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
       .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
       .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
-  .info-block
-    .title
-      p Подключайся и получишь:
-    .list
-      ol
-        li
-          a.link-info(@click.stop="openPopup('is7')")
-            | Личного оператора, на связи с твоими #[br(v-if="isMobile")] клиентами 24/7. В 10+ раз дешевле*
-        li
+      .hero__content__landing__title.bot Подключайся и получишь
+    .wrapper.bot-wrap
+      .info-box
+        .hero__content__landing__icon-1
+          img(src="./img/icon-4.png")
+        .hero__content__landing__sub-title Личного #[br(v-if="!isMobile")] оператора
+        .hero__content__landing__caption
+          a.link-info(@click.stop="openPopup('is7')") Личный оператор #[br(v-if="!isMobile")] на связи с твоими клиентами #[br(v-if="!isMobile")] 24/7. В 10+ раз дешевле*
+      .info-box
+        .hero__content__landing__icon-5
+          img(src="./img/icon-5.png")
+        .hero__content__landing__sub-title Адаптивный #[br(v-if="!isMobile")] интернет-магазин
+        .hero__content__landing__caption
           a.link-info(@click.stop="openPopup('is8')")
-            | Адаптивный интернет-магазин, #[br(v-if="isMobile")] с платежами и доставкой
-        li
+            | Удобный интернет-магазин #[br(v-if="!isMobile")] с платежами и доставкой #[br(v-if="!isMobile")] до покупателя
+      .info-box.last-box
+        .hero__content__landing__icon-6
+          img(src="./img/icon-6.png")
+        .hero__content__landing__sub-title Сервис рекламы #[br(v-if="!isMobile")] у блогеров
+        .hero__content__landing__caption
           a.link-info(@click.stop="openPopup('is9')")
-            | Сервис по подбору и организации #[br(v-if="isMobile")] рекламы через блогеров
-    .tooltip
-      p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, и это только за 8-часовой день с выходными
+            | Сервис по подбору #[br(v-if="!isMobile")] и организации рекламы #[br(v-if="!isMobile")] через блогеров
+      .tooltip
+        p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, и это только за 8-часовой день с выходными
   .free-connect
     a.link-info(@click.stop="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
