@@ -530,7 +530,16 @@
   src: url(./font/PFKidsPro-GradeFive.ttf);
 }
 .insta-scr1 {
-  height: 91.4% !important;
+  @media only screen
+  and (min-device-width : 414px)
+  and (max-device-width : 736px)
+  and (orientation : portrait) {
+    height: 91.4% !important;
+  }
+
+  @media only screen and (max-height : 568px) {
+    height: 90.4% !important;
+  }
 }
 
 .insta-scr2 {
@@ -539,7 +548,7 @@
 }
 
 .insta-landing {
-margin-top: -232px !important;
+  margin-top: -232px !important;
 }
 #home{
   background-image: url(./img/faces-02.jpg), url(./img/faces-01.jpg), url(./img/faces-03.jpg), url(./img/faces-04.png), url(./img/faces-07.jpg), url(./img/faces-06.png), url(./img/faces-05.png);
