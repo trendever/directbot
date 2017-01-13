@@ -3,7 +3,7 @@
 #chat
   //.loader-center(v-if="showLoader"): app-loader
 
-  chat-header(:notify-count='conversationNotifyCount')
+  chat-header(:notify-count='conversationNotifyCount', :prev-page="prevPage")
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat-shadow.directbot-color(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu")
@@ -75,6 +75,9 @@ import ChatHeader from './chat-header.vue';
 //import popupImg from 'base/popup-img/index.vue';
 
 export default {
+  beforeRouteEnter(to, from, next){
+    next(vm=>vm.prevPage = from.name);
+  },
   props: {
     directbot: {
       default: false,
@@ -104,7 +107,8 @@ export default {
       lead_id: null,
       showLoader: true,
       timerId: '',
-      fullScroll: 0
+      fullScroll: 0,
+      prevPage: ''
     }
   },
 

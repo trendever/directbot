@@ -46,11 +46,14 @@
       },
       leftBtnAction(){
 
-        if (this.isFake && this.fakeAction === 'chat-info'){
+        if(this.prevPage === 'monetization') {
+          this.$router.push({name: "monetization"})
+          return;
+        }
 
+        if (this.isFake && this.fakeAction === 'chat-info'){
           this.$router.push({name: "home"})
           return;
-
         }
 
         if (this.isFake && this.fakeAction === 'chat-product'){
@@ -78,6 +81,9 @@
       disableNotifier: {
         type: Boolean,
         default: false
+      },
+      prevPage: {
+        type: String
       }
     },
 
