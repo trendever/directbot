@@ -33,6 +33,9 @@
 
   import HeaderComponent from 'components/header'
 
+  import { getLeadByConversationId } from 'root/store/getters/lead.js'
+  import settings from 'root/settings';
+
   export default {
     data(){
       return {
@@ -46,7 +49,10 @@
       },
       leftBtnAction(){
 
-        if(this.prevPage === 'monetization') {
+        let products = getLeadByConversationId(this.$store.state.leads, this.$store.getters.getId).products;
+        let check = id => products.some( item=> item.id == id )
+
+        if(check(settings.monetizationHelpID)) {
           this.$router.push({name: "monetization"})
           return;
         }
@@ -57,7 +63,6 @@
         }
 
         if (this.isFake && this.fakeAction === 'chat-product'){
-
           this.$router.push({name: "product_detail", params: { id: this.$route.query.product }})
           return;
 
