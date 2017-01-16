@@ -141,7 +141,7 @@
       .hero__content__landing__title.bot Подключайся и получишь
     .wrapper.bot-wrap
       .info-box
-        .hero__content__landing__icon-1
+        .hero__content__landing__icon-4
           img(src="./img/icon-4.png")
         .hero__content__landing__sub-title Личного #[br(v-if="!isMobile")] оператора
         .hero__content__landing__caption
@@ -152,7 +152,7 @@
         .hero__content__landing__sub-title Адаптивный #[br(v-if="!isMobile")] интернет-магазин
         .hero__content__landing__caption
           a.link-info(@click.stop="openPopup('is8')")
-            | Удобный интернет-магазин #[br(v-if="!isMobile")] с платежами и доставкой #[br(v-if="!isMobile")] до покупателя
+            | Удобный интернет-магазин #[br(v-if="!isMobile")] с платежами #[br(v-if="isMobile")] и доставкой #[br(v-if="!isMobile")] до покупателя
       .info-box.last-box
         .hero__content__landing__icon-6
           img(src="./img/icon-6.png")
@@ -161,7 +161,7 @@
           a.link-info(@click.stop="openPopup('is9')")
             | Сервис по подбору #[br(v-if="!isMobile")] и организации рекламы #[br(v-if="!isMobile")] через блогеров
       .tooltip
-        p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if="isMobile")] в месяц, и это только за 8-часовой день с выходными
+        p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if='isMobile')] в месяц, и это только за 8-часовой день с выходными
   .free-connect
     a.link-info(@click.stop="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?

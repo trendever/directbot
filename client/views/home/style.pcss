@@ -1001,6 +1001,10 @@
 .hero__content__bg-bottom-2 {
   top: 4808px;
   height: 592px;
+  @media(--smalldesktopH) {
+    height: 980px;
+    top: 5365px;
+  }
 }
 //Start landing main part
 .hero__content__landing{
@@ -1067,10 +1071,10 @@
         display: block;
         float: none;
         font-size: 36px;
-        margin: 42px 0px 0px 0px;
-        height: 124px;
+        margin: 46px 0px 0px 0px;
+        height: 139px;
         width: 624px;
-        padding: 12px 20px;
+        padding: 22px 20px;
         line-height: 45px;
         z-index: -1;
       }
@@ -1103,11 +1107,11 @@
       padding: 12px 0px 0px 16px;
       @media(--tabletandless) {
         position: absolute;
-        height: 132px;
+        height: 137px;
         width: 624px;
         top: 350px;
-        padding: 14px 20px;
-        margin: 42px 0px 0px 0px;
+        padding: 19px 20px;
+        margin: 50px 0px 0px 0px;
       }
       &:after{
         content: '';
@@ -1177,7 +1181,7 @@
       @media(--tabletandless) {
         width: auto;
         height: auto;
-        margin-top: 10px;
+        margin-top: 0px;
         margin-left: 0;
       }
     }
@@ -1235,7 +1239,7 @@
       z-index: 0;
 
       @media(--tabletandless){
-        top: 577px;
+        top: 580px;
         left: 288px;
         right: auto;
       }
@@ -1322,7 +1326,8 @@
     margin-top: 85px;
 
     @media(--tabletandless) {
-      margin-top: 0px;
+      margin-top: 120px;
+      letter-spacing: -1px;
     }
   }
   .main{
@@ -1335,6 +1340,9 @@
     margin-top: 40px;
     padding-top: 0px !important;
     @media(--tabletandless) {
+      margin-top: 130px;
+    }
+    @media(--smalldesktopH) {
       margin-top: 130px;
     }
   }
@@ -1371,7 +1379,7 @@
         width: 457px;
         height: 322px;
         padding-left: 0px;
-        margin-top: 0px;
+        margin-top: 2px;
         margin-bottom: 10px;
       }
     }
@@ -1403,14 +1411,32 @@
     }
   }
 
+  &__icon-4{
+    img{
+      width: 226px;
+      height: 171px;
+      margin-left: 13px;
+      margin-bottom: 20px;
+      @media(--tabletandless) {
+        width: 341px;
+        height: 275px;
+        margin-left: 0px;
+        margin-bottom: 12px;
+      }
+    }
+    @media(--tabletandless) {
+      margin-top: 52px;
+    }
+  }
+
   &__icon-5 {
     img {
       width: 200px;
       height: 173px;
       margin-bottom: 20px;
       @media(--tabletandless) {
-        width: 350px;
-        height: 300px;
+        width: 344px;
+        height: 295px;
         margin-top: 0px;
         margin-bottom: 10px;
       }
@@ -1418,8 +1444,6 @@
     @media(--tabletandless) {
       margin-top: 96px;
       margin-bottom: 10px;
-      margin-top: 34px;
-      margin-bottom: 20px;
     }
   }
 
@@ -1431,18 +1455,16 @@
       margin-left: -8px;
       margin-bottom: 20px;
       @media(--tabletandless) {
-        width: 350px;
-        height: 300px;
+        width: 262px;
+        height: 295px;
         margin-top: 0px;
         margin-bottom: 10px;
         margin-left: 0px;
       }
     }
     @media(--tabletandless) {
-      margin-top: 96px;
+      margin-top: 100px;
       margin-bottom: 10px;
-      margin-top: 34px;
-      margin-bottom: 20px;
     }
   }
 
@@ -1794,6 +1816,10 @@
       @media(--tabletandless) {
         padding-right: 0px;
       }
+
+      @media(--smalldesktopH) {
+        margin: 0 auto;
+      }
     }
     .info-box:first-child{
       padding: 34px 0px 0px 20px;
@@ -1820,6 +1846,17 @@
     }
   }
 
+  .bot-wrap {
+    @media(--tabletandless) {
+      &:after{
+        @media(--tabletandless){
+          top: -180px;
+          height: 113.2%;
+        }
+      }
+    }
+  }
+
   &__toggle{
     display: inline-block;
     width: 100%;
@@ -1828,6 +1865,9 @@
       display: block;
       margin-top: 0px;
       margin-bottom: 90px;
+    }
+    @media(--smalldesktopH) {
+      margin-top: 115px;
     }
     &__title{
       color: #595959;
@@ -1916,7 +1956,7 @@
         left: -25px;
         top: -41px;
         background-image: url(./img/Directbot_landing-mob_pattern.png);
-        height: 56.55%;
+        height: 53.6%;
         width: 750px;
         z-index: -1;
       }
@@ -1963,9 +2003,12 @@
   @media(--tabletandless) {
     font-size: 28px;
     padding-top: 5px;
-    padding-left: 29px;
     width: auto;
-    margin: 0;
+    margin: 38px 0px 0px 0px;
+    letter-spacing: -1px;
+  }
+  @media(--smalldesktopH) {
+    margin-top: 20px;
   }
   p{
     color: $color__gray-dark;
@@ -1981,7 +2024,7 @@
   margin-bottom: 110px;
   @media(--tabletandless) {
     font-size: 36px;
-    padding: 40px 30px 150px 30px;
+    padding: 85px 30px 150px 30px;
     margin-bottom: 0px;
   }
 
