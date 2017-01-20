@@ -585,11 +585,11 @@
 
     text-align: center;
 
-    background: url(./img/Bgr_clg-blue_1440.png) no-repeat;
+    /*background: url(./img/Bgr_clg-blue_1440.png) no-repeat;
 
     background-size: 100% 453px;
 
-    background-position-x: -2px;
+    background-position-x: -2px;*/
 
     @media(--tabletandless) {
       background: url(./img/Bgr_clg_mob.jpg), no-repeat;
@@ -598,9 +598,27 @@
       height: 100%;
     }
 
-    @media(--largedesktopH) {
+    /*@media(--largedesktopH) {
       background: url(./img/Bgr_clg-blue_1920.png) no-repeat;
       background-size: 100% 453px;
+    }*/
+
+    &__background {
+      background: url(./img/Bgr_clg-blue_1440.png) no-repeat;
+      background-size: 100% 100%;
+      height: 453px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1;
+      @media(--tabletandless) {
+        display: none;
+      }
+      @media(--largedesktopH) {
+        background: url(./img/Bgr_clg-blue_1920.png) no-repeat;
+        background-size: cover;
+      }
     }
 
     .how-btn {
@@ -736,26 +754,8 @@
         padding: 0px 30px;
         top: 0;
         left: 0;
-        font-family: $font__family__regular;
-        line-height: 55px;
-      }
-      .bold{
         font-family: $font__family__semibold;
-      }
-      .light{
-        font-size: 32px;
-        font-family: $font__family__light;
-        @media(--tabletandless) {
-          font-size: 46px;
-        }
-
-        i.ic-currency-rub{
-          padding-top: 12px;
-          @media(--tabletandless) {
-            font-size: 40px;
-            padding-top: 5px;
-          }
-        }
+        line-height: 55px;
       }
     }
     //description in the center of the screen both versions (mob&desk)
@@ -763,11 +763,11 @@
     //set up btn in the center of welcome screen
     &__set-up{
       button{
-        width: 293px;
-        height: 40px;
+        width: 420px;
+        height: 60px;
         color: $color__white;
         font-family: $font__family__semibold;
-        font-size: 16px;
+        font-size: 24px;
         border-radius: 5px;
         border: 1px solid $color__white;
         background-color: transparent;

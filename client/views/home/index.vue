@@ -4,6 +4,7 @@
   router-view
   .section.hero
     .section__content(ref="screenOne").hero__content
+      .hero__content__background
       .profile-header
         .profile-header__center
         button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
@@ -14,10 +15,7 @@
       .hero__content__center-logo(v-if="!isMobile")
         img(src="./img/directbot-main-logo.png")
       .hero__content__description
-        span.bold Оператор вашего #[br(v-if="isMobile")] магазина в Instagram #[br]
-        span.light 24 часа, 7 дней, 3990&nbsp
-          i.ic-currency-rub
-          | /месяц
+        | 24/7 оператор вашего #[br(v-if="isMobile")] магазина в Instagram
       .hero__content__set-up
         button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
       button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
