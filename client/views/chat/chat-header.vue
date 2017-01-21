@@ -49,6 +49,11 @@
       },
       leftBtnAction(){
 
+        if(!this.$store.getters.getId){
+          this.$router.push({name: "chat_list"})
+          return;
+        }
+
         let products = getLeadByConversationId(this.$store.state.leads, this.$store.getters.getId).products;
         let check = id => products.some( item=> item.id == id )
 
