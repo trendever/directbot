@@ -1,0 +1,5 @@
+1. ставим докер
+2. билдим имадж: docker build -t directbot .
+2. запускаем: docker run -d -p 3000:3000 -v $PWD:/usr/src/app directbot
+3. запускаем сервер в контейнере: docker exec -it container_name /usr/bin/start
+

@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const pkg = require('../package')
 
 module.exports = {
-  port: 4000,
+  port: 3000,
   title: 'trendever2',
   vendor: Object.keys(pkg.dependencies),
   babel: {
