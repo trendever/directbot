@@ -30,7 +30,7 @@
 
         .profile_info
 
-          .profile_info_img(@click="$router.push({name: 'list'})")
+          .profile_info_img
             img(:src="getUserPhoto")
 
 
