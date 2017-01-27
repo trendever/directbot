@@ -204,7 +204,8 @@ export default {
           this.$root.$emit('checkbot-after')
 
           localStorage.removeItem('fake_action');
-          
+          localStorage.setItem('active-account', true);
+
           if(!this.anotherName) {
             if (!this.callbackOnSuccessAuth) {
               setTimeout( () => this.$router.push( { name: 'profile' } ), 1000);

@@ -198,7 +198,7 @@ export default {
   },
   created(){
     if(this.isAuth && !this.isFake) {
-      this.$router.replace({name: 'profile'});
+      if(localStorage.getItem('active-account')) this.$router.replace({name: 'profile'});
     }
   },
   mounted() {

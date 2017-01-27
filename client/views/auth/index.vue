@@ -117,6 +117,12 @@ export default {
       dublicate: false
     }
   },
+  created(){
+    if(this.$store.getters.isAuth) {
+      localStorage.setItem('active-account', true);
+      this.$router.push({name: 'profile'})
+    }
+  },
   mounted() {
     this.$nextTick(()=>{
       this.height = `${ document.body.scrollHeight }px`;
