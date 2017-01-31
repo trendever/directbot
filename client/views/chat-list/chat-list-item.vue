@@ -196,18 +196,15 @@ export default {
     },
     title(){
       if ( this.lead.chat !== null ) {
-        if ( this.lead.user_role === leadsService.USER_ROLES.CUSTOMER.key
-          || this.lead.user_role === leadsService.USER_ROLES.SUPPLIER.key ) {
-          return this.lead.shop.instagram_username
-        }
-        let customer_name = this.lead.chat.members.find( ( { user_id } ) => this.lead.customer_id === user_id ).name;
 
+        let customer_name = this.lead.chat.members.find( ( { user_id } ) => this.lead.customer_id === user_id ).name;
+        let shopname = this.lead.shop.instagram_username;
+
+        if( this.lead.user_role === leadsService.USER_ROLES.CUSTOMER.key ) return shopname;
+        if (this.lead.user_role === leadsService.USER_ROLES.SUPPLIER.key ) return customer_name;
         if (customer_name.indexOf("customer_") >= 0){
           customer_name = customer_name.replace("customer_","client")
         }
-
-        let shopname = this.lead.shop.instagram_username;
-
 
         return `${customer_name} (${shopname})`
       }
