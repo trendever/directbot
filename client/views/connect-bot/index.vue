@@ -46,7 +46,7 @@
         img(src="./directbot.png").logo
         p.paragraph.enter-screen(v-if="!needConfirmCode")
           span.bold Безопасность вашего Instagram #[br(v-if="!isMobile")] профиля очень важна для нас! #[br]
-          span.light Поэтому мы не храним пароль #[br] профиля и используем его только #[br] при подключения бота
+          span.light Поэтому мы не храним пароль #[br] профиля и используем его только #[br] при подключении бота
         p.paragraph.enter-code-screen(v-if="needConfirmCode")
           span.bold Пожалуйста, #[br] введите 6-ти значный код, #[br]
           span.light высланный на email или телефон, #[br] указанные при регистрации #[br] профиля
