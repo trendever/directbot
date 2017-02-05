@@ -129,7 +129,6 @@ export default {
     return {
       hideGrey: false,
       loaded: true,
-      getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
       isMoreClass: false,
       showBanner: showBanner,
