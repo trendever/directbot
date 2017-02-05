@@ -93,7 +93,7 @@
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
 
-  photos(:shopId="userShopId || anotherId", :listName="listId")
+  photos(:shopId="supplierProfileID || userShopId || anotherId", :listName="listId")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='profile')
@@ -274,7 +274,7 @@ export default {
 
 
 
-      if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
+      if(this.isSelfPage) {
         this.timeID = setInterval(()=>{
           if(!this.supplierProfileID) {
             userService.get({}).then( user=> {
