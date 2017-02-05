@@ -14,8 +14,7 @@
                  v-on:click="$refs.inputMsg.focus()",
                  @focus='focusInput',
                  @blur='blurInput($event)')
-      .chat-bar_send-btn(v-on:mousedown='send($event)',
-                         v-on:touchstart='send($event)',
+      .chat-bar_send-btn(v-on:click='send($event)',
                          :class='{"__active": !!txtMsg, "directbot-color": directbot}')
         i.ic-send-plane
       chat-menu(v-if="!isMobile")
