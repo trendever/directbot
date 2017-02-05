@@ -15,7 +15,8 @@
       .hero__content__center-logo(v-if="!isMobile")
         img(src="./img/directbot-main-logo.png")
       .hero__content__description
-        | 24/7 оператор вашего #[br(v-if="isMobile")] магазина в Instagram
+        | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
+        span.time__text Всегда на связи с клиентами
       .hero__content__set-up
         button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
       button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")

@@ -730,6 +730,15 @@
 
     //description in the center of the screen both versions (mob&desk)
     &__description {
+
+      .time__text {
+        font-size: .7em;
+        font-family: $font__family__light;
+        @media (--mobile) {
+          font-size: 1em;
+        }
+      }
+
       z-index: 1;
       box-sizing: border-box;
       color: $color__white;
