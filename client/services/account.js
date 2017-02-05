@@ -55,11 +55,11 @@ export function list({ role = 'User', with_invalids, with_non_owned }) {
 }
 
 
-export function confirm(name,pass) {
+export function confirm(name,code, password ) {
 
   return new Promise( (resolve, reject) => {
 
-    channel.req('confirm', 'account', {instagram_username: name, code: pass } ).then( data => {
+    channel.req('confirm', 'account', {instagram_username: name, code, password } ).then( data => {
 
       resolve(data.response_map);
 
