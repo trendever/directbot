@@ -216,6 +216,10 @@ export default {
 
     addPadding(val){
 
+      if(this.isMobile) {
+        if (val <= 100) return;
+      }
+
       this.$refs.section.style.paddingBottom = val + 'px';
       window.scrollTo(0, document.body.scrollHeight);
 
