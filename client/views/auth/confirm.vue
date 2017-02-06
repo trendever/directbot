@@ -136,6 +136,7 @@ export default {
   beforeDestroy(){
     this.resize.remove();
   },
+  //computed property
   computed: {
     isDisabled() {
       return (this.code.length !== 4) && !this.isCompleted;
