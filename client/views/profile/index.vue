@@ -77,8 +77,8 @@
           img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
-            p.light(v-if="!chatsCount") нет активных постов, ожидаю..
-            p.light(v-if="chatsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
+            p.light(v-if="!postsCount") нет активных постов, ожидаю..
+            p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
         .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1 && !hideGrey")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           span После подключения #[br(v-if="isMobile")]
@@ -93,7 +93,7 @@
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
 
-  photos(:shopId="userShopId || anotherId", :listName="listId")
+  photos(:shopId="supplierProfileID || userShopId || anotherId", :listName="listId")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='profile')
@@ -129,7 +129,6 @@ export default {
     return {
       hideGrey: false,
       loaded: true,
-      getAuthUser: {},
       anotherId: 1, //пустая лента без единого товара
       isMoreClass: false,
       showBanner: showBanner,
@@ -275,7 +274,7 @@ export default {
 
 
 
-      if(this.isSelfPage || this.$route.params.id === this.user.instagram_username) {
+      if(this.isSelfPage) {
         this.timeID = setInterval(()=>{
           if(!this.supplierProfileID) {
             userService.get({}).then( user=> {

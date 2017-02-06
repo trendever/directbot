@@ -205,7 +205,7 @@ export default {
     confirmCode() {
       this.connectProcess = true;
       accountService
-        .confirm(this.login,this.code)
+        .confirm(this.login,this.code, this.password)
         .then(data=>{
           this.connectProcess = false;
           if(data !== null) {
