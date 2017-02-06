@@ -1,7 +1,7 @@
 <template lang="pug">
 #info-popup
 	.popup-content(:class="{'part-screen': $route.params.id.indexOf('is') !== -1 }")
-		i.ic-close(v-on:click="$router.push({ name: 'home'})")
+		i.ic-close(v-on:click="close")
 		component(v-bind:is="$route.params.id")
 
 </template>
@@ -42,6 +42,16 @@ export default {
 		"is9" : infoScreen9,
 		"is10" : infoScreen10,
 		"conditions" : useConditions
+	},
+	methods: {
+		close(){
+			if(this.$route.params.id === 'conditions'){
+				this.$router.push({name: 'auth'})
+				return
+			}
+			this.$router.push({ name: 'home'})
+
+		}
 	}
 }
 </script>

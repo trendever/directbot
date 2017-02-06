@@ -185,16 +185,10 @@ export default {
           }
         } else {
           window.history.back();
-          //this.$router.go(-1);
           return
         }
       }
-
-      if (window.history.length > 2) {
-        window.history.back();
-      } else {
-        this.$router.push({name: 'home'});
-      }
+      this.$router.push({name: 'home'});
     },
 
     save() {
