@@ -127,7 +127,7 @@
 
 </template>
 
-<script type='text/babel'>
+<script>
 import * as accountService from 'services/account';
 import * as profileService from 'services/profile';
 import listen from 'event-listener';

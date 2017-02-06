@@ -48,7 +48,7 @@
   scroll-top(:to-up="false")
 </template>
 
-<script type='text/babel'>
+<script>
 import settings from 'root/settings';
 
 import listen from 'event-listener';
