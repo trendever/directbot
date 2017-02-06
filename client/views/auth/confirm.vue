@@ -246,7 +246,7 @@ export default {
     closePage() {
       //mixpanel.track('Close confirm-sms Page');
       if (window.history.length > 2) {
-        this.$router.push(window.history.back(2));
+        window.history.back();
       } else {
         this.$router.push({name: 'home'});
       }
