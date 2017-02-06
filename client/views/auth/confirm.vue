@@ -140,9 +140,6 @@ export default {
     isDisabled() {
       return (this.code.length !== 4) && !this.isCompleted;
     },
-    isMobile(){
-      return window.browser.mobile;
-    },
     ...mapGetters([
       'callbackOnSuccessAuth',
       'authData'
