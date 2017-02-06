@@ -37,10 +37,23 @@
 
         list-style: initial;
 
+        @media screen and (min-width: 800px) {
+
+          margin-left: 50%;
+          transform: translateX(-50%);
+          width: 720px;
+
+        }
+
         li {
           font-family: $font__family__light;
           line-height: 45px;
           margin-top: 30px;
+
+          @media (--mobile) {
+            font-size: 26px;
+
+          }
 
           a {
             color: white;
