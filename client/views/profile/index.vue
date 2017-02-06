@@ -81,11 +81,10 @@
             p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
         .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1 && !hideGrey")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
-          span После подключения #[br(v-if="isMobile")]
-          span.save &nbspоператор #[br(v-if="!isMobile")]
-          span(v-if="isMobile").save начнет мониторить #[br(v-if="isMobile")]
-          span(v-if="!isMobile") начнет мониторить
-          span &nbspвсе ваши посты #[br(v-if="!isMobile")] и автоматически #[br(v-if="isMobile")] отвечать на вопросы покупателей
+          br(v-if="isMobile")
+          span После подключения к Instagram,#[br]
+          span.save оператор начнет мониторить все посты, #[br]
+          span отвечать покупателям и добавлять сюда товары
 
 
       connect-button(v-if="isSelfPage && isMobile && !botActivity")
