@@ -63,8 +63,11 @@
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               v-on:click='sendSMS') Отправить sms-код
-            .link-container(v-if="false")
+            //-.link-container(v-if="false")
               a.link-bottom( v-on:click.prevent='onClickLink') Мне нужна помощь
+            .link-container
+              a.link-bottom(v-on:click.stop='$router.push({name: "popup", params: { id: "conditions"} } )')
+                | Условия использования
 
 </template>
 
