@@ -49,6 +49,15 @@
       },
       leftBtnAction(){
 
+        if(this.prevPage){
+          if(this.prevPage.params){
+            if(this.prevPage.params.id === 'connectbot'){
+              this.$router.push({name: 'connect-bot'});
+              return;
+            }
+          }
+        }
+
         if(!this.$store.getters.getId){
           this.$router.push({name: "chat_list"})
           return;
@@ -92,9 +101,7 @@
         type: Boolean,
         default: false
       },
-      prevPage: {
-        type: String
-      }
+      prevPage: {}
     },
 
     computed: {

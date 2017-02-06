@@ -76,7 +76,7 @@ import ChatHeader from './chat-header.vue';
 
 export default {
   beforeRouteEnter(to, from, next){
-    next(vm=>vm.prevPage = from.name);
+    next(vm=>vm.prevPage = from);
   },
   props: {
     directbot: {
