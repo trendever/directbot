@@ -121,7 +121,7 @@ export default {
     }
   },
   created(){
-    if(this.$store.getters.isAuth) {
+    if(this.$store.getters.isAuth && !this.$store.getters.isFake) {
       localStorage.setItem('active-account', true);
       this.$router.push({name: 'profile'})
     }
