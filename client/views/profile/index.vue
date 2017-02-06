@@ -79,7 +79,7 @@
             p.bold Активирован #[br]
             p.light(v-if="!postsCount") нет активных постов, ожидаю..
             p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
-        .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1 && !hideGrey")
+        .profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           br(v-if="isMobile")
           span После подключения к Instagram,#[br]
@@ -370,7 +370,7 @@ export default {
     },
 
     ...mapGetters([
-      'getStats',
+      'getBannerInfo',
       //leads
       'getAllLeads',
       //user
