@@ -28,7 +28,15 @@
 		margin: 0 auto;
 		padding-left: 4%;
 		font-size: 36px;
+		.link-help {
+			text-align: center;
+			padding: 50px 2% 30px 0;
+			.link-bottom {
+				display: inline-block;
 
+			}
+
+		}
 
 		ul {
 
@@ -95,4 +103,31 @@
 				| перейти по ссылке из email, который#[br]
 				| вам пришлет Instagram
 
+		.link-help
+			.link-bottom(@click.stop="help")
+				| Мне нужна еще помощь
+
 </template>
+
+<script>
+import settings from 'root/settings';
+export default {
+
+	methods: {
+
+		help(){
+	    this.$store.dispatch('createLead', settings.supportID )
+	      .then(
+	        ( lead ) => {
+	          if ( lead !== undefined && lead !== null ) {
+	            this.$router.push( { name: 'chat', params: { id: lead.id } } )
+	          }
+	        }
+	      )
+		}
+
+	}
+}	
+
+
+</script>
