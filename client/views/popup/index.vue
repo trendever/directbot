@@ -1,6 +1,6 @@
 <template lang="pug">
 #info-popup
-	.popup-content
+	.popup-content(:class="{'part-screen': $route.params.id.indexOf('is') !== -1 }")
 		i.ic-close(v-on:click="$router.push({ name: 'home'})")
 		component(v-bind:is="$route.params.id")
 
@@ -17,6 +17,9 @@ import infoScreen7 from 'views/info-screens/info-screen-7.vue';
 import infoScreen8 from 'views/info-screens/info-screen-8.vue';
 import infoScreen9 from 'views/info-screens/info-screen-9.vue';
 import infoScreen10 from 'views/info-screens/info-screen-10.vue';
+
+
+import useConditions from './use-conditions';
 
 import listen from 'event-listener';
 
@@ -38,6 +41,7 @@ export default {
 		"is8" : infoScreen8,
 		"is9" : infoScreen9,
 		"is10" : infoScreen10,
+		"conditions" : useConditions
 	}
 }
 </script>
@@ -45,24 +49,28 @@ export default {
 <style lang="postcss">
 	@import 'style/vars/vars.pcss';
 	#info-popup{
+
 		width: 100%;
 		height: 100%;
 		z-index: 310;
 		position: fixed 0 0 * 0;
+		overflow: auto;
 
 		.popup-content{
-		  width: 600px;
-		  height: 500px;
-		  position: absolute;
-		  top: 50%;
-		  left: 50%;
-		  transform: translate(-50%, -50%);
-		  overflow: hidden;
-
-		    @media(--mobile){
+			&.part-screen {
+			  width: 600px;
+			  height: 500px;
+			  position: absolute;
+			  top: 50%;
+			  left: 50%;
+			  transform: translate(-50%, -50%);
+			  overflow: hidden;
+		    @media(--mobile) {
 		      width: 100%;
 		      height: 100%;
 		    }
+			}
+
 		}
 
 		i.ic-close{

@@ -4,7 +4,9 @@
 #connect-bot
 
   .help-popup(v-if="helpPopup")
+
     .close(@click.stop="helpPopup = false"): i.ic-close
+      
     .title
       | Возникли проблемы#[br]
       | с подключением оператора#[br]
