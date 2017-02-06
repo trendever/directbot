@@ -20,6 +20,7 @@ import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 
 
 import useConditions from './use-conditions';
+import connectbotHelp from './connectbot-help';
 
 import listen from 'event-listener';
 
@@ -41,12 +42,18 @@ export default {
 		"is8" : infoScreen8,
 		"is9" : infoScreen9,
 		"is10" : infoScreen10,
-		"conditions" : useConditions
+		"conditions" : useConditions,
+		"connectbot" : connectbotHelp
 	},
 	methods: {
 		close(){
+			
 			if(this.$route.params.id === 'conditions'){
 				this.$router.push({name: 'auth'})
+				return
+			}
+			if(this.$route.params.id === 'connectbot'){
+				this.$router.push({name: 'connect-bot'})
 				return
 			}
 			this.$router.push({ name: 'home'})
@@ -89,7 +96,7 @@ export default {
 				font-size: 24px;
 				top: 30px;
 				right: 30px;
-		  	cursor: pointer;
+		  		cursor: pointer;
 					@media(--mobile){
 						font-size: 34px;
 					}
