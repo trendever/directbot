@@ -78,7 +78,7 @@
 			margin-right: auto;
 			@media screen and (min-width: 751px) {
 				margin-top: -44px;
-				padding-left: 33px;
+				padding-left: 50px;
 				width: 720px;
 			}
 
