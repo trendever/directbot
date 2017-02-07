@@ -66,7 +66,7 @@
             //-.link-container(v-if="false")
               a.link-bottom( v-on:click.prevent='onClickLink') Мне нужна помощь
             .link-container
-              a.link-bottom(v-on:click.stop='$router.push({name: "popup", params: { id: "conditions"} } )')
+              a.link-bottom.some-left(v-on:click.stop='$router.push({name: "popup", params: { id: "conditions"} } )')
                 | Условия использования
 
 </template>
