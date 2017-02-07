@@ -12,7 +12,9 @@
         span {{ monetizationDays }}
         span.day д
 
-  menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+  menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+    .item
+      .text Отключить бота
     .item
       .text(@click.stop="buyService") Поддержка
     .item

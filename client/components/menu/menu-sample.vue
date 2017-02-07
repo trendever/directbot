@@ -60,12 +60,14 @@
 
 
   @media ( min-width: 751px) {
-
     box-shadow: 1px 1px 5px #595959;
-
+    &.prof-menu {
+      width: 242px;
+    }
   }
 
   @media (--mobile) {
+    border-radius: 0px;
     position: fixed 0 0 * 0;
     z-index: 120;
     size: 100%;
@@ -76,15 +78,20 @@
 
   .content {
 
-    :first-child{
-      border-top-right-radius: 4px;
-      border-top-left-radius: 4px;
+    @media (min-width: 751px) {
+
+      :first-child{
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+      }
+
+      :last-child {
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+
     }
 
-    :last-child {
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
-    }
 
     .item {
 
