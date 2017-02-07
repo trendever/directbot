@@ -1,10 +1,10 @@
 <template>
 <div v-if="loaded || !$store.getters.isAuth">
-  <div class="buttons" :class="{'glued-btns': isMobile && !authSellerProduct}" v-if="!authSellerProduct">
+  <div class="buttons" :class="{'glued-btns': isMobile && !isSelfProduct}" v-if="!isSelfProduct">
       <button class="buy_btn" @click="buy">КУПИТЬ</button>
   </div>
 
-  <div class="find-bloger" v-if="authSellerProduct" @click="buyServiceProduct">Найти блогера</div>
+  <!-- <div class="find-bloger" v-if="isSelfProduct" @click="buyServiceProduct">Найти блогера</div> -->
 </div>
 
 </template>
@@ -12,7 +12,7 @@
 <style src="./style.pcss" scoped lang="postcss"></style>
 
 <script type="text/babel">
-
+  import { mapGetters } from 'vuex';
   let config = { service_product_id: 7833 };
 
   export default {
@@ -51,6 +51,9 @@
       }
     },
     computed: {
+      ...mapGetters([
+        'isSelfProduct'
+      ]),
 
       text(){
 
@@ -60,10 +63,6 @@
 
     },
     props: {
-      authSellerProduct: {
-        type: Boolean,
-        default: false
-      },
       isLiked: {
         type: Boolean,
         default: false

@@ -1,6 +1,6 @@
 <template>
   <div>
-<mobile-layout
+<mobile-layout 
   v-if="isSmall"
   :products="products"
   :supplier-available="supplierAvailable"
@@ -246,6 +246,7 @@ export default {
     ...mapGetters([
 
       'getOpenedProduct',
+      'authUserShopId',
       //'callAfterLoading',
       //'isLiked',
       'isFake',

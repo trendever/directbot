@@ -15,8 +15,12 @@
 	.title {
 		padding: 40px * 40px *;
 		text-align: center;
-		font-size: 40px;
 		font-family: $font__family__semibold;
+		font-size: 32px;
+
+		@media (--mobile) {
+			font-size: 40px;
+		}
 
 		h1 {
 
@@ -25,7 +29,9 @@
 
 		.light-title {
 			font-family: $font__family__light;
+
 		}
+
 
 	}
 
@@ -33,8 +39,13 @@
 
 		width: 95%;
 		margin: 0 auto;
-		padding-left: 4%;
-		font-size: 30px;
+		padding-left: 10%;
+		font-size: 24px;
+
+		@media( --mobile) {
+			padding-left: 4%;
+		}
+
 		.ps {
 			padding: 40px 0;
 			transform: translateX(-3%);
@@ -61,12 +72,14 @@
 			li {
 
 				font-family: $font__family__light;
-				line-height: 45px;
-				margin-top: 30px;
+				line-height: 36px;
 				padding-left: 20px;
 				margin-left: 15px;
+				margin-top: 10px;
 
 				@media(--mobile) {
+					line-height: 45px;
+					margin-top: 30px;
 					font-size: 26px;
 				}
 

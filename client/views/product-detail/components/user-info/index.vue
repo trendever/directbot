@@ -1,10 +1,10 @@
 <template>
   <div class="user-info">
-    <img class="avatar" :src="img" v-link='{name: "user", params: {id: name}}'>
+    <img class="avatar" :src="img" @click='$router.push({name: "user", params: {id: name}})'>
     <div class="description" :class="{'no-name': !name}">
       <div class="userName" v-if="name">
-        <span class="title" v-link='{name: "user", params: {id: name}}'>Нашёл</span>
-        <span class="name" v-link='{name: "user", params: {id: name}}'>{{name}}</span>
+        <span class="title" @click='$router.push({name: "user", params: {id: name}})'>Нашёл</span>
+        <span class="name" @click='$router.push({name: "user", params: {id: name}})'>{{name}}</span>
       </div>
       <span class="code">{{code}}, {{ lastUpdate}}</span>
     </div>

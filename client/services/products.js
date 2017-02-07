@@ -250,3 +250,25 @@ export function onNew( handler ) {
 export function offNew( handler ) {
   channel.off( 'NEW', 'product', handler );
 }
+
+export function deleteProduct( product_id ) {
+
+  return new Promise( ( resolve, reject ) => {
+
+    channel.req( 'delete', 'product', { product_id } )
+           .then( data => {
+
+             if ( data.response_map.success) {
+               resolve( data.response_map );
+             } else {
+               reject( { success: false } );
+             }
+
+           } ).catch( error => {
+
+      reject( { code: ERROR_CODES.SERVER_ERROR, response: error } );
+
+    } );
+
+  } );
+}
