@@ -14,7 +14,7 @@
   scroll-top(:to-up="false")
 </template>
 
-<script type='text/babel'>
+<script>
 
 import scrollTop from 'components/scroll-top';
 import ChatBar from '../chat/chat-bar.vue';
