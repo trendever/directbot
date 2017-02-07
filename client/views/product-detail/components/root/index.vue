@@ -404,8 +404,8 @@ export default {
         if ( this.getOpenedProduct.mentioned ) {
 
           if ( this.getOpenedProduct.mentioned.instagram_username ) {
-
-            return this.getOpenedProduct.mentioned.instagram_username
+            let name = this.getOpenedProduct.mentioned.instagram_username;
+            return name === this.supplierName ? '' : name;
 
           }
 
