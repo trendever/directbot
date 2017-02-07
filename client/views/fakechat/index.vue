@@ -22,8 +22,8 @@ import ChatHeader from '../chat/chat-header.vue';
 import ChatMsg from './chat-msg.vue';
 import {getTransactionsLog} from 'services/monetization';
 import { mapActions,mapGetters } from 'vuex';
-import settings from 'root/settings.js';
 import * as messages from 'services/message';
+import config from 'root/../config.js';
 
 export default {
   components: {
@@ -33,12 +33,11 @@ export default {
     scrollTop,
   },
   data(){
-    console.log(this.$route.params.result)
 
     return {
       fullScroll: 0,
       noGoBottom: false,
-      coinsLog: []
+      coinsLog: [],
     }
   },
   beforeDestroy() {
@@ -62,61 +61,72 @@ export default {
       messages.push(...this.getMessages);
 
       //Merge сообщений монетизации в чат
-
       if(this.coinsLog) {
-
         this.coinsLog.forEach((elem)=>{
           let time = elem.created_at;
-          let coinsPartsObject = {content: "monetization text",mime_type:"text/coins"}
-          let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: this.userID}};
+          let coinsPartsObject = {content: elem.data.amount + " refilled",mime_type:"text/coins"}
+          let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: config.service_user_id}};
           messages.push(coinsMessageObject)
-          messages.sort((x,y)=>{
-            if (x.user && y.user){
-              if (x.user.user_id != this.userID && y.user.user_id != this.userID){
-                return 0;
-              }else{
-                return x.created_at > y.created_at;
-              }
-            }
-            return 0;
-          });
         });
+        return this.sortMessages(messages)
+      }else{
+        return messages;
       }
-      console.log("!MESSAGES!")
-      console.log(messages);
-      return messages;
     }
   },
   methods:{
+    sortMessages(messages){
+      let mapped_messages = [];
+      let mapped_indexes = [];
+
+      messages.forEach((elem,index) => {
+        if (elem.user && elem.user.user_id === config.service_user_id){
+          mapped_messages[index] = elem;
+          mapped_indexes.push(index);
+        }
+      })
+
+      mapped_messages.sort((x,y)=>{
+        if (y.parts.length === 2) return 1;
+        if (x.parts.length === 2) return 0;
+        return x.created_at - y.created_at;
+      })
+
+      mapped_messages.forEach((elem,index) => {
+        let insert_index = mapped_indexes[index]
+        messages[insert_index] = elem;
+      })
+
+      return messages;
+    },
     runFakeChat(){
       this.loadLeads().then((leads)=>{
-        let productId = settings.monetizationProductID
+        let productId = config.monetization_help_id
         let found_lead = this.getAllLeads.customer.find(elem=>elem.products[0].id === productId);
-        let lead_id = 0;
+      
         //Если есть купленный сервисный товар (по монетизации)
         if (found_lead){
-          lead_id = found_lead.id;
-
+          return found_lead.id;
         }else{
           //Если его нет - покупаем новый
-          this.createLead(productId).then(lead=> {
+          return this.createLead(productId).then(lead=> {
             if ( lead !== undefined && lead !== null ) {
-            //Здесь нужно присвоинть новый полученный лид переменной lead_id
-              lead_id = lead.id;
+              return lead.id;
+            }else{
+              return 0;
             }
           })
         }
 
-        return lead_id
-
       }).then((lead_id)=>{
-        this.run(lead_id);
         if (lead_id){
+          this.run(lead_id);
           getTransactionsLog().then((data)=>{
             this.coinsLog = data.transactions;
           })
         }else{
           console.log("NO LEAD WITH SERVICE PRODUCT")
+          console.log(lead_id)
         }
       });
     },
