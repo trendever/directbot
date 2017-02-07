@@ -49,6 +49,13 @@
       },
       leftBtnAction(){
 
+        if(this.$route.query) {
+          if(this.$route.query.action === 'support'){
+            this.$router.push({name: 'profile'});
+            return;
+          }
+        }
+
         if(this.prevPage){
           if(this.prevPage.params){
             if(this.prevPage.params.id === 'connectbot'){

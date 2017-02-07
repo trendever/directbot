@@ -16,7 +16,7 @@
     .item
       .text Отключить бота
     .item
-      .text(@click.stop="buyService") Поддержка
+      .text(@click.stop="supportChat") Поддержка
     .item
       .text.__txt-blue Отмена
     .item
@@ -258,12 +258,12 @@ export default {
     //filter
     caption_spaces,
 
-    buyService(){
+    supportChat(){
       this.$store.dispatch('createLead', settings.supportID )
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
-                this.$router.push( { name: 'chat', params: { id: lead.id } } )
+                this.$router.push( { name: 'chat', params: { id: lead.id }, query: { action: 'support' } } )
               }
             }
           )
