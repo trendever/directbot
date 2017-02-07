@@ -149,7 +149,7 @@ export const getSlogan = ( state ) => {
 };
 
 export const getProfile = ( user, id = null ) => {
-
+  
   if ( id !== null ) {
     if ( user.all.hasOwnProperty( id ) ) {
       return user.all[ id ];

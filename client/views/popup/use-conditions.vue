@@ -23,23 +23,23 @@
 		}
 
 		h1 {
-
 			margin: 30px 0;
 		}
 
 		.light-title {
-			font-family: $font__family__light;
-
+				font-size: 40px;
+				font-family: $font__family__light;
+				@media screen and (min-width: 750px) {  
+					margin-bottom: 24px;
+					font-size: 24px;
+				}
 		}
-
-
 	}
 
 	.content {
 
 		width: 95%;
 		margin: 0 auto;
-		padding-left: 10%;
 		font-size: 24px;
 
 		@media( --mobile) {
@@ -48,36 +48,34 @@
 
 		.ps {
 			padding: 40px 0;
-			transform: translateX(-3%);
+			
 			font-size: 20px;
 			font-family: $font__family__light;
 			text-align: center;
 
 			@media(--mobile) {
+				margin-right: 22px;
 				font-size: 15px;
 			}
 
 		}
 
 		ul {
-			margin-top: -30px;
 			list-style: decimal;
-
-			@media screen and (min-width: 800px){ 
-				transform: translate(-50%);
-				margin-left: 50%;
-				width: 600px; 
+			padding-left: 30px;
+			margin-left: auto;
+			margin-right: auto;
+			@media screen and (min-width: 751px) {
+				margin-top: -44px;
+				padding-left: 33px;
+				width: 720px;
 			}
 
 			li {
-
 				font-family: $font__family__light;
-				line-height: 36px;
-				padding-left: 20px;
-				margin-left: 15px;
+				line-height: 25px;
 				margin-top: 10px;
-
-				@media(--mobile) {
+				@media (--mobile) {
 					line-height: 45px;
 					margin-top: 30px;
 					font-size: 26px;
@@ -103,15 +101,15 @@
 
 		h1 Условия использования
 
-		h1
+		.light-title
 
-			| Пожалуйста внимательно#[br]
-			| ознакомьтесь с условиями#[br]
+			| Пожалуйста внимательно#[br(v-if="isMobile")]
+			| ознакомьтесь#[br(v-if="!isMobile")] с условиями#[br(v-if="isMobile")]
 			| использования Directbot
 
 		.light-title
-			| Используя сервис Directbot,#[br]
-			| вы подтверждаете, что прочитали#[br]
+			| Используя сервис Directbot,#[br(v-if="isMobile")]
+			| вы подтверждаете, #[br(v-if="!isMobile")]что прочитали#[br(v-if="isMobile")]
 			| и согласны с нижеприведенными условиями:
 
 	.content
@@ -119,77 +117,77 @@
 		ul
 			
 			li
-				| Directbot никак не аффилирован#[br]
+				| Directbot никак не аффилирован#[br(v-if="isMobile")]
 				| с Instagram или Facebook. 
 
 			li
-				| Соблюдение правил Instagram#[br]
-				| является вашей личной#[br]
+				| Соблюдение правил Instagram#[br(v-if="isMobile")]
+				| является вашей личной#[br(v-if="isMobile")]
 				| ответственностью.
 
 			li
-				| Нам нужны логин и пароль вашего#[br]
-				| Instagram аккаунта исключительно#[br]
-				| для подключения к Instagram API.#[br]
-				| Мы не храним, не передаем и никак #[br]
-				| более не используем #[br] 
+				| Нам нужны логин и пароль вашего#[br(v-if="isMobile")]
+				| Instagram аккаунта исключительно#[br(v-if="isMobile")]
+				| для подключения к Instagram API.#[br(v-if="isMobile")]
+				| Мы не храним, не передаем и никак #[br(v-if="isMobile")]
+				| более не используем #[br(v-if="isMobile")] 
 				| эту информацию.
 
 			li
-				| Мы не гарантируем, что при #[br]
-				| использовании сервиса Direcbot #[br]
-				| вырастут ваши продажи или #[br]
-				| популярность вашего аккаунта #[br]
+				| Мы не гарантируем, что при #[br(v-if="isMobile")]
+				| использовании сервиса Direcbot #[br(v-if="isMobile")]
+				| вырастут ваши продажи или #[br(v-if="isMobile")]
+				| популярность вашего аккаунта #[br(v-if="isMobile")]
 				| в Instagram.
 
 			li
-				| Мы не можем защитить вас от спама,#[br]
-				| нежелательных комментариев или#[br]
+				| Мы не можем защитить вас от спама,#[br(v-if="isMobile")]
+				| нежелательных комментариев или#[br(v-if="isMobile")]
 				| неактивных подписчиков.
 
 			li
-				| Мы не можем гарантировать#[br] 
-				| безошибочную и непрерывную #[br]
-				| работу сервиса Directbot, но всегда#[br]
-				| будем своевременно оповещать вас#[br]
+				| Мы не можем гарантировать#[br(v-if="isMobile")] 
+				| безошибочную и непрерывную #[br(v-if="isMobile")]
+				| работу сервиса Directbot, но всегда#[br(v-if="isMobile")]
+				| будем своевременно оповещать вас#[br(v-if="isMobile")]
 				| о любых неполадках.
 
 			li
-				| Прежде чем оплачивать сервис#[br]
-				| Directbot, мы рекомендуем#[br]
-				| воспользоваться бесплатным#[br]
+				| Прежде чем оплачивать сервис#[br(v-if="isMobile")]
+				| Directbot, мы рекомендуем#[br(v-if="isMobile")]
+				| воспользоваться бесплатным#[br(v-if="isMobile")]
 				| трехдневным периодом.
 
 			li
-				| Мы можем компенсировать средства #[br]
-				|только за неиспользованное время#[br]
+				| Мы можем компенсировать средства #[br(v-if="isMobile")]
+				|только за неиспользованное время#[br(v-if="isMobile")]
 				| Directbot.
 
 			li 
-				| Мы оставляем за собой право #[br]
-				| изменить, приостановить или #[br]
-				| аннулировать весь или любую часть #[br]
+				| Мы оставляем за собой право #[br(v-if="isMobile")]
+				| изменить, приостановить или #[br(v-if="isMobile")]
+				| аннулировать весь или любую часть #[br(v-if="isMobile")]
 				| нашего сервиса в любое время. 
 
 			li
-				| Direcbot не терпит спам-активность. #[br]
-				| Если вы используете подозрительные #[br]
-				| имена пользователей или создаете #[br]
-				| несколько новых учетных записей,#[br]
-				| чтобы продолжать использовать #[br]
-				| 3-дневную бесплатную пробную#[br]
-				| версию без оплаты или совершаете #[br]
-				| другую спам-подобную активность,#[br]
+				| Direcbot не терпит спам-активность. #[br(v-if="isMobile")]
+				| Если вы используете подозрительные #[br(v-if="isMobile")]
+				| имена пользователей или создаете #[br(v-if="isMobile")]
+				| несколько новых учетных записей,#[br(v-if="isMobile")]
+				| чтобы продолжать использовать #[br(v-if="isMobile")]
+				| 3-дневную бесплатную пробную#[br(v-if="isMobile")]
+				| версию без оплаты или совершаете #[br(v-if="isMobile")]
+				| другую спам-подобную активность,#[br(v-if="isMobile")]
 				| вам будет запрещено использовать 
 				| Directbot.
 
 			li
-				| Это ваша личная ответственность, #[br]
-				| отслеживать изменения данных #[br]
+				| Это ваша личная ответственность, #[br(v-if="isMobile")]
+				| отслеживать изменения данных #[br(v-if="isMobile")]
 				| условий использования. 
 
 		.ps 
-			| Последний раз данные условия использования#[br]
+			| Последний раз данные условия использования#[br(v-if="isMobile")]
 			| были обновлены 12 января 2017 года.
 
 </template>
