@@ -1,6 +1,15 @@
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
+
+.link-bottom {
+
+	cursor: pointer;
+
+}
+
+
+
 .help-popup {
 	position: fixed;
 	size: 100%;
