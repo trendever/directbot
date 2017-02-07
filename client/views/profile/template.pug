@@ -1,4 +1,5 @@
 #profile
+
   header-component(:title='getUserName', :left-btn-show='false').directbot-header
 
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
@@ -9,9 +10,11 @@
         span {{ monetizationDays }}
         span.day д
 
-  menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+  menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item
-      .text(@click.stop="buyService") Поддержка
+      .text Отключить бота
+    .item
+      .text(@click.stop="supportChat") Поддержка
     .item
       .text.__txt-blue Отмена
     .item
@@ -76,7 +79,7 @@
             p.bold Активирован #[br]
             p.light(v-if="!postsCount") нет активных постов, ожидаю..
             p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
-        .profile_no-goods-banner(v-if="!botActivity && getStats.indexOf('profile-banner') === -1 && !hideGrey")
+        .profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           br(v-if="isMobile")
           span После подключения к Instagram,#[br]
