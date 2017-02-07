@@ -1,4 +1,4 @@
-@use postcss-autoreset {
+/* @use postcss-autoreset {
   reset: {
     all: initial;
     sizes: 0;
@@ -7,7 +7,7 @@
 @use postcss-initial {
   reset: inherited;
 }
-
+ */
 @import 'style/vars/vars.pcss';
 
 .user-info {
@@ -41,6 +41,15 @@
 }
 
 .description {
+
+  &.no-name {
+    height: 100%;
+    span {
+      padding-top:4%;
+    }
+
+  }
+
   display: block;
   width: 100%;
   box-sizing: border-box;

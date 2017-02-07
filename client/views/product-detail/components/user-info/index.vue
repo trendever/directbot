@@ -1,7 +1,7 @@
 <template>
   <div class="user-info">
     <img class="avatar" :src="img" v-link='{name: "user", params: {id: name}}'>
-    <div class="description">
+    <div class="description" :class="{'no-name': !name}">
       <div class="userName" v-if="name">
         <span class="title" v-link='{name: "user", params: {id: name}}'>Нашёл</span>
         <span class="name" v-link='{name: "user", params: {id: name}}'>{{name}}</span>
