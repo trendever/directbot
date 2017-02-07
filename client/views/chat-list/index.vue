@@ -31,7 +31,7 @@
 
 
       .chat-list-cnt-is-empty__banner.directbot-banner(
-        v-if="!botActivity && getStats.indexOf('chat-banner') === -1", :class="{'turn-bottom': sortedList.length}")
+        v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1", :class="{'turn-bottom': sortedList.length}")
 
         i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
         span
@@ -188,7 +188,7 @@
 
     computed:{
       ...mapGetters([
-        'getStats',
+        'getBannerInfo',
         'botActivity',
         //user
         'getAuthUser',

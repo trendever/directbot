@@ -1,5 +1,105 @@
 <style src="./style.pcss"></style>
-<template lang="pug" src="./template.pug"></template>
+<template lang="pug">
+#profile
+
+  header-component(:title='getUserName', :left-btn-show='false').directbot-header
+
+      div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
+
+        i.ic-options_menu(@click.stop="showProfileMenu = true")
+
+      div.profile-days(slot="content" v-if="isSelfPage && monetizationDays !== null")
+        span {{ monetizationDays }}
+        span.day д
+
+  menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+    .item
+      .text Отключить бота
+    .item
+      .text(@click.stop="supportChat") Поддержка
+    .item
+      .text.__txt-blue Отмена
+    .item
+      .text.__txt-red(@click.stop="logout") Выход
+
+  .directbot-right-nav
+    right-nav-component(current="profile" v-on:open-profile-menu="showProfileMenu = true")
+
+  .section.top.bottom.db-bottom
+    .section__content(v-cloak)
+
+      .profile
+
+        .profile_info
+
+          .profile_info_img
+            img(:src="getUserPhoto")
+
+
+          .profile_info_about(v-if="user.location && user.working_time && user.products_count")
+            span.profile_info_about_type
+              | Магазин
+            span.profile_info_about_location
+              | {{ user.location}}
+            span.profile_info_about_work-time
+              |  {{ user.working_time }}
+            span.profile_info_about_posts-quantity
+              |  {{ user.products_count }} постов
+
+
+        .profile_desc(v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
+
+          .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
+          .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
+
+        .profile_insta-link(v-if="isSelfPage && isMobile")
+
+          .insta-link-text ссылка на эту витрину
+          .insta-link(ref="instaLink") {{ getUserName }}.drbt.io
+          native-popup(:show-popup="showCopyMessage")
+            .title-text.title-font Ссылка скопирована
+            .main-text {{copyMessage}}
+            .button-text(v-on:click.stop="showCopyMessage = false")
+              span OK
+
+        button.turn-on-bot-btn-desk.blue-btn(
+          @click="$router.push({name: 'connect-bot'})", v-if="!isMobile && isAuth") ПОДКЛЮЧИТЬ
+        button.find-bloger-btn.blue-btn(v-if="!isMobile && isAuth") НАЙТИ БЛОГЕРА
+
+
+
+      template(v-if="loaded && isSelfPage")
+
+        .profile_inactive(v-if="!botActivity")
+          img(src="./img/empty-directbot-profile.png")
+          span.empty Деактивирован
+          span мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
+        .profile_active(v-if="botActivity")
+          img(src="./img/active-directbot-profile.png", v-if="isMobile")
+          img(src="./img/active-directbot-profile-desk.svg", v-if="!isMobile")
+          .text-box
+            p.bold Активирован #[br]
+            p.light(v-if="!postsCount") нет активных постов, ожидаю..
+            p.light(v-if="postsCount") мониторю {{  postsCount }} поста #[br] общаюсь в {{ chatsCount }} чатах
+        .profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
+          i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
+          br(v-if="isMobile")
+          span После подключения к Instagram,#[br]
+          span.save оператор начнет мониторить все посты, #[br]
+          span отвечать покупателям и добавлять сюда товары
+
+
+      connect-button(v-if="isSelfPage && isMobile && !botActivity")
+
+        //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
+          i.ic-close
+
+  photos(:shopId="supplierProfileID || userShopId || anotherId", :listName="listId")
+
+  .directbot-navbar(v-if="isMobile && isAuth")
+    navbar-component(current='profile')
+
+</template>
 
 <script>
 import listen from 'event-listener';
@@ -82,7 +182,7 @@ export default {
     let replace = instagram_username ? instagram_username.replace(new RegExp("-", 'g'),"_") : null;
 
     function goConnect(vm){
-      if(store.getters.monetizationStatus === null && to.name !== 'connect-bot'){ 
+      if(store.getters.monetizationStatus === null && to.name !== 'connect-bot' && vm.isSelfPage){ 
         vm.$router.push({ name: 'connect-bot'})
       }
     }
@@ -158,12 +258,12 @@ export default {
     //filter
     caption_spaces,
 
-    buyService(){
+    supportChat(){
       this.$store.dispatch('createLead', settings.supportID )
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
-                this.$router.push( { name: 'chat', params: { id: lead.id } } )
+                this.$router.push( { name: 'chat', params: { id: lead.id }, query: { action: 'support' } } )
               }
             }
           )
@@ -272,7 +372,7 @@ export default {
     },
 
     ...mapGetters([
-      'getStats',
+      'getBannerInfo',
       //leads
       'getAllLeads',
       //user

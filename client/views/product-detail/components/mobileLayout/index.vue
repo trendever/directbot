@@ -1,6 +1,12 @@
 <template>
   <div class="mobileLayout">
     <div class="wrapper" v-if="notFromUser">
+      <user-info
+        :img="avatarUrl"
+        :code="code"
+        :name="name"
+        :last-update="lastUpdate"
+      ></user-info>
     </div>
     <div class="picture-wrapper">
       <picture :img="picture"></picture>
@@ -33,6 +39,7 @@
 
 <script type="text/babel">
 
+  import userInfo from '../user-info/index';
   import picture from '../picture/index.vue';
   import products from '../products/index.vue';
   import buttons from '../buttons/index.vue';
@@ -75,6 +82,7 @@
       }
     },
     components: {
+      userInfo,
       picture,
       products,
       buttons,

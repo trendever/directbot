@@ -63,8 +63,11 @@
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               v-on:click='sendSMS') Отправить sms-код
-            .link-container(v-if="false")
+            //-.link-container(v-if="false")
               a.link-bottom( v-on:click.prevent='onClickLink') Мне нужна помощь
+            .link-container
+              a.link-bottom(v-on:click.stop='$router.push({name: "popup", params: { id: "conditions"} } )')
+                | Условия использования
 
 </template>
 
@@ -118,7 +121,7 @@ export default {
     }
   },
   created(){
-    if(this.$store.getters.isAuth) {
+    if(this.$store.getters.isAuth && !this.$store.getters.isFake) {
       localStorage.setItem('active-account', true);
       this.$router.push({name: 'profile'})
     }
@@ -182,16 +185,10 @@ export default {
           }
         } else {
           window.history.back();
-          //this.$router.go(-1);
           return
         }
       }
-
-      if (window.history.length > 2) {
-        window.history.back();
-      } else {
-        this.$router.push({name: 'home'});
-      }
+      this.$router.push({name: 'home'});
     },
 
     save() {

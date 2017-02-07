@@ -10,6 +10,12 @@
       <div class="rightSide" :style="rightSide">
 
         <div class="userAndProducts">
+          <user-info
+            :img="avatarUrl"
+            :code="code"
+            :name="name"
+            :last-update="lastUpdate"
+          ></user-info>
           <template v-for="product of products">
             <products
               :name="product.name"
@@ -39,7 +45,7 @@
 <style src="./style.pcss" scoped lang="postcss"></style>
 
 <script type="text/babel">
-
+  import userInfo from '../user-info/index'; 
   import picture from '../picture/index.vue';
   import products from '../products/index.vue';
   import buttons from '../buttons/index.vue';
@@ -156,6 +162,7 @@
       }
     },
     components: {
+      userInfo,
       picture,
       products,
       buttons,

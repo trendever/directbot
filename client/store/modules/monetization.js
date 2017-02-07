@@ -17,7 +17,7 @@ let state = {
   status: '',// test | test-over | active | disable
   days: 0,
   activity: false,
-  stats: []
+  bannerInfo: []
 
 }
 
@@ -35,7 +35,7 @@ let getters = {
 
   botActivity: state => state.activity,
 
-  getStats: state => state.stats
+  getBannerInfo: state => state.bannerInfo
 
 }
 
@@ -43,7 +43,8 @@ let getters = {
 let actions = {
 
   closeStat( { state } , value){
-    state.stats.push(value)
+    state.bannerInfo.push(value)
+    localStorage.setItem('bannerInfo', JSON.stringify(state.bannerInfo))
   },
 
   setMonetization( { commit, state }, value ){

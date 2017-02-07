@@ -21,11 +21,11 @@ let router = new Router({
 	routes: [
     { path: '/', redirect: { name: 'home' }},
 		{
-			name: 'home',
       path: '/home',
       component: require('views/home/index.vue'),
       children: [
         {
+          name: 'home',
           path: '',
           component: {
               render(createElement) {

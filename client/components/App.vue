@@ -34,6 +34,13 @@ export default {
       .then( () => {
         this.authDone = true;
       })
+      .then( () => {
+        let banners = JSON.parse(localStorage.getItem('bannerInfo'));
+        console.log(banners)
+        if(banners){
+          this.$store.state.monetization.bannerInfo = banners;
+        }
+      })
   }
 }
 

@@ -3,40 +3,6 @@
 
 #connect-bot
 
-  .help-popup(v-if="helpPopup")
-    .close(@click.stop="helpPopup = false"): i.ic-close
-    .title
-      | Возникли проблемы#[br]
-      | с подключением оператора#[br]
-      | к вашему Instagram магазину?#[br]
-    .content
-      ul
-        li
-          | Еще раз проверьте на опечатки логин#[br]
-          | и пароль. Логин нужно указывать без @
-        li
-          | Если у вашего аккаунта в Instagram#[br]
-          | разрешена двухфакторная авторизация,#[br]
-          | то на ваш email или номер телефон вы#[br]
-          | получите код. Код нужно будет ввести#[br]
-          | на втором шаге подключения оператора
-        li
-          | Возможно Instagram попросит#[br]
-          | подтвердить подлинность вашего,#[br]
-          | аккаунта, для чего вам нужно войти в#[br]
-          | свой аккаунт на веб-сайте 
-          a(href="instagram.com") instagram.com
-
-        li
-          | В редких случаях, когда вы логинитесь#[br]
-          | на сторонние сервисы как наш, Instagram#[br]
-          | может попросить обновить пароль от#[br]
-          | вашего аккаунта. Для этого вам нужно#[br]
-          | перейти по ссылке из email, который#[br]
-          | вам пришлет Instagram
-
-
-
   .turn-on-bot(:style='{ height: containerHeight }')
     .turn-on-bot__close(@click="$router.push({name:'profile'})"): i.ic-close
     .section
@@ -122,7 +88,7 @@
               v-if="needConfirmCode && !connectProcess",
               @click='confirmCode') ПОДТВЕРДИТЬ
             .link-container.new-sms
-              a.link-bottom(@click="helpPopup = true")
+              a.link-bottom(@click.stop="$router.push({name: 'popup', params: {id: 'connectbot'}})")
                 | Мне нужна помощь
 
 </template>
@@ -144,7 +110,6 @@ export default {
       login: '' || instagram_username,
       needConfirmCode: false,
       connectProcess: false,
-      helpPopup: false,
       containerHeight: '',
       errorPassword: ''
     }
