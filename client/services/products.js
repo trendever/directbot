@@ -251,11 +251,11 @@ export function offNew( handler ) {
   channel.off( 'NEW', 'product', handler );
 }
 
-export function deleteProduct( id ) {
+export function deleteProduct( product_id ) {
 
   return new Promise( ( resolve, reject ) => {
 
-    channel.req( 'delete', 'product', { id } )
+    channel.req( 'delete', 'product', { product_id } )
            .then( data => {
 
              if ( data.response_map.success) {

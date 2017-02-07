@@ -10,12 +10,14 @@
     .title-text.title-font Осторожно!
     .main-text Подтвердите удаление
     .button-text(v-on:click.stop="showCopyMessage = false")
-      span OK
-      span(@click="showPopup = false, menuOpened = false") Отмена
+      span(@click.stop="deleteProduct") OK
+      span(@click.stop="showPopup = false, menuOpened = false") Отмена
 
 </template>
 
 <script>
+
+  import * as productService from 'services/products';
   import nativePopup from 'components/popup/native';
   import listen from 'event-listener';
   import { targetClass } from 'root/utils';
@@ -54,6 +56,14 @@
         this.scrollListen.remove();
       }
       this.outerClose.remove();
+    },
+    methods: {
+      deleteProduct(){
+        productService.deleteProduct(+this.getOpenedProduct.id).then(()=>{
+          this.$router.push({name: 'profile'});
+        })
+
+      }
     },
     computed:{
       ...mapGetters([
