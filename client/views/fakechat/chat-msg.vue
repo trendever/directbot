@@ -13,13 +13,9 @@
       )
     .chat-msg-wrap
       p.chat-msg_txt(v-html="getMessage")
-
-
-
-
 </template>
 
-<script type='text/babel'>
+<script>
   import { navigateTolink } from 'root/utils';
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
