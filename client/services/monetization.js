@@ -67,13 +67,13 @@ export function coins_offers (currency, offer_id){
 
 }
 
-export function buy_coins ( offer_id, gateway ){
+export function buy_coins ( offer_id, gateway, redirect ){
 
 	return new Promise((resolve, reject)=>{
 
 		channel
 
-			.req( 'buy_coins' , 'monetization' , { offer_id, gateway } )
+			.req( 'buy_coins' , 'monetization' , { offer_id, gateway, redirect } )
 
 			.then( data => {
 
