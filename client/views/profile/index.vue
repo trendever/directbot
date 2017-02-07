@@ -180,7 +180,7 @@ export default {
     let replace = instagram_username ? instagram_username.replace(new RegExp("-", 'g'),"_") : null;
 
     function goConnect(vm){
-      if(store.getters.monetizationStatus === null && to.name !== 'connect-bot'){ 
+      if(store.getters.monetizationStatus === null && to.name !== 'connect-bot' && vm.isSelfPage){ 
         vm.$router.push({ name: 'connect-bot'})
       }
     }
