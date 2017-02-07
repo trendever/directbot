@@ -27,11 +27,21 @@
 		}
 
 		.light-title {
+
+
 				font-size: 40px;
 				font-family: $font__family__light;
-				@media screen and (min-width: 750px) {  
+
+				@media screen and (min-width: 751px) {  
 					margin-bottom: 24px;
 					font-size: 24px;
+				}
+
+				&.one {
+					@media (--mobile) {
+						font-family: $font__family__semibold;
+						margin-bottom: 30px;
+					}
 				}
 		}
 	}
@@ -61,6 +71,7 @@
 		}
 
 		ul {
+
 			list-style: decimal;
 			padding-left: 30px;
 			margin-left: auto;
@@ -101,7 +112,7 @@
 
 		h1 Условия использования
 
-		.light-title
+		.light-title.one
 
 			| Пожалуйста внимательно#[br(v-if="isMobile")]
 			| ознакомьтесь#[br(v-if="!isMobile")] с условиями#[br(v-if="isMobile")]
