@@ -8,6 +8,7 @@
 	background: $color__dark-blue;
 	color: white;
 
+
 	i.ic-close {
 		position: absolute 10px 22px * * !important;
 		font-size: 24px !important;
@@ -17,8 +18,11 @@
 	.title {
 		padding: 40px * 40px *;
 		text-align: center;
-		font-size: 40px;
 		font-family: $font__family__semibold;
+		font-size: 32px;
+		@media (--mobile) {
+			font-size: 40px;
+		}
 
 	}
 
@@ -26,11 +30,19 @@
 
 		width: 95%;
 		margin: 0 auto;
-		padding-left: 4%;
-		font-size: 36px;
+		@media ( --mobile ) {
+			padding-left: 4%;
+		}
+
+		padding-left: 22%;
+		font-size: 24px;
 		.link-help {
 			text-align: center;
 			padding: 50px 2% 30px 0;
+
+			@media screen and (min-width: 751px){
+				transform: translateX(-15%)
+			}
 			.link-bottom {
 				display: inline-block;
 
@@ -53,9 +65,9 @@
 			li {
 				font-family: $font__family__light;
 				line-height: 45px;
-				margin-top: 30px;
-
+				margin-top: 10px;
 				@media (--mobile) {
+					margin-top: 30px;
 					font-size: 26px;
 
 				}
