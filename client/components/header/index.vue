@@ -39,6 +39,7 @@
 
         slot(name='content')
 
+      product-menu(v-if="$route.name === 'product_detail'")
 
 
 </template>
@@ -46,9 +47,11 @@
 <script type='text/babel'>
   import settings from 'root/settings';
   import listen from 'event-listener';
+  import productMenu from 'root/components/productmenu/index';
 
 
   export default {
+    components: {productMenu},
     data(){
       return {
         is_visible: false,
