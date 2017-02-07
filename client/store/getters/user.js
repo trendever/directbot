@@ -1,3 +1,6 @@
+import store from 'root/store';
+
+
 export const isAuth = ( user ) => {
 
   return user.isAuth;
@@ -212,6 +215,30 @@ export const authUserId = ( user ) => {
 export const getAuthUser = ( user ) => {
 
   return user.all[user.myId];
+
+}
+
+export const authUserShopId = ( user ) => { 
+  if(user.all[user.myId].supplier_of !== null){
+    return user.all[user.myId].supplier_of[0];
+  }
+  return null;
+}
+
+
+export const isSelfProduct = (user) => {
+  
+  let product = store.state.products.openedProduct ? store.state.products.openedProduct : null;
+
+  if ( product ) {
+
+    if (product.supplier_id ) {
+
+      return authUserShopId(user) === product.supplier_id;
+
+    }
+
+  }
 
 }
 
