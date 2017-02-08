@@ -1,5 +1,5 @@
 <template lang="pug">
-#info-popup
+#info-popup( :class="{'browser-ios': isIos}")
 	.popup-content(:class="{'part-screen': $route.params.id.indexOf('is') !== -1 }")
 		i.ic-close(v-on:click="close")
 		component(v-bind:is="$route.params.id")
@@ -65,13 +65,27 @@ export default {
 
 <style lang="postcss">
 	@import 'style/vars/vars.pcss';
-	#info-popup{
+	
+	#info-popup {
 
 		width: 100%;
 		height: 100%;
 		z-index: 310;
 		position: fixed 0 0 * 0;
 		overflow: auto;
+
+/* 		&.browser-ios {
+			position: relative;
+			overflow: initial;
+			.content {
+				ul {
+					li {
+						font-size: 230%;
+						line-height: 100%;
+					}
+				}
+			}
+		} */
 
 		.popup-content{
 			&.part-screen {

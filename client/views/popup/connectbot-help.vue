@@ -1,99 +1,26 @@
 <style lang="postcss">
-
-@import 'style/vars/vars.pcss';
-
-.link-bottom {
-	cursor: pointer;
-}
-
-.help-popup {
-	position: fixed;
-	size: 100%;
-	overflow: auto;
-	background: $color__dark-blue;
-	color: white;
-
-
-	i.ic-close {
-		position: absolute 10px 22px * * !important;
-		font-size: 24px !important;
-		padding: 20px !important; 
-	}
-
-	.title {
-		padding: 40px * 40px *;
+.connect-bot {
+	.link-help {
+		margin: 50px 0;
 		text-align: center;
-		font-family: $font__family__semibold;
-		font-size: 32px;
-		@media (--mobile) {
-			font-size: 40px;
-		}
-
-	}
-
-	.content {
-		width: 100%;
-		margin: 0 auto;
-		font-size: 24px;
-
-
-
-		@media ( --mobile ) {
-			width: 95%;
-			padding-left: 4%;
-		}
-
-		.link-help {
-
-			text-align: center;
-			padding-top: 30px;
-
-			.link-bottom {
-				display: inline-block;
-
-			}
-
-		}
-
-		ul {
-
-			list-style: initial;
-
-			margin: 0 auto;
-			@media screen and (min-width: 751px) {
-				width: 720px;
-			}
-
-			li {
-				font-family: $font__family__light;
-				line-height: 25px;
-				margin-top: 10px;
-				@media (--mobile) {
-					line-height: 45px;
-					margin-top: 30px;
-					font-size: 26px;
-				}
-
-				a {
-
-					color: white;
-
-				}
-			}
-		}
 	}
 }
 
 </style>
+
 <template lang="pug">
 
-.help-popup
-	i.ic-close(v-on:click="$router.push({name: 'connect-bot'})")
+.connect-bot
+
 	.title
-		| Возникли проблемы#[br]
-		| с подключением оператора#[br]
-		| к вашему Instagram магазину?#[br]
+
+		.title-head 
+			| Возникли проблемы#[br]
+			| с подключением оператора#[br]
+			| к вашему Instagram магазину?#[br]
+
 	.content
+		
 		ul
 			li
 				| Еще раз проверьте на опечатки логин#[br(v-if="isMobile")]
@@ -132,14 +59,14 @@ export default {
 	methods: {
 
 		help(){
-	    this.$store.dispatch('createLead', settings.supportID )
-	      .then(
-	        ( lead ) => {
-	          if ( lead !== undefined && lead !== null ) {
-	            this.$router.push( { name: 'chat', params: { id: lead.id } } )
-	          }
-	        }
-	      )
+			this.$store.dispatch('createLead', settings.supportID )
+				.then(
+					( lead ) => {
+						if ( lead !== undefined && lead !== null ) {
+							this.$router.push( { name: 'chat', params: { id: lead.id } } )
+						}
+					}
+				)
 		}
 
 	}

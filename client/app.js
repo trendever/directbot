@@ -17,7 +17,8 @@ Vue.mixin({
   data(){
     return {
     	landingCounter: 0,
-    	isMobile: window.browser.mobile
+    	isMobile: window.browser.mobile,
+    	isIos: window.browser.ios
     }
   }
 });

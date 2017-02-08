@@ -85,10 +85,16 @@ let router = new Router({
       component: require('views/product-detail/index.vue')
     },
 
+    // {
+    //   name: 'popup',
+    //   path: '/popup/:id',
+    //   component: Popup
+    // },
+
     {
       name: 'popup',
       path: '/popup/:id',
-      component: Popup
+      component: require('../views/popup/fullscreen-popup')
     },
     {
       name: 'list',

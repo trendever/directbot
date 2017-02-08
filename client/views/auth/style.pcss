@@ -562,8 +562,10 @@
 
 
   &.some-left {
-    transform: translateX(-9%) translateY(18%);
-  }
+    @media screen and (min-width: 751px){
+      transform: translateX(-9%) translateY(18%);
+    }
+  } 
 
   @media(--tabletandless) {
     height: 44px;
@@ -571,6 +573,10 @@
     font-size: 36px;
   }
 }
+
 .accept_btn{
   margin-left: 0px !important;
 }
+
+
+
