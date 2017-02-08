@@ -12,29 +12,41 @@
       .chat-header_notify-count(v-if='getGlobalNotifyCount')
         span {{ unreadCount }}
 
-      .chat-header_cnt(v-show='getShopName')
-        .chat-header_cnt_t(@click="$router.push({name: 'user', params: {id: getShopName}})") {{ getShopName }}
-        .chat-header_cnt_info
-          span.chat-header_cnt_info-text
-          | {{ getLeadId }},
-          span  {{ getStatus }}
+      <!-- Default chat header -->
+      template(v-if="!isServiceShop")
+        .chat-header_cnt(v-show='getShopName' v-if="!isServiceShop")
+          .chat-header_cnt_t(@click="$router.push({name: 'user', params: {id: getShopName}})") {{ getShopName }}
+          .chat-header_cnt_info
+            span.chat-header_cnt_info-text
+            | {{ getLeadId }},
+            span  {{ getStatus }}
 
-      .chat-header_photo
-        img(
-        :src='userImage'
-        v-on:error='onUserImageError',
-        @click="$router.push({name: 'user', params: {id: getShopName}})")
+        .chat-header_photo
+          img(
+          :src='userImage'
+          v-on:error='onUserImageError',
+          @click="$router.push({name: 'user', params: {id: getShopName}})")
+      
+      <!-- Chat header for service chat -->
+      template(v-else)
+        .chat-header_cnt
+          .chat-header_cnt_t {{ getServiceChatName }}
+
+        .chat-header_photo
+          img(:src='userImage' v-on:error='onUserImageError')
+
+      
 
 </template>
 
-<script type='text/babel'>
+<script >
   import { mapGetters } from 'vuex';
   import { urlThumbnail } from 'root/utils'
 
   import HeaderComponent from 'components/header'
 
   import { getLeadByConversationId } from 'root/store/getters/lead.js'
-  import settings from 'root/settings';
+  import config from 'root/../config.js';
 
   export default {
     data(){
@@ -71,9 +83,9 @@
         }
 
         let products = getLeadByConversationId(this.$store.state.leads, this.$store.getters.getId).products;
-        let check = id => products.some( item=> item.id == id )
+        let check = id => products.some( item => item.id == id )
 
-        if(check(settings.monetizationHelpID)) {
+        if(check(config.monetization_help_id)) {
           this.$router.push({name: "monetization"})
           return;
         }
@@ -121,6 +133,9 @@
         'getLeadId',
         'getStatusName',
         'getShopName',
+        'getShopSupplierId',
+        'isServiceShop',
+        'getIsServiceProductTitle',
         'getPhoto',
         'isFake',
         'getGlobalNotifyCount'
@@ -129,6 +144,9 @@
         if ( this.getStatusName !== null ) {
           return this.getStatusName.toLowerCase();
         }
+      },
+      getServiceChatName(){
+        return this.getIsServiceProductTitle
       }
     },
     components: {

@@ -58,7 +58,7 @@ export default {
       'userID'
     ]),
 
-    fakeMessages(){
+    fakeMe1ssages(){
 
     },
 
