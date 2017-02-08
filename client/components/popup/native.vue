@@ -101,16 +101,14 @@ export default {
     }
 
     span {
+
+      width: 100%;
       cursor: pointer;
       padding: * 30px * 30px;
       margin: * 10px * 10px;
       @media (--mobile) {
         padding: * 50px * 50px;
         margin: * 10px * 10px;
-      }
-
-      &.fix-right {
-        transform: translateX(14%)
       }
     }
   }

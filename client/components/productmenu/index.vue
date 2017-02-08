@@ -14,7 +14,7 @@
     .main-text Подтвердите удаление
     .button-text(v-on:click.stop="showCopyMessage = false")
       span(@click.stop="deleteProduct") OK
-      span.fix-right(@click.stop="showPopup = false, menuOpened = false") Отмена
+      span(@click.stop="showPopup = false, menuOpened = false") Отмена
 
 </template>
 
