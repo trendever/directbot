@@ -176,19 +176,8 @@ export default {
     closePage() {
       //mixpanel.track('Close Signup Page');
       this.save();
-
-      if (this.isFake){
-        if(window.before) {
-          if (window.before.name === "chat_list" || window.before.name === "profile"){
-          this.$router.push({ name: "home"})
-          return
-          }
-        } else {
-          window.history.back();
-          return
-        }
-      }
       this.$router.push({name: 'home'});
+      
     },
 
     save() {
