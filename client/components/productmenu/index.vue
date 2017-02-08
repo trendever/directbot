@@ -76,12 +76,6 @@
         'getOpenedProduct',
         'getAuthUser'
       ]),
-      isSelfProduct(){
-        if(this.getAuthUser.supplier_of !== null){
-          return this.getAuthUser.supplier_of[0] === this.getOpenedProduct.supplier_id;
-        }
-        return false;
-      },
       notFromUser(){
         if (window.entryPoint == "user"){
           return false;
