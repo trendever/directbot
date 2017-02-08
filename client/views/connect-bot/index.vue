@@ -88,7 +88,7 @@
               v-if="needConfirmCode && !connectProcess",
               @click='confirmCode') ПОДТВЕРДИТЬ
             .link-container.new-sms
-              a.link-bottom(@click.stop="$router.push({name: 'popup', params: {id: 'connectbot'}})")
+              a.link-bottom(@click.stop="$router.push({name: 'popup', params: {id: 'connect'}})")
                 | Мне нужна помощь
 
 </template>

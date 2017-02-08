@@ -69,7 +69,7 @@
 
         if(this.prevPage){
           if(this.prevPage.params){
-            if(this.prevPage.params.id === 'connectbot'){
+            if(this.prevPage.params.id === 'connect'){
               this.$router.push({name: 'connect-bot'});
               return;
             }

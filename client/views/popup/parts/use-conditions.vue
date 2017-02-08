@@ -20,8 +20,7 @@
 		text-align: center;
 
 		@media(--mobile) {
-			margin-right: 22px;
-			font-size: 22px;
+			font-size: 24px;
 		}
 
 	}
