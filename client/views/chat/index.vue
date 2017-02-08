@@ -3,7 +3,7 @@
 #chat
   //.loader-center(v-if="showLoader"): app-loader
 
-  chat-header(:notify-count='conversationNotifyCount', :prev-page="prevPage")
+  chat-header(:prev-page="prevPage")
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat-shadow.directbot-color(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu")

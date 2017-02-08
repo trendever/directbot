@@ -44,7 +44,7 @@
 
 </template>
 
-<script type='text/babel'>
+<script >
   import settings from 'root/settings';
   import listen from 'event-listener';
   import productMenu from 'root/components/productmenu/index';
