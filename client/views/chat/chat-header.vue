@@ -1,9 +1,8 @@
 <style src='./styles/chat-header.pcss'></style>
 <template lang="pug">
 #chat-header
-  header-component(v-if="disableNotifier", :notify-count='0')
 
-  header-component(v-else :notify-count="unreadCount")
+  header-component(:notify-count="unreadCount")
 
     .chat-header(slot='center-content')
       .chat-header_arrow(@click='leftBtnAction')
