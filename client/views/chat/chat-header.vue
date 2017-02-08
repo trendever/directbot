@@ -12,7 +12,7 @@
         span {{ unreadCount }}
 
       <!-- Default chat header -->
-      //-template(v-if="!isServiceShop")
+      template(v-if="!isServiceShop")
         .chat-header_cnt(v-show='getShopName' v-if="!isServiceShop")
           .chat-header_cnt_t(@click="$router.push({name: 'user', params: {id: getShopName}})") {{ getShopName }}
           .chat-header_cnt_info
