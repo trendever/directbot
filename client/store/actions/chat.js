@@ -417,7 +417,7 @@ export const receiveMessage = ( { commit, state }, conversation_id, messages ) =
 
 }
 
-export const addPreLoadMessage = ( { commit, state }, base64, base64WithPrefix, MIME, { width, height } ) => {
+export const addPreLoadMessage = ( { commit, state },  { base64, base64WithPrefix, MIME,  width, height } ) => {
 
   const beforeLoadId = Math.random()
 
@@ -427,9 +427,9 @@ export const addPreLoadMessage = ( { commit, state }, base64, base64WithPrefix, 
     loaded: false,
     conversation_id: getId( state ),
     created_at: null,
-    user_id: store.getters.userID( state ),
+    user_id: store.getters.userID,
     user: {
-      user_id: store.getters.userID( state )
+      user_id: store.getters.userID
     },
     parts: [
       {
@@ -442,7 +442,7 @@ export const addPreLoadMessage = ( { commit, state }, base64, base64WithPrefix, 
       }
     ]
   }
-
+  
   commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages: [ preLoadMessage ], id: getId( state ) } )
 
   messageService.create( getId( state ), base64, MIME ).then( ( { messages } ) => {
