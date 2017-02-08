@@ -71,12 +71,15 @@
         }
 
         let products = getLeadByConversationId(this.$store.state.leads, this.$store.getters.getId).products;
-        let check = id => products.some( item=> item.id == id )
 
-        if(check(settings.monetizationHelpID)) {
-          this.$router.push({name: "monetization"})
-          return;
+        if(products) {
+          let check = id => products.some( item=> item.id == id )
+          if(check(settings.monetizationHelpID)) {
+            this.$router.push({name: "monetization"})
+            return;
+          }
         }
+
 
         if (this.isFake && this.fakeAction === 'chat-info'){
           this.$router.push({name: "home"})
