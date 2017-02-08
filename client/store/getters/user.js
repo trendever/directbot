@@ -223,8 +223,10 @@ export const getAuthUser = ( user ) => {
 }
 
 export const authUserShopId = ( user ) => { 
-  if(user.all[user.myId].supplier_of !== null){
-    return user.all[user.myId].supplier_of[0];
+  if(user.myId) {
+    if(user.all[user.myId].supplier_of !== null){
+      return user.all[user.myId].supplier_of[0];
+    }
   }
   return null;
 }

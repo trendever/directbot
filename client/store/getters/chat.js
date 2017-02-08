@@ -236,6 +236,7 @@ export const getIsServiceProductTitle = ( state ) => {
 }
 
 export const isServiceShop = ( state ) => {
+  
   return getShopSupplierId(state) === config.service_user_id;
 }
 

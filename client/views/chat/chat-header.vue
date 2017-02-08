@@ -27,7 +27,7 @@
           @click="$router.push({name: 'user', params: {id: getShopName}})")
       
       <!-- Chat header for service chat -->
-      template(v-else)
+      template(v-if="isServiceShop")
         .chat-header_cnt
           .chat-header_cnt_t Поддержка
 

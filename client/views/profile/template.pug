@@ -16,9 +16,9 @@
     .item
       .text(@click.stop="supportChat") Поддержка
     .item
-      .text.__txt-blue Отмена
-    .item
       .text.__txt-red(@click.stop="logout") Выход
+    .item
+      .text.__txt-blue Отмена
 
   .directbot-right-nav
     right-nav-component(current="profile" v-on:open-profile-menu="showProfileMenu = true")

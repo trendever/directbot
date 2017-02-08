@@ -47,7 +47,7 @@ export default {
 
 .right-nav {
 
-  position: absolute;
+  position: fixed;
   top:0;
   right:18px;
   z-index: 999;

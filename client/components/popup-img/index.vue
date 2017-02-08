@@ -93,7 +93,6 @@
     beforeDestroy(){
 
       this.resize.remove();
-      this.$store.dispatch('openPopUp');
 
     },
     props: {

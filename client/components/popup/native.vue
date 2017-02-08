@@ -90,15 +90,19 @@ export default {
   .button-text {
     font-family: $font__family__semibold;
     border-top: 1px solid grey;
+    display: flex;
+    justify-content: center;
     color:#226ABB ;
     padding: 20px 20px 20px 20px;
-
+    display: flex;
     @media (--mobile) {
       padding: 30px 30px 30px 30px;
       font-size: 36px;
     }
 
     span {
+
+      width: 100%;
       cursor: pointer;
       padding: * 30px * 30px;
       margin: * 10px * 10px;
