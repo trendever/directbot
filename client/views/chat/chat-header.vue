@@ -30,7 +30,7 @@
       <!-- Chat header for service chat -->
       template(v-else)
         .chat-header_cnt
-          .chat-header_cnt_t {{ getServiceChatName }}
+          .chat-header_cnt_t Поддержка
 
         .chat-header_photo
           img(:src='userImage' v-on:error='onUserImageError')
