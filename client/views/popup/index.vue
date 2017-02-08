@@ -19,9 +19,6 @@ import infoScreen9 from 'views/info-screens/info-screen-9.vue';
 import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 
 
-import useConditions from './use-conditions';
-import connectbotHelp from './connectbot-help';
-
 import listen from 'event-listener';
 
 export default {
@@ -41,9 +38,7 @@ export default {
 		"is7" : infoScreen7,
 		"is8" : infoScreen8,
 		"is9" : infoScreen9,
-		"is10" : infoScreen10,
-		"conditions" : useConditions,
-		"connectbot" : connectbotHelp
+		"is10" : infoScreen10
 	},
 	methods: {
 		close(){
@@ -65,7 +60,8 @@ export default {
 
 <style lang="postcss">
 	@import 'style/vars/vars.pcss';
-	#info-popup{
+	
+	#info-popup {
 
 		width: 100%;
 		height: 100%;
