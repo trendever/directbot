@@ -30,10 +30,14 @@ export const isFake = ( state ) => {
   if(state.all[state.myId]){
     if (state.all[state.myId].is_fake){
       return true;
+    }else{
+      return false;
     }
+  }else{
+    return true;
   }
 
-  return false;
+  
 
   // if(state.all[state.myId]){
   //   if (state.all[state.myId].phone){
