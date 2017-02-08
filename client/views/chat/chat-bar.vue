@@ -22,7 +22,7 @@
 
 </template>
 
-<script type='text/babel'>
+<script>
 
   import listen from 'event-listener'
 

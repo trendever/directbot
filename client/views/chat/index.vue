@@ -198,7 +198,6 @@ export default {
       'getChatLengthList',
       'getShowMenu',
       'getShowStatusMenu'
-
     ])
 
   },
@@ -242,7 +241,7 @@ export default {
             .find(this.getId, null, 70, false)
             .then((data)=>{
               return data.find(message=>{
-                return message.parts[0].content === 'Привет;) да, подтверждаю!'
+                return message.user.user_id === this.getCurrentMember.user_id
               })
             });
 
