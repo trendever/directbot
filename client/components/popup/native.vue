@@ -90,9 +90,11 @@ export default {
   .button-text {
     font-family: $font__family__semibold;
     border-top: 1px solid grey;
+    display: flex;
+    justify-content: center;
     color:#226ABB ;
     padding: 20px 20px 20px 20px;
-
+    display: flex;
     @media (--mobile) {
       padding: 30px 30px 30px 30px;
       font-size: 36px;
@@ -105,6 +107,10 @@ export default {
       @media (--mobile) {
         padding: * 50px * 50px;
         margin: * 10px * 10px;
+      }
+
+      &.fix-right {
+        transform: translateX(14%)
       }
     }
   }
