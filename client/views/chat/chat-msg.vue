@@ -96,7 +96,7 @@
         //   return '<b class="_blue">directbotio</b>';
         // }
         if(this.msg.user.name === 'trendever' || this.msg.user.name === 'trendevercom'){
-          return '<b>Directbot</b>';
+          return '<b>оператор</b>';
         }
         if (this.isCustomer) {
           if (this.msg.user.name.indexOf("customer_") >= 0){
