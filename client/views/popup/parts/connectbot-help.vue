@@ -1,8 +1,10 @@
 <style lang="postcss">
+@import 'style/vars/vars.pcss';
 .connect-bot {
 	.link-help {
-		margin: 50px 0;
+		padding: 50px 0;
 		text-align: center;
+		background: $color__dark-blue;
 	}
 }
 
@@ -20,7 +22,7 @@
 			| к вашему Instagram магазину?#[br]
 
 	.content
-		
+
 		ul
 			li
 				| Еще раз проверьте на опечатки логин#[br(v-if="isMobile")]

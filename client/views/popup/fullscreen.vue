@@ -1,6 +1,6 @@
 <template lang="pug">
 
-#fullscreen-popup(:class="{'full': $route.params.id === 'connect', 'ios-browser': isIos }")
+#fullscreen-popup(:class="{'full': full, 'ios-browser': isIos }", ref="screen")
 	i.ic-close(v-on:click="close")
 	component(v-bind:is="$route.params.id")
 
@@ -8,10 +8,15 @@
 
 
 <script>
-import connectHelp from './connectbot-help';
-import useConditions from './use-conditions';
+import connectHelp from './parts/connectbot-help';
+import useConditions from './parts/use-conditions';
 	
 export default {
+	data(){
+		return {
+			full: false
+		}
+	},
 	methods:{
 		close(){
 			if(this.$route.params.id === 'conditions'){
@@ -24,6 +29,11 @@ export default {
 			}
 			this.$router.push({ name: 'home'})
 		}
+	},
+
+	mounted(){
+		this.full = this.$refs.screen.offsetHeight < window.innerHeight ? true : false; 
+
 	},
 	components: {
 		'connect': connectHelp,
@@ -38,10 +48,10 @@ export default {
 
 @import 'style/vars/vars.pcss';
 
-
 .link-bottom {
 	cursor: pointer;
 }
+
 
 #fullscreen-popup {
 
@@ -49,14 +59,11 @@ export default {
 	background: $color__dark-blue;
 	color: $color__white;
 
-
 	&.ios-browser {
-
 		li {
-			font-size: 40px !important;
+
 		}
 	}
-
 
 	&.full {
 		height: 100%;
@@ -93,8 +100,10 @@ export default {
 
 		.title-body{
 
-				font-size: 40px;
 				font-family: $font__family__light;
+				@media (--mobile ) {
+					font-size: 4.6vw;
+				}
 
 				@media screen and (min-width: 751px) {  
 					margin-bottom: 24px;
@@ -102,10 +111,9 @@ export default {
 				}
 
 				&.one {
-					@media (--mobile) {
-						font-family: $font__family__semibold;
-						margin-bottom: 30px;
-					}
+
+					margin-bottom: 20px;
+
 				}
 		}
 	}
@@ -116,16 +124,16 @@ export default {
 		margin: 0 auto;
 		font-size: 24px;
 
-		@media( --mobile) {
-			padding-left: 4%;
-		}
-
 		ul {
 			list-style: initial;
 			padding-left: 30px;
 			margin-left: auto;
 			margin-right: auto;
 			margin-top: -24px;
+
+			@media( --mobile) {
+				padding-left: 7%;
+			}
 			@media screen and (min-width: 751px) {
 				margin-top: -44px;
 				padding-left: 50px;
@@ -142,7 +150,8 @@ export default {
 				@media (--mobile) {
 					line-height: 40px;
 					margin-top: 30px;
-					font-size: 5vw;
+					font-size: 4.6vw;
+					margin-left: 10px;
 				}
 
 				a {

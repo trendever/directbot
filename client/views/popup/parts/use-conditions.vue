@@ -5,6 +5,11 @@
 .use-conditions {
 	ul  {
 		list-style: decimal !important;
+		li {
+			@media (--mobile) {
+				padding-left: 20px;
+			}
+		}
 
 	}
 	.ps {
@@ -33,14 +38,13 @@
 
 		.title-body.one
 
-			| Пожалуйста внимательно#[br(v-if="isMobile")]
-			| ознакомьтесь#[br(v-if="!isMobile")] с условиями#[br(v-if="isMobile")]
-			| использования Directbot
+			| Пожалуйста внимательно ознакомьтесь#[br(v-if="isMobile")]
+			| с условиями использования Directbot#[br(v-if="isMobile")]
 
 		.title-body
-			| Используя сервис Directbot,#[br(v-if="isMobile")]
-			| вы подтверждаете, #[br(v-if="!isMobile")]что прочитали#[br(v-if="isMobile")]
-			| и согласны с нижеприведенными условиями:
+			| Используя сервис Directbot, вы #[br(v-if="isMobile")]
+			| подтверждаете, #[br(v-if="!isMobile")]что прочитали и согласны#[br(v-if="isMobile")]
+			| с нижеприведенными условиями:
 
 	.content
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-#info-popup( :class="{'browser-ios': isIos}")
+#info-popup
 	.popup-content(:class="{'part-screen': $route.params.id.indexOf('is') !== -1 }")
 		i.ic-close(v-on:click="close")
 		component(v-bind:is="$route.params.id")
@@ -18,9 +18,6 @@ import infoScreen8 from 'views/info-screens/info-screen-8.vue';
 import infoScreen9 from 'views/info-screens/info-screen-9.vue';
 import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 
-
-import useConditions from './use-conditions';
-import connectbotHelp from './connectbot-help';
 
 import listen from 'event-listener';
 
@@ -41,9 +38,7 @@ export default {
 		"is7" : infoScreen7,
 		"is8" : infoScreen8,
 		"is9" : infoScreen9,
-		"is10" : infoScreen10,
-		"conditions" : useConditions,
-		"connectbot" : connectbotHelp
+		"is10" : infoScreen10
 	},
 	methods: {
 		close(){
@@ -73,19 +68,6 @@ export default {
 		z-index: 310;
 		position: fixed 0 0 * 0;
 		overflow: auto;
-
-/* 		&.browser-ios {
-			position: relative;
-			overflow: initial;
-			.content {
-				ul {
-					li {
-						font-size: 230%;
-						line-height: 100%;
-					}
-				}
-			}
-		} */
 
 		.popup-content{
 			&.part-screen {

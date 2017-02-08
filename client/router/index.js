@@ -94,7 +94,7 @@ let router = new Router({
     {
       name: 'popup',
       path: '/popup/:id',
-      component: require('../views/popup/fullscreen-popup')
+      component: require('../views/popup/fullscreen')
     },
     {
       name: 'list',
