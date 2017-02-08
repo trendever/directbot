@@ -7,16 +7,15 @@
     i(:class='{"ic-check": isLoaded && !isRead, "ic-check-double": isRead, "ic-clock": !isLoaded}')
   .chat-msg.bubble(:class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage }')
     router-link.chat-msg_t(
-        v-if='!isOwnMessage && !isClosest && !directbot',
+        v-if='!isOwnMessage && !isClosest && !isServiceShop',
         :class='{"chat-msg_t-customer-color":isCustomer}',
         :to='{name: "user", params: {id: getUserNameLink}}',
         v-html="getUsername"
       )
 
     .chat-msg_t(
-        v-if='!isOwnMessage && !isClosest && directbot',
+        v-if='!isOwnMessage && !isClosest && isServiceShop',
         :class='{"chat-msg_t-customer-color":isCustomer}',
-        v-on:click="goInstagramProfile"
         v-html="getUsername"
       )
 
@@ -28,7 +27,7 @@
 
 </template>
 
-<script type='text/babel'>
+<script >
   import { navigateTolink } from 'root/utils';
   import * as service from 'services/chat';
   import * as leads from 'services/leads';
@@ -37,10 +36,6 @@
 
   export default{
     props: {
-      directbot: {
-        type: Boolean,
-        default: true
-      },
       msg: {
         type: Object,
         required: true
@@ -65,6 +60,7 @@
         'getShopName',
         'getCurrentMember',
         'getLastMessageId',
+        'isServiceShop',
         //user
         'user'
 
@@ -99,8 +95,8 @@
         // if(this.msg.user.name === 'directbotio'){
         //   return '<b class="_blue">directbotio</b>';
         // }
-        if(this.msg.user.name === 'trendever'){
-          return '<b>trendever</b>';
+        if(this.msg.user.name === 'trendever' || this.msg.user.name === 'trendevercom'){
+          return '<b>Directbot</b>';
         }
         if (this.isCustomer) {
           if (this.msg.user.name.indexOf("customer_") >= 0){
@@ -122,7 +118,7 @@
         return this.msg.user.role === leads.USER_ROLES.CUSTOMER.key;
       },
       isClosest(){
-        return this.msg.closestMessage;
+        return false;
       },
       isOwnMessage() {
         if ( this.getCurrentMember !== null ) {

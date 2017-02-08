@@ -19,13 +19,12 @@
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg-product(
-              v-if='msg.parts[0].mime_type === "text/plain" && hasData(msg) ',
+              v-if='msg.parts[0].mime_type === "text/plain" && hasData(msg) && !isServiceShop',
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg(
               v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg)',
               :msg='msg',
-              :directbot="directbot",
               v-on:goToBottom="goToBottom")
             chat-msg-info(
               v-if='msg.parts[0].mime_type === "text/html"',
@@ -190,6 +189,7 @@ export default {
       'imgHeight',
       'isAuth',
       'getUseDays',
+      'isServiceShop',
       'isDoneLead',
       'getMessages',
       'conversationNotifyCount',
@@ -198,7 +198,6 @@ export default {
       'getChatLengthList',
       'getShowMenu',
       'getShowStatusMenu'
-
     ])
 
   },
@@ -242,7 +241,7 @@ export default {
             .find(this.getId, null, 70, false)
             .then((data)=>{
               return data.find(message=>{
-                return message.parts[0].content === 'Привет;) да, подтверждаю!'
+                return message.user.user_id === this.getCurrentMember.user_id
               })
             });
 

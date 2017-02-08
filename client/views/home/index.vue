@@ -178,7 +178,7 @@ import listen from 'event-listener';
 
 import { mapGetters } from 'vuex';
 import * as authService from 'services/auth';
-import settings from 'root/settings';
+import config from 'root/../config.js'
 import * as commonService from 'services/common';
 
 export default {
@@ -291,7 +291,7 @@ export default {
       let dispatch = this.$store.dispatch.bind(this);
 
       function openChat(vm){
-        dispatch('createLead',settings.infoID)
+        dispatch('createLead',config.info_id)
           .then(lead=>{
             dispatch('setFakeAction', 'chat-info');
             vm.$router.push({name: 'chat', params: { id: lead.id} })

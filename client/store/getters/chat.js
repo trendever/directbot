@@ -10,6 +10,8 @@ import { getLeadByConversationId } from '../getters/lead.js';
 
 import store from 'root/store';
 
+import config from 'root/../config.js';
+
 
 export const getId = ( conversation ) => conversation.id;
 
@@ -193,25 +195,56 @@ export const getPhoto = ( state ) => {
 export const getShopName = ( state ) => {
 
   const lead = getLeadByConversationId( store.state.leads, state.id );
-
+  
   if ( lead !== null ) {
-
     return lead.shop.instagram_username;
-
   }
 
   return null;
 
 };
 
+export const getShopSupplierId = ( state ) => {
+  const lead = getLeadByConversationId( store.state.leads, state.id );
+ 
+  if ( lead !== null ) {
+    return lead.shop.supplier_id;
+  }
+
+  return null;
+}
+
+export const getIsServiceProductTitle = ( state ) => {
+  const lead = getLeadByConversationId( store.state.leads, state.id );
+  
+  if ( lead !== null ) {
+    if (lead.products[0]){
+      let service_ids = [];
+      service_ids.push(config.info_id)
+      service_ids.push(config.support_id)
+
+      //let titles = ["Информационный чат","Чат поддержки"]
+
+      let index = service_ids.indexOf(lead.products[0].id)
+      if (index >= 0){
+        return "Поддержка"
+      }
+    }
+  }
+
+  return false;
+}
+
+export const isServiceShop = ( state ) => {
+  return getShopSupplierId(state) === config.service_user_id;
+}
+
 export const getShopId = ( state ) => {
 
   const lead = getLeadByConversationId( store.state.leads, state.id );
-
+  
   if ( lead !== null ) {
-
     return lead.shop.id;
-
   }
 
   return null;

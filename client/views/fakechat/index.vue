@@ -33,6 +33,8 @@ export default {
     scrollTop,
   },
   data(){
+    console.log("CONF")
+    console.log(config)
 
     return {
       fullScroll: 0,
@@ -56,47 +58,36 @@ export default {
       'userID'
     ]),
 
+    fakeMe1ssages(){
+
+    },
+
     getFakeMessages(){
       let messages = [];
       messages.push(...this.getMessages);
 
       //Merge сообщений монетизации в чат
+
       if(this.coinsLog) {
+        
         this.coinsLog.forEach((elem)=>{
           let time = elem.created_at;
+          console.log("COINS:")
+          console.log(elem)
           let coinsPartsObject = {content: elem.data.amount + " refilled",mime_type:"text/coins"}
           let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: config.service_user_id}};
           messages.push(coinsMessageObject)
+          
         });
         return this.sortMessages(messages)
       }else{
         return messages;
       }
+      
     }
   },
   methods:{
     sortMessages(messages){
-      let mapped_messages = [];
-      let mapped_indexes = [];
-
-      messages.forEach((elem,index) => {
-        if (elem.user && elem.user.user_id === config.service_user_id){
-          mapped_messages[index] = elem;
-          mapped_indexes.push(index);
-        }
-      })
-
-      mapped_messages.sort((x,y)=>{
-        if (y.parts.length === 2) return 1;
-        if (x.parts.length === 2) return 0;
-        return x.created_at - y.created_at;
-      })
-
-      mapped_messages.forEach((elem,index) => {
-        let insert_index = mapped_indexes[index]
-        messages[insert_index] = elem;
-      })
-
       return messages;
     },
     runFakeChat(){
