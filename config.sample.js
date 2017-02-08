@@ -27,6 +27,8 @@ var config = {
   /**
    * Other
    */
+  service_user_id: 3996,
+  
   info_id: null,
 
   support_id: null,
