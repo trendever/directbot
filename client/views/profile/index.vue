@@ -260,11 +260,21 @@ export default {
     hideBanner(){
       window.localStorage.setItem('isMainBannerShow',false);
       this.showBanner = false;
+    },
+
+    declOfNum(titles){
+        var cases = [2, 0, 1, 1, 1, 2];
+        return function(number){
+            return  titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+        }
     }
 
   },
 
   computed: {
+    productsCountTitle(){
+      return this.declOfNum(["пост","поста","постов"])(this.user.products_count)
+    },    
 
     longCaption(){
       return this.getUserCaption && this.getUserCaption.length > 300

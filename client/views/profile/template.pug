@@ -42,7 +42,7 @@
             span.profile_info_about_work-time(v-if="user.working_time")
               |  {{ user.working_time }}
             span.profile_info_about_posts-quantity
-              |  {{ user.products_count }} постов
+              |  {{ user.products_count }} {{productsCountTitle}}
 
 
         .profile_desc(v-if="longCaption" v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
