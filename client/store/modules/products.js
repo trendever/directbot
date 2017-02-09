@@ -26,10 +26,7 @@ let actions = {
     if(state.listId){
       if(state.lists[state.listId]){
         let products = state.lists[state.listId].products;
-        console.log(products.length)
         products.splice(index, 1)
-        console.log(products.length)
-
       }
     }
 
