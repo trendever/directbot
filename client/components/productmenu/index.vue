@@ -65,7 +65,8 @@
         window.eventHub.$emit('copy-text', 'https://www.directbot.io/product/' + this.$route.params.id)
       },
       deleteProduct(){
-        productService.deleteProduct(+this.getOpenedProduct.id).then(()=>{
+        productService.deleteProduct(+this.getOpenedProduct.id).then(()=> {
+          this.$store.dispatch('deleteProduct')
           this.$router.push({name: 'profile'});
         })
 
@@ -74,7 +75,8 @@
     computed:{
       ...mapGetters([
         'getOpenedProduct',
-        'getAuthUser'
+        'getAuthUser',
+        'isSelfProduct'
       ]),
       notFromUser(){
         if (window.entryPoint == "user"){
