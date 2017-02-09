@@ -2,24 +2,30 @@
 <template lang="pug">
 
 .header__menu(v-if="isMobile && notFromUser")
- .header__menu-icon(@click.stop='menuOpened = !menuOpened', v-show="showBullets && isSelfProduct")
+ .header__menu-icon(@click.stop='openMenu', v-show="showBullets && isSelfProduct")
   i.ic-menu_bullets
  .header__menu-links.bubble.bubble--arrow.bubble--arrow-ne(v-if="menuOpened")
-  a.header__menu-link.text-regular(@click.stop="copy") Копировать ссылку
+  a.header__menu-link.text-regular.clip_copy(@click.stop="") Копировать ссылку
   a.header__menu-link.text-delete(@click.stop="showPopup = true") Удалить
   a.header__menu-link.text-cancel Отмена
 
   native-popup.del-popup(:show-popup="showPopup")
     .title-text.title-font Осторожно!
     .main-text Подтвердите удаление
-    .button-text(v-on:click.stop="showCopyMessage = false")
+    .button-text
       span(@click.stop="deleteProduct") OK
       span(@click.stop="showPopup = false, menuOpened = false") Отмена
+
+  native-popup(:show-popup="showCopyMessage")
+    .title-text.title-font Ссылка скопирована
+    .main-text {{copyMessage}}
+    .button-text(v-on:click.stop="showCopyMessage = false")
+      span OK
 
 </template>
 
 <script>
-
+  import clipboard from 'clipboard'; 
   import * as productService from 'services/products';
   import nativePopup from 'components/popup/native';
   import listen from 'event-listener';
@@ -34,7 +40,8 @@
       return {
         showPopup: false,
         menuOpened: false,
-        showBullets: true
+        showBullets: true,
+        showCopyMessage: false
       }
     },
     created(){
@@ -43,6 +50,7 @@
         targetClass(e, 'menu-cnt', ()=>{
           if(this.menuOpened) this.menuOpened = false;
           if(this.showPopup) this.showPopup = false;
+          if(this.showCopyMessage) this.showCopyMessage = false;
         
         });
 
@@ -55,14 +63,29 @@
       }
     },
     beforeDestroy(){
-      if(this.scrollListen) {
-        this.scrollListen.remove();
-      }
+      if(this.scrollListen) this.scrollListen.remove();
+      if (this.copy) this.copy.destroy();
       this.outerClose.remove();
     },
     methods: {
-      copy(){
-        window.eventHub.$emit('copy-text', 'https://www.directbot.io/product/' + this.$route.params.id)
+      openMenu(){
+        this.clipboardLogic();
+        this.menuOpened = true;
+      },
+      clipboardLogic(){
+
+        if (this.copy) this.copy.destroy();
+        let self = this;
+        this.copy =  new clipboard('.clip_copy', {
+            text(trigger){
+              return `https://www.directbot.io/product/${self.$route.params.id}`;
+            }
+        })
+        this.copy.on('success',()=>{
+          this.copyMessage = `Ссылка https://www.directbot.io/product/${this.$route.params.id} скопирована для вставки.`;
+          this.showCopyMessage = true;
+        }) 
+
       },
       deleteProduct(){
         productService.deleteProduct(+this.getOpenedProduct.id).then(()=> {

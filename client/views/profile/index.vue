@@ -148,8 +148,8 @@ export default {
     if (this.user.location){
       this.setShopData();
     }
-    this.$nextTick(()=>{
 
+    this.$nextTick(()=>{
       let query = this.$route.query;
       if(query){
         if(query.product){
@@ -159,7 +159,7 @@ export default {
         }
       }
     })
-    
+
   },
 
   beforeDestroy(){
