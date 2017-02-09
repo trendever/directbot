@@ -222,7 +222,7 @@ const mutations = {
   },
 
   [types.CONVERSATION_RECEIVE_MESSAGE] ( state, { messages, id } ) {
-
+    if(!messages) return
     console.time( 'CONVERSATION_RECEIVE_MESSAGE' );
 
     const { all } = state;

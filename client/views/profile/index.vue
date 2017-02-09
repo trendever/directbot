@@ -223,7 +223,9 @@ export default {
     },
     logout(){
       this.$store.dispatch('logOut')
-      this.$router.push({name: 'home'})
+
+      window.location = '/';
+
 
     },
 
