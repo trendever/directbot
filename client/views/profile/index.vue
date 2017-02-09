@@ -26,7 +26,6 @@ export default {
   data(){
     
   let showBanner = (window.localStorage.getItem('isMainBannerShow') === null) ? true : false;
-  
     return {
       hideGrey: false,
       loaded: true,
@@ -40,7 +39,7 @@ export default {
       bodyListner: '',
       supplierProfileID: 0,
       shoplocation: "",
-      shopabout: ""
+      shopabout: "",
     }
 
   },
@@ -267,6 +266,9 @@ export default {
 
   computed: {
 
+    longCaption(){
+      return this.getUserCaption.length > 300
+    },
 
     postsCount(){
 
