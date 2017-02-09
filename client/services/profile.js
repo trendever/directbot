@@ -39,10 +39,15 @@ export const getProfile = (function() {
      * @type {timestamp} subscribe_at - время согласия/несогласия с подпиской
      * @ return {object}
      */
+    let cookieUser = storage.getItem( 'user' );
+    let storageUser = localStorage.getItem('user');
+    if (cookieUser === null && storageUser !== null){
+      cookieUser = JSON.parse(localStorage.getItem('user'));
+    }
 
     const profile = {
       uid: storage.getItem( 'uid' ),
-      user: storage.getItem( 'user' ),
+      user: cookieUser,
       token: storage.getItem( 'token' ),
       first_visit_at: storage.getItem( 'first_visit_at' ),
       last_visit_at: storage.getItem( 'last_visit_at' ),
@@ -77,6 +82,7 @@ export const getProfile = (function() {
 
 export function saveUser( data ) {
   storage.setItem( 'user', data );
+  localStorage.setItem('user', JSON.stringify(data))
 }
 
 export function saveToken( token ) {
