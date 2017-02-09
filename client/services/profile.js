@@ -103,6 +103,7 @@ export function saveToken( token ) {
 export function removeToken() {
   storage.removeItem( 'token' );
   storage.removeItem( 'user' );
+  localStorage.removeItem( 'user' )
 }
 
 export function CookieStorage() {
