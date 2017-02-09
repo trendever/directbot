@@ -3,6 +3,15 @@
   router-view(v-if="authDone && monetizationDone")
   listener(v-if="authDone")
   monetization(v-if="authDone", v-on:checkbot="monetizationDone = true")
+
+  //-Clipboard
+  native-popup(:show-popup="showCopyMessage")
+    .title-text.title-font Ссылка скопирована
+    .main-text {{copyMessage}}
+    .button-text(v-on:click.stop="showCopyMessage = false")
+      span OK
+
+
 </template>
 
 <script>
@@ -14,19 +23,32 @@ import 'style/index.pcss';
 import store from 'root/store';
 import Listener from './Listener.vue';
 import Monetization from './Monetization.vue';
+import nativePopup from 'components/popup/native';
 
 export default {
   data(){
     return {
       authDone: false,
-      monetizationDone: false
+      monetizationDone: false,
+
+      //clipboard
+      showCopyMessage: false,
+      copyMessage: ''
     }
   },
   components: {
     Listener,
-    Monetization
+    Monetization,
+    nativePopup
   },
+  mounted(){
+    window.eventHub.$on('copy-product-link', data=>{
 
+      this.showCopyMessage = true;
+      this.copyMessage = data;
+
+    })
+  },
   beforeCreate(){
 
     store
