@@ -38,8 +38,9 @@ export default {
       showProfileMenu: false,
       timeID: null,
       bodyListner: '',
-      supplierProfileID: 0
-
+      supplierProfileID: 0,
+      shoplocation: "",
+      shopabout: ""
     }
 
   },
@@ -145,6 +146,9 @@ export default {
     this.clipboardLogic();
     this.updateProductsLogic();
 
+    if (this.user.location){
+      this.setShopData();
+    }
   },
 
   beforeDestroy(){
@@ -154,6 +158,29 @@ export default {
   },
 
   methods: {
+    setShopData(){
+      
+      let splitted = this.user.location.split(" ");
+
+      let calculated = splitted.reduce(function(result,current,index){
+          if (current.indexOf(",") >= 0){
+              result.location.push(current)
+              result.next_i = index + 1;
+              return result;
+          }
+
+          if (index === result.next_i || index === 0){
+              result.location.push(current)
+          }else{
+              result.info.push(current)
+          }
+
+          return result;
+      },{ location: [], next_i: -1, info: [] });
+
+      this.shopabout = calculated.info.join(" ");
+      this.shoplocation = calculated.location.join(" ")
+    },
 
     //filter
     caption_spaces,
@@ -239,6 +266,7 @@ export default {
   },
 
   computed: {
+
 
     postsCount(){
 
