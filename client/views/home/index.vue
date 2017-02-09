@@ -100,7 +100,9 @@
       a.link-info(@click.stop="openPopup('is4')") Не важно, задан вопрос в комментариях #[br(v-if="isMobile")] или личном сообщении, #[br(v-if="!isMobile")]
       span  оператор #[br(v-if="isMobile")] уже будет отвечать покупателю #[br(v-if="isMobile")] в Direct от твоего имени
     .hero__content__landing__toggle
-      .hero__content__landing__toggle__title ТЕПЕРЬ НАМ НУЖНО ЗНАТЬ, #[br(v-if="isMobile")] У ТЕБЯ ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
+      .hero__content__landing__toggle__title 
+        | ЧТОБЫ УЗНАТЬ ДАЛЬНЕЙШИЕ#[br(v-if="isMobile")]  ДЕЙСТВИЯ ОПЕРАТОРА, #[br(v-if="!isMobile")] 
+        | СКАЖИТЕ, #[br(v-if="isMobile")] ЕСТЬ ЛИ У ВАС ИНТЕРНЕТ-МАГАЗИН?
       button(v-on:click="noScreen = false, yesScreen = true").yes.toggleBtn.activeBtn ДА
       button(v-on:click="yesScreen = false, noScreen = true").no.toggleBtn НЕТ
     .toggle-box
