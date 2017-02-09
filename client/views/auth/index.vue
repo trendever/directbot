@@ -190,6 +190,8 @@ export default {
 
     sendSMS() {
 
+      this.$store.dispatch('logOut');
+
       if(this.login === null) {
         this.login = '';
       }
