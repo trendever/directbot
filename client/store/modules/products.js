@@ -21,12 +21,15 @@ let state = {
 
 let actions = {
 
-  deleteProduct( { commit, state } ) {
+  deleteProduct( { commit, state }, index ) {
 
     if(state.listId){
       if(state.lists[state.listId]){
-        state.lists[state.listId] = [];
-        console.log(state)
+        let products = state.lists[state.listId].products;
+        console.log(products.length)
+        products.splice(index, 1)
+        console.log(products.length)
+
       }
     }
 

@@ -66,10 +66,8 @@
       },
       deleteProduct(){
         productService.deleteProduct(+this.getOpenedProduct.id).then(()=> {
-          this.$store.dispatch('deleteProduct')
-          this.$router.push({name: 'profile'});
+          this.$router.push({name: 'profile', query: { product: this.getOpenedProduct.id }});
         })
-
       }
     },
     computed:{

@@ -148,6 +148,18 @@ export default {
     if (this.user.location){
       this.setShopData();
     }
+    this.$nextTick(()=>{
+
+      let query = this.$route.query;
+      if(query){
+        if(query.product){
+          let state = this.$store.state.products;
+          let index = state.lists[state.listId].products.findIndex(i => i.id == query.product);
+          this.$store.dispatch('deleteProduct', index);
+        }
+      }
+    })
+    
   },
 
   beforeDestroy(){
