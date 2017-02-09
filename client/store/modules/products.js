@@ -21,6 +21,20 @@ let state = {
 
 let actions = {
 
+  deleteProduct( { commit, state }, index ) {
+
+    if(state.listId){
+      if(state.lists[state.listId]){
+        let products = state.lists[state.listId].products;
+        console.log(products.length)
+        products.splice(index, 1)
+        console.log(products.length)
+
+      }
+    }
+
+  },
+
   closeProduct( { commit, state },) {
 
     commit(types.PRODUCTS_CLOSE_PRODUCT);

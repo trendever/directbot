@@ -196,12 +196,16 @@ export default {
         }
       }
 
+
+
       this
         .authUser( { user, token } )
         .then(() => {
+
           this.$root.$emit('checkbot-after')
 
           localStorage.removeItem('fake_action');
+  
           localStorage.setItem('active-account', true);
 
           if(!this.anotherName) {

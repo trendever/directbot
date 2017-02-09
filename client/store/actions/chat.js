@@ -333,8 +333,8 @@ export const createMessage = ( { commit, state },{ conversation_id, text, mime_t
     }
   ]
 
-  commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages: rowMessage, id: conversation_id } )
 
+  commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages: rowMessage, id: conversation_id } )
   return messageService
     .create( conversation_id, text, mime_type )
     .then( ( { chat, messages, error } ) => {

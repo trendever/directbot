@@ -1,6 +1,6 @@
 <template>
   <div class="user-info">
-    <img class="avatar" :src="img" @click='$router.push({name: "user", params: {id: name}})'>
+    <img class="avatar" :src="img" v-if="name" @click='$router.push({name: "user", params: {id: name}})'>
     <div class="description" :class="{'no-name': !name}">
       <div class="userName" v-if="name">
         <span class="title" @click='$router.push({name: "user", params: {id: name}})'>Нашёл</span>
