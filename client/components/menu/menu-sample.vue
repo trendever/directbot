@@ -120,6 +120,13 @@
       .text {
 
         color: #595959;
+
+        @media screen and (min-width: 751px){
+
+          padding-left: 30px;
+          
+        }
+
         padding-left: 30px;
 
         &.__txt-blue {

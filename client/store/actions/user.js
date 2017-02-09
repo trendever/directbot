@@ -6,6 +6,12 @@ import { getUserName, getProfile } from '../getters/user.js';
 import { removeToken } from 'services/profile'
 
 
+export const hideConnectBanner = ({ state, commit } ) => {
+  state.connectBanner = true;
+} 
+
+
+
 export const getValidUserObject = ( user, user_id ) => {
 
   if ( user.hasOwnProperty( 'id' ) ) {

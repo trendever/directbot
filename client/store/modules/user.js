@@ -88,6 +88,7 @@ const state = {
   photoConfigs: {},
   done: false,
   payment: {},
+  connectBanner: false
 
 };
 

@@ -227,17 +227,24 @@ const mutations = {
 
     const { all } = state;
 
-    if ( all.hasOwnProperty( id ) ) {
+    if (all && all.hasOwnProperty( id ) ) {
       //TODO FIX ERROR IN FAKE CHAT
       console.log("HERE THROWS ERROR")
       console.log(all)
       console.log(id)
-      for ( let i = all[ id ].length; i; i-- ) {
-        if ( all[ id ][ i - 1 ].id === messages[ 0 ].id ) {
-          return;
-        }
-      }
 
+      let i = all[ id ];
+
+      for ( i.length; i; i-- ) {
+        if(!messages[ 0 ]){
+          if ( all[ id ][ i - 1 ].id === messages[ 0 ].id ) {
+            return;
+          }
+        }
+
+          
+      }
+     
       //fix double messages
       if(messages[ 0 ].created_at === null){
         return;
