@@ -88,6 +88,12 @@
         .hero__content__landing__caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
           a.link-info(@click.stop="openPopup('is3')")
             | Ничего не надо скачивать
+
+        .save-experience(v-if="isMobile")
+          | ВАЖНО, Мы гарантируем  #[br(v-if="isMobile")]
+          | безопасность аккаунта #[br(v-if="isMobile")]
+          | магазина от блокировки #[br(v-if="isMobile")]
+          | и нехраним пароли
     .hero__content__landing__title.middle Что делает #[br(v-if="isMobile")] наш  оператор?
     .hero__content__landing__screen-1
       span.screen-title СКАНИРУЕТ #[br(v-if="!isMobile")] INSTAGRAM DIRECT
