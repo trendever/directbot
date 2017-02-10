@@ -123,7 +123,7 @@ export default {
   mounted() {
 
     this.$nextTick(()=>{
-      //прилипание кнопки
+  
       this.containerHeight = `${ document.body.scrollHeight }px`;
       const onResize = () => {
         this.containerHeight = `${ document.body.scrollHeight }px`;
@@ -166,7 +166,7 @@ export default {
           },10)
         }).then(()=>{
           setTimeout(()=>{
-            JQuery(document.body).animate({scrollTop: document.body.scrollTop - 98},50);
+            JQuery(document.body).animate({scrollTop: document.body.scrollTop - 102},50);
           },350)
         })
       }
@@ -288,7 +288,7 @@ export default {
   height: 100%;
 
   .middle-container.focus-input {
-    margin-top: 100px;
+    margin-top: 120px;
   }
 }
 
