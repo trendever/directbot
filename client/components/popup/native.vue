@@ -22,7 +22,8 @@ export default {
   font-family: $font__family__regular;
   position: fixed 0 0 * 0;
   z-index: 110;
-  size: 100%;
+  height: 100%;
+  width: 100%;
   background: rgba(0, 0, 0, 0.31);
   .popup-content {
     background: #F5F5F6;
