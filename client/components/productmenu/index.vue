@@ -77,9 +77,18 @@
             }
         })
         this.copy.on('success',()=>{
-          let d = `${link} скопирована для вставки.`;
-          window.eventHub.$emit('copy-product-link', d)
+
+
+          let text = `${link} скопирована для вставки.`;
+
+        	if(this.isIos){
+						alert(text)
+						return;
+        	}
+
+          window.eventHub.$emit('copy-product-link', text)
           this.showCopyMessage = true;
+
         }) 
 
       },

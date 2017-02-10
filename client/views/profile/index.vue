@@ -247,8 +247,17 @@ export default {
                 }
               })
             this.copy.on('success',()=>{
-              this.copyMessage = `Ссылка ${this.getUserName}.tndvr.com скопирована для вставки.`;
+
+              
+              let text = `Ссылка ${this.getUserName}.tndvr.com скопирована для вставки.`;
+              if(this.isIos){
+                alert(text)
+                return;
+              }
+
+              this.copyMessage = text;
               this.showCopyMessage = true;
+
             })
             this.copy.on('error', () =>{
               this.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
