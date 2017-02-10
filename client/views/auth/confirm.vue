@@ -7,7 +7,7 @@
     .section
       h1.accept(v-if='!isCompleted') Подтвердите телефон
       h1.accept(v-if='isCompleted') Номер подтвержден
-      .middle-container#mid(:class="{'has-another-name': anotherName}")
+      .middle-container#mid(:class="{'has-another-name': anotherName, 'focus-input': focused}")
         .thanks-wrap(v-if='isCompleted')
           h1 Спасибо!
 
@@ -35,7 +35,8 @@
           .input-container
             .input.confirm-input.conf
               input(type='tel',
-                v-on:click="$refs.confirmField.focus()"
+                @blur="focused = false",
+                v-on:click="focusClick"
                 v-on:keyup='onInput',
                 v-on:focus='onFocus',
                 v-on:keydown.enter='onButton()',
@@ -95,6 +96,7 @@ export default {
 
   data(){
     return {
+      focused: false,
       code: '',
       errorCode: false,
       isCompleted: false,
@@ -139,7 +141,7 @@ export default {
   //computed property
   computed: {
     isDisabled() {
-      return (this.code.length !== 4) && !this.isCompleted;
+      return (this.code.length !== 4);
     },
     ...mapGetters([
       'callbackOnSuccessAuth',
@@ -151,6 +153,18 @@ export default {
       'executeCallbackOnSuccessAuth',
       'authUser'
     ]),
+
+    focusClick(){
+      this.$refs.confirmField.focus()
+      if(this.isIos){
+        Promise.resolve().then(()=>{
+          setTimeout(()=>{
+            document.body.scrollTop = window.innerHeight / 2.16;
+            this.focused = true;
+          },10)
+        })
+      }
+    },
     // input only numbers
     onInput(e) {
       this.code = this.code.replace(/[^0-9]/g, '');
@@ -260,3 +274,17 @@ export default {
 
 
 </script>
+<style type="postcss">
+
+
+#confirm {
+  overflow: hidden;
+  height: 100%;
+
+  .middle-container.focus-input {
+    margin-top: 100px;
+  }
+}
+
+
+</style>
