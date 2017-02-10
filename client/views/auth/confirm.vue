@@ -78,6 +78,8 @@
 </template>
 
 <script>
+
+import JQuery from 'jquery'
 import listen from 'event-listener';
 import { mapActions, mapGetters } from 'vuex';
 
@@ -111,7 +113,7 @@ export default {
 
     if (!store.getters.authData.phone && !store.getters.authData.username){
       next(vm=>{
-        vm.$router.push( { name: 'auth' } );
+        //vm.$router.push( { name: 'auth' } );
       });
     }
 
@@ -159,9 +161,13 @@ export default {
       if(this.isIos){
         Promise.resolve().then(()=>{
           setTimeout(()=>{
-            document.body.scrollTop = window.innerHeight / 2.16;
+            document.body.scrollTop = window.innerHeight; 
             this.focused = true;
           },10)
+        }).then(()=>{
+          setTimeout(()=>{
+            JQuery(document.body).animate({scrollTop: document.body.scrollTop - 98},50);
+          },350)
         })
       }
     },
