@@ -166,7 +166,7 @@ export default {
           },10)
         }).then(()=>{
           setTimeout(()=>{
-            JQuery(document.body).animate({scrollTop: document.body.scrollTop - 102},50);
+            JQuery(document.body).animate({scrollTop: document.body.scrollTop - window.innerHeight / 10},50);
           },350)
         })
       }
