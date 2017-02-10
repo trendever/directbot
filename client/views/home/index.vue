@@ -108,7 +108,7 @@
     .hero__content__landing__toggle
       .hero__content__landing__toggle__title 
         | ЧТОБЫ УЗНАТЬ ДАЛЬНЕЙШИЕ#[br(v-if="isMobile")]  ДЕЙСТВИЯ ОПЕРАТОРА, #[br(v-if="!isMobile")] 
-        | СКАЖИТЕ, #[br(v-if="isMobile")] ЕСТЬ ЛИ У ВАС ИНТЕРНЕТ-МАГАЗИН?
+        | СКАЖИТЕ, #[br(v-if="isMobile")] У ВАС ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
       button(v-on:click="noScreen = false, yesScreen = true").yes.toggleBtn.activeBtn ДА
       button(v-on:click="yesScreen = false, noScreen = true").no.toggleBtn НЕТ
     .toggle-box
