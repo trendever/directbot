@@ -2,11 +2,11 @@
 <template lang="pug">
 
 .header__menu(v-if="isMobile && notFromUser")
- .header__menu-icon(@click.stop='openMenu', v-show="showBullets && isSelfProduct")
+ .header__menu-icon(@click.stop='openMenu', v-show="showBullets")
   i.ic-menu_bullets
  .header__menu-links.bubble.bubble--arrow.bubble--arrow-ne(v-if="menuOpened")
   a.header__menu-link.text-regular.clip_copy Копировать ссылку
-  a.header__menu-link.text-delete(@click.stop="showPopup = true") Удалить
+  a.header__menu-link.text-delete(@click.stop="showPopup = true", v-if="isSelfProduct" ) Удалить
   a.header__menu-link.text-cancel Отмена
 
   native-popup.del-popup(:show-popup="showPopup")
@@ -50,7 +50,7 @@
       })
       if(window.matchMedia('(max-width: 750px)').matches) {
         this.scrollListen = listen(window,'scroll',()=>{
-          this.showBullets = document.body.scrollTop > 85 ? false : true;
+          this.showBullets = document.body.scrollTop < 82;
 
         });
       }
@@ -69,15 +69,15 @@
       clipboardLogic(){
 
         if (this.copy) return;
+        let link = `http://www.directbot.io/product/${this.$route.params.id}`;
 
-        let self = this;
         this.copy =  new clipboard('.clip_copy', {
             text(trigger){
-              return `https://www.directbot.io/product/${self.$route.params.id}`;
+              return link;
             }
         })
         this.copy.on('success',()=>{
-          let d = `Ссылка http://www.directbot.io/product/${this.$route.params.id} скопирована для вставки.`;
+          let d = `${link} скопирована для вставки.`;
           window.eventHub.$emit('copy-product-link', d)
           this.showCopyMessage = true;
         }) 
