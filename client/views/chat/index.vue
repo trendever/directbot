@@ -247,7 +247,7 @@ export default {
 
         }).then(flagMessage=>{
           if(!flagMessage && this.getCurrentMember.role === 1){
-            if(!window.fakeUserRegistrationDone) this.setConversationAction('approve');
+            if(!this.isFake) this.setConversationAction('approve');
           }
 
         }).then(

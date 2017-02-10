@@ -190,8 +190,7 @@ export default {
 
     sendSMS() {
 
-      this.$store.dispatch('logOut');
-
+      
       if(this.login === null) {
         this.login = '';
       }
@@ -249,6 +248,9 @@ export default {
           })
         })
       }else{
+        //Logout possible fake user
+        this.$store.dispatch('logOut');
+
         this.signup().then( ()=> {
           this.$router.push({ name: 'confirm' });
         }).catch( (error) => {

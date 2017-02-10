@@ -2,14 +2,11 @@
 <template lang="pug">
 #chat-header
 
-  header-component(:notify-count="unreadCount")
+  header-component(
+    :notify-count="unreadCount", 
+    :back-function="leftBtnAction")
 
     .chat-header(slot='center-content')
-      .chat-header_arrow(@click='leftBtnAction')
-        i.chat-header_arrow_ic.ic-arrow-left
-
-      .chat-header_notify-count(v-if='getGlobalNotifyCount')
-        span {{ unreadCount }}
 
       <!-- Default chat header -->
       template(v-if="!isServiceShop")

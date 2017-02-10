@@ -93,6 +93,11 @@
         default: false
       },
 
+      backFunction: {
+        type: Function,
+        default: null
+      },
+
       forceBackLink: {
         default: false
       },
@@ -162,6 +167,11 @@
     methods: {
 
       leftBtnAction() {
+
+        if (this.backFunction !== null){
+          this.backFunction();
+          return;
+        }
 
 
         if ( this.show_on_elem ) {
