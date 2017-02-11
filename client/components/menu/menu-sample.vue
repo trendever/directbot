@@ -127,8 +127,6 @@
           
         }
 
-        padding-left: 30px;
-
         &.__txt-blue {
             color: $color__blue;
         }
