@@ -158,6 +158,9 @@ export default {
           this.$store.dispatch('deleteProduct', index);
         }
       }
+
+      window.scrollTo(0, +localStorage.getItem(this.$route.name + '.scroll'))
+
     })
 
   },
