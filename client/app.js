@@ -18,7 +18,8 @@ Vue.mixin({
     return {
     	landingCounter: 0,
     	isMobile: window.browser.mobile,
-    	isIos: window.browser.ios
+    	isIos: window.browser.ios,
+      isInstagram: window.browser.instagram,
     }
   }
 });

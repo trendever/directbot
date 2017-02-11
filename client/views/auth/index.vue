@@ -113,7 +113,6 @@ export default {
 
   data(){
     return {
-      isInstagram: window.browser.instagram,
       login: '',
       phone: '',
       errorLogin: false,

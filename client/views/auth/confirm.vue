@@ -7,7 +7,8 @@
     .section
       h1.accept(v-if='!isCompleted') Подтвердите телефон
       h1.accept(v-if='isCompleted') Номер подтвержден
-      .middle-container#mid(:class="{'has-another-name': anotherName, 'focus-input': focused}")
+      .middle-container#mid(
+        :class="{'has-another-name': anotherName,'focus-input': focused,'instagram-browser': isInstagram && focused }")
         .thanks-wrap(v-if='isCompleted')
           h1 Спасибо!
 
@@ -159,7 +160,9 @@ export default {
     focusClick(){
       this.$refs.confirmField.focus()
       keyboardButtomToBottom();
-      this.focused = true;
+      if(this.isIos){
+        this.focused = true;
+      }
     },
     // input only numbers
     onInput(e) {
