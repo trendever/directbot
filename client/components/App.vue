@@ -4,11 +4,19 @@
   listener(v-if="authDone")
   monetization(v-if="authDone", v-on:checkbot="monetizationDone = true")
 
-  //-Clipboard
+
+  //-clipboard
   native-popup(:show-popup="showCopyMessage")
     .title-text.title-font Ссылка скопирована
     .main-text {{copyMessage}}
     .button-text(v-on:click.stop="showCopyMessage = false")
+      span OK
+
+  //-show-operator
+  native-popup(:show-popup="showOperatorInfo")
+    .title-text.title-font Внимание!
+    .main-text ДИАЛОГ КОНТРОЛИРУЮТ ЖИВЫЕ ОПЕРАТОРЫ
+    .button-text(v-on:click.stop="showOperatorInfo = false")
       span OK
 
 
@@ -33,7 +41,8 @@ export default {
 
       //clipboard
       showCopyMessage: false,
-      copyMessage: ''
+      copyMessage: '',
+      showOperatorInfo: false
     }
   },
   components: {
@@ -43,10 +52,12 @@ export default {
   },
   mounted(){
     window.eventHub.$on('copy-product-link', data=>{
-
       this.showCopyMessage = true;
       this.copyMessage = data;
+    })
 
+    window.eventHub.$on('show-operator', data=>{
+      this.showOperatorInfo = true;
     })
   },
   beforeCreate(){

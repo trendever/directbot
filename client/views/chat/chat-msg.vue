@@ -6,10 +6,10 @@
   .bubble_info.bubble_info_status(v-if='isOwnMessage')
     i(:class='{"ic-check": isLoaded && !isRead, "ic-check-double": isRead, "ic-clock": !isLoaded}')
   .chat-msg.bubble(:class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage }')
-    router-link.chat-msg_t(
+    a.chat-msg_t(
         v-if='!isOwnMessage && !isClosest && !isServiceShop',
         :class='{"chat-msg_t-customer-color":isCustomer}',
-        :to='{name: "user", params: {id: getUserNameLink}}',
+        v-on:click='action',
         v-html="getUsername"
       )
 
@@ -42,6 +42,13 @@
       }
     },
     methods:{
+      action(){
+        if(this.getUsername === '<b>operator</b>'){
+          window.eventHub.$emit('show-operator', 'ok');
+          return;
+        }
+        this.$router.push({name: "user", params: {id: this.getUserNameLink}})
+      },
       goInstagramProfile(){
         navigateTolink(`http://instagram.com/${this.getUserNameLink}`, true);
       }
