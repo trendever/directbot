@@ -69,7 +69,7 @@
       clipboardLogic(){
 
         if (this.copy) return;
-        let link = `http://www.directbot.io/product/${this.$route.params.id}`;
+        let link = `https://directbot.io/product/${this.$route.params.id}`;
 
         this.copy =  new clipboard('.clip_copy', {
             text(trigger){
