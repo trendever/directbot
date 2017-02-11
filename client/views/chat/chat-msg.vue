@@ -16,6 +16,7 @@
     .chat-msg_t(
         v-if='!isOwnMessage && !isClosest && isServiceShop',
         :class='{"chat-msg_t-customer-color":isCustomer}',
+        v-on:click='action',
         v-html="getUsername"
       )
 
@@ -47,6 +48,7 @@
           window.eventHub.$emit('show-operator', 'ok');
           return;
         }
+        if(this.isServiceShop) return;
         this.$router.push({name: "user", params: {id: this.getUserNameLink}})
       },
       goInstagramProfile(){
@@ -54,6 +56,7 @@
       }
     },
     mounted(){
+
       this.$nextTick(()=>{
 
         this.$emit('goToBottom');
