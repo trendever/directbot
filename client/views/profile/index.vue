@@ -238,7 +238,7 @@ export default {
     },
 
     clipboardLogic(){
-      if(this.isSelfPage && this.isMobile) {
+      if(this.isMobile) {
           let self = this;
           this.$nextTick(()=>{
             this.copy =  new clipboard('.profile_insta-link', {
