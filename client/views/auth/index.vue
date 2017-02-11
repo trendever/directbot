@@ -23,7 +23,7 @@
               br
               span.bold {{fakeData}}
 
-      .column-desktop-50
+      .column-desktop-50(:class="{'instagram-browser': isInstagram}")
         .bottom-container(:class='{"opened-key-board":!showTitleSlider}')
           .input-container
             .input
@@ -35,10 +35,10 @@
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorLogin} ',
-                v-on:click.stop="focus($event)",
+                v-on:click.stop="focusInput($event)",
                 v-on:focus.prevent='onFocusLogin',
                 v-on:keydown.enter='sendSMS()',
-                v-on:blur="blurInput",
+                v-on:blur="blurInput($event)",
                 v-model='login',
                 :placeholder='placeholder')
               .input__clear-btn(
@@ -47,17 +47,17 @@
                 i.ic-close.clear
             .input.phone
               i.ic-mobile-phone
-              input(type='tel',
+              input.second-input(type='tel',
                 ref="inputPhone",
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorPhone} ',
-                v-on:click.stop="focus($event)",
+                v-on:click.stop="focusInput($event)",
                 v-on:focus.prevent='onFocusPhone',
                 v-on:keydown.enter='sendSMS()',
-                v-on:blur="blurInput",
+                v-on:blur="blurInput($event)",
                 v-model='phone',
                 placeholder='Введите номер телефона')
               .input__clear-btn(
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-
+import  { keyboardButtomToBottom } from 'root/utils';
 import { mapActions, mapGetters } from 'vuex';
 
 import listen from 'event-listener';
@@ -113,6 +113,7 @@ export default {
 
   data(){
     return {
+      isInstagram: window.browser.instagram,
       login: '',
       phone: '',
       errorLogin: false,
@@ -121,7 +122,10 @@ export default {
       textLink: TEXT_LINK.instagramMode,
       instagram: true,
       showTitleSlider: true,
-      dublicate: false
+      dublicate: false,
+      loginFocused: false,
+      phoneFocused: false,
+      isBlurBetweenInput: false
     }
   },
   created(){
@@ -131,6 +135,7 @@ export default {
     }
   },
   mounted() {
+
     this.$nextTick(()=>{
       this.height = `${ document.body.scrollHeight }px`;
       this.phone = this.authData.phone;
@@ -183,8 +188,12 @@ export default {
       this.$router.push({name: 'home'});
       
     },
-    focus(e){
+
+    focusInput(e){
       e.target.focus();
+      if(this.isIos && !window.browser.instagram)return
+      keyboardButtomToBottom();
+
     },
     save() {
       this.saveAuthData({
@@ -196,7 +205,8 @@ export default {
 
     sendSMS() {
 
-      
+      this.isBlurBetweenInput = false;
+
       if(this.login === null) {
         this.login = '';
       }
@@ -267,7 +277,8 @@ export default {
 
     },
 
-    blurInput(){
+    blurInput(e){
+
       if (browser.android)
         this.showTitleSlider =  document.body.scrollHeight >= 1000 || document.body.scrollWidth > 750;
     },

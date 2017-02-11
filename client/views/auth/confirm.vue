@@ -78,8 +78,8 @@
 </template>
 
 <script>
+import { keyboardButtomToBottom } from 'root/utils';
 
-import JQuery from 'jquery'
 import listen from 'event-listener';
 import { mapActions, mapGetters } from 'vuex';
 
@@ -158,18 +158,8 @@ export default {
 
     focusClick(){
       this.$refs.confirmField.focus()
-      if(this.isIos){
-        Promise.resolve().then(()=>{
-          setTimeout(()=>{
-            document.body.scrollTop = window.innerHeight; 
-            this.focused = true;
-          },10)
-        }).then(()=>{
-          setTimeout(()=>{
-            JQuery(document.body).animate({scrollTop: document.body.scrollTop - window.innerHeight / 10},50);
-          },350)
-        })
-      }
+      keyboardButtomToBottom();
+      this.focused = true;
     },
     // input only numbers
     onInput(e) {
