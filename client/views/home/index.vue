@@ -128,7 +128,7 @@
         .hero__content__landing__screen-4
           span.screen-title СПРАШИВАЕТ #[br(v-if="!isMobile")] О ТОВАРАХ В ЧАТЕ
           img(src="./img/screen-4-no.png")
-        .hero__content__landing__sub-title.info Нет сайта? Ответь на вопросы о товарах
+        .hero__content__landing__sub-title.info Нет сайта? Ответь на #[br(v-if="isMobile")] вопросы о товарах
         .hero__content__landing__caption.store Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой
           a.link-info(@click.stop="openPopup('is5')")
             |  новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
