@@ -23,42 +23,46 @@
               br
               span.bold {{fakeData}}
 
-      .column-desktop-50
+      .column-desktop-50(:class="{'instagram-browser': isInstagram}")
         .bottom-container(:class='{"opened-key-board":!showTitleSlider}')
           .input-container
             .input
               i.ic-insta-name
               input(type='text',
+                ref="inputLogin",
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorLogin} ',
-                v-on:focus='onFocusLogin',
+                v-on:click.stop="focusInput($event)",
+                v-on:focus.prevent='onFocusLogin',
                 v-on:keydown.enter='sendSMS()',
-                v-on:blur="blurInput",
+                v-on:blur="blurInput($event)",
                 v-model='login',
                 :placeholder='placeholder')
               .input__clear-btn(
                 v-if='login',
-                v-on:click='login = "", dublicate = false')
+                v-on:click.stop='login = "", dublicate = false, $refs.inputLogin.focus()')
                 i.ic-close.clear
             .input.phone
               i.ic-mobile-phone
-              input(type='tel',
+              input.second-input(type='tel',
+                ref="inputPhone",
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorPhone} ',
-                v-on:focus='onFocusPhone',
+                v-on:click.stop="focusInput($event)",
+                v-on:focus.prevent='onFocusPhone',
                 v-on:keydown.enter='sendSMS()',
-                v-on:blur="blurInput",
+                v-on:blur="blurInput($event)",
                 v-model='phone',
                 placeholder='Введите номер телефона')
               .input__clear-btn(
                 v-if='phone',
-                v-on:click='phone = "", dublicate = false')
+                v-on:click.stop='phone = "", dublicate = false, $refs.inputPhone.focus()')
                 i.ic-close.clear
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
@@ -72,7 +76,7 @@
 </template>
 
 <script>
-
+import  { keyboardButtomToBottom } from 'root/utils';
 import { mapActions, mapGetters } from 'vuex';
 
 import listen from 'event-listener';
@@ -117,7 +121,10 @@ export default {
       textLink: TEXT_LINK.instagramMode,
       instagram: true,
       showTitleSlider: true,
-      dublicate: false
+      dublicate: false,
+      loginFocused: false,
+      phoneFocused: false,
+      isBlurBetweenInput: false
     }
   },
   created(){
@@ -127,6 +134,7 @@ export default {
     }
   },
   mounted() {
+
     this.$nextTick(()=>{
       this.height = `${ document.body.scrollHeight }px`;
       this.phone = this.authData.phone;
@@ -180,6 +188,12 @@ export default {
       
     },
 
+    focusInput(e){
+      e.target.focus();
+      if(this.isIos && !window.browser.instagram)return
+      keyboardButtomToBottom();
+
+    },
     save() {
       this.saveAuthData({
         username: this.login,
@@ -190,7 +204,8 @@ export default {
 
     sendSMS() {
 
-      
+      this.isBlurBetweenInput = false;
+
       if(this.login === null) {
         this.login = '';
       }
@@ -260,10 +275,11 @@ export default {
       }
 
     },
+    
+    blurInput(e){
 
-    blurInput(){
-      /*if (browser.android)
-        this.showTitleSlider =  document.body.scrollHeight >= 1000 || document.body.scrollWidth > 750;*/
+      if (browser.android)
+        this.showTitleSlider =  document.body.scrollHeight >= 1000 || document.body.scrollWidth > 750;
     },
 
     onErrorPhone() {

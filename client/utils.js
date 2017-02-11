@@ -378,3 +378,22 @@ export const  navigateTolink = (href, newTab) => {
   a.click();
 
 }
+
+import JQuery from 'jquery';
+
+export const keyboardButtomToBottom = () =>{
+
+  if(window.browser.ios){
+    Promise.resolve().then(()=>{
+      setTimeout(()=>{
+        document.body.scrollTop = window.innerHeight; 
+      },10)
+    }).then(()=>{
+      if(window.browser.instagram) return;
+      setTimeout(()=>{
+        JQuery(document.body).animate({scrollTop: document.body.scrollTop - window.innerHeight / 10},50);
+      },350)
+    })
+  }
+
+}

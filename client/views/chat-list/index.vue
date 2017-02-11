@@ -258,7 +258,10 @@
               .then((data)=>{
                 let lead = data.lead
                 this.$store.state.leads.seller.unshift(lead)
+                this.$store.state.leads.notify_count[lead.id] = 1
               });
+
+
         }
       },
       run(){

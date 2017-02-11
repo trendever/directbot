@@ -1,45 +1,45 @@
 <style src='./header.pcss'></style>
 <template lang="pug">
 .header
-    .header__content
-      .wrapper.directbot-color
-        .header__arrow(
-          @click='leftBtnAction',
-          v-if='leftBtnShow',
-          :class="{'show-desktop-arrow': showDesktopArrow}")
+  .header__content
+    .wrapper.directbot-color
+      .header__arrow(
+        @click='leftBtnAction',
+        v-if='leftBtnShow',
+        :class="{'show-desktop-arrow': showDesktopArrow}")
 
-          i.header__arrow__ic.ic-arrow-left(
-          :class='{"_up": is_action_up}')
+        i.header__arrow__ic.ic-arrow-left(
+        :class='{"_up": is_action_up}')
 
-        .header__notify-count(v-if='notifyCount')
-          span {{ notifyCount }}
+      .header__notify-count(v-if='notifyCount')
+        span {{ notifyCount }}
 
-        .header__center
+      .header__center
 
-          .header__left-logo
-           router-link(:to="{name: 'home'}")
-            //img(src="../img/logo-main.svg")
+        .header__left-logo
+         router-link(:to="{name: 'home'}")
+          //img(src="../img/logo-main.svg")
 
-          .header__text(v-if="centerTextLink === null") {{ title }}
-          .header__text.active(v-if="centerTextLink !== null", @click="$router.push(centerTextLink)") {{ title }}
-            img.center-avatar(:src="avatarUrl", v-if="page == 'product' && !isMobile")
-
-
-          slot(name='center-content')
+        .header__text(v-if="centerTextLink === null") {{ title }}
+        .header__text.active(v-if="centerTextLink !== null", @click="$router.push(centerTextLink)") {{ title }}
+          img.center-avatar(:src="avatarUrl", v-if="page == 'product' && !isMobile")
 
 
-
-        .header-right(
-          v-if="avatarUrl !== null && centerTextLink !== null && isMobile",
-          @click="$router.push(centerTextLink)")
-
-          img(:src="avatarUrl")
+        slot(name='center-content')
 
 
 
-        slot(name='content')
+      .header-right(
+        v-if="avatarUrl !== null && centerTextLink !== null && isMobile",
+        @click="$router.push(centerTextLink)")
 
-      product-menu(v-if="$route.name === 'product_detail'")
+        img(:src="avatarUrl")
+
+
+
+      slot(name='content')
+
+    product-menu(v-if="$route.name === 'product_detail'")
 
 
 </template>
