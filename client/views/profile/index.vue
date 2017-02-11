@@ -12,6 +12,8 @@ import store from 'root/store';
 import { mapActions, mapGetters } from 'vuex';
 import { caption_spaces } from 'root/filters';
 
+import config from 'root/../config';
+
 import photos from 'components/photos/index';
 import headerComponent from 'components/header';
 import RightNavComponent from 'components/right-nav';
@@ -172,6 +174,16 @@ export default {
   },
 
   methods: {
+    findBloger(){
+      this.$store.dispatch('createLead', config.promo_product_id)
+          .then(
+            ( lead ) => {
+              if ( lead !== undefined && lead !== null ) {
+                this.$router.push( { name: 'chat', params: { id: lead.id }, query: { action: 'support' } } )
+              }
+            }
+          )
+    },
     setShopData(){
       
       let splitted = this.user.location.split(" ");

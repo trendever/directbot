@@ -59,7 +59,7 @@
         template(v-if="!isMobile && isAuth && !botActivity")
           button.turn-on-bot-btn-desk.blue-btn(
               @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
-          button.find-bloger-btn.blue-btn() НАЙТИ БЛОГЕРА
+          button.find-bloger-btn.blue-btn(@click="findBloger") НАЙТИ БЛОГЕРА
 
 
 
