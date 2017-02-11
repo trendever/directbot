@@ -29,36 +29,40 @@
             .input
               i.ic-insta-name
               input(type='text',
+                ref="inputLogin",
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorLogin} ',
-                v-on:focus='onFocusLogin',
+                v-on:click.stop="focus($event)",
+                v-on:focus.prevent='onFocusLogin',
                 v-on:keydown.enter='sendSMS()',
                 v-on:blur="blurInput",
                 v-model='login',
                 :placeholder='placeholder')
               .input__clear-btn(
                 v-if='login',
-                v-on:click='login = "", dublicate = false')
+                v-on:click.stop='login = "", dublicate = false, $refs.inputLogin.focus()')
                 i.ic-close.clear
             .input.phone
               i.ic-mobile-phone
               input(type='tel',
+                ref="inputPhone",
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
                 spellcheck="false",
                 :class=' {error: errorPhone} ',
-                v-on:focus='onFocusPhone',
+                v-on:click.stop="focus($event)",
+                v-on:focus.prevent='onFocusPhone',
                 v-on:keydown.enter='sendSMS()',
                 v-on:blur="blurInput",
                 v-model='phone',
                 placeholder='Введите номер телефона')
               .input__clear-btn(
                 v-if='phone',
-                v-on:click='phone = "", dublicate = false')
+                v-on:click.stop='phone = "", dublicate = false, $refs.inputPhone.focus()')
                 i.ic-close.clear
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
@@ -179,7 +183,9 @@ export default {
       this.$router.push({name: 'home'});
       
     },
-
+    focus(e){
+      e.target.focus();
+    },
     save() {
       this.saveAuthData({
         username: this.login,
