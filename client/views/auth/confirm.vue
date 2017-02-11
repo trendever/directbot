@@ -206,6 +206,7 @@ export default {
       if(user.instagram_username) {
         if(user.instagram_username !== this.authData.username){
           this.anotherName = user.instagram_username;
+          this.focused = false;
         }
       }
 
