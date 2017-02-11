@@ -16,6 +16,8 @@
     .item
       .text(@click.stop="supportChat") Поддержка
     .item
+      .text(@click.stop="") Условия
+    .item
       .text.__txt-red(@click.stop="logout") Выход
     .item
       .text.__txt-blue Отмена
@@ -54,10 +56,10 @@
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
         
-
-        button.turn-on-bot-btn-desk.blue-btn(
-          @click="$router.push({name: 'connect-bot'})", v-if="!isMobile && isAuth") ПОДКЛЮЧИТЬ INSTAGRAM
-        button.find-bloger-btn.blue-btn(v-if="!isMobile && isAuth") НАЙТИ БЛОГЕРА
+        template(v-if="!isMobile && isAuth && !botActivity")
+          button.turn-on-bot-btn-desk.blue-btn(
+              @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
+          button.find-bloger-btn.blue-btn() НАЙТИ БЛОГЕРА
 
 
 
