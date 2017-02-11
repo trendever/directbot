@@ -7,14 +7,7 @@
     i(:class='{"ic-check": isLoaded && !isRead, "ic-check-double": isRead, "ic-clock": !isLoaded}')
   .chat-msg.bubble(:class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage }')
     a.chat-msg_t(
-        v-if='!isOwnMessage && !isClosest && !isServiceShop',
-        :class='{"chat-msg_t-customer-color":isCustomer}',
-        v-on:click='action',
-        v-html="getUsername"
-      )
-
-    .chat-msg_t(
-        v-if='!isOwnMessage && !isClosest && isServiceShop',
+        v-if='!isOwnMessage && !isClosest',
         :class='{"chat-msg_t-customer-color":isCustomer}',
         v-on:click='action',
         v-html="getUsername"
