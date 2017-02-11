@@ -54,11 +54,6 @@
 				| с Instagram или Facebook. 
 
 			li
-				| Соблюдение правил Instagram#[br(v-if="isMobile")]
-				| является вашей личной#[br(v-if="isMobile")]
-				| ответственностью.
-
-			li
 				| Нам нужны логин и пароль вашего#[br(v-if="isMobile")]
 				| Instagram аккаунта исключительно#[br(v-if="isMobile")]
 				| для подключения к Instagram API.#[br(v-if="isMobile")]
