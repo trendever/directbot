@@ -26,6 +26,8 @@ export function signup(phone, username, instagram) {
       request.username = username;
     }
 
+    request.source = "directbot";
+
     channel.req('register', 'auth', request).then( data => {
       if (data.response_map.ErrorCode === ERROR_CODES.NO_ERRORS) {
         resolve(true);

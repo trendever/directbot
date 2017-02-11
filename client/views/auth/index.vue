@@ -275,7 +275,7 @@ export default {
       }
 
     },
-
+    
     blurInput(e){
 
       if (browser.android)
@@ -290,8 +290,8 @@ export default {
 
     // remove error class from <input> phone
     onFocusPhone() {
-      if (browser.android)
-        this.showTitleSlider = false;
+      /*if (browser.android)
+        this.showTitleSlider = false;*/
       if (this.errorPhone) {
         this.errorPhone = false;
         this.phone = '';
@@ -304,8 +304,8 @@ export default {
 
     // clear login and remove error class from <input>
     onFocusLogin() {
-      if (browser.android)
-        this.showTitleSlider = false;
+      /*if (browser.android)
+        this.showTitleSlider = false;*/
       if (this.errorLogin) {
         this.errorLogin = false;
         this.login =  '';
