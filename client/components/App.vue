@@ -69,7 +69,6 @@ export default {
       })
       .then( () => {
         let banners = JSON.parse(localStorage.getItem('bannerInfo'));
-        console.log(banners)
         if(banners){
           this.$store.state.monetization.bannerInfo = banners;
         }
