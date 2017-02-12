@@ -321,7 +321,7 @@ export default {
     },    
 
     longCaption(){
-      return this.getUserCaption && this.getUserCaption.length > 300
+      return this.getUserCaption && (this.getUserCaption.length > 300) || '';
     },
 
     postsCount(){
