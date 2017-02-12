@@ -136,17 +136,18 @@
           span Также уточнит детали и наличие товаров #[br]
           span.tip *это ссылка на примере инстаграм-магазина tskirt
             .info-wrap
-      .hero__content__landing__screen-5
-        span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
-        img(src="./img/screen-5.png")
-      .hero__content__landing__sub-title.lastST Оператор ответит на вопросы и поможет купить
-      .hero__content__landing__caption.lastCap
-        a.link-info(@click.stop="openPopup('is6')") Клиенты получат консультацию*
-        span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
-      .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
-      .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
+      .hero__content__wrapper(:class="{'no-screen': noScreen }")
+        .hero__content__landing__screen-5
+          span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
+          img(src="./img/screen-5.png")
+        .hero__content__landing__sub-title.lastST Оператор ответит на вопросы и поможет купить
+        .hero__content__landing__caption.lastCap
+          a.link-info(@click.stop="openPopup('is6')") Клиенты получат консультацию*
+          span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
+        .hero__content__landing__tip.firstTip *отслеживай диалог в кабинете или Instagram Direct
+        .hero__content__landing__tip.secondTip **еще можно покупать не выходя из Instagram Direct
       .hero__content__landing__title.bot Подключайся и получишь
-    .wrapper.bot-wrap
+    .wrapper.bot-wrap.info-box-wrapper
       .info-box
         .hero__content__landing__icon-4
           img(src="./img/icon-4.png")

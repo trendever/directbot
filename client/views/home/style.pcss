@@ -1,6 +1,16 @@
 @import 'style/vars/vars.pcss';
 
 
+.hero__content__wrapper.no-screen {
+
+  transform: translateY(-4%);
+
+
+}
+
+
+
+
 .hero-popup{
   position: fixed;
   right: 0;
@@ -1601,6 +1611,7 @@
     }
   }
 
+
   &__screen-5{
     margin-left: 14px;
     margin-top: 115px;
@@ -2035,9 +2046,12 @@
     margin: 38px 0px 0px 0px;
     letter-spacing: -1px;
   }
+
+
   @media(--smalldesktopH) {
     margin-top: 20px;
   }
+
   p{
     color: $color__gray-dark;
   }
