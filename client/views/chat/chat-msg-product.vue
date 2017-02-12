@@ -120,7 +120,7 @@
         return '';
       },
       isClosest(){
-        return false;
+        return this.msg.closestMessage;
       },
       isOwnMessage() {
         if (this.getCustomerId === this.$store.state.user.myId){

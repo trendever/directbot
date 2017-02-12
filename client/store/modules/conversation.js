@@ -102,6 +102,12 @@ const addServiceMessage = (function() {
             lastUserId                   = messages[ i ].user.user_id;
             messages[ i ].closestMessage = false;
 
+            if(messages[i].parts){
+              if(messages[i].parts.length === 2) {
+                lastUserId = null;
+              }
+            }
+
           }
 
         }

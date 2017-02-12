@@ -121,7 +121,8 @@
         return this.msg.user.role === leads.USER_ROLES.CUSTOMER.key;
       },
       isClosest(){
-        return false;
+        return this.msg.closestMessage;
+        //return false;
       },
       isOwnMessage() {
         if ( this.getCurrentMember !== null ) {
