@@ -2,7 +2,7 @@
 <template lang="pug">
 #auth
   .signup(:style='{ height: height }')
-    .signup__close.__hello(v-on:click='closePage'): i.ic-close
+    .signup__close.__hello(v-on:click.stop='closePage'): i.ic-close
     .section
       .column-desktop-50.header(v-if="showTitleSlider")
         h1.accept(v-if="!fakeReg") Вход и регистрация

@@ -69,7 +69,7 @@
   @media (--mobile) {
     border-radius: 0px;
     position: fixed 0 0 * 0;
-    z-index: 120;
+    z-index: 179;
     size: 100%;
     width: 100%;
     height: 100%;
