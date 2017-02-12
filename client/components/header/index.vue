@@ -64,7 +64,7 @@
     props: {
       showDesktopArrow:{
         type: Boolean,
-        default: false
+        default: true
       },
       // Title of header
       title: {
