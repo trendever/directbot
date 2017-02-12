@@ -176,9 +176,21 @@ export default {
   computed: {
 
     messagesList() {
+
       const end   = this.getMessages.length;
       const start = end - this.getLengthList - 1; // -1 потому что есть первое сообщение с датой.
-      return this.getMessages.slice( (start <= 0) ? 0 : start, end );
+
+      let messages = this.getMessages.slice( (start <= 0) ? 0 : start, end );
+
+      const filtredMap = new Map();
+
+      let filtredMessages = []
+      for(var i = 0; i < messages.length; i++) filtredMap.set( messages[i].id, messages[i]); 
+      for(let message of filtredMap.values()) filtredMessages.push(message);
+
+      console.log(filtredMap);
+
+      return filtredMessages;
     },
 
     ...mapGetters([

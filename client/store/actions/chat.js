@@ -93,6 +93,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
         }
 
+        
         commit( types.CONVERSATION_SET, { id: conversation_id, messages, lengthList: chatCountForLoading } )
 
       }
