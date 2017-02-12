@@ -182,23 +182,32 @@ export default {
 
       let messages = this.getMessages.slice( (start <= 0) ? 0 : start, end );
 
-      const filtredMap = new Map();
-      let filtredMessages = []
-      let id = null;
 
-      for(var i = 0; i < messages.length; i++) {
-        if(id != messages[i].id) {
-          filtredMap.set( messages[i].id, messages[i])
-          id = messages[i].id;
+
+      if(this.isServiceShop){
+
+        const filtredMap = new Map();
+        let filtredMessages = []
+        let id = null;
+
+        for(var i = 0; i < messages.length; i++) {
+          if(id != messages[i].id) {
+            filtredMap.set( messages[i].id, messages[i])
+            id = messages[i].id;
+          }
+          
+        }; 
+
+        for(let message of filtredMap.values()) {
+          filtredMessages.push(message);
         }
-        
-      }; 
 
-      for(let message of filtredMap.values()) {
-        filtredMessages.push(message);
+        return filtredMessages;
+  
       }
 
-      return filtredMessages;
+      return messages;
+
     },
 
     ...mapGetters([
