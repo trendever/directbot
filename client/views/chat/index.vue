@@ -183,12 +183,20 @@ export default {
       let messages = this.getMessages.slice( (start <= 0) ? 0 : start, end );
 
       const filtredMap = new Map();
-
       let filtredMessages = []
-      for(var i = 0; i < messages.length; i++) filtredMap.set( messages[i].id, messages[i]); 
-      for(let message of filtredMap.values()) filtredMessages.push(message);
+      let id = null;
 
-      console.log(filtredMap);
+      for(var i = 0; i < messages.length; i++) {
+        if(id != messages[i].id) {
+          filtredMap.set( messages[i].id, messages[i])
+          id = messages[i].id;
+        }
+        
+      }; 
+
+      for(let message of filtredMap.values()) {
+        filtredMessages.push(message);
+      }
 
       return filtredMessages;
     },
