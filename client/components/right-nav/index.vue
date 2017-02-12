@@ -28,7 +28,8 @@ export default {
   computed:{
     ...mapGetters([
       'isAuth',
-      'getGlobalNotifyCount'
+      'getGlobalNotifyCount',
+      'isFake'
     ])
   },
   props:{
