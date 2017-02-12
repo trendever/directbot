@@ -83,7 +83,13 @@ export default {
 
     let replace = instagram_username ? instagram_username.replace(new RegExp("-", 'g'),"_") : null;
 
-    function goConnect(vm){
+    function handler(vm){
+
+      if(vm.isSelfPage && vm.isFake) {
+        vm.$router.push({name: 'home'});
+        return;
+      } 
+
       if(store.getters.monetizationStatus === null && to.name !== 'connect-bot' && vm.isSelfPage){
         let connectShown = vm.$store.state.user.connectBanner; 
         if(!connectShown) {
@@ -98,10 +104,10 @@ export default {
       .dispatch('openProfile', replace  )
       .then(()=>{
 
-        next(goConnect);
+        next(handler);
       })
       .catch( () => {
-        next(goConnect);
+        next(handler);
       });
 
 
@@ -354,6 +360,7 @@ export default {
       //leads
       'getAllLeads',
       //user
+      'isFake',
       'user',
       'isAuth',
       'getAuthUser',

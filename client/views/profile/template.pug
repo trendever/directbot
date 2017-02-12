@@ -56,7 +56,7 @@
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
         
-        template(v-if="!isMobile && isAuth && !botActivity")
+        template(v-if="!isMobile && isAuth && !botActivity && isSelfPage")
           button.turn-on-bot-btn-desk.blue-btn(
               @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
           button.find-bloger-btn.blue-btn(@click="findBloger") НАЙТИ БЛОГЕРА
