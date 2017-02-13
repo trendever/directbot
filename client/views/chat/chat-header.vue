@@ -31,7 +31,7 @@
         .chat-header_photo
           img(:src='userImage' v-on:error='onUserImageError')
 
-        .chat-header_cnt
+        .chat-header_cnt.support
           .chat-header_cnt_t Поддержка
 
       .chat-header_phone(slot="center-content" v-if="isMobile")
