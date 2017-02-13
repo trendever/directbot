@@ -35,7 +35,7 @@
           .chat-header_cnt_t Поддержка
 
       .chat-header_phone(slot="center-content" v-if="isMobile")
-        a(href="tel:89500318228")
+        a(href="tel:89854107012")
           img(src="./icons/phone.png")
 
 
