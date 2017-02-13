@@ -6,10 +6,17 @@
     :notify-count="unreadCount", 
     :back-function="leftBtnAction")
 
-    .chat-header(slot='center-content')
+    .chat-header(slot='flex-item')
 
       <!-- Default chat header -->
       template(v-if="!isServiceShop")
+
+        .chat-header_photo
+          img(
+          :src='userImage'
+          v-on:error='onUserImageError',
+          @click="$router.push({name: 'user', params: {id: getShopName}})")
+
         .chat-header_cnt(v-show='getShopName' v-if="!isServiceShop")
           .chat-header_cnt_t(@click="$router.push({name: 'user', params: {id: getShopName}})") {{ getShopName }}
           .chat-header_cnt_info
@@ -17,21 +24,20 @@
             | {{ getLeadId }},
             span  {{ getStatus }}
 
-        .chat-header_photo
-          img(
-          :src='userImage'
-          v-on:error='onUserImageError',
-          @click="$router.push({name: 'user', params: {id: getShopName}})")
       
       <!-- Chat header for service chat -->
       template(v-if="isServiceShop")
-        .chat-header_cnt
-          .chat-header_cnt_t Поддержка
 
         .chat-header_photo
           img(:src='userImage' v-on:error='onUserImageError')
 
-      
+        .chat-header_cnt
+          .chat-header_cnt_t Поддержка
+
+      .chat-header_phone(slot="center-content" v-if="isMobile")
+        a(href="tel:89500318228")
+          img(src="./icons/phone.png")
+
 
 </template>
 
