@@ -1,4 +1,49 @@
 @import 'style/vars/vars.pcss';
+#chat-header {
+
+  .wrapper.chat-slot {
+    display: flex;
+    align-items: left; 
+
+    .chat-header {
+      display: flex;
+      text-align: left;
+      margin-left: 35px;
+
+
+      .chat-header_photo, .chat-header_cnt {
+        display: inline-block;
+        position: relative;
+      }
+      .chat-header_cnt {
+        margin-left: -10px;
+        &.support {
+          margin-top: 22px;
+        }
+      }
+    }
+    .header__arrow {
+      position: relative;
+      margin-left: 30px;
+      &.ios-fix{
+        margin-top: 22px;
+      }
+    } 
+    .header__notify-count {
+      position: static;
+      margin-top: 22px;
+    }
+    .header__center {
+      width: auto;
+    }
+    & > div {
+      top: 0;
+      bottom: 0;
+      margon: 0;
+      padding: 0;
+    }
+  }
+}
 .chat-header {
   /*
   /*Стрелка и каунтер
@@ -142,6 +187,23 @@
       top: 10px;
 
       size: 70px;
+    }
+  }
+  &_phone {
+
+    display: none;
+    @media(--mobile) {
+      display: block;
+      position: absolute 19px 35px 0 *;
+      max-width: 50px; 
+      height: auto;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      
     }
   }
 }

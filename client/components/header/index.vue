@@ -2,11 +2,11 @@
 <template lang="pug">
 .header
   .header__content
-    .wrapper.directbot-color
+    .wrapper.directbot-color(:class="{'chat-slot': $route.name === 'chat' && isMobile}")
       .header__arrow(
         @click='leftBtnAction',
         v-if='leftBtnShow',
-        :class="{'show-desktop-arrow': showDesktopArrow}")
+        :class="{'show-desktop-arrow': showDesktopArrow, 'ios-fix': isIos}")
 
         i.header__arrow__ic.ic-arrow-left(
         :class='{"_up": is_action_up}')
@@ -14,10 +14,15 @@
       .header__notify-count(v-if='notifyCount')
         span {{ notifyCount }}
 
+
+      slot(name='flex-item')
+
       .header__center
 
+        slot(name='center-content')
+
         .header__left-logo
-         router-link(:to="{name: 'home'}")
+          router-link(:to="{name: 'home'}")
           //img(src="../img/logo-main.svg")
 
         .header__text(v-if="centerTextLink === null") {{ title }}
@@ -25,7 +30,6 @@
           img.center-avatar(:src="avatarUrl", v-if="page == 'product' && !isMobile")
 
 
-        slot(name='center-content')
 
 
 
