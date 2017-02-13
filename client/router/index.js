@@ -118,6 +118,11 @@ let router = new Router({
 
     },
     {
+      name: 'land',
+      path: '/land',
+      component: require('views/home/landing')
+    },
+    {
       name: 'user',
       path: '/:id',
       component: require('views/profile/index')
