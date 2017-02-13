@@ -68,7 +68,7 @@ const addServiceMessage = (function() {
 
     lastDate = normalizeDate( messages[ 0 ].created_at ).getDate();
 
-    newMessage.push( getDateMessage( messages[ 0 ].created_at, messages[ 0 ].id ) );
+    newMessage.push( getDateMessage( messages[ 0 ].created_at, messages[ 0 ].id - 0.1) );
 
     for ( let i = 0; i < messages.length; i++ ) {
 

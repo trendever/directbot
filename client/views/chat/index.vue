@@ -19,7 +19,7 @@
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg-product(
-              v-if='msg.parts[0].mime_type === "text/plain" && hasData(msg) && !isServiceShop',
+              v-if='msg.parts[0].mime_type === "text/plain" && hasData(msg)',
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg(
@@ -183,31 +183,27 @@ export default {
       let messages = this.getMessages.slice( (start <= 0) ? 0 : start, end );
 
 
-
-      if(this.isServiceShop){
-
-        const filtredMap = new Map();
-        let filtredMessages = []
-        let id = null;
-
-        for(var i = 0; i < messages.length; i++) {
-          if(id != messages[i].id) {
-            filtredMap.set( messages[i].id, messages[i])
-            id = messages[i].id;
-          }
-          
-        }; 
-
-        for(let message of filtredMap.values()) {
-          filtredMessages.push(message);
-        }
-
-        return filtredMessages;
-  
+      if(this.isServiceShop) {
+        messages.splice(1,1);
       }
 
-      return messages;
+      const filtredMap = new Map();
+      let filtredMessages = []
+      let id = '';
 
+      for(var i = 0; i < messages.length; i++) {
+        if(id != messages[i].id) {
+          filtredMap.set( messages[i].id, messages[i])
+          id = messages[i].id;
+        }
+      }; 
+
+      for(let message of filtredMap.values()) {
+        filtredMessages.push(message);
+      }
+      console.log(filtredMap)
+      return filtredMessages;
+  
     },
 
     ...mapGetters([
