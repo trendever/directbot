@@ -10,7 +10,7 @@
         button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
       .hero__content__logo__mobile
       .hero__content__left-logo(v-if="!isMobile")
-        a(href="#")
+        a(@click="$store.dispatch('logOut')")
           img(src="./img/directbot-logo-txt.svg")
       .hero__content__center-logo(v-if="!isMobile")
         img(src="./img/directbot-main-logo.png")
