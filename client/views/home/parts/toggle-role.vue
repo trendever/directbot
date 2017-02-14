@@ -24,11 +24,12 @@
           span.screen-title СПРАШИВАЕТ #[br(v-if="!isMobile")] О ТОВАРАХ В ЧАТЕ
           img(src="../img/screen-4-no.png")
       .sub-title Нет сайта? Ответь на #[br(v-if="isMobile")] вопросы о товарах
-      .caption.fix-bottom Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой
-
+      .caption.fix-bottom
+        | Оператор увидит посты в Instagram #[br(v-if="isMobile")]
+        | и добавит их в твой
         span
           a.link-info(@click.stop="openPopup('is5')")
-          |  новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
+           | новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
           span tskirt.drbt.io*. #[br(v-if="isMobile")]
 
         span Также уточнит детали и наличие товаров #[br]
