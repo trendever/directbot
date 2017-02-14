@@ -102,7 +102,6 @@ export default {
         width: 624px;
         padding: 22px 20px;
         line-height: 45px;
-        z-index: -1;
       }
       &:after{
         content: '';
