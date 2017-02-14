@@ -24,7 +24,7 @@
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
     | ВХОД И РЕГИСТРАЦИЯ
-  a.how-btn(v-on:click="$parent.scrollFirst") КОМУ НУЖЕН DIRECTBOT?
+  a.how-button(v-on:click="$parent.scrollFirst") КОМУ НУЖЕН DIRECTBOT?
 </template>
 
 <script>
@@ -43,6 +43,23 @@ export default {
     background-size: cover;
   }
   height: 100%;
+
+  .how-button {
+    display: none;
+    @media(--tabletandless) {
+      background-image: url(../img/Pattern_bgr_mob.svg);
+      display: inline-block;
+      height: 100px;
+      width: 100%;
+      font-size: 36px;
+      color: #fff;
+      font-family: $font__family__light;
+      padding-top: 30px;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+    }
+  }
   .profile-header {
     z-index: 2;
     //auth btn on desktop (top right corner)

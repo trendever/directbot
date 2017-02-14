@@ -65,7 +65,7 @@ export default {
     background-image: url(../img/Pattern_bgr_mob.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-x: -1px;
+    background-position-y: -100px;
 
   }
   &.cross-fix {
