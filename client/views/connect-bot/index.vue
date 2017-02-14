@@ -27,6 +27,7 @@
             .input.name(v-if="!needConfirmCode")
               i.ic-insta-name
               input(type='text',
+                ref="textInput",
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
@@ -37,14 +38,15 @@
                 placeholder='Введите свое Instagram имя')
               .input__clear-btn(
                 v-if='login',
-                @click='login = ""')
+                @click='login = "", $refs.textInput.focus()')
                 i.ic-close.clear
             .input.phone(v-if="!needConfirmCode", id="pass-inp")
               i.ic-pass
 
               input(
                 v-if='!errorPassword',
-                type="password"
+                ref="passwordInput",
+                type="password",
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
@@ -55,6 +57,7 @@
                 placeholder='Введите пароль от Instagram')
 
               input(
+                ref="errorPasswordInput",
                 v-if="errorPassword"
                 type='text',
                 autocomplete="off",
@@ -69,7 +72,7 @@
 
               .input__clear-btn(
                 v-if='password',
-                @click='password = "", errorPassword=false')
+                @click='closePassword')
                 i.ic-close.clear
             .input(id="code", v-if="needConfirmCode")
               i.ic-code
@@ -135,7 +138,17 @@ export default {
     this.resize.remove()
   },
   methods:{
-
+    closePassword(){
+      if(this.errorPassword){
+        this.password = "",
+        this.errorPassword=false,
+        this.$refs.errorPasswordInput.focus()
+      } else {
+        this.password = "",
+        this.errorPassword=false,
+        this.$refs.passwordInput.focus()
+      }
+    },
     connectBot(){
       this.connectProcess = true;
       accountService
