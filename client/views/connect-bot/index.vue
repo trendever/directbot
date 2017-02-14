@@ -139,15 +139,9 @@ export default {
   },
   methods:{
     closePassword(){
-      if(this.errorPassword){
-        this.password = "",
-        this.errorPassword=false,
-        this.$refs.errorPasswordInput.focus()
-      } else {
-        this.password = "",
-        this.errorPassword=false,
-        this.$refs.passwordInput.focus()
-      }
+      this.password = "",
+      this.errorPassword=false,
+      this.$refs.passwordInput.focus()
     },
     connectBot(){
       this.connectProcess = true;
