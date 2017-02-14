@@ -92,10 +92,10 @@ export default {
 @import 'style/vars/vars.pcss';
 #toggle-role {
   .toogle-btns {
-
     padding-top: 25px;
-
   }
+
+
 
   .bottom-wrapper{
     background: white;

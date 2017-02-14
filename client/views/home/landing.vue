@@ -41,6 +41,8 @@ import { mapGetters } from 'vuex';
 import * as authService from 'services/auth';
 import config from 'root/../config';
 
+import JQuery from 'jquery';
+
 export default {
 	data(){
 		return {
@@ -62,8 +64,14 @@ export default {
 	},
 	methods: {
 		openPopup(name){
-			this.$router.push({name: 'popup', params: {id: name}})
+			this.$router.push({name: 'home', params: {id: name}})
 		},
+    scrollFirst() {
+      JQuery(document.body).animate({scrollTop: window.innerHeight},450);
+    },
+    scrollSecond() {
+      JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
+    },
     ask(){
       let dispatch = this.$store.dispatch.bind(this);
       function openChat(vm){
@@ -127,6 +135,11 @@ export default {
 #operator-skills,
 #show-bot,
 .who-need {
+
+
+  a.link-info {
+    border-bottom: 1px solid #595959 !important;
+  }
 
   .free-connect{
     background: white;
@@ -281,6 +294,10 @@ export default {
     margin: 0 30px;
     img {
       max-width: 370px;
+
+      @media (--mobile){
+        min-width: 500px;
+      }
     }
 
 	}

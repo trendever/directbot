@@ -27,6 +27,8 @@
       p(v-if="!isMobile").bold-txt 10 из 10 инста-шопов #[br]
       p(v-if="!isMobile").light-txt хотят свой интернет-магазин #[br] и ставить активные ссылки под постами
 
+  button.how-works(v-on:click="$parent.scrollSecond") КАК ЭТО РАБОТАЕТ?
+
 </template>
 
 <script>
@@ -44,7 +46,7 @@ export default {
 
 
 .who-need{
-
+  position: relative;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -61,6 +63,23 @@ export default {
 
   }
 
+
+  button.how-works{
+    display: none;
+    @media(--tabletandless) {
+      display: inline-block;
+      font-size: 36px;
+      color: #fff;
+      width: 100%;
+      height: 100px;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      background: #5E8BCE;
+      border: none;
+      font-family: $font__family__light;
+    }
+  }
   //btn that put you down to the second screen
   a{
     display: none;

@@ -24,7 +24,7 @@
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
     | ВХОД И РЕГИСТРАЦИЯ
-  a.how-btn(v-on:click="scrollFirst") КОМУ НУЖЕН DIRECTBOT?
+  a.how-btn(v-on:click="$parent.scrollFirst") КОМУ НУЖЕН DIRECTBOT?
 </template>
 
 <script>
