@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.who-need(ref="screenTwo")
+.who-need(:style="{ height: isMobile ? windowHeight + 'px': 'initial' }")
 
   .head-title(v-if="!isMobile") Кому нужен Directbot?
 
@@ -50,8 +50,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   height: 100%;
-
-
+ 
   @media(--tabletandless){
   	display: block;
     height: 100 !important;
@@ -153,10 +152,15 @@ export default {
     margin-top: 0px;
   }
 
+
   .wrap-box{
   	padding-top: 30px;
     text-align: center;
     margin-bottom: 20px;
+
+    &.fix-padding{
+      margin-bottom: 0;
+    }
   }
 
 }

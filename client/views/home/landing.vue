@@ -1,7 +1,26 @@
 <template lang="pug">
 
 #landing
+
+	router-view
+
+	landing-top
 	who-need
+	show-bot
+	operator-skills
+	operator-actions
+	toggle-role
+	connect-get
+
+	.free-connect
+		a.link-info(@click.stop="openPopup('is10')")
+			| ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
+
+	.free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
+		button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
+			v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
+		button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
+		button(v-if="!isMobile", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
 
 
 </template>
@@ -9,9 +28,47 @@
 <script>
 
 import whoNeed from './parts/who-need';
+import landingTop from './parts/landing-top';
+import showBot from './parts/show-bot';
+import operatorSkills from './parts/operator-skills';
+import operatorActions from './parts/operator-actions';
+import toggleRole from './parts/toggle-role';
+import connectGet from './parts/connect-get';
+
+
+import listen from 'event-listener';
 
 export default {
-	components:{whoNeed}
+	data(){
+		showBtns: false
+	},
+	created(){
+		window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
+		this.scrollListener=listen(document.body, 'scroll',()=>{
+			if(this.isMobile){
+				this.showBtns = document.body.scrollTop > window.innerHeight * 2;
+			} else {
+				this.showBtns = document.body.scrollTop > window.innerHeight;
+			}
+		})
+	},
+	beforeDestroy(){
+		this.scrollListener.remove();
+	},
+	methods: {
+		openPopup(name){
+			this.$router.push({name: 'popup', params: {id: name}})
+		}
+	},
+	components:{
+		whoNeed,
+		landingTop,
+		showBot,
+		operatorSkills,
+		operatorActions,
+		toggleRole,
+		connectGet
+	}
 }
 
 
@@ -24,8 +81,229 @@ export default {
 #landing {
 	min-height: 100%;
 	background: url(./img/DirectBot_landing-desk_pattern.png)
+}
+
+#connect-get,
+#toggle-role,
+#landing-top, 
+#operator-actions,
+#operator-skills,
+#show-bot,
+.who-need {
+
+	.free-connect{
+		text-align: center;
+		padding-top: 31px;
+		font-size: 18px;
+		font-family: $font__family__semibold;
+		color: $color__black;
+		margin-bottom: 110px;
+		@media(--tabletandless) {
+			font-size: 36px;
+			padding: 85px 30px 150px 30px;
+			margin-bottom: 0px;
+		}
+
+		a{
+			display: inline;
+			color: $color__black;
+			border-bottom: 1px solid $color__black;
+			text-decoration: none;
+
+			&:hover{
+				cursor: pointer;
+				border-bottom: 1px solid transparent;
+			}
+		}
+	}
+
+	.free-wrap{
+		height: 80px;
+		background-color: rgba(9, 22, 43, 0.85);
+		margin-top: 30px;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		flex-direction: row-reverse;
+		@media (--tabletandless) {
+			display: block;
+			height: auto;
+			background-color: transparent;
+			margin-top: 0px;
+		}
+		&.fixed-btns {
+			position: fixed * 0 -1px 0;
+			z-index: 300;
+		}
+	}
+
+	button.try-free{
+		width: 275px !important;
+		height: 40px !important;
+		font-size: 16px;
+		margin-top: 20px;
+		margin-bottom: 0px !important;
+		line-height: normal !important;
+		padding: 0;
+		@media(--tabletandless){
+			display: block;
+			position: fixed;
+			bottom: -50px;
+			right: 0;
+			width: 50% !important;
+			height: 100px !important;
+			font-size: 36px;
+			margin-top: 0px;
+			margin-bottom: 50px !important;
+			line-height: 100px !important;
+		}
+	}
+	.ask-btn{
+		width: 275px;
+		height: 40px;
+		color: $color__white;
+		border: 1px solid $color__white;
+		border-radius: 5px;
+		background-color: transparent;
+		font-size: 16px;
+		font-family: $font__family__light;
+		margin-top: 20px;
+		margin-right: 10px;
+		@media(--tabletandless){
+			display: block;
+			position: fixed;
+			bottom: 0px;
+			left: 0;
+			width: 50% !important;
+			height: 100px !important;
+			font-size: 36px;
+			margin-top: 0px;
+			margin-right: 0px;
+			line-height: 100px !important;
+			border: none;
+			border-radius: 0px;
+			background-color: $color__blue;
+		}
+		&:hover{
+			cursor: pointer;
+			background-color: $color__white;
+			color: $color__dark-blue;
+		}
+	}
 
 
+	.skills-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center; 
+	}
+
+	.info-box{
+		text-align: center;
+		padding: 40px 0;
+		max-width: 33%;
+		@media (--mobile) {
+			max-width: 100%;
+		}
+		.skills-icon {
+			img {
+				width: 100%;
+				max-width: 300px;
+			}
+		}
+	}
+
+	.wrap-flex {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+
+	.sub-title {
+		font-family: $font__family__semibold;
+		color: #595959;
+		font-size: 2vw;//32px;
+		display: inline-block;
+		@media(--tabletandless) {
+			display: block;
+			text-align: center;
+			font-size: 46px;
+			margin-top: -5px;
+		}
+	}
+
+	.screen {
+
+		text-align: center;
+
+	}
+
+	.tip{
+
+		font-size: 16px;
+		font-family: $font__family__light;
+		color: $color__gray-dark;
+		@media(--tabletandless) {
+			font-size: 28px;
+			margin-top: 14px;
+		}
+
+	}
+	.caption{
+
+		font-size: 1.7vw;//24px;
+		line-height: 32px;
+		color: #595959;
+		position: relative;
+
+		@media(--tabletandless) {
+			text-align: center;
+			font-size: 36px;
+			font-family: $font__family__light;
+			margin-top: 8px;
+			line-height: normal;
+			padding-top: 0px;
+		}
+
+		.link-info{
+
+			display: inline;
+			color: #595959;
+			border-bottom: 1px solid #595959;
+			cursor: pointer;
+			text-decoration: none;
+
+			.bold{
+				font-family: $font__family__semibold;
+			}
+
+			&:hover{
+				cursor: pointer;
+				border-bottom: none;
+			}
+		}
+	}
+}
+
+.landing-title {
+	text-align: center;
+	font-family: $font__family__thin;
+	color: #595959;
+	font-size: 60px;
+} 
+
+
+.screen-title{
+	text-align: center;
+	display: block;
+	font-size: 28px;
+	font-family: $font__family__semibold;
+	color: $color__blue;
+	@media(--tabletandless) {
+	display: inline-block;
+	font-size: 36px;
+	}
 }
 
 </style>
