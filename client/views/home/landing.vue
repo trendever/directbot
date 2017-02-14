@@ -66,13 +66,18 @@ export default {
 		})
 
     this.resize = listen(window, 'resize',()=>{
+      if(window.browser.safari && !window.browser.instagram) return;
       this.windowHeight = window.innerHeight
     })
 
 	},
   mounted(){
     this.$nextTick(()=>{
-      this.windowHeight = window.innerHeight;
+      if(window.browser.safari && !window.browser.instagram){
+        this.windowHeight = document.body.offsetHeight;
+      } else {
+         this.windowHeight = window.innerHeight;
+      }
     })
   },
 	beforeDestroy(){

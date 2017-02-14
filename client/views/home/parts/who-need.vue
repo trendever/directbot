@@ -2,7 +2,7 @@
 
 .who-need(
   :style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }",
-  :class="{ 'cross-fix': isFacebook || isSafari}")
+  :class="{ 'cross-fix': (isFacebook || isSafari) && isInstagram}")
 
   .head-title(v-if="!isMobile") Кому нужен Directbot?
 
@@ -38,7 +38,8 @@ export default {
   data(){
     return {
       isFacebook: window.browser.facebook,
-      isSafari: window.browser.safari
+      isSafari: window.browser.safari,
+      isInstagram: window.browser.instagram
     }
   }
 
@@ -69,9 +70,8 @@ export default {
 
   }
   &.cross-fix {
-
     .wrap-box {
-      padding: 5px;
+      padding: 5;
       .paragraph p {
         line-height: 42px;
       }
