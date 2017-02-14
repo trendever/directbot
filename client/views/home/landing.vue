@@ -343,9 +343,10 @@ export default {
 	font-size: 28px;
 	font-family: $font__family__semibold;
 	color: $color__blue;
+  padding-top: 40px;
 	@media(--tabletandless) {
-	display: inline-block;
-	font-size: 36px;
+  	display: inline-block;
+  	font-size: 36px;
 	}
 }
 

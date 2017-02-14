@@ -1,6 +1,6 @@
 <template lang="pug">
 
-#show-bot(:style="{ height: isMobile ? windowHeight + 'px': 'initial' }")
+#show-bot
   .wrap-connect
     .landing-title Союз человека и робота
     .top-scheme
@@ -21,7 +21,6 @@ export default {
   data () {
     return {
       landingCounter: 4783,
-      windowHeight: window.innerHeight
     };
   },
   created(){
@@ -58,6 +57,7 @@ export default {
 
     max-width: 1050px;
     margin: 0 auto;
+    padding-bottom: 30px;
 
   }
 

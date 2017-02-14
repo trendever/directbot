@@ -1,5 +1,5 @@
 <template lang="pug">
-#operator-skills 
+#operator-skills
 
 	.landing-title Преимущества #[br(v-if="isMobile")] нашего оператора
 
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="postcss">
-@import 'style/vars/vars.pcss'; 
+@import 'style/vars/vars.pcss';
 
 
 #operator-skills {
@@ -65,10 +65,10 @@ export default {
 		font-size: $font__family__semibold;
 		font-size: 42px;
 		color: #595959;
-		margin-top: 100px;
+		margin-top: 20px;
 		font-weight: bold;
 		text-align: center;
-		padding-bottom: 100px;
+		padding-bottom: 40px;
 	}
 }
 
