@@ -14,7 +14,7 @@
 	}
 	.ps {
 		padding: 40px 0;
-		
+
 		font-size: 20px;
 		font-family: $font__family__light;
 		text-align: center;
@@ -48,22 +48,22 @@
 	.content
 
 		ul
-			
+
 			li
 				| Directbot никак не аффилирован#[br(v-if="isMobile")]
-				| с Instagram или Facebook. 
+				| с Instagram или Facebook.
 
 			li
 				| Нам нужны логин и пароль вашего#[br(v-if="isMobile")]
 				| Instagram аккаунта исключительно#[br(v-if="isMobile")]
 				| для подключения к Instagram API.#[br(v-if="isMobile")]
 				| Мы не храним, не передаем и никак #[br(v-if="isMobile")]
-				| более не используем #[br(v-if="isMobile")] 
+				| более не используем #[br(v-if="isMobile")]
 				| эту информацию.
 
 			li
 				| Мы не гарантируем, что при #[br(v-if="isMobile")]
-				| использовании сервиса Direcbot #[br(v-if="isMobile")]
+				| использовании сервиса Directbot #[br(v-if="isMobile")]
 				| вырастут ваши продажи или #[br(v-if="isMobile")]
 				| популярность вашего аккаунта #[br(v-if="isMobile")]
 				| в Instagram.
@@ -74,7 +74,7 @@
 				| неактивных подписчиков.
 
 			li
-				| Мы не можем гарантировать#[br(v-if="isMobile")] 
+				| Мы не можем гарантировать#[br(v-if="isMobile")]
 				| безошибочную и непрерывную #[br(v-if="isMobile")]
 				| работу сервиса Directbot, но всегда#[br(v-if="isMobile")]
 				| будем своевременно оповещать вас#[br(v-if="isMobile")]
@@ -91,14 +91,14 @@
 				|только за неиспользованное время#[br(v-if="isMobile")]
 				| Directbot.
 
-			li 
+			li
 				| Мы оставляем за собой право #[br(v-if="isMobile")]
 				| изменить, приостановить или #[br(v-if="isMobile")]
 				| аннулировать весь или любую часть #[br(v-if="isMobile")]
-				| нашего сервиса в любое время. 
+				| нашего сервиса в любое время.
 
 			li
-				| Direcbot не терпит спам-активность. #[br(v-if="isMobile")]
+				| Directbot не терпит спам-активность. #[br(v-if="isMobile")]
 				| Если вы используете подозрительные #[br(v-if="isMobile")]
 				| имена пользователей или создаете #[br(v-if="isMobile")]
 				| несколько новых учетных записей,#[br(v-if="isMobile")]
@@ -106,15 +106,15 @@
 				| 3-дневную бесплатную пробную#[br(v-if="isMobile")]
 				| версию без оплаты или совершаете #[br(v-if="isMobile")]
 				| другую спам-подобную активность,#[br(v-if="isMobile")]
-				| вам будет запрещено использовать 
+				| вам будет запрещено использовать
 				| Directbot.
 
 			li
 				| Это ваша личная ответственность, #[br(v-if="isMobile")]
 				| отслеживать изменения данных #[br(v-if="isMobile")]
-				| условий использования. 
+				| условий использования.
 
-		.ps 
+		.ps
 			| Последний раз данные условия использования#[br(v-if="isMobile")]
 			| были обновлены 12 января 2017 года.
 
