@@ -188,8 +188,8 @@ export default {
 </script>
 
 <style lang="postcss">
-.section__content {
 
+.section__content {
     box-sizing: border-box;
     max-width: 1050px;
     margin: 0 auto;

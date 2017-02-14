@@ -22,7 +22,7 @@ let router = new Router({
     { path: '/', redirect: { name: 'home' }},
 		{
       path: '/home',
-      component: require('views/home/index.vue'),
+      component: require('views/home/landing.vue'),
       children: [
         {
           name: 'home',
@@ -117,6 +117,11 @@ let router = new Router({
       component: require('views/profile/index')
 
     },
+    // {
+    //   name: 'land',
+    //   path: '/land',
+    //   component: require('views/home/landing')
+    // },
     {
       name: 'user',
       path: '/:id',
