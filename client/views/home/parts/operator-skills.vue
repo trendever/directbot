@@ -66,18 +66,18 @@ export default {
 
   .info-box.three {
     img {
-      max-width: 180px;
+      max-width: 220px;
     }
   }
 
   .info-box.two {
     img {
-      max-width: 210px;
+      max-width: 250px;
     }
   }
   .info-box.one {
     img {
-      max-width: 200px;
+      max-width: 230px;
     }
   }
 }

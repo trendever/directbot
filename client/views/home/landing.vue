@@ -159,10 +159,10 @@ export default {
 
 #landing .top-landing-background {
   position: absolute 0 0 * 0;
-  height: 500px;
+  height: 483px;
   @media screen and (min-width: 1024px) {
     background: url(/static/media/Bgr_clg-blue_1920.2c872bac.png) no-repeat;
-    background-size: 120%;
+    background-size: cover;
   }
 }
 
@@ -336,7 +336,7 @@ export default {
   .sub-title {
     font-family: $font__family__semibold;
     color: #595959;
-    font-size: 2vw;//32px;
+    font-size: 32px;
     display: inline-block;
     margin-top: 20px;
     @media(--tabletandless) {

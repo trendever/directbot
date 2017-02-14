@@ -6,28 +6,29 @@
 
   .head-title(v-if="!isMobile") Кому нужен Directbot?
 
-  .wrap-box
-    .digit 1
-    .title Крупным #[br] интернет-магазинам,
-    .paragraph
-      p кто продаёт в Instagram, #[br] но не успевает отвечать клиентам #[br] в Direct и комментариях под постами
-      p(v-if="!isMobile").bold-txt 2 часа ожидания #[br]
-      p(v-if="!isMobile").light-txt нужно в среднем, чтобы #[br] получить ответ от инста-шопа
+  .wrap-boxes
+    .wrap-box
+      .digit 1
+      .title Крупным #[br] интернет-магазинам,
+      .paragraph
+        p кто продаёт в Instagram, #[br] но не успевает отвечать клиентам #[br] в Direct и комментариях под постами
+        p(v-if="!isMobile").bold-txt 2 часа ожидания #[br]
+        p(v-if="!isMobile").light-txt нужно в среднем, чтобы #[br] получить ответ от инста-шопа
 
-  .wrap-box
-    .digit 2
-    .title Продавцам #[br] в Instagram-магазинах,
-    .paragraph
-      p которым надоело отвечать #[br] одно и то же в комментариях #[br] и Instagram Direct
-      p(v-if="!isMobile").bold-txt 9 из 10 покупателей #[br]
-      p(v-if="!isMobile").light-txt спрашивают про товары #[br] в комментариях или Instagram Direct
-  .wrap-box
-    .digit 3
-    .title Начинающим #[br] Instagram-магазинам,
-    .paragraph
-      p кому нужно управлять #[br] продажами и быстро #[br] отвечать клиентам
-      p(v-if="!isMobile").bold-txt 10 из 10 инста-шопов #[br]
-      p(v-if="!isMobile").light-txt хотят свой интернет-магазин #[br] и ставить активные ссылки под постами
+    .wrap-box
+      .digit 2
+      .title Продавцам #[br] в Instagram-магазинах,
+      .paragraph
+        p которым надоело отвечать #[br] одно и то же в комментариях #[br] и Instagram Direct
+        p(v-if="!isMobile").bold-txt 9 из 10 покупателей #[br]
+        p(v-if="!isMobile").light-txt спрашивают про товары #[br] в комментариях или Instagram Direct
+    .wrap-box
+      .digit 3
+      .title Начинающим #[br] Instagram-магазинам,
+      .paragraph
+        p кому нужно управлять #[br] продажами и быстро #[br] отвечать клиентам
+        p(v-if="!isMobile").bold-txt 10 из 10 инста-шопов #[br]
+        p(v-if="!isMobile").light-txt хотят свой интернет-магазин #[br] и ставить активные ссылки под постами
 
   button.how-works(v-on:click="$parent.scrollSecond") КАК ЭТО РАБОТАЕТ?
 
@@ -55,12 +56,6 @@ export default {
 
   position: relative;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  height: 100%;
-
-
 
   padding-bottom: 15px;
 
@@ -84,7 +79,13 @@ export default {
 
   }
 
+  .wrap-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
 
+  }
 
   button.how-works{
     display: none;
@@ -148,7 +149,7 @@ export default {
     font-size: 60px;
     font-family: $font__family__thin;
     text-align: center;
-    margin: 50px auto 0 auto;
+    margin: 100px auto 0 auto;
     width: 80%;
      @media (--tabletandless) {
       color: $color__white;

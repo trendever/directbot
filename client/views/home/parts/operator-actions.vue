@@ -77,7 +77,10 @@ export default {
   position: relative;
 
   background: white;
+  .landing-title {
+    padding-bottom: 0;
 
+  }
 
   .bg-face-1 {
     position: absolute 100px 0px * * ;
