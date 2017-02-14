@@ -254,6 +254,7 @@ export default {
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
+    padding:0 25px;
     img {
       max-width: 370px;
     }

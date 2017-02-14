@@ -84,9 +84,69 @@ export default {
 
 <style lang="postcss">
 
-
+@import 'style/vars/vars.pcss';
 #toggle-role {
 
+
+  .toggle-title {
+    text-align: center;
+    color: $color__blue;
+    font-family: $font__family__semibold;
+    font-size: 24px;
+    margin-top: 33px;
+    margin-bottom: 10px;
+
+    @media(--tabletandless) {
+      font-size: 36px;
+      margin-top: 79px;
+      margin-bottom: 36px;
+    }
+
+
+    button{
+      display: inline-block;
+      width: 122px;
+      height: 40px;
+      font-family: $font__family__light;
+      color: $color__blue;
+      background-color: transparent;
+      border: 1px solid $color__blue;
+      border-radius: 5px;
+      font-size: 16px;
+      vertical-align: super;
+      @media(--tabletandless) {
+        width: 330px;
+        height: 64px;
+        font-size: 28px;
+        vertical-align: baseline;
+      }
+
+      &:hover{
+        background-color: $color__blue;
+        color: $color__white;
+        cursor: pointer;
+      }
+      &:focus{
+        background-color: $color__blue;
+        color: $color__white;
+        outline: none;
+      }
+      &:active{
+        background-color: $color__blue;
+        color: $color__white;
+      }
+    }
+    .activeBtn{
+      background-color: $color__blue;
+      color: $color__white;
+    }
+    .yes{
+      margin-right: 10px;
+      @media(--tabletandless) {
+        margin-right: 30px;
+      }
+    }
+  }
 
 
   .capton, .sub-title {
