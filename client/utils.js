@@ -162,11 +162,12 @@ export const throttleEvent = function(type, name, obj) {
 };
 
 export var isDebug = window.__debugMode = /[a-z0-9_\-]*[\.]*[a-z0-9_\-]*\.[a-z0-9_\-]+\.[a-z0-9_\-]+/i.test(location.host) || location.hostname === 'localhost';
-
 var _ua = navigator.userAgent.toLowerCase()
+
 var standalone = navigator.standalone
 
 export const browser = {
+  facebook: (/FBAN|FBAV/i.test(_ua)),
   version: (_ua.match(/.+(?:me|ox|on|rv|it|era|opr|ie)[\/: ]([\d.]+)/) || [0, '0'])[1],
   opera: (/opera/i.test(_ua) || /opr/i.test(_ua)),
   msie: (/msie/i.test(_ua) && !/opera/i.test(_ua) || /trident\//i.test(_ua)),
@@ -386,7 +387,7 @@ export const keyboardButtomToBottom = () =>{
   if(window.browser.ios){
     Promise.resolve().then(()=>{
       setTimeout(()=>{
-        document.body.scrollTop = window.innerHeight; 
+        document.body.scrollTop = window.innerHeight;
       },10)
     }).then(()=>{
       if(window.browser.instagram) return;

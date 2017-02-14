@@ -1,6 +1,8 @@
 <template lang="pug">
 
-.who-need(:style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }")
+.who-need(
+  :style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }",
+  :class="{ 'cross-fix': isFacebook || isSafari}")
 
   .head-title(v-if="!isMobile") Кому нужен Directbot?
 
@@ -33,7 +35,12 @@
 
 <script>
 export default {
-
+  data(){
+    return {
+      isFacebook: window.browser.facebook,
+      isSafari: window.browser.safari
+    }
+  }
 
 };
 </script>
@@ -43,7 +50,8 @@ export default {
 @import 'style/vars/vars.pcss';
 
 
-.who-need{
+.who-need {
+
   position: relative;
   width: 100%;
   display: flex;
@@ -51,7 +59,7 @@ export default {
   justify-content: center;
   height: 100%;
 
-  @media(--tabletandless){
+  @media (--tabletandless) {
   	display: block;
     height: 100 !important;
     background-image: url(../img/Pattern_bgr_mob.svg);
@@ -60,6 +68,17 @@ export default {
     background-position-x: -1px;
 
   }
+  &.cross-fix {
+
+    .wrap-box {
+      padding: 5px;
+      .paragraph p {
+        line-height: 42px;
+      }
+    }
+
+  }
+
 
 
   button.how-works{
@@ -171,13 +190,14 @@ export default {
 
 
   .wrap-box{
-  	padding-top: 30px;
+  	//padding-top: 30px;
     text-align: center;
     margin: 0 20px 20px 20px;
 
     &.fix-padding{
       margin-bottom: 0;
     }
+
   }
 
 }
