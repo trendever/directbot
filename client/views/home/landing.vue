@@ -139,6 +139,12 @@ export default {
 	background: url(./img/DirectBot_landing-desk_pattern.png)
 
 }
+
+.who-need, #landing-top {
+  transition: height .3s;
+}
+
+
 #landing,
 #connect-get,
 #toggle-role,
