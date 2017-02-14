@@ -86,20 +86,26 @@ export default {
 
 @import 'style/vars/vars.pcss';
 #toggle-role {
+  .hero__content__wrapper {
 
+
+    background: white;
+  }
 
   .toggle-title {
+
+    background: white;
     text-align: center;
     color: $color__blue;
     font-family: $font__family__semibold;
     font-size: 24px;
-    margin-top: 33px;
-    margin-bottom: 10px;
+    padding-top: 33px;
+    padding-bottom: 10px;
 
     @media(--tabletandless) {
       font-size: 36px;
-      margin-top: 79px;
-      margin-bottom: 36px;
+      padiing-top: 79px;
+      padding-bottom: 36px;
     }
 
 

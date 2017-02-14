@@ -255,9 +255,6 @@ export default {
 		justify-content: center;
 		flex-wrap: wrap;
     padding:0 25px;
-    img {
-      max-width: 370px;
-    }
 	}
 
 	.sub-title {
@@ -276,6 +273,10 @@ export default {
 	.screen {
 
 		text-align: center;
+    margin: 0 30px;
+    img {
+      max-width: 370px;
+    }
 
 	}
 
