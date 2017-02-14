@@ -8,8 +8,12 @@
     | СКАЖИТЕ, #[br(v-if="isMobile")] У ВАС ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
 
     .toogle-btns
-      button(v-on:click="noScreen = false, yesScreen = true").yes.toggleBtn.activeBtn ДА
-      button(v-on:click="yesScreen = false, noScreen = true").no.toggleBtn НЕТ
+      button(
+        v-on:click="noScreen = false, yesScreen = true",
+        :class="{ 'activeBtn': yesScreen }").yes.toggleBtn ДА
+      button(
+        v-on:click="yesScreen = false, noScreen = true",
+        :class="{ 'activeBtn': noScreen }").no.toggleBtn НЕТ
 
   .toggle-box
 
@@ -86,10 +90,18 @@ export default {
 
 @import 'style/vars/vars.pcss';
 #toggle-role {
+
+
   .hero__content__wrapper {
-
-
+    padding-bottom: 30px;
     background: white;
+    .tip {
+      text-align: center;
+    }
+  }
+
+  .caption {
+    text-align: center;
   }
 
   .toggle-title {
@@ -141,10 +153,10 @@ export default {
         background-color: $color__blue;
         color: $color__white;
       }
-    }
-    .activeBtn{
-      background-color: $color__blue;
-      color: $color__white;
+      &.activeBtn{
+        background-color: $color__blue;
+        color: $color__white;
+      }
     }
     .yes{
       margin-right: 10px;

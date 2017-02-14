@@ -245,7 +245,7 @@ export default {
 		.skills-icon {
 			img {
 				width: 100%;
-				max-width: 300px;
+				max-width: 250px;
 			}
 		}
 	}
@@ -332,6 +332,8 @@ export default {
 	font-family: $font__family__thin;
 	color: #595959;
 	font-size: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 
