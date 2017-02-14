@@ -63,6 +63,15 @@ export default {
     text-align: center;
     padding-bottom: 40px;
   }
+  @media (--mobile) {
+    .info-box img {
+      max-width: 400px !important;
+    }
+
+    .info-box.two img {
+      max-width: 450px !important;
+    }
+  }
 
   .info-box.three {
     img {
