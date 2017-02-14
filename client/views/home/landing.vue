@@ -232,7 +232,7 @@ export default {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-around;
 	}
 
 	.info-box{
@@ -252,8 +252,11 @@ export default {
 
 	.wrap-flex {
 		display: flex;
-		justify-content: space-around;
+		justify-content: center;
 		flex-wrap: wrap;
+    img {
+      max-width: 370px;
+    }
 	}
 
 	.sub-title {
