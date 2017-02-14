@@ -1,5 +1,5 @@
 <template lang="pug">
-#landing-top.section__content(:style="{ height: isMobile ? windowHeight + 'px': 'initial' }").hero__content
+#landing-top.section__content(:style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }").hero__content
 
   .hero__content__background
 
@@ -30,16 +30,7 @@
 <script>
 
 export default {
-  data () {
-    return {
-      windowHeight: window.innerHeight
-    };
-  },
-  methods:{
-    scrollFirst(){
 
-    }
-  }
 };
 </script>
 

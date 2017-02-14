@@ -46,12 +46,13 @@ import JQuery from 'jquery';
 export default {
 	data(){
 		return {
-      showBtns: false
+      showBtns: false,
+      windowHeight: 0,
     }
 	},
 	created(){
 		window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
-		this.scrollListener=listen(document.body, 'scroll',()=>{
+		this.scrollListener=listen(window, 'scroll',()=>{
 			if(this.isMobile){
 				this.showBtns = document.body.scrollTop > window.innerHeight * 2;
 			} else {
@@ -59,6 +60,9 @@ export default {
 			}
 		})
 	},
+  mounted(){
+    this.windowHeight = window.innerHeight;
+  },
 	beforeDestroy(){
 		this.scrollListener.remove();
 	},
@@ -149,7 +153,6 @@ export default {
     font-family: $font__family__semibold;
     color: $color__black;
     padding-bottom: 50px;
-    margin-bottom: 0;
     @media(--tabletandless) {
       font-size: 36px;
       padding: 85px 30px 150px 30px;

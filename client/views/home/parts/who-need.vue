@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.who-need(:style="{ height: isMobile ? windowHeight + 'px': 'initial' }")
+.who-need(:style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }")
 
   .head-title(v-if="!isMobile") Кому нужен Directbot?
 
@@ -33,9 +33,7 @@
 
 <script>
 export default {
-	data(){
-		return {windowHeight: window.innerHeight}
-	}
+
 
 };
 </script>
