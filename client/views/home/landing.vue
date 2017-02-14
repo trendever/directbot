@@ -373,7 +373,7 @@ export default {
   }
   .caption{
 
-    font-size: 1.5vw;//24px;
+    font-size: 24px;
     line-height: 32px;
     color: #595959;
     position: relative;
