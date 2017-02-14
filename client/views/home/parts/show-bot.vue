@@ -1,17 +1,18 @@
 <template lang="pug">
 
 #show-bot(:style="{ height: isMobile ? windowHeight + 'px': 'initial' }")
-  .landing-title Союз человека и робота
-  .top-scheme
-    .text-box.top-box 1. Directbot сканирует комментарии #[br(v-if="isMobile")] и Direct в Instagram у магазина
-    img(src="../img/insta-bot_image_mob.svg", v-if="isMobile")
-    .counter
-      span.txt ОТПРАВЛЕНО
-      span.digit#counter {{ landingCounter }}
-      span.txt СООБЩЕНИЙ
-    .text-box.middle-box 2. Бот определяет клиентов #[br(v-if="isMobile")] и находит информацию о товарах
-    img(src="../img/insta-bot_image_desk.svg", v-if="!isMobile")
-    .text-box.bottom-box 3. Персональный чат-оператор #[br(v-if="isMobile")] отвечает от имени магазина в Instagram
+  .wrap-connect
+    .landing-title Союз человека и робота
+    .top-scheme
+      .text-box.top-box 1. Directbot сканирует комментарии #[br(v-if="isMobile")] и Direct в Instagram у магазина
+      img(src="../img/insta-bot_image_mob.svg", v-if="isMobile")
+      .counter
+        span.txt ОТПРАВЛЕНО
+        span.digit#counter {{ landingCounter }}
+        span.txt СООБЩЕНИЙ
+      .text-box.middle-box 2. Бот определяет клиентов #[br(v-if="isMobile")] и находит информацию о товарах
+      img(src="../img/insta-bot_image_desk.svg", v-if="!isMobile")
+      .text-box.bottom-box 3. Персональный чат-оператор #[br(v-if="isMobile")] отвечает от имени магазина в Instagram
 
 </template>
 
@@ -44,13 +45,20 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #show-bot{
-	background: white ;
+  background: white ;
   text-align: center;
   margin: 0 auto;
   position: relative;
 
   @media(--tabletandless) {
     padding: 0px 25px 0px 25px;
+  }
+
+  .wrap-connect {
+
+    max-width: 1050px;
+    margin: 0 auto;
+
   }
 
   .head-title{

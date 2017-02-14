@@ -33,7 +33,7 @@
 export default {
 	data(){
 		return {windowHeight: window.innerHeight}
-	}	
+	}
 
 };
 </script>
@@ -50,7 +50,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   height: 100%;
- 
+
   @media(--tabletandless){
   	display: block;
     height: 100 !important;
@@ -78,6 +78,10 @@ export default {
   }
   //btn that put you down to the second screen
   .digit{
+    width: 100%;
+    margin: 0;
+    display: inline-block;
+    margin: 20px;
     border: 2px solid $color__blue;
     border-radius: 50%;
     color: $color__blue;
@@ -141,12 +145,12 @@ export default {
     }
   }
 
-  .bold-txt{
+  p.bold-txt{
     font-size: 16px;
     font-family: $font__family__semibold;
     margin-top: 22px;
   }
-  .light-txt{
+  p.light-txt{
     font-size: 16px;
     font-family: $font__family__light;
     margin-top: 0px;
