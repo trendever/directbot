@@ -5,7 +5,7 @@
 
 	.skills-wrapper
 
-		.info-box
+		.info-box.one
 			.skills-icon
 				img(src="../img/icon-1.png")
 			.sub-title Отвечает всем #[br] клиентам сразу
@@ -13,7 +13,7 @@
 				| уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
 				a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
 
-		.info-box
+		.info-box.two
 			.skills-icon
 				img(src="../img/icon-2.png")
 			.sub-title Выполняет #[br] «мартышкин труд»
@@ -21,7 +21,7 @@
 				a.link-info(@click.stop="$parent.openPopup('is2')")
 					| Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
 
-		.info-box
+		.info-box.three
 			.skills-icon
 				img(src="../img/icon-3.png")
 			.sub-title Подключается #[br(v-if="!isMobile")] в один клик
@@ -61,6 +61,23 @@ export default {
 		text-align: center;
 		padding-bottom: 40px;
 	}
+
+  .info-box.three {
+    img {
+      max-width: 180px;
+    }
+  }
+
+  .info-box.two {
+    img {
+      max-width: 210px;
+    }
+  }
+  .info-box.one {
+    img {
+      max-width: 200px;
+    }
+  }
 }
 
 

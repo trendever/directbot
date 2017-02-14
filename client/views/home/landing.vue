@@ -306,6 +306,8 @@ export default {
 		justify-content: center;
 		flex-wrap: wrap;
     padding:0 25px;
+    text-align: center;
+
 
 	}
 
