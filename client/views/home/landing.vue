@@ -3,25 +3,27 @@
 
 #landing
 
-	router-view
+  router-view
 
-	landing-top
-	who-need
-	show-bot
-	operator-skills
-	operator-actions
-	toggle-role
-	connect-get
+  .top-landing-background
 
-	.free-connect
-		a.link-info(@click.stop="openPopup('is10')")
-			| ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
+  landing-top
+  who-need
+  show-bot
+  operator-skills
+  operator-actions
+  toggle-role
+  connect-get
 
-	.free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
-		button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
-			v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
-		button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
-		button(v-if="!isMobile", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
+  .free-connect
+    a.link-info(@click.stop="openPopup('is10')")
+      | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
+
+  .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
+    button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
+      v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
+    button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
+    button(v-if="!isMobile", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
 
 
 </template>
@@ -45,32 +47,32 @@ import config from 'root/../config';
 import JQuery from 'jquery';
 
 export default {
-	data(){
-		return {
+  data(){
+    return {
       showBtns: false,
       windowHeight: 0,
     }
-	},
-	created(){
+  },
+  created(){
 
-		window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
+    window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
 
-		this.scrollListener=listen(window, 'scroll',()=>{
+    this.scrollListener=listen(window, 'scroll',()=>{
 
-			if(this.isMobile){
-				this.showBtns = document.body.scrollTop > window.innerHeight * 2;
-			} else {
-				this.showBtns = document.body.scrollTop > window.innerHeight;
-			}
+      if(this.isMobile){
+        this.showBtns = document.body.scrollTop > window.innerHeight * 2;
+      } else {
+        this.showBtns = document.body.scrollTop > window.innerHeight;
+      }
 
-		})
+    })
 
     this.resize = listen(window, 'resize',()=>{
       if(window.browser.safari && !window.browser.instagram) return;
       this.windowHeight = window.innerHeight
     })
 
-	},
+  },
   mounted(){
     this.$nextTick(()=>{
       if(window.browser.safari && !window.browser.instagram){
@@ -80,14 +82,14 @@ export default {
       }
     })
   },
-	beforeDestroy(){
-		this.scrollListener.remove();
+  beforeDestroy(){
+    this.scrollListener.remove();
     this.resize.remove();
-	},
-	methods: {
-		openPopup(name){
-			this.$router.push({name: 'home-info', params: {id: name}})
-		},
+  },
+  methods: {
+    openPopup(name){
+      this.$router.push({name: 'home-info', params: {id: name}})
+    },
     scrollFirst() {
       JQuery(document.body).animate({scrollTop: window.innerHeight},450);
     },
@@ -126,15 +128,15 @@ export default {
       'isFake'
     ])
   },
-	components:{
-		whoNeed,
-		landingTop,
-		showBot,
-		operatorSkills,
-		operatorActions,
-		toggleRole,
-		connectGet
-	}
+  components:{
+    whoNeed,
+    landingTop,
+    showBot,
+    operatorSkills,
+    operatorActions,
+    toggleRole,
+    connectGet
+  }
 }
 
 
@@ -145,13 +147,23 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #landing {
-	min-height: 100%;
-	background: url(./img/DirectBot_landing-desk_pattern.png)
+
+  min-height: 100%;
+  background: url(./img/DirectBot_landing-desk_pattern.png)
 
 }
 
 .who-need, #landing-top {
   transition: height .3s;
+}
+
+#landing .top-landing-background {
+  position: absolute 0 0 * 0;
+  height: 500px;
+  @media screen and (min-width: 1024px) {
+    background: url(/static/media/Bgr_clg-blue_1920.2c872bac.png) no-repeat;
+    background-size: 120%;
+  }
 }
 
 
@@ -164,6 +176,16 @@ export default {
 #show-bot,
 .who-need {
 
+
+  .bg-face-1,
+  .bg-face-2,
+  .bg-face-3 {
+
+    @media (--tabletandless){
+      display: none;
+    }
+
+  }
 
   a.link-info {
     border-bottom: 1px solid #595959 !important;
@@ -272,61 +294,61 @@ export default {
 
 
 
-	.skills-wrapper {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
+  .skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
     padding: 0 25px;
-	}
+  }
 
-	.info-box{
-		text-align: center;
-		padding: 40px 0;
+  .info-box{
+    text-align: center;
+    padding: 40px 0;
 
-		max-width: 400px;
-		@media (--mobile) {
-			max-width: 100%;
-		}
+    max-width: 500px;
+    @media (--mobile) {
+      max-width: 100%;
+    }
 
     @media screen and (min-width: 1024px){
       margin: 0 20px;
     }
-		.skills-icon {
+    .skills-icon {
 
-			img {
-				width: 100%;
-				max-width: 250px;
-			}
-		}
-	}
+      img {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  }
 
-	.wrap-flex {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
+  .wrap-flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     padding:0 25px;
     text-align: center;
 
 
-	}
+  }
 
-	.sub-title {
-		font-family: $font__family__semibold;
-		color: #595959;
-		font-size: 2vw;//32px;
-		display: inline-block;
+  .sub-title {
+    font-family: $font__family__semibold;
+    color: #595959;
+    font-size: 2vw;//32px;
+    display: inline-block;
     margin-top: 20px;
-		@media(--tabletandless) {
-			display: block;
-			text-align: center;
-			font-size: 46px;
-		}
-	}
+    @media(--tabletandless) {
+      display: block;
+      text-align: center;
+      font-size: 46px;
+    }
+  }
 
-	.screen {
+  .screen {
 
-		text-align: center;
+    text-align: center;
     margin: 0 30px;
     img {
       max-width: 370px;
@@ -336,77 +358,77 @@ export default {
       }
     }
 
-	}
+  }
 
-	.tip{
+  .tip{
 
-		font-size: 16px;
-		font-family: $font__family__light;
-		color: $color__gray-dark;
-		@media(--tabletandless) {
-			font-size: 28px;
-			margin-top: 14px;
-		}
+    font-size: 16px;
+    font-family: $font__family__light;
+    color: $color__gray-dark;
+    @media(--tabletandless) {
+      font-size: 28px;
+      margin-top: 14px;
+    }
 
-	}
-	.caption{
+  }
+  .caption{
 
-		font-size: 1.7vw;//24px;
-		line-height: 32px;
-		color: #595959;
-		position: relative;
+    font-size: 1.5vw;//24px;
+    line-height: 32px;
+    color: #595959;
+    position: relative;
 
-		@media(--tabletandless) {
-			text-align: center;
-			font-size: 36px;
-			font-family: $font__family__light;
-			margin-top: 8px;
-			line-height: normal;
-			padding-top: 0px;
-		}
+    @media(--tabletandless) {
+      text-align: center;
+      font-size: 36px;
+      font-family: $font__family__light;
+      margin-top: 8px;
+      line-height: normal;
+      padding-top: 0px;
+    }
 
-		.link-info{
+    .link-info{
 
-			display: inline;
-			color: #595959;
-			border-bottom: 1px solid #595959;
-			cursor: pointer;
-			text-decoration: none;
+      display: inline;
+      color: #595959;
+      border-bottom: 1px solid #595959;
+      cursor: pointer;
+      text-decoration: none;
 
-			.bold{
-				font-family: $font__family__semibold;
-			}
+      .bold{
+        font-family: $font__family__semibold;
+      }
 
-			&:hover{
-				cursor: pointer;
-				border-bottom: none;
-			}
-		}
-	}
+      &:hover{
+        cursor: pointer;
+        border-bottom: none;
+      }
+    }
+  }
 }
 
 .landing-title {
-	text-align: center;
-	font-family: $font__family__thin;
-	color: #595959;
-	font-size: 60px;
+  text-align: center;
+  font-family: $font__family__thin;
+  color: #595959;
+  font-size: 60px;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
 
 .screen-title{
-	text-align: center;
-	display: block;
-	font-size: 28px;
-	font-family: $font__family__semibold;
-	color: $color__blue;
+  text-align: center;
+  display: block;
+  font-size: 28px;
+  font-family: $font__family__semibold;
+  color: $color__blue;
   padding-top: 40px;
   padding-bottom: 20px;
-	@media(--tabletandless) {
-  	display: inline-block;
-  	font-size: 36px;
-	}
+  @media(--tabletandless) {
+    display: inline-block;
+    font-size: 36px;
+  }
 }
 
 </style>

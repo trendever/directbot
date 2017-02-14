@@ -2,19 +2,6 @@
 
 #toggle-role
 
-  .toggle-title
-
-    | ЧТОБЫ УЗНАТЬ ДАЛЬНЕЙШИЕ#[br(v-if="isMobile")]  ДЕЙСТВИЯ ОПЕРАТОРА, #[br(v-if="!isMobile")]
-    | СКАЖИТЕ, #[br(v-if="isMobile")] У ВАС ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
-
-    .toogle-btns
-      button(
-        v-on:click="noScreen = false, yesScreen = true",
-        :class="{ 'activeBtn': yesScreen }").yes.toggleBtn ДА
-      button(
-        v-on:click="yesScreen = false, noScreen = true",
-        :class="{ 'activeBtn': noScreen }").no.toggleBtn НЕТ
-
   .toggle-box
 
     .wrap-yes(v-show="yesScreen")
@@ -49,6 +36,8 @@
 
 
     .bottom-wrapper
+      .bg-face-1
+      .bg-face-2
       .screen
         span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
         img(src="../img/screen-5.png")
@@ -73,7 +62,12 @@ export default {
     };
 
   },
-
+  created(){
+    window.eventHub.$on('toggle-landing-buttons', data=>{
+      this.yesScreen = data === 'yes';
+      this.noScreen = data === 'no';
+    })
+  },
   methods:{
 
     openPopup(name){
@@ -91,15 +85,26 @@ export default {
 
 @import 'style/vars/vars.pcss';
 #toggle-role {
-  .toogle-btns {
-    padding-top: 25px;
-  }
-
 
 
   .bottom-wrapper{
     background: white;
     padding-bottom: 30px;
+    position: relative;
+    .bg-face-1 {
+      position: absolute 100px 0px * * ;
+      background-image: url(../img/faces-06.png);
+      height: 100%;
+      width: 360px;
+      background-repeat: no-repeat;
+    }
+
+    .bg-face-2 {
+      position: absolute 460px 0px 0px 0px;
+      background-image: url(../img/faces-05.png);
+      width: 180px;
+      background-repeat: no-repeat;
+    }
     .tip-wrap {
       text-align: center;
     }
@@ -123,69 +128,6 @@ export default {
       padding-bottom: 30px;
     }
   }
-
-  .toggle-title {
-
-    background: white;
-    text-align: center;
-    color: $color__blue;
-    font-family: $font__family__semibold;
-    font-size: 24px;
-    padding-top: 33px;
-    padding-bottom: 40px;
-
-    @media(--tabletandless) {
-      font-size: 36px;
-      padiing-top: 79px;
-      padding-bottom: 36px;
-    }
-
-
-    button{
-      display: inline-block;
-      width: 122px;
-      height: 40px;
-      font-family: $font__family__light;
-      color: $color__blue;
-      background-color: transparent;
-      border: 1px solid $color__blue;
-      border-radius: 5px;
-      font-size: 16px;
-      vertical-align: super;
-      @media(--tabletandless) {
-        width: 330px;
-        height: 64px;
-        font-size: 28px;
-        vertical-align: baseline;
-      }
-
-      &:hover{
-        background-color: $color__blue;
-        color: $color__white;
-        cursor: pointer;
-      }
-      &:focus{
-        background-color: $color__blue;
-        color: $color__white;
-        outline: none;
-      }
-      &:active{
-        background-color: $color__blue;
-        color: $color__white;
-      }
-      &.activeBtn{
-        background-color: $color__blue;
-        color: $color__white;
-      }
-    }
-    .yes{
-      margin-right: 10px;
-      @media(--tabletandless) {
-        margin-right: 30px;
-      }
-    }
-  }
-
 
   .capton, .sub-title {
     width: 100%;

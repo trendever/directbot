@@ -57,10 +57,15 @@ export default {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   height: 100%;
 
+
+
+  padding-bottom: 15px;
+
   @media (--tabletandless) {
+    padding-bottom: 0;
   	display: block;
     height: 100 !important;
     background-image: url(../img/Pattern_bgr_mob.svg);
@@ -71,7 +76,7 @@ export default {
   }
   &.cross-fix {
     .wrap-box {
-      padding: 5;
+      padding: 5px;
       .paragraph p {
         line-height: 42px;
       }
@@ -143,7 +148,7 @@ export default {
     font-size: 60px;
     font-family: $font__family__thin;
     text-align: center;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     width: 80%;
      @media (--tabletandless) {
       color: $color__white;

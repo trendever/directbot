@@ -38,12 +38,7 @@ export default {
 @import 'style/vars/vars.pcss';
 #landing-top {
 
-  @media screen and (min-width: 1024px) {
-    background: url(/static/media/Bgr_clg-blue_1920.2c872bac.png) no-repeat;
-    background-size: cover;
-  }
   height: 100%;
-
   .how-button {
     display: none;
     @media(--tabletandless) {

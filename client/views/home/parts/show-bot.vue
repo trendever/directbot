@@ -1,6 +1,10 @@
 <template lang="pug">
 
 #show-bot
+
+  .bg-face-1
+  .bg-face-2
+
   .wrap-connect
     .landing-title Союз человека и робота
     .top-scheme
@@ -53,11 +57,29 @@ export default {
     padding: 0px 25px 0px 25px;
   }
 
+
+  .bg-face-1 {
+    position: absolute 100px 0px * * ;
+    background-image: url(../img/faces-01.jpg);
+    height: 100%;
+    width: 150px;
+    background-repeat: no-repeat;
+  }
+
+  .bg-face-2 {
+    position: absolute 200px * * 0px ;
+    background-image: url(../img/faces-02.jpg);
+    height: 100%;
+    width: 150px;
+    background-repeat: no-repeat;
+  }
+
+
   .wrap-connect {
 
     max-width: 1050px;
     margin: 0 auto;
-    padding-bottom: 30px;
+    padding-bottom: 70px;
 
   }
 
