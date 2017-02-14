@@ -270,7 +270,7 @@ export default {
             this.copy.on('success',()=>{
 
               
-              let text = `Ссылка ${this.getUserName}.tndvr.com скопирована для вставки.`;
+              let text = `Ссылка ${this.getUserName}.drbt.io скопирована для вставки.`;
               if(this.isIos){
                 alert(text)
                 return;
@@ -317,15 +317,16 @@ export default {
 
   computed: {
     productsCountTitle(){
-      return this.declOfNum(["пост","поста","постов"])(this.user.products_count)
+      return this.declOfNum(["пост","поста","постов"])(this.user.products_count);
     },    
-
+    postsCountTitle(){
+      return this.declOfNum(["пост","поста","постов"])(this.postsCount);
+    },
     longCaption(){
       return this.getUserCaption && (this.getUserCaption.length > 300);
     },
 
     postsCount(){
-
       if(this.user && this.listProducts) {
 
         let count = this.user.products_count;
@@ -333,15 +334,10 @@ export default {
         return count > length ? count : length;
       }
       return 0;
-
-
-
     },
 
     chatsCount() {
-
       return this.getAllLeads.seller.length;
-
     },
 
     listId() {
