@@ -48,7 +48,7 @@ export default {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   height: 100%;
 
   @media(--tabletandless){
@@ -173,7 +173,7 @@ export default {
   .wrap-box{
   	padding-top: 30px;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 0 20px 20px 20px;
 
     &.fix-padding{
       margin-bottom: 0;

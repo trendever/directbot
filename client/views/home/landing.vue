@@ -1,3 +1,4 @@
+<style src="./style.pcss"></style>
 <template lang="pug">
 
 #landing
@@ -61,14 +62,16 @@ export default {
 		})
 	},
   mounted(){
-    this.windowHeight = window.innerHeight;
+    this.$nextTick(()=>{
+      this.windowHeight = window.innerHeight;
+    })
   },
 	beforeDestroy(){
 		this.scrollListener.remove();
 	},
 	methods: {
 		openPopup(name){
-			this.$router.push({name: 'home', params: {id: name}})
+			this.$router.push({name: 'home-info', params: {id: name}})
 		},
     scrollFirst() {
       JQuery(document.body).animate({scrollTop: window.innerHeight},450);
@@ -152,7 +155,7 @@ export default {
     font-size: 18px;
     font-family: $font__family__semibold;
     color: $color__black;
-    padding-bottom: 50px;
+    padding-bottom: 0px;
     @media(--tabletandless) {
       font-size: 36px;
       padding: 85px 30px 150px 30px;
@@ -252,18 +255,24 @@ export default {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: center;
     padding: 0 25px;
 	}
 
 	.info-box{
 		text-align: center;
 		padding: 40px 0;
-		max-width: 33%;
+
+		max-width: 400px;
 		@media (--mobile) {
 			max-width: 100%;
 		}
+
+    @media screen and (min-width: 1024px){
+      margin: 0 20px;
+    }
 		.skills-icon {
+
 			img {
 				width: 100%;
 				max-width: 250px;
@@ -276,6 +285,7 @@ export default {
 		justify-content: center;
 		flex-wrap: wrap;
     padding:0 25px;
+
 	}
 
 	.sub-title {

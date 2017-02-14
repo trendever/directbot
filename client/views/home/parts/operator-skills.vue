@@ -11,14 +11,14 @@
 			.sub-title Отвечает всем #[br] клиентам сразу
 			.caption Со &#128526 смайлами #[br(v-if="!isMobile")]
 				| уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
-				a.link-info(@click.stop="openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
+				a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
 
 		.info-box
 			.skills-icon
 				img(src="../img/icon-2.png")
 			.sub-title Выполняет #[br] «мартышкин труд»
 			.caption Больше не нужно отвечать #[br] и спрашивать одно и то же. #[br]
-				a.link-info(@click.stop="openPopup('is2')")
+				a.link-info(@click.stop="$parent.openPopup('is2')")
 					| Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
 
 		.info-box
@@ -26,7 +26,7 @@
 				img(src="../img/icon-3.png")
 			.sub-title Подключается #[br(v-if="!isMobile")] в один клик
 			.caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
-				a.link-info(@click.stop="openPopup('is3')")
+				a.link-info(@click.stop="$parent.openPopup('is3')")
 					| Ничего не надо скачивать
 
 	.save-experience(v-if="isMobile")
@@ -41,16 +41,7 @@
 <script>
 
 export default {
-	methods:{
-		openPopup(name){
-			window.eventHub.$emit('open-landing-popup', name);
-		}
-	},
-	data () {
-		return {
 
-		};
-	}
 };
 
 </script>
