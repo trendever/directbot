@@ -109,10 +109,6 @@ export default {
     text-align: center;
     margin: 0 auto;
     width: 80%;
-    position: absolute;
-    top: -102px;
-    left: 0;
-    right: 0;
      @media (--tabletandless) {
       color: $color__white;
       font-size: 46px;

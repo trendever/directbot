@@ -44,3 +44,15 @@ export default {
 	}
 };
 </script>
+
+<style lang="postcss">
+#connect-get {
+
+  .tooltip {
+    text-align: center;
+    padding-bottom: 40px;
+  }
+}
+
+
+</style>

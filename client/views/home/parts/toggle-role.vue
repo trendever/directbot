@@ -26,7 +26,7 @@
           span.screen-title УЗНАЕТ О ТОВАРАХ #[br(v-if="!isMobile")] ПО АРТИКУЛУ
           img(src="../img/screen-4-yes.png")
       .sub-title Есть сайт? Укажи артикул товара под постом
-      .caption Оператор узнает о деталях и наличии товара по артикулу в описании поста. #[br(v-if="!isMobile")] Ссылка на сайт должна быть #[br(v-if="isMobile")] в «био» инста-профиля
+      .caption.fix-bottom Оператор узнает о деталях и наличии товара по артикулу в описании поста. #[br(v-if="!isMobile")] Ссылка на сайт должна быть #[br(v-if="isMobile")] в «био» инста-профиля
 
     .wrap-no(v-show="noScreen")
       .wrap-flex
@@ -37,7 +37,7 @@
           span.screen-title СПРАШИВАЕТ #[br(v-if="!isMobile")] О ТОВАРАХ В ЧАТЕ
           img(src="../img/screen-4-no.png")
       .sub-title Нет сайта? Ответь на #[br(v-if="isMobile")] вопросы о товарах
-      .caption Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой
+      .caption.fix-bottom Оператор увидит посты в Instagram #[br(v-if="isMobile")] и добавит их в твой
 
         span
           a.link-info(@click.stop="openPopup('is5')")
@@ -46,9 +46,9 @@
 
         span Также уточнит детали и наличие товаров #[br]
         span *это ссылка на примере инстаграм-магазина tskirt
-          .info-wrap
 
-    .hero__content__wrapper
+
+    .bottom-wrapper
       .screen
         span.screen-title ОТВЕЧАЕТ В INSTAGRAM DIRECT
         img(src="../img/screen-5.png")
@@ -92,16 +92,25 @@ export default {
 #toggle-role {
 
 
-  .hero__content__wrapper {
-    padding-bottom: 30px;
+  .bottom-wrapper{
     background: white;
+    padding-bottom: 10px;
     .tip {
       text-align: center;
     }
   }
+  .wrap-no, .wrap-yes {
+    .caption, .sub-title {
+      padding: 0 25px;
 
+    }
+  }
   .caption {
     text-align: center;
+    padding: 10px 0;
+    &.fix-bottom {
+      padding-bottom: 30px;
+    }
   }
 
   .toggle-title {
@@ -112,7 +121,7 @@ export default {
     font-family: $font__family__semibold;
     font-size: 24px;
     padding-top: 33px;
-    padding-bottom: 10px;
+    padding-bottom: 40px;
 
     @media(--tabletandless) {
       font-size: 36px;

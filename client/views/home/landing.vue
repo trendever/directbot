@@ -117,8 +117,9 @@ export default {
 #landing {
 	min-height: 100%;
 	background: url(./img/DirectBot_landing-desk_pattern.png)
-}
 
+}
+#landing,
 #connect-get,
 #toggle-role,
 #landing-top,
@@ -127,105 +128,108 @@ export default {
 #show-bot,
 .who-need {
 
-	.free-connect{
-		text-align: center;
-		padding-top: 31px;
-		font-size: 18px;
-		font-family: $font__family__semibold;
-		color: $color__black;
-		margin-bottom: 110px;
-		@media(--tabletandless) {
-			font-size: 36px;
-			padding: 85px 30px 150px 30px;
-			margin-bottom: 0px;
-		}
+  .free-connect{
+    background: white;
+    text-align: center;
+    padding-top: 31px;
+    font-size: 18px;
+    font-family: $font__family__semibold;
+    color: $color__black;
+    padding-bottom: 50px;
+    margin-bottom: 0;
+    @media(--tabletandless) {
+      font-size: 36px;
+      padding: 85px 30px 150px 30px;
+      margin-bottom: 0px;
+    }
 
-		a{
-			display: inline;
-			color: $color__black;
-			border-bottom: 1px solid $color__black;
-			text-decoration: none;
+    a{
+      display: inline;
+      color: $color__black;
+      border-bottom: 1px solid $color__black;
+      text-decoration: none;
 
-			&:hover{
-				cursor: pointer;
-				border-bottom: 1px solid transparent;
-			}
-		}
-	}
+      &:hover{
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+      }
+    }
+  }
 
-	.free-wrap{
-		height: 80px;
-		background-color: rgba(9, 22, 43, 0.85);
-		margin-top: 30px;
-		text-align: center;
-		display: flex;
-		justify-content: center;
-		flex-direction: row-reverse;
-		@media (--tabletandless) {
-			display: block;
-			height: auto;
-			background-color: transparent;
-			margin-top: 0px;
-		}
-		&.fixed-btns {
-			position: fixed * 0 -1px 0;
-			z-index: 300;
-		}
-	}
+  .free-wrap{
+    height: 80px;
+    background-color: rgba(9, 22, 43, 0.85);
+    margin-top: 0px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    @media (--tabletandless) {
+      display: block;
+      height: auto;
+      background-color: transparent;
+      margin-top: 0px;
+    }
+    &.fixed-btns {
+      position: fixed * 0 -1px 0;
+      z-index: 300;
+    }
+  }
 
-	button.try-free{
-		width: 275px !important;
-		height: 40px !important;
-		font-size: 16px;
-		margin-top: 20px;
-		margin-bottom: 0px !important;
-		line-height: normal !important;
-		padding: 0;
-		@media(--tabletandless){
-			display: block;
-			position: fixed;
-			bottom: -50px;
-			right: 0;
-			width: 50% !important;
-			height: 100px !important;
-			font-size: 36px;
-			margin-top: 0px;
-			margin-bottom: 50px !important;
-			line-height: 100px !important;
-		}
-	}
-	.ask-btn{
-		width: 275px;
-		height: 40px;
-		color: $color__white;
-		border: 1px solid $color__white;
-		border-radius: 5px;
-		background-color: transparent;
-		font-size: 16px;
-		font-family: $font__family__light;
-		margin-top: 20px;
-		margin-right: 10px;
-		@media(--tabletandless){
-			display: block;
-			position: fixed;
-			bottom: 0px;
-			left: 0;
-			width: 50% !important;
-			height: 100px !important;
-			font-size: 36px;
-			margin-top: 0px;
-			margin-right: 0px;
-			line-height: 100px !important;
-			border: none;
-			border-radius: 0px;
-			background-color: $color__blue;
-		}
-		&:hover{
-			cursor: pointer;
-			background-color: $color__white;
-			color: $color__dark-blue;
-		}
-	}
+  button.try-free{
+    width: 275px !important;
+    height: 40px !important;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 0px !important;
+    line-height: normal !important;
+    padding: 0;
+    @media(--tabletandless){
+      display: block;
+      position: fixed;
+      bottom: -50px;
+      right: 0;
+      width: 50% !important;
+      height: 100px !important;
+      font-size: 36px;
+      margin-top: 0px;
+      margin-bottom: 50px !important;
+      line-height: 100px !important;
+    }
+  }
+  .ask-btn{
+    width: 275px;
+    height: 40px;
+    color: $color__white;
+    border: 1px solid $color__white;
+    border-radius: 5px;
+    background-color: transparent;
+    font-size: 16px;
+    font-family: $font__family__light;
+    margin-top: 20px;
+    margin-right: 10px;
+    @media(--tabletandless){
+      display: block;
+      position: fixed;
+      bottom: 0px;
+      left: 0;
+      width: 50% !important;
+      height: 100px !important;
+      font-size: 36px;
+      margin-top: 0px;
+      margin-right: 0px;
+      line-height: 100px !important;
+      border: none;
+      border-radius: 0px;
+      background-color: $color__blue;
+    }
+    &:hover{
+      cursor: pointer;
+      background-color: $color__white;
+      color: $color__dark-blue;
+    }
+  }
+
 
 
 	.skills-wrapper {
@@ -233,6 +237,7 @@ export default {
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-around;
+    padding: 0 25px;
 	}
 
 	.info-box{
@@ -262,11 +267,11 @@ export default {
 		color: #595959;
 		font-size: 2vw;//32px;
 		display: inline-block;
+    margin-top: 20px;
 		@media(--tabletandless) {
 			display: block;
 			text-align: center;
 			font-size: 46px;
-			margin-top: -5px;
 		}
 	}
 
@@ -344,6 +349,7 @@ export default {
 	font-family: $font__family__semibold;
 	color: $color__blue;
   padding-top: 40px;
+  padding-bottom: 20px;
 	@media(--tabletandless) {
   	display: inline-block;
   	font-size: 36px;
