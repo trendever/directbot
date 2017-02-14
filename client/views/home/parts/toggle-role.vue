@@ -56,8 +56,9 @@
       .caption
         a.link-info(@click.stop="openPopup('is6')") Клиенты получат консультацию*
         span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
-      .tip *отслеживай диалог в кабинете или Instagram Direct
-      .tip **еще можно покупать не выходя из Instagram Direct
+      .tip-wrap
+        .tip *отслеживай диалог в кабинете или Instagram Direct
+        .tip **еще можно покупать не выходя из Instagram Direct
 
 </template>
 
@@ -90,14 +91,24 @@ export default {
 
 @import 'style/vars/vars.pcss';
 #toggle-role {
+  .toogle-btns {
 
+    padding-top: 25px;
+
+  }
 
   .bottom-wrapper{
     background: white;
-    padding-bottom: 10px;
-    .tip {
+    padding-bottom: 30px;
+    .tip-wrap {
       text-align: center;
     }
+
+    .sub-title {
+      padding: 0 25px;
+
+    }
+
   }
   .wrap-no, .wrap-yes {
     .caption, .sub-title {
