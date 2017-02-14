@@ -62,7 +62,7 @@ export default {
     position: absolute 100px 0px * * ;
     background-image: url(../img/faces-01.jpg);
     height: 100%;
-    width: 150px;
+    width: 170px;
     background-repeat: no-repeat;
   }
 
@@ -70,7 +70,7 @@ export default {
     position: absolute 200px * * 0px ;
     background-image: url(../img/faces-02.jpg);
     height: 100%;
-    width: 150px;
+    width: 200px;
     background-repeat: no-repeat;
   }
 

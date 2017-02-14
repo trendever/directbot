@@ -2,7 +2,7 @@
 
 .who-need(
   :style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }",
-  :class="{ 'cross-fix': (isFacebook || isSafari) && isInstagram}")
+  :class="{ 'cross-fix': (isFacebook || isSafari) && !isInstagram}")
 
   .head-title(v-if="!isMobile") Кому нужен Directbot?
 
@@ -56,10 +56,10 @@ export default {
 
   position: relative;
   width: 100%;
-
   padding-bottom: 15px;
 
   @media (--tabletandless) {
+    padding-top: 40px;
     padding-bottom: 0;
   	display: block;
     height: 100 !important;
@@ -70,6 +70,7 @@ export default {
 
   }
   &.cross-fix {
+    padding-top: 5px;
     .wrap-box {
       padding: 5px;
       .paragraph p {
@@ -80,6 +81,7 @@ export default {
   }
 
   .wrap-boxes {
+
     display: flex;
     align-items: center;
     justify-content: space-around;
