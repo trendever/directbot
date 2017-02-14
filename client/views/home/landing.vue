@@ -52,6 +52,7 @@ export default {
     }
 	},
 	created(){
+
 		window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
 		this.scrollListener=listen(window, 'scroll',()=>{
 			if(this.isMobile){
@@ -60,6 +61,9 @@ export default {
 				this.showBtns = document.body.scrollTop > window.innerHeight;
 			}
 		})
+    this.resize = listen(window, 'resize',()=>{
+      this.windowHeight = window.innerHeight
+    })
 	},
   mounted(){
     this.$nextTick(()=>{
@@ -68,6 +72,7 @@ export default {
   },
 	beforeDestroy(){
 		this.scrollListener.remove();
+    this.resize.remove();
 	},
 	methods: {
 		openPopup(name){
