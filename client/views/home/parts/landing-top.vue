@@ -32,8 +32,13 @@
 export default {
   data () {
     return {
-      windowHeight: window.innerHeight 
+      windowHeight: window.innerHeight
     };
+  },
+  methods:{
+    scrollFirst(){
+
+    }
   }
 };
 </script>

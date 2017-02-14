@@ -17,13 +17,24 @@
 
 <script>
 export default {
-
   data () {
-
     return {
+      landingCounter: 4783,
       windowHeight: window.innerHeight
     };
-
+  },
+  created(){
+    this.counterID = this.landingCount();
+  },
+  methods:{
+    landingCount(){
+      return setInterval(()=>{
+        this.landingCounter += [1,3,5][Math.round(Math.random()*10/4)];
+      },4000)
+    }
+  },
+  beforeDestroy(){
+    clearInterval(this.counterID);
   }
 
 };

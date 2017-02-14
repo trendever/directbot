@@ -28,19 +28,24 @@
 <script>
 
 import whoNeed from './parts/who-need';
-import landingTop from './parts/landing-top';
 import showBot from './parts/show-bot';
 import operatorSkills from './parts/operator-skills';
 import operatorActions from './parts/operator-actions';
 import toggleRole from './parts/toggle-role';
 import connectGet from './parts/connect-get';
+import landingTop from './parts/landing-top';
 
 
 import listen from 'event-listener';
+import { mapGetters } from 'vuex';
+import * as authService from 'services/auth';
+import config from 'root/../config';
 
 export default {
 	data(){
-		showBtns: false
+		return {
+      showBtns: false
+    }
 	},
 	created(){
 		window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
@@ -58,8 +63,39 @@ export default {
 	methods: {
 		openPopup(name){
 			this.$router.push({name: 'popup', params: {id: name}})
-		}
-	},
+		},
+    ask(){
+      let dispatch = this.$store.dispatch.bind(this);
+      function openChat(vm){
+        dispatch('createLead',config.info_id)
+          .then(lead=>{
+            dispatch('setFakeAction', 'chat-info');
+            vm.$router.push({name: 'chat', params: { id: lead.id} })
+          },err => console.log(err))
+      }
+      if(this.isFake && this.isAuth) {
+        openChat(this);
+        return;
+      }
+      if ( !this.isAuth ) {
+        authService
+          .fakeRegister()
+          .then(({token,user})=>{
+            dispatch('authUser', { user, token })
+              .then( () => {
+                openChat(this)
+              })
+        });
+      }
+    }
+  },
+
+  computed:{
+    ...mapGetters([
+      'isAuth',
+      'isFake'
+    ])
+  },
 	components:{
 		whoNeed,
 		landingTop,
@@ -85,7 +121,7 @@ export default {
 
 #connect-get,
 #toggle-role,
-#landing-top, 
+#landing-top,
 #operator-actions,
 #operator-skills,
 #show-bot,
@@ -196,7 +232,7 @@ export default {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		justify-content: center; 
+		justify-content: center;
 	}
 
 	.info-box{
@@ -291,7 +327,7 @@ export default {
 	font-family: $font__family__thin;
 	color: #595959;
 	font-size: 60px;
-} 
+}
 
 
 .screen-title{
