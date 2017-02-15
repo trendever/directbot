@@ -380,7 +380,7 @@ export default {
 
   }
   .caption{
-
+    margin-top: 7px;
     font-size: 24px;
     line-height: 32px;
     color: #595959;
