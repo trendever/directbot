@@ -148,8 +148,6 @@ export default {
 
       this.onMessage      = this.onMessage.bind( this );
 
-      this.scrollListener = listen( window, 'scroll', this.scrollHandler.bind( this ) );
-
       messages.onMsg( this.onMessage );
 
     } else {
@@ -196,14 +194,14 @@ export default {
           filtredMap.set( messages[i].id, messages[i])
           id = messages[i].id;
         }
-      }; 
+      };
 
       for(let message of filtredMap.values()) {
         filtredMessages.push(message);
       }
       console.log(filtredMap)
       return filtredMessages;
-  
+
     },
 
     ...mapGetters([
@@ -300,6 +298,7 @@ export default {
         }).then(()=>{
           //лоадер
           this.showLoader = false;
+          this.scrollListener = listen( window, 'scroll', this.scrollHandler.bind( this ) );
         })
     },
 
