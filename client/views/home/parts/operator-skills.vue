@@ -10,7 +10,7 @@
       .skills-icon
         img(src="../img/privilege-03.png")
       .sub-title
-        | Превращает ленту Instagram#[br]
+        | Превращает Instagram#[br]
         | в&nbsp
         span.star-link(@click.stop="$parent.openPopup('is11')") интернет-магазин
       .caption
