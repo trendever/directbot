@@ -110,7 +110,7 @@ export default {
     align-items: center;
 
     @media screen and (min-width: 1024px){
-      transform: translateX(-6%)
+      transform: translateX(-5%)
     }
   }
 

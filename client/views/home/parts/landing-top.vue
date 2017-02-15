@@ -35,7 +35,7 @@ export default {
 
   data(){
     return {
-      isSafari: window.browser.sarafi,
+      isSafari: window.browser.safari,
       isFacebok: window.browser.facebook,
       isInstagram: window.browser.instagram
     }
@@ -139,7 +139,7 @@ export default {
   .description {
 
     &.bottom-fix {
-      margin-bottom:0;
+      margin-bottom:30px;
     }
 
     .time__text {
