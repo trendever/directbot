@@ -182,7 +182,7 @@ export default {
   methods: {
     monetizationAction(){
       if(this.user.plan_id){
-        this.$router.push({name: 'fake_chat', params:{result: true}})
+        this.$router.push({name: 'fake_chat', params:{result: true}, query: {last: 'profile'}})
       } else {
         this.$router.push({name: 'monetization'})
       }

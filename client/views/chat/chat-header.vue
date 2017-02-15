@@ -63,9 +63,11 @@
       },
       leftBtnAction(){
 
-        if(user.plan_id && this.$router.name === 'fake_chat'){
-          this.$router.push({name: 'profile'});
-          return;
+        if(this.$route.query){
+          if(this.$route.query.last === 'profile'){
+            this.$router.push({name: 'profile'});
+            return;
+          }
         }
 
         if(this.$route.query) {
