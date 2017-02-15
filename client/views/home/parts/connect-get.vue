@@ -23,7 +23,7 @@
         a.link-info(@click.stop="$parent.openPopup('is8')")
           | Удобный интернет-магазин #[br(v-if="!isMobile")] с платежами #[br(v-if="isMobile")] и доставкой #[br(v-if="!isMobile")] до покупателя
 
-      .badge: span МЕСЯЦ#[br] БЕСЛАТНО
+      .badge: span МЕСЯЦ#[br] БЕСПЛАТНО
 
 
     .info-box.three
