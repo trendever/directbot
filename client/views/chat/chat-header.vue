@@ -91,19 +91,19 @@
           return;
         }
 
-        let products = getLeadByConversationId(this.$store.state.leads, this.$store.getters.getId).products;
+        // let products = getLeadByConversationId(this.$store.state.leads, this.$store.getters.getId).products;
 
 
-        if(products) {
+        // if(products) {
 
-          let check = id => products.some( item => item.id == id )
+        //   let check = id => products.some( item => item.id == id )
 
-          if(check(config.monetization_help_id)) {
-            this.$router.push({name: "monetization"})
-            return;
-          }
+        //   if(check(config.monetization_help_id)) {
+        //     this.$router.push({name: "monetization"})
+        //     return;
+        //   }
 
-        }
+        // }
 
 
         if (this.isFake && this.fakeAction === 'chat-info'){
