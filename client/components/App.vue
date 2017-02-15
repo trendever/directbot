@@ -82,24 +82,6 @@ export default {
 
 @import 'style/vars/fonts.pcss';
 
-* {
-
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-
-}
-
-body, html {
-  height: auto;
-  font-size: 14px;
-  font-family: $font__family;
-
-  @media screen and (max-width:1023px) {
-    height: 100%;
-  }
-}
-
 #app{
   height: 100%;
 }
