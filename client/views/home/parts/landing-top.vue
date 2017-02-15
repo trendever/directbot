@@ -138,7 +138,7 @@ export default {
 
   //description in the center of the screen both versions (mob&desk)
   .description {
-
+    font-family: $font__family__regular;
     &.bottom-fix {
       margin-bottom:30px;
     }
