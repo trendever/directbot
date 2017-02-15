@@ -5,6 +5,27 @@
 
   .skills-wrapper
 
+    .info-box.four
+
+      .skills-icon
+        img(src="../img/privilege-03.png")
+      .sub-title Превращает ленту instagram#[br] в интернет-магазин*
+      .caption
+        | Посты автоматом добавятся в базу,#[br]
+        | а оператор напишет цены и названия#[br]
+        | товаров. Сайт доступен по короткой#[br]
+        | ссылке с любых устройств
+
+    .info-box.five
+      .skills-icon
+        img(src="../img/icon-6.png")
+      .sub-title Организует бартерную#[br] рекламу у блогеров
+      .caption
+        | Умеет находить блогеров без ботов#[br]
+        | и договариваться по бартеру.#[br]
+        | Знает, как сделать посты, которые#[br]
+        | принесут реальных клиентов
+
     .info-box.one
       .skills-icon
         img(src="../img/icon-1.png")
@@ -64,6 +85,12 @@ export default {
     padding-bottom: 40px;
   }
   @media (--mobile) {
+    .info-box.five img {
+
+        max-width: 350px !important;
+
+    }
+
     .info-box img {
       max-width: 400px !important;
     }
@@ -87,6 +114,14 @@ export default {
   .info-box.one {
     img {
       max-width: 230px;
+    }
+  }
+
+  @media screen and (min-width: 1024px){
+    .info-box.five {
+      img {
+        max-width: 180px;
+      }
     }
   }
 }
