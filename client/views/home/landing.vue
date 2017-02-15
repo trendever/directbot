@@ -55,6 +55,10 @@ export default {
   },
   created(){
 
+    if(this.isAuth && !this.isFake){
+      this.$router.replace({name: 'profile'})
+    }
+
     window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
 
     this.scrollListener=listen(window, 'scroll',()=>{
