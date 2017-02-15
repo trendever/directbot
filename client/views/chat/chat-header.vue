@@ -3,7 +3,7 @@
 #chat-header
 
   header-component(
-    :notify-count="unreadCount", 
+    :notify-count="unreadCount",
     :back-function="leftBtnAction")
 
     .chat-header(slot='flex-item')
@@ -24,12 +24,12 @@
             | {{ getLeadId }},
             span  {{ getStatus }}
 
-      
+
       <!-- Chat header for service chat -->
       template(v-if="isServiceShop")
 
         .chat-header_photo
-          img(:src='userImage' v-on:error='onUserImageError')
+          img(:src='userImage' v-on:error='onUserImageError' v-if="!fakeChat")
 
         .chat-header_cnt.support
           .chat-header_cnt_t Поддержка
@@ -125,6 +125,10 @@
     },
 
     props:{
+      fakeChat: {
+        type: Boolean,
+        default: false
+      },
       disableNotifier: {
         type: Boolean,
         default: false
