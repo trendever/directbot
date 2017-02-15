@@ -16,10 +16,10 @@
   .center-logo(v-if="!isMobile")
     img(src="../img/directbot-main-logo.png")
 
-  .description
+  .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
     | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
     span.time__text
-      | Увеличивает продажи#[br]
+      | Повышает продажи#[br(v-if="isMobile")]&nbsp
       | и отвечает клиентам
 
   .set-up
@@ -32,6 +32,14 @@
 <script>
 
 export default {
+
+  data(){
+    return {
+      isSafari: window.browser.sarafi,
+      isFacebok: window.browser.facebook,
+      isInstagram: window.browser.instagram
+    }
+  }
 
 };
 </script>
@@ -129,6 +137,10 @@ export default {
 
   //description in the center of the screen both versions (mob&desk)
   .description {
+
+    &.bottom-fix {
+      margin-bottom:0;
+    }
 
     .time__text {
       font-size: .7em;

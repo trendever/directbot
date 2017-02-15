@@ -10,9 +10,9 @@
       .skills-icon
         img(src="../img/privilege-03.png")
       .sub-title
-        | Превращает ленту instagram#[br]
+        | Превращает ленту Instagram#[br]
         | в&nbsp
-        span.star-link(@click.stop="$parent.openPopup('is11')") интернет-магазин*
+        span.star-link(@click.stop="$parent.openPopup('is11')") интернет-магазин
       .caption
         | Посты автоматом добавятся в базу,#[br]
         | а оператор напишет цены и названия#[br]
