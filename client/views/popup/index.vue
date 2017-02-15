@@ -17,6 +17,7 @@ import infoScreen7 from 'views/info-screens/info-screen-7.vue';
 import infoScreen8 from 'views/info-screens/info-screen-8.vue';
 import infoScreen9 from 'views/info-screens/info-screen-9.vue';
 import infoScreen10 from 'views/info-screens/info-screen-10.vue';
+import infoScreen11 from 'views/info-screens/info-screen-11.vue';
 
 
 import listen from 'event-listener';
@@ -38,11 +39,11 @@ export default {
 		"is7" : infoScreen7,
 		"is8" : infoScreen8,
 		"is9" : infoScreen9,
-		"is10" : infoScreen10
+		"is11" : infoScreen11
 	},
 	methods: {
 		close(){
-			
+
 			if(this.$route.params.id === 'conditions'){
 				this.$router.push({name: 'auth'})
 				return
@@ -60,7 +61,7 @@ export default {
 
 <style lang="postcss">
 	@import 'style/vars/vars.pcss';
-	
+
 	#info-popup {
 
 		width: 100%;

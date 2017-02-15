@@ -9,20 +9,15 @@
 
       .skills-icon
         img(src="../img/privilege-03.png")
-      .sub-title Превращает ленту instagram#[br] в интернет-магазин*
+      .sub-title
+        | Превращает ленту instagram#[br]
+        | в&nbsp
+        span.star-link(@click.stop="$parent.openPopup('is11')") интернет-магазин*
       .caption
         | Посты автоматом добавятся в базу,#[br]
         | а оператор напишет цены и названия#[br]
         | товаров. Сайт доступен по короткой#[br]
         | ссылке с любых устройств
-
-      .star
-        span *
-        | даже если у вас есть свой интернет-магазин,#[br]
-        | мы рекомендуем указать ссылку от Directbot,#[br]
-        | чтобы повысить конверсию
-
-
 
     .info-box.five
       .skills-icon
@@ -96,7 +91,15 @@ export default {
   }
 
 
-  .star {
+  span.star-link {
+
+    border-bottom: 1px solid $color__gray-dark;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+/*   .star {
     position: relative;
     font-family: $font__family__regular;
     padding-top: 30px;
@@ -108,7 +111,7 @@ export default {
       position: absolute 29px * * -16px;
       font-size: 32px;
     }
-  }
+  } */
 
 
 
