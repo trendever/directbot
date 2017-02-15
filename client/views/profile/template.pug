@@ -10,6 +10,9 @@
         span {{ monetizationDays }}
         span.day д
 
+      div.profile-cash(slot='content')
+        img(src="./icons/wallet.png")
+
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item
       .text Отключить бота
