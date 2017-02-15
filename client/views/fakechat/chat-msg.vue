@@ -11,7 +11,7 @@
         v-on:click="goInstagramProfile"
         v-html="getUsername"
       )
-    .chat-msg-wrap
+    .chat-msg-wrap.fake-chat
       p.chat-msg_txt(v-html="getMessage")
 </template>
 
@@ -65,7 +65,9 @@
         return !!this.msg.afterServiceMessage;
       },
       getMessage() {
-       return wrapLink(escapeHtml(this.msg.parts[0].content).replace(/\n/g, '<br />')).replace(/₽/g, '&nbsp;<i class="ic-currency-rub"></i> ');
+       return wrapLink(this.msg.parts[0].content)
+        .replace(/\n/g, '<br />')
+        .replace(/₽/g, '&nbsp;<i class="ic-currency-rub"></i> ');
       },
       datetime() {
         return formatTime(this.msg.created_at);
@@ -129,3 +131,14 @@
 
   }
 </script>
+<style lang="postcss">
+.chat-msg-wrap.fake-chat {
+
+  i.ic-currency-rub {
+
+    transform: translateY(-20%);
+
+  }
+
+}
+</style>
