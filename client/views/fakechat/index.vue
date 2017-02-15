@@ -69,7 +69,7 @@ export default {
       //Merge сообщений монетизации в чат
 
       if(this.coinsLog) {
-        
+
         this.coinsLog.forEach((elem)=>{
           let time = elem.created_at;
           console.log("COINS:")
@@ -77,24 +77,24 @@ export default {
           let coinsPartsObject = {content: elem.data.amount + " refilled",mime_type:"text/coins"}
           let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: config.service_user_id}};
           messages.push(coinsMessageObject)
-          
+
         });
         return this.sortMessages(messages)
       }else{
         return messages;
       }
-      
+
     }
   },
   methods:{
     sortMessages(messages){
-      return messages;
+      return messages.sort((a,b)=> a.created_at - b.created_at)
     },
     runFakeChat(){
       this.loadLeads().then((leads)=>{
         let productId = config.monetization_help_id
         let found_lead = this.getAllLeads.customer.find(elem=>elem.products[0].id === productId);
-      
+
         //Если есть купленный сервисный товар (по монетизации)
         if (found_lead){
           return found_lead.id;
