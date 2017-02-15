@@ -29,8 +29,8 @@
         | и добавит их в твой
         span
           a.link-info(@click.stop="openPopup('is5')")
-            | новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
-          span tskirt.drbt.io*. #[br(v-if="isMobile")]
+            | &nbsp новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
+          span &nbsp tskirt.drbt.io*. #[br(v-if="isMobile")]
 
         span Также уточнит детали и наличие товаров #[br]
         span *это ссылка на примере инстаграм-магазина tskirt
