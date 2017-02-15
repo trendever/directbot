@@ -10,7 +10,7 @@
         span {{ monetizationDays }}
         span.day д
 
-      div.profile-cash(
+      //-div.profile-cash(
         slot='content',
         v-if="isSelfPage && user.plan_id && monetizationDays === 0",
         @click="monetizationAction")
