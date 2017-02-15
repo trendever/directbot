@@ -16,6 +16,14 @@
         | товаров. Сайт доступен по короткой#[br]
         | ссылке с любых устройств
 
+      .star
+        span *
+        | даже если у вас есть свой интернет-магазин,#[br]
+        | мы рекомендуем указать ссылку от Directbot,#[br]
+        | чтобы повысить конверсию
+
+
+
     .info-box.five
       .skills-icon
         img(src="../img/icon-6.png")
@@ -74,7 +82,9 @@ export default {
 
 
 #operator-skills {
+
   margin: 0 auto;
+
   .save-experience {
     font-size: $font__family__semibold;
     font-size: 42px;
@@ -84,50 +94,51 @@ export default {
     text-align: center;
     padding-bottom: 40px;
   }
+
+
+  .star {
+    position: relative;
+    font-family: $font__family__regular;
+    padding-top: 30px;
+    font-size: 24px;
+    text-align: left;
+    color:$color__gray-dark;
+
+    span {
+      position: absolute 29px * * -16px;
+      font-size: 32px;
+    }
+  }
+
+
+
   @media (--mobile) {
-    .info-box.five img {
+    .info-box{
+      img { max-width: 400px !important };
 
+      &.five img {
         max-width: 350px !important;
+      }
 
-    }
+      &.two img {
+        max-width: 450px !important;
+      }
 
-    .info-box img {
-      max-width: 400px !important;
-    }
-
-    .info-box.two img {
-      max-width: 450px !important;
     }
   }
 
-  .info-box.three {
-    img {
-      max-width: 220px;
-    }
-  }
-
-  .info-box.two {
-    img {
-      max-width: 250px;
-    }
-  }
-  .info-box.one {
-    img {
-      max-width: 230px;
-    }
-  }
 
   @media screen and (min-width: 1024px){
-    .info-box.five {
-      img {
-        max-width: 180px;
+    .info-box{
+      &.five img {
+        max-width: 170px;
+      }
+      &.four img {
+        max-width: 270px;
       }
     }
   }
 }
-
-
-
 
 </style>
 
