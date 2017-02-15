@@ -61,7 +61,7 @@ export default {
   .info-box {
     position: relative;
     .badge {
-      z-index: 300;
+      z-index: 150;
       position: absolute 0 10% * * ;
       size: 230px;
       background: $color__red;
@@ -76,7 +76,7 @@ export default {
         transform: translateY(-50%);
       }
 
-      @media screen and (min-width: 1024px){
+      @media screen and (min-width: 751px){
         transform: scale(.5) translate(70%, -40%);
       }
     }

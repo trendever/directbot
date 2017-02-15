@@ -37,23 +37,26 @@
         | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
         a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
 
-    .info-box.two
-      .skills-icon
-        img(src="../img/icon-2.png")
-      .sub-title Выполняет #[br] «мартышкин труд»
-      .caption
-        | Больше не нужно отвечать #[br]
-        | и спрашивать одно и то же. #[br]
-        a.link-info(@click.stop="$parent.openPopup('is2')")
-          | Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
 
-    .info-box.three
-      .skills-icon
-        img(src="../img/icon-3.png")
-      .sub-title Подключается #[br(v-if="!isMobile")] в один клик
-      .caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
-        a.link-info(@click.stop="$parent.openPopup('is3')")
-          | Ничего не надо скачивать
+    .second-skills-wrapper
+
+      .info-box.two
+        .skills-icon
+          img(src="../img/icon-2.png")
+        .sub-title Выполняет #[br] «мартышкин труд»
+        .caption
+          | Больше не нужно отвечать #[br]
+          | и спрашивать одно и то же. #[br]
+          a.link-info(@click.stop="$parent.openPopup('is2')")
+            | Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
+
+      .info-box.three
+        .skills-icon
+          img(src="../img/icon-3.png")
+        .sub-title Подключается #[br(v-if="!isMobile")] в один клик
+        .caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
+          a.link-info(@click.stop="$parent.openPopup('is3')")
+            | Ничего не надо скачивать
 
   .save-experience(v-if="isMobile")
     | ВАЖНО! Мы гарантируем  #[br(v-if="isMobile")]
@@ -99,19 +102,14 @@ export default {
     }
   }
 
-/*   .star {
-    position: relative;
-    font-family: $font__family__regular;
-    padding-top: 30px;
-    font-size: 24px;
-    text-align: left;
-    color:$color__gray-dark;
+  .second-skills-wrapper {
 
-    span {
-      position: absolute 29px * * -16px;
-      font-size: 32px;
-    }
-  } */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+  }
 
 
 
@@ -138,6 +136,14 @@ export default {
       }
       &.four img {
         max-width: 270px;
+      }
+
+      &.two {
+        max-with: 300px;
+      }
+      &.three {
+        img{max-width: 210px}
+        max-with: 300px;
       }
     }
   }
