@@ -39,6 +39,7 @@ export default {
 		"is7" : infoScreen7,
 		"is8" : infoScreen8,
 		"is9" : infoScreen9,
+    "is10" : infoScreen10,
 		"is11" : infoScreen11
 	},
 	methods: {

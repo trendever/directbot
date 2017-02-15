@@ -10,11 +10,6 @@
 
   import store from 'root/store';
   import { mapGetters } from 'vuex';
-  //import * as product from 'vuex/actions/products.js'
-  //import * as lead from 'vuex/actions/lead.js'
-  //import * as chat from 'vuex/actions/chat.js'
-  //import { isAuth } from 'vuex/getters/user.js'
-
 
   export default {
 
