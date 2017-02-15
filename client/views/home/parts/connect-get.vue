@@ -2,7 +2,7 @@
 
 #connect-get
 
-	.landing-title  Подключайся и получишь
+	.landing-title  Подключайся сейчас#[br(v-if="isMobile")] и получишь
 
 	.skills-wrapper
 
