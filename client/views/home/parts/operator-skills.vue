@@ -32,7 +32,7 @@
     .info-box.one
       .skills-icon
         img(src="../img/icon-1.png")
-      .sub-title Отвечает всем #[br] клиентам сразу
+      .sub-title Отвечает клиентам #[br] внутри Instagram
       .caption Со &#128526 смайлами #[br(v-if="!isMobile")]
         | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
         a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
