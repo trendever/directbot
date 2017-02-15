@@ -109,9 +109,10 @@ export default {
     justify-content: center;
     align-items: center;
 
+    @media screen and (min-width: 1024px){
+      transform: translateX(-6%)
+    }
   }
-
-
 
   @media (--mobile) {
     .info-box{
