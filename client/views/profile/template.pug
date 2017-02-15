@@ -48,17 +48,22 @@
 
 
         .profile_desc(v-if="longCaption" v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
-          .profile_desc_t(v-if="getSlogan") {{ getSlogan }} 
+          .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
         .profile_desc(v-else :class="less")
-          .profile_desc_t(v-if="getSlogan") {{ getSlogan }} 
+          .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
-        
-        template(v-if="!isMobile && isAuth && !botActivity && isSelfPage")
+
+        template(v-if="!isMobile && isAuth && isSelfPage")
+
           button.turn-on-bot-btn-desk.blue-btn(
-              @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
+            v-if="!botActivity",
+            @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
+          button.turn-on-bot-btn-desk.blue-btn(
+            v-if="botActivity"
+            @click="$router.push({name: 'connect-bot'})") OТКЛЮЧИТЬ БОТА
           button.find-bloger-btn.blue-btn(@click="findBloger") НАЙТИ БЛОГЕРА
 
 
