@@ -211,7 +211,7 @@ export default {
       },{ location: [], next_i: -1, info: [] });
 
       this.shopabout = calculated.info.join(" ");
-      this.shoplocation = calculated.location.join(" ")
+      this.shoplocation = calculated.location.join(" ").replace("-","")
     },
 
     //filter
