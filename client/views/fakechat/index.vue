@@ -1,7 +1,7 @@
 <style src='../chat/styles/chat.pcss'></style>
 <template lang="pug">
 #chat
-  chat-header(:disable-notifier='true', fake-chat="true")
+  chat-header(:disable-notifier='true', :fake-chat="true")
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat_messages(id="chatmessages", ref="messages")
