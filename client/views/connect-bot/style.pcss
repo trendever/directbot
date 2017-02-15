@@ -22,7 +22,7 @@
       clear: both;
     }
   }
-  
+
   .turn-on-bot {
     position:relative;
     overflow:hidden;
@@ -44,13 +44,13 @@
       @media (min-width: 751px) {
 
         width: 42% !important;
-        
+
       }
     }
 
     .turn-on-bot__close {
       position: absolute;
-      z-index: 100;
+      z-index: 200;
       top: 22px;
       right: 22px;
       text-align:center;
@@ -58,6 +58,9 @@
       color: white;
       align-items: center;
       justify-content: center;
+      @media screen and (min-width: 751px){
+        padding: 10px;
+      }
       @media(--mobile) {
         font-size: 36px;
         top: 30px;
