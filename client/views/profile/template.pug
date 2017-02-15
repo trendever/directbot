@@ -10,6 +10,9 @@
         span {{ monetizationDays }}
         span.day д
 
+      div.profile-cash(slot='content' v-if="isSelfPage && user.plan_id && monetizationDays === 0")
+        img(src="./icons/wallet.png")
+
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item
       .text Отключить бота
