@@ -63,6 +63,11 @@
       },
       leftBtnAction(){
 
+        if(user.plan_id && this.$router.name === 'fake_chat'){
+          this.$router.push({name: 'profile'});
+          return;
+        }
+
         if(this.$route.query) {
           if(this.$route.query.action === 'support'){
             this.$router.push({name: 'profile'});
@@ -141,6 +146,7 @@
         return this.isFake ? 0 : this.getGlobalNotifyCount;
       },
       ...mapGetters([
+        'user',
         'fakeAction',
         'getId',
         'getLeadId',
