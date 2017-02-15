@@ -90,7 +90,7 @@
           span.save оператор начнет мониторить все посты, #[br]
           span отвечать покупателям и добавлять сюда товары
 
-      .profile_insta-link(v-if="isMobile")
+      .profile_insta-link(v-if="isMobile", :class="{'change-padding': !isSelfPage}")
         .insta-link-text ссылка на эту витрину
         .insta-link(ref="instaLink") {{ getUserName }}.drbt.io
         native-popup(:show-popup="showCopyMessage")
