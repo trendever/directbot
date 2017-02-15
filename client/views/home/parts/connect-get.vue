@@ -75,6 +75,10 @@ export default {
         top:50%;
         transform: translateY(-50%);
       }
+
+      @media screen and (min-width: 1024px){
+        transform: scale(.5) translate(70%, -40%);
+      }
     }
   }
 
