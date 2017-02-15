@@ -23,7 +23,7 @@
     button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
       v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
     button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn СПРОСИТЬ
-    button(v-if="!isMobile", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
+    button(v-if="!isMobile && showBtns", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
 
 
 </template>
