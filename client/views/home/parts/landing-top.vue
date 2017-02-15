@@ -18,7 +18,9 @@
 
   .description
     | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
-    span.time__text Всегда на связи с клиентами
+    span.time__text
+      | Увеличивает продажи#[br]
+      | и отвечает клиентам
 
   .set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
