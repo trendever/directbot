@@ -8,7 +8,7 @@
     .info-box.four
 
       .skills-icon
-        img(src="../img/privilege-03.png")
+        img(src="../img/privilege-01.png")
       .sub-title
         | Превращает Instagram#[br]
         | в&nbsp
@@ -43,7 +43,7 @@
 
       .info-box.two
         .skills-icon
-          img(src="../img/icon-2.png")
+          img(src="../img/privilege-04.png")
         .sub-title Выполняет #[br] «мартышкин труд»
         .caption
           | Больше не нужно отвечать #[br]
@@ -137,7 +137,7 @@ export default {
         max-width: 170px;
       }
       &.four img {
-        max-width: 270px;
+        max-width: 230px;
       }
 
       &.two {
