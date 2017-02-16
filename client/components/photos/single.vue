@@ -114,6 +114,10 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
         return items[0].name
       },
       suppliername(){
+        let route = this.$route.name;
+        if(route === 'profile' || route === 'user'){
+          return this.product.caption ? this.product.caption : '';
+        }
         if(this.product.shop){
           return this.product.shop.name;
         }
