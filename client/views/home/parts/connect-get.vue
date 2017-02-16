@@ -104,7 +104,10 @@ export default {
 
   .info-box.three {
     img {
-      max-width: 160px;
+      max-width: 130px;
+      @media screen and (max-width: 750px){
+        min-width: 340px;
+      }
     }
   }
 

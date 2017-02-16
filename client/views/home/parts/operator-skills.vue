@@ -114,7 +114,8 @@ export default {
       img { max-width: 400px !important };
 
       &.five img {
-        max-width: 350px !important;
+        max-width: 340px !important;
+        min-width: 300px !important;
       }
 
       &.two img {
