@@ -61,7 +61,7 @@
     .info-box.six
       .skills-icon
         img(src="../img/privilege-06.png")
-      .sub-title Гарантия #[br(v-if="!isMobile")]  безопасности профиля
+      .sub-title Гарантирует #[br]  безопасность профиля
       .caption
         | Мы не храним пароль от Instagram #[br]
         | магазина, а наши алгоритмы  #[br]
