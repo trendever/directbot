@@ -43,10 +43,12 @@
         img(src="../img/privilege-04.png")
       .sub-title Выполняет #[br] «мартышкин труд»
       .caption
-        | Больше не нужно отвечать #[br]
-        | и спрашивать одно и то же. #[br]
+        | Не нужно отвечать и спрашивать#[br]
+        | одно и то же.&nbsp
         a.link-info(@click.stop="$parent.openPopup('is2')")
-          | Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
+          | Оператор даст#[br]
+          | ссылку на сайт, уточнит  наличие,#[br]
+          | узнает размеры и адрес
 
     .info-box.three
       .skills-icon
@@ -140,12 +142,10 @@ export default {
 
       &.two {
         max-with: 300px;
-        translate:
       }
       &.three {
         img{max-width: 210px}
         max-with: 300px;
-        transform: translateX(-5%);
       }
     }
   }
