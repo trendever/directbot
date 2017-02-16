@@ -40,7 +40,7 @@
 
     .info-box.two
       .skills-icon
-        img(src="../img/privilege-04.png")
+        img(src="../img/icon-2.png")
       .sub-title Выполняет #[br] «мартышкин труд»
       .caption
         | Не нужно отвечать и спрашивать#[br]
