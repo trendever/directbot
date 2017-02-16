@@ -27,6 +27,7 @@
             .input.name(v-if="!needConfirmCode")
               i.ic-insta-name
               input(type='text',
+                @click="$refs.textInput.focus()",
                 ref="textInput",
                 autocomplete="off",
                 autocorrect="off",
@@ -46,6 +47,7 @@
               input(
                 v-if='!errorPassword',
                 ref="passwordInput",
+                @click="$refs.passwordInput.focus()",
                 type="password",
                 autocomplete="off",
                 autocorrect="off",
@@ -68,7 +70,7 @@
                 @keydown.enter='connectBot()',
                 v-model='password',
                 placeholder='Введите пароль от Instagram',
-                @click='password = "", errorPassword=false')
+                @click='password = "", errorPassword=false,this.$refs.errorPasswordInput.focus()')
 
               .input__clear-btn(
                 v-if='password',
@@ -77,7 +79,9 @@
             .input(id="code", v-if="needConfirmCode")
               i.ic-code
               input(
+                ref="codeInput"
                 v-model="code",
+                @click="$refs.codeInput.focus()",
                 @keydown.enter='confirmCode',
                 placeholder='Введите код')
           .btn-container
