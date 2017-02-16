@@ -121,7 +121,9 @@ export default {
 
     next();
   },
-
+  created(){
+    this.scrollRemove = listen(document, 'touchmove',e=>{e.preventDefault()})
+  },
   mounted() {
 
     this.$nextTick(()=>{
@@ -141,7 +143,7 @@ export default {
   },
   beforeDestroy(){
     this.resize.remove();
-    if(this.scrollRemove)this.scrollRemove.remove()
+    this.scrollRemove.remove()
   },
   //computed property
   computed: {
@@ -161,9 +163,6 @@ export default {
 
     focusClick(){
       this.$refs.confirmField.focus()
-
-      this.scrollRemove = listen(document, 'touchmove',e=>{e.preventDefault()})
-
       keyboardButtomToBottom();
 
       if(this.isIos){
@@ -173,7 +172,6 @@ export default {
 
     blurInput(){
       this.focused = false;
-      this.scrollRemove.remove();
     },
     // input only numbers
     onInput(e) {

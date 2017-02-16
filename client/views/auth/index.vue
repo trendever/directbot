@@ -132,6 +132,7 @@ export default {
       localStorage.setItem('active-account', true);
       this.$router.push({name: 'profile'})
     }
+    this.scrollRemove = listen(document, 'touchmove',e=>{e.preventDefault()})
   },
   mounted() {
 
@@ -150,6 +151,7 @@ export default {
   },
   beforeDestroy(){
     this.resize.remove();
+    this.scrollRemove.remove();
   },
   computed: {
     ...mapGetters([
@@ -185,7 +187,7 @@ export default {
       //mixpanel.track('Close Signup Page');
       this.save();
       this.$router.push({name: 'home'});
-      
+
     },
 
     focusInput(e){
@@ -275,7 +277,7 @@ export default {
       }
 
     },
-    
+
     blurInput(e){
 
       if (browser.android)
