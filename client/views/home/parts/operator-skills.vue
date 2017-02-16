@@ -59,7 +59,7 @@
     .info-box.six
       .skills-icon
         img(src="../img/privilege-06.png")
-      .sub-title Гарантия безопасности #[br(v-if="!isMobile")] профиля
+      .sub-title Гарантия #[br(v-if="!isMobile")]  безопасности профиля
       .caption
         | Мы не храним пароль от Instagram #[br]
         | магазина, а наши алгоритмы  #[br]
@@ -118,6 +118,9 @@ export default {
         max-width: 450px !important;
       }
 
+      &.six img {
+        max-width: 230px !important;
+      }
     }
   }
 
@@ -137,10 +140,12 @@ export default {
 
       &.two {
         max-with: 300px;
+        translate:
       }
       &.three {
         img{max-width: 210px}
         max-with: 300px;
+        transform: translateX(-5%);
       }
     }
   }
