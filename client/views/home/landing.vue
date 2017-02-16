@@ -97,6 +97,7 @@ export default {
       JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
     },
     ask(){
+      yaCounter42602829.reachGoal('askfrommain');
       let dispatch = this.$store.dispatch.bind(this);
       function openChat(vm){
         dispatch('createLead',config.info_id)
