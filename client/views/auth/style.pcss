@@ -79,23 +79,24 @@
   .middle-container.instagram-browser {
     margin-top: 400px !important;
   }
+
   .signup__close {
-    position: absolute;
-    top: 23px;
-    right: -24px;
+    position: absolute 10px 10px * *;
     z-index: 210;
+    padding: 15px;
     color: white;
     cursor: pointer;
-    size: 70px;
-
-    @media(--tabletandless) {
-      top: 30px;
-      right: 30px;
-      width: 36px;
-      height: 36px;
-      font-size: 36px;
+    font-size: $font__normal;
+    size: $font__normal;
+    box-sizing: content-box;
+    @media( --tabletandless ) {
+      top: 15px;
+      right: 15px;
+      size: $font__medium;
+      font-size: $font__medium;
     }
   }
+
   .thanks-wrap{
     h1{
       font-size: 40px;
@@ -570,7 +571,7 @@
     @media screen and (min-width: 751px){
       transform: translateX(-9%) translateY(18%);
     }
-  } 
+  }
 
   @media(--tabletandless) {
     height: 44px;
