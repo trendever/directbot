@@ -2,17 +2,20 @@
 #chat-header {
 
   .chat-header_cnt.support {
-    @media (--tabletandless){
-      padding-top: 20px;
+    @media(--tabletandless){
+      margin-top: 22px;
     }
     @media screen and (min-width: 1024px){
-      margin-top: 10px;
+      margin-top: 7px;
     }
   }
 
   .wrapper.chat-slot {
-    display: flex;
-    align-items: left;
+
+    @media (--mobile){
+      display: flex;
+      align-items: left;
+    }
 
     .chat-header {
       display: flex;
@@ -24,13 +27,15 @@
         display: inline-block;
         position: relative;
       }
+
+
       .chat-header_cnt {
         margin-left: -10px;
-        &.support {
-          margin-top: 22px;
-        }
       }
+
     }
+
+
     .header__arrow {
       position: relative;
       margin-left: 30px;
