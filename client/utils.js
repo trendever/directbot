@@ -390,6 +390,7 @@ export const keyboardButtomToBottom = () =>{
         document.body.scrollTop = window.innerHeight;
       },10)
     }).then(()=>{
+      if(window.browser.facebook) return;
       if(window.browser.instagram) return;
       if(window.browser.chrome_mobile) return;
       setTimeout(()=>{
