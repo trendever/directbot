@@ -85,6 +85,11 @@ export default {
 
 
   .info-box.one {
+    @media screen and (min-width: 1024px){
+      .badge {
+        top: -6px;
+      }
+    }
     img {
       max-width: 200px;
     }
