@@ -398,3 +398,11 @@ export const keyboardButtomToBottom = () =>{
   }
 
 }
+
+window.prettyLog = (obj)=>{
+  console.log(JSON.parse(JSON.stringify(object)))
+}
+
+window.colorLog = (string, color = 'darkgreen')=>{
+  console.log(`%c${string}`, `color: ${color}; font-size: 30px`)
+}
