@@ -193,7 +193,7 @@ export default {
     focusInput(e){
       e.target.focus();
       if(this.isIos && !window.browser.instagram)return
-      keyboardButtomToBottom();
+      //keyboardButtomToBottom();
 
     },
     save() {

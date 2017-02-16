@@ -19,6 +19,7 @@ import infoScreen9 from 'views/info-screens/info-screen-9.vue';
 import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 import infoScreen11 from 'views/info-screens/info-screen-11.vue';
 import infoScreen12 from 'views/info-screens/info-screen-12.vue';
+import infoScreen13 from 'views/info-screens/info-screen-13.vue';
 
 
 import listen from 'event-listener';
@@ -42,7 +43,8 @@ export default {
 		"is9" : infoScreen9,
     "is10" : infoScreen10,
 		"is11" : infoScreen11,
-    "is12" : infoScreen12
+    "is12" : infoScreen12,
+    "is13" : infoScreen13
 	},
 	methods: {
 		close(){
