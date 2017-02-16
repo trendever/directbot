@@ -38,33 +38,35 @@
         | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
         a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
 
+    .info-box.two
+      .skills-icon
+        img(src="../img/privilege-04.png")
+      .sub-title Выполняет #[br] «мартышкин труд»
+      .caption
+        | Больше не нужно отвечать #[br]
+        | и спрашивать одно и то же. #[br]
+        a.link-info(@click.stop="$parent.openPopup('is2')")
+          | Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
 
-    .second-skills-wrapper
+    .info-box.three
+      .skills-icon
+        img(src="../img/icon-3.png")
+      .sub-title Подключается #[br(v-if="!isMobile")] в один клик
+      .caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
+        a.link-info(@click.stop="$parent.openPopup('is3')")
+          | Ничего не надо скачивать
 
-      .info-box.two
-        .skills-icon
-          img(src="../img/privilege-04.png")
-        .sub-title Выполняет #[br] «мартышкин труд»
-        .caption
-          | Больше не нужно отвечать #[br]
-          | и спрашивать одно и то же. #[br]
-          a.link-info(@click.stop="$parent.openPopup('is2')")
-            | Оператор даст ссылку на сайт, уточнит  наличие, узнает размеры и адрес
-
-      .info-box.three
-        .skills-icon
-          img(src="../img/icon-3.png")
-        .sub-title Подключается #[br(v-if="!isMobile")] в один клик
-        .caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
-          a.link-info(@click.stop="$parent.openPopup('is3')")
-            | Ничего не надо скачивать
-
-  .save-experience(v-if="isMobile")
-    | ВАЖНО! Мы гарантируем  #[br(v-if="isMobile")]
-    | безопасность аккаунта #[br(v-if="isMobile")]
-    | магазина от блокировки #[br(v-if="isMobile")]
-    | и не храним пароли
-
+    .info-box.six
+      .skills-icon
+        img(src="../img/privilege-06.png")
+      .sub-title Гарантия безопасности #[br(v-if="!isMobile")] профиля
+      .caption
+        | Мы не храним пароль от Instagram #[br]
+        | магазина, а наши алгоритмы  #[br]
+        | обеспечивают&nbsp
+        a.link-info(@click.stop="$parent.openPopup('is12')")
+          | безопасность #[br]
+          | от бана или блокировки
 
 </template>
 
@@ -103,17 +105,6 @@ export default {
     }
   }
 
-  .second-skills-wrapper {
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-    @media screen and (min-width: 1024px){
-      transform: translateX(-5%)
-    }
-  }
 
   @media (--mobile) {
     .info-box{
@@ -133,6 +124,10 @@ export default {
 
   @media screen and (min-width: 1024px){
     .info-box{
+      &.six img {
+        max-width: 160px;
+      }
+
       &.five img {
         max-width: 170px;
       }
