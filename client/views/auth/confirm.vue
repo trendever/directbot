@@ -8,7 +8,7 @@
       h1.accept(v-if='!isCompleted') Подтвердите телефон
       h1.accept(v-if='isCompleted') Номер подтвержден
       .middle-container#mid(
-        :class="{'has-another-name': anotherName,'focus-input': focused,'instagram-browser': isInstagram && focused }")
+        :class="{'has-another-name': anotherName,'ios-input': focused,'instagram-browser': isInstagram && focused, 'chrome-ios': isChromeIos && focused }")
         .thanks-wrap(v-if='isCompleted')
           h1 Спасибо!
 
@@ -36,7 +36,7 @@
           .input-container
             .input.confirm-input.conf
               input(type='tel',
-                @blur="focused = false",
+                @blur="blurInput",
                 v-on:click="focusClick"
                 v-on:keyup='onInput',
                 v-on:focus='onFocus',
@@ -106,7 +106,8 @@ export default {
       containerHeight: '',
       text_header: TEXT_HEADER.DEFAULT,
       needNewSMS: false,
-      anotherName: ''
+      anotherName: '',
+      isChromeIos: window.browser.ios && window.browser.chrome_mobile
     };
   },
 
@@ -120,11 +121,13 @@ export default {
 
     next();
   },
-
+  created(){
+    this.scrollRemove = listen(document, 'touchmove',e=>{e.preventDefault()})
+  },
   mounted() {
 
     this.$nextTick(()=>{
-  
+
       this.containerHeight = `${ document.body.scrollHeight }px`;
       const onResize = () => {
         this.containerHeight = `${ document.body.scrollHeight }px`;
@@ -140,6 +143,7 @@ export default {
   },
   beforeDestroy(){
     this.resize.remove();
+    this.scrollRemove.remove()
   },
   //computed property
   computed: {
@@ -160,9 +164,14 @@ export default {
     focusClick(){
       this.$refs.confirmField.focus()
       keyboardButtomToBottom();
+
       if(this.isIos){
         this.focused = true;
       }
+    },
+
+    blurInput(){
+      this.focused = false;
     },
     // input only numbers
     onInput(e) {
@@ -219,7 +228,7 @@ export default {
           this.$root.$emit('checkbot-after')
 
           localStorage.removeItem('fake_action');
-  
+
           localStorage.setItem('active-account', true);
 
           if(!this.anotherName) {
@@ -281,9 +290,15 @@ export default {
   overflow: hidden;
   height: 100%;
 
-  .middle-container.focus-input {
-    margin-top: 120px;
+  .middle-container {
+    &.ios-input {
+      margin-top: 120px;
+    }
+    &.chrome-ios {
+      margin-top: 270px;
+    }
   }
+
 }
 
 

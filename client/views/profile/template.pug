@@ -10,7 +10,10 @@
         span {{ monetizationDays }}
         span.day д
 
-      div.profile-cash(slot='content' v-if="isSelfPage && user.plan_id && monetizationDays === 0")
+      //-div.profile-cash(
+        slot='content',
+        v-if="isSelfPage && user.plan_id && monetizationDays === 0",
+        @click="monetizationAction")
         img(src="./icons/wallet.png")
 
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
@@ -48,7 +51,7 @@
             span.profile_info_about_work-time(v-if="user.working_time")
               |  {{ user.working_time }}&nbsp
               span(v-if="!isMobile") |&nbsp
-            span.profile_info_about_posts-quantity
+            //-span.profile_info_about_posts-quantity
               |  {{ user.products_count }} {{productsCountTitle}}
 
 

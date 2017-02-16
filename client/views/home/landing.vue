@@ -55,6 +55,10 @@ export default {
   },
   created(){
 
+    if(this.isAuth && !this.isFake){
+      this.$router.replace({name: 'profile'})
+    }
+
     window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
 
     this.scrollListener=listen(window, 'scroll',()=>{
@@ -377,7 +381,7 @@ export default {
 
   }
   .caption{
-
+    margin-top: 7px;
     font-size: 24px;
     line-height: 32px;
     color: #595959;

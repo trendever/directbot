@@ -16,9 +16,12 @@
   .center-logo(v-if="!isMobile")
     img(src="../img/directbot-main-logo.png")
 
-  .description
+  .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
     | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
-    span.time__text Всегда на связи с клиентами
+    span.time__text
+      | Повышает продажи и#[br(v-if="isMobile")]
+      span(v-if="!isMobile") &nbsp
+      | отвечает клиентам
 
   .set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
@@ -30,6 +33,14 @@
 <script>
 
 export default {
+
+  data(){
+    return {
+      isSafari: window.browser.safari,
+      isFacebok: window.browser.facebook,
+      isInstagram: window.browser.instagram
+    }
+  }
 
 };
 </script>
@@ -127,6 +138,10 @@ export default {
 
   //description in the center of the screen both versions (mob&desk)
   .description {
+    font-family: $font__family__regular;
+    &.bottom-fix {
+      margin-bottom:30px;
+    }
 
     .time__text {
       font-size: .7em;

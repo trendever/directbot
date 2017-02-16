@@ -63,6 +63,13 @@
       },
       leftBtnAction(){
 
+        if(this.$route.query){
+          if(this.$route.query.last === 'profile'){
+            this.$router.push({name: 'profile'});
+            return;
+          }
+        }
+
         if(this.$route.query) {
           if(this.$route.query.action === 'support'){
             this.$router.push({name: 'profile'});
@@ -84,19 +91,19 @@
           return;
         }
 
-        let products = getLeadByConversationId(this.$store.state.leads, this.$store.getters.getId).products;
+        // let products = getLeadByConversationId(this.$store.state.leads, this.$store.getters.getId).products;
 
 
-        if(products) {
+        // if(products) {
 
-          let check = id => products.some( item => item.id == id )
+        //   let check = id => products.some( item => item.id == id )
 
-          if(check(config.monetization_help_id)) {
-            this.$router.push({name: "monetization"})
-            return;
-          }
+        //   if(check(config.monetization_help_id)) {
+        //     this.$router.push({name: "monetization"})
+        //     return;
+        //   }
 
-        }
+        // }
 
 
         if (this.isFake && this.fakeAction === 'chat-info'){
@@ -141,6 +148,7 @@
         return this.isFake ? 0 : this.getGlobalNotifyCount;
       },
       ...mapGetters([
+        'user',
         'fakeAction',
         'getId',
         'getLeadId',

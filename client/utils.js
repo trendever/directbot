@@ -383,18 +383,28 @@ export const  navigateTolink = (href, newTab) => {
 import JQuery from 'jquery';
 
 export const keyboardButtomToBottom = () =>{
-
+  let body = document.body
   if(window.browser.ios){
     Promise.resolve().then(()=>{
       setTimeout(()=>{
-        document.body.scrollTop = window.innerHeight;
+        body.scrollTop = window.innerHeight || body.offsetHeight;
       },10)
     }).then(()=>{
+      if(window.browser.facebook) return;
       if(window.browser.instagram) return;
+      if(window.browser.chrome_mobile) return;
       setTimeout(()=>{
-        JQuery(document.body).animate({scrollTop: document.body.scrollTop - window.innerHeight / 10},50);
+        JQuery(body).animate({scrollTop: body.scrollTop - window.innerHeight / 10},50);
       },350)
     })
   }
 
+}
+
+window.prettyLog = (obj)=>{
+  console.log(JSON.parse(JSON.stringify(obj)))
+}
+
+window.colorLog = (string, color = 'darkgreen')=>{
+  console.log(`%c${string}`, `color: ${color}; font-size: 30px`)
 }

@@ -26,7 +26,7 @@ export default {
 
 
   data(){
-    
+
   let showBanner = (window.localStorage.getItem('isMainBannerShow') === null) ? true : false;
     return {
       hideGrey: false,
@@ -88,10 +88,10 @@ export default {
       if(vm.isSelfPage && vm.isFake) {
         vm.$router.push({name: 'home'});
         return;
-      } 
+      }
 
       if(store.getters.monetizationStatus === null && to.name !== 'connect-bot' && vm.isSelfPage){
-        let connectShown = vm.$store.state.user.connectBanner; 
+        let connectShown = vm.$store.state.user.connectBanner;
         if(!connectShown) {
           vm.$store.dispatch('hideConnectBanner');
           vm.$router.push({ name: 'connect-bot'})
@@ -180,6 +180,13 @@ export default {
   },
 
   methods: {
+    monetizationAction(){
+      if(this.user.plan_id){
+        this.$router.push({name: 'fake_chat', params:{result: true}, query: {last: 'profile'}})
+      } else {
+        this.$router.push({name: 'monetization'})
+      }
+    },
     findBloger(){
       this.$store.dispatch('createLead', config.promo_product_id)
           .then(
@@ -191,7 +198,7 @@ export default {
           )
     },
     setShopData(){
-      
+
       let splitted = this.user.location.split(" ");
 
       let calculated = splitted.reduce(function(result,current,index){
@@ -269,7 +276,7 @@ export default {
               })
             this.copy.on('success',()=>{
 
-              
+
               let text = `Ссылка ${this.getUserName}.drbt.io скопирована для вставки.`;
               if(this.isIos){
                 alert(text)
@@ -318,7 +325,7 @@ export default {
   computed: {
     productsCountTitle(){
       return this.declOfNum(["пост","поста","постов"])(this.user.products_count);
-    },    
+    },
     postsCountTitle(){
       return this.declOfNum(["пост","поста","постов"])(this.postsCount);
     },

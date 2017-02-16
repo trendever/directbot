@@ -15,7 +15,7 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
      .photo__summ(v-if="discountPrice")
       | {{ curency_spaces(discountPrice) }}
       i.ic-currency-rub
-     .photo__shopTitle {{suppliername}}
+     .photo__shopTitle(:class="{'shot-text': userPage}") {{suppliername}}
 </template>
 
 <script type='text/babel'>
@@ -113,7 +113,14 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
         }
         return items[0].name
       },
+      userPage(){
+        return this.$route.name === 'profile' || this.$route.name === 'user';
+      },
       suppliername(){
+
+        if(this.userPage){
+          return this.product.caption ? this.product.caption : '';
+        }
         if(this.product.shop){
           return this.product.shop.name;
         }
