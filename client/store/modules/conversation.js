@@ -34,6 +34,8 @@ const state = {
 };
 
 function getDateMessage( date, id ) {
+
+  id -= 0.1
   return {
     serviceMessage: true,
     conversation_id: null,
@@ -68,7 +70,7 @@ const addServiceMessage = (function() {
 
     lastDate = normalizeDate( messages[ 0 ].created_at ).getDate();
 
-    newMessage.push( getDateMessage( messages[ 0 ].created_at, messages[ 0 ].id - 0.1) );
+    newMessage.push( getDateMessage( messages[ 0 ].created_at, messages[ 0 ].id) );
 
     for ( let i = 0; i < messages.length; i++ ) {
 
@@ -120,7 +122,7 @@ const addServiceMessage = (function() {
 
             lastDate = date.getDate();
 
-            newMessage.push( getDateMessage( messages[ i ].created_at, messages[ i ].id ) );
+            newMessage.push( getDateMessage( messages[ i ].created_at, messages[ i ].id) );
 
           }
 
@@ -248,9 +250,9 @@ const mutations = {
           }
         }
 
-          
+
       }
-     
+
       //fix double messages
       if(messages[ 0 ].created_at === null){
         return;
