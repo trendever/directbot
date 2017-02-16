@@ -400,7 +400,7 @@ export const keyboardButtomToBottom = () =>{
 }
 
 window.prettyLog = (obj)=>{
-  console.log(JSON.parse(JSON.stringify(object)))
+  console.log(JSON.parse(JSON.stringify(obj)))
 }
 
 window.colorLog = (string, color = 'darkgreen')=>{
