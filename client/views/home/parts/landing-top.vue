@@ -21,7 +21,7 @@
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
     | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
     span.time__text
-      | Повышает продажи и#[br(v-if="isMobile")]
+      | Повышает конверсию и#[br(v-if="isMobile")]
       span(v-if="!isMobile") &nbsp
       | отвечает клиентам
 
