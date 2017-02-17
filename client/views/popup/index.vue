@@ -79,10 +79,12 @@ export default {
 			&.part-screen {
 			  width: 600px;
 			  height: 500px;
-			  position: absolute;
-			  top: 50%;
-			  left: 50%;
-			  transform: translate(-50%, -50%);
+			  position: absolute 0 0 * 0;
+        @media (min-width: 751px){
+  			  top: 50%;
+  			  left: 50%;
+			    transform: translate(-50%, -50%);
+        }
 			  overflow: hidden;
 		    @media(--mobile) {
 		      width: 100%;
