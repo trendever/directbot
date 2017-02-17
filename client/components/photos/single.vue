@@ -15,7 +15,7 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
      .photo__summ(v-if="discountPrice")
       | {{ curency_spaces(discountPrice) }}
       i.ic-currency-rub
-     .photo__shopTitle(:class="{'shot-text': userPage}") {{suppliername}}
+     .photo__shopTitle {{ suppliername }}
 </template>
 
 <script type='text/babel'>
@@ -107,11 +107,11 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
       title() {
         const items = this.product.items;
         if (items.length === 0) {
-          return this.product.title;
+          return this.product.title || this.product.caption;
         } else if (items.length > 1) {
           return `${items[0].name} (+${pluralize(items.length-1, '', '%d товар', '%d товара', '%d товаров')})`
         }
-        return items[0].name
+        return items[0].name || this.product.caption;
       },
       userPage(){
         return this.$route.name === 'profile' || this.$route.name === 'user';
@@ -119,7 +119,7 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
       suppliername(){
 
         if(this.userPage){
-          return this.product.caption ? this.product.caption : '';
+          return '';
         }
         if(this.product.shop){
           return this.product.shop.name;
