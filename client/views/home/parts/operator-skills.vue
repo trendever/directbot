@@ -122,7 +122,8 @@ export default {
       }
 
       &.six img {
-        max-width: 230px !important;
+        max-width: 210px !important;
+        min-width: 320px;
       }
     }
   }
