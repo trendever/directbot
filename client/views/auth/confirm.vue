@@ -99,7 +99,7 @@ export default {
 
   data(){
     return {
-      focused: false,
+      focused: false,//для сдвига для мобильных устройств
       code: '',
       errorCode: false,
       isCompleted: false,
@@ -210,6 +210,7 @@ export default {
     },
     onComplete(user, token) {
       this.isCompleted = true;
+      this.focused = false;
       this.$refs.confirmBtn.focus();
 
       if(user.instagram_username) {
