@@ -20,6 +20,8 @@
     .item
       .text Отключить бота
     .item
+      .text(@click.stop="findBloger") Найти блогера
+    .item
       .text(@click.stop="supportChat") Поддержка
     .item
       .text(@click.stop="$router.push({ name: 'popup',params: { id:'conditions'} } )") Условия

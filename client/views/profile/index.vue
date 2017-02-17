@@ -188,7 +188,7 @@ export default {
       }
     },
     findBloger(){
-      this.$store.dispatch('createLead', config.promo_product_id)
+      this.$store.dispatch('createLead', config.service_product_id)
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
