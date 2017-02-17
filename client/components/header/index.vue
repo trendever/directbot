@@ -6,7 +6,7 @@
       .header__arrow(
         @click='leftBtnAction',
         v-if='leftBtnShow',
-        :class="{'show-desktop-arrow': showDesktopArrow, 'ios-fix': isIos}")
+        :class="{'show-desktop-arrow': showDesktopArrow}")
 
         i.header__arrow__ic.ic-arrow-left(
         :class='{"_up": is_action_up}')
