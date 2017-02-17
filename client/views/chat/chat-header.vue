@@ -34,10 +34,7 @@
         .chat-header_cnt.support
           .chat-header_cnt_t Поддержка
 
-      .chat-header_phone(slot="center-content" v-if="isMobile")
-        a(href="tel:89854107012")
-          img(src="./icons/phone.png")
-
+      phone-component(slot="center-content")
 
 </template>
 
@@ -46,7 +43,7 @@
   import { urlThumbnail } from 'root/utils'
 
   import HeaderComponent from 'components/header'
-
+  import phoneComponent from 'components/phone/phone-btn';
   import { getLeadByConversationId } from 'root/store/getters/lead.js'
   import config from 'root/../config.js';
 
@@ -172,6 +169,7 @@
     },
     components: {
       HeaderComponent,
+      phoneComponent
     },
     watch:{
       getPhoto(val){
