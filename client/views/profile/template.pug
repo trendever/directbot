@@ -10,6 +10,8 @@
         span {{ monetizationDays }}
         span.day д
 
+      phone-component(slot="content", v-if="!isSelfPage")
+
       //-div.profile-cash(
         slot='content',
         v-if="isSelfPage && user.plan_id && monetizationDays === 0",

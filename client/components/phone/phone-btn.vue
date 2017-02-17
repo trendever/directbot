@@ -18,9 +18,9 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 #phone {
-  box-sizing: content-box;
   display: none;
   @media (--mobile) {
+    box-sizing: content-box;
     display: block;
     position: absolute 23px 45px 0 *;
     max-width: 40px;
@@ -30,6 +30,7 @@ export default {
       height: auto;
     }
     a {
+      display: initial;
       padding: 15px;
     }
   }

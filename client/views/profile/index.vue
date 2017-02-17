@@ -21,6 +21,7 @@ import NavbarComponent from 'components/navbar/navbar';
 import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
 import ConnectButton from 'components/connect-button';
+import phoneComponent from 'components/phone/phone-btn';
 
 export default {
 
@@ -386,6 +387,7 @@ export default {
   },
 
   components: {
+    phoneComponent,
     ConnectButton,
     nativePopup,
     photos,
