@@ -155,6 +155,9 @@ export default {
       height: 345px;
       margin-top: 12.3%;
     }
+    @media screen and (max-height: 1140px){
+      margin-top: 5%;
+    }
   }
   //mobile logo on first welcome screen
 
