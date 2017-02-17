@@ -19,7 +19,7 @@
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item
       .text Отключить бота
-    .item
+    .item(v-if="isMobile")
       .text(@click.stop="findBloger") Найти блогера
     .item
       .text(@click.stop="supportChat") Поддержка
