@@ -71,10 +71,10 @@ export default {
 
     })
 
-    this.resize = listen(window, 'resize',()=>{
-      if(window.browser.safari && !window.browser.instagram) return;
-      this.windowHeight = window.innerHeight
-    })
+    // this.resize = listen(window, 'resize',()=>{
+    //   if(window.browser.safari && !window.browser.instagram) return;
+    //   this.windowHeight = window.innerHeight
+    // })
 
   },
   mounted(){
@@ -88,7 +88,7 @@ export default {
   },
   beforeDestroy(){
     this.scrollListener.remove();
-    this.resize.remove();
+    //this.resize.remove();
   },
   methods: {
     openPopup(name){
