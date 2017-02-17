@@ -28,7 +28,7 @@ var config = {
    * Other
    */
   service_user_id: 3996,
-  
+
   info_id: null,
 
   support_id: null,
@@ -38,6 +38,8 @@ var config = {
   edit_product_id: 32929,
 
   service_product_id: 32158,
+
+  bloger_product_id: 30683,
 
   promo_product_id: 21499,
 
