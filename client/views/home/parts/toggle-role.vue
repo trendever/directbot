@@ -7,12 +7,12 @@
     .wrap-yes(v-show="yesScreen")
       .wrap-flex
         .screen
-          span.screen-title ИЗУЧИТ ТВОЙ #[br(v-if="!isMobile")] ИНТЕРНЕТ-МАГАЗИН
+          span.screen-title ИЗУЧИТ ВАШ #[br(v-if="!isMobile")] ИНТЕРНЕТ-МАГАЗИН
           img(src="../img/screen-3-yes.png")
         .screen
           span.screen-title УЗНАЕТ О ТОВАРАХ #[br(v-if="!isMobile")] ПО АРТИКУЛУ
           img(src="../img/screen-4-yes.png")
-      .sub-title Есть сайт? Укажи артикул товара под постом
+      .sub-title Есть сайт? Укажите артикул товара под постом
       .caption.fix-bottom Оператор узнает о деталях и наличии товара по артикулу в описании поста. #[br(v-if="!isMobile")] Ссылка на сайт должна быть #[br(v-if="isMobile")] в «био» инста-профиля
 
     .wrap-no(v-show="noScreen")
@@ -23,17 +23,18 @@
         .screen
           span.screen-title СПРАШИВАЕТ #[br(v-if="!isMobile")] О ТОВАРАХ В ЧАТЕ
           img(src="../img/screen-4-no.png")
-      .sub-title Нет сайта? Ответь на #[br(v-if="isMobile")] вопросы о товарах
+      .sub-title Нет сайта? Ответьте на #[br(v-if="isMobile")] вопросы о товарах
       .caption.fix-bottom
         | Оператор увидит посты в Instagram #[br(v-if="isMobile")]
-        | и добавит их в твой
+        | и добавит их в ваш
         span
           a.link-info(@click.stop="openPopup('is5')")
             | &nbsp новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
           span &nbsp tskirt.drbt.io*. #[br(v-if="isMobile")]
 
         span Также уточнит детали и наличие товаров #[br]
-        span *это ссылка на примере инстаграм-магазина tskirt
+        .tip-wrap-first
+          span.tip *это ссылка на примере инстаграм-магазина tskirt
 
 
     .bottom-wrapper
@@ -45,7 +46,7 @@
       .sub-title Оператор ответит на вопросы и поможет купить
       .caption
         a.link-info(@click.stop="openPopup('is6')") Клиенты получат консультацию*
-        span  в твоем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
+        span  в вашем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
       .tip-wrap
         .tip *отслеживай диалог в кабинете или Instagram Direct
         .tip **еще можно покупать не выходя из Instagram Direct
@@ -87,7 +88,9 @@ export default {
 @import 'style/vars/vars.pcss';
 #toggle-role {
 
-
+  .tip-wrap-first {
+    margin-top: 14px;
+  }
   .bottom-wrapper{
     background: white;
     padding-bottom: 30px;

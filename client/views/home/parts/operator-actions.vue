@@ -27,7 +27,7 @@
       span
         | оператор #[br(v-if="isMobile")]
         | уже будет отвечать покупателю #[br(v-if="isMobile")]
-        | в Direct от твоего имени
+        | в Direct от вашего имени
 
   .toggle-title
 

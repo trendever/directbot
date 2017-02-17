@@ -3,6 +3,8 @@
 
   .hero__content__background
 
+  a.landing-top(href="https://trendever.com")
+    | Подключайтесь и продавайте на Trendever бесплатно
   .profile-header
     .profile-header__center
     button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
@@ -19,7 +21,7 @@
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
     | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
     span.time__text
-      | Повышает продажи и#[br(v-if="isMobile")]
+      | Повышает конверсию и#[br(v-if="isMobile")]
       span(v-if="!isMobile") &nbsp
       | отвечает клиентам
 
@@ -50,6 +52,26 @@ export default {
 #landing-top {
 
   height: 100%;
+
+  .landing-top {
+
+    display: none;
+    @media (--tabletandless) {
+      display: block;
+      background: $color__blue;
+      color: white;
+      font-size: 25px;
+      font-family: $font__family__semibold;
+      text-align: center;
+      text-decoration: none;
+      padding: 14px 0;
+
+
+    }
+
+
+
+  }
   .how-button {
     display: none;
     @media(--tabletandless) {

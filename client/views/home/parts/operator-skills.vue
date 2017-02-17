@@ -14,22 +14,10 @@
         | в&nbsp
         span.star-link(@click.stop="$parent.openPopup('is11')") интернет-магазин
       .caption
-        | Посты автоматом добавятся в базу,#[br]
-        | а оператор напишет цены и названия#[br]
-        | товаров. Сайт доступен по ссылке#[br]
-        | внутри Instagram
-
-
-    .info-box.five
-      .skills-icon
-        img(src="../img/icon-6.png")
-      .sub-title Организует бартерную#[br] рекламу у блогеров
-      .caption
-        | Умеет находить блогеров без ботов#[br]
-        | и договариваться по бартеру.#[br]
-        | Знает, как сделать посты, которые#[br]
-        a.link-info(@click.stop="$parent.openPopup('is13')")
-          | принесут реальных клиентов
+        | Зеркально скопирует ленту, но#[br]
+        | добавит кнопку КУПИТЬ, названия#[br]
+        | и цены. Магазин доступен#[br]
+        | по ссылке внутри Instagram#[br]
 
     .info-box.one
       .skills-icon
@@ -54,7 +42,7 @@
     .info-box.three
       .skills-icon
         img(src="../img/icon-3.png")
-      .sub-title Подключается #[br(v-if="!isMobile")] в один клик
+      .sub-title Подключите #[br(v-if="!isMobile")] в один клик
       .caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
         a.link-info(@click.stop="$parent.openPopup('is3')")
           | Ничего не надо скачивать
@@ -70,6 +58,17 @@
         a.link-info(@click.stop="$parent.openPopup('is12')")
           | безопасность #[br]
           | от бана или блокировки
+
+    .info-box.five
+      .skills-icon
+        img(src="../img/icon-6.png")
+      .sub-title Организует бартерную#[br] рекламу у блогеров
+      .caption
+        | Умеет находить блогеров без ботов#[br]
+        | и договариваться по бартеру.#[br]
+        | Знает, как сделать посты, которые#[br]
+        a.link-info(@click.stop="$parent.openPopup('is13')")
+          | принесут реальных клиентов
 
 </template>
 
@@ -114,7 +113,8 @@ export default {
       img { max-width: 400px !important };
 
       &.five img {
-        max-width: 350px !important;
+        max-width: 340px !important;
+        min-width: 300px !important;
       }
 
       &.two img {
@@ -122,7 +122,8 @@ export default {
       }
 
       &.six img {
-        max-width: 230px !important;
+        max-width: 210px !important;
+        min-width: 320px;
       }
     }
   }

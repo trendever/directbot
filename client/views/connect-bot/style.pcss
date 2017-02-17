@@ -1,20 +1,32 @@
 @import 'style/vars/vars.pcss';
 
 #connect-bot {
-  @media screen and (max-width: 1289px) and (min-width: 960px){
+  @media screen and (max-width: 1289px) and (min-width: 751px){
+
+
     .column-desktop-50.header {
       display: block !important;
       padding: 0 !important;
-      width: 100%;
+      width: 100% !important;
+      position: relative;
+      margin: 0 !important
     }
+
+
+
     .column-desktop-right {
       float: none !important;
       position: relative;
-      margin: 0 auto;
+      margin: 0 auto !important;
       text-align: center;
       margin-bottom: -7%;
+      min-width: 450px !important;
       p{
         padding-left: 10%;
+      }
+
+      .paragraph {
+        min-width: 450px;
       }
 
     }
