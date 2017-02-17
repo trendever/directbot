@@ -394,7 +394,7 @@ export const keyboardButtomToBottom = () =>{
       if(window.browser.instagram) return;
       if(window.browser.chrome_mobile) return;
       setTimeout(()=>{
-        JQuery(body).animate({scrollTop: body.scrollTop - window.innerHeight / 10},50);
+        JQuery(body).animate({scrollTop: body.scrollTop - window.innerHeight / 12},50);
       },350)
     })
   }
