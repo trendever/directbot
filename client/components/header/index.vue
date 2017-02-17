@@ -14,6 +14,7 @@
       .header__notify-count(v-if='notifyCount')
         span {{ notifyCount }}
 
+      div(style="width: 46px", v-if="isMobile && !notifyCount")
 
       slot(name='flex-item')
 
