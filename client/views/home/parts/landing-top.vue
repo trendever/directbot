@@ -3,7 +3,7 @@
 
   .hero__content__background
 
-  a.landing-top(href="https://trendever.com", target="_blank")
+  a.landing-top(href="https://www.trendever.com", target="_blank")
     | Подключайтесь и продавайте на Trendever бесплатно
   .profile-header
     .profile-header__center
