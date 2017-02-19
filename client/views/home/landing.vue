@@ -319,6 +319,7 @@ export default {
 
     @media screen and (min-width: 1024px){
       margin: 0 20px;
+      min-width: 400px;
     }
     .skills-icon {
 

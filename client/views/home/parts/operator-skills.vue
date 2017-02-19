@@ -42,8 +42,11 @@
     .info-box.three
       .skills-icon
         img(src="../img/icon-3.png")
-      .sub-title Подключите #[br(v-if="!isMobile")] в один клик
-      .caption Подключи нашего оператора #[br(v-if="!isMobile")] к своему  Instagram-магазину #[br(v-if="!isMobile")] в один клик. #[br]
+      .sub-title Подключается #[br(v-if="!isMobile")] в один клик
+      .caption
+        | Для подключения оператора #[br]
+        | нужно зарегистрироваться и  #[br]
+        | привязать свой Instagram.#[br]
         a.link-info(@click.stop="$parent.openPopup('is3')")
           | Ничего не надо скачивать
 
