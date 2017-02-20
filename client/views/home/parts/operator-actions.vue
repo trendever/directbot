@@ -54,7 +54,7 @@ export default {
   data () {
     return {
       noScreen: false,
-      yesScreen: true
+      yesScreen: false
     };
   },
   methods:{

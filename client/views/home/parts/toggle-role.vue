@@ -60,7 +60,7 @@ export default {
 
     return {
       noScreen: false,
-      yesScreen: true
+      yesScreen: false
     };
 
   },
