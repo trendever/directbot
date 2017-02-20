@@ -44,6 +44,7 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #price-popup {
+  padding-top: 48px;
   color: white;
   background: $color__dark-blue;
   height: 100%;
@@ -61,7 +62,7 @@ export default {
   }
 
   .price-title {
-    padding: 48px 0 24px 0;
+    padding: 24px 0 24px 0;
     font-size: $font__large;
     text-align: center;
   }

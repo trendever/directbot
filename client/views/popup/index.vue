@@ -56,15 +56,6 @@ export default {
 	},
 	methods: {
 		close(){
-
-			if(this.$route.params.id === 'conditions'){
-				this.$router.push({name: 'auth'})
-				return
-			}
-			if(this.$route.params.id === 'connectbot'){
-				this.$router.push({name: 'connect-bot'})
-				return
-			}
 			this.$router.push({ name: 'home'})
 
 		}
