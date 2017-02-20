@@ -97,6 +97,7 @@ export default {
 
   data(){
     return {
+      alreadySended: false,
       focused: false,//для сдвига для мобильных устройств
       code: '',
       errorCode: false,
@@ -193,7 +194,12 @@ export default {
       }
       if (!this.isCompleted) {
         this.onConfirm();
-        setTimeout( () => this.needNewSMS = true, 8000);
+        if(!this.alreadySended){
+          setTimeout( () =>{
+            this.needNewSMS = true;
+            this.alreadySended = true;
+          }, 8000);
+        }
       }
     },
     onConfirm() {
