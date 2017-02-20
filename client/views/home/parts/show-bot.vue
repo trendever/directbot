@@ -34,7 +34,7 @@ export default {
     landingCount(){
       return setInterval(()=>{
         this.landingCounter += [1,3,5][Math.round(Math.random()*10/4)];
-      },4000)
+      },40000)
     }
   },
   beforeDestroy(){
