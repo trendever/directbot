@@ -63,9 +63,18 @@
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
+          .shipping_rules(v-if="user.shipping_rules")
+            .profile_desc_t Доставка и возврат
+            .profile_desc_caption {{ user.shipping_rules }}
+
+
         .profile_desc(v-else :class="less")
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
+
+          .shipping_rules(v-if="user.shipping_rules")
+            .profile_desc_t Доставка и возврат
+            .profile_desc_caption {{ user.shipping_rules }}
 
 
         template(v-if="!isMobile && isAuth && isSelfPage")
