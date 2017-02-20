@@ -2,12 +2,25 @@
 <template lang="pug">
 .info-screen
   .description._1
-    | Наш опытный оператор, вооружившись Directbot-ом, обслужит всех ваших клиентов быстро и в #[br(v-if="isMobile")]
-    | любое время дня #[br(v-if="!isMobile")] и ночи. #[br(v-if="isMobile")]
-    | Он вежливо поговорит #[br] с покупателем прямо #[br(v-if="isMobile")]
-    | в Instagram Direct, #[br(v-if="isMobile")] как консультант от
-    | #[br(v-if="isMobile")] имени вашего магазина. #[br(v-if="isMobile")]
-    | Вы не тратите время #[br(v-if="isMobile")]
-    | на клиентов, которые не покупают
+
+    | Вы сами решаете на какие#[br] 
+    | вопросы отвечает оператор,#[br]
+    | а какие лучше обьяснить самим.#[br] 
+    | Оператор может сверить#[br(v-if="isMobile")] наличие,#[br(v-if="!isMobile")] 
+    | узнать размеры, адрес доставки,#[br] 
+    | сообщать детали оплаты
+
 </template>
+<style lang="postcss">
+@import 'style/vars/vars.pcss';
+
+.info-screen .description._1 {
+	padding-top: 25%;
+	@media (--mobile) {
+		padding-top: 50%;
+	}
+}
+
+
+</style>
 
