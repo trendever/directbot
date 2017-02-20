@@ -97,7 +97,7 @@ export default {
   }
   .info-box.two {
     img {
-      max-width: 200px;
+      max-width: 195px;
     }
 
   }
