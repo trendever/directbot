@@ -91,7 +91,6 @@ export default {
     padding: 24px 0 24px 0;
     font-size: $font__large;
     text-align: center;
-    font-family: $font__family__thin;
 
     @media (--mobile){
       font-size: 54px;
