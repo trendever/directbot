@@ -278,7 +278,7 @@ export default {
             this.copy.on('success',()=>{
 
 
-              let text = `Ссылка ${this.getUserName}.drbt.io скопирована для вставки.`;
+              let text = `Ссылка ${this.getUserNameLinked}.drbt.io скопирована для вставки.`;
               if(this.isIos){
                 alert(text)
                 return;
@@ -347,7 +347,9 @@ export default {
     chatsCount() {
       return this.getAllLeads.seller.length;
     },
-
+    getUserNameLinked(){
+      return this.getUserName.replace(new RegExp("_", 'g'),"-");
+    },
     listId() {
 
       if(this.getPhotoConfig) return this.getPhotoConfig.listId;

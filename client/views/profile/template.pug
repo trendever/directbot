@@ -1,6 +1,6 @@
 #profile
 
-  header-component(:title='getUserName', :left-btn-show='false').directbot-header
+  header-component(:title='getUserNameLinked', :left-btn-show='false').directbot-header
 
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
 
@@ -111,7 +111,7 @@
 
       .profile_insta-link(v-if="isMobile", :class="{'change-padding': !isSelfPage}")
         .insta-link-text ссылка на эту витрину
-        .insta-link(ref="instaLink") {{ getUserName }}.drbt.io
+        .insta-link(ref="instaLink") {{ getUserNameLinked }}.drbt.io
         native-popup(:show-popup="showCopyMessage")
           .title-text.title-font Ссылка скопирована
           .main-text {{copyMessage}}
