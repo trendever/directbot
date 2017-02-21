@@ -6,23 +6,26 @@
 
   .wrap-block
 
+    .price-image(v-if="!isMobile")
+        img(src="./img/pop-up_chat-list.png")
+
     .price-content
 
       .price-text
-        | Доступ в панель Directbot стоит#[br]
-        | 1990 руб. В месяц. Оттуда вы и ваша#[br]
-        | команда можете сами отвечать клиентам#[br]
-        | в Instagram. Пробуйте бесплатно!#[br]
+        | Доступ в панель Directbot стоит#[br.mobile]
+        | 1990 руб. В месяц.#[br.desktop] Оттуда вы и ваша#[br.mobile]
+        | команда можете сами отвечать#[br.desktop] клиентам#[br.mobile]
+        | в Instagram. Пробуйте бесплатно!#[br.mobile]
 
-      .price-image
-
+      .price-image(v-if="isMobile")
+        img(src="./img/pop-up_chat-list.png")
 
       .price-caption
 
-        | Либо попробуйте услуги#[br]
-        | нашего оператора, который сам#[br]
+        | Либо попробуйте услуги#[br.mobile]
+        | нашего оператора,#[br.desktop] который сам#[br.mobile]
         | обслуживает ваших клиентов.#[br]
-        | Тарифы доступны после регистрации#[br]
+        | Тарифы доступны после регистрации#[br.mobile]
 
   .price-button ПОПРОБОВАТЬ БЕСПЛАТНО
 
@@ -43,6 +46,20 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
+
+br.mobile {
+  @media screen and (min-width: 751px){
+    display: none;
+  }
+}
+
+br.desktop {
+  @media (--mobile){
+    display: none;
+  }
+
+}
+
 #price-popup {
   padding-top: 48px;
   color: white;
@@ -52,30 +69,59 @@ export default {
 
 
   @media ( --mobile ) {
-
     font-size: $font__medium;
   }
+
+
+
   .wrap-block {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    @media screen and (min-width: 751px){
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      > div {
+        margin: 0 20px;
+      }
+
+      margin-top: 20px;
+      margin-bottom: 100px;
+    }
   }
+
+  .price-image {
+    text-align: center;
+    img {
+      max-width: 400px;
+      width: 100%;
+      @media (--mobile){
+        max-width: 500px;
+      }
+    }
+  }
+
 
   .price-title {
     padding: 24px 0 24px 0;
     font-size: $font__large;
     text-align: center;
+    font-family: $font__family__thin;
+
+    @media (--mobile){
+      font-size: 54px;
+    }
   }
 
   .price-content {
-
     text-align: left;
+
+    @media  screen and (min-width: 751px){
+      padding-top: 100px;
+    }
+
     @media (--mobile) {
       text-align: center;
       width: 100%;
     }
-
-    width: 50%;
 
     .price-text, .price-caption {
       padding: 24px 0;
