@@ -15,7 +15,7 @@
   toggle-role
   connect-get
 
-  .free-connect
+  .free-connect(v-if="toggleBtns")
     a.link-info(@click.stop="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
 
@@ -49,6 +49,7 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
+      toggleBtns: false,
       showBtns: false,
       windowHeight: 0,
     }
@@ -60,6 +61,9 @@ export default {
     }
 
     window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
+    window.eventHub.$on('toggle-landing-buttons',()=>{
+      this.toggleBtns = true;
+    })
 
     this.scrollListener=listen(window, 'scroll',()=>{
 

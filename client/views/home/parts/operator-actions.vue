@@ -29,7 +29,7 @@
         | уже будет отвечать покупателю #[br(v-if="isMobile")]
         | в Direct от вашего имени
 
-  .toggle-title
+  .toggle-title(:class="{'margin-space': !noScreen && !yesScreen}")
 
     | ЧТОБЫ УЗНАТЬ ДАЛЬНЕЙШИЕ#[br(v-if="isMobile")]  ДЕЙСТВИЯ ОПЕРАТОРА, #[br(v-if="!isMobile")]
     | СКАЖИТЕ, #[br(v-if="isMobile")] У ВАС ЕСТЬ ИНТЕРНЕТ-МАГАЗИН?
@@ -107,7 +107,11 @@ export default {
   }
 
   .toggle-title {
-
+    &.margin-space {
+      @media (--mobile) {
+        margin-bottom: 100px;
+      }
+    }
     .toogle-btns {
       padding-top: 25px;
     }
