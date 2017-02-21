@@ -62,7 +62,13 @@ export default {
 
     window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
     window.eventHub.$on('toggle-landing-buttons',()=>{
+
       this.toggleBtns = true;
+      if(!this.isMobile) return;
+      this.$nextTick(()=>{
+        JQuery(document.body).animate({scrollTop: JQuery("#toggle-role").offset().top},300);
+      })
+
     })
 
     this.scrollListener=listen(window, 'scroll',()=>{
