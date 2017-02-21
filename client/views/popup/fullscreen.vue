@@ -10,7 +10,7 @@
 <script>
 import connectHelp from './parts/connectbot-help';
 import useConditions from './parts/use-conditions';
-	
+
 export default {
 	data(){
 		return {
@@ -32,7 +32,7 @@ export default {
 	},
 
 	mounted(){
-		this.full = this.$refs.screen.offsetHeight < window.innerHeight ? true : false; 
+		this.full = this.$refs.screen.offsetHeight < window.innerHeight ? true : false;
 
 	},
 	components: {
@@ -105,7 +105,7 @@ export default {
 					font-size: 4.6vw;
 				}
 
-				@media screen and (min-width: 751px) {  
+				@media screen and (min-width: 751px) {
 					margin-bottom: 24px;
 					font-size: 24px;
 				}

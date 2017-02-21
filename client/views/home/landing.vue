@@ -52,6 +52,7 @@ export default {
       toggleBtns: false,
       showBtns: false,
       windowHeight: 0,
+      pricePopupShown: false
     }
   },
   created(){
@@ -62,13 +63,16 @@ export default {
 
     window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
     window.eventHub.$on('toggle-landing-buttons',()=>{
-
       this.toggleBtns = true;
       if(!this.isMobile) return;
       this.$nextTick(()=>{
         JQuery(document.body).animate({scrollTop: JQuery("#toggle-role").offset().top},300);
       })
+    })
 
+    window.eventHub.$on('close-price-popup',()=>{
+      this.pricePopupShown = true;
+      setTimeout(()=>{this.pricePopupShown=false},7000)
     })
 
     this.scrollListener=listen(window, 'scroll',()=>{
@@ -79,6 +83,10 @@ export default {
         this.showBtns = document.body.scrollTop > window.innerHeight;
       }
 
+      if(document.body.scrollTop >= JQuery('#operator-skills').offset().top) {
+        if(this.pricePopupShown) return;
+        this.$router.push({name: 'home-info', params: {id: 'price'}});
+      }
     })
 
     this.resize = listen(window, 'resize',()=>{

@@ -7,7 +7,7 @@
   .wrap-block
 
     .price-image(v-if="!isMobile")
-        img(src="./img/pop-up_chat-list.png")
+        img(src="./img/pop-up_chat-list001.png")
 
     .price-content
 
@@ -18,7 +18,7 @@
         | в Instagram. Пробуйте бесплатно!#[br.mobile]
 
       .price-image(v-if="isMobile")
-        img(src="./img/pop-up_chat-list.png")
+        img(src="./img/pop-up_chat-list001.png")
 
       .price-caption
 
@@ -27,18 +27,16 @@
         | обслуживает ваших клиентов.#[br]
         | Тарифы доступны после регистрации#[br.mobile]
 
-  .price-button ПОПРОБОВАТЬ БЕСПЛАТНО
+  .price-button(@click="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
 
 
 </template>
 
 <script>
+import listen from 'event-listener';
 export default {
-
-  data () {
-    return {
-
-    };
+  beforeDestroy(){
+    window.eventHub.$emit('close-price-popup')
   }
 };
 </script>
@@ -46,29 +44,17 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
-
-br.mobile {
-  @media screen and (min-width: 751px){
-    display: none;
-  }
-}
-
-br.desktop {
-  @media (--mobile){
-    display: none;
-  }
-
-}
-
 #price-popup {
+
   padding-top: 48px;
   color: white;
+  font-family: $font__family__thin;
   background: $color__dark-blue;
   height: 100%;
   font-size: $font__normal;
 
-
   @media ( --mobile ) {
+    height: 120%;
     font-size: $font__medium;
   }
 
@@ -130,6 +116,7 @@ br.desktop {
   }
 
   .price-button {
+    font-family: $font__family__light;
     cursor: pointer;
     margin: 0 auto;
     text-align: center;
@@ -146,7 +133,7 @@ br.desktop {
 
     @media (--mobile) {
       font-size: $font__medium;
-      position: absolute * 0 0 0;
+      position: fixed * 0 0 0;
       height: 100px;
       width: 100%;
       line-height: 100px;
