@@ -13,7 +13,7 @@
 
       .price-text
         | Доступ в панель Directbot стоит#[br.mobile]
-        | 1990 руб. В месяц.#[br.desktop] Оттуда вы и ваша#[br.mobile]
+        | 1990 руб. в месяц.#[br.desktop] Оттуда вы и ваша#[br.mobile]
         | команда можете сами отвечать#[br.desktop] клиентам#[br.mobile]
         | в Instagram. Пробуйте бесплатно!#[br.mobile]
 
@@ -34,8 +34,10 @@
 
 <script>
 export default {
-  beforeDestroy(){
-    window.eventHub.$emit('close-price-popup')
+  data(){
+    return {
+
+    }
   }
 };
 </script>
@@ -47,13 +49,13 @@ export default {
 
   padding-top: 48px;
   color: white;
-  font-family: $font__family__thin;
+  font-family: $font__family__light;
   background: $color__dark-blue;
   height: 100%;
   font-size: $font__normal;
 
   @media ( --mobile ) {
-    height: 120%;
+    height: 100%;
     font-size: $font__medium;
   }
 

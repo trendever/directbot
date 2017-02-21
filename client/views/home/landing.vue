@@ -64,13 +64,6 @@ export default {
     window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
     window.eventHub.$on('toggle-landing-buttons',()=>{
       this.toggleBtns = true;
-      if(!this.isMobile) return;
-      this.$nextTick(()=>{
-        JQuery(document.body).animate({scrollTop: JQuery("#toggle-role").offset().top},300);
-      })
-    })
-    window.eventHub.$on('close-price-popup',()=>{
-      this.pricePopupShown = true;
     })
 
     this.scrollListener=listen(window, 'scroll',()=>{
@@ -84,10 +77,11 @@ export default {
       if(document.body.scrollTop >= JQuery('#operator-skills').offset().top) {
         if(this.pricePopupShown) return;
 
+        this.pricePopupShown = true;
         setTimeout(()=>{
           this.$router.push({name: 'home-info', params: {id: 'price'}});
-          this.pricePopupShown = true;
         }, 7000)
+
       }
     })
 
