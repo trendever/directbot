@@ -69,6 +69,9 @@ export default {
         JQuery(document.body).animate({scrollTop: JQuery("#toggle-role").offset().top},300);
       })
     })
+    window.eventHub.$on('close-price-popup',()=>{
+      this.pricePopupShown = true;
+    })
 
     this.scrollListener=listen(window, 'scroll',()=>{
 
