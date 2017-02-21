@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import listen from 'event-listener';
 export default {
   beforeDestroy(){
     window.eventHub.$emit('close-price-popup')
