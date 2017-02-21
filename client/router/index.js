@@ -136,6 +136,13 @@ router.beforeEach((to, from, next)=>{
   else
   localStorage.setItem(`${from.name}.scroll`, window.scrollY);
 
+  if(to.name === 'user'){
+    if(to.params.id.indexOf('_') !== -1){
+      let replace = to.params.id.replace(new RegExp("_", 'g'),"-");
+      router.replace({name: 'user', params: {id: replace}})
+    }
+  }
+
   next();
 
 });
