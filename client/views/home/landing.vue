@@ -124,6 +124,10 @@ export default {
         dispatch('createLead',config.info_id)
           .then(lead=>{
             dispatch('setFakeAction', 'chat-info');
+            if(!lead.id){
+              alert('Некорректный чат');
+              return;
+            }
             vm.$router.push({name: 'chat', params: { id: lead.id} })
           },err => console.log(err))
       }
