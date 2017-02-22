@@ -79,7 +79,9 @@ export default {
 
         this.pricePopupShown = true;
         setTimeout(()=>{
-          this.$router.push({name: 'home-info', params: {id: 'price'}});
+          if(this.$route.name === 'home'){
+            this.$router.push({name: 'home-info', params: {id: 'price'}});
+          }
         }, 7000)
 
       }
