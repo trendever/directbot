@@ -347,11 +347,11 @@ export default {
       if (this.user.working_time){
         let splited = this.user.working_time.split("_")
         if (splited.length > 1){
-          return splited[0]
+          return (splited[0].replace(" ","") == '-') ? "" : splited[0]
         }
         return this.user.working_time
       }
-      return false
+      return ""
     },
 
     postsCount(){
