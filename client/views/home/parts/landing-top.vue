@@ -3,6 +3,12 @@
 
   .hero__content__background
 
+  a.header-sticker(href="https://trendever.com", target="_blank")
+    span.wrap
+      | Подключайтесь и продавайте#[br]
+      | на Trendever
+      span(style="font-weight: bold") &nbspбесплатно
+
   a.landing-top(href="https://www.trendever.com", target="_blank")
     | Подключайтесь и продавайте на Trendever бесплатно
   .profile-header
@@ -52,6 +58,35 @@ export default {
 #landing-top {
 
   height: 100%;
+
+  a.header-sticker {
+
+    display: none;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: $font__normal;
+    height: 220px;
+    width: 420px;
+    background-image: url(../img/header_sticker.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    @media screen and (min-width: 1301px){
+      display: block;
+      position: absolute 400px -40px * *;
+      z-index: 200;
+    }
+
+    @media screen and (min-width: 1024px) and (max-width: 1300px){
+      display: block;
+      position: absolute 300px -40px * *;
+    }
+
+    span.wrap {
+      display: inline-block;
+      transform: translateY(70%) rotate(-7deg)
+    }
+  }
 
   .landing-top {
 
