@@ -27,7 +27,7 @@
         | обслуживает ваших клиентов.#[br]
         | Тарифы доступны после регистрации#[br.mobile]
 
-  .price-button(@click="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
+  .price-button(@click.stop="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
 
 
 </template>
@@ -89,22 +89,23 @@ export default {
 
   .price-title {
     padding: 24px 0 24px 0;
-    font-size: $font__large;
+    font-size: $font__title;
     text-align: center;
 
     @media (--mobile){
-      font-size: 54px;
+      font-family: $font__family__semibold;
     }
   }
 
   .price-content {
     text-align: left;
-
+    font-size: $font__normal;
     @media  screen and (min-width: 751px){
       padding-top: 100px;
     }
 
     @media (--mobile) {
+      font-size: $font__medium;
       text-align: center;
       width: 100%;
     }
