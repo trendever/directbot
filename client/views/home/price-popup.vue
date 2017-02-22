@@ -102,7 +102,7 @@ export default {
     text-align: left;
     font-size: $font__normal;
     @media  screen and (min-width: 751px){
-      padding-top: 100px;
+      padding-top: 140px;
     }
 
     @media (--mobile) {
@@ -133,6 +133,7 @@ export default {
     font-family: $font__family__light;
     cursor: pointer;
     margin: 0 auto;
+
     text-align: center;
     color: black;
     font-size: $font__normal;
@@ -143,7 +144,9 @@ export default {
     margin-top: 24px;
     line-height: 75px;
     border-radius: 5px;
-
+    @media screen and (min-width: 751px){
+      transform: translateX(-70%);
+    }
 
     @media (--mobile) {
       font-size: $font__medium;
