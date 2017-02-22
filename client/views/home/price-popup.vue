@@ -18,7 +18,7 @@
         | в Instagram. Пробуйте бесплатно!#[br.mobile]
 
       .price-image(v-if="isMobile")
-        img(src="./img/pop-up_chat-list001.png")
+        img(src="./img/pop-up_chat-list001.png", :class="{'instagram': isInstagram || isFacebook}")
 
       .price-caption
 
@@ -36,7 +36,8 @@
 export default {
   data(){
     return {
-
+      isInstagram: window.browser.instagram,
+      isFacebook: window.browser.facebook
     }
   }
 };
@@ -110,8 +111,8 @@ export default {
       width: 100%;
     }
 
-    @media screen and (max-height: 1150px){
-      img {
+    @media screen and (max-height: 1350px){
+      img.instagram {
         max-width: 450px;
       }
     }
