@@ -333,6 +333,26 @@ export default {
     longCaption(){
       return this.getUserCaption && (this.getUserCaption.length > 300);
     },
+    shoptel(){
+      if (this.user.working_time){
+        let splited = this.user.working_time.split("_")
+        if (splited.length > 1){
+          return "tel:" + splited[1].replace(" ","")  
+        }
+      }
+      return ""
+    },
+
+    shoptime(){
+      if (this.user.working_time){
+        let splited = this.user.working_time.split("_")
+        if (splited.length > 1){
+          return splited[0]
+        }
+        return this.user.working_time
+      }
+      return false
+    },
 
     postsCount(){
       if(this.user && this.listProducts) {

@@ -1,13 +1,14 @@
 <template lang="pug">
 
-#phone(slot="center-content" v-if="isMobile")
-  a(href="tel:89854107012")
+#phone(slot="center-content" v-if="isMobile && phone")
+  a(:href="phone")
     img(src="./phone.png")
 
 </template>
 
 <script>
 export default {
+  props: ['phone'],
   data () {
     return {
     };

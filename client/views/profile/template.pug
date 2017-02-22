@@ -10,7 +10,7 @@
         span {{ monetizationDays }}
         span.day д
 
-      phone-component(slot="content", v-if="!isSelfPage")
+      phone-component(slot="content", v-if="!isSelfPage", :phone="shoptel")
 
       //-div.profile-cash(
         slot='content',
@@ -53,7 +53,7 @@
               | {{ shoplocation}}&nbsp&nbsp
               span(v-if="!isMobile") |&nbsp
             span.profile_info_about_work-time(v-if="user.working_time")
-              |  {{ user.working_time }}&nbsp
+              |  {{ shoptime }}&nbsp
               span(v-if="!isMobile") |&nbsp
             //-span.profile_info_about_posts-quantity
               |  {{ user.products_count }} {{productsCountTitle}}
