@@ -108,9 +108,7 @@ export default {
     background-repeat: no-repeat;
   }
   .margin-space {
-    @media (--mobile) {
-      height: 120px;
-    }
+    height: 120px;
   }
   .toggle-title {
 

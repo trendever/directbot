@@ -167,7 +167,8 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #landing {
-
+  width: 100%;
+  overflow: hidden;
   min-height: 100%;
   background: url(./img/DirectBot_landing-desk_pattern.png)
 
@@ -218,7 +219,8 @@ export default {
     font-size: 18px;
     font-family: $font__family__semibold;
     color: $color__black;
-    padding-bottom: 0px;
+    padding-bottom: 110px;
+    margin-bottom: 0;
     @media(--tabletandless) {
       font-size: 36px;
       padding: 85px 30px 150px 30px;
