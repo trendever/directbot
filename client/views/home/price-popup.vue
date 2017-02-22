@@ -47,7 +47,7 @@ export default {
 
 #price-popup {
 
-  padding-top: 48px;
+  padding-top: 40px;
   color: white;
   font-family: $font__family__light;
   background: $color__dark-blue;
@@ -88,7 +88,7 @@ export default {
 
 
   .price-title {
-    padding: 24px 0 24px 0;
+    padding: 0 0 24px 0;
     font-size: $font__title;
     text-align: center;
 
@@ -110,8 +110,20 @@ export default {
       width: 100%;
     }
 
+    @media screen and (max-height: 1150px){
+      img {
+        max-width: 450px;
+      }
+    }
+
     .price-text, .price-caption {
       padding: 24px 0;
+
+      @media screen and (max-height: 1200px){
+        padding-bottom: 8px;
+        padding-top: 5px;
+      }
+
     }
 
   }
