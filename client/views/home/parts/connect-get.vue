@@ -29,7 +29,7 @@
     .info-box.three
       .skills-icon
         img(src="../img/icon-6.png")
-      .sub-title Сервис рекламы #[br(v-if="!isMobile")] у блогеров
+      .sub-title Сервис рекламы#[br(v-if="!isMobile")] у блогеров
       .caption
         a.link-info(@click.stop="$parent.openPopup('is9')")
           | Сервис по подбору #[br(v-if="!isMobile")] и организации рекламы #[br(v-if="!isMobile")] через блогеров

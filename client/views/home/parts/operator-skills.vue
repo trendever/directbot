@@ -1,7 +1,7 @@
 <template lang="pug">
 #operator-skills
 
-  .landing-title Преимущества #[br(v-if="isMobile")] нашего оператора
+  .landing-title Преимущества#[br(v-if="isMobile")] нашего оператора
 
   .skills-wrapper
 
@@ -36,7 +36,7 @@
         | одно и то же.&nbsp
         a.link-info(@click.stop="$parent.openPopup('is2')")
           | Оператор даст#[br]
-          | ссылку на сайт, уточнит  наличие,#[br]
+          | ссылку на сайт, уточнит наличие,#[br]
           | узнает размеры и адрес
 
     .info-box.three
@@ -45,7 +45,7 @@
       .sub-title Подключается #[br(v-if="!isMobile")] в один клик
       .caption
         | Для подключения оператора #[br]
-        | нужно зарегистрироваться и  #[br]
+        | нужно зарегистрироваться и#[br]
         | привязать свой Instagram.#[br]
         a.link-info(@click.stop="$parent.openPopup('is3')")
           | Ничего не надо скачивать

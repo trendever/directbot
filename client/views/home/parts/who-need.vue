@@ -21,7 +21,7 @@
       .paragraph
         p которым надоело отвечать #[br] одно и то же в комментариях #[br] и Instagram Direct
         p(v-if="!isMobile").bold-txt 9 из 10 покупателей #[br]
-        p(v-if="!isMobile").light-txt спрашивают про товары #[br] в комментариях или Instagram Direct
+        p(v-if="!isMobile").light-txt спрашивают про товары #[br]в комментариях или Instagram Direct
     .wrap-box
       .digit 3
       .title Начинающим #[br] Instagram-магазинам,

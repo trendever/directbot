@@ -25,8 +25,8 @@
         | Не важно, задан вопрос в комментариях #[br(v-if="isMobile")]
         | или личном сообщении, #[br(v-if="!isMobile")]
       span
-        | оператор #[br(v-if="isMobile")]
-        | уже будет отвечать покупателю #[br(v-if="isMobile")]
+        | оператор #[br(v-if="isMobile")]
+        | уже будет отвечать покупателю #[br(v-if="isMobile")]
         | в Direct от вашего имени
 
   .toggle-title

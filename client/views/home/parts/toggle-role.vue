@@ -25,11 +25,11 @@
           img(src="../img/screen-4-no.png")
       .sub-title Нет сайта? Ответьте на #[br(v-if="isMobile")] вопросы о товарах
       .caption.fix-bottom
-        | Оператор увидит посты в Instagram #[br(v-if="isMobile")]
-        | и добавит их в ваш
+        | Оператор увидит посты в Instagram&nbsp #[br(v-if="isMobile")]
+        | и добавит их в ваш&nbsp
         span
           a.link-info(@click.stop="openPopup('is5')")
-            | &nbsp новый интернет-магазин #[br(v-if="!isMobile")] по ссылке
+            | новый интернет-&nbspмагазин #[br(v-if="!isMobile")] по ссылке
           span &nbsp tskirt.drbt.io*. #[br(v-if="isMobile")]
 
         span Также уточнит детали и наличие товаров #[br]
@@ -46,7 +46,7 @@
       .sub-title Оператор ответит на вопросы и поможет купить
       .caption
         a.link-info(@click.stop="openPopup('is6')") Клиенты получат консультацию*
-        span  в вашем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар #[br(v-if="isMobile")] в интернет-магазине**
+        span  в вашем #[br(v-if="isMobile")] Instagram Direct #[br(v-if="!isMobile")] и ссылку на товар&nbsp#[br(v-if="isMobile")] в интернет-магазине**
       .tip-wrap
         .tip *отслеживай диалог в кабинете или Instagram Direct
         .tip **еще можно покупать не выходя из Instagram Direct
