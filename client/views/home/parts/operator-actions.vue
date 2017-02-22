@@ -42,6 +42,8 @@
         v-on:click="toggle('no'),yesScreen = false, noScreen = true ",
         :class="{ 'activeBtn': noScreen }").no.toggleBtn НЕТ
 
+  .margin-space(v-if="!noScreen && !yesScreen")
+
 
 
 </template>
@@ -54,7 +56,7 @@ export default {
   data () {
     return {
       noScreen: false,
-      yesScreen: true
+      yesScreen: false
     };
   },
   methods:{
@@ -105,7 +107,11 @@ export default {
     width: 200px;
     background-repeat: no-repeat;
   }
-
+  .margin-space {
+    @media (--mobile) {
+      height: 120px;
+    }
+  }
   .toggle-title {
 
     .toogle-btns {

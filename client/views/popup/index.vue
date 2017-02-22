@@ -1,6 +1,7 @@
 <template lang="pug">
 #info-popup
-	.popup-content(:class="{'part-screen': $route.params.id.indexOf('is') !== -1 }")
+	.popup-content(
+    :class="{'part-screen': $route.params.id.indexOf('is') !== -1, 'full-screen': paramsId === 'price' }")
 		i.ic-close(v-on:click="close")
 		component(v-bind:is="$route.params.id")
 
@@ -20,11 +21,17 @@ import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 import infoScreen11 from 'views/info-screens/info-screen-11.vue';
 import infoScreen12 from 'views/info-screens/info-screen-12.vue';
 import infoScreen13 from 'views/info-screens/info-screen-13.vue';
+import pricePopup from 'views/home/price-popup';
 
 
 import listen from 'event-listener';
 
 export default {
+  computed:{
+    paramsId(){
+      return this.$route.params.id
+    }
+  },
   created(){
     this.outerClick = listen(document.body, 'click', () => this.$router.push({name: 'home'}))
   },
@@ -44,19 +51,11 @@ export default {
     "is10" : infoScreen10,
 		"is11" : infoScreen11,
     "is12" : infoScreen12,
-    "is13" : infoScreen13
+    "is13" : infoScreen13,
+    "price": pricePopup
 	},
 	methods: {
 		close(){
-
-			if(this.$route.params.id === 'conditions'){
-				this.$router.push({name: 'auth'})
-				return
-			}
-			if(this.$route.params.id === 'connectbot'){
-				this.$router.push({name: 'connect-bot'})
-				return
-			}
 			this.$router.push({ name: 'home'})
 
 		}
@@ -76,16 +75,23 @@ export default {
 		overflow: auto;
 
 		.popup-content{
+
+      &.full-screen {
+        size: 100%;
+
+      }
 			&.part-screen {
+
 			  width: 600px;
 			  height: 500px;
 			  position: absolute 0 0 * 0;
-        @media (min-width: 751px){
-  			  top: 50%;
-  			  left: 50%;
-			    transform: translate(-50%, -50%);
-        }
 			  overflow: hidden;
+
+        @media (min-width: 751px){
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
 		    @media(--mobile) {
 		      width: 100%;
 		      height: 100%;

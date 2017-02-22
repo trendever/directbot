@@ -53,10 +53,9 @@
       .bottom-container.__fixed-width
         template(v-if="isMobile")
           .btn-container-mobile
-            div.link-div
+            div.link-div(v-if="needNewSMS")
               a.link-bottom(href='#',
                 v-if='!isCompleted',
-                v-show='needNewSMS'
                 v-on:click.prevent='sendSMS') Отправить новый код
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               :disabled='isDisabled',
@@ -70,10 +69,9 @@
               ref="confirmBtn",
               v-on:keydown.enter='onButton()',
               v-on:click='onButton') {{ isCompleted ? 'Продолжить' : 'Подтвердить' }}
-          .link-container
+          .link-container(v-if="needNewSMS")
             a.link-bottom.new_sms(href='#',
               v-if='!isCompleted',
-              v-show='needNewSMS'
               v-on:click.prevent='sendSMS') Отправить новый код
 
 </template>
@@ -99,6 +97,7 @@ export default {
 
   data(){
     return {
+      alreadySended: false,
       focused: false,//для сдвига для мобильных устройств
       code: '',
       errorCode: false,
@@ -195,7 +194,12 @@ export default {
       }
       if (!this.isCompleted) {
         this.onConfirm();
-        setTimeout( () => this.needNewSMS = true, 7000);
+        if(!this.alreadySended){
+          setTimeout( () =>{
+            this.needNewSMS = true;
+            this.alreadySended = true;
+          }, 8000);
+        }
       }
     },
     onConfirm() {
@@ -262,11 +266,11 @@ export default {
 
       this.needNewSMS = false;
 
-      setTimeout( () => this.needNewSMS = true, 7000);
+      setTimeout( () => this.needNewSMS = true, 30000);
 
       auth.sendPassword(this.authData.phone).then( data => {
 
-        this.$router.push({ name: 'comfirm' })
+        this.$router.push({ name: 'confirm' })
 
       })
 

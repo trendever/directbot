@@ -15,7 +15,7 @@
   toggle-role
   connect-get
 
-  .free-connect
+  .free-connect(v-if="toggleBtns")
     a.link-info(@click.stop="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
 
@@ -49,8 +49,10 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
+      toggleBtns: false,
       showBtns: false,
       windowHeight: 0,
+      pricePopupShown: false
     }
   },
   created(){
@@ -60,6 +62,9 @@ export default {
     }
 
     window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
+    window.eventHub.$on('toggle-landing-buttons',()=>{
+      this.toggleBtns = true;
+    })
 
     this.scrollListener=listen(window, 'scroll',()=>{
 
@@ -69,6 +74,15 @@ export default {
         this.showBtns = document.body.scrollTop > window.innerHeight;
       }
 
+      if(document.body.scrollTop >= JQuery('#operator-skills').offset().top) {
+        if(this.pricePopupShown) return;
+
+        this.pricePopupShown = true;
+        setTimeout(()=>{
+          this.$router.push({name: 'home-info', params: {id: 'price'}});
+        }, 7000)
+
+      }
     })
 
     this.resize = listen(window, 'resize',()=>{
@@ -319,6 +333,11 @@ export default {
 
     @media screen and (min-width: 1024px){
       margin: 0 20px;
+      min-width: 400px;
+    }
+
+    @media screen and (min-width: 1815px){
+      width: 500px;
     }
     .skills-icon {
 

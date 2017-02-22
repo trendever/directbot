@@ -37,7 +37,7 @@
           span.tip *это ссылка на примере инстаграм-магазина tskirt
 
 
-    .bottom-wrapper
+    .bottom-wrapper(v-if="yesScreen || noScreen")
       .bg-face-1
       .bg-face-2
       .screen
@@ -60,7 +60,7 @@ export default {
 
     return {
       noScreen: false,
-      yesScreen: true
+      yesScreen: false
     };
 
   },

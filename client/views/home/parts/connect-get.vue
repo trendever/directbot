@@ -1,8 +1,8 @@
 <template lang="pug">
 
-#connect-get
+#connect-get(v-if="toggleBtns")
 
-  .landing-title  Подключайся сейчас#[br(v-if="isMobile")] и получишь
+  .landing-title  Подключайтесь сейчас#[br(v-if="isMobile")] и получите
 
   .skills-wrapper
 
@@ -34,7 +34,7 @@
         a.link-info(@click.stop="$parent.openPopup('is9')")
           | Сервис по подбору #[br(v-if="!isMobile")] и организации рекламы #[br(v-if="!isMobile")] через блогеров
 
-      .badge: span МЕСЯЦ#[br] БЕСПЛАТНО
+      .badge: span ПЕРВЫЙ РАЗ#[br] БЕСПЛАТНО
 
   .tooltip
     p *из расчета средней зарплаты оператора 45 тыс.руб. #[br(v-if='isMobile')] в месяц, и это только за 8-часовой день с выходными
@@ -48,8 +48,13 @@ export default {
 
   data () {
     return {
-
+      toggleBtns: false
     };
+  },
+  mounted(){
+    window.eventHub.$on('toggle-landing-buttons',()=>{
+      this.toggleBtns = true;
+    })
   }
 };
 </script>
@@ -97,7 +102,7 @@ export default {
   }
   .info-box.two {
     img {
-      max-width: 200px;
+      max-width: 195px;
     }
 
   }
