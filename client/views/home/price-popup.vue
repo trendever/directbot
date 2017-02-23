@@ -28,6 +28,7 @@
         | Тарифы доступны после регистрации#[br.mobile]
 
   .price-button(@click.stop="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
+  .bottom-border
 
 
 </template>
@@ -61,7 +62,12 @@ export default {
   }
 
 
+  .bottom-border {
+    display: block;
+    height: 25%;
+    background: $color__dark-blue;
 
+  }
   .wrap-block {
     @media screen and (min-width: 751px){
       display: flex;

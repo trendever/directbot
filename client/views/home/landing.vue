@@ -64,6 +64,9 @@ export default {
     window.eventHub.$on('open-landing-popup',name=>{this.openPopup(name)})
     window.eventHub.$on('toggle-landing-buttons',()=>{
       this.toggleBtns = true;
+      this.$nextTick(()=>{
+        JQuery(document.body).animate({scrollTop: JQuery('.toogle-btns').offset().top})
+      })
     })
 
     this.scrollListener=listen(window, 'scroll',()=>{
