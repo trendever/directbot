@@ -42,7 +42,10 @@
 
       .chat-list-cnt-is-empty(v-if="!sortedList.length")
         .chat-list-cnt-is-empty__container Нет чатов,#[br]
-        span потому что ты пока #[br] ничего не продаешь
+        span
+          | потому что мы не #[br]
+          | видим ваших заказов! #[br]
+          a.link-err(@click="openSupport") Это ошибка
 
       template(v-if="!botActivity")
         connect-button(v-if="!sortedList.length")
@@ -60,7 +63,7 @@
 </template>
 
 <script type='text/babel'>
-
+  import config from 'root/../config';
   //import appLoader from 'base/loader/loader';
   import listen from 'event-listener';
   import * as leads from 'services/leads';
@@ -249,6 +252,11 @@
       }
     },
     methods: {
+      openSupport(){
+        this.$store
+          .dispatch('createLead',config.support_id || 37318)
+          .then(lead=>this.$router.push({name:'chat', params:{id: lead.id}}))
+      },
       //Добавление нового лида в нужную вкладку
       onEvent(data){
         if (data.response_map.event === "PROGRESS"){
