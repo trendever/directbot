@@ -84,6 +84,13 @@ let router = new Router({
       path: '/product/:id',
       component: require('views/product-detail/index.vue')
     },
+    {
+
+      name: 'dark-sample',
+      path: '/dark-sample',
+      component: require('root/components/dark-sample')
+
+    },
 
     // {
     //   name: 'popup',
