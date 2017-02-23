@@ -27,7 +27,9 @@
         | обслуживает ваших клиентов.#[br]
         | Тарифы доступны после регистрации#[br.mobile]
 
-  .price-button(@click.stop="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
+      .price-button(@click.stop="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
+
+
   .bottom-border
 
 
@@ -49,7 +51,7 @@ export default {
 
 #price-popup {
 
-  padding-top: 40px;
+  padding-top: 150px;
   color: white;
   font-family: $font__family__light;
   background: $color__dark-blue;
@@ -57,6 +59,7 @@ export default {
   font-size: $font__normal;
 
   @media ( --mobile ) {
+    padding-top: 40px;
     height: 100%;
     font-size: $font__medium;
   }
@@ -108,7 +111,7 @@ export default {
     text-align: left;
     font-size: $font__normal;
     @media  screen and (min-width: 751px){
-      padding-top: 140px;
+      padding-top: 100px;
     }
 
     @media (--mobile) {
@@ -151,7 +154,7 @@ export default {
     line-height: 75px;
     border-radius: 5px;
     @media screen and (min-width: 751px){
-      transform: translateX(-70%);
+      margin-top: 80px;
     }
 
     @media (--mobile) {
