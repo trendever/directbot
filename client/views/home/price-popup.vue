@@ -1,8 +1,9 @@
 <template lang="pug">
 #price-popup
 
-  .price-title Сколько стоит Directbot?
+  .background
 
+  .price-title Сколько стоит Directbot?
 
   .wrap-block
 
@@ -30,7 +31,7 @@
       .price-button(@click.stop="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
 
 
-  .bottom-border
+
 
 
 </template>
@@ -40,7 +41,7 @@ export default {
   data(){
     return {
       isInstagram: window.browser.instagram,
-      isFacebook: window.browser.facebook
+      isFacebook: window.browser.facebook,
     }
   }
 };
@@ -54,7 +55,6 @@ export default {
   padding-top: 150px;
   color: white;
   font-family: $font__family__light;
-  background: $color__dark-blue;
   height: 100%;
   font-size: $font__normal;
 
@@ -65,9 +65,10 @@ export default {
   }
 
 
-  .bottom-border {
-    display: block;
-    height: 25%;
+  .background {
+    position: absolute * 0 0 0;
+    z-index: -1;
+    height: 100%;
     background: $color__dark-blue;
 
   }
@@ -129,10 +130,10 @@ export default {
     .price-text, .price-caption {
       padding: 24px 0;
 
-      @media screen and (max-height: 1200px){
+/*       @media screen and (max-height: 1200px){
         padding-bottom: 8px;
         padding-top: 5px;
-      }
+      } */
 
     }
 
