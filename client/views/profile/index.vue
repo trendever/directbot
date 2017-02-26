@@ -22,6 +22,7 @@ import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
 import ConnectButton from 'components/connect-button';
 import phoneComponent from 'components/phone/phone-btn';
+import { ScrollStorage } from 'root/utils';
 
 export default {
 
@@ -168,13 +169,25 @@ export default {
         }
       }
 
-      window.scrollTo(0, +localStorage.getItem(this.$route.name + '.scroll'))
+      if(this.isSelfPage){
+        window.scrollTo(0, +localStorage.getItem(this.$route.name + '.scroll'))
+      }
+
+      if(!this.isSelfPage){
+        this.scrl = new ScrollStorage();
+        window.eventHub.$on('scrollToShop',()=>{
+          this.scrl.scrollTo(this.$route.params.id)
+        })
+        this.scrollSave = listen(window, 'scroll',()=> {
+          this.scrl.setValue(this.$route.params.id, document.body.scrollTop)
+        })
+      }
 
     })
-
   },
 
   beforeDestroy(){
+    if(this.scrollSave)this.scrollSave.remove();
     this.bodyListner.remove();
     if (this.copy) this.copy.destroy();
     clearInterval(this.timeID);
@@ -337,7 +350,7 @@ export default {
       if (this.user.working_time){
         let splited = this.user.working_time.split("_")
         if (splited.length > 1){
-          return "tel:" + splited[1].replace(" ","")  
+          return "tel:" + splited[1].replace(" ","")
         }
       }
       return ""

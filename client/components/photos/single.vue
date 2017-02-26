@@ -63,6 +63,11 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
       }
 
     },
+    mounted(){
+      this.$nextTick(()=>{
+        window.eventHub.$emit('scrollToShop')
+      })
+    },
 
     computed: {
       thumb() {

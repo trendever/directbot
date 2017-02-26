@@ -408,3 +408,43 @@ window.prettyLog = (obj)=>{
 window.colorLog = (string, color = 'darkgreen')=>{
   console.log(`%c${string}`, `color: ${color}; font-size: 30px`)
 }
+
+export class ScrollStorage {
+
+  constructor(page='user'){
+
+    this.debug = false;
+    this.pageStore = new Map();
+
+    this.page = page;
+    let local = new Map(JSON.parse(localStorage.getItem(`${this.page}.scrl.storage`)))
+    if(!local){
+      this.setValue('default', 0);
+    }
+
+    if (local) {
+      for(let [key, value] of local.entries()){
+        if(this.debug) {
+          colorLog(key, 'red')
+          console.log(value)
+        }
+        this.setValue(key, local.get(key))
+      }
+    }
+  }
+
+  setValue(userID,value){
+    this.pageStore.set(userID,value)
+    localStorage.setItem(`${this.page}.scrl.storage`, JSON.stringify(this.pageStore));
+    if(this.debug) {
+      colorLog('scroll pushed', 'green');
+      console.log(JSON.stringify(this.pageStore));
+    }
+  }
+
+  scrollTo(userID){
+    window.scrollY = this.pageStore.get(userID);
+    document.body.scrollTop = this.pageStore.get(userID);
+  }
+
+}
