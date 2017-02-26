@@ -1,5 +1,5 @@
 <template lang="pug">
-#info-popup
+#info-popup(:class="{ 'popup-price': $route.path === '/home/price' }")
 	.popup-content(
     :class="{'part-screen': $route.params.id.indexOf('is') !== -1, 'full-screen': paramsId === 'price' }")
 		i.ic-close(v-on:click="close")
@@ -67,12 +67,15 @@ export default {
 	@import 'style/vars/vars.pcss';
 
 	#info-popup {
-    background: $color__dark-blue;
 		width: 100%;
 		height: 100%;
 		z-index: 310;
 		position: fixed 0 0 * 0;
 		overflow: auto;
+
+    &.popup-price {
+      background: $color__dark-blue;
+    }
 
 		.popup-content{
 
