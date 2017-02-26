@@ -68,7 +68,6 @@ export default {
         JQuery(document.body).animate({scrollTop: JQuery('.toogle-btns').offset().top})
       })
     })
-
     this.scrollListener=listen(window, 'scroll',()=>{
 
       if(this.isMobile){
@@ -79,7 +78,7 @@ export default {
 
       if(document.body.scrollTop >= JQuery('#operator-skills').offset().top) {
         if(this.pricePopupShown) return;
-
+        if(this.$store.state.user.pricePopup) return;
         this.pricePopupShown = true;
         setTimeout(()=>{
           if(this.$route.name === 'home'){

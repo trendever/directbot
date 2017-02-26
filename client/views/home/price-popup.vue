@@ -43,6 +43,12 @@ export default {
       isInstagram: window.browser.instagram,
       isFacebook: window.browser.facebook,
     }
+  },
+  mounted(){
+    let popup = this.$store.state.user.pricePopup;
+    if(!popup){
+      this.$store.state.user.pricePopup = true;
+    }
   }
 };
 </script>
