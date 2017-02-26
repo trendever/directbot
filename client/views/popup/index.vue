@@ -67,7 +67,7 @@ export default {
 	@import 'style/vars/vars.pcss';
 
 	#info-popup {
-
+    background: $color__dark-blue;
 		width: 100%;
 		height: 100%;
 		z-index: 310;
