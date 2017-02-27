@@ -13,20 +13,20 @@
     .price-content
 
       .price-text
-        | Доступ в панель Directbot стоит#[br.mobile]
-        | 1990 руб. в месяц.#[br.desktop] Оттуда вы и ваша#[br.mobile]
-        | команда можете сами отвечать#[br.desktop] клиентам#[br.mobile]
-        | в Instagram. Пробуйте бесплатно!#[br.mobile]
+        | Доступ в панель Directbot стоит#[br]
+        | 1990 руб. в месяц. Оттуда вы и ваша#[br]
+        | команда можете сами отвечать клиентам#[br]
+        | в Instagram. Пробуйте бесплатно!#[br]
 
       .price-image(v-if="isMobile")
         img(src="./img/pop-up_chat-list001.png", :class="{'instagram': isInstagram || isFacebook}")
 
       .price-caption
 
-        | Либо попробуйте услуги#[br.mobile]
-        | нашего оператора,#[br.desktop] который сам#[br.mobile]
+        | Либо попробуйте услуги#[br]
+        | нашего оператора, который сам#[br]
         | обслуживает ваших клиентов.#[br]
-        | Тарифы доступны после регистрации#[br.mobile]
+        | Тарифы доступны после регистрации#[br]
 
       .price-button(@click.stop="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
 
@@ -118,7 +118,7 @@ export default {
     text-align: left;
     font-size: $font__normal;
     @media  screen and (min-width: 751px){
-      padding-top: 100px;
+      //padding-top: 100px;
     }
 
     @media (--mobile) {
@@ -161,7 +161,7 @@ export default {
     line-height: 75px;
     border-radius: 5px;
     @media screen and (min-width: 751px){
-      margin-top: 80px;
+      //margin-top: 80px;
     }
 
     @media (--mobile) {
