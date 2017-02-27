@@ -37,12 +37,19 @@
 </template>
 
 <script>
+
 export default {
   data(){
     return {
       isInstagram: window.browser.instagram,
       isFacebook: window.browser.facebook,
     }
+  },
+  created(){
+    document.body.style.overflow = 'hidden';
+  },
+  beforeDestroy(){
+    document.body.style.overflow = 'auto';
   },
   mounted(){
     let popup = this.$store.state.user.pricePopup;
@@ -160,8 +167,12 @@ export default {
     margin-top: 24px;
     line-height: 75px;
     border-radius: 5px;
+
+
     @media screen and (min-width: 751px){
-      //margin-top: 80px;
+      &:hover {
+        background: $color-orange-dark;
+      }
     }
 
     @media (--mobile) {

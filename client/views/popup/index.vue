@@ -102,17 +102,21 @@ export default {
 			}
 
 		}
-
-		i.ic-close{
-				position: absolute;
-				color: $color__white;
-				font-size: 24px;
-				top: 30px;
-				right: 30px;
-		  		cursor: pointer;
-					@media(--mobile){
-						font-size: 34px;
-					}
-		}
+    i.ic-close {
+      position: absolute 10px 10px * *;
+      z-index: 210;
+      padding: 15px;
+      color: white;
+      cursor: pointer;
+      font-size: $font__normal;
+      size: $font__normal;
+      box-sizing: content-box;
+      @media( --tabletandless ) {
+        top: 15px;
+        right: 15px;
+        size: $font__medium;
+        font-size: $font__medium;
+      }
+    }
 	}
 </style>
