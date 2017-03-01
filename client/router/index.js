@@ -106,7 +106,7 @@ let router = new Router({
     {
       name: 'list',
       path: '/list',
-      component: require('views/test/list.vue')
+      component: require('views/list')
     },
     {
       name: 'monetization',
