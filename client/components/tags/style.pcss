@@ -1,16 +1,6 @@
 @import 'style/vars/vars.pcss';
 
-/* @use postcss-autoreset {
-  reset: {
-    all: initial;
-    sizes: 0;
-  }
-}
 
-@use postcss-initial {
-  reset: inherited;
-}
- */
 
 .tags-container {
   display: block;
@@ -20,9 +10,6 @@
   box-sizing: border-box;
   overflow-x: hidden;
 
-  /* &-button{
-    padding-bottom: 22px;
-    } */
     &-open {
       .tags {
         height: auto;
@@ -34,8 +21,6 @@
         border-bottom: 3px solid white;
         @media(--mobile) {
           margin-left: 0px;
-          //height: 300px !important;
-          //max-height: 410px !important;
         }
       }
     }
@@ -47,12 +32,9 @@
     float: left;
     margin-left: 20px;
     overflow: hidden;
-    //height: 135px !important;
 
     @media(--mobile) {
       margin-left: 0px;
-      //height: 223px !important;
-      //height: calc($height__mobile + $height-tag-button);
       margin-top: 2px;
       overflow-y: scroll;
     }
@@ -61,7 +43,6 @@
   .product_tags{
 
     @media(--mobile) {
-      //overflow-y: hidden;
       height: auto !important;
       max-height: initial !important;
     }
@@ -69,11 +50,12 @@
 
   .tag {
     font-family: $font__family__light;
+    color: $color__blue;
     width: auto;
     display: block;
     float: left;
     box-sizing: content-box !important;
-    border: 1px solid $color__green;
+    border: 1px solid $color__blue;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
@@ -81,7 +63,7 @@
     padding-right: 20px;
     padding-left: 20px;
     &:hover {
-      background: $color__green;
+      background: $color__blue;
       .text {
         color: $color__white;
       }

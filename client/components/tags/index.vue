@@ -11,7 +11,7 @@
          v-bind:style="tagsStyle">
       <div class="tag"
            v-bind:style="tagStyle"
-           v-for="tag of filtredTags"
+           v-for="tag in filtredTags"
            :class="{'tag-active': tag.active}"
            @click.stop="addTag(tag), open()">
         <span
@@ -143,7 +143,8 @@
 
     computed: {
       filtredTags(){
-        return tags.filter(tag=> tag.name === this.searchString);
+        //this.tags.filter(tag=> tag.name === this.searchString)
+        return this.tags;
       },
       tagsStyle(){
         return {
