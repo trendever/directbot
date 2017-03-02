@@ -37,7 +37,7 @@ export default {
       return JSON.parse(val);
     },
     replace(val){
-      return val.replace(/-rubble-/g, '&nbsp<i class="ic-currency-rub"></i>')
+      return val.replace(/-rubble-/g, '<i class="ic-currency-rub"></i>')
     },
     getHelp(){
       this.$store

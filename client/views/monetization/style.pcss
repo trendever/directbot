@@ -23,11 +23,14 @@
     flex-direction: row-reverse;
     padding-right: 73px;
     margin: 0 auto;
-      @media(--tabletandless) {
-        display: block;
-        width: auto;
-        padding: 40px 0px 0px 0px;
-      }
+    @media(--tabletandless) {
+      display: block;
+      width: auto;
+      padding: 40px 0px 0px 0px;
+    }
+    @media screen and (min-width: 751px){
+      padding-top: 150px;
+    }
   }
   &__about{
     ul {
@@ -53,15 +56,19 @@
   }
 
   .ic-close{
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    font-size: 24px;
+    position: fixed 10px 10px * *;
+    z-index: 210;
+    padding: 15px;
+    color: white;
     cursor: pointer;
-    @media(--tabletandless) {
-      top: 30px;
-      right: 30px;
-      font-size: 36px;
+    font-size: $font__normal;
+    size: $font__normal;
+    box-sizing: content-box;
+    @media( --tabletandless ) {
+      top: 15px;
+      right: 15px;
+      size: $font__medium;
+      font-size: $font__medium;
     }
   }
 
@@ -103,6 +110,10 @@
       width: 490px;
       margin: 195px auto 0px auto;
     }
+
+    @media (--overmobile) {
+      margin-bottom: 30px;
+    }
   }
   .bot{
     font-size: 40px;
@@ -136,24 +147,32 @@
         margin-bottom: 30px;
       }
 
+    i.ic-currency-rub {
+      @media (--overmobile){
+        line-height: 17px;
+      }
+    }
 
     .bold {
       font-family: $font__family__semibold;
       font-size: 24px;
-        @media(--tabletandless) {
-          font-size: 36px;
-        }
+      @media(--tabletandless) {
+        font-size: 36px;
+      }
 
-        i.ic-rub{
-          display: inline-block;
-          font-size: 17px;
-          padding-top: 6px;
-          padding-left: 3px;
-            @media(--tabletandless) {
-              font-size: 24px;
-              padding-top: 10px;
-            }
+      i.ic-rub{
+        display: inline-block;
+        font-size: 17px;
+        padding-top: 6px;
+        padding-left: 3px;
+        @media(--tabletandless) {
+          font-size: 24px;
+          padding-top: 10px;
         }
+        @media (--overmobile) {
+          line-height: 20px;
+        }
+      }
     }
 
     .light{
