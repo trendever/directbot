@@ -4,6 +4,8 @@ import * as leads from 'services/leads.js';
 
 import * as message from 'services/message';
 
+import store from '../index';
+
 import {
 
   getOlderLead,
@@ -72,8 +74,20 @@ export const loadLeads = ( { commit, state }, count = getCountForLoading ) => {
 
       if ( getHasMore( state ) ) {
 
+
+        //-Тупо правим ошибку загрузки чатов для магазина
+        let newTab = tab;
+        let user = store.state.user;
+        let profile = user.all[user.myId]
+        if(profile){
+          if(profile.supplier_of !== null){
+            newTab = 'seller,supplier'
+          }
+        }
+
+        //------------------------------------------
         leads
-          .find( count, getOlderLead( state ), tab )
+          .find( count, getOlderLead( state ), newTab/*tab */)
           .then(
             ( { leads } ) => {
               incLengthList( { commit, state }, leads.length );
