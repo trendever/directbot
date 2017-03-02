@@ -1,10 +1,18 @@
 @import 'style/vars/vars.pcss';
 .monetization{
-  height: 100%;
+  min-height: 100%;
   background-color: $color__dark-blue;
   font-family: $font__family__light;
   color: #fff;
   text-align: center;
+
+  .scroll-help-block {
+    display: none;
+    @media (--mobile){
+      display: block;
+      height: 130px;
+    }
+  }
 
   &__wrap{
     height: 100%;
@@ -21,7 +29,22 @@
         padding: 40px 0px 0px 0px;
       }
   }
+  &__about{
+    ul {
+      max-width: 500px;
+      margin: 0 auto;
+      list-style: initial;
+      text-align: left;
+      font-size: $font__normal;
+      font-family: $font__family__light;
+      @media (--mobile) {
+        font-family: $font__family__thin;
+        font-size: 28px;
+      }
+      margin-bottom: 30px;
+    }
 
+  }
   &__plans{
     height: 433px;
       @media(--tabletandless) {
@@ -150,7 +173,6 @@
             }
         }
     }
-
     &.make__choice{
       background-color: $color__blue;
       border-color: $color__blue;
@@ -200,7 +222,7 @@
 
   &__accept-btn button{
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;

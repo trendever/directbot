@@ -14,10 +14,14 @@
             span.bold {{plan.subscription_price}}
               i.ic-rub
             span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
-            div(v-html="plan.about")
+            span.light(v-html="replace(parse(plan.about).sub)")
+        .monetization__about(v-if="selectedPlan === plan.id")
+          ul
+            li(v-for="text in parse(plan.about).adv")
+              | {{ text }}
       .monetization__zero-days-link
         a(@click="getHelp") У меня есть вопросы
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
-
-       button(v-if="selectedPlan === 0") ПОКА НЕ УВЕРЕН
-       button(v-else @click="getPlan") ПОДТВЕРДИТЬ
+        button(v-if="selectedPlan === 0") ПОКА НЕ УВЕРЕН
+        button(v-else @click="getPlan") ПОДТВЕРДИТЬ
+    .scroll-help-block(v-if="selectedPlan")

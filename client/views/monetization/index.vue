@@ -33,6 +33,12 @@ export default {
     ])
   },
   methods:{
+    parse(val){
+      return JSON.parse(val);
+    },
+    replace(val){
+      return val.replace(/-rubble-/g, '&nbsp<i class="ic-currency-rub"></i>')
+    },
     getHelp(){
       this.$store
         .dispatch('createLead', settings.monetizationHelpID)
