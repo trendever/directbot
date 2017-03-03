@@ -85,7 +85,9 @@ export const loadTags = (() => {
 
 })();
 
-export const selectTag = ( store, tag, clear ) => {
+export const selectTag = ( store, { tag, clear } ) => {
+
+  if(!tag) return;
 
   if ( clear === true ) {
 
@@ -107,7 +109,7 @@ export const selectTag = ( store, tag, clear ) => {
 
 };
 
-export const removeTag = ( store, tag ) => {
+export const removeTag = ( store, { tag }) => {
 
   store.commit( types.REMOVE_TAG, tag );
 

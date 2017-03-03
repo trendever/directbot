@@ -36,6 +36,7 @@
   import listener from 'event-listener'
   import { flex } from './flex'
   import { browser } from 'root/utils'
+  import store from 'root/store'
 
   export default {
     props: {
@@ -85,14 +86,14 @@
       },
       delTag: {
         type: Function,
-        default: ( tag, index ) => {
-          console.log( tag, index );
+        default: (tag) => {
+          store.dispatch('removeTag', {tag})
         }
       },
       addTag: {
         type: Function,
-        default: ( tag, index ) => {
-          console.log( tag, index );
+        default: (tag) => {
+          store.dispatch('selectTag', {tag})
         }
       },
       isOpen: {

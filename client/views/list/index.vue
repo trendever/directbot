@@ -3,7 +3,8 @@
 #list
   .tags-wrap
     tags(:tags="tags")
-  photos
+  .wrap-photos
+    photos
 
 </template>
 
@@ -29,12 +30,18 @@ export default {
 </script>
 
 <style lang="postcss" >
-.tags-wrap {
-  position: fixed 0 0 * 0;
-  width: 100%;
-  z-index: 140;
-  background: white;
-  max-width: 1050px;
-  margin: 0 auto;
+#list {
+
+  .tags-wrap {
+    position: relative;
+    background: white;
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  .wrap-photos {
+    clear: both;
+  }
+
 }
 </style>
