@@ -24,4 +24,4 @@
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
         button(v-if="selectedPlan === 0") ПОКА НЕ УВЕРЕН
         button(v-else @click="getPlan") ПОДТВЕРДИТЬ
-    .scroll-help-block(v-if="selectedPlan")
+    .scroll-help-block
