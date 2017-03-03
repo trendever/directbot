@@ -4,7 +4,7 @@
   .tags-wrap
     tags(:tags="tags")
   .wrap-photos
-    photos
+    photos(:tags="true", :list-name="'list'")
 
 </template>
 

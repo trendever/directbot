@@ -1,8 +1,10 @@
 <template lang="pug">
 .photos.columns
+
   template(v-for="photo, index in listProducts")
     single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index", :class-data="index%2")
-  div#infinitie
+
+  #infinitie
   scroll-top
 
 </template>
@@ -45,17 +47,12 @@ export default {
   created(){
 
     window.eventHub.$on('updatePhotos', id => {
-
       if(id){
-
         this.simpleScroll({})
         return;
-
       }
-
       console.log('new products');
       this.simpleScroll( { updateInstagram: true } )
-
     });
 
     this.simpleScroll({})
@@ -93,7 +90,11 @@ export default {
 
       'listId',
       'listProducts',
-      'listScroll'
+      'listScroll',
+
+
+      //tags
+      'selectedTagsId'
 
     ])
 
@@ -109,7 +110,17 @@ export default {
       'setScrollToList'
 
     ]),
+    searchChange(){
 
+      if(!this.selectedTagsId) return;
+
+      products
+        .find({tags: this.selectedTagsId || null, searchValue: this.searchValue || null})
+        .then(data=>{
+          this.$store.state.products.lists[this.listName].products = data;
+      })
+
+    },
     checkVisible(elm) {
       if (elm === null) return false;
       let rect = elm.getBoundingClientRect();
@@ -172,6 +183,13 @@ export default {
     }
 
     //this.closeList();
+  },
+
+  watch:{
+    selectedTagsId(val){
+
+      this.searchChange();
+    }
   },
 
   components:{
