@@ -137,7 +137,7 @@ export default {
       }
 
       .tags-count {
-
+        display: none;
         @media (--mobile) {
           position: absolute 20px 90px * * ;
           text-align: center;

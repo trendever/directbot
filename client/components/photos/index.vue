@@ -1,6 +1,8 @@
 <template lang="pug">
 .photos.columns
-
+  template(v-if="noResults")
+    .reset-search(@click="$store.dispatch('clearSearch')")
+      span Сбросить поиск
   template(v-for="photo, index in listProducts")
     single(
       :product="photo.data",
@@ -85,6 +87,11 @@ export default {
   },
 
   computed: {
+    noResults(){
+      if(this.listProducts){
+        return !this.listProducts.length;
+      }
+    },
     offset(){
 
       if(this.listProducts){
