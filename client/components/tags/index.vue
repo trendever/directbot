@@ -1,31 +1,65 @@
+<style lang="postcss">
+@import 'style/vars/vars.pcss';
+.flex-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  .tag-name {
+    flex-grow: 1;
+    font-size: $font__normal;
+    padding: 5px 10px;
+    border: 1px solid $color__blue;
+    color: $color__blue;
+    text-align: center;
+    cursor: pointer;
+    margin: 1px;
+    border-radius: 4px;
+    line-height: 100%;
+
+    @media (--mobile){
+      font-size: $font__large;
+      padding: 10px 15px;
+    }
+
+    &:hover {
+      color: white;
+      background: $color__blue;
+    }
+
+    &.selected {
+      color: white;
+      background: $color__blue;
+    }
+
+    i {
+      display: inline-block;
+      font-size: 14px;
+      transform: translateY(53%);
+      @media (--mobile){
+        font-size: 26px;
+        transform: translateY(55%);
+      }
+    }
+  }
+}
+
+</style>
+
 <template>
-  <div
-    v-if="isShow"
-    class="tags-container"
-    :class="{'tags-container-open': isOpen || !hiddenContent,
-      'tags-container-button': hiddenContent && showMoreButton
-    }">
-    <div class="tags" id="tags"
-         :class="{'product_tags' : isProduct}"
-         ref="tags"
-         v-bind:style="tagsStyle">
-      <div class="tag"
-           v-bind:style="tagStyle"
-           v-for="tag in filtredTags"
-           :class="{'tag-active': tag.active}"
-           @click.stop="addTag(tag), open()">
-        <span
-          class="text"
-          v-bind:style="textStyle">{{tag.name}}
-        <i
-          class="ic-close close"
-          v-if="tag.active"
-          @click.stop="delTag(tag)"
-          v-bind:style="iconStyle"></i>
-        </span>
-      </div>
+  <div id="tags">
+    <div class="flex-tags">
+      <template v-for="tag in filtredTags">
+        <div class="tag-name"
+          @click.stop="addTag(tag)"
+          :class="{'selected': tag.active}">
+          {{tag.name}}
+          <i class="ic-close close"
+            v-if="tag.active"
+            @click.stop="delTag(tag)"></i>
+          </span>
+        </div>
+      </template >
     </div>
-    <div class="pending" v-if="isPending"></div>
   </div>
 </template>
 
@@ -44,42 +78,6 @@
         type: Array,
         default: []
       },
-      maxHeight: {
-        type: String,
-        default: '285px'
-      },
-      baseHeight: {
-        type: Number,
-        default: 90
-      },
-      itemHeight: {
-        type: String,
-        default: null
-      },
-      textFontSize: {
-        type: String,
-        default: null
-      },
-      marginRight: {
-        type: Number,
-        default: 20
-      },
-      marginBottom: {
-        type: Number,
-        default: 12
-      },
-      iconFontSize: {
-        type: String,
-        default: null
-      },
-      textLineHeight: {
-        type: String,
-        default: null
-      },
-      hiddenContent: {
-        type: Boolean,
-        default: true
-      },
       searchString: {
         type: String,
         default: ''
@@ -95,51 +93,7 @@
         default: (tag) => {
           store.dispatch('selectTag', {tag})
         }
-      },
-      isOpen: {
-        type: Boolean,
-        default: false
-      },
-      isPending: {
-        type: Boolean,
-        default: false
-      },
-      isProduct:{
-        type: Boolean,
-        default: false
       }
-    },
-
-    data(){
-      return {
-        timer: null,
-        showMoreButton: false,
-        fullHeight: 0
-      }
-    },
-    ready(){
-
-      this.onFlex = this.onFlex.bind( this );
-
-      this.$nextTick( () => {
-        this.onFlex();
-      } );
-
-      this.resize = listener( window, 'optimizedResize', this.onFlex )
-
-      this.$on( 'update', this.onFlex )
-
-    },
-
-    beforeDestroy(){
-
-      if ( this.resize ) {
-        this.resize.remove()
-      }
-      this.$off( 'update', this.onFlex )
-      clearTimeout( this.timer )
-      this.timer = null;
-
     },
 
     computed: {
@@ -147,75 +101,6 @@
         //this.tags.filter(tag=> tag.name === this.searchString)
         return this.tags;
       },
-      tagsStyle(){
-        return {
-          maxHeight: this.maxHeight,
-          height: (this.isOpen) ? null : this.height
-        }
-      },
-      tagStyle(){
-
-        return {
-          height: this.itemHeight,
-          marginBottom: `${this.marginBottom}px`
-        }
-      },
-      textStyle() {
-        return {
-          height: this.itemHeight,
-          fontSize: this.textFontSize,
-          lineHeight: this.textLineHeight
-        }
-      },
-      iconStyle(){
-        return {
-          fontSize: this.iconFontSize
-        }
-      },
-
-      height(){
-
-        if ( window.matchMedia( "(max-width: 750px)" ).matches ) {
-
-          if ( this.fullHeight < 170 ) {
-
-            return `${this.fullHeight - 10}px`;
-
-          }
-
-        } else {
-
-          if ( this.fullHeight < this.baseHeight ) {
-
-            return `${this.fullHeight - 10}px`
-
-          }
-
-        }
-
-        if ( window.matchMedia( "(max-width: 750px)" ).matches ) {
-
-          if ( this.baseHeight < 170 ) {
-            //return `170px`;
-            return `228px`;
-          }
-
-        }
-
-        return `${this.baseHeight}px`;
-
-      },
-
-      isShow(){
-        if ( Array.isArray( this.tags ) ) {
-
-          return this.tags.length > 0;
-
-        }
-
-        return true;
-      }
-
     },
 
     methods: {
@@ -226,68 +111,6 @@
           this.$refs.tags.scrollTop = 0;
         }
       },
-
-      onFlex(){
-
-        if ( this.isShow ) {
-
-          const computed = () => {
-
-            if ( this.$refs.tags !== null ) {
-
-              this.showMoreButton = this.$refs.tags.scrollHeight > (this.baseHeight + 10)
-
-              Array
-                .from( this.$refs.tags.children )
-                .forEach( ( tag ) => {
-
-                  tag.style.marginRight = '0';
-
-                } );
-
-              this.fullHeight =  flex(
-                Array.from( this.$refs.tags.children ),
-                this.$refs.tags.clientWidth,
-                this.marginRight
-                )
-            }
-          };
-
-          computed();
-
-          if ( this.timer !== null ) {
-
-            clearTimeout( this.timer )
-
-          }
-
-          this.timer =  setTimeout( () => {
-
-            this.timer = null;
-
-            computed();
-
-          }, 100 ) ;
-
-        }
-
-      }
-
-    },
-
-    watch: {
-      tags(){
-        this.onFlex()
-      },
-      height(){
-        this.onFlex()
-      },
-      maxHeight(){
-        this.onFlex()
-      },
-      searchString(){
-        this.onFlex()
-      }
     }
   }
 </script>
