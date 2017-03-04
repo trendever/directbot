@@ -350,7 +350,7 @@ export default {
       if (this.user.working_time){
         let splited = this.user.working_time.split("_")
         if (splited.length > 1){
-          return "tel:" + splited[1].replace(" ","")
+          return "tel:+" + splited[1].replace(" ","")
         }
       }
       return ""
