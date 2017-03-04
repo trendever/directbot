@@ -22,6 +22,9 @@ import * as products from 'services/products.js';
 export default {
 
   props:{
+    tags: {
+      default: false
+    },
     shopId: {
       default:null
     },
@@ -155,7 +158,8 @@ export default {
             if (this.load) return;
             this.load = true;
             this.increaseListLength( {
-              shop_id: this.shopId,
+              tags: this.tags ? this.selectedTagsId : null,
+              shop_id: null || this.shopId,
               offset: this.offset + 30
             }).then(()=>{
 
