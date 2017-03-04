@@ -165,6 +165,7 @@ export default {
             if (this.load) return;
             this.load = true;
             this.increaseListLength( {
+              query: this.searchValue || null,
               tags: this.tags ? this.selectedTagsId : null,
               shop_id: null || this.shopId,
               offset: this.offset + 30

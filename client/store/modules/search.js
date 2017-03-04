@@ -60,7 +60,7 @@ const mutations = {
 
   },
 
-  [ types.REMOVE_TAG ] ( state, { id, name } ) {
+  [ types.REMOVE_TAG ] ( state, { id, name, all=false } ) {
 
     state.tags = state.tags.map( ( tag ) => {
 

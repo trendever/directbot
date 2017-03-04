@@ -6,7 +6,7 @@
 
     .search-text(slot="center-content")
 
-      .s-input
+      .search-input
 
         .s-icon(@click='search(), $refs.search.focus()')
           i.ic-search.__mirror
@@ -17,7 +17,11 @@
           ref="search",
           :value="searchValue")
 
-        i.ic-close
+
+        .tags-count(v-if="selectedTagsId.length", @click="clear")
+          span {{ selectedTagsId.length }}
+
+        i.ic-close(v-if="selectedTagsId.length || searchValue", @click="clear")
 
 
   .tags-wrap
@@ -46,10 +50,17 @@ export default {
     search() {
       this.$store.dispatch('setSearchValue', this.$refs.search.value);
     },
+    clear(){
+      this.$store
+        .dispatch('clearSearch')
+        .then(()=>this.$refs.search.focus())
+    }
   },
   computed: {
     ...mapGetters([
-      'tags'
+      'selectedTagsId',
+      'tags',
+      'searchValue'
     ])
   },
 };
@@ -58,46 +69,37 @@ export default {
 
 <style lang="postcss" >
 @import 'style/vars/vars.pcss';
+
 #list {
+
   .search-text {
-      max-width: 1050px;
-      height: 100%;
+
+    max-width: 1050px;
+    height: 100%;
+    text-align: right;
+    flex-grow: 1;
+
+    @media (--mobile) {
+      flex-grow: 1;
+    }
+
+    .search-input {
+
+      @media (--overmobile) {
+        margin-top: 8px;
+        position: relative;
+        width: 20%;
+        float: right;
+
+      }
 
       @media (--mobile) {
-        flex-grow: 1;
+        height: inherit;
+        background: white;
       }
-
-      .s-input {
-
-        @media (--overmobile) {
-          margin-top: 8px;
-          position: relative;
-        }
-
-        @media (--mobile) {
-          height: inherit;
-          background: white;
-        }
-
-        i.ic-close {
-          display: inline-block;
-          color: white;
-
-          @media (--overmobile) {
-            display: none;
-          }
-          @media (--mobile) {
-            position: absolute  0 0 * *;
-            padding: 28px;
-            font-size: $font__medium;
-            color: $color__gray-dark;
-          }
-        }
-
-      }
-
 
       input {
+
         display: inline-block;
         border-top: none;
         border-left: none;
@@ -108,7 +110,12 @@ export default {
         background: $color__blue;
         font-family: $font__family__light;
         height: inherit;
-        width: 80%;
+
+
+        @media (--overmobile) {
+          transform: translateX(-34%);
+        }
+
         @media (--mobile) {
           color: $color__gray-dark;
           font-size: $font__large;
@@ -129,28 +136,65 @@ export default {
 
       }
 
-      .s-icon {
+      .tags-count {
 
-        display: inline-block;
-        color: white;
-        padding-right: 20px;
-        font-size: $font__normal;
-        position: absolute 0 0 * *;
-        @media (--mobile){
-          color: $color__blue;
-          font-size: $font__large;
-          position: absolute 0 * * 0 ;
-          width: 100px;
-        }
+        @media (--mobile) {
+          position: absolute 20px 90px * * ;
+          text-align: center;
+          size: 50px;
+          line-height: 50px;
+          color: white;
+          background: $color__red__true;
+          border-radius: 50%;
+          span {
+            display: inline-block;
+            font-size: $font__medium;
 
-        i {
-          transform: rotate(90deg);
-          cursor: pointer;
-          @media (--mobile){
-            padding: 22px;
           }
+
         }
       }
+
+      i.ic-close {
+        display: inline-block;
+        color: white;
+
+        @media (--overmobile) {
+          display: none;
+        }
+        @media (--mobile) {
+          position: absolute  0 0 * *;
+          padding: 28px;
+          font-size: $font__medium;
+          color: $color__gray-dark;
+        }
+      }
+
+    }
+
+    .s-icon {
+
+      display: inline-block;
+      color: white;
+      cursor: pointer;
+      font-size: $font__normal;
+      position: absolute 0 0 * *;
+      @media (--mobile){
+        padding-right: 20px;
+        color: $color__blue;
+        font-size: $font__large;
+        position: absolute 0 * * 0 ;
+        width: 100px;
+      }
+
+      i {
+        transform: rotate(90deg);
+        padding: 5px;
+        @media (--mobile){
+          padding: 22px;
+        }
+      }
+    }
   }
   .tags-wrap {
     border-top: 1px solid white;

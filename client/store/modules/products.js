@@ -84,9 +84,9 @@ let actions = {
 
   },
 
-  increaseListLength({commit}, { shop_id, offset, tags }){
+  increaseListLength({commit}, { shop_id, offset, tags, query }){
 
-    return productsService.find( { shop_id, offset, tags } ).then(data=>{
+    return productsService.find( { shop_id, offset, tags, query } ).then(data=>{
 
       commit(types.PRODUCTS_INCREASE_LIST_LENGTH, data)
 
