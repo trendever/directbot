@@ -166,10 +166,13 @@ export default {
               tags: this.tags ? this.selectedTagsId : null,
               shop_id: null || this.shopId,
               offset: this.offset + 30
-            }).then(()=>{
+            }).then((data)=>{
+
+              setTimeout(()=> { this.load = false },100);
+
+              if(!data.length) return;
               let scroll = document.body.scrollTop + this.$refs.single[0].$el.offsetHeight;
               JQuery(document.body).animate({scrollTop:  scroll}, 200)
-              setTimeout(()=> { this.load = false },100);
             })
 
           }

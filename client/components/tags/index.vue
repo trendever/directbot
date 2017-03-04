@@ -21,6 +21,15 @@
       padding: 10px 15px;
     }
 
+    span {
+
+      display: inline-block;
+      transform: translateY(-4%);
+      @media (--mobile){
+        transform: translateY(-7%);
+      }
+    }
+
     &:hover {
       color: white;
       background: $color__blue;
@@ -34,10 +43,10 @@
     i {
       display: inline-block;
       font-size: 14px;
-      transform: translateY(53%);
+      transform: translateY(6px);
       @media (--mobile){
         font-size: 26px;
-        transform: translateY(55%);
+        transform: translateY(12px);
       }
     }
   }
@@ -52,7 +61,7 @@
         <div class="tag-name"
           @click.stop="addTag(tag)"
           :class="{'selected': tag.active}">
-          {{tag.name}}
+          <span>{{tag.name}}</span>
           <i class="ic-close close"
             v-if="tag.active"
             @click.stop="delTag(tag)"></i>

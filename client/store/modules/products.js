@@ -90,6 +90,8 @@ let actions = {
 
       commit(types.PRODUCTS_INCREASE_LIST_LENGTH, data)
 
+      return data;
+
     })
 
   }
