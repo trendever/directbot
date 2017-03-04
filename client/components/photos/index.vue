@@ -102,7 +102,9 @@ export default {
 
 
       //tags
-      'selectedTagsId'
+      'selectedTagsId',
+      //find
+      'searchValue'
 
     ])
 
@@ -123,7 +125,7 @@ export default {
       if(!this.selectedTagsId) return;
 
       products
-        .find({tags: this.selectedTagsId || null, searchValue: this.searchValue || null})
+        .find({tags: this.selectedTagsId || null, query: this.searchValue || null})
         .then(data=>{
           this.$store.state.products.lists[this.listName].products = data;
       })
@@ -199,7 +201,9 @@ export default {
 
   watch:{
     selectedTagsId(val){
-
+      this.searchChange();
+    },
+    searchValue(val){
       this.searchChange();
     }
   },
