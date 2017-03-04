@@ -43,7 +43,7 @@
     i {
       display: inline-block;
       font-size: 14px;
-      transform: translateY(6px);
+      transform: translateY(7px);
       @media (--mobile){
         font-size: 26px;
         transform: translateY(12px);

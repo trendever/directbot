@@ -1,21 +1,24 @@
 <template lang="pug">
 
 #list
+  header-component(:leftBtnShow="false")
   .tags-wrap
-    tags(:tags="tags")
+    tags-component(:tags="tags")
   .wrap-photos
-    photos(:tags="true", :list-name="'list'")
+    photos-component(:tags="true", :list-name="'list'")
 
 </template>
 
 <script>
-import photos from 'components/photos';
-import tags from 'components/tags';
+import photosComponent from 'components/photos';
+import tagsComponent from 'components/tags';
+import headerComponent from 'components/header';
 import { mapGetters } from 'vuex';
 export default {
   components: {
-    photos,
-    tags
+    photosComponent,
+    tagsComponent,
+    headerComponent
   },
   created(){
     this.$store.dispatch('loadTags');
@@ -30,13 +33,18 @@ export default {
 </script>
 
 <style lang="postcss" >
+@import 'style/vars/vars.pcss';
 #list {
 
   .tags-wrap {
+
     position: relative;
     background: white;
     max-width: 1050px;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
+    @media (--mobile) {
+      margin-top: 89px;
+    }
   }
 
   .wrap-photos {
