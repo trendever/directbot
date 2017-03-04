@@ -63,13 +63,8 @@
   </div>
 </template>
 
-<style src="./style.pcss" lang="postcss"></style>
-
 <script type="text/babel">
 
-  import listener from 'event-listener'
-  import { flex } from './flex'
-  import { browser } from 'root/utils'
   import store from 'root/store'
 
   export default {
@@ -100,16 +95,6 @@
       filtredTags(){
         //this.tags.filter(tag=> tag.name === this.searchString)
         return this.tags;
-      },
-    },
-
-    methods: {
-
-      open(){
-        if(!this.isOpen) {
-          this.isOpen = true;
-          this.$refs.tags.scrollTop = 0;
-        }
       },
     }
   }

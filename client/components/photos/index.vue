@@ -2,7 +2,12 @@
 .photos.columns
 
   template(v-for="photo, index in listProducts")
-    single(:product="photo.data", :key="photo.id", :class-name="'p-item-' + index", :class-data="index%2")
+    single(
+      :product="photo.data",
+      :key="photo.id",
+      :class-name="'p-item-' + index",
+      :class-data="index%2",
+      ref="single")
 
   #infinitie
   scroll-top
@@ -12,7 +17,7 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex'
-
+import JQuery from 'jquery';
 import listen from 'event-listener';
 import single from './single.vue';
 import scrollTop from 'components/scroll-top';
@@ -162,9 +167,9 @@ export default {
               shop_id: null || this.shopId,
               offset: this.offset + 30
             }).then(()=>{
-
+              let scroll = document.body.scrollTop + this.$refs.single[0].$el.offsetHeight;
+              JQuery(document.body).animate({scrollTop:  scroll}, 200)
               setTimeout(()=> { this.load = false },100);
-
             })
 
           }
