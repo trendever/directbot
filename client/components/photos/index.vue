@@ -1,6 +1,6 @@
 <template lang="pug">
 .photos.columns
-  template(v-if="noResults")
+  template(v-if="noResults && this.$route.name === 'list'")
     .reset-search(@click="$store.dispatch('clearSearch')")
       span Сбросить поиск
   template(v-for="photo, index in listProducts")
