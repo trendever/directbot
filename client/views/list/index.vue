@@ -4,15 +4,21 @@
 
   header-component(:leftBtnShow="false")
 
-    .serch-text(slot="center-content")
-      .s-icon(@click='search()')
-        i.ic-search.__mirror
+    .search-text(slot="center-content")
+
       .s-input
+
+        .s-icon(@click='search(), $refs.search.focus()')
+          i.ic-search.__mirror
+
         input(
           @click="$event.target.focus()",
           @keyup="search",
           ref="search",
           :value="searchValue")
+
+        i.ic-close
+
 
   .tags-wrap
     tags-component(:tags="tags")
@@ -53,9 +59,46 @@ export default {
 <style lang="postcss" >
 @import 'style/vars/vars.pcss';
 #list {
-  .serch-text {
+  .search-text {
+      max-width: 1050px;
+      height: 100%;
+
+      @media (--mobile) {
+        flex-grow: 1;
+      }
+
+      .s-input {
+
+        @media (--overmobile) {
+          margin-top: 8px;
+          position: relative;
+        }
+
+        @media (--mobile) {
+          height: inherit;
+          background: white;
+        }
+
+        i.ic-close {
+          display: inline-block;
+          color: white;
+
+          @media (--overmobile) {
+            display: none;
+          }
+          @media (--mobile) {
+            position: absolute  0 0 * *;
+            padding: 28px;
+            font-size: $font__medium;
+            color: $color__gray-dark;
+          }
+        }
+
+      }
+
 
       input {
+        display: inline-block;
         border-top: none;
         border-left: none;
         border-right: none;
@@ -64,9 +107,17 @@ export default {
         font-size: $font__normal;
         background: $color__blue;
         font-family: $font__family__light;
+        height: inherit;
+        width: 80%;
         @media (--mobile) {
-          font-size: $font__medium;
+          color: $color__gray-dark;
+          font-size: $font__large;
+          width: 70%;
+          display: block;
+          margin-left: 120px;
+          background: white;
         }
+
 
         &:focus {
           border-top: none;
@@ -78,22 +129,32 @@ export default {
 
       }
 
-      > div {
-        display: inline-block;
-      }
-
       .s-icon {
+
+        display: inline-block;
         color: white;
-        padding: 15px;
+        padding-right: 20px;
         font-size: $font__normal;
+        position: absolute 0 0 * *;
         @media (--mobile){
-          font-size: $font__medium;
-          padding: 20px;
+          color: $color__blue;
+          font-size: $font__large;
+          position: absolute 0 * * 0 ;
+          width: 100px;
+        }
+
+        i {
+          transform: rotate(90deg);
+          cursor: pointer;
+          @media (--mobile){
+            padding: 22px;
+          }
         }
       }
   }
   .tags-wrap {
-
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     position: relative;
     background: white;
     max-width: 1050px;

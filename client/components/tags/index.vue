@@ -16,6 +16,14 @@
     border-radius: 4px;
     line-height: 100%;
 
+
+    @media (--overmobile) {
+      &:hover {
+        color: white;
+        background: $color__blue;
+      }
+    }
+
     @media (--mobile){
       font-size: $font__large;
       padding: 10px 15px;
@@ -30,10 +38,7 @@
       }
     }
 
-    &:hover {
-      color: white;
-      background: $color__blue;
-    }
+
 
     &.selected {
       color: white;
@@ -102,7 +107,6 @@
 
     computed: {
       filtredTags(){
-        //this.tags.filter(tag=> tag.name === this.searchString)
         return this.tags;
       },
     }
