@@ -19,7 +19,7 @@
         img(src="./icons/wallet.png")
 
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
-    .item
+    //.item
       .text Отключить бота
     .item(v-if="isMobile")
       .text(@click.stop="findBloger") Найти блогера
