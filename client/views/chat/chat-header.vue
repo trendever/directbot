@@ -61,13 +61,17 @@
       leftBtnAction(){
 
         if(this.$route.query){
+
+          if(this.$route.query.last === 'monetization'){
+            this.$router.push({name: 'monetization'});
+            return;
+          }
+
           if(this.$route.query.last === 'profile'){
             this.$router.push({name: 'profile'});
             return;
           }
-        }
 
-        if(this.$route.query) {
           if(this.$route.query.action === 'support'){
             this.$router.push({name: 'profile'});
             return;
