@@ -1,4 +1,18 @@
 <style src='./style.pcss'></style>
+<style lang="postcss">
+@import 'style/vars/vars.pcss';
+#chat-list {
+  .header-title {
+      position: absolute 0 * * 0;
+      height: 100%;
+      line-height: 50px;
+      font-size: $font__medium;
+      font-family:$font__family__semibold;
+      color: white;
+      margin-left: 200px;
+  }
+}
+</style>
 <template lang="pug">
 
 #chat-list
@@ -6,18 +20,18 @@
   .chat-list-cnt(v-if='isDoneLead')
 
     header-component(:title='getTitle', :left-btn-show='false')
-
+      .header-title(slot="left-content") Контакты
       .header__nav(slot='center-content')
 
         .header__nav__i.header__text(
           :class='{_active: getLeadTab === "customer"}',
           @click='$store.dispatch("setTab","customer")')
-          span Чаты с продавцами
+          span с продавцами
 
         .header__nav__i.header__text(
           :class='{_active: getLeadTab === "seller"}',
           @click='$store.dispatch("setTab", "seller")')
-          span Чаты с покупателями
+          span с покупателями
 
     .section.top.bottom
       .section__content
