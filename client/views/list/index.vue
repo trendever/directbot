@@ -15,6 +15,7 @@
           @click="$event.target.focus()",
           @keyup="search",
           ref="search",
+          placeholder="..поиск",
           :value="searchValue")
 
 
@@ -108,7 +109,7 @@ export default {
         border-bottom: 1px solid white;
         font-size: $font__normal;
         background: $color__blue;
-        font-family: $font__family__light;
+        font-family: $font__family__semibold;
         height: inherit;
 
 
@@ -117,6 +118,7 @@ export default {
         }
 
         @media (--mobile) {
+          transform: translateX(-17px);
           color: $color__gray-dark;
           font-size: $font__large;
           width: 70%;
