@@ -20,7 +20,7 @@
             li(v-for="text in parse(plan.about).adv")
               | {{ text }}
       .monetization__zero-days-link
-        a(@click="getHelp") У меня есть вопросы
+        a(@click="getHelp", :class="{'bottom-behavior': !selectedPlan}") У меня есть вопросы
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
         button(v-if="selectedPlan === 0") ПОКА НЕ УВЕРЕН
         button(v-else @click="getPlan") ПОДТВЕРДИТЬ

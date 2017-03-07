@@ -1,28 +1,31 @@
 <template lang="pug">
 .chat-list-i(@click="goToChat",
             ref="chatItem")
-  .chat-list-i-photo(v-if="!showDelete")
-    img(:src='getPhoto()')
 
-  .chat-list-i-body
+  template(v-if="isVisible")
+    .chat-list-i-photo(v-if="!showDelete")
+      img(:src='getPhoto()')
 
-    .body-title {{ title }}
+    .chat-list-i-body
 
-    .body-status-time
-      .body-status ( {{ status.toLowerCase() }} )
-      .body-time {{ dataTime }}
+      .body-title {{ title }}
 
-    .body-last-msg
-      p
-        b(v-if="recentMessage.user_name.length > 0") {{recentMessage.user_name}}:
-        span(v-html="recentMessage.message")
-      .body-notify(v-if='unreadCount')
-        span {{ unreadCount }}
-  .chat-list-i-delete(:class="{'open-delete': showDelete}", @click.stop="deleteChat") Удалить
+      .body-status-time
+        .body-status ( {{ status.toLowerCase() }} )
+        .body-time {{ dataTime }}
+
+      .body-last-msg
+        p
+          b(v-if="recentMessage.user_name.length > 0") {{recentMessage.user_name}}:
+          span(v-html="recentMessage.message")
+        .body-notify(v-if='unreadCount')
+          span {{ unreadCount }}
+    .chat-list-i-delete(:class="{'open-delete': showDelete}", @click.stop="deleteChat") Удалить
 
 </template>
 
 <script type='text/babel'>
+import listen from 'event-listener';
 
 import { urlThumbnail } from 'root/utils';
 
@@ -37,7 +40,8 @@ import { mapGetters } from 'vuex';
 export default {
   data(){
     return {
-      showDelete: false
+      showDelete: false,
+      isVisible: true
     };
   },
   props: {
@@ -59,10 +63,12 @@ export default {
     new Hammer(this.$refs.chatItem,{ touchAction: 'auto'})
 
     .on('swipeleft',()=>{
+
       this.$emit('closeDeleteLead');
       this.showDelete = true;
 
     })
+
     .on('swiperight',()=>{
 
       this.showDelete = false;

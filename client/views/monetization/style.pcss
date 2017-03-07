@@ -52,10 +52,7 @@
 
   }
   &__plans{
-    height: 433px;
-      @media(--tabletandless) {
-        height: auto;
-      }
+
   }
 
   .ic-close{
@@ -242,8 +239,14 @@
       text-decoration: none;
       cursor: pointer;
       @media (--overmobile) {
-        transform: translateY(120px);
+        transform: translateY(-10px);
         font-size: $font__normal;
+      }
+
+      @media screen and (min-height: 710px){
+        &.bottom-behavior{
+          transform: translateY(120px);
+        }
       }
     }
   }

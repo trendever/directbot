@@ -92,11 +92,11 @@ let router = new Router({
 
     },
 
-    // {
-    //   name: 'popup',
-    //   path: '/popup/:id',
-    //   component: Popup
-    // },
+    {
+      name: 'trendever-chat',
+      path: '/trendever-chat',
+      component: require('views/chat-list/trendever')
+    },
 
     {
       name: 'popup',

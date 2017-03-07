@@ -8,14 +8,16 @@
 
       .search-input
 
-        .s-icon(@click='search(), $refs.search.focus()')
-          i.ic-search.__mirror
-
         input(
           @click="$event.target.focus()",
           @keyup="search",
           ref="search",
+          placeholder="..поиск",
           :value="searchValue")
+
+        .s-icon(@click='search(), $refs.search.focus()')
+          i.ic-search.__mirror
+
 
 
         .tags-count(v-if="selectedTagsId.length", @click="clear")
@@ -88,7 +90,7 @@ export default {
       @media (--overmobile) {
         margin-top: 8px;
         position: relative;
-        width: 20%;
+        width: 250px;
         float: right;
 
       }
@@ -108,15 +110,23 @@ export default {
         border-bottom: 1px solid white;
         font-size: $font__normal;
         background: $color__blue;
-        font-family: $font__family__light;
+        font-family: $font__family__semibold;
         height: inherit;
 
 
         @media (--overmobile) {
-          transform: translateX(-34%);
+          //transform: translateX(-45px);
+          font-family: $font__family__light;
+          float: left;
+          width: 200px;
+          &::placeholder {
+            color: white;
+            opacity: .5;
+          }
         }
 
         @media (--mobile) {
+          transform: translateX(-17px);
           color: $color__gray-dark;
           font-size: $font__large;
           width: 70%;
@@ -178,7 +188,11 @@ export default {
       color: white;
       cursor: pointer;
       font-size: $font__normal;
-      position: absolute 0 0 * *;
+      //position: absolute 0 0 * *;
+      @media (--overmobile){
+        float: left;
+        padding-left: 5px;
+      }
       @media (--mobile){
         padding-right: 20px;
         color: $color__blue;

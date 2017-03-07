@@ -26,7 +26,11 @@ const state = {
   },
   notify_count: {},
   tab: 'customer',
-  global_notify_count: 0
+  global_notify_count: 0,
+  scrollLogic:{
+    seller:{spaceBlock:0,idStart:0,idEnd:30,scroll:0},
+    customer:{spaceBlock:0,idStart:0,idEnd:30,scroll:0}
+  }
 };
 
 function checkUnreadMessage( items ) {

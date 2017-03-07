@@ -19,7 +19,7 @@
         img(src="./icons/wallet.png")
 
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
-    .item
+    //.item
       .text Отключить бота
     .item(v-if="isMobile")
       .text(@click.stop="findBloger") Найти блогера
@@ -64,7 +64,7 @@
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
           .shipping_rules(v-if="user.shipping_rules")
-            .profile_desc_t Доставка и возврат
+            .profile_desc_t Условия
             .profile_desc_caption {{ user.shipping_rules }}
 
 
@@ -73,7 +73,7 @@
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
           .shipping_rules(v-if="user.shipping_rules")
-            .profile_desc_t Доставка и возврат
+            .profile_desc_t Условия
             .profile_desc_caption {{ user.shipping_rules }}
 
 

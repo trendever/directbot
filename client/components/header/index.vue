@@ -3,6 +3,7 @@
 .header
   .header__content
     .wrapper.directbot-color(:class="{'chat-slot': $route.name === 'chat' && isMobile}")
+      slot(name="left-content")
       .header__arrow(
         @click='leftBtnAction',
         v-if='leftBtnShow',
