@@ -112,6 +112,10 @@
         -webkit-background-size: 120px;
         background-size: 120px;
         size: 120px;
+        @media (--overmobile) {
+          transform: translateY(-50%)
+        }
+
         @media(--mobile) {
           position: relative;
           display: inline-block;
