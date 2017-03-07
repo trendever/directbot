@@ -27,9 +27,9 @@
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
     | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
     span.time__text
-      | Повышает конверсию и#[br(v-if="isMobile")]
-      span(v-if="!isMobile") &nbsp
-      | отвечает клиентам
+
+      | CRM/CMS для продаж#[br.mobile] в Instagram#[br.desktop]
+      | c аутсорсингом#[br.mobile] продавцов и блогеров#[br.desktop]
 
   .set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО

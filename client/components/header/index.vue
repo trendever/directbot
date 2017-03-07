@@ -21,13 +21,13 @@
 
       .header__center
 
-        slot(name='center-content')
 
         .header__left-logo
           router-link(:to="{name: 'home'}")
           //img(src="../img/logo-main.svg")
 
         .header__text(v-if="centerTextLink === null") {{ title }}
+        slot(name='center-content')
         .header__text.active(v-if="centerTextLink !== null", @click="$router.push(centerTextLink)") {{ title }}
           img.center-avatar(:src="avatarUrl", v-if="page == 'product' && !isMobile")
 
