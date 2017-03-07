@@ -5,9 +5,9 @@ import FastClick from 'fastclick';
 app.$mount('#app')
 
 
-window.onmessage = (msg) => {
-	app.$emit('postMessage',msg)
-};
+// window.onmessage = (msg) => {
+//   console.log(msg )
+// };
 
 FastClick.attach(document.body, {});
 
