@@ -2,7 +2,7 @@
 <template lang="pug" src="./template.pug"></template>
 
 <script>
-import settings from 'root/settings';
+import config from 'root/../config';
 import * as monetization from 'services/monetization';
 import {createPayment} from 'services/card';
 import { mapGetters } from 'vuex';
@@ -41,7 +41,7 @@ export default {
     },
     getHelp(){
       this.$store
-        .dispatch('createLead', settings.monetizationHelpID)
+        .dispatch('createLead', config.monetization_help_id)
         .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {

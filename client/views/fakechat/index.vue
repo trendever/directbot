@@ -33,9 +33,6 @@ export default {
     scrollTop,
   },
   data(){
-    console.log("CONF")
-    console.log(config)
-
     return {
       fullScroll: 0,
       noGoBottom: false,
@@ -46,6 +43,11 @@ export default {
     messages.offMsg( this.onMessage );
   },
   mounted(){
+    
+    if (this.$route.params.result === "true"){
+      console.log("ENTER METHOD");
+      console.log(this.$route.params.result);
+    }
     this.onMessage = this.onMessage.bind( this );
     messages.onMsg( this.onMessage );
     this.runFakeChat();
@@ -57,10 +59,6 @@ export default {
       'getMessages',
       'userID'
     ]),
-
-    fakeMe1ssages(){
-
-    },
 
     getFakeMessages(){
       let messages = [];

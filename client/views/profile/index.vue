@@ -194,6 +194,9 @@ export default {
   },
 
   methods: {
+    daysclick(){
+      this.$router.push( { name: 'monetization' });
+    },
     monetizationAction(){
       if(this.user.plan_id){
         this.$router.push({name: 'fake_chat', params:{result: true}, query: {last: 'profile'}})
