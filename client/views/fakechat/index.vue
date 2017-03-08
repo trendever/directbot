@@ -33,19 +33,24 @@ export default {
     scrollTop,
   },
   data(){
-    console.log("CONF")
-    console.log(config)
-
     return {
       fullScroll: 0,
       noGoBottom: false,
       coinsLog: [],
+      action: ""
     }
   },
   beforeDestroy() {
     messages.offMsg( this.onMessage );
   },
   mounted(){
+    
+    switch (this.$route.params.result){
+      case "true": this.action = "subscibe"; break;
+      case "false": this.action = "error"; break;
+      default: break;
+    }
+
     this.onMessage = this.onMessage.bind( this );
     messages.onMsg( this.onMessage );
     this.runFakeChat();
@@ -57,10 +62,6 @@ export default {
       'getMessages',
       'userID'
     ]),
-
-    fakeMe1ssages(){
-
-    },
 
     getFakeMessages(){
       let messages = [];
@@ -74,7 +75,7 @@ export default {
           let time = elem.created_at;
           console.log("COINS:")
           console.log(elem)
-          let coinsPartsObject = {content: elem.data.amount + " refilled",mime_type:"text/coins"}
+          let coinsPartsObject = {content: "Ваш счет пополнен на " + elem.data.amount + '<i class="ic-currency-rub"></i>',mime_type:"text/coins"}
           let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: config.service_user_id}};
           messages.push(coinsMessageObject)
 

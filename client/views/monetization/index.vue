@@ -2,8 +2,12 @@
 <template lang="pug" src="./template.pug"></template>
 
 <script>
+
 import jquery from 'jquery';
 import settings from 'root/settings';
+
+import config from 'root/../config';
+
 import * as monetization from 'services/monetization';
 import {createPayment} from 'services/card';
 import { mapGetters } from 'vuex';
@@ -42,11 +46,11 @@ export default {
     },
     getHelp(){
       this.$store
-        .dispatch('createLead', settings.monetizationHelpID)
+        .dispatch('createLead', config.monetization_help_id)
         .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
-                this.$router.push( { name: 'chat', params: { id: lead.id }, query:{last: 'monetization'} } )
+                this.$router.push( { name: 'fake_chat', params: { payed: "none" }, query:{last: 'monetization'} } )
               }
             }
           )
@@ -65,10 +69,13 @@ export default {
       });
     },
     pay(order_id){
-      createPayment({id: order_id,lead_id: 0}).then((result)=>{
-        let redirect_url = result.redirect_url;
-        window.location = redirect_url;
-      });
+      this.$store
+        .dispatch('createLead', config.monetization_help_id).then(() => {
+          createPayment({id: order_id,lead_id: 0}).then((result)=>{
+            let redirect_url = result.redirect_url;
+            window.location = redirect_url;
+          });
+        });
     },
     closePage(){
       if(window.history.length > 3){
