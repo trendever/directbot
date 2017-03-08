@@ -2,6 +2,7 @@
 <template lang="pug" src="./template.pug"></template>
 
 <script>
+import jquery from 'jquery';
 import settings from 'root/settings';
 import * as monetization from 'services/monetization';
 import {createPayment} from 'services/card';
@@ -50,8 +51,9 @@ export default {
             }
           )
     },
-    selectPlan(plan_id){
+    selectPlan(plan_id, event){
       this.selectedPlan = (this.selectedPlan === plan_id) ? 0 : plan_id;
+      jquery(document.body).animate({scrollTop: jquery(event.target).offset().top },200)
     },
     getPlan(){
       monetization.coins_offers().then((data)=>{

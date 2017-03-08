@@ -7,9 +7,9 @@
         | дня осталось до конца #[br] пробного периода
     .monetization__plans
       .monetization__text.bot
-        | Выбор тарифного плана
+        // Выбор тарифного плана
       template(v-for="plan in plans")
-        .monetization__btn(@click="selectPlan(plan.id)")
+        .monetization__btn(@click="selectPlan(plan.id, $event)")
           button(:class="{make__choice: selectedPlan === plan.id}")
             span.bold {{plan.subscription_price}}
               i.ic-rub
