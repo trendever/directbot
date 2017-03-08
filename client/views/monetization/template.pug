@@ -22,6 +22,6 @@
       .monetization__zero-days-link
         a(@click="getHelp", :class="{'bottom-behavior': !selectedPlan}") У меня есть вопросы
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
-        button(v-if="selectedPlan === 0") ПОКА НЕ УВЕРЕН
+        button(v-if="selectedPlan === 0", @click="$router.push({name: 'profile'})") ПОКА НЕ УВЕРЕН
         button(v-else @click="getPlan") ПОДТВЕРДИТЬ
     .scroll-help-block
