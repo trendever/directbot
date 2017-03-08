@@ -27,7 +27,6 @@
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
     | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
     span.time__text
-
       | CRM/CMS для продаж#[br.mobile] в Instagram#[br.desktop]
       | c аутсорсингом#[br.mobile] продавцов и блогеров#[br.desktop]
 
@@ -204,11 +203,19 @@ export default {
     }
 
     .time__text {
+
       font-size: .7em;
       font-family: $font__family__light;
+
+      @media (--overmobile){
+        display: inline-block;
+        margin-bottom:20px;
+
+      }
       @media (--mobile) {
         font-size: 1em;
       }
+
     }
 
     z-index: 1;
