@@ -19,16 +19,15 @@
     width: 975px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-direction: row-reverse;
+    flex-wrap: wrap;
     padding-right: 73px;
     margin: 0 auto;
-    @media(--tabletandless) {
+    @media (--tabletandless) {
       display: block;
       width: auto;
       padding: 40px 0px 0px 0px;
     }
-    @media screen and (min-width: 751px){
+    @media (--overmobile){
       padding-top: 150px;
     }
   }
@@ -73,10 +72,10 @@
   }
 
   &__days-block{
-    height: 211px;
-      @media(--tabletandless) {
-        height: auto;
-      }
+
+    .block__desktop {
+
+    }
   }
 
   .end-txt{
@@ -88,6 +87,9 @@
 
   &__days-to-end{
     font-size: 100px;
+    @media (--overmobile){
+      padding: 50px;
+    }
     &.is__end {
       color: #FFDE1E;
     }
@@ -239,14 +241,8 @@
       text-decoration: none;
       cursor: pointer;
       @media (--overmobile) {
-        transform: translateY(-10px);
+        padding-top: 5px;
         font-size: $font__normal;
-      }
-
-      @media screen and (min-height: 710px){
-        &.bottom-behavior{
-          transform: translateY(120px);
-        }
       }
     }
   }
@@ -265,6 +261,7 @@
     font-size: 36px;
     font-family: $font__family__light;
     border: none;
+    z-index: 220;
 
     &:hover{
       background-color: #DEBD00;
