@@ -5,6 +5,7 @@
 
 import jquery from 'jquery';
 import settings from 'root/settings';
+import { declOfNum } from 'root/utils';
 
 import config from 'root/../config';
 
@@ -35,9 +36,14 @@ export default {
     },
     ...mapGetters([
       'monetizationDays'
-    ])
+    ]),
+    daysCount(){
+
+      return declOfNum(['день','дня',"дней" ])(this.monetizationDays);
+    }
   },
   methods:{
+
     parse(val){
       return JSON.parse(val);
     },
