@@ -9,8 +9,9 @@
       .monetization__text.end-txt
         | {{ daysCount }} осталось до конца #[br] пробного периода
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
-        button(v-if="selectedPlan === 0", @click="$router.push({name: 'profile'})")
-          | ПОКА НЕ УВЕРЕН
+        button(v-if="selectedPlan === 0", @click="$router.push({name: 'profile'})", :class="{'red_none': getUseDays == 0}")
+          span(v-if="getUseDays > 0") ПОКА НЕ УВЕРЕН
+          span(v-if="getUseDays == 0") ВЫБЕРИТЕ ТАРИФ
         button(v-else @click="getPlan")
           | ПОДТВЕРДИТЬ
       .monetization__zero-days-link(v-if="!isMobile")
