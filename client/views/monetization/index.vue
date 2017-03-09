@@ -49,9 +49,9 @@ export default {
         this.noPlanSelected = true;
         this.$nextTick(()=>{
 
-          setInterval(()=>{
+          setTimeout(()=>{
             this.noPlanSelected=false
-          },700)
+          },600)
 
         })
 
