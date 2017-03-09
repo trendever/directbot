@@ -19,6 +19,13 @@
     .button-text(v-on:click.stop="showOperatorInfo = false")
       span OK
 
+  //-desktop-phone
+  native-popup(:show-popup="showDesktopPhone")
+    .title-text.title-font Звонить на
+    .main-text {{ phoneNumber }}
+    .button-text(v-on:click.stop="showDesktopPhone = false")
+      span СПАСИБО
+
 
 </template>
 
@@ -42,7 +49,9 @@ export default {
       //clipboard
       showCopyMessage: false,
       copyMessage: '',
-      showOperatorInfo: false
+      //phone
+      showDesktopPhone: false,
+      phoneNumber: ''
     }
   },
   components: {
@@ -51,6 +60,12 @@ export default {
     nativePopup
   },
   mounted(){
+
+    window.eventHub.$on('show-desktop-phone', data=>{
+      this.showDesktopPhone = true;
+      this.phoneNumber = data;
+    })
+
     window.eventHub.$on('copy-product-link', data=>{
       this.showCopyMessage = true;
       this.copyMessage = data;
