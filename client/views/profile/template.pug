@@ -47,9 +47,9 @@
 
 
           .profile_info_about(v-if="user.location && user.products_count")
-            span.profile_info_about_type
+            span.profile_info_about_type(v-if="shopabout")
               | {{ shopabout }} &nbsp
-            span.profile_info_about_location
+            span.profile_info_about_location(v-if="shoplocation")
               | {{ shoplocation}}&nbsp&nbsp
               span(v-if="!isMobile && user.working_time") |&nbsp
             span.profile_info_about_work-time(v-if="user.working_time")
