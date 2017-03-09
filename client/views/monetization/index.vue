@@ -26,7 +26,8 @@ export default {
       plans: [],
       plansAmmounts: [],
       selectedPlan: 0,
-      selectedAmmount: 0
+      selectedAmmount: 0,
+      noPlanSelected: false,
     }
   },
   computed: {
@@ -43,7 +44,22 @@ export default {
     }
   },
   methods:{
+    goProfile(){
+      if(this.getUseDays == 0 && !this.selectedPlan){
+        this.noPlanSelected = true;
+        this.$nextTick(()=>{
 
+          setInterval(()=>{
+            this.noPlanSelected=false
+          },700)
+
+        })
+
+      } else {
+        this.$router.push({name: 'home'})
+      }
+
+    },
     parse(val){
       return JSON.parse(val);
     },
