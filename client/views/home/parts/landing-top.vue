@@ -14,6 +14,7 @@
   .profile-header
     .profile-header__center
     button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
+    a(href="http://www.blogme.io/dressblogger", target="_blank").for-blogers БЛОГЕРАМ
 
   .logo__mobile
 
@@ -125,6 +126,28 @@ export default {
   .profile-header {
     z-index: 2;
     //auth btn on desktop (top right corner)
+
+    a.for-blogers {
+      text-decoration: none;
+      position: absolute;
+      top: 20px;
+      right: 275px;
+      width: 158px;
+      height: 40px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background: transparent;
+      color: $color__white;
+      font-size: 16px;
+      font-family: $font__family__semibold;
+      z-index: 100;
+      line-height: 40px;
+      @media(--tabletandless) {
+        display: none;
+      }
+
+
+    }
     .auth-btn{
       position: absolute;
       top: 20px;
@@ -141,12 +164,9 @@ export default {
       @media(--tabletandless) {
         display: none;
       }
-      @media(--tabletandless) {
-        display: none;
-      }
-
     }
-    .auth-btn:hover{
+    .auth-btn:hover,
+    .for-blogers:hover{
       background: $color__white;
       border-color: $color__white;
       color: $color__blue;
