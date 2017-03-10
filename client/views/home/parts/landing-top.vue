@@ -25,10 +25,10 @@
     img(src="../img/directbot-main-logo.png")
 
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
-    | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
+    | Оператор магазина в Instagram #[br]
     span.time__text
-      | CRM/CMS для продаж#[br.mobile] в Instagram#[br.desktop]
-      | c аутсорсингом#[br.mobile] продавцов и блогеров#[br.desktop]
+      | CRM для продаж в Instagram c#[br]
+      | аутсорсингом продавцов и блогеров#[br]
 
   .set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
@@ -197,7 +197,30 @@ export default {
 
   //description in the center of the screen both versions (mob&desk)
   .description {
+
+
     font-family: $font__family__regular;
+    z-index: 1;
+    box-sizing: border-box;
+    color: $color__white;
+    font-size: 46px;
+    text-align: center;
+    margin-top: 4px;
+
+    @media(--tabletandless) {
+      width: 100%;
+      font-size: 46px;
+      text-align: center;
+      margin-top: 16px;
+      margin-bottom: 81px;
+      top: 0;
+      left: 0;
+      font-family: $font__family__semibold;
+      line-height: 55px;
+    }
+
+
+
     &.bottom-fix {
       margin-bottom:30px;
     }
@@ -213,38 +236,14 @@ export default {
 
       }
       @media (--mobile) {
-        font-size: 1em;
+        font-family: $font__family__thin;
+        display: inline-block;
+        width: 100%;
+        font-size: 0.9em;
       }
 
     }
 
-    z-index: 1;
-    box-sizing: border-box;
-    color: $color__white;
-    font-size: 46px;
-    text-align: center;
-    margin-top: 4px;
-    @media(--tabletandless) {
-      width: 100%;
-      font-size: 54px;
-      text-align: center;
-      margin-top: 45px;
-      padding: 0px 80px;
-      position: relative;
-      line-height: 60px;
-    }
-    @media(--tabletandless) {
-      width: 100%;
-      font-size: 46px;
-      text-align: center;
-      margin-top: 16px;
-      margin-bottom: 81px;
-      padding: 0px 30px;
-      top: 0;
-      left: 0;
-      font-family: $font__family__semibold;
-      line-height: 55px;
-    }
   }
   //description in the center of the screen both versions (mob&desk)
 
