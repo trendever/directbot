@@ -11,6 +11,11 @@
   who-need
   show-bot
   operator-skills
+  .blue-plank
+    | CRM Directbot удобен настолько,#[br.mobile]
+    | что мы готовы предоставить вам#[br]
+    | продавца на аутсорсинг 24/7#[br.mobile]
+    | всего за 3990 руб. в месяц#[br.mobile]
   operator-actions
   toggle-role
   connect-get
@@ -205,6 +210,23 @@ export default {
 #operator-skills,
 #show-bot,
 .who-need {
+
+  .blue-plank {
+    text-align: center;
+    background: $color__blue;
+    color: white;
+    font-family: $font__family__semibold;
+    @media (--overmobile) {
+      font-size: 32px;
+      padding: 30px * 30px *;
+    }
+
+    @media (--mobile) {
+      font-size: $font__medium;
+      padding: 45px * 45px *;
+    }
+
+  }
 
 
   .bg-face-1,
