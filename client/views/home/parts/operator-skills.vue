@@ -1,7 +1,7 @@
 <template lang="pug">
 #operator-skills
 
-  .landing-title Преимущества#[br(v-if="isMobile")] нашего оператора
+  .landing-title Преимущества#[br(v-if="isMobile")] Directbot
 
   .skills-wrapper
 
