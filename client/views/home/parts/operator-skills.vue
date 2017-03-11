@@ -10,7 +10,15 @@
       .skills-icon
         img(src="../img/icon-1.png")
       .sub-title Создаёт заказы #[br] из Instagram
-      .caption Со &#128526 смайлами #[br(v-if="!isMobile")]
+      .caption
+        | Сканирует комментарии и сообщения,#[br]
+        | находит клиентов и создаёт новый#[br]
+        | заказ в CRM системе.
+        a.link-info(@click.stop="$parent.openPopup('is1')")
+          | Вы не#[br]
+          | пропустите ни одного покупателя#[br]
+
+      //-.caption Со &#128526 смайлами #[br(v-if="!isMobile")]
         | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
         a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
 
