@@ -22,9 +22,9 @@
         | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
         a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
 
-    .info-box.two
+    .info-box.three
       .skills-icon
-        img(src="../img/icon-2.png")
+        img(src="../img/icon-3.png")
       .sub-title Интегрируется в #[br] Instragram Direct
       .caption
         | Прекрасно когда заказы автоматом#[br]
@@ -55,16 +55,16 @@
         | и цены. Магазин доступен#[br]
         | по ссылке внутри Instagram#[br]
 
-    .info-box.three
+    .info-box.two
       .skills-icon
-        img(src="../img/icon-3.png")
-      .sub-title Подключается #[br(v-if="!isMobile")] в один клик
+        img(src="../img/icon-2.png")
+      .sub-title Выполняет #[br.desktop]"мартышкин труд"
       .caption
-        | Для подключения оператора #[br]
-        | нужно зарегистрироваться и#[br]
-        | привязать свой Instagram.#[br]
-        a.link-info(@click.stop="$parent.openPopup('is3')")
-          | Ничего не надо скачивать
+        | Легко автоматизировать#[br]
+        | стандартные вопросы и ответы,#[br]
+        | такие как цена, адрес, условия#[br]
+        | и модификации товаров и услуг#[br]
+
 
     .info-box.six
       .skills-icon
@@ -81,7 +81,7 @@
     .info-box.five
       .skills-icon
         img(src="../img/icon-6.png")
-      .sub-title Организует бартерную#[br] рекламу у блогеров
+      .sub-title Сервис работы #[br] с блогерами
       .caption
         | Умеет находить блогеров без ботов#[br]
         | и договариваться по бартеру.#[br]
