@@ -30,7 +30,7 @@
     .info-box.two
       .skills-icon
         img(src="../img/icon-2.png")
-      .sub-title Выполняет #[br] «мартышкин труд»
+      .sub-title Интегрируется в #[br] Instragram Direct
       .caption
         | Не нужно отвечать и спрашивать#[br]
         | одно и то же.&nbsp

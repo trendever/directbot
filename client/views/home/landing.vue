@@ -15,7 +15,7 @@
   toggle-role
   connect-get
 
-  .fake-height
+  .fake-height(v-if="toggleBtns")
   //-.free-connect(v-if="toggleBtns")
     a.link-info(@click.stop="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
