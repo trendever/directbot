@@ -32,6 +32,13 @@
         img(src="../img/icon-2.png")
       .sub-title Интегрируется в #[br] Instragram Direct
       .caption
+        | Прекрасно когда заказы автоматом#[br]
+        | попадают в систему, но еще лучше#[br]
+        a.link-info(@click.stop="$parent.openPopup('is2')")
+          | отвечать клиентам внутрь Instagram,#[br]
+          | не выходя из CRM#[br]
+
+      //-.caption
         | Не нужно отвечать и спрашивать#[br]
         | одно и то же.&nbsp
         a.link-info(@click.stop="$parent.openPopup('is2')")
