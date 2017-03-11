@@ -23,11 +23,12 @@
         img(src="../img/icon-3.png")
       .sub-title Интегрируется в #[br] Instagram Direct
       .caption
-        | Прекрасно когда заказы автоматом#[br]
-        | попадают в систему, но еще лучше#[br]
+        | Больше не нужно "гнать" покупателей#[br]
+        | из Instagram в WhatsApp или на сайт#[br]
+        | магазина.&nbsp
         a.link-info(@click.stop="$parent.openPopup('is2')")
-          | отвечать клиентам внутрь Instagram,#[br]
-          | не выходя из CRM#[br]
+          | Теперь можно отвечать внутрь#[br]
+          | Instagram, не выходя из CRM
 
     .info-box.four
       .skills-icon
