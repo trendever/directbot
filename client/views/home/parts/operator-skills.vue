@@ -25,7 +25,7 @@
     .info-box.three
       .skills-icon
         img(src="../img/icon-3.png")
-      .sub-title Интегрируется в #[br] Instragram Direct
+      .sub-title Интегрируется в #[br] Instagram Direct
       .caption
         | Прекрасно когда заказы автоматом#[br]
         | попадают в систему, но еще лучше#[br]
@@ -58,7 +58,7 @@
     .info-box.two
       .skills-icon
         img(src="../img/icon-2.png")
-      .sub-title Выполняет #[br.desktop]"мартышкин труд"
+      .sub-title Выполняет #[br]"мартышкин труд"
       .caption
         | Легко автоматизировать#[br]
         | стандартные вопросы и ответы,#[br]

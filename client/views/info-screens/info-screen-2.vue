@@ -6,7 +6,7 @@
     | ВЫ ИЛИ ЛЮБОЙ ВАШ СОТРУДНИК#[br]
     | СМОЖЕТЕ НЕ ТОЛЬКО КОНТРОЛИРОВАТЬ#[br.desktop]
     | ЗАКАЗЫ,#[br.mobile] НО И СОВМЕСТНО ОТВЕЧАТЬ#[br.desktop]
-    | КЛИЕНТАМ НЕ ОТКРЫВАЯ INSTAGRAM#[br.desktop]
+    | КЛИЕНТАМ, НЕ ОТКРЫВАЯ INSTAGRAM#[br.desktop]
 
 </template>
 
