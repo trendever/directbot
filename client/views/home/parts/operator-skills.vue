@@ -68,7 +68,7 @@
     .info-box.five
       .skills-icon
         img(src="../img/icon-6.png")
-      .sub-title Сервис работы #[br] с блогерами
+      .sub-title Организует работу #[br] с блогерами
       .caption
         | Умеет находить блогеров без ботов#[br]
         | и договариваться по бартеру.#[br]
