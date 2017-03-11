@@ -1,7 +1,7 @@
 <template lang="pug">
 #operator-skills
 
-  .landing-title Преимущества#[br(v-if="isMobile")] Directbot
+  .landing-title Преимущества Directbot
 
   .skills-wrapper
 
@@ -18,10 +18,6 @@
           | Вы не#[br]
           | пропустите ни одного покупателя#[br]
 
-      //-.caption Со &#128526 смайлами #[br(v-if="!isMobile")]
-        | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
-        a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
-
     .info-box.three
       .skills-icon
         img(src="../img/icon-3.png")
@@ -33,16 +29,7 @@
           | отвечать клиентам внутрь Instagram,#[br]
           | не выходя из CRM#[br]
 
-      //-.caption
-        | Не нужно отвечать и спрашивать#[br]
-        | одно и то же.&nbsp
-        a.link-info(@click.stop="$parent.openPopup('is2')")
-          | Оператор даст#[br]
-          | ссылку на сайт, уточнит наличие,#[br]
-          | узнает размеры и адрес
-
     .info-box.four
-
       .skills-icon
         img(src="../img/privilege-01.png")
       .sub-title
