@@ -5,19 +5,6 @@
 
   .skills-wrapper
 
-    .info-box.four
-
-      .skills-icon
-        img(src="../img/privilege-01.png")
-      .sub-title
-        | Превращает Instagram#[br]
-        | в&nbsp
-        span.star-link(@click.stop="$parent.openPopup('is11')") интернет-магазин
-      .caption
-        | Зеркально скопирует ленту, но#[br]
-        | добавит кнопку КУПИТЬ, названия#[br]
-        | и цены. Магазин доступен#[br]
-        | по ссылке внутри Instagram#[br]
 
     .info-box.one
       .skills-icon
@@ -45,6 +32,20 @@
           | Оператор даст#[br]
           | ссылку на сайт, уточнит наличие,#[br]
           | узнает размеры и адрес
+
+    .info-box.four
+
+      .skills-icon
+        img(src="../img/privilege-01.png")
+      .sub-title
+        | Превращает Instagram#[br]
+        | в&nbsp
+        span.star-link(@click.stop="$parent.openPopup('is11')") интернет-магазин
+      .caption
+        | Зеркально скопирует ленту, но#[br]
+        | добавит кнопку КУПИТЬ, названия#[br]
+        | и цены. Магазин доступен#[br]
+        | по ссылке внутри Instagram#[br]
 
     .info-box.three
       .skills-icon
@@ -141,6 +142,11 @@ export default {
 
   @media screen and (min-width: 1024px){
     .info-box{
+
+      &.one img{
+        max-width: 220px;
+      }
+
       &.six img {
         max-width: 160px;
       }
