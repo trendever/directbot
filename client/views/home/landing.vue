@@ -15,7 +15,8 @@
   toggle-role
   connect-get
 
-  .free-connect(v-if="toggleBtns")
+  .fake-height
+  //-.free-connect(v-if="toggleBtns")
     a.link-info(@click.stop="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
 
@@ -245,6 +246,17 @@ export default {
         cursor: pointer;
         border-bottom: 1px solid transparent;
       }
+    }
+  }
+
+
+  .fake-height {
+    @media (--overmobile){
+      height: 80px;
+    }
+
+    @media ( --mobile ){
+
     }
   }
 
