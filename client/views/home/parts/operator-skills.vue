@@ -140,25 +140,25 @@ export default {
     .info-box{
 
       &.one img{
-        max-width: 220px;
+        max-width: 235px;
       }
 
       &.six img {
-        max-width: 160px;
+        max-width: 158px;
       }
 
       &.five img {
-        max-width: 170px;
+        max-width: 162px;
       }
       &.four img {
-        max-width: 230px;
+        max-width: 225px;
       }
 
-      &.two {
+      &.two img {
         max-with: 300px;
       }
       &.three {
-        img{max-width: 210px}
+        img { max-width: 212px }
         max-with: 300px;
       }
     }
