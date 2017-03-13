@@ -20,10 +20,6 @@ let router = new Router({
 
 	routes: [
     { path: '/', redirect: { name: 'home' }},
-    {
-      path: '/dressbloger',
-      component: require('views/dressbloger.vue')
-    },
 		{
       path: '/home',
       component: require('views/home/landing.vue'),
