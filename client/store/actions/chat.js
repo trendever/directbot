@@ -93,7 +93,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
 
         }
 
-        
+
         commit( types.CONVERSATION_SET, { id: conversation_id, messages, lengthList: chatCountForLoading } )
 
       }
@@ -352,9 +352,9 @@ export const createMessage = ( { commit, state },{ conversation_id, text, mime_t
 }
 
 export const receiveMessage = ( { commit, state }, conversation_id, messages ) => {
-  console.log("RECEIVE MESSAGE!");
-  console.log(conversation_id);
-  console.log("MESSAGES");
+  console.log("%cRECEIVE MESSAGE!", "color: green; font-size: 1.2rem");
+  console.log("conversation_id", conversation_id);
+  console.log("%cMESSAGES!", "color: green; font-size: 1.2rem");
   console.log(messages);
   if ( Array.isArray( messages ) ) {
 
@@ -365,10 +365,6 @@ export const receiveMessage = ( { commit, state }, conversation_id, messages ) =
       const msgUserId = msg.user ? msg.user.user_id : null
 
       commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages, id: conversation_id } )
-
-
-      console.log(msg.conversation_id)
-      console.log(msg)
 
       if ( userID( store.state.user ) !== msgUserId ) {
 
@@ -443,7 +439,7 @@ export const addPreLoadMessage = ( { commit, state },  { base64, base64WithPrefi
       }
     ]
   }
-  
+
   commit( types.CONVERSATION_RECEIVE_MESSAGE, { messages: [ preLoadMessage ], id: getId( state ) } )
 
   messageService.create( getId( state ), base64, MIME ).then( ( { messages } ) => {
