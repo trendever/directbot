@@ -8,7 +8,7 @@
 
     .info-box.one
       .skills-icon
-        img(src="../img/icon-4.png")
+        img(src="./img/lp_icons_7.png")
       .sub-title Личного #[br(v-if="!isMobile")] оператора
       .caption
         a.link-info(@click.stop="$parent.openPopup('is7')") Личный оператор #[br(v-if="!isMobile")] на связи с вашими клиентами #[br(v-if="!isMobile")] 24/7. В 10+ раз дешевле*
@@ -17,7 +17,7 @@
 
     .info-box.two
       .skills-icon
-        img(src="../img/icon-5.png")
+        img(src="./img/lp_icons_8.png")
       .sub-title Адаптивный #[br(v-if="!isMobile")] интернет-магазин
       .caption
         a.link-info(@click.stop="$parent.openPopup('is8')")
@@ -28,7 +28,7 @@
 
     .info-box.three
       .skills-icon
-        img(src="../img/icon-6.png")
+        img(src="./img/lp_icons_6.png")
       .sub-title Сервис рекламы#[br(v-if="!isMobile")] у блогеров
       .caption
         a.link-info(@click.stop="$parent.openPopup('is9')")
@@ -93,25 +93,6 @@ export default {
     @media screen and (min-width: 1024px){
       .badge {
         top: -6px;
-      }
-    }
-    img {
-      max-width: 200px;
-    }
-
-  }
-  .info-box.two {
-    img {
-      max-width: 195px;
-    }
-
-  }
-
-  .info-box.three {
-    img {
-      max-width: 160px;
-      @media screen and (max-width: 750px){
-        min-width: 340px;
       }
     }
   }

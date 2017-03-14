@@ -8,7 +8,7 @@
 
     .info-box
       .skills-icon
-        img(src="./icons/lp_icons_1.png")
+        img(src="./img/lp_icons_1.png")
       .sub-title Создаёт заказы #[br] из Instagram
       .caption
         | Сканирует комментарии и сообщения,#[br]
@@ -20,7 +20,7 @@
 
     .info-box
       .skills-icon
-        img(src="./icons/lp_icons_2.png")
+        img(src="./img/lp_icons_2.png")
       .sub-title Интегрируется в #[br] Instagram Direct
       .caption
         | Больше не нужно "гнать" покупателей#[br]
@@ -32,7 +32,7 @@
 
     .info-box
       .skills-icon
-        img(src="./icons/lp_icons_3.png")
+        img(src="./img/lp_icons_3.png")
       .sub-title
         | Превращает Instagram#[br]
         | в&nbsp
@@ -45,7 +45,7 @@
 
     .info-box
       .skills-icon
-        img(src="./icons/lp_icons_4.png")
+        img(src="./img/lp_icons_4.png")
       .sub-title Выполняет #[br]"мартышкин труд"
       .caption
         | Легко автоматизировать#[br]
@@ -56,7 +56,7 @@
 
     .info-box
       .skills-icon
-        img(src="./icons/lp_icons_5.png")
+        img(src="./img/lp_icons_5.png")
       .sub-title Гарантирует #[br]  безопасность профиля
       .caption
         | Мы не храним пароль от Instagram #[br]
@@ -68,7 +68,7 @@
 
     .info-box
       .skills-icon
-        img(src="./icons/lp_icons_6.png")
+        img(src="./img/lp_icons_6.png")
       .sub-title Организует работу #[br] с блогерами
       .caption
         | Умеет находить блогеров без ботов#[br]
@@ -90,11 +90,8 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
-
 #operator-skills {
-
   margin: 0 auto;
-
   .save-experience {
     font-size: $font__family__semibold;
     font-size: 42px;
@@ -109,17 +106,6 @@ export default {
     border-bottom: 1px solid $color__gray-dark;
     &:hover {
       cursor: pointer;
-    }
-  }
-
-  .skills-icon {
-    img {
-      @media (--mobile) {
-        max-width: 500px !important;
-      }
-      @media (--overmobile) {
-        max-width: 270px !important;
-      }
     }
   }
 }

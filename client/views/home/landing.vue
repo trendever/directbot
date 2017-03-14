@@ -387,10 +387,11 @@ export default {
 
       img {
         width: 100%;
-        max-width: 250px;
-        @media(--mobile){
-          max-width: 350px;
-          min-width: 350px;
+        @media (--mobile) {
+          max-width: 500px;
+        }
+        @media (--overmobile) {
+          max-width: 270px;
         }
       }
     }
