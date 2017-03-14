@@ -6,9 +6,9 @@
   .skills-wrapper
 
 
-    .info-box.one
+    .info-box
       .skills-icon
-        img(src="../img/icon-1.png")
+        img(src="./icons/lp_icons_1.png")
       .sub-title Создаёт заказы #[br] из Instagram
       .caption
         | Сканирует комментарии и сообщения,#[br]
@@ -18,9 +18,9 @@
           | Вы не#[br]
           | пропустите ни одного покупателя#[br]
 
-    .info-box.three
+    .info-box
       .skills-icon
-        img(src="../img/icon-3.png")
+        img(src="./icons/lp_icons_2.png")
       .sub-title Интегрируется в #[br] Instagram Direct
       .caption
         | Больше не нужно "гнать" покупателей#[br]
@@ -30,9 +30,9 @@
           | Теперь можно отвечать внутрь#[br]
           | Instagram, не выходя из CRM
 
-    .info-box.four
+    .info-box
       .skills-icon
-        img(src="../img/privilege-01.png")
+        img(src="./icons/lp_icons_3.png")
       .sub-title
         | Превращает Instagram#[br]
         | в&nbsp
@@ -43,9 +43,9 @@
         | и цены. Магазин доступен#[br]
         | по ссылке внутри Instagram#[br]
 
-    .info-box.two
+    .info-box
       .skills-icon
-        img(src="../img/icon-2.png")
+        img(src="./icons/lp_icons_4.png")
       .sub-title Выполняет #[br]"мартышкин труд"
       .caption
         | Легко автоматизировать#[br]
@@ -54,9 +54,9 @@
         | и модификации товаров и услуг#[br]
 
 
-    .info-box.six
+    .info-box
       .skills-icon
-        img(src="../img/privilege-06.png")
+        img(src="./icons/lp_icons_5.png")
       .sub-title Гарантирует #[br]  безопасность профиля
       .caption
         | Мы не храним пароль от Instagram #[br]
@@ -66,9 +66,9 @@
           | безопасность #[br]
           | от бана или блокировки
 
-    .info-box.five
+    .info-box
       .skills-icon
-        img(src="../img/icon-6.png")
+        img(src="./icons/lp_icons_6.png")
       .sub-title Организует работу #[br] с блогерами
       .caption
         | Умеет находить блогеров без ботов#[br]
@@ -105,61 +105,20 @@ export default {
     padding-bottom: 40px;
   }
 
-
   span.star-link {
-
     border-bottom: 1px solid $color__gray-dark;
     &:hover {
       cursor: pointer;
     }
   }
 
-
-  @media (--mobile) {
-    .info-box{
-      img { max-width: 400px !important };
-
-      &.five img {
-        max-width: 340px !important;
-        min-width: 300px !important;
+  .skills-icon {
+    img {
+      @media (--mobile) {
+        max-width: 500px !important;
       }
-
-      &.two img {
-        max-width: 450px !important;
-      }
-
-      &.six img {
-        max-width: 210px !important;
-        min-width: 320px;
-      }
-    }
-  }
-
-
-  @media screen and (min-width: 1024px){
-    .info-box{
-
-      &.one img{
-        max-width: 235px;
-      }
-
-      &.six img {
-        max-width: 158px;
-      }
-
-      &.five img {
-        max-width: 162px;
-      }
-      &.four img {
-        max-width: 225px;
-      }
-
-      &.two img {
-        max-with: 300px;
-      }
-      &.three {
-        img { max-width: 212px }
-        max-with: 300px;
+      @media (--overmobile) {
+        max-width: 270px !important;
       }
     }
   }
