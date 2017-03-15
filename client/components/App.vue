@@ -21,7 +21,7 @@
 
   //-desktop-phone
   native-popup(:show-popup="showDesktopPhone")
-    .title-text.title-font Звонить на
+    .title-text.title-font Звоните на
     .main-text {{ phoneNumber }}
     .button-text(v-on:click.stop="showDesktopPhone = false")
       span СПАСИБО
