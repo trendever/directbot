@@ -58,8 +58,9 @@
             //-span.profile_info_about_posts-quantity
               |  {{ user.products_count }} {{productsCountTitle}}
 
-
-        .profile_desc(v-if="longCaption" v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
+        //-v-if="longcaption"
+        .profile_desc(v-on:click="isMoreClass = !isMoreClass",
+          v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
@@ -68,7 +69,7 @@
             .profile_desc_caption {{ user.shipping_rules }}
 
 
-        .profile_desc(v-else :class="less")
+        //-.profile_desc(v-else :class="less")
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
