@@ -387,11 +387,14 @@ export default {
 
     hasData(msg){
       if (msg.parts[1] && msg.parts[1].mime_type === 'text/data'){
-
-        let content = JSON.parse(msg.parts[1].content)
-        if(content.type === "auto"){
-          this.aboutAnswers = content.data;
-          return false;
+        try {
+          let content = JSON.parse(msg.parts[1].content)
+          if(content.type === "auto"){
+            this.aboutAnswers = content.data;
+            return false;
+          }
+        } catch (e) {
+          console.warn('content is not a JSON')
         }
         return true;
       }
