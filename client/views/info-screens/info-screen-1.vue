@@ -3,21 +3,19 @@
 .info-screen
   .description._1
 
-    | Вы сами решаете на какие#[br] 
-    | вопросы отвечает оператор,#[br]
-    | а какие лучше обьяснить самим.#[br] 
-    | Оператор может сверить#[br(v-if="isMobile")] наличие,#[br(v-if="!isMobile")] 
-    | узнать размеры, адрес доставки,#[br] 
-    | сообщать детали оплаты
+    | ВОПРОСЫ ВАШИХ КЛИЕНТОВ БОЛЬШЕ#[br.desktop]
+    | НЕ ПОТЕРЯЮТСЯ СРЕДИ#[br.mobile] СПАМА#[br.desktop]
+    | И СВЕТСКИХ БЕСЕД ПОДПИСЧИКОВ#[br.desktop]
+    | ПОД ВАШИМИ ПОСТАМИ
 
 </template>
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
 .info-screen .description._1 {
-	padding-top: 25%;
+	padding-top: 30%;
 	@media (--mobile) {
-		padding-top: 50%;
+		padding-top: 70%;
 	}
 }
 

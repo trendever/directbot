@@ -1,17 +1,24 @@
 <template lang="pug">
 
 #phone(slot="center-content" v-if="phone")
-  a(:href="phone")
+  a( :href="phone", @click="showPhone($event)")
     img(src="./phone.png")
 
 </template>
 
 <script>
+import { navigateTolink } from 'root/utils';
+
 export default {
   props: ['phone'],
-  data () {
-    return {
-    };
+  methods: {
+    showPhone(e){
+      if(!this.isMobile){
+        e.preventDefault();
+        let phone = this.phone.replace(/tel:/g, "");
+        window.eventHub.$emit('show-desktop-phone', phone);
+      }
+    }
   }
 };
 </script>
@@ -19,6 +26,7 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 #phone {
+  cursor: pointer;
   max-width: 40px;
   height: auto;
 

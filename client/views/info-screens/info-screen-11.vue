@@ -2,19 +2,19 @@
 <template lang="pug">
 .info-screen
   .description
-    .center
+    .center-block
       | даже если у вас есть#[br]
       | свой интернет-магазин,#[br]
       | мы рекомендуем указать #[br]
-      | указать ссылку от Directbot,#[br]
+      | ссылку от Directbot,#[br]
       | чтобы повысить конверсию
 </template>
 <style lang="postcss">
 
-.description .center {
-
-  padding-top: 30%;
-
+.description .center-block {
+  width: 100%;
+  position: absolute 50% * * 50%;
+  transform: translate(-50%, -50%)
 }
 
 </style>

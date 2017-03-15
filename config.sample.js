@@ -27,11 +27,12 @@ var config = {
   /**
    * Other
    */
+
   service_user_id: 3996,
 
-  info_id: null,
+  info_id: 40846,
 
-  support_id: null,
+  support_id: 40844,
 
   activate_monetization: false,
 
@@ -39,11 +40,11 @@ var config = {
 
   service_product_id: 32158,
 
-  bloger_product_id: 30683,
-
   promo_product_id: 21499,
 
-  monetization_help_id: 32069
+  monetization_help_id: 32069,
+
+  bloger_product_id: 30683,
 
 };
 

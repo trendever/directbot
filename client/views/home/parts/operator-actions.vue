@@ -5,7 +5,7 @@
   .bg-face-2
   .bg-face-3
 
-  .landing-title Что делает #[br(v-if="isMobile")] наш  оператор?
+  .landing-title Как это работает?
 
   .actions-body.wrap-flex
     .screen.one

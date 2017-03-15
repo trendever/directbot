@@ -22,6 +22,9 @@
   }
   .db-bottom{
     padding-bottom: 25px !important;
+    @media ( --overmobile ) {
+      padding-bottom: 0px !important;
+    }
   }
 
   .profile-right-menu {
@@ -321,6 +324,7 @@
       }
     }
     &_desc {
+      cursor: pointer;
       position: relative;
       color: $color__gray-dark;
       text-align: left;
@@ -422,7 +426,7 @@
     }
   }
   .less{
-    max-height: 94px;
+    max-height: 110px;//94px;
     position: relative;
     @media(--mobile) {
       max-height: 285px;
@@ -446,7 +450,7 @@
   }
   .more{
     height: auto;
-    padding-top: 25px;
+    padding-top: 34px;
     @media(--mobile) {
       padding-bottom: 25px;
       padding-top: 20px;

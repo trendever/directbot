@@ -47,9 +47,9 @@
 
 
           .profile_info_about(v-if="user.location && user.products_count")
-            span.profile_info_about_type
+            span.profile_info_about_type(v-if="shopabout")
               | {{ shopabout }} &nbsp
-            span.profile_info_about_location
+            span.profile_info_about_location(v-if="shoplocation")
               | {{ shoplocation}}&nbsp&nbsp
               span(v-if="!isMobile && user.working_time") |&nbsp
             span.profile_info_about_work-time(v-if="user.working_time")
@@ -58,8 +58,9 @@
             //-span.profile_info_about_posts-quantity
               |  {{ user.products_count }} {{productsCountTitle}}
 
-
-        .profile_desc(v-if="longCaption" v-on:click="isMoreClass = !isMoreClass" v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
+        //-v-if="longcaption"
+        .profile_desc(v-on:click="isMoreClass = !isMoreClass",
+          v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
@@ -68,7 +69,7 @@
             .profile_desc_caption {{ user.shipping_rules }}
 
 
-        .profile_desc(v-else :class="less")
+        //-.profile_desc(v-else :class="less")
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
@@ -94,14 +95,16 @@
         .profile_inactive(v-if="!botActivity")
           img(src="./img/empty-directbot-profile.png")
           span.empty Деактивирован
-          span мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
+          span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
         .profile_active(v-if="botActivity")
           img(src="./img/active-directbot-profile.png", v-if="isMobile")
           img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
           .text-box
             p.bold Активирован #[br]
             p.light(v-if="!postsCount") нет активных постов, ожидаю..
-            p.light(v-if="postsCount") мониторю {{  postsCount }} {{postsCountTitle}} #[br] общаюсь в {{ chatsCount }} чатах
+            p.light(v-if="postsCount")
+              span мониторю {{  postsCount }} {{postsCountTitle}} #[br]
+              span(v-if="chatsCount") общаюсь в {{ chatsCount }} чатах
         .profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
           i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
           br(v-if="isMobile")

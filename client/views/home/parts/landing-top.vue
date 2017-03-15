@@ -14,6 +14,7 @@
   .profile-header
     .profile-header__center
     button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
+    //-a(href="https://www.trendever.com/dressblogger", target="_blank").for-blogers БЛОГЕРАМ
 
   .logo__mobile
 
@@ -25,10 +26,10 @@
     img(src="../img/directbot-main-logo.png")
 
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
-    | Оператор магазина #[br(v-if="isMobile")] в Instagram #[br]
+    | Оператор магазина в Instagram #[br]
     span.time__text
-      | CRM/CMS для продаж#[br.mobile] в Instagram#[br.desktop]
-      | c аутсорсингом#[br.mobile] продавцов и блогеров#[br.desktop]
+      | CRM для продаж в Instagram c#[br]
+      | аутсорсингом продавцов и блогеров#[br]
 
   .set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
@@ -125,6 +126,28 @@ export default {
   .profile-header {
     z-index: 2;
     //auth btn on desktop (top right corner)
+
+    a.for-blogers {
+      text-decoration: none;
+      position: absolute;
+      top: 20px;
+      right: 275px;
+      width: 158px;
+      height: 40px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background: transparent;
+      color: $color__white;
+      font-size: 16px;
+      font-family: $font__family__semibold;
+      z-index: 100;
+      line-height: 40px;
+      @media(--tabletandless) {
+        display: none;
+      }
+
+
+    }
     .auth-btn{
       position: absolute;
       top: 20px;
@@ -141,12 +164,9 @@ export default {
       @media(--tabletandless) {
         display: none;
       }
-      @media(--tabletandless) {
-        display: none;
-      }
-
     }
-    .auth-btn:hover{
+    .auth-btn:hover,
+    .for-blogers:hover{
       background: $color__white;
       border-color: $color__white;
       color: $color__blue;
@@ -197,7 +217,30 @@ export default {
 
   //description in the center of the screen both versions (mob&desk)
   .description {
+
+
     font-family: $font__family__regular;
+    z-index: 1;
+    box-sizing: border-box;
+    color: $color__white;
+    font-size: 46px;
+    text-align: center;
+    margin-top: 4px;
+
+    @media(--tabletandless) {
+      width: 100%;
+      font-size: 46px;
+      text-align: center;
+      margin-top: 16px;
+      margin-bottom: 81px;
+      top: 0;
+      left: 0;
+      font-family: $font__family__semibold;
+      line-height: 55px;
+    }
+
+
+
     &.bottom-fix {
       margin-bottom:30px;
     }
@@ -213,38 +256,14 @@ export default {
 
       }
       @media (--mobile) {
-        font-size: 1em;
+        font-family: $font__family__thin;
+        display: inline-block;
+        width: 100%;
+        font-size: 0.9em;
       }
 
     }
 
-    z-index: 1;
-    box-sizing: border-box;
-    color: $color__white;
-    font-size: 46px;
-    text-align: center;
-    margin-top: 4px;
-    @media(--tabletandless) {
-      width: 100%;
-      font-size: 54px;
-      text-align: center;
-      margin-top: 45px;
-      padding: 0px 80px;
-      position: relative;
-      line-height: 60px;
-    }
-    @media(--tabletandless) {
-      width: 100%;
-      font-size: 46px;
-      text-align: center;
-      margin-top: 16px;
-      margin-bottom: 81px;
-      padding: 0px 30px;
-      top: 0;
-      left: 0;
-      font-family: $font__family__semibold;
-      line-height: 55px;
-    }
   }
   //description in the center of the screen both versions (mob&desk)
 

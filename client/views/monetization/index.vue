@@ -5,6 +5,7 @@
 
 import jquery from 'jquery';
 import settings from 'root/settings';
+import { declOfNum } from 'root/utils';
 
 import config from 'root/../config';
 
@@ -25,7 +26,8 @@ export default {
       plans: [],
       plansAmmounts: [],
       selectedPlan: 0,
-      selectedAmmount: 0
+      selectedAmmount: 0,
+      noPlanSelected: false,
     }
   },
   computed: {
@@ -35,9 +37,29 @@ export default {
     },
     ...mapGetters([
       'monetizationDays'
-    ])
+    ]),
+    daysCount(){
+
+      return declOfNum(['день','дня',"дней" ])(this.monetizationDays);
+    }
   },
   methods:{
+    goProfile(){
+      if(this.getUseDays == 0 && !this.selectedPlan){
+        this.noPlanSelected = true;
+        this.$nextTick(()=>{
+
+          setTimeout(()=>{
+            this.noPlanSelected=false
+          },600)
+
+        })
+
+      } else {
+        this.$router.push({name: 'home'})
+      }
+
+    },
     parse(val){
       return JSON.parse(val);
     },

@@ -11,11 +11,17 @@
   who-need
   show-bot
   operator-skills
+  .blue-plank
+    | CRM Directbot удобен настолько,#[br.mobile]
+    | что мы готовы предоставить вам#[br]
+    | продавца на аутсорсинг 24/7#[br.mobile]
+    | всего за 3990 руб. в месяц#[br.mobile]
   operator-actions
   toggle-role
   connect-get
 
-  .free-connect(v-if="toggleBtns")
+  .fake-height(v-if="toggleBtns")
+  //-.free-connect(v-if="toggleBtns")
     a.link-info(@click.stop="openPopup('is10')")
       | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
 
@@ -205,6 +211,23 @@ export default {
 #show-bot,
 .who-need {
 
+  .blue-plank {
+    text-align: center;
+    background: $color__blue;
+    color: white;
+    font-family: $font__family__semibold;
+    @media (--overmobile) {
+      font-size: 32px;
+      padding: 30px * 30px *;
+    }
+
+    @media (--mobile) {
+      font-size: $font__medium;
+      padding: 45px * 45px *;
+    }
+
+  }
+
 
   .bg-face-1,
   .bg-face-2,
@@ -245,6 +268,17 @@ export default {
         cursor: pointer;
         border-bottom: 1px solid transparent;
       }
+    }
+  }
+
+
+  .fake-height {
+    @media (--overmobile){
+      height: 80px;
+    }
+
+    @media ( --mobile ){
+
     }
   }
 
@@ -353,10 +387,11 @@ export default {
 
       img {
         width: 100%;
-        max-width: 250px;
-        @media(--mobile){
-          max-width: 350px;
-          min-width: 350px;
+        @media (--mobile) {
+          max-width: 500px;
+        }
+        @media (--overmobile) {
+          max-width: 270px;
         }
       }
     }

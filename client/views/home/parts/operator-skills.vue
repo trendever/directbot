@@ -1,14 +1,38 @@
 <template lang="pug">
 #operator-skills
 
-  .landing-title Преимущества#[br(v-if="isMobile")] нашего оператора
+  .landing-title Преимущества Directbot
 
   .skills-wrapper
 
-    .info-box.four
 
+    .info-box
       .skills-icon
-        img(src="../img/privilege-01.png")
+        img(src="./img/lp_icons_1.png")
+      .sub-title Создаёт заказы #[br] из Instagram
+      .caption
+        | Сканирует комментарии и сообщения,#[br]
+        | находит клиентов и создаёт новый#[br]
+        | заказ в CRM системе.&nbsp
+        a.link-info(@click.stop="$parent.openPopup('is1')")
+          | Вы не#[br]
+          | пропустите ни одного покупателя#[br]
+
+    .info-box
+      .skills-icon
+        img(src="./img/lp_icons_2.png")
+      .sub-title Интегрируется в #[br] Instagram Direct
+      .caption
+        | Больше не нужно "гнать" покупателей#[br]
+        | из Instagram в WhatsApp или на сайт#[br]
+        | магазина.&nbsp
+        a.link-info(@click.stop="$parent.openPopup('is2')")
+          | Теперь можно отвечать внутрь#[br]
+          | Instagram, не выходя из CRM
+
+    .info-box
+      .skills-icon
+        img(src="./img/lp_icons_3.png")
       .sub-title
         | Превращает Instagram#[br]
         | в&nbsp
@@ -19,40 +43,20 @@
         | и цены. Магазин доступен#[br]
         | по ссылке внутри Instagram#[br]
 
-    .info-box.one
+    .info-box
       .skills-icon
-        img(src="../img/icon-1.png")
-      .sub-title Отвечает клиентам #[br] внутри Instagram
-      .caption Со &#128526 смайлами #[br(v-if="!isMobile")]
-        | уделит внимание каждому, #[br(v-if="!isMobile")] быстро ответит. #[br(v-if="isMobile")]
-        a.link-info(@click.stop="$parent.openPopup('is1')") Ни один клиент #[br(v-if="!isMobile")] не успеет передумать
-
-    .info-box.two
-      .skills-icon
-        img(src="../img/icon-2.png")
-      .sub-title Выполняет #[br] «мартышкин труд»
+        img(src="./img/lp_icons_4.png")
+      .sub-title Выполняет #[br]"мартышкин труд"
       .caption
-        | Не нужно отвечать и спрашивать#[br]
-        | одно и то же.&nbsp
-        a.link-info(@click.stop="$parent.openPopup('is2')")
-          | Оператор даст#[br]
-          | ссылку на сайт, уточнит наличие,#[br]
-          | узнает размеры и адрес
+        | Легко автоматизировать#[br]
+        | стандартные вопросы и ответы,#[br]
+        | такие как цена, адрес, условия#[br]
+        | и модификации товаров и услуг#[br]
 
-    .info-box.three
-      .skills-icon
-        img(src="../img/icon-3.png")
-      .sub-title Подключается #[br(v-if="!isMobile")] в один клик
-      .caption
-        | Для подключения оператора #[br]
-        | нужно зарегистрироваться и#[br]
-        | привязать свой Instagram.#[br]
-        a.link-info(@click.stop="$parent.openPopup('is3')")
-          | Ничего не надо скачивать
 
-    .info-box.six
+    .info-box
       .skills-icon
-        img(src="../img/privilege-06.png")
+        img(src="./img/lp_icons_5.png")
       .sub-title Гарантирует #[br]  безопасность профиля
       .caption
         | Мы не храним пароль от Instagram #[br]
@@ -62,16 +66,16 @@
           | безопасность #[br]
           | от бана или блокировки
 
-    .info-box.five
+    .info-box
       .skills-icon
-        img(src="../img/icon-6.png")
-      .sub-title Организует бартерную#[br] рекламу у блогеров
+        img(src="./img/lp_icons_6.png")
+      .sub-title Организует работу #[br] с блогерами
       .caption
         | Умеет находить блогеров без ботов#[br]
         | и договариваться по бартеру.#[br]
-        | Знает, как сделать посты, которые#[br]
+        | Знает, как наполнять ленту#[br]
         a.link-info(@click.stop="$parent.openPopup('is13')")
-          | принесут реальных клиентов
+          | магазина продающими фото
 
 </template>
 
@@ -86,11 +90,8 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
-
 #operator-skills {
-
   margin: 0 auto;
-
   .save-experience {
     font-size: $font__family__semibold;
     font-size: 42px;
@@ -101,57 +102,10 @@ export default {
     padding-bottom: 40px;
   }
 
-
   span.star-link {
-
     border-bottom: 1px solid $color__gray-dark;
     &:hover {
       cursor: pointer;
-    }
-  }
-
-
-  @media (--mobile) {
-    .info-box{
-      img { max-width: 400px !important };
-
-      &.five img {
-        max-width: 340px !important;
-        min-width: 300px !important;
-      }
-
-      &.two img {
-        max-width: 450px !important;
-      }
-
-      &.six img {
-        max-width: 210px !important;
-        min-width: 320px;
-      }
-    }
-  }
-
-
-  @media screen and (min-width: 1024px){
-    .info-box{
-      &.six img {
-        max-width: 160px;
-      }
-
-      &.five img {
-        max-width: 170px;
-      }
-      &.four img {
-        max-width: 230px;
-      }
-
-      &.two {
-        max-with: 300px;
-      }
-      &.three {
-        img{max-width: 210px}
-        max-with: 300px;
-      }
     }
   }
 }
