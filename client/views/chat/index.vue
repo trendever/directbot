@@ -107,7 +107,8 @@ export default {
       showLoader: true,
       timerId: '',
       fullScroll: 0,
-      prevPage: ''
+      prevPage: '',
+      aboutAnswers: []
     }
   },
 
@@ -363,6 +364,10 @@ export default {
 
     hasData(msg){
       if (msg.parts[1] && msg.parts[1].mime_type === 'text/data'){
+        if(msg.parts[0].content.indexOf('... или отправьте номер часто задаваемого вопроса') !== -1){
+          this.aboutAnswers = JSON.parse(msg.parts[1].content)
+          return false;
+        }
         return true;
       }
       return false;
