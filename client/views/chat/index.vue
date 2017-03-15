@@ -387,7 +387,10 @@ export default {
 
     hasData(msg){
       if (msg.parts[1] && msg.parts[1].mime_type === 'text/data'){
+
         try {
+          //фишка с автоответами для чата спросить
+          //лучше добавить if c проверкой на этот чат
           let content = JSON.parse(msg.parts[1].content)
           if(content.type === "auto"){
             this.aboutAnswers = content.data;
