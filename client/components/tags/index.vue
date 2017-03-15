@@ -6,8 +6,8 @@
 
   .tag-name {
     flex-grow: 1;
-    font-size: $font__normal;
-    padding: 5px 10px;
+    font-size: calc($font__normal - 3px);
+    padding: 8px 13px;
     border: 1px solid $color__blue;
     color: $color__blue;
     text-align: center;
@@ -47,7 +47,7 @@
 
     i {
       display: inline-block;
-      font-size: 14px;
+      font-size: 12px;//14px;
       transform: translateY(7px);
       @media (--mobile){
         font-size: 26px;
