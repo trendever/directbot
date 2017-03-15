@@ -63,6 +63,10 @@
 
     mounted(){
 
+      window.eventHub.$on("get-answer",data=>{
+        alert(data);
+      })
+
       this.addPadding();
 
       this.scroll = document.body;

@@ -349,7 +349,30 @@ export default {
 
     },
 
-    onMessage(){
+    onMessage(data){
+
+      let map = data.response_map;
+
+      if(map && map.messages[0] && map.messages[0].parts[0]){
+
+        let content = +map.messages[0].parts[0].content;
+
+        if(this.isFake && this.aboutAnswers.length){
+
+          if(typeof content === 'number'){
+
+            if(content > 0 && content <= this.aboutAnswers.length){
+
+              window.eventHub.$emit('get-answer', this.aboutAnswers[ content - 1 ])
+
+            }
+
+          }
+
+        }
+
+      }
+
 
       Promise.resolve().then(()=>{
 
