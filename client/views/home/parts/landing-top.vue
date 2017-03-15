@@ -14,7 +14,7 @@
   .profile-header
     .profile-header__center
     button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
-    a(href="https://www.trendever.com/dressblogger", target="_blank").for-blogers БЛОГЕРАМ
+    //-a(href="https://www.trendever.com/dressblogger", target="_blank").for-blogers БЛОГЕРАМ
 
   .logo__mobile
 
