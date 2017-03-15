@@ -23,7 +23,7 @@
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg(
-              v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg)',
+              v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg) || msg.parts[0].mime_type === "auto/answer"',
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg-info(
