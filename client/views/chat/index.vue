@@ -388,7 +388,8 @@ export default {
     hasData(msg){
       if (msg.parts[1] && msg.parts[1].mime_type === 'text/data'){
         if(msg.parts[0].content.indexOf('... или отправьте номер часто задаваемого вопроса') !== -1){
-          this.aboutAnswers = JSON.parse(msg.parts[1].content)
+          let answers = JSON.parse(msg.parts[1].content)
+          this.aboutAnswers = answers.data;
           return false;
         }
         return true;
