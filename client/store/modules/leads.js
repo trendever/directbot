@@ -1,6 +1,9 @@
 import * as types from '../mutation-types';
 import * as getters from '../getters/lead.js';
 import * as actions from '../actions/lead.js';
+
+import { getCountForLoading } from '../getters/simpleGetters';
+
 import Vue from 'vue';
 
 // initial state
@@ -84,7 +87,7 @@ const mutations = {
 
     if ( Array.isArray( leads ) ) {
 
-      if ( getters.getCountForLoading > leads.length ) {
+      if ( getCountForLoading > leads.length ) {
 
         state.hasMore = Object.assign( {}, state.hasMore, { [tab]: false } );
 
@@ -151,7 +154,7 @@ const mutations = {
 
   },
 
-  [types.LEAD_SET_TAB] ( state, { tab = 'customer', lengthList = getters.getCountForLoading } ) {
+  [types.LEAD_SET_TAB] ( state, { tab = 'customer', lengthList = getCountForLoading } ) {
     console.log("LEAD SET TAB");
     state.tab        = tab;
     /*state.lengthList = {
@@ -160,7 +163,7 @@ const mutations = {
     };*/
   },
 
-  [types.LEAD_INC_LENGTH_LIST] ( state, { lengthList = getters.getCountForLoading, tab = null } ) {
+  [types.LEAD_INC_LENGTH_LIST] ( state, { lengthList = getCountForLoading, tab = null } ) {
 
     state.lengthList = Object.assign( {}, state.lengthList, { [ tab ]: state.lengthList[ tab ] + lengthList } );
 
@@ -256,8 +259,8 @@ const mutations = {
   [types.LEAD_CLOSE] ( state ) {
 
     /*state.lengthList = {
-      seller: getters.getCountForLoading,
-      customer: getters.getCountForLoading
+      seller: getCountForLoading,
+      customer: getCountForLoading
     };*/
 
   }

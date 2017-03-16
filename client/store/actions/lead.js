@@ -12,12 +12,13 @@ import {
   getLeadByConversationId,
   getLeadTab,
   getHasMore,
-  getCountForLoading,
   getLeads,
   getLeadsLengthList,
   getGroup
 
 } from '../getters/lead';
+
+import { getCountForLoading } from '../getters/simpleGetters';
 
 
 export const initLead = ( { commit } ) => {

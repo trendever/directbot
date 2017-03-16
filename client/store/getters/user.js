@@ -9,7 +9,7 @@ export const isAuth = ( user ) => {
 
 export const isAuthUserSupplier = ( user ) => {
 
-  if (user.all[user.myId].supplier_of !== null) {
+  if (user.all[user.myId] && user.all[user.myId].supplier_of !== null) {
 
     return true;
 
@@ -37,7 +37,7 @@ export const isFake = ( state ) => {
     return true;
   }
 
-  
+
 
   // if(state.all[state.myId]){
   //   if (state.all[state.myId].phone){
@@ -153,7 +153,7 @@ export const getSlogan = ( state ) => {
 };
 
 export const getProfile = ( user, id = null ) => {
-  
+
   if ( id !== null ) {
     if ( user.all.hasOwnProperty( id ) ) {
       return user.all[ id ];
@@ -222,7 +222,7 @@ export const getAuthUser = ( user ) => {
 
 }
 
-export const authUserShopId = ( user ) => { 
+export const authUserShopId = ( user ) => {
   if(user.myId) {
     if(user.all[user.myId].supplier_of !== null){
       return user.all[user.myId].supplier_of[0];
@@ -233,7 +233,7 @@ export const authUserShopId = ( user ) => {
 
 
 export const isSelfProduct = (user) => {
-  
+
   let product = store.state.products.openedProduct ? store.state.products.openedProduct : null;
 
   if ( product ) {

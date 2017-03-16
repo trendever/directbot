@@ -249,4 +249,4 @@ export const isDoneLead = ( state ) => state.done;
 
 export const getGroup = ( state, lead ) => lead.customer_id === store.getters.userID ? 'customer' : 'seller';
 
-export const getCountForLoading = (window.browser.mobile) ? 6 : 12;
+//export const getCountForLoading = (window.browser.mobile) ? 6 : 12;
