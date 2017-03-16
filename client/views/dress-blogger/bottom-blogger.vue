@@ -4,25 +4,25 @@
   .info-area
 
     .img-content
-      img(src="")
+      img.first(src="./images/ico_blogger1.png")
     .text-content
       h1 Избранные блогеры...
       p
-        | ...выберут 5 Instagram-магазинов на свой вкус.#[br]
-        | Затем попросят своих подписчиков проголосовать#[br]
-        | за тот единственный, шопинг в котором оплатит#[br]
-        | фонд #ОденьБлогера
+        | ...выберут 5 Instagram-магазинов на свой#[br.mobile] вкус.#[br.desktop]
+        | Затем попросят своих подписчиков#[br.mobile] проголосовать#[br.desktop]
+        | за тот единственный,#[br.mobile] шопинг в котором оплатит#[br.desktop]
+        | фонд#[br.mobile] #ОденьБлогера
 
 
-  .info-area
+  .info-area.reverse
     .text-content
       h1 Если вы не блогер,
       p
-        | ...то наверно знаете блогера, которого вам не#[br]
-        | терпится одеть. Расскажите ему про наш фонд или#[br]
-        | напишите нам его имя на hello@trendever.com#[br]
+        | ...то наверно знаете блогера, которого#[br.mobile] вам не#[br.desktop]
+        | терпится одеть. Расскажите ему#[br.mobile] про наш фонд или#[br.desktop]
+        | напишите нам#[br.mobile] его имя на hello@trendever.com#[br.desktop]
     .img-content
-      img(src="")
+      img(src="./images/ico_blogger2.png")
 
 
 </template>
@@ -44,15 +44,42 @@ export default {
   max-width: 980px;
   margin: 0 auto;
 
+  @media (--mobile) {
+
+    padding: 0 40px;
+
+  }
+
 
   .info-area {
 
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 100px;
+
+    @media (--mobile) {
+
+      &.reverse {
+        flex-direction: column-reverse;
+      }
+    }
 
 
     .img-content {
       flex-shrink: 1;
+      img {
+        max-width: 250px;
+        @media (--mobile) {
+          max-width: 450px;
+        }
+
+        &.first {
+          @media (--overmobile) {
+            margin-top: 15px;
+          }
+        }
+      }
     }
 
     .text-content {
@@ -65,8 +92,10 @@ export default {
         font-size: 32px;
         display: inline-block;
         margin-top: 20px;
-        @media(--mobile) {
+        @media (--mobile) {
+          width: 100%;
           font-size: 46px;
+          text-align: center;
         }
       }
 
@@ -75,9 +104,8 @@ export default {
         font-size: 24px;
         line-height: 32px;
 
-        @media(--tabletandless) {
+        @media (--mobile) {
           font-size: 36px;
-          font-family: $font__family__light;
           line-height: normal;
         }
       }

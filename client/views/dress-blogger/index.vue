@@ -5,6 +5,12 @@
   top-blogger
   how-win
   bottom-blogger
+  .bottom-space
+    .area-title Расскажите про фонд #ОденьБлогера
+    .area-icons
+      img(src="./images/soc_fb.png")
+      img(src="./images/soc_ig.png")
+      img(src="./images/soc_vk.png")
 
 </template>
 
@@ -31,6 +37,7 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 #dress-blogger {
+
   position: relative;
   background: url(./images/Bgr-fix-desk.jpg);
   background-attachment: fixed;
@@ -38,9 +45,36 @@ export default {
   text-align: center;
 
   @media ( --mobile ) {
-    background: url(./images/Bgr-fix-mob.jpg);
+    background-image: url(./images/Bgr-fix-mob.jpg);
+    background-size: 97%;
+    background-position: 40px 80px;
   }
 
+  .bottom-space {
+    background: black;
+
+    .area-title {
+      font-size: $font__normal;
+      padding: 15px 0 0 0;
+
+      @media (--mobile) {
+        font-size: $font__medium;
+        font-family: $font__family__thin;
+        padding: 25px 0 0 0;
+      }
+
+    }
+
+    .area-icons {
+      img {
+        display: inline-block;
+        padding: 25px 15px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .shops-btn,
   .go-btn,
   .place-btn {
     display: inline-block;
@@ -53,6 +87,14 @@ export default {
     padding: 10px 0px;
     border-radius: 4px;
 
+    @media (--mobile){
+      width: 600px;
+      height: 118px;
+      font-size: 36px;
+      line-height: 118px;
+      padding: 0;
+    }
+
 
     &:hover {
       cursor: pointer;
@@ -60,7 +102,5 @@ export default {
       color: black;
     }
   }
-
-
 }
 </style>
