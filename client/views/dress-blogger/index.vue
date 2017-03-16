@@ -31,18 +31,34 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 #dress-blogger {
-
-  size: 100%;
-  background: black;
+  position: relative;
+  background: url(./images/Bgr-fix-desk.jpg);
+  background-attachment: fixed;
   color: white;
   text-align: center;
 
+  @media ( --mobile ) {
+    background: url(./images/Bgr-fix-mob.jpg);
+  }
 
-  .shops-btn,
   .go-btn,
   .place-btn {
+    display: inline-block;
+    font-family: $font__family__semibold;
+    font-size: 20px;
+    margin: 25px auto 25px auto;
     border: 1px solid white;
     color: white;
+    width: 300px;
+    padding: 10px 0px;
+    border-radius: 4px;
+
+
+    &:hover {
+      cursor: pointer;
+      background: white;
+      color: black;
+    }
   }
 
 
