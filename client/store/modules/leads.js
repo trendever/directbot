@@ -2,7 +2,7 @@ import * as types from '../mutation-types';
 import * as getters from '../getters/lead.js';
 import * as actions from '../actions/lead.js';
 
-import { getCountForLoading } from '../getters/simpleGetters';
+let getCountForLoading = getters.getCountForLoading;
 
 import Vue from 'vue';
 

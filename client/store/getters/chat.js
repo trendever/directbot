@@ -431,7 +431,7 @@ export const getActionData = ( state ) => {
   return state.action.data;
 }
 
-//export const chatCountForLoading = 50;//(window.browser.mobile) ? 10 : 20;
+export const chatCountForLoading = state => 50;//(window.browser.mobile) ? 10 : 20;
 
 export const imgPopUpUrl = ( state ) => state.imgPopUpUrl;
 

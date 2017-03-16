@@ -14,11 +14,10 @@ import {
   getHasMore,
   getLeads,
   getLeadsLengthList,
-  getGroup
+  getGroup,
+  getCountForLoading
 
 } from '../getters/lead';
-
-import { getCountForLoading } from '../getters/simpleGetters';
 
 
 export const initLead = ( { commit } ) => {
