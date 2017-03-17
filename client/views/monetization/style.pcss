@@ -63,6 +63,27 @@
 
   }
 
+  i.question {
+    cursor: pointer;
+    display: inline-block;
+    line-height: 50px;
+    border-radius: 50%;
+    color: white;
+    border: 2px solid white;
+    size: 55px;
+    font-size: $font__medium;
+    position: fixed 20px * * 20px;
+
+    @media (--overmobile) {
+      top: 17px;
+      left: 17px;
+      font-size: $font__normal;
+      size: 40px;
+      line-height: 35px;
+    }
+
+  }
+
   .ic-close{
     position: fixed 10px 10px * *;
     z-index: 210;
@@ -72,7 +93,7 @@
     font-size: $font__normal;
     size: $font__normal;
     box-sizing: content-box;
-    @media( --tabletandless ) {
+    @media ( --tabletandless ) {
       top: 15px;
       right: 15px;
       size: $font__medium;
