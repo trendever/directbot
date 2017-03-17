@@ -23,7 +23,25 @@
 
       .monetization__text.bot
         // Выбор тарифного плана
-      template(v-for="plan in plans")
+
+
+      p.rate-title Самостоятельные тарифы
+
+      template(v-for="plan in selfPlans")
+        .monetization__btn(@click="selectPlan(plan.id, $event)")
+          button(:class="{make__choice: selectedPlan === plan.id}")
+            span.bold {{plan.subscription_price}}
+              i.ic-rub
+            span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
+            span.light(v-html="replace(parse(plan.about).sub)")
+        .monetization__about(v-if="selectedPlan === plan.id")
+          ul
+            li(v-for="text in parse(plan.about).adv")
+              | {{ text }}
+
+      p.rate-title Полное обслуживание
+
+      template(v-for="plan in fullPlans")
         .monetization__btn(@click="selectPlan(plan.id, $event)")
           button(:class="{make__choice: selectedPlan === plan.id}")
             span.bold {{plan.subscription_price}}

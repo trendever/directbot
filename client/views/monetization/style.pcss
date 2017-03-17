@@ -52,6 +52,15 @@
   }
   &__plans{
 
+    p.rate-title {
+      font-size: $font__medium;
+      padding-bottom: 20px;
+
+      @media (--overmobile){
+        font-size: $font__normal;
+      }
+    }
+
   }
 
   .ic-close{
@@ -73,8 +82,8 @@
 
   &__days-block{
 
-    .block__desktop {
-
+    @media (--overmobile){
+      padding-top:80px;
     }
   }
 

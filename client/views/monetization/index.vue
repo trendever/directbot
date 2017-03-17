@@ -41,6 +41,17 @@ export default {
     daysCount(){
 
       return declOfNum(['день','дня',"дней" ])(this.monetizationDays);
+    },
+
+    selfPlans(){
+      return this.plans
+        .filter(i=>this.parse(i.about).tariff=== 'self')
+        .sort((a,b)=>a.subscription_price - b.subscription_price )
+    },
+    fullPlans(){
+      return this.plans
+        .filter(i=>this.parse(i.about).tariff=== 'full')
+        .sort((a,b)=>a.subscription_price - b.subscription_price )
     }
   },
   methods:{
