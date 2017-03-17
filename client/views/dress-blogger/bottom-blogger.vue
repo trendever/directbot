@@ -125,7 +125,7 @@ export default {
             img {
               width: 12px;
               &.hands {
-                transform: scale(3.7) translate(7px,-2px)
+                transform: scale(3.7) translate(5px,-2px)
               }
               &.medal {
                 transform: scale(2.1) translate(6px,0px)
