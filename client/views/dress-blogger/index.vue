@@ -8,9 +8,11 @@
   .bottom-space
     .area-title Расскажите про фонд #ОденьБлогера
     .area-icons
-      img(src="./images/soc_fb.png")
       img(src="./images/soc_ig.png")
+      img(src="./images/soc_fb.png")
       img(src="./images/soc_vk.png")
+      img(src="./images/soc_telegram.png")
+      img(src="./images/soc_whatsapp.png")
 
 </template>
 

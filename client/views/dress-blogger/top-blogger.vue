@@ -50,7 +50,7 @@ export default {
       max-width: 150px;
 
       @media (--mobile ){
-        margin-left: 50px;
+        margin-left: 37px;
         margin-top: 50px;
         max-width: 250px;
       }
