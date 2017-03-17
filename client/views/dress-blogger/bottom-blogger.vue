@@ -10,9 +10,13 @@
       p
         | ...выберут 5 Instagram-магазинов на свой#[br.mobile] вкус.#[br.desktop]
         | Затем попросят своих подписчиков#[br.mobile] проголосовать#[br.desktop]
-        | за тот единственный,#[br.mobile] шопинг в котором оплатит#[br.desktop]
+        | за тот единственный
+        span.img-wrp: img.medal(src="./images/emoji_medal_grey.png")
+        | ,#[br.mobile] шопинг в котором оплатит#[br.desktop]
         | фонд#[br.mobile]&nbsp
-        span #ОденьБлогера
+        span
+          |#ОденьБлогера
+          span.img-wrp: img.hands(src="./images/emoji_claphands_grey.png")
 
 
   .info-area.reverse
@@ -113,6 +117,33 @@ export default {
 
         span {
           font-family: $font__family__semibold;
+        }
+        span.img-wrp {
+          display: inline-block;
+          @media (--mobile) {
+            width: 35px;
+            img {
+              width: 12px;
+              &.hands {
+                transform: scale(3.7) translate(7px,-2px)
+              }
+              &.medal {
+                transform: scale(2.1) translate(6px,0px)
+              }
+            }
+          }
+          @media (--overmobile) {
+            width: 22px;
+            img {
+              width: 12px;
+              &.hands {
+                transform: scale(2) translate(4px,-1px)
+              }
+              &.medal {
+                transform: scale(1.3) translate(4px,2px)
+              }
+            }
+          }
         }
       }
     }
