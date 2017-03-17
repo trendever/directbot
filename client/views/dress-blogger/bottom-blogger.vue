@@ -11,7 +11,8 @@
         | ...выберут 5 Instagram-магазинов на свой#[br.mobile] вкус.#[br.desktop]
         | Затем попросят своих подписчиков#[br.mobile] проголосовать#[br.desktop]
         | за тот единственный,#[br.mobile] шопинг в котором оплатит#[br.desktop]
-        | фонд#[br.mobile] #ОденьБлогера
+        | фонд#[br.mobile]&nbsp
+        span #ОденьБлогера
 
 
   .info-area.reverse
@@ -20,7 +21,8 @@
       p
         | ...то наверно знаете блогера, которого#[br.mobile] вам не#[br.desktop]
         | терпится одеть. Расскажите ему#[br.mobile] про наш фонд или#[br.desktop]
-        | напишите нам#[br.mobile] его имя на hello@trendever.com#[br.desktop]
+        | напишите нам#[br.mobile] его имя на&nbsp
+        span hello@trendever.com#[br.desktop]
     .img-content
       img(src="./images/ico_blogger2.png")
 
@@ -107,6 +109,10 @@ export default {
         @media (--mobile) {
           font-size: 36px;
           line-height: normal;
+        }
+
+        span {
+          font-family: $font__family__semibold;
         }
       }
     }

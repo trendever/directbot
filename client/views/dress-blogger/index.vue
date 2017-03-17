@@ -79,13 +79,16 @@ export default {
   .place-btn {
     display: inline-block;
     font-family: $font__family__semibold;
-    font-size: 20px;
+    font-size: $font__normal;
     margin: 25px auto 25px auto;
     border: 1px solid white;
     color: white;
-    width: 300px;
-    padding: 10px 0px;
-    border-radius: 4px;
+    border-radius: 5px;
+
+    @media (--overmobile) {
+      width: initial;
+      padding:13px 65px;
+    }
 
     @media (--mobile){
       width: 600px;
@@ -94,7 +97,6 @@ export default {
       line-height: 118px;
       padding: 0;
     }
-
 
     &:hover {
       cursor: pointer;

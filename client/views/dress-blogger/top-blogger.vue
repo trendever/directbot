@@ -9,7 +9,7 @@
     .title #ОденьБлогера
     .body
       h1 Фонд одевания блогеров
-      p Приглашаем Instagram-блогеров#[br]одеватьсяза наш счет
+      p Приглашаем Instagram-блогеров#[br] одеваться за наш счет
       .go-btn УЧАСТВОВАТЬ
 
   .info-section
@@ -44,7 +44,7 @@ export default {
     img {
       cursor: pointer;
       margin-top: 15px;
-      margin-left: 15%;
+      margin-left: 1%;
       display: inline-block;
       float:left;
       max-width: 150px;
@@ -60,11 +60,15 @@ export default {
       display: inline-block;
       float:right;
       margin-top: 15px;
-      margin-right: 15%;
-      font-size: 14px;
-      width: 150px;
+      margin-right: 1%;
+      font-size: 16px;
 
-      @media (--mobile ){
+      @media (--overmobile) {
+        width: initial;
+        padding:10px 35px;
+      }
+
+      @media (--mobile){
         font-family: $font__family__thin;
         margin-right: 40px;
         margin-top: 53px;
@@ -136,7 +140,7 @@ export default {
       margin-top: 170px;
       margin-bottom: 30px;
       font-size: calc($font__large + 5px);
-      background-position: -220px 0px;
+      background-position: -830px 0px;
 
     }
 
