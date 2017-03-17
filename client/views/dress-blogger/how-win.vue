@@ -27,7 +27,9 @@
         | на свои посты
       .caption
         | Пишите под своими постами#[br]
-        | #ОденьБлогера и @Trendevercom*.#[br]
+        span #ОденьБлогера&nbsp
+        | и&nbsp
+        span @Trendevercom*.#[br]
         | Отмечайте новые посты, чтобы жюри #[br]
         | их заметили и оценили ваш стиль
 
@@ -147,6 +149,9 @@ export default {
           line-height: normal;
         }
 
+        span {
+          font-family: $font__family__semibold;
+        }
       }
     }
   }
