@@ -36,7 +36,8 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
-#top-blogger {
+#top-blogger,
+#blogger-request {
 
   .brand-section {
     height: 100px;

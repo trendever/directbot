@@ -47,6 +47,11 @@ let router = new Router({
       path: '/dressblogger',
       component: require('views/dress-blogger')
     },
+    {
+      name: 'blogger-request',
+      path: '/blogger-request',
+      component: require('views/dress-blogger/blogger-request')
+    },
 		{
 		  name: 'chat_list',
 		  path: '/chat',
