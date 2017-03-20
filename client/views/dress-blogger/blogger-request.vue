@@ -159,6 +159,12 @@ export default {
      @mixin close__page;
   }
 
+  .body-section .title {
+    @media screen and (max-height: 1170px) and (max-width: 750px){
+      margin-top: 15px;
+    }
+  }
+
   .content-wrap {
 
     max-width: 1050px;
