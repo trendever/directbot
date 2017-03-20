@@ -57,7 +57,7 @@ export default {
 #blogger-request {
 
   .menu-section {
-    position: absolute 0 0 * *;
+    position: absolute 30px 30px * *;
 
     i.ic-menu_bullets {
       padding:40px 25px;
@@ -107,6 +107,7 @@ export default {
       }
 
       @media (--mobile){
+        display: none;
         font-family: $font__family__thin;
         margin-right: 40px;
         margin-top: 53px;

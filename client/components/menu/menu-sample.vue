@@ -59,7 +59,7 @@
   width: 210px;
 
 
-  @media ( min-width: 751px) {
+  @media (--overmobile) {
     box-shadow: 1px 1px 5px #595959;
     &.prof-menu {
       width: 242px;
@@ -79,7 +79,7 @@
 
   .content {
 
-    @media (min-width: 751px) {
+    @media (--overmobile) {
 
       :first-child{
         border-top-right-radius: 4px;
@@ -96,11 +96,13 @@
 
     .item {
 
-      &:hover {
-        background: #dedede;
-        cursor: pointer;
-        .text {
-          color: $color__blue
+      @media (--mobile) {
+        &:hover {
+          background: #dedede;
+          cursor: pointer;
+          .text {
+            color: $color__blue
+          }
         }
       }
 
@@ -111,7 +113,8 @@
       height: 45px;
 
       @media (--mobile) {
-        background: white;
+        background: #dedede;
+        padding-top: 1px;
         text-align: center;
         font-size: 36px;
         line-height: 97px;
@@ -121,8 +124,9 @@
       .text {
 
         color: #595959;
+        background: white;
 
-        @media screen and (min-width: 751px){
+        @media screen and (--overmobile){
 
           padding-left: 30px;
 
