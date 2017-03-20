@@ -40,6 +40,7 @@
           autocomplete="off",
           autocorrect="off",
           autocapitalize="off",
+          type="number"
         )
         i.ic-close(v-if="phone",
           @click="phone='',$refs.phone.focus()")
@@ -256,6 +257,7 @@ export default {
     }
 
     .phone, .name {
+      border-bottom: 1px solid white;
       position: relative;
       margin-left: 40px;
       margin-top: 23px;
@@ -322,10 +324,7 @@ export default {
       height: 4rem;
       background: transparent;
       outline: none;
-      border-bottom: 1px solid white;
-      border-top:none;
-      border-right: none;
-      border-left: none;
+      border: none;
       color: white;
 
       @mixin standart__font;
