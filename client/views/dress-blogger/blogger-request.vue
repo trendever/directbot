@@ -255,6 +255,9 @@ export default {
       margin-top: 23px;
       padding-left: 0;
       width: 580px;
+      @media (--mobile){
+        transform: translateX(-18px);
+      }
       @media (--overmobile){
         width: 370px;
       }
