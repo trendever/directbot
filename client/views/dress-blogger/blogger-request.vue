@@ -15,9 +15,11 @@
       .name
         i.ic-insta-name
         input(
+          :class='{error: errorName}',
           ref="name",
           v-model="name",
           placeholder="Введите свое Instagram имя",
+          @focus="focusName",
           @click="$event.target.focus()",
           autocomplete="off",
           autocorrect="off",
@@ -29,9 +31,11 @@
       .phone
         i.ic-mobile-phone
         input(
+          :class='{error: errorPhone}',
           ref="phone",
           v-model="phone",
           placeholder="Введите номер телефона",
+          @focus="focusPhone",
           @click="$event.target.focus()"
           autocomplete="off",
           autocorrect="off",
@@ -41,10 +45,8 @@
           @click="phone='',$refs.phone.focus()")
 
 
-      .send-btn ОТПРАВИТЬ SMS-КОД
+      .send-btn(@click="request") ОТПРАВИТЬ
       .bottom-link Условия использования
-
-
 
 
 
@@ -53,12 +55,66 @@
 </template>
 
 <script>
+import { formatPhone } from 'root/utils';
 export default {
+
   data () {
+
     return {
       phone: '',
-      name: ''
+      errorPhone: false,
+      name: '',
+      errorName: false
     };
+
+  },
+
+  methods: {
+    request(){
+
+      //VALIDATE NAME
+      if(!this.name){
+        this.errorName = true;
+        this.name = 'Введите Instagram имя..';
+        return;
+      }
+
+      if(this.name.match(/[а-яё]+/g) !== null){
+        this.errorName = true;
+        this.name = 'Только латинские буквы..';
+        return;
+      }
+
+      //VALIDATE PHONE
+      if (!this.phone.replace(/\D/g,'').length) {
+        this.errorPhone = true;
+        this.phone = 'Неверный формат номера..';
+        return;
+      }
+
+
+      if(this.name && this.phone) {
+        let phone = formatPhone(this.phone, true);
+
+
+      }
+    },
+
+
+    //FOCUSES
+    focusName(){
+      if(this.errorName){
+        this.errorName=false
+        this.name=''
+      }
+    },
+    focusPhone(){
+      if(this.errorPhone){
+        this.errorPhone=false
+        this.phone=''
+      }
+    }
+
   }
 };
 </script>
@@ -253,6 +309,10 @@ export default {
 
       &::placeholder {
         font-family: $font__family__regular;
+      }
+
+      &.error {
+        color: $color-orange;
       }
     }
   }
