@@ -52,7 +52,7 @@
 
   .under-wrapper
     .ps-box.desktop *компания Trendever.com организатор и главный спонсор фонда #ОденьБлогера
-    .place-btn УЧАСТВОВАТЬ
+    .place-btn(@click="$router.push({name: 'blogger-request'})") УЧАСТВОВАТЬ
 
 
 

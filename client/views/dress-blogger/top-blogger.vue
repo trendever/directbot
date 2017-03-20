@@ -10,7 +10,7 @@
     .body
       h1 Фонд одевания блогеров
       p Приглашаем Instagram-блогеров#[br] одеваться за наш счет
-      .go-btn УЧАСТВОВАТЬ
+      .go-btn(@click="$router.push({name: 'blogger-request'})") УЧАСТВОВАТЬ
 
   .info-section
     | Раз в месяц несколько#[br.mobile] блогеров,#[br.desktop]

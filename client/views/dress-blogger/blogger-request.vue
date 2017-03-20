@@ -1,6 +1,6 @@
 <template lang="pug">
 #blogger-request
-  .close-page: i.ic-close
+  .close-page(@click="$router.push({name: 'dress-blogger'})"): i.ic-close
   .page-title.mobile Вход и регистрация
   .content-wrap
 
