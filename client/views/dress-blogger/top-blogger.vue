@@ -1,6 +1,15 @@
 <template lang="pug">
 #top-blogger
 
+  .menu-section
+    i.ic-menu_bullets
+    menu-sample(:opened="showMenu", v-on:close="showMenu = false")
+      .item
+        .text(@click.stop="supportChat") Поддержка
+      .item
+        .text.__txt-blue Отмена
+
+
   .brand-section
     img(src="./images/Trendever_logo.png" onclick="window.open('https://www.trendever.com')")
     .shops-btn МАГАЗИНАМ
@@ -24,10 +33,14 @@
 </template>
 
 <script>
+import menuSample from 'components/menu/menu-sample';
 export default {
+  components: {
+    menuSample
+  },
   data () {
     return {
-
+      showMenu: false
     };
   }
 };
@@ -38,6 +51,14 @@ export default {
 
 #top-blogger,
 #blogger-request {
+
+  .menu-section {
+    position: absolute 0 0 * *;
+
+    i.ic-menu_bullets {
+      padding: 20px;
+    }
+  }
 
   .brand-section {
     height: 100px;
