@@ -251,7 +251,7 @@ export default {
 
       @media (--mobile){
         margin-top: 50px;
-        transform: translateX(-20px)
+        transform: translateX(-23px)
 
       }
     }
