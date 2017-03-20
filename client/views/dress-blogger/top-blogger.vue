@@ -6,9 +6,9 @@
     menu-sample(:opened="showMenu", v-on:close="showMenu = false")
       .item(@click="$router.push({name: 'blogger-request'})")
         .text Вход
-      .item(@click="$router.push({name: 'home', query:{popup: 'dressblogger'}})")
+      .item(@click="goDirectbot")
         .text Магазинам
-      .item(onclick="window.open('https://www.trendever.com/dressblogger')")
+      .item(onclick="goTrendever")
         .text Покупателям
       .item
         .text.__txt-black Отмена
@@ -16,7 +16,8 @@
 
   .brand-section
     img(src="./images/Trendever_logo.png" onclick="window.open('https://www.trendever.com')")
-    .shops-btn МАГАЗИНАМ
+    .shops-btn(@click="goDirectbot") МАГАЗИНАМ
+    .customers-btn(@click="goTrendever") ПОКУПАТЕЛЯМ
 
   .body-section
     .title #ОденьБлогера
@@ -46,6 +47,14 @@ export default {
     return {
       showMenu: false
     };
+  },
+  methods:{
+    goDirectbot(){
+      this.$router.push({name: 'home', query:{popup: 'dressblogger'}})
+    },
+    goTrendever(){
+      window.open('https://www.trendever.com/dressblogger')
+    }
   }
 };
 </script>
@@ -61,6 +70,9 @@ export default {
 
     i.ic-menu_bullets {
       padding:40px 25px;
+      @media (--overmobile){
+        display: none;
+      }
     }
 
     #menu-sample {
@@ -93,7 +105,7 @@ export default {
         max-width: 250px;
       }
     }
-
+    .customers-btn,
     .shops-btn {
       display: inline-block;
       float:right;

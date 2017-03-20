@@ -75,7 +75,7 @@ export default {
       }
     }
   }
-
+  .customers-btn,
   .shops-btn,
   .go-btn,
   .place-btn {
