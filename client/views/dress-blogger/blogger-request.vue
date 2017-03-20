@@ -143,7 +143,7 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #blogger-request {
-
+  hidden: true;
   color: white;
   text-align: center;
   background-image: url(./images/Bgr-fix-desk.jpg);
@@ -319,6 +319,7 @@ export default {
     }
 
     input {
+      padding: 0;
       width: 100%;
       font-family: $font__family__light;
       height: 4rem;
