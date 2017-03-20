@@ -62,10 +62,12 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
+#landing-top,
 #top-blogger,
 #blogger-request {
 
   .menu-section {
+    z-index: 300;
     position: fixed 30px 30px * *;
 
     i.ic-menu_bullets {

@@ -40,7 +40,7 @@
           autocomplete="off",
           autocorrect="off",
           autocapitalize="off",
-          type="number"
+          type="phone"
         )
         i.ic-close(v-if="phone",
           @click="phone='',$refs.phone.focus()")

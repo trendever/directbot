@@ -3,6 +3,19 @@
 
   .hero__content__background
 
+
+  .menu-section
+    i.ic-menu_bullets(@click="showMenu=true")
+    menu-sample(:opened="showMenu", v-on:close="showMenu = false")
+      .item(@click="$router.push({name: 'auth'})")
+        .text Вход
+      .item(onclick="window.open('https://www.trendever.com')")
+        .text Покупателям
+      .item(@click="$router.push({name: 'dress-blogger'})")
+        .text Блогерам
+      .item
+        .text.__txt-blue Отмена
+
   a.header-sticker(href="https://trendever.com", target="_blank")
     span.wrap
       | Подключайтесь и продавайте#[br]
@@ -39,14 +52,15 @@
 </template>
 
 <script>
-
+import menuSample from 'components/menu/menu-sample';
 export default {
-
+  components: {menuSample},
   data(){
     return {
       isSafari: window.browser.safari,
       isFacebok: window.browser.facebook,
-      isInstagram: window.browser.instagram
+      isInstagram: window.browser.instagram,
+      showMenu: false
     }
   }
 
