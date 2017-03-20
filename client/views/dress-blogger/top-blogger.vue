@@ -2,12 +2,12 @@
 #top-blogger
 
   .menu-section
-    i.ic-menu_bullets
+    i.ic-menu_bullets(@click="showMenu=true")
     menu-sample(:opened="showMenu", v-on:close="showMenu = false")
       .item
-        .text(@click.stop="supportChat") Поддержка
+        .text(@click.stop="") Поддержка
       .item
-        .text.__txt-blue Отмена
+        .text.__txt-black Отмена
 
 
   .brand-section
@@ -56,7 +56,19 @@ export default {
     position: absolute 0 0 * *;
 
     i.ic-menu_bullets {
-      padding: 20px;
+      padding:40px 25px;
+    }
+
+    #menu-sample {
+      @media (--mobile) {
+        border-radius: 0px;
+        position: fixed 0 0 * 0;
+        z-index: 179;
+        size: 100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0,.6);
+      }
     }
   }
 

@@ -67,6 +67,7 @@
   }
 
   @media (--mobile) {
+    margin-top: -1px;
     border-radius: 0px;
     position: fixed 0 0 * 0;
     z-index: 179;
@@ -124,7 +125,7 @@
         @media screen and (min-width: 751px){
 
           padding-left: 30px;
-          
+
         }
 
         &.__txt-blue {
@@ -133,6 +134,10 @@
 
         &.__txt-red {
             color: $color__red;
+        }
+
+        &.__txt-black {
+            color: black;
         }
       }
     }
