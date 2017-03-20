@@ -4,8 +4,12 @@
   .menu-section
     i.ic-menu_bullets(@click="showMenu=true")
     menu-sample(:opened="showMenu", v-on:close="showMenu = false")
-      .item
-        .text(@click.stop="") Поддержка
+      .item(@click="$router.push({name: 'blogger-request'})")
+        .text Вход
+      .item(@click="$router.push({name: 'home', query:{popup: 'dressblogger'}})")
+        .text Магазинам
+      .item(onclick="window.open('https://www.trendever.com/dressblogger')")
+        .text Покупателям
       .item
         .text.__txt-black Отмена
 

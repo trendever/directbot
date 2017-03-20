@@ -2,13 +2,13 @@
 #menu-sample(v-if="opened", @click="$emit('close')")
   .content
     slot
-    //-.item
-      .text Выход
+      template(v-if="false")
+        .item
+          .text Выход
 
 </template>
 
 <script>
-
 
   export default{
     props: {
