@@ -15,7 +15,7 @@
       .name
         i.ic-insta-name
         input(
-          :class='{error: errorName}',
+          :class='{error: nameError}',
           ref="name",
           v-model="name",
           placeholder="Введите свое Instagram имя",
@@ -31,7 +31,7 @@
       .phone
         i.ic-mobile-phone
         input(
-          :class='{error: errorPhone}',
+          :class='{error: phoneError}',
           ref="phone",
           v-model="phone",
           placeholder="Введите номер телефона",
@@ -56,15 +56,17 @@
 
 <script>
 import { formatPhone } from 'root/utils';
+import { signup } from 'services/auth';
+
 export default {
 
   data () {
 
     return {
       phone: '',
-      errorPhone: false,
+      phoneError: false,
       name: '',
-      errorName: false
+      nameError: false
     };
 
   },
@@ -74,28 +76,44 @@ export default {
 
       //VALIDATE NAME
       if(!this.name){
-        this.errorName = true;
+        this.nameError = true;
         this.name = 'Введите Instagram имя..';
         return;
       }
 
       if(this.name.match(/[а-яё]+/g) !== null){
-        this.errorName = true;
+        this.nameError = true;
         this.name = 'Только латинские буквы..';
         return;
       }
 
       //VALIDATE PHONE
       if (!this.phone.replace(/\D/g,'').length) {
-        this.errorPhone = true;
+        this.phoneError = true;
         this.phone = 'Неверный формат номера..';
         return;
       }
 
-
       if(this.name && this.phone) {
+
         let phone = formatPhone(this.phone, true);
 
+        signup(phone, this.name, true, 'dressblogger')
+
+          .then(data=>{
+            console.log('%cБлоггер успешно добавлен',Green30)
+            this.$router.push({name: 'dress-blogger'})
+          })
+          .catch(err=>{
+            if(err.user_msg === "Invalid instagram name"){
+              this.nameError=true
+              this.name="Не валидное Instaram имя.."
+            }
+            if(err==6){
+              this.phoneError=true
+              this.phone='Введете верный номер..'
+            }
+          })
 
       }
     },
@@ -103,14 +121,14 @@ export default {
 
     //FOCUSES
     focusName(){
-      if(this.errorName){
-        this.errorName=false
+      if(this.nameError){
+        this.nameError=false
         this.name=''
       }
     },
     focusPhone(){
-      if(this.errorPhone){
-        this.errorPhone=false
+      if(this.phoneError){
+        this.phoneError=false
         this.phone=''
       }
     }
