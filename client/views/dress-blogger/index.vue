@@ -38,6 +38,56 @@ export default {
 
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
+
+.brand-section {
+
+  height: 100px;
+
+  img {
+    cursor: pointer;
+    margin-top: 15px;
+    margin-left: 1%;
+    display: inline-block;
+    float:left;
+    max-width: 150px;
+
+    @media (--mobile ){
+      margin-left: 37px;
+      margin-top: 50px;
+      max-width: 250px;
+    }
+  }
+
+  .land__top-btn {
+
+    display: inline-block;
+    float:right;
+    margin-top: 15px;
+    margin-right: 1%;
+    font-size: 16px;
+    font-family: $font__family__semibold;
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+
+    @media (--overmobile) {
+      width: initial;
+      padding:10px 35px;
+    }
+
+    @media (--mobile){
+      display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: white;
+      color: black;
+    }
+  }
+}
+
+
 #dress-blogger {
 
   position: relative;

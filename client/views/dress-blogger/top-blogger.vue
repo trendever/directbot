@@ -50,7 +50,7 @@ export default {
   },
   methods:{
     goDirectbot(){
-      this.$router.push({name: 'home', query:{popup: 'dressblogger'}})
+      window.location = '/home/is14';
     },
     goTrendever(){
       window.open('https://www.trendever.com/dressblogger')
@@ -61,6 +61,7 @@ export default {
 
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
+
 
 #landing-top,
 #top-blogger,
@@ -91,6 +92,7 @@ export default {
   }
 
   .brand-section {
+
     height: 100px;
 
     img {

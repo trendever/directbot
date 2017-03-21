@@ -3,8 +3,13 @@
 
   .hero__content__background
 
+  .brand-section
+    //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
+    .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
+    .land__top-btn(@click="") ПОКУПАТЕЛЯМ
+    .land__top-btn(@click="$router.push({name: 'dress-blogger'})") БЛОГЕРАМ
 
-  .menu-section
+  .menu-section.blue
     i.ic-menu_bullets(@click="showMenu=true")
     menu-sample(:opened="showMenu", v-on:close="showMenu = false")
       .item(@click="$router.push({name: 'auth'})")
@@ -26,7 +31,7 @@
     | Подключайтесь и продавайте на Trendever бесплатно
   .profile-header
     .profile-header__center
-    button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
+    //-button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
     //-a(href="https://www.trendever.com/dressblogger", target="_blank").for-blogers БЛОГЕРАМ
 
   .logo__mobile
@@ -72,6 +77,14 @@ export default {
 #landing-top {
 
   height: 100%;
+
+  .menu-section.blue  #menu-sample  {
+    background: $color__blue-opacity;
+  }
+
+  .brand-section {
+    position: absolute 0 0 * 0;
+  }
 
   a.header-sticker {
 

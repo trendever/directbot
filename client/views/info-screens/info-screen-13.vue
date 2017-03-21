@@ -2,7 +2,7 @@
 <template lang="pug">
 .info-screen
   .description
-    .centered13
+    .center-block
       | Мы работаем с блогерами #[br]
       | строго по бартеру. Потому  #[br]
       | что блогер должен хотеть и #[br]
@@ -13,14 +13,3 @@
       | чтобы реклама работала
 
 </template>
-<style lang="postcss">
- @import 'style/vars/vars.pcss';
-.description .centered13 {
-
-  padding-top: 19%;
-  @media (--mobile) {
-    padding-top: 32%;
-  }
-}
-
-</style>

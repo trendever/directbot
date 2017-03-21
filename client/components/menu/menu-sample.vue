@@ -74,7 +74,7 @@
     size: 100%;
     width: 100%;
     height: 100%;
-    background: rgba(94, 139, 206,.6);
+    background: $color__blue-opacity;
   }
 
   .content {

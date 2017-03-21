@@ -112,8 +112,8 @@ export default {
     })
   },
   beforeDestroy(){
-    this.scrollListener.remove();
-    this.resize.remove();
+    if(this.scrollListener)this.scrollListener.remove();
+    if(this.resize)this.resize.remove();
   },
   methods: {
     openPopup(name){

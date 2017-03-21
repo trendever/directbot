@@ -54,6 +54,7 @@ export default {
       phoneNumber: ''
     }
   },
+
   components: {
     Listener,
     Monetization,
