@@ -14,7 +14,7 @@
           .text Вход
         .item(@click="goDirectbot")
           .text Магазинам
-        .item(onclick="goTrendever")
+        .item(@click="goTrendever")
           .text Покупателям
         .item
           .text.__txt-black Отмена
