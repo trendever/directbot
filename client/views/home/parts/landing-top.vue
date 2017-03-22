@@ -8,7 +8,7 @@
     template(slot="desktop-view")
       //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
       .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
-      .land__top-btn(@click="") ПОКУПАТЕЛЯМ
+      .land__top-btn(@click="window.open('https://www.trendever.com')") ПОКУПАТЕЛЯМ
       .land__top-btn(@click="$router.push({name: 'dress-blogger'})") БЛОГЕРАМ
 
     template(slot="mobile-view")

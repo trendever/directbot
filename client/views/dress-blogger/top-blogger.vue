@@ -151,8 +151,9 @@ export default {
           margin-top: 50px;
         }
         p {
+          line-height: 55px;
           margin-bottom: 50px;
-          font-size: $font__medium;
+          font-size: 40px;
         }
       }
     }
