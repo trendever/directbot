@@ -55,7 +55,7 @@ export default {
       window.location = '/home/is14';
     },
     goTrendever(){
-      window.open('https://www.trendever.com/dressblogger')
+      window.open('https://www.trendever.com/?popup=dressblogger')
     }
   }
 };
