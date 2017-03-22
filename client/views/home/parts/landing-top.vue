@@ -258,7 +258,7 @@ export default {
       margin-top: 12.3%;
     }
     @media screen and (max-height: 1140px){
-      margin-top: 5%;
+
     }
   }
   //mobile logo on first welcome screen
@@ -287,6 +287,10 @@ export default {
       line-height: 55px;
     }
 
+
+    @media screen and (max-height: 1140px){
+      margin-bottom: 10px;
+    }
 
 
     &.bottom-fix {
