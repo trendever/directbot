@@ -70,7 +70,7 @@ export default {
     i.ic-menu_bullets {
       padding:40px 25px;
       transform: rotate(90deg);
-      animation: scale-move 1s;
+      animation: scale-move .5s;
 
       @media (--overmobile){
         display: none;
