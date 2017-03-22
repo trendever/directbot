@@ -3,7 +3,7 @@
 
   brand-menu.directbot-landing
     template(slot="desktop-view")
-      img(src="./images/Trendever_logo.png" onclick="window.open('https://www.trendever.com')")
+      img(src="./images/Trendever_logo.png" @click="goTrendever")
       .land__top-btn(@click="goDirectbot") МАГАЗИНАМ
       .land__top-btn(@click="goTrendever") ПОКУПАТЕЛЯМ
 
