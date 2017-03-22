@@ -1,7 +1,7 @@
 <template lang="pug">
 
 #list
-
+  trendever-hero
   header-component(:leftBtnShow="false")
 
     .search-text(slot="center-content")
@@ -35,12 +35,14 @@
 </template>
 
 <script>
+import trendeverHero from './trendever-hero';
 import photosComponent from 'components/photos';
 import tagsComponent from 'components/tags';
 import headerComponent from 'components/header';
 import { mapGetters } from 'vuex';
 export default {
   components: {
+    trendeverHero,
     photosComponent,
     tagsComponent,
     headerComponent
@@ -74,6 +76,9 @@ export default {
 
 #list {
 
+  .header {
+    position: relative;
+  }
   .search-text {
 
     max-width: 1050px;
