@@ -30,7 +30,7 @@
       | на Trendever
       span(style="font-weight: bold") &nbspбесплатно
 
-  a.landing-top(href="https://www.trendever.com", target="_blank")
+  //-a.landing-top(href="https://www.trendever.com", target="_blank")
     | Подключайтесь и продавайте на Trendever бесплатно
   .profile-header
     .profile-header__center
@@ -79,6 +79,15 @@ export default {
 
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
+
+@keyframes margin-move {
+  from {
+    margin-left: -700px;
+  }
+  to {
+    margin-left: 0px;
+  }
+}
 #landing-top {
 
   height: 100%;
@@ -89,7 +98,7 @@ export default {
 
   a.header-sticker {
 
-    display: none;
+    //display: none;
     text-decoration: none;
     color: white;
     text-align: center;
@@ -99,6 +108,17 @@ export default {
     background-image: url(../img/header_sticker.png);
     background-repeat: no-repeat;
     background-size: contain;
+
+    @media (--mobile) {
+      animation: margin-move .6s ease;
+      padding-top: 8px;
+      padding-left: 156px;
+      position: absolute 10px *  * -150px;
+      text-align: left;
+      display: block;
+      height: 320px;
+      width: 520px;
+    }
     @media screen and (min-width: 1301px){
       display: block;
       position: absolute 400px -40px * *;

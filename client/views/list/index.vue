@@ -40,6 +40,7 @@ import photosComponent from 'components/photos';
 import tagsComponent from 'components/tags';
 import headerComponent from 'components/header';
 import { mapGetters } from 'vuex';
+import listen from 'event-listener';
 export default {
   components: {
     trendeverHero,

@@ -68,7 +68,7 @@ export default {
     position: absolute 30px 30px * *;
 
     i.ic-menu_bullets {
-      padding:20px 9px;
+      padding:0px 9px;
       transform: rotate(90deg);
       animation: scale-move .5s;
 
