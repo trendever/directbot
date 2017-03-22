@@ -68,7 +68,7 @@ export default {
     position: absolute 30px 30px * *;
 
     i.ic-menu_bullets {
-      padding:40px 25px;
+      padding:20px 9px;
       transform: rotate(90deg);
       animation: scale-move .5s;
 
@@ -119,8 +119,9 @@ export default {
       max-width: 150px;
 
       @media (--mobile ){
-        margin-left: 37px;
-        margin-top: 50px;
+
+        margin-left: 27px;
+        margin-top: 30px;
         max-width: 250px;
       }
     }

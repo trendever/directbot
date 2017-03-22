@@ -71,7 +71,7 @@ export default {
 
   .brand-section {
 
-    height: 100px;
+/*     height: 100px;
 
     img {
       cursor: pointer;
@@ -86,7 +86,7 @@ export default {
         margin-top: 50px;
         max-width: 250px;
       }
-    }
+    } */
     .customers-btn,
     .shops-btn {
       display: inline-block;
