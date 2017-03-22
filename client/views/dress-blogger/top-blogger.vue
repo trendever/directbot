@@ -11,7 +11,7 @@
       i.ic-menu_bullets(@click="showMenu=true")
       menu-sample.black(:opened="showMenu", v-on:close="showMenu = false")
         .item(@click="$router.push({name: 'blogger-request'})")
-          .text Вход
+          .text Участвовать
         .item(@click="goDirectbot")
           .text Магазинам
         .item(@click="goTrendever")

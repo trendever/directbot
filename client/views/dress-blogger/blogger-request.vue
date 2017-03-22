@@ -1,7 +1,7 @@
 <template lang="pug">
 #blogger-request
   .close-page(@click="$router.push({name: 'dress-blogger'})"): i.ic-close
-  .page-title.mobile Вход и регистрация
+  .page-title.mobile {{ title }}
   .content-wrap
 
     .body-section
@@ -11,7 +11,7 @@
         p Приглашаем Instagram-блогеров#[br] одеваться за наш счет
 
     .form-section
-      .page-title.desktop Вход и регистрация
+      .page-title.desktop {{ title }}
       .name
         i.ic-insta-name
         input(
@@ -64,6 +64,7 @@ export default {
   data () {
 
     return {
+      title: 'Оставить заявку',
       phone: '',
       phoneError: false,
       name: '',
