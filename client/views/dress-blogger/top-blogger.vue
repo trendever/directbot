@@ -52,7 +52,7 @@ export default {
   },
   methods:{
     goDirectbot(){
-      window.location = '/home/is14';
+      window.open('https:/www.directbot.io/home/is14');
     },
     goTrendever(){
       window.open('https://www.trendever.com/?popup=dressblogger')
