@@ -1,23 +1,23 @@
 <template lang="pug">
 #top-blogger
 
-  .menu-section
-    i.ic-menu_bullets(@click="showMenu=true")
-    menu-sample(:opened="showMenu", v-on:close="showMenu = false")
-      .item(@click="$router.push({name: 'blogger-request'})")
-        .text Вход
-      .item(@click="goDirectbot")
-        .text Магазинам
-      .item(onclick="goTrendever")
-        .text Покупателям
-      .item
-        .text.__txt-black Отмена
+  brand-menu.directbot-landing
+    template(slot="desktop-view")
+      img(src="./images/Trendever_logo.png" onclick="window.open('https://www.trendever.com')")
+      .land__top-btn(@click="goDirectbot") МАГАЗИНАМ
+      .land__top-btn(@click="goTrendever") ПОКУПАТЕЛЯМ
 
-
-  .brand-section
-    img(src="./images/Trendever_logo.png" onclick="window.open('https://www.trendever.com')")
-    .shops-btn(@click="goDirectbot") МАГАЗИНАМ
-    .customers-btn(@click="goTrendever") ПОКУПАТЕЛЯМ
+    template(slot="mobile-view")
+      i.ic-menu_bullets(@click="showMenu=true")
+      menu-sample.black(:opened="showMenu", v-on:close="showMenu = false")
+        .item(@click="$router.push({name: 'blogger-request'})")
+          .text Вход
+        .item(@click="goDirectbot")
+          .text Магазинам
+        .item(onclick="goTrendever")
+          .text Покупателям
+        .item
+          .text.__txt-black Отмена
 
   .body-section
     .title #ОденьБлогера
@@ -39,9 +39,11 @@
 
 <script>
 import menuSample from 'components/menu/menu-sample';
+import brandMenu from 'components/menu/brand-menu';
 export default {
   components: {
-    menuSample
+    menuSample,
+    brandMenu
   },
   data () {
     return {
@@ -66,30 +68,6 @@ export default {
 #landing-top,
 #top-blogger,
 #blogger-request {
-
-  .menu-section {
-    z-index: 300;
-    position: fixed 30px 30px * *;
-
-    i.ic-menu_bullets {
-      padding:40px 25px;
-      @media (--overmobile){
-        display: none;
-      }
-    }
-
-    #menu-sample {
-      @media (--mobile) {
-        border-radius: 0px;
-        position: fixed 0 0 * 0;
-        z-index: 179;
-        size: 100%;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0,.6);
-      }
-    }
-  }
 
   .brand-section {
 

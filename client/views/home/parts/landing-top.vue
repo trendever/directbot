@@ -3,23 +3,26 @@
 
   .hero__content__background
 
-  .brand-section
-    //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
-    .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
-    .land__top-btn(@click="") ПОКУПАТЕЛЯМ
-    .land__top-btn(@click="$router.push({name: 'dress-blogger'})") БЛОГЕРАМ
 
-  .menu-section.blue
-    i.ic-menu_bullets(@click="showMenu=true")
-    menu-sample(:opened="showMenu", v-on:close="showMenu = false")
-      .item(@click="$router.push({name: 'auth'})")
-        .text Вход
-      .item(onclick="window.open('https://www.trendever.com')")
-        .text Покупателям
-      .item(@click="$router.push({name: 'dress-blogger'})")
-        .text Блогерам
-      .item
-        .text.__txt-blue Отмена
+  brand-menu
+    template(slot="desktop-view")
+      //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
+      .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
+      .land__top-btn(@click="") ПОКУПАТЕЛЯМ
+      .land__top-btn(@click="$router.push({name: 'dress-blogger'})") БЛОГЕРАМ
+
+    template(slot="mobile-view")
+      i.ic-menu_bullets(@click="showMenu=true")
+      menu-sample.blue(:opened="showMenu", v-on:close="showMenu = false")
+        .item(@click="$router.push({name: 'auth'})")
+          .text Вход
+        .item(onclick="window.open('https://www.trendever.com')")
+          .text Покупателям
+        .item(@click="$router.push({name: 'dress-blogger'})")
+          .text Блогерам
+        .item
+          .text.__txt-blue Отмена
+
 
   a.header-sticker(href="https://trendever.com", target="_blank")
     span.wrap
@@ -58,8 +61,10 @@
 
 <script>
 import menuSample from 'components/menu/menu-sample';
+import brandMenu from 'components/menu/brand-menu';
+
 export default {
-  components: {menuSample},
+  components: {menuSample, brandMenu},
   data(){
     return {
       isSafari: window.browser.safari,
@@ -77,10 +82,6 @@ export default {
 #landing-top {
 
   height: 100%;
-
-  .menu-section.blue  #menu-sample  {
-    background: $color__blue-opacity;
-  }
 
   .brand-section {
     position: absolute 0 0 * 0;

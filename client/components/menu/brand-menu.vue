@@ -1,25 +1,34 @@
 <template lang="pug">
+
 #brand-menu
 
   .brand-section
-    //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
-    .land__top-btn(@click="$router.go({name: 'signup'})") ВХОД
-    .land__top-btn(@click="") ПОКУПАТЕЛЯМ
-    .land__top-btn(@click="window.open('http://www.trendever.com')") БЛОГЕРАМ
+    slot(name="desktop-view")
 
-  .menu-section.blue
-    i.ic-menu_bullets(@click="showMenu=true")
-    menu-sample(:opened="showMenu", v-on:close="showMenu = false")
-      .item(@click="$router.go({name: 'auth'})")
-        .text Вход
-      .item(onclick="window.open('https://www.trendever.com')")
-        .text Покупателям
-      .item(@click="$router.go({name: 'dress-blogger'})")
-        .text Блогерам
-      .item
-        .text.__txt-blue Отмена
+      //-TEMPLATE
+        img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
+        .land__top-btn.hov(@click="$router.go({name: ''})") ВХОД
+        .land__top-btn(onclick="window.open('http://www.directbot.io')") МАГАЗИНАМ
+        .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
+        .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") ПОКУПАТЕЛЯМ
+
+  .menu-section
+    slot(name="mobile-view")
+
+      //-TEMPLATE
+        i.ic-menu_bullets(@click="showMenu=true")
+        menu-sample(:opened="showMenu", v-on:close="showMenu = false")
+          .item(@click="$router.go({name: 'signup'})")
+            .text Вход
+          .item(onclick="window.open('http://www.directbot.io')")
+            .text Магазинам
+          .item(onclick="window.open('https://www.trendever.com/dressblogger')")
+            .text Блогерам
+          .item
+            .text.__txt-green Отмена
 
 </template>
+
 
 <script>
 import menuSample from './menu-sample';
@@ -35,20 +44,53 @@ export default {
 };
 </script>
 
-<style lang="pcss">
+<style lang="postcss">
+
+@import 'style/vars/vars.pcss';
+
+@keyframes scale-move {
+  from {
+    transform: scale(.2);
+  }
+  50% {
+    transform: scale(.7);
+  }
+  to {
+    font-size: scale(1);
+  }
+}
+
 
 #brand-menu {
 
   .menu-section {
-
     z-index: 300;
-    position: fixed 30px 30px * *;
+    position: absolute 30px 30px * *;
 
     i.ic-menu_bullets {
       padding:40px 25px;
+      transform: rotate(90deg);
+      animation: scale-move 1s;
+
       @media (--overmobile){
         display: none;
       }
+    }
+
+
+    @media (--mobile) {
+
+      #menu-sample.blue  {
+        background: $color__blue-opacity;
+      }
+      #menu-sample.green  {
+        background: $color__blue-opacity;
+      }
+
+      #menu-sample.black {
+        background: rgba(0, 0, 0,.6);
+      }
+
     }
 
     #menu-sample {
@@ -59,7 +101,7 @@ export default {
         size: 100%;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0,.6);
+
       }
     }
   }
