@@ -82,7 +82,7 @@ export default {
     position: absolute * 0 0 0;
     z-index: -1;
     height: 100%;
-    background: $color__dark-blue;
+    background: $color__brand-dark;
 
   }
   .wrap-block {

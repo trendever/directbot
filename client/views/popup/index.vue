@@ -76,7 +76,7 @@ export default {
 		overflow: auto;
 
     &.popup-price {
-      background: $color__dark-blue;
+      background: $color__brand-dark;
     }
 
 		.popup-content{

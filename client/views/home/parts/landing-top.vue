@@ -141,7 +141,7 @@ export default {
     display: none;
     @media (--tabletandless) {
       display: block;
-      background: $color__blue;
+      background: $color__brand;
       color: white;
       font-size: 25px;
       font-family: $font__family__semibold;
@@ -217,7 +217,7 @@ export default {
     .for-blogers:hover{
       background: $color__white;
       border-color: $color__white;
-      color: $color__blue;
+      color: $color__brand;
       cursor: pointer;
     }
   }
@@ -335,7 +335,7 @@ export default {
       &:hover{
         background-color: $color__white;
         border-color: $color__white;
-        color: $color__blue;
+        color: $color__brand;
       }
     }
     @media(--tabletandless) {

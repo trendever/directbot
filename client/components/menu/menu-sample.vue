@@ -74,7 +74,7 @@
     size: 100%;
     width: 100%;
     height: 100%;
-    background: $color__blue-opacity;
+    background: $color__brand-opacity;
   }
 
   .content {
@@ -101,7 +101,7 @@
           background: #dedede;
           cursor: pointer;
           .text {
-            color: $color__blue
+            color: $color__brand
           }
         }
       }
@@ -133,7 +133,7 @@
         }
 
         &.__txt-blue {
-            color: $color__blue;
+            color: $color__brand;
         }
 
         &.__txt-red {

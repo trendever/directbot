@@ -115,7 +115,7 @@ export default {
         color: white;
         border-bottom: 1px solid white;
         font-size: $font__normal;
-        background: $color__blue;
+        background: $color__brand;
         font-family: $font__family__semibold;
         height: inherit;
 
@@ -201,7 +201,7 @@ export default {
       }
       @media (--mobile){
         padding-right: 20px;
-        color: $color__blue;
+        color: $color__brand;
         font-size: $font__large;
         position: absolute 0 * * 0 ;
         width: 100px;

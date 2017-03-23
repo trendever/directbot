@@ -81,10 +81,10 @@ export default {
     @media (--mobile) {
 
       #menu-sample.blue  {
-        background: $color__blue-opacity;
+        background: $color__brand-opacity;
       }
       #menu-sample.green  {
-        background: $color__blue-opacity;
+        background: $color__brand-opacity;
       }
 
       #menu-sample.black {

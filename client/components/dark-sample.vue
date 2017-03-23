@@ -77,7 +77,7 @@ export default {
 #dark-sample {
   height: 100%;
   overflow:hidden;
-  background: $color__dark-blue;
+  background: $color__brand-dark;
   font-family: $font__family__light;
   font-size: $font__normal;
   @media (--mobile) {
