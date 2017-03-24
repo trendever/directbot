@@ -59,14 +59,14 @@
   width: 210px;
 
 
-  @media (--overmobile) {
+  @media (--overtablet) {
     box-shadow: 1px 1px 5px #595959;
     &.prof-menu {
       width: 242px;
     }
   }
 
-  @media (--mobile) {
+  @media (--tabletandless) {
     margin-top: -1px;
     border-radius: 0px;
     position: fixed 0 0 * 0;

@@ -53,8 +53,9 @@ export default {
   margin: 0 auto;
   position: relative;
 
-  @media(--tabletandless) {
+  @media (--tabletandless) {
     padding: 0px 25px 0px 25px;
+
   }
 
 
@@ -81,6 +82,10 @@ export default {
     margin: 0 auto;
     padding-bottom: 70px;
 
+    @media (--tabletandless){
+      max-width: 694px;
+    }
+
   }
 
   .head-title{
@@ -91,7 +96,7 @@ export default {
     width: 80%;
     color: $color__gray-dark;
 
-    @media(--tabletandless) {
+    @media (--tabletandless) {
       font-size: 64px;
       width: 100%;
     }

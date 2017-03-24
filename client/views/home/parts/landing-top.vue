@@ -109,15 +109,18 @@ export default {
     background-repeat: no-repeat;
     background-size: contain;
 
-    @media (--mobile) {
+    @media (--tabletandless) {
       animation: margin-move .6s ease;
       padding-top: 8px;
       padding-left: 156px;
-      position: absolute 10px *  * -150px;
+      position: absolute -10px *  * -150px;
       text-align: left;
       display: block;
-      height: 320px;
+      //height: 320px;
       width: 520px;
+      transform: translateY(0%) rotate(5deg)
+
+
     }
     @media screen and (min-width: 1301px){
       display: block;
@@ -130,7 +133,7 @@ export default {
       position: absolute 300px -40px * *;
     }
 
-    @media (--overmobile) {
+    @media (--overtablet) {
       span.wrap {
         display: inline-block;
         transform: translateY(70%) rotate(-7deg)
@@ -138,13 +141,12 @@ export default {
 
     }
 
-    @media (--mobile) {
+    @media (--tabletandless) {
       span.wrap {
         display: inline-block;
-        transform: translateY(70%) rotate(0)
+        transform: translateY(70%) rotate(-5deg)
       }
     }
-
   }
 
   .landing-top {

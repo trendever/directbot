@@ -371,7 +371,7 @@ export default {
     padding: 40px 0;
 
     max-width: 500px;
-    @media (--mobile) {
+    @media (--tabletandless) {
       max-width: 100%;
     }
 

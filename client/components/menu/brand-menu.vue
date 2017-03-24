@@ -71,8 +71,10 @@ export default {
       padding:0px 9px;
       transform: rotate(90deg);
       animation: scale-move .5s;
-
-      @media (--overmobile){
+      @media (min-width: 751px) {
+        font-size: $font__large;
+      }
+      @media (--overtablet){
         display: none;
       }
     }
@@ -138,12 +140,12 @@ export default {
       color: white;
       border-radius: 5px;
 
-      @media (--overmobile) {
+      @media (--overtablet) {
         width: initial;
         padding:10px 35px;
       }
 
-      @media (--mobile){
+      @media (--tabletandless){
         display: none;
       }
 
