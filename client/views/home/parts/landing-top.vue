@@ -130,10 +130,21 @@ export default {
       position: absolute 300px -40px * *;
     }
 
-    span.wrap {
-      display: inline-block;
-      transform: translateY(70%) rotate(-7deg)
+    @media (--overmobile) {
+      span.wrap {
+        display: inline-block;
+        transform: translateY(70%) rotate(-7deg)
+      }
+
     }
+
+    @media (--mobile) {
+      span.wrap {
+        display: inline-block;
+        transform: translateY(70%) rotate(0)
+      }
+    }
+
   }
 
   .landing-top {
