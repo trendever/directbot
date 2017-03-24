@@ -109,6 +109,11 @@ export default {
       } else {
          this.windowHeight = window.innerHeight;
       }
+      if(window.browser.facebook && window.browser.ios){
+        setTimeout(()=>{
+          this.windowHeight = document.body.offsetHeight;
+        },500)
+      }
     })
   },
   beforeDestroy(){

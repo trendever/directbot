@@ -1,7 +1,7 @@
 <template lang="pug">
 
 #list
-  trendever-hero
+  trendever-hero(v-if="!$store.getters.isAuth")
   header-component(:leftBtnShow="false")
 
     .search-text(slot="center-content")
@@ -135,6 +135,7 @@ export default {
           transform: translateX(-17px);
           color: $color__gray-dark;
           font-size: $font__large;
+          font-family: $font__family__light;
           width: 70%;
           display: block;
           margin-left: 120px;

@@ -26,6 +26,7 @@
 
     @media (--mobile){
       font-size: $font__large;
+      font-family: $font__family__thin;
       padding: 10px 15px;
     }
 
