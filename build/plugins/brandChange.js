@@ -1,22 +1,22 @@
-let fs = require('fs');
-let path = require('path');
-let config = require('../../config');
+var fs = require('fs');
+var path = require('path');
+var config = require('../../config');
 function MyPlugin() {};
 
 MyPlugin.prototype.apply = function (compiler) {
-  let textTrendever = `
+  var textTrendever = `
     $color__brand: #31bebc;
     $color__brand-dark: #0e3333;
     $color__brand-opacity: rgba(24, 92, 90, .7);
 
   `;
-  let textDirectbot = `
+  var textDirectbot = `
     $color__brand:#5E8BCE;
     $color__brand-dark:#09162B;
     $color__brand-light:#496DA1;
     $color__brand-opacity:rgba(94, 139, 206,.6);
   `
-  let current = config.trendever ? textTrendever : textDirectbot;
+  var current = config.trendever ? textTrendever : textDirectbot;
 
   compiler.plugin('compile', function() {
     fs.writeFile(path.join(__dirname, '../../client/style/vars/brand.pcss'), current,'utf-8', function (err) {
