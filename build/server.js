@@ -6,51 +6,6 @@ const webpack = require('webpack')
 const webpackConfig = require('./webpack.dev')
 const config = require('./config')
 
-
-let textTrendever = `
-  @import 'style/vars/colors.pcss';
-  @import 'style/vars/fonts.pcss';
-  @import 'style/vars/media.pcss';
-  @import 'style/vars/sizes.pcss';
-  @import 'style/vars/zIndex.pcss';
-  @import 'style/vars/mixins.pcss';
-
-  $transition: .3s;
-  $btn-transition: 64ms ease-in-out;
-
-
-  $color__brand: #31bebc;
-  $color__brand-dark: #0e3333;
-  $color__brand-opacity: rgba(24, 92, 90, .7);
-
-`;
-let textDirectbot = `
-  //D I R E C T B O T
-  @import 'style/vars/colors.pcss';
-  @import 'style/vars/fonts.pcss';
-  @import 'style/vars/media.pcss';
-  @import 'style/vars/sizes.pcss';
-  @import 'style/vars/zIndex.pcss';
-  @import 'style/vars/mixins.pcss';
-
-  $transition: .3s;
-  $btn-transition: 64ms ease-in-out;
-
-  $color__brand:#5E8BCE;
-  $color__brand-dark:#09162B;
-  $color__brand-light:#496DA1;
-  $color__brand-opacity:rgba(94, 139, 206,.6);
-
-`
-
-let current = config.trendever ? textTrendever : textDirectbot;
-
-fs.writeFile(path.join(__dirname, '../client/style/vars/vars.pcss'), current,'utf-8', function (err) {
-  if (err) return console.log(err);
-  console.log('make vars.css');
-});
-
-
 const app = express()
 
 const port = config.port

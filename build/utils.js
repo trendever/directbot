@@ -1,4 +1,5 @@
 'use strict'
+const fs = require('fs')
 const path = require('path')
 const config = require('./config')
 
@@ -19,3 +20,5 @@ _.outputIndexPath = config.electron ?
 _.target = config.electron ?
   'electron-renderer' :
   'web'
+
+

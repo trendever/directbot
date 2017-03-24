@@ -2,6 +2,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BrandChangePlugin = require('./plugins/brandChange')
 const config = require('./config')
 const _ = require('./utils')
 
@@ -64,7 +65,7 @@ module.exports = {
     postcss: config.postcss
   },
   plugins: [
-
+    new BrandChangePlugin(),
     new HtmlWebpackPlugin({
       title: config.title,
       template: __dirname + '/index.html',
