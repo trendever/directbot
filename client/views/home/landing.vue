@@ -111,7 +111,7 @@ export default {
       }
       if(window.browser.facebook && window.browser.ios){
         setTimeout(()=>{
-          this.windowHeight = document.body.offsetHeight;
+          this.windowHeight = window.innerHeight;
         },500)
       }
     })

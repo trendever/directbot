@@ -4,13 +4,16 @@
   .page-title.mobile {{ title }}
   .content-wrap
 
-    .body-section
+    .requested-section(v-if="requested")
+      h1 Спасибо!
+
+    .body-section(v-if="!requested")
       .title #ОденьБлогера
       .body
         h1 Фонд одевания блогеров
         p Приглашаем Instagram-блогеров#[br] одеваться за наш счет
 
-    .form-section
+    .form-section(v-if="!requested")
       .page-title.desktop {{ title }}
       .name
         i.ic-insta-name
@@ -68,7 +71,8 @@ export default {
       phone: '',
       phoneError: false,
       name: '',
-      nameError: false
+      nameError: false,
+      requested: true
     };
 
   },
@@ -104,7 +108,10 @@ export default {
 
           .then(data=>{
             console.log('%cБлоггер успешно добавлен',Green30)
-            this.$router.push({name: 'dress-blogger'})
+            this.requested=true;
+            setTimeout(()=>{
+              this.$router.push({name: 'dress-blogger'})
+            },1000)
           })
           .catch(err=>{
             if(err.user_msg === "Invalid instagram name"){
@@ -207,6 +214,19 @@ export default {
         display: block;
         font-family:$font__family__semibold;
       }
+    }
+  }
+
+  .requested-section {
+
+    text-align: center;
+    font-size: $font__large;
+    color: white;
+    padding-top: 15%;
+    @media (--mobile){
+      font-size: 60px;
+      margin-top: 45%;
+      padding: 0;
     }
   }
 
