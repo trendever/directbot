@@ -262,7 +262,7 @@ export default {
     .bottom-link {
 
       @mixin standart__font;
-
+      cursor: pointer;
       border-bottom: 1px solid white;
       color: white;
       opacity: 0.5;
