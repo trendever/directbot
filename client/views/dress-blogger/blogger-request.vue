@@ -72,7 +72,7 @@ export default {
       phoneError: false,
       name: '',
       nameError: false,
-      requested: true
+      requested: false
     };
 
   },
