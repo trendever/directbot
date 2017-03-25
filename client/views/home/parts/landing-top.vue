@@ -343,7 +343,7 @@ export default {
       border-radius: 5px;
       border: 1px solid $color__white;
       background-color: transparent;
-      margin-top: 15px;
+      margin-top: 10px;
       cursor: pointer;
       &:hover{
         background-color: $color__white;

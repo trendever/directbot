@@ -1,6 +1,6 @@
 <template lang="pug">
 
-#list
+#list(ref="list")
   trendever-hero(v-if="!$store.getters.isAuth")
   header-component(:leftBtnShow="false")
 
@@ -50,6 +50,13 @@ export default {
   },
   created(){
     this.$store.dispatch('loadTags');
+    listen(window, 'scroll',()=>{
+      if(document.body.scrollTop <= 2 * window.innerHeight && !this.isAuth){
+        this.$refs.list.querySelector('.header').style.position = 'relative';
+      } else {
+        this.$refs.list.querySelector('.header').style.position = 'fixed';
+      }
+    })
   },
   methods: {
     search() {
@@ -65,7 +72,8 @@ export default {
     ...mapGetters([
       'selectedTagsId',
       'tags',
-      'searchValue'
+      'searchValue',
+      'isAuth'
     ])
   },
 };
@@ -78,7 +86,7 @@ export default {
 #list {
 
   .header {
-    position: relative;
+    //position: relative;
   }
   .search-text {
 
