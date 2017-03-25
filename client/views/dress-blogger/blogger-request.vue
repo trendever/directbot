@@ -27,6 +27,7 @@
           autocomplete="off",
           autocorrect="off",
           autocapitalize="off",
+          @keyup.enter="request"
         )
         i.ic-close(v-if="name",
           @click="name='',$refs.name.focus()")
@@ -43,7 +44,8 @@
           autocomplete="off",
           autocorrect="off",
           autocapitalize="off",
-          type="phone"
+          type="phone",
+          @keyup.enter="request"
         )
         i.ic-close(v-if="phone",
           @click="phone='',$refs.phone.focus()")
