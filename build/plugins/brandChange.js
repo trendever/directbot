@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var config = require('../../config');
+
 function MyPlugin() {};
 
 MyPlugin.prototype.apply = function (compiler) {
@@ -16,9 +16,10 @@ MyPlugin.prototype.apply = function (compiler) {
     $color__brand-light:#496DA1;
     $color__brand-opacity:rgba(94, 139, 206,.6);
   `
-  var current = config.trendever ? textTrendever : textDirectbot;
 
   compiler.plugin('compile', function() {
+    var config = require('../../config');
+    var current = config.trendever ? textTrendever : textDirectbot;
     fs.writeFile(path.join(__dirname, '../../client/style/vars/brand.pcss'), current,'utf-8', function (err) {
       if (err) return console.log(err);
       console.log('make vars.css');
