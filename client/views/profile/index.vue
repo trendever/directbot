@@ -44,6 +44,7 @@ export default {
       supplierProfileID: 0,
       shoplocation: "",
       shopabout: "",
+      source: config.trendever ? 'trdv.com' : 'drbt.io'
     }
 
   },
@@ -294,7 +295,7 @@ export default {
             this.copy.on('success',()=>{
 
 
-              let text = `Ссылка ${this.getUserNameLinked}.drbt.io скопирована для вставки.`;
+              let text = `Ссылка ${this.getUserNameLinked}.${this.source} скопирована для вставки.`;
               if(this.isIos){
                 alert(text)
                 return;

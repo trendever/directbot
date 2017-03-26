@@ -125,7 +125,7 @@
 
       .profile_insta-link(v-if="isMobile", :class="{'change-padding': !isSelfPage}")
         .insta-link-text ссылка на эту витрину
-        .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ isTrendever ? "trdv" : "drbt" }}.io
+        .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
         native-popup(:show-popup="showCopyMessage")
           .title-text.title-font Ссылка скопирована
           .main-text {{copyMessage}}
