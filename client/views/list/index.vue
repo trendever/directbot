@@ -1,8 +1,8 @@
 <template lang="pug">
 
 #list(ref="list")
-  trendever-hero(v-if="!$store.getters.isAuth")
-  header-component(:leftBtnShow="false")
+  trendever-hero(v-if="!$store.getters.isAuth && showHero")
+  header-component(:leftBtnShow="false", :className="{class: 'rel', cond: !isAuth && showHero}")
 
     .search-text(slot="center-content")
 
@@ -48,15 +48,21 @@ export default {
     tagsComponent,
     headerComponent
   },
+  data(){
+    return {showHero: true}
+  },
   created(){
+
     this.$store.dispatch('loadTags');
+
     listen(window, 'scroll',()=>{
-      if(document.body.scrollTop <= 2 * window.innerHeight && !this.isAuth){
-        this.$refs.list.querySelector('.header').style.position = 'relative';
-      } else {
-        this.$refs.list.querySelector('.header').style.position = 'fixed';
+      if(this.showHero && !this.isAuth){
+        if(document.body.scrollTop >= 2 * window.innerHeight){
+          this.showHero = false;
+        }
       }
     })
+
   },
   methods: {
     search() {
@@ -66,6 +72,11 @@ export default {
       this.$store
         .dispatch('clearSearch')
         .then(()=>this.$refs.search.focus())
+    }
+  },
+  watch:{
+    showHero(){
+      window.scrollTo(0,0)
     }
   },
   computed: {
@@ -85,8 +96,8 @@ export default {
 
 #list {
 
-  .header {
-    //position: relative;
+  .header.rel {
+    display: none;
   }
   .search-text {
 
@@ -232,8 +243,9 @@ export default {
     background: white;
     max-width: 1050px;
     margin: 50px auto 0 auto;
+    transition: all .3s ease;
     @media (--mobile) {
-      margin-top: 0;//89px;
+      margin-top: 89px;
     }
   }
 

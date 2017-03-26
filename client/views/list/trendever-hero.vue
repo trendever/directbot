@@ -2,11 +2,12 @@
 #trendever-hero(:style="{ height: heroHeight + 'px'}")
 
   .screen-one
+    .title-area
+      .brand-logo: img(src="../dress-blogger/images/Trendever_logo.png")
+      h1 Шопинг в Instagram#[br.mobile] стал проще!
 
-    h1 Шопинг в Instagram#[br.mobile] стал проще!
-
-    .auth-btn СКАЧАТЬ ПРИЛОЖЕНИЕ
-    .how-btn(@click="scrollFirst") КАК ЭТО РАБОТАЕТ?
+    .auth-btn: span ПРИЛОЖЕНИЕ
+    .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
   .screen-two
 
@@ -15,7 +16,7 @@
       | трендовые товары здесь#[br]
       | или прямо в Instaram
 
-    .watch-btn(@click="scrollSecond") ЗАГЛЯНУТЬ ВНУТРЬ
+    .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
 
 
 
@@ -64,6 +65,23 @@ export default {
 
   }
 
+
+  .title-area {
+    .brand-logo {
+      width: 500px;
+      padding-top: 400px;
+
+      margin: 0 auto;
+
+      @media (--overtablet){
+        padding-top: 290px;
+      }
+    }
+    h1{
+      padding-top: 100px;
+    }
+  }
+
   .watch-btn,
   .how-btn,
   .auth-btn {
@@ -73,13 +91,38 @@ export default {
     line-height: 100px;
     height: 100px;
     color: white;
+    @media (--overtablet) {
+      bottom: 200px;
+      span {
+        width: auto;
+        padding:13px 65px;
+        border-radius: 5px;
+        font-family: $font__family__semibold;
+        font-size: $font__normal;
+        border: 1px solid white;
+        color: white;
+        border-radius: 5px;
+        width: initial;
+        &:hover {
+          cursor: pointer;
+          background: white;
+          color: black;
+        }
+      }
 
+    }
   }
 
 
 
   .how-btn {
-    bottom: -100px;
+    @media (--overtablet){
+      //bottom: 0px;
+    }
+    @media (--tabletandless){
+      bottom: -100px;
+
+    }
     z-index: 200;
     background: transparent;
   }
@@ -87,6 +130,21 @@ export default {
   .auth-btn {
     color: black;
     background: $color-orange;
+    @media (--overtablet) {
+      display: none;
+      background: transparent;
+      span {
+        color: black;
+        border:none;
+        background-color: $color-orange;
+        width: auto;
+
+        &:hover {
+          background-color: $color-orange-dark;
+        }
+      }
+
+    }
   }
 
   .watch-btn {
@@ -100,9 +158,19 @@ export default {
   }
   .screen-two {
     position: relative;
-    background: url(./img/blue_bgr.png);
+    background-color: $color__brand-dark;
     height: calc(50% + 100px);
 
+    @media (--tabletandless){
+      background: url(./img/blue_bgr.png);
+    }
+
+  }
+
+  @media (--overtablet) {
+    .screen-one,.screen-two{
+      height: 50%;
+    }
   }
 
 }
