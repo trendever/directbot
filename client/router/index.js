@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Popup from '../views/popup/index'
+import config from 'root/../config'
 
 Vue.use(Router)
 
@@ -22,7 +23,7 @@ let router = new Router({
     { path: '/', redirect: { name: 'home' }},
 		{
       path: '/home',
-      component: require('views/home/landing.vue'),
+      component: config.trendever ? require('views/list/index.vue') : require('views/home/landing.vue'),
       children: [
         {
           name: 'home',
