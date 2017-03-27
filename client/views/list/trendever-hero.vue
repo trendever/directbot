@@ -1,15 +1,16 @@
 <template lang="pug">
-#trendever-hero(:style="{ height: heroHeight + 'px'}")
+#trendever-hero(:style="{ height: (isMobile ? heroHeight : heroHeight/5) + 'px'}")
 
   .screen-one
-    .title-area
+    .title-area.no-desktop
       .brand-logo: img(src="../dress-blogger/images/Trendever_logo.png")
-      h1 Шопинг в Instagram#[br.mobile] стал проще!
+
+    h1 Шопинг в Instagram стал проще!
 
     .auth-btn: span ПРИЛОЖЕНИЕ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
-  .screen-two
+  .screen-two.no-desktop
 
     h1
       | Находи и покупай#[br]
@@ -17,6 +18,12 @@
       | или прямо в Instaram
 
     .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
+
+  .getapp-block.no-mobile
+    h2 Приложение для шопинга в instagram
+    .wrap-input
+      input(placeholder="Номер телефона")
+      span.app-btn ПОЛУЧИТЬ ССЫЛКУ
 
 
 
@@ -48,13 +55,82 @@ export default {
 
 @import 'style/vars/vars.pcss';
 
+
+*.no-desktop {
+  @media (--overtablet){
+    display: none;
+  }
+}
+
+
 #trendever-hero {
+  position: relative;
   text-align: center;
+  @media (--overtablet){
+    background: url(./img/Bgr_clg_mob.jpg);
+  }
+
+  .getapp-block {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+
+    &.no-mobile {
+      @media (--tabletandless) {
+        display: none;
+      }
+    }
+    h2 {
+      color: white;
+      font-size: $font__normal;
+      padding: 5px;
+    }
+    .wrap-input {
+      overflow: hidden;
+      border-radius: 5px;
+      width: 100%;
+      height: 50px;
+
+      input, span {
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        float: left;
+      }
+      input {
+        font-size: $font__normal;
+        border: none;
+        outline: none;
+        background: white;
+        &::focus {
+
+        }
+
+      }
+      span {
+        background-color: $color-orange;
+        cursor: pointer;
+        line-height: 50px;
+        font-size: $font__normal;
+      }
+
+    }
+  }
+
+
+  .getapp-block {
+    position: absolute * 0 0 0;
+    font-size: $font_normal;
+
+  }
 
   h1 {
     color: white;
     padding-top: 400px;
     @media (--overmobile){
+      height: 100%;
+      padding-top: 158px;
+
       font-size:46px;
       font-family: $font__family__semibold;
     }
@@ -65,7 +141,6 @@ export default {
 
   }
 
-
   .title-area {
     .brand-logo {
       width: 500px;
@@ -74,12 +149,10 @@ export default {
       margin: 0 auto;
 
       @media (--overtablet){
-        padding-top: 290px;
+        padding-top: 0px;
       }
     }
-    h1{
-      padding-top: 100px;
-    }
+
   }
 
   .watch-btn,
@@ -163,6 +236,12 @@ export default {
 
     @media (--tabletandless){
       background: url(./img/blue_bgr.png);
+    }
+
+    @media (--overtablet){
+      &.no-desktop {
+        display: none;
+      }
     }
 
   }

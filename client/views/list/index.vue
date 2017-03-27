@@ -2,7 +2,29 @@
 
 #list(ref="list")
   trendever-hero(v-if="!$store.getters.isAuth && showHero")
-  header-component(:leftBtnShow="false", :className="{class: 'rel', cond: !isAuth && showHero}")
+
+  brand-menu.list-menu
+    template(slot="desktop-view")
+      //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
+      .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
+      .land__top-btn(onclick="window.open('https://www.directbot.io')") ПОКУПАТЕЛЯМ
+      .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
+
+    template(slot="mobile-view")
+      i.ic-menu_bullets(@click="showMenu=true")
+      menu-sample.blue(:opened="showMenu", v-on:close="showMenu = false")
+        .item(@click="$router.push({name: 'auth'})")
+          .text Вход
+        .item(onclick="window.open('https://www.directbot.io')")
+          .text Покупателям
+        .item(@click="$router.push({name: 'dress-blogger'})")
+          .text Блогерам
+        .item
+          .text.__txt-blue Отмена
+
+  header-component(:leftBtnShow="false",
+   :className="{class: 'rel', cond: !isAuth && showHero && !isMobile}",
+   v-if="$store.getters.isAuth || isMobile && !showHero")
 
     .search-text(slot="center-content")
 
@@ -26,7 +48,7 @@
         i.ic-close(v-if="selectedTagsId.length || searchValue", @click="clear")
 
 
-  .tags-wrap
+  .tags-wrap(:class="{'no-margin': !isAuth && !isMobile}")
     tags-component(:tags="tags")
 
   .wrap-photos
@@ -39,6 +61,8 @@ import trendeverHero from './trendever-hero';
 import photosComponent from 'components/photos';
 import tagsComponent from 'components/tags';
 import headerComponent from 'components/header';
+import menuSample from 'components/menu/menu-sample';
+import brandMenu from 'components/menu/brand-menu';
 import { mapGetters } from 'vuex';
 import listen from 'event-listener';
 export default {
@@ -46,10 +70,13 @@ export default {
     trendeverHero,
     photosComponent,
     tagsComponent,
-    headerComponent
+    headerComponent,
+    menuSample,
+    brandMenu
+
   },
   data(){
-    return {showHero: true}
+    return {showHero: true, showMenu: false}
   },
   created(){
 
@@ -95,9 +122,14 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #list {
-
+  .list-menu {
+    position: absolute 0 0 * 0;
+  }
   .header.rel {
-    display: none;
+    position: absolute 378px 0 * 0;
+    @media (--tabletandless) {
+      display: none;
+    }
   }
   .search-text {
 
@@ -246,6 +278,10 @@ export default {
     transition: all .3s ease;
     @media (--mobile) {
       margin-top: 89px;
+    }
+
+    &.no-margin {
+      margin: 0px auto 0 auto;
     }
   }
 
