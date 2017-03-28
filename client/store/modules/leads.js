@@ -69,9 +69,7 @@ const mutations = {
 
     //check super seller
     if(seller.length) {
-
       state.tab = "seller";
-
     }
 
     checkUnreadMessage( seller );

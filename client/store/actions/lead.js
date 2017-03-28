@@ -72,7 +72,7 @@ export const loadLeads = ( { commit, state }, count = getCountForLoading ) => {
 
     } else {
 
-      if ( getHasMore( state ) ) {
+      if ( true /*getHasMore( state )*/ ) {
 
 
         //-Тупо правим ошибку загрузки чатов для магазина
@@ -84,7 +84,6 @@ export const loadLeads = ( { commit, state }, count = getCountForLoading ) => {
             newTab = 'seller,supplier'
           }
         }
-
         //------------------------------------------
         leads
           .find( count, getOlderLead( state ), newTab/*tab */)

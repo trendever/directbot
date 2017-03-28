@@ -8,18 +8,20 @@
     header-component(:title='getTitle', :left-btn-show='false')
 
       .header__nav(slot='center-content')
+        .header__nav__i.header__text
+          span Чаты
 
-        .header__nav__i.header__text(
-          :class='{_active: getLeadTab === "customer"}',
-          @click='$store.dispatch("setTab","customer")',
-          v-if="getLeadTab === 'customer'")
-          span Чаты с продавцами
+        //- .header__nav__i.header__text(
+        //-   :class='{_active: getLeadTab === "customer"}',
+        //-   @click='$store.dispatch("setTab","customer")',
+        //-   v-if="getLeadTab === 'customer'")
+        //-   span Чаты с продавцами
 
-        .header__nav__i.header__text(
-          :class='{_active: getLeadTab === "seller"}',
-          @click='$store.dispatch("setTab", "seller")',
-          v-if="getLeadTab === 'seller'")
-          span Чаты с покупателями
+        //- .header__nav__i.header__text(
+        //-   :class='{_active: getLeadTab === "seller"}',
+        //-   @click='$store.dispatch("setTab", "seller")',
+        //-   v-if="getLeadTab === 'seller'")
+        //-   span Чаты с покупателями
     .fake-top-standalone(v-if="isStandalone")
     .section.top.bottom
       .section__content
@@ -165,25 +167,6 @@
 
             }
 
-            // if ( this.needLoadLeads ) {
-
-            //   const full_scroll = document.body.scrollHeight;
-            //   const diff_scroll = full_scroll - document.body.scrollTop;
-
-            //   if ( diff_scroll < 2500 ) {
-
-            //     this.needLoadLeads = false;
-
-            //     store.dispatch('loadLeads').then( () => {
-
-            //       this.needLoadLeads = true;
-
-            //     } );
-
-            //   }
-
-            // }
-
           }
 
         })() );
@@ -228,15 +211,16 @@
       ]),
 
       sortedList(){
-        return this.leadsArray.slice( 0, this.isTrendever? this.leadsArray.length: this.getLeadsLengthList ).sort((a,b)=>{
+        return this.leadsArray.sort((a,b)=>{
           return b.updated_at - a.updated_at;
         })
       },
 
       leadsArray(){
-        if(!this.isTrendever) {
+        if(this.isTrendever) {
           let state = this.$store.state.leads;
           return [...state.customer,...state.seller].filter(item=>{
+              //Убрать удаленные
               return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
           });
 
@@ -248,6 +232,7 @@
           }
           if(this.$store.state.leads.tab === 'seller') {
             let leads = this.getLeads.filter(item=>{
+            //Убрать удаленные
               return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
             });
             return leads;

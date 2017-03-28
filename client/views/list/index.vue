@@ -49,6 +49,7 @@
 
 
   .tags-wrap(:class="{'no-margin': !isAuth && !isMobile}")
+    .fake-top-standalone(v-if="isStandalone")
     tags-component(:tags="tags")
 
   .wrap-photos
