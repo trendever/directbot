@@ -94,6 +94,9 @@
         return this.getShopName;
       },
       getUsername() {
+        if(this.isAutoMessage) {
+          return '<b>operator</b>';
+        }
         //сервисные сообщения
         // if(this.msg.user.name === 'directbotio'){
         //   return '<b class="_blue">directbotio</b>';
@@ -120,11 +123,21 @@
       isCustomer(){
         return this.msg.user.role === leads.USER_ROLES.CUSTOMER.key;
       },
+      isAutoMessage(){
+        return this.msg.parts[0].mime_type === 'auto/answer';
+      },
       isClosest(){
+        if(this.isAutoMessage) {
+          return false;
+        }
         return this.msg.closestMessage;
         //return false;
       },
       isOwnMessage() {
+        if(this.isAutoMessage) {
+          return false;
+        }
+
         if ( this.getCurrentMember !== null ) {
           return this.getCurrentMember.user_id === this.msg.user.user_id;
         }
@@ -140,6 +153,9 @@
         return this.getLastMessageId >= this.msg.id
       },
       getSide() {
+        if(this.isAutoMessage){
+          return '__left'
+        }
         return this.isOwnMessage ? '__right' : '__left';
       },
     },

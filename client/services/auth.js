@@ -14,7 +14,7 @@ export const ERROR_CODES = {
  * @param  {Object} config
  * @return {Promise<bool>}       true if send or code error
  */
-export function signup(phone, username, instagram) {
+export function signup(phone, username, instagram, source="directbot") {
   // this for resend SMS (save locally params)
   // CONFIG = config ? config : CONFIG;
 
@@ -26,7 +26,7 @@ export function signup(phone, username, instagram) {
       request.username = username;
     }
 
-    request.source = "directbot";
+    request.source = source;
 
     channel.req('register', 'auth', request).then( data => {
       if (data.response_map.ErrorCode === ERROR_CODES.NO_ERRORS) {
@@ -36,6 +36,7 @@ export function signup(phone, username, instagram) {
       }
     }).catch( error => {
       console.error('signup', error);
+      reject(error.log_map);
     });
 
   });

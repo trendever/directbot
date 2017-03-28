@@ -126,9 +126,9 @@ export default {
     margin: 0;
     display: inline-block;
     margin: 20px;
-    border: 2px solid $color__blue;
+    border: 2px solid $color__brand;
     border-radius: 50%;
-    color: $color__blue;
+    color: $color__brand;
     font-size: 46px;
     font-family: $font__family__light;
     width: 112px;

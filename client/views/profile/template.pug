@@ -18,6 +18,8 @@
         @click="monetizationAction")
         img(src="./icons/wallet.png")
 
+
+
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     //.item
       .text Отключить бота
@@ -31,6 +33,8 @@
       .text.__txt-red(@click.stop="logout") Выход
     .item
       .text.__txt-blue Отмена
+
+
 
   .directbot-right-nav
     right-nav-component(current="profile" v-on:open-profile-menu="showProfileMenu = true")
@@ -80,41 +84,48 @@
 
         template(v-if="!isMobile && isAuth && isSelfPage")
 
-          button.turn-on-bot-btn-desk.blue-btn(
-            v-if="!botActivity",
-            @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
-          button.turn-on-bot-btn-desk.blue-btn(
-            v-if="botActivity"
-            @click="$router.push({name: 'connect-bot'})") OТКЛЮЧИТЬ БОТА
+
+          template(v-if="!isTrendever")
+            button.turn-on-bot-btn-desk.blue-btn(
+              v-if="!botActivity",
+              @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
+            button.turn-on-bot-btn-desk.blue-btn(
+              v-if="botActivity"
+              @click="$router.push({name: 'connect-bot'})") OТКЛЮЧИТЬ БОТА
+
+
           button.find-bloger-btn.blue-btn(@click="findBloger") НАЙТИ БЛОГЕРА
 
 
 
       template(v-if="loaded && isSelfPage")
 
-        .profile_inactive(v-if="!botActivity")
-          img(src="./img/empty-directbot-profile.png")
-          span.empty Деактивирован
-          span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
-        .profile_active(v-if="botActivity")
-          img(src="./img/active-directbot-profile.png", v-if="isMobile")
-          img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
-          .text-box
-            p.bold Активирован #[br]
-            p.light(v-if="!postsCount") нет активных постов, ожидаю..
-            p.light(v-if="postsCount")
-              span мониторю {{  postsCount }} {{postsCountTitle}} #[br]
-              span(v-if="chatsCount") общаюсь в {{ chatsCount }} чатах
-        .profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
-          i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
-          br(v-if="isMobile")
-          span После подключения к Instagram,#[br]
-          span.save оператор начнет мониторить все посты, #[br]
-          span отвечать покупателям и добавлять сюда товары
+
+        template(v-if="!isTrendever")
+          .profile_inactive(v-if="!botActivity")
+            img(src="./img/empty-directbot-profile.png")
+            span.empty Деактивирован
+            span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
+          .profile_active(v-if="botActivity")
+            img(src="./img/active-directbot-profile.png", v-if="isMobile")
+            img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
+            .text-box
+              p.bold Активирован #[br]
+              p.light(v-if="!postsCount") нет активных постов, ожидаю..
+              p.light(v-if="postsCount")
+                span мониторю {{  postsCount }} {{postsCountTitle}} #[br]
+                span(v-if="chatsCount") общаюсь в {{ chatsCount }} чатах
+          .profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
+            i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
+            br(v-if="isMobile")
+            span После подключения к Instagram,#[br]
+            span.save оператор начнет мониторить все посты, #[br]
+            span отвечать покупателям и добавлять сюда товары
+
 
       .profile_insta-link(v-if="isMobile", :class="{'change-padding': !isSelfPage}")
         .insta-link-text ссылка на эту витрину
-        .insta-link(ref="instaLink") {{ getUserNameLinked }}.drbt.io
+        .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
         native-popup(:show-popup="showCopyMessage")
           .title-text.title-font Ссылка скопирована
           .main-text {{copyMessage}}

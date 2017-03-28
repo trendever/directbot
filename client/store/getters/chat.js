@@ -195,7 +195,7 @@ export const getPhoto = ( state ) => {
 export const getShopName = ( state ) => {
 
   const lead = getLeadByConversationId( store.state.leads, state.id );
-  
+
   if ( lead !== null ) {
     return lead.shop.instagram_username;
   }
@@ -206,7 +206,7 @@ export const getShopName = ( state ) => {
 
 export const getShopSupplierId = ( state ) => {
   const lead = getLeadByConversationId( store.state.leads, state.id );
- 
+
   if ( lead !== null ) {
     return lead.shop.supplier_id;
   }
@@ -216,7 +216,7 @@ export const getShopSupplierId = ( state ) => {
 
 export const getIsServiceProductTitle = ( state ) => {
   const lead = getLeadByConversationId( store.state.leads, state.id );
-  
+
   if ( lead !== null ) {
     if (lead.products[0]){
       let service_ids = [];
@@ -236,14 +236,14 @@ export const getIsServiceProductTitle = ( state ) => {
 }
 
 export const isServiceShop = ( state ) => {
-  
+
   return getShopSupplierId(state) === config.service_user_id;
 }
 
 export const getShopId = ( state ) => {
 
   const lead = getLeadByConversationId( store.state.leads, state.id );
-  
+
   if ( lead !== null ) {
     return lead.shop.id;
   }
@@ -431,7 +431,7 @@ export const getActionData = ( state ) => {
   return state.action.data;
 }
 
-export const chatCountForLoading = 50;//(window.browser.mobile) ? 10 : 20;
+export const chatCountForLoading = state => 50;//(window.browser.mobile) ? 10 : 20;
 
 export const imgPopUpUrl = ( state ) => state.imgPopUpUrl;
 

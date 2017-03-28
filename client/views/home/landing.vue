@@ -109,11 +109,16 @@ export default {
       } else {
          this.windowHeight = window.innerHeight;
       }
+      if(window.browser.facebook && window.browser.ios){
+        setTimeout(()=>{
+          this.windowHeight = window.innerHeight;
+        },500)
+      }
     })
   },
   beforeDestroy(){
-    this.scrollListener.remove();
-    this.resize.remove();
+    if(this.scrollListener)this.scrollListener.remove();
+    if(this.resize)this.resize.remove();
   },
   methods: {
     openPopup(name){
@@ -213,7 +218,7 @@ export default {
 
   .blue-plank {
     text-align: center;
-    background: $color__blue;
+    background: $color__brand;
     color: white;
     font-family: $font__family__semibold;
     @media (--overmobile) {
@@ -347,12 +352,12 @@ export default {
       line-height: 100px !important;
       border: none;
       border-radius: 0px;
-      background-color: $color__blue;
+      background-color: $color__brand;
     }
     &:hover{
       cursor: pointer;
       background-color: $color__white;
-      color: $color__dark-blue;
+      color: $color__brand-dark;
     }
   }
 
@@ -371,7 +376,7 @@ export default {
     padding: 40px 0;
 
     max-width: 500px;
-    @media (--mobile) {
+    @media (--tabletandless) {
       max-width: 100%;
     }
 
@@ -496,7 +501,7 @@ export default {
   display: block;
   font-size: 28px;
   font-family: $font__family__semibold;
-  color: $color__blue;
+  color: $color__brand;
   padding-top: 40px;
   padding-bottom: 20px;
   @media(--tabletandless) {

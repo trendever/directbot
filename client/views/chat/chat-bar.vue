@@ -63,6 +63,11 @@
 
     mounted(){
 
+      window.eventHub.$on("get-answer",data=>{
+        this.txtMsg = data;
+        this.send(null, true)
+      })
+
       this.addPadding();
 
       this.scroll = document.body;
@@ -202,7 +207,9 @@
         }
       },
 
-      send ( event ) {
+      send ( event, autoAnswer = false ) {
+
+        let mime_type = autoAnswer ? 'auto/answer' : 'text/plain'
 
         if(!this.isMobile) this.$emit('addPadding', 57)
 
@@ -222,7 +229,7 @@
 
         this.txtMsg = ''
 
-        const promise = this.createMessage({ conversation_id: this.getId, text:txtMsg, mime_type: 'text/plain' } )
+        const promise = this.createMessage({ conversation_id: this.getId, text:txtMsg, mime_type } )
         promise.then( () => {
           if (
             this.getStatus === leads.STATUSES.NEW.key &&

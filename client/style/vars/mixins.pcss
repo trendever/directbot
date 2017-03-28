@@ -1,3 +1,23 @@
+@define-mixin auth__button $background: #FFDE1E {
+
+
+  @media (--mobile) {
+    color: #12302d;
+    font-family: $font__family__light;
+    font-size: 36px;
+    text-align: center;
+    line-height: 100px;
+    position:fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    z-index: 100;
+
+  }
+
+}
+
 @define-mixin button__sample $background: #FFDE1E, $bottom: 98px {
 
   @media (--mobile) {
@@ -18,5 +38,34 @@
 
   }
 
+}
+
+@define-mixin standart__font {
+
+  @media (--overmobile){
+    font-size: $font__normal;
+  }
+  @media (--mobile){
+    font-size: $font__medium;
+  }
+
+}
+
+
+@define-mixin close__page {
+  position: absolute 10px 10px * *;
+  z-index: 210;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  font-size: $font__normal;
+  size: $font__normal;
+  box-sizing: content-box;
+  @media( --tabletandless ) {
+    top: 15px;
+    right: 15px;
+    size: $font__medium;
+    font-size: $font__medium;
+  }
 }
 

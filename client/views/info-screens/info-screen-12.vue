@@ -2,30 +2,17 @@
 <template lang="pug">
 .info-screen
   .description
-    .centered
+    .center-block
 
-      | Большинство ботов #[br]
-      | совершают в Instagram #[br]
+      | Большинство ботов
+      | совершают в Instagram
       | такие действия как  #[br]
       | массовый лайкинг или
-      | массовая подписка, что  #[br]
-      | является спам активностью.#[br]
-      | Наш бот наполовину человек,#[br]
+      | массовая подписка, что
+      | является спам активностью.
+      | Наш бот наполовину человек,
       | и его действия ничем не#[br]
-      | отличаются от обычных#[br]
+      | отличаются от обычных#[br.desktop]
 
 </template>
-<style lang="postcss">
 
-@import 'style/vars/vars.pcss';
-
-.description .centered {
-  @media (--mobile) {
-    padding-top: 25%;
-  }
-
-  padding-top: 15%;
-
-}
-
-</style>

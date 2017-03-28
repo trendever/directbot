@@ -23,7 +23,7 @@
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg(
-              v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg)',
+              v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg) || msg.parts[0].mime_type === "auto/answer"',
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg-info(
@@ -107,7 +107,8 @@ export default {
       showLoader: true,
       timerId: '',
       fullScroll: 0,
-      prevPage: ''
+      prevPage: '',
+      aboutAnswers: []
     }
   },
 
@@ -348,7 +349,30 @@ export default {
 
     },
 
-    onMessage(){
+    onMessage(data){
+
+      let map = data.response_map;
+
+      if(map && map.messages[0] && map.messages[0].parts[0]){
+
+        let content = +map.messages[0].parts[0].content;
+
+        if(this.isFake && this.aboutAnswers.length){
+
+          if(typeof content === 'number'){
+
+            if(content > 0 && content <= this.aboutAnswers.length){
+
+              window.eventHub.$emit('get-answer', this.aboutAnswers[ content - 1 ])
+
+            }
+
+          }
+
+        }
+
+      }
+
 
       Promise.resolve().then(()=>{
 
@@ -363,6 +387,18 @@ export default {
 
     hasData(msg){
       if (msg.parts[1] && msg.parts[1].mime_type === 'text/data'){
+
+        try {
+          //фишка с автоответами для чата спросить
+          //лучше добавить if c проверкой на этот чат
+          let content = JSON.parse(msg.parts[1].content)
+          if(content.type === "auto"){
+            this.aboutAnswers = content.data;
+            return false;
+          }
+        } catch (e) {
+          console.warn('content is not a JSON')
+        }
         return true;
       }
       return false;

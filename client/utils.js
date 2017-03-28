@@ -408,6 +408,7 @@ window.prettyLog = (obj)=>{
 window.colorLog = (string, color = 'darkgreen')=>{
   console.log(`%c${string}`, `color: ${color}; font-size: 30px`)
 }
+window.Green30 = `color: darkgreen; font-size: 30px`;
 
 export class ScrollStorage {
 

@@ -3,17 +3,38 @@
 
   .hero__content__background
 
+
+  brand-menu
+    template(slot="desktop-view")
+      //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
+      .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
+      .land__top-btn(onclick="window.open('https://www.trendever.com')") ПОКУПАТЕЛЯМ
+      .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
+
+    template(slot="mobile-view")
+      i.ic-menu_bullets(@click="showMenu=true")
+      menu-sample.blue(:opened="showMenu", v-on:close="showMenu = false")
+        .item(@click="$router.push({name: 'auth'})")
+          .text Вход
+        .item(onclick="window.open('https://www.trendever.com')")
+          .text Покупателям
+        .item(@click="$router.push({name: 'dress-blogger'})")
+          .text Блогерам
+        .item
+          .text.__txt-blue Отмена
+
+
   a.header-sticker(href="https://trendever.com", target="_blank")
     span.wrap
       | Подключайтесь и продавайте#[br]
       | на Trendever
       span(style="font-weight: bold") &nbspбесплатно
 
-  a.landing-top(href="https://www.trendever.com", target="_blank")
+  //-a.landing-top(href="https://www.trendever.com", target="_blank")
     | Подключайтесь и продавайте на Trendever бесплатно
   .profile-header
     .profile-header__center
-    button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
+    //-button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
     //-a(href="https://www.trendever.com/dressblogger", target="_blank").for-blogers БЛОГЕРАМ
 
   .logo__mobile
@@ -39,14 +60,17 @@
 </template>
 
 <script>
+import menuSample from 'components/menu/menu-sample';
+import brandMenu from 'components/menu/brand-menu';
 
 export default {
-
+  components: {menuSample, brandMenu},
   data(){
     return {
       isSafari: window.browser.safari,
       isFacebok: window.browser.facebook,
-      isInstagram: window.browser.instagram
+      isInstagram: window.browser.instagram,
+      showMenu: false
     }
   }
 
@@ -55,13 +79,26 @@ export default {
 
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
+
+@keyframes margin-move {
+  from {
+    margin-left: -700px;
+  }
+  to {
+    margin-left: 0px;
+  }
+}
 #landing-top {
 
   height: 100%;
 
+  .brand-section {
+    position: absolute 0 0 * 0;
+  }
+
   a.header-sticker {
 
-    display: none;
+    //display: none;
     text-decoration: none;
     color: white;
     text-align: center;
@@ -71,6 +108,20 @@ export default {
     background-image: url(../img/header_sticker.png);
     background-repeat: no-repeat;
     background-size: contain;
+
+    @media (--tabletandless) {
+      animation: margin-move .6s ease;
+      padding-top: 8px;
+      padding-left: 156px;
+      position: absolute -10px *  * -150px;
+      text-align: left;
+      display: block;
+      //height: 320px;
+      width: 520px;
+      transform: translateY(0%) rotate(5deg)
+
+
+    }
     @media screen and (min-width: 1301px){
       display: block;
       position: absolute 400px -40px * *;
@@ -82,9 +133,19 @@ export default {
       position: absolute 300px -40px * *;
     }
 
-    span.wrap {
-      display: inline-block;
-      transform: translateY(70%) rotate(-7deg)
+    @media (--overtablet) {
+      span.wrap {
+        display: inline-block;
+        transform: translateY(70%) rotate(-7deg)
+      }
+
+    }
+
+    @media (--tabletandless) {
+      span.wrap {
+        display: inline-block;
+        transform: translateY(70%) rotate(-5deg)
+      }
     }
   }
 
@@ -93,7 +154,7 @@ export default {
     display: none;
     @media (--tabletandless) {
       display: block;
-      background: $color__blue;
+      background: $color__brand;
       color: white;
       font-size: 25px;
       font-family: $font__family__semibold;
@@ -169,7 +230,7 @@ export default {
     .for-blogers:hover{
       background: $color__white;
       border-color: $color__white;
-      color: $color__blue;
+      color: $color__brand;
       cursor: pointer;
     }
   }
@@ -210,7 +271,7 @@ export default {
       margin-top: 12.3%;
     }
     @media screen and (max-height: 1140px){
-      margin-top: 5%;
+
     }
   }
   //mobile logo on first welcome screen
@@ -239,6 +300,10 @@ export default {
       line-height: 55px;
     }
 
+
+    @media screen and (max-height: 1140px){
+      margin-bottom: 10px;
+    }
 
 
     &.bottom-fix {
@@ -278,12 +343,12 @@ export default {
       border-radius: 5px;
       border: 1px solid $color__white;
       background-color: transparent;
-      margin-top: 15px;
+      margin-top: 10px;
       cursor: pointer;
       &:hover{
         background-color: $color__white;
         border-color: $color__white;
-        color: $color__blue;
+        color: $color__brand;
       }
     }
     @media(--tabletandless) {

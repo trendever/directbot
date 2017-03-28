@@ -2,13 +2,13 @@
 #menu-sample(v-if="opened", @click="$emit('close')")
   .content
     slot
-    //-.item
-      .text Выход
+      template(v-if="false")
+        .item
+          .text Выход
 
 </template>
 
 <script>
-
 
   export default{
     props: {
@@ -59,26 +59,27 @@
   width: 210px;
 
 
-  @media ( min-width: 751px) {
+  @media (--overtablet) {
     box-shadow: 1px 1px 5px #595959;
     &.prof-menu {
       width: 242px;
     }
   }
 
-  @media (--mobile) {
+  @media (--tabletandless) {
+    margin-top: -1px;
     border-radius: 0px;
     position: fixed 0 0 * 0;
     z-index: 179;
     size: 100%;
     width: 100%;
     height: 100%;
-    background: rgba(94, 139, 206,.6);
+    background: $color__brand-opacity;
   }
 
   .content {
 
-    @media (min-width: 751px) {
+    @media (--overmobile) {
 
       :first-child{
         border-top-right-radius: 4px;
@@ -95,11 +96,13 @@
 
     .item {
 
-      &:hover {
-        background: #dedede;
-        cursor: pointer;
-        .text {
-          color: $color__blue
+      @media (--mobile) {
+        &:hover {
+          background: #dedede;
+          cursor: pointer;
+          .text {
+            color: $color__brand
+          }
         }
       }
 
@@ -110,7 +113,8 @@
       height: 45px;
 
       @media (--mobile) {
-        background: white;
+        background: #dedede;
+        padding-top: 1px;
         text-align: center;
         font-size: 36px;
         line-height: 97px;
@@ -120,19 +124,24 @@
       .text {
 
         color: #595959;
+        background: white;
 
-        @media screen and (min-width: 751px){
+        @media screen and (--overmobile){
 
           padding-left: 30px;
-          
+
         }
 
         &.__txt-blue {
-            color: $color__blue;
+            color: $color__brand;
         }
 
         &.__txt-red {
             color: $color__red;
+        }
+
+        &.__txt-black {
+            color: black;
         }
       }
     }

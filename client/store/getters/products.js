@@ -150,7 +150,7 @@ export const callAfterLoading = ( products ) => {
 
 };
 
-export const getComeBack = ( state ) => {
+export const getComeBack = ( products ) => {
 
   return products.comeBack;
 

@@ -1,7 +1,7 @@
 @import 'style/vars/vars.pcss';
 .monetization{
   min-height: 100%;
-  background-color: $color__dark-blue;
+  background-color: $color__brand-dark;
   font-family: $font__family__light;
   color: #fff;
   text-align: center;
@@ -52,6 +52,38 @@
   }
   &__plans{
 
+    p.rate-title {
+      font-size: $font__medium;
+      padding-bottom: 20px;
+
+      @media (--overmobile){
+        font-size: $font__normal;
+      }
+    }
+
+  }
+
+  i.question {
+    cursor: pointer;
+    display: inline-block;
+    line-height: 50px;
+    border-radius: 50%;
+    color: white;
+    border: 2px solid white;
+    size: 55px;
+    font-size: $font__medium;
+
+
+    position: fixed 22px * * 22px;
+
+    @media (--overmobile) {
+      top: 17px;
+      left: 17px;
+      font-size: $font__normal;
+      size: 40px;
+      line-height: 35px;
+    }
+
   }
 
   .ic-close{
@@ -63,7 +95,7 @@
     font-size: $font__normal;
     size: $font__normal;
     box-sizing: content-box;
-    @media( --tabletandless ) {
+    @media ( --tabletandless ) {
       top: 15px;
       right: 15px;
       size: $font__medium;
@@ -73,8 +105,8 @@
 
   &__days-block{
 
-    .block__desktop {
-
+    @media (--overmobile){
+      padding-top:80px;
     }
   }
 
@@ -201,8 +233,8 @@
         }
     }
     &.make__choice{
-      background-color: $color__blue;
-      border-color: $color__blue;
+      background-color: $color__brand;
+      border-color: $color__brand;
     }
   }
 

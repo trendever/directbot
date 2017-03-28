@@ -14,7 +14,7 @@
 
       .price-text
         | Доступ в панель Directbot стоит#[br]
-        | 1990 руб. в месяц. Оттуда вы и ваша#[br]
+        | 1200 руб. в месяц. Оттуда вы и ваша#[br]
         | команда можете сами отвечать клиентам#[br]
         | в Instagram. Пробуйте бесплатно!#[br]
 
@@ -82,7 +82,7 @@ export default {
     position: absolute * 0 0 0;
     z-index: -1;
     height: 100%;
-    background: $color__dark-blue;
+    background: $color__brand-dark;
 
   }
   .wrap-block {

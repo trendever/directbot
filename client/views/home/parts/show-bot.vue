@@ -53,8 +53,9 @@ export default {
   margin: 0 auto;
   position: relative;
 
-  @media(--tabletandless) {
+  @media (--tabletandless) {
     padding: 0px 25px 0px 25px;
+
   }
 
 
@@ -81,6 +82,10 @@ export default {
     margin: 0 auto;
     padding-bottom: 70px;
 
+    @media (--tabletandless){
+      max-width: 694px;
+    }
+
   }
 
   .head-title{
@@ -91,7 +96,7 @@ export default {
     width: 80%;
     color: $color__gray-dark;
 
-    @media(--tabletandless) {
+    @media (--tabletandless) {
       font-size: 64px;
       width: 100%;
     }
@@ -106,9 +111,9 @@ export default {
       text-align: left;
       font-family: $font__family__light;
       font-size: 24px;
-      color: $color__blue;
+      color: $color__brand;
       background-color: #E5EBF7;
-      border: 2px solid $color__blue;
+      border: 2px solid $color__brand;
       border-radius: 10px;
       width: 418px;
       height: 85px;
@@ -239,7 +244,7 @@ export default {
       text-align: left;
       font-family: $font__family__semibold;
       font-size: 28px;
-      color: $color__blue;
+      color: $color__brand;
       @media(--tabletandless){
         font-size: 36px;
       }
@@ -300,7 +305,7 @@ export default {
       .txt{
         font-size: 12px;
         font-family: $font__family__semibold;
-        color: $color__blue;
+        color: $color__brand;
 
         @media(--tabletandless){
           font-size: 18px;
@@ -321,7 +326,7 @@ export default {
       .digit{
         font-size: 30px;
         font-family: $font__family__semibold;
-        color: $color__blue;
+        color: $color__brand;
         margin-top: -4px;
         //background: text-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
 

@@ -8,8 +8,8 @@
     flex-grow: 1;
     font-size: calc($font__normal - 3px);
     padding: 8px 13px;
-    border: 1px solid $color__blue;
-    color: $color__blue;
+    border: 1px solid $color__brand;
+    color: $color__brand;
     text-align: center;
     cursor: pointer;
     margin: 1px;
@@ -20,12 +20,13 @@
     @media (--overmobile) {
       &:hover {
         color: white;
-        background: $color__blue;
+        background: $color__brand;
       }
     }
 
     @media (--mobile){
       font-size: $font__large;
+      font-family: $font__family__thin;
       padding: 10px 15px;
     }
 
@@ -42,7 +43,7 @@
 
     &.selected {
       color: white;
-      background: $color__blue;
+      background: $color__brand;
     }
 
     i {

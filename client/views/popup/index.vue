@@ -21,6 +21,7 @@ import infoScreen10 from 'views/info-screens/info-screen-10.vue';
 import infoScreen11 from 'views/info-screens/info-screen-11.vue';
 import infoScreen12 from 'views/info-screens/info-screen-12.vue';
 import infoScreen13 from 'views/info-screens/info-screen-13.vue';
+import infoScreen14 from 'views/info-screens/info-screen-14.vue';
 import pricePopup from 'views/home/price-popup';
 
 
@@ -52,6 +53,7 @@ export default {
 		"is11" : infoScreen11,
     "is12" : infoScreen12,
     "is13" : infoScreen13,
+    "is14" : infoScreen14,
     "price": pricePopup
 	},
 	methods: {
@@ -74,7 +76,7 @@ export default {
 		overflow: auto;
 
     &.popup-price {
-      background: $color__dark-blue;
+      background: $color__brand-dark;
     }
 
 		.popup-content{

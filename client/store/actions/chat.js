@@ -11,8 +11,8 @@ import {
   getMessageByLead,
   getMessages,
   getLastMessageId,
-  chatCountForLoading,
-  getCurrentMember
+  getCurrentMember,
+  chatCountForLoading
 } from '../getters/chat.js'
 
 import { userID } from '../getters/user.js'

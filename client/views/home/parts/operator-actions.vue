@@ -118,7 +118,7 @@ export default {
 
     background: white;
     text-align: center;
-    color: $color__blue;
+    color: $color__brand;
     font-family: $font__family__semibold;
     font-size: 24px;
     padding-top: 33px;
@@ -136,9 +136,9 @@ export default {
       width: 122px;
       height: 40px;
       font-family: $font__family__light;
-      color: $color__blue;
+      color: $color__brand;
       background-color: transparent;
-      border: 1px solid $color__blue;
+      border: 1px solid $color__brand;
       border-radius: 5px;
       font-size: 16px;
       vertical-align: super;
@@ -150,21 +150,21 @@ export default {
       }
 
       &:hover{
-        background-color: $color__blue;
+        background-color: $color__brand;
         color: $color__white;
         cursor: pointer;
       }
       &:focus{
-        background-color: $color__blue;
+        background-color: $color__brand;
         color: $color__white;
         outline: none;
       }
       &:active{
-        background-color: $color__blue;
+        background-color: $color__brand;
         color: $color__white;
       }
       &.activeBtn{
-        background-color: $color__blue;
+        background-color: $color__brand;
         color: $color__white;
       }
     }

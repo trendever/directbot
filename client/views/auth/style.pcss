@@ -67,7 +67,7 @@
   overflow:hidden;
   min-height:100vh;
   height:auto !important;
-  background-color: $color__dark-blue;
+  background-color: $color__brand-dark;
   color: #FFF;
   font-size: 24px;
   font-family: $font__family__light;
@@ -242,6 +242,10 @@
     @media(--tabletandless) {
       padding: 70px 15px 22px 80px;
       margin-left: 0px;
+    }
+
+    @media (min-width: 700px) and (max-width: 1023px){
+      padding-top: 10px;
     }
   }
   &.confirm {

@@ -1,8 +1,8 @@
 <template lang="pug">
 
-#list
-
-  header-component(:leftBtnShow="false")
+#list(ref="list")
+  trendever-hero(v-if="!$store.getters.isAuth && showHero")
+  header-component(:leftBtnShow="false", :className="{class: 'rel', cond: !isAuth && showHero}")
 
     .search-text(slot="center-content")
 
@@ -35,18 +35,34 @@
 </template>
 
 <script>
+import trendeverHero from './trendever-hero';
 import photosComponent from 'components/photos';
 import tagsComponent from 'components/tags';
 import headerComponent from 'components/header';
 import { mapGetters } from 'vuex';
+import listen from 'event-listener';
 export default {
   components: {
+    trendeverHero,
     photosComponent,
     tagsComponent,
     headerComponent
   },
+  data(){
+    return {showHero: true}
+  },
   created(){
+
     this.$store.dispatch('loadTags');
+
+    listen(window, 'scroll',()=>{
+      if(this.showHero && !this.isAuth){
+        if(document.body.scrollTop >= 2 * window.innerHeight){
+          this.showHero = false;
+        }
+      }
+    })
+
   },
   methods: {
     search() {
@@ -58,11 +74,17 @@ export default {
         .then(()=>this.$refs.search.focus())
     }
   },
+  watch:{
+    showHero(){
+      window.scrollTo(0,0)
+    }
+  },
   computed: {
     ...mapGetters([
       'selectedTagsId',
       'tags',
-      'searchValue'
+      'searchValue',
+      'isAuth'
     ])
   },
 };
@@ -74,6 +96,9 @@ export default {
 
 #list {
 
+  .header.rel {
+    display: none;
+  }
   .search-text {
 
     max-width: 1050px;
@@ -109,7 +134,7 @@ export default {
         color: white;
         border-bottom: 1px solid white;
         font-size: $font__normal;
-        background: $color__blue;
+        background: $color__brand;
         font-family: $font__family__semibold;
         height: inherit;
 
@@ -129,6 +154,7 @@ export default {
           transform: translateX(-17px);
           color: $color__gray-dark;
           font-size: $font__large;
+          font-family: $font__family__light;
           width: 70%;
           display: block;
           margin-left: 120px;
@@ -195,7 +221,7 @@ export default {
       }
       @media (--mobile){
         padding-right: 20px;
-        color: $color__blue;
+        color: $color__brand;
         font-size: $font__large;
         position: absolute 0 * * 0 ;
         width: 100px;
@@ -217,6 +243,7 @@ export default {
     background: white;
     max-width: 1050px;
     margin: 50px auto 0 auto;
+    transition: all .3s ease;
     @media (--mobile) {
       margin-top: 89px;
     }

@@ -12,10 +12,10 @@ import {
   getLeadByConversationId,
   getLeadTab,
   getHasMore,
-  getCountForLoading,
   getLeads,
   getLeadsLengthList,
-  getGroup
+  getGroup,
+  getCountForLoading
 
 } from '../getters/lead';
 
