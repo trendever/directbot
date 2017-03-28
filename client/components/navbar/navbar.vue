@@ -3,10 +3,10 @@
 
 .navbar-cnt(v-if='isAuth && isMobile && !isFake', :class='{"no-trendever": !isTrendever}')
   .navbar.section__content
-    .navbar_i(:class='{"__active": current=="feed"}', @click='$router.push({name: "home"}), scrollTop')
+    .navbar_i(:class='{"__active": current=="home"}', @click='$router.push({name: "home"}), scrollTop')
       .navbar_i_wrap
-        i.ic-gallery_menu_active.navbar_i_wrap_ic(v-if="current ==='feed'")
-        i.ic-gallery_menu_inactive.navbar_i_wrap_ic(v-if="current !=='feed'")
+        i.ic-gallery_menu_active.navbar_i_wrap_ic(v-if="current ==='home'")
+        i.ic-gallery_menu_inactive.navbar_i_wrap_ic(v-if="current !=='home'")
         .navbar_i_wrap_t Лента
 
     .navbar_i(:class='{"__active": current=="chat"}', @click='$router.push({name: "chat_list"}), scrollTop')

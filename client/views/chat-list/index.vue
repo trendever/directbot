@@ -158,9 +158,9 @@
                 this.needLoadLeads = false;
 
                 store.dispatch('loadLeads').then( () => {
-
-                  this.needLoadLeads = true;
-
+                  this.$nextTick(()=>{
+                    this.needLoadLeads = true;
+                  })
                 } );
 
               }
@@ -219,7 +219,7 @@
       leadsArray(){
         if(this.isTrendever) {
           let state = this.$store.state.leads;
-          return [...state.customer,...state.seller].filter(item=>{
+          return state.seller.filter(item=>{
               //Убрать удаленные
               return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
           });
