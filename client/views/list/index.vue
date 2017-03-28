@@ -10,7 +10,7 @@
       .land__top-btn(onclick="window.open('https://www.directbot.io')") ПОКУПАТЕЛЯМ
       .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
 
-    template(slot="mobile-view")
+    template(slot="mobile-view" v-if="!isAuth")
       i.ic-menu_bullets(@click="showMenu=true")
       menu-sample.blue(:opened="showMenu", v-on:close="showMenu = false")
         .item(@click="$router.push({name: 'auth'})")
