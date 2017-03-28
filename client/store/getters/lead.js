@@ -3,6 +3,7 @@ import store from 'root/store';
 import { getCustomerName } from './chat.js';
 
 import { statusString } from 'views/chat/utils';
+import config from 'root/../config';
 
 
 export const getLeadTab = ( leads ) => {
@@ -33,6 +34,10 @@ export const getScroll = ( leads ) => {
 };
 
 export const getLeads = ( leads ) => {
+
+  if(config.trendever){
+    return [...leads.customer, ...leads.seller]
+  }
 
   return leads[ getLeadTab( leads ) ];
 
