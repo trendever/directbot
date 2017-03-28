@@ -22,7 +22,8 @@ Vue.mixin({
     	isIos: window.browser.ios,
       isInstagram: window.browser.instagram,
       isTrendever: config.trendever,
-      isDirectbot: config.directbot
+      isDirectbot: config.directbot,
+      isStandalone: true//window.browser.standalone
     }
   }
 });

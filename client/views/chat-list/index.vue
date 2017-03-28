@@ -20,7 +20,7 @@
           @click='$store.dispatch("setTab", "seller")',
           v-if="getLeadTab === 'seller'")
           span Чаты с покупателями
-
+    .fake-top-standalone(v-if="isStandalone")
     .section.top.bottom
       .section__content
         .chat-list(v-bind:style="styleObject", ref="chatList")
@@ -228,7 +228,7 @@
       ]),
 
       sortedList(){
-        return this.leadsArray.slice( 0, this.leadsArray.length ).sort((a,b)=>{
+        return this.leadsArray.slice( 0, this.isTrendever? this.leadsArray.length: this.getLeadsLengthList ).sort((a,b)=>{
           return b.updated_at - a.updated_at;
         })
       },
