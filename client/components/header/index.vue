@@ -1,6 +1,7 @@
 <style src='./header.pcss'></style>
 <template lang="pug">
 .header(:class="className ? {[className.class]: className.cond}: {}")
+  .fake-top(:style="{ height: isStandalone ? 40 + 'px' : 0 }")
   .header__content
     .wrapper.directbot-color(:class="{'chat-slot': $route.name === 'chat' && isMobile}")
       slot(name="left-content")
@@ -64,7 +65,8 @@
         is_action_up: false,
         scrollEvent: null,
         showOnEl: null,
-        isMobile: window.browser.mobile
+        isMobile: window.browser.mobile,
+        isStandalone: true
       }
     },
     props: {

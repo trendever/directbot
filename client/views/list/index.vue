@@ -84,7 +84,7 @@ export default {
 
     listen(window, 'scroll',()=>{
       if(this.showHero && !this.isAuth){
-        if(document.body.scrollTop >= 2 * window.innerHeight){
+        if(document.body.scrollTop >= 2 * window.innerHeight && this.isMobile){
           this.showHero = false;
         }
       }

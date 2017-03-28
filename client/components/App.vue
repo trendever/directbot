@@ -1,5 +1,5 @@
 <template lang="pug">
-#app.directbot
+#app.directbot(:class="Standalone")
   router-view(v-if="authDone && monetizationDone")
   listener(v-if="authDone")
   monetization(v-if="authDone", v-on:checkbot="monetizationDone = true")
