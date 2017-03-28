@@ -118,6 +118,12 @@ export default {
     }
 
     .area-icons {
+      @media (--tabletandless){
+        img {
+          width: 86px;
+
+        }
+      }
       img {
         display: inline-block;
         padding: 25px 15px;
