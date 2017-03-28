@@ -10,7 +10,7 @@
       p
         | ...выберут 5 Instagram-магазинов на свой#[br.mobile] вкус.#[br.desktop]
         | Затем попросят своих подписчиков#[br.mobile] проголосовать#[br.desktop]
-        | за тот единственный
+        | за тот магазин
         span.img-wrp: img.medal(src="./images/emoji_medal_grey.png")
         | ,#[br.mobile] шопинг в котором оплатит#[br.desktop]
         | фонд#[br.mobile]&nbsp

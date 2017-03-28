@@ -3,7 +3,7 @@
 
   brand-menu.directbot-landing
     template(slot="desktop-view")
-      img(src="./images/Trendever_logo.png" @click="goTrendever")
+      img.tr-logo(src="./images/Trendever_logo.png" @click="goTrendever")
       .land__top-btn(@click="goDirectbot") МАГАЗИНАМ
       .land__top-btn(@click="goTrendever") ПОКУПАТЕЛЯМ
 
@@ -69,24 +69,12 @@ export default {
 #top-blogger,
 #blogger-request {
 
+  .tr-logo{
+    position: fixed 0px 0 * 0px;
+  }
+
   .brand-section {
 
-/*     height: 100px;
-
-    img {
-      cursor: pointer;
-      margin-top: 15px;
-      margin-left: 1%;
-      display: inline-block;
-      float:left;
-      max-width: 150px;
-
-      @media (--mobile ){
-        margin-left: 37px;
-        margin-top: 50px;
-        max-width: 250px;
-      }
-    } */
     .customers-btn,
     .shops-btn {
       display: inline-block;

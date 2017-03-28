@@ -23,8 +23,9 @@
       .box-icon
         img(src="./images/ico_how2.png")
       .sub-title
+
         | Ставьте наши хештеги#[br]
-        | на свои посты
+        | в своём Instagram
       .caption
         | Пишите под своими постами#[br]
         span #ОденьБлогера&nbsp
