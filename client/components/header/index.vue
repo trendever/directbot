@@ -65,8 +65,7 @@
         is_action_up: false,
         scrollEvent: null,
         showOnEl: null,
-        isMobile: window.browser.mobile,
-        isStandalone: true
+        isMobile: window.browser.mobile
       }
     },
     props: {
