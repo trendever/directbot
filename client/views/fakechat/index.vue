@@ -60,7 +60,8 @@ export default {
     ...mapGetters([
       'getAllLeads',
       'getMessages',
-      'userID'
+      'userID',
+      'authUserShopId'
     ]),
 
     getFakeMessages(){
@@ -73,12 +74,9 @@ export default {
 
         this.coinsLog.forEach((elem)=>{
           let time = elem.created_at;
-          console.log("COINS:")
-          console.log(elem)
           let coinsPartsObject = {content: "Ваш счет пополнен на " + elem.data.amount + '<i class="ic-currency-rub"></i>',mime_type:"text/coins"}
           let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: config.service_user_id}};
           messages.push(coinsMessageObject)
-
         });
         return this.sortMessages(messages)
       }else{
@@ -111,16 +109,26 @@ export default {
         }
 
       }).then((lead_id)=>{
-        if (lead_id){
-          this.run(lead_id);
-          getTransactionsLog().then((data)=>{
-            this.coinsLog = data.transactions;
-          })
-        }else{
-          console.log("NO LEAD WITH SERVICE PRODUCT")
-          console.log(lead_id)
-        }
+        this.run(lead_id);
+        getTransactionsLog().then((data)=>{
+          this.coinsLog = data.transactions;
+          this.processMonetization();
+        })
       });
+    },
+    /* Это место запускается при переходе в чат из платежного шлюза, 
+    в этот момент нам нужно взять подходящий план и 
+    подписаться на него если мы еще на него не подписаны*/
+    processMonetization(){
+      if (this.action === "subscibe"){
+        let last_coins_package = this.coinsLog.pop();
+        // data = last_coins_package.data
+        // amount = data.amount
+        // здесь ищем подходящий план, 
+        console.log(last_coins_package)
+      }else if (this.action === "error"){
+        // отправляем сообщение об ошибке оплаты
+      }
     },
     getMessageType(mime_type){
       switch (mime_type){
