@@ -55,9 +55,13 @@
   .wrap-photos
     photos-component(:tags="true", :list-name="'list'")
 
+  .directbot-navbar(v-if="isMobile && isAuth")
+    navbar-component(current='home')
+
 </template>
 
 <script>
+import navbarComponent from 'components/navbar/navbar';
 import trendeverHero from './trendever-hero';
 import photosComponent from 'components/photos';
 import tagsComponent from 'components/tags';
@@ -68,6 +72,7 @@ import { mapGetters } from 'vuex';
 import listen from 'event-listener';
 export default {
   components: {
+    navbarComponent,
     trendeverHero,
     photosComponent,
     tagsComponent,
