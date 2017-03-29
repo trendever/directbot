@@ -2,7 +2,8 @@
 <style lang="postcss">
 
 @import 'style/vars/vars.pcss';
-
+$tablet_width: 484px;
+$pc_width: 262px;
   .articles-plank {
     background: white;
     height: 100%;
@@ -53,6 +54,7 @@
         max-width: 550px;
 
         @media (--tabletandless) {
+          padding-right: 25px;
           height: auto;
         }
 
@@ -81,7 +83,7 @@
 
           @media (--tabletandless){
             .ps {
-              padding-bottom: 20px;
+              padding-bottom: 50px;
             }
             .category {
               font-size: calc($font__normal + 20px);
@@ -110,9 +112,39 @@
           float: right;
           width: 400px;
           height: 100%;
+
+          .wrap-hidden {
+            overflow: hidden;
+            @media (--tabletandless){
+              transform: translate(121px,150px);
+              width: $tablet_width;
+              height: 810px;
+            }
+            @media (--overtablet){
+              transform: translate(63px,116px);
+              width: $pc_width;
+
+            }
+
+          }
+
+          .wrap-images {
+            transition: all .4s;
+            @media (--tabletandless){
+              width: calc($tablet_width * 2);
+            }
+            @media (--overtablet){
+              width: calc($pc_width * 2);
+            }
+          }
+
           img {
-            background-color: blue;
-            size: 100%;
+            @media (--tabletandless){
+              width: $tablet_width;
+            }
+            @media (--overtablet){
+              width: $pc_width;
+            }
           }
 
           @media (--tabletandless){
@@ -142,12 +174,21 @@
     .plank(v-for="article in articles")
       .slider
         .image
-          img(v-for="img in article.images", :src="article.img")
+          .wrap-hidden
+            .wrap-images(:style="{ marginLeft: margin + 'px'}")
+              img(src='./articles/review_bella_scr_1_crop.jpg', v-if="article.shop==='@bella.fiori' && this.isMobile")
+              img(src='./articles/review_bella_scr_2_crop.jpg', v-if="article.shop==='@bella.fiori' && this.isMobile")
+              img(src='./articles/review_bella_scr_1.jpg', v-if="article.shop==='@bella.fiori' && !this.isMobile")
+              img(src='./articles/review_bella_scr_2.jpg', v-if="article.shop==='@bella.fiori' && !this.isMobile")
+              img(src='./articles/review_narspi_shop_1_crop.jpg', v-if="article.shop==='@narspi_shop' && this.isMobile")
+              img(src='./articles/review_narspi_shop_2_crop.jpg', v-if="article.shop==='@narspi_shop' && this.isMobile")
+              img(src='./articles/review_narspi_shop_1.jpg', v-if="article.shop==='@narspi_shop' && !this.isMobile")
+              img(src='./articles/review_narspi_shop_2.jpg', v-if="article.shop==='@narspi_shop' && !this.isMobile")
       .text
         button
           .category {{ article.category }}
           .brand-name {{ article.shop }}
-          p {{ article.text}}
+          p(v-html="article.text")
           .ps(v-html="article.author")
 
   .blue-plank
@@ -197,24 +238,26 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
+      margin: 0,
       toggleBtns: false,
       showBtns: false,
       windowHeight: 0,
       pricePopupShown: false,
+      sliderRun: false,
       articles:[
         {
           shop: "@narspi_shop",
           category: "Шубы и меховые жилеты",
           text: `
-            Когда пошли продажи и мы уже собирались
-            заняться созданием интернет- магазина,
-            один из наших покупателей рассказал
+            "Когда пошли продажи и мы уже<br class="desktop"> собирались
+            заняться созданием интернет-<br class="desktop"> магазина,
+            один из наших покупателей<br class="desktop"> рассказал
             нам про сервис Directbot.
-            Не успели зарегистрироваться, как
-            товары уже начали добавляться из
-            нашего Instagram в наш новый интернет-магазин.
-            Еще мы пользуемся услугами Directbot
-            по подбору блогеров по городам
+            Не<br class="desktop"> успели зарегистрироваться, как
+            товары уже<br class="desktop"> начали добавляться из
+            нашего Instagram в<br class="desktop"> наш новый интернет-магазин.
+            Еще мы<br class="desktop"> пользуемся услугами Directbot
+            по подбору блогеров по городам"
           `,
           author:'Катя,<br>владелец бренда'
         },
@@ -222,13 +265,13 @@ export default {
           shop: "@bella.fiori",
           category: "Цветочный бутик",
           text: `
-            Мы уже пользовались службой мониторинга
-            комментариев в Instagram, когда подключились
-            к Directbot. Ни у кого больше нет интеграции
-            с Instagram Direct. А сервис аутсорсинга
-            продаж за 3990 руб - неслыханная щедрость.
-            Также через Directbot мы находим блогеров
-            и заказываем у них фото и рекламу
+            "Мы уже пользовались службой<br class="desktop"> мониторинга
+            комментариев в Instagram,<br class="desktop"> когда подключились
+            к Directbot. Ни у кого<br class="desktop"> больше нет интеграции
+            с Instagram Direct.<br class="desktop"> А сервис аутсорсинга
+            продаж за 3990 руб -<br class="desktop"> неслыханная щедрость.
+            Также через<br class="desktop"> Directbot мы находим блогеров
+            и<br class="desktop"> заказываем у них фото и рекламу"
           `,
           author:'Нарек,<br>Основатель и управляющий партнер'
         }
@@ -277,6 +320,9 @@ export default {
 
   },
   mounted(){
+    this.timeId = setInterval(()=>{
+      this.sliderRun = !this.sliderRun;
+    },3000)
     this.$nextTick(()=>{
       if(window.browser.safari && !window.browser.instagram){
         this.windowHeight = document.body.offsetHeight;
@@ -291,6 +337,7 @@ export default {
     })
   },
   beforeDestroy(){
+    clearInterval(this.timeId);
     if(this.scrollListener)this.scrollListener.remove();
     if(this.resize)this.resize.remove();
   },
@@ -331,6 +378,15 @@ export default {
                 openChat(this)
               })
         });
+      }
+    }
+  },
+  watch:{
+    sliderRun(val){
+      if(val){
+        this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
+      } else {
+        this.margin = 0;
       }
     }
   },
