@@ -1,6 +1,131 @@
 <style src="./style.pcss"></style>
-<template lang="pug">
+<style lang="postcss">
 
+@import 'style/vars/vars.pcss';
+
+  .articles-plank {
+    background: white;
+    height: 100%;
+    width: 100%;
+    @media (--overtablet){
+
+    }
+
+    button {
+      outline: none;
+      border:none;
+      display: block;
+      background: none;
+    }
+
+    .title, .plank {
+
+    }
+
+    .title {
+      font-size: 60px;
+      font-family: $font__family__thin;
+      text-align: center;
+      padding: 30px 0;
+      color: $color__gray-dark;
+
+    }
+
+    .plank {
+
+      display: flex;
+      flex-wrap: wrap;
+      & > div {
+        width: 50%;
+        height: 700px;
+        @media (--tabletandless){
+          height: 970px;
+          width: auto;
+          min-width: 750px;
+        }
+      }
+
+      .text {
+
+        text-align: left;
+        padding-left: 25px;
+        color: $color__gray-dark;
+        max-width: 550px;
+
+        @media (--tabletandless) {
+          height: auto;
+        }
+
+        button, .wrap {
+          height: 100%;
+          text-align: left;
+          color: $color__gray-dark;
+          font-family: $font__family__light;
+          .category {
+            font-size: calc($font__normal + 4px);
+            font-family: $font__family__semibold;
+
+          }
+
+          .brand-name {
+            font-size: calc($font__large + 10px);
+            font-family: $font__family__thin;
+          }
+
+          p, .ps {
+            font-size: $font__normal;
+            font-family: $font__family__light;
+            padding-top: 20px;
+          }
+
+
+          @media (--tabletandless){
+            .ps {
+              padding-bottom: 20px;
+            }
+            .category {
+              font-size: calc($font__normal + 20px);
+              font-family: $font__family__semibold;
+              padding-top: 20px;
+            }
+
+            .brand-name {
+              font-size: calc($font__large + 30px);
+            }
+
+            p, .ps {
+              font-size: $font__medium;
+            }
+
+          }
+        }
+      }
+
+      .slider {
+        .image {
+          background-image: url(./articles/scr_iphone_full.png);
+          background-size: 80%;
+          background-repeat: no-repeat;
+          background-position: 50%;
+          float: right;
+          width: 400px;
+          height: 100%;
+          img {
+            background-color: blue;
+            size: 100%;
+          }
+
+          @media (--tabletandless){
+            width: 100%;
+            background-image: url(./articles/scr_iphone_crop.png)
+          }
+        }
+      }
+    }
+  }
+
+</style>
+<template lang="pug">
 #landing
 
   router-view
@@ -11,11 +136,28 @@
   who-need
   show-bot
   operator-skills
+
+  .articles-plank
+    .title Отызывы клиентов
+    .plank(v-for="article in articles")
+      .slider
+        .image
+          img(v-for="img in article.images", :src="article.img")
+      .text
+        button
+          .category {{ article.category }}
+          .brand-name {{ article.shop }}
+          p {{ article.text}}
+          .ps(v-html="article.author")
+
   .blue-plank
     | CRM Directbot удобен настолько,#[br.mobile]
     | что мы готовы предоставить вам#[br]
     | продавца на аутсорсинг 24/7#[br.mobile]
     | всего за 3990 руб. в месяц#[br.mobile]
+
+
+
   operator-actions
   toggle-role
   connect-get
@@ -58,7 +200,39 @@ export default {
       toggleBtns: false,
       showBtns: false,
       windowHeight: 0,
-      pricePopupShown: false
+      pricePopupShown: false,
+      articles:[
+        {
+          shop: "@narspi_shop",
+          category: "Шубы и меховые жилеты",
+          text: `
+            Когда пошли продажи и мы уже собирались
+            заняться созданием интернет- магазина,
+            один из наших покупателей рассказал
+            нам про сервис Directbot.
+            Не успели зарегистрироваться, как
+            товары уже начали добавляться из
+            нашего Instagram в наш новый интернет-магазин.
+            Еще мы пользуемся услугами Directbot
+            по подбору блогеров по городам
+          `,
+          author:'Катя,<br>владелец бренда'
+        },
+        {
+          shop: "@bella.fiori",
+          category: "Цветочный бутик",
+          text: `
+            Мы уже пользовались службой мониторинга
+            комментариев в Instagram, когда подключились
+            к Directbot. Ни у кого больше нет интеграции
+            с Instagram Direct. А сервис аутсорсинга
+            продаж за 3990 руб - неслыханная щедрость.
+            Также через Directbot мы находим блогеров
+            и заказываем у них фото и рекламу
+          `,
+          author:'Нарек,<br>Основатель и управляющий партнер'
+        }
+      ]
     }
   },
   created(){
