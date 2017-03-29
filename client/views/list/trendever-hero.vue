@@ -1,5 +1,5 @@
 <template lang="pug">
-#trendever-hero(:style="{ height: (isMobile ? heroHeight : heroHeight/5) + 'px'}")
+#trendever-hero(:style="{ height: (isMobile ? heroHeight : heroHeight/5.157) + 'px'}")
 
   .screen-one
     .title-area.no-desktop
@@ -19,11 +19,12 @@
 
     .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
 
-  .getapp-block.no-mobile
+  .screen-getapp.no-mobile
     h2 Приложение для шопинга в instagram
     .wrap-input
       input(placeholder="Номер телефона")
       span.app-btn ПОЛУЧИТЬ ССЫЛКУ
+
 
 
 
@@ -67,10 +68,10 @@ export default {
   position: relative;
   text-align: center;
   @media (--overtablet){
-    background: url(./img/Bgr_clg_mob.jpg);
+    background: url(./img/hero.jpg);
   }
 
-  .getapp-block {
+  .screen-getapp {
     max-width: 500px;
     margin: 0 auto;
     padding-bottom: 20px;
@@ -82,14 +83,18 @@ export default {
     }
     h2 {
       color: white;
-      font-size: $font__normal;
+      font-size: calc($font__normal - 4px);
+      font-family: $font__family__semibold;
       padding: 5px;
+      padding-bottom: 15px;
     }
     .wrap-input {
+      margin: 0 auto;
+      max-width: 405px;
       overflow: hidden;
       border-radius: 5px;
       width: 100%;
-      height: 50px;
+      height: 40px;
 
       input, span {
         display: inline-block;
@@ -98,10 +103,12 @@ export default {
         float: left;
       }
       input {
-        font-size: $font__normal;
+        color: $color__gray-dark;
+        font-size: calc($font__normal - 5px);
         border: none;
         outline: none;
         background: white;
+        padding: 0 10px;
         &::focus {
 
         }
@@ -110,15 +117,15 @@ export default {
       span {
         background-color: $color-orange;
         cursor: pointer;
-        line-height: 50px;
-        font-size: $font__normal;
+        line-height: 40px;
+        font-size: calc($font__normal - 5px);
       }
 
     }
   }
 
 
-  .getapp-block {
+  .screen-getapp {
     position: absolute * 0 0 0;
     font-size: $font_normal;
 
@@ -226,7 +233,9 @@ export default {
 
   .screen-one {
     position: relative;
-    background: url(./img/Bgr_clg_mob.jpg);
+    @media (--tabletandless){
+      background: url(./img/Bgr_clg_mob.jpg);
+    }
     height: calc(50% - 100px);
   }
   .screen-two {
