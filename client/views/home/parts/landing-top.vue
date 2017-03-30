@@ -47,7 +47,7 @@
     img(src="../img/directbot-main-logo.png")
 
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
-    | Оператор магазина в Instagram #[br]
+    | Менеджер магазина в Instagram#[br]
     span.time__text
       | CRM для продаж в Instagram c#[br]
       | аутсорсингом продавцов и блогеров#[br]

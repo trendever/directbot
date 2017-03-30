@@ -34,9 +34,9 @@
       .text
         button
           .category {{ article.category }}
-          .brand-name
+          .brand-name(@click="show(index)")
             | {{ article.shop }}
-            .arrow-right(@click="show(index)")
+            .arrow-right
               i.ic-review_arrow_right
           p(v-html="article.text")
           .ps(v-html="article.author")
