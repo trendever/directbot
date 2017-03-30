@@ -343,7 +343,7 @@ export default {
       border-radius: 5px;
       border: 1px solid $color__white;
       background-color: transparent;
-      margin-top: 10px;
+      margin-top: 5px;
       cursor: pointer;
       &:hover{
         background-color: $color__white;
@@ -351,7 +351,7 @@ export default {
         color: $color__brand;
       }
     }
-    @media(--tabletandless) {
+    @media (--tabletandless) {
       display: block;
       button{
         width: 600px;
