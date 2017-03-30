@@ -12,6 +12,13 @@ $pc_width: 262px;
 
     }
 
+    .arrow-right {
+      display: inline-block;
+      float: right;
+      color: $color__brand;
+      padding: 20px;
+    }
+
     button {
       outline: none;
       border:none;
@@ -171,7 +178,7 @@ $pc_width: 262px;
 
   .articles-plank
     .title Отызывы клиентов
-    .plank(v-for="article in articles")
+    .plank(v-for="article, index in articles", v-if="showArticle === index")
       .slider
         .image
           .wrap-hidden
@@ -184,12 +191,21 @@ $pc_width: 262px;
               img(src='./articles/review_narspi_shop_2_crop.jpg', v-if="article.shop==='@narspi_shop' && this.isMobile")
               img(src='./articles/review_narspi_shop_1.jpg', v-if="article.shop==='@narspi_shop' && !this.isMobile")
               img(src='./articles/review_narspi_shop_2.jpg', v-if="article.shop==='@narspi_shop' && !this.isMobile")
+              img(src='./articles/review_grideli_atelier_1_crop.jpg', v-if="article.shop==='@grideli_atelier' && this.isMobile")
+              img(src='./articles/review_grideli_atelier_2_crop.jpg', v-if="article.shop==='@grideli_atelier' && this.isMobile")
+              img(src='./articles/review_grideli_atelier_1.jpg', v-if="article.shop==='@grideli_atelier' && !this.isMobile")
+              img(src='./articles/review_grideli_atelier_2.jpg', v-if="article.shop==='@grideli_atelier' && !this.isMobile")
       .text
         button
           .category {{ article.category }}
-          .brand-name {{ article.shop }}
+          .brand-name
+            | {{ article.shop }}
+            .arrow-right(@click="show(index)")
+              i.ic-review_arrow_right
           p(v-html="article.text")
           .ps(v-html="article.author")
+
+
 
   .blue-plank
     | CRM Directbot удобен настолько,#[br.mobile]
@@ -244,6 +260,7 @@ export default {
       windowHeight: 0,
       pricePopupShown: false,
       sliderRun: false,
+      showArticle: 0,
       articles:[
         {
           shop: "@narspi_shop",
@@ -259,7 +276,7 @@ export default {
             Еще мы<br class="desktop"> пользуемся услугами Directbot
             по подбору блогеров по городам"
           `,
-          author:'Катя,<br>владелец бренда'
+          author:'Катя,<br>Владелец бренда'
         },
         {
           shop: "@bella.fiori",
@@ -274,6 +291,23 @@ export default {
             и<br class="desktop"> заказываем у них фото и рекламу"
           `,
           author:'Нарек,<br>Основатель и управляющий партнер'
+        },
+        {
+          shop: '@grideli_atelier',
+          category: 'Магазин одежды',
+          text: `
+            Несмотря на то, что Instagram у нас не<br class="desktop">
+            основной канал продаж, мы получаем<br class="desktop">
+            оттуда стабильный поток клиентов без<br class="desktop">
+            особых вложений. А подключив Direcbot по<br class="desktop">
+            тарифу 3990 руб., мне больше не надо<br class="desktop">
+            беспокоиться за качество и скорость<br class="desktop">
+            обслуживания клиентов из Instagram. Плюс<br class="desktop">
+            порадовала возможность сделать фото для<br class="desktop">
+            ленты и рекламу у блогера, расплатившись<br class="desktop">
+            своими же товарами.<br class="desktop">
+          `,
+          author: "Ольга,<br>Основатель и владелец бренда"
         }
       ]
     }
@@ -342,6 +376,14 @@ export default {
     if(this.resize)this.resize.remove();
   },
   methods: {
+    show(index){
+      if(index+1 >= this.articles.length){
+        this.showArticle=0;
+        return;
+      }
+
+      this.showArticle = index+1;
+    },
     openPopup(name){
       this.$router.push({name: 'home-info', params: {id: name}})
     },
