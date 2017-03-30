@@ -168,16 +168,6 @@ export default {
       }
     }
   },
-  watch:{
-    sliderRun(val){
-      if(val){
-        this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
-      } else {
-        this.margin = 0;
-      }
-    }
-  },
-
   computed:{
     ...mapGetters([
       'isAuth',

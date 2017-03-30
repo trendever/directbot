@@ -54,15 +54,20 @@ export default {
   },
   methods:{
     show(index){
+      let scroll = document.body.scrollTop;
+      this.showArticle = index+1;
       if(index+1 >= this.articles.length){
         this.showArticle=0;
-        return;
       }
-      this.showArticle = index+1;
+      this.$nextTick(()=>{
+        document.body.scrollTop = scroll;
+      })
+
     }
   },
   data () {
     return {
+      margin: 0,
       sliderRun: false,
       showArticle: 0,
       articles:[
@@ -109,13 +114,23 @@ export default {
             обслуживания клиентов из Instagram. Плюс<br class="desktop">
             порадовала возможность сделать фото для<br class="desktop">
             ленты и рекламу у блогера, расплатившись<br class="desktop">
-            своими же товарами."
+            своими же товарами"
           `,
           author: "Ольга,<br>Основатель и владелец бренда"
         }
       ]
     };
-  }
+  },
+  watch:{
+    sliderRun(val){
+      if(val){
+        this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
+      } else {
+        this.margin = 0;
+      }
+    }
+  },
+
 };
 </script>
 <style lang="postcss">
@@ -138,7 +153,7 @@ $pc_width: 262px;
     float: right;
     color: $color__brand;
     padding: 20px;
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     cursor:pointer;
   }
 
@@ -162,14 +177,6 @@ $pc_width: 262px;
 
     display: flex;
     flex-wrap: wrap;
-
-    @media (--overtablet){
-      height: 700px;
-    }
-
-    @media (--tabletandless){
-      height: 970px;
-    }
 
     & > div {
       width: 50%;
