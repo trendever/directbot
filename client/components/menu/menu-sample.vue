@@ -96,12 +96,14 @@
 
     .item {
 
-      @media (--mobile) {
+      @media (--overmobile) {
+        background: #F0F0F0;
         &:hover {
-          background: #dedede;
+
           cursor: pointer;
           .text {
-            color: $color__brand
+            background: #F0F0F0;
+            color: $color__brand;
           }
         }
       }

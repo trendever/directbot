@@ -8,7 +8,7 @@
     header-component(:title='getTitle', :left-btn-show='false')
 
       .header__nav(slot='center-content')
-        .header__nav__i.header__text
+        .header__nav__i.header__text._active
           span Чаты
 
         //- .header__nav__i.header__text(
