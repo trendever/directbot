@@ -74,7 +74,7 @@ export default {
   background-repeat: no-repeat;
   background-position: -50px 0px;
   @media (--mobile){
-    margin-top: 170px;
+    margin-top: 100px;
     margin-bottom: 30px;
     font-size: calc($font__large + 5px);
     background-position: -970px 0px;

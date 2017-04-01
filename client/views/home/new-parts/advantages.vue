@@ -108,7 +108,7 @@ export default {
             Поможет массово создавать фото/видео<br class="desktop">
             с вашими товарами для ленты и рекламы.<br class="desktop">
             Подберет качественных блогеров<br class="desktop">
-            и договорится на выгодных условиях.
+            и договорится на выгодных условиях
           `
         },
         {
@@ -300,6 +300,10 @@ $pc_width: 262px;
           font-size: $font__normal;
           font-family: $font__family__light;
           padding-top: 20px;
+
+          @media (--tabletandless){
+            text-align: center;
+          }
         }
 
 

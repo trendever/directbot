@@ -53,7 +53,7 @@
       | аутсорсингом продавцов и блогеров#[br]
 
   .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
-    | CRM для Instagram - #[br.mobile]
+    | CRM для Instagram-#[br.mobile]
     | магазинов
 
   .set-up
