@@ -22,21 +22,21 @@
                   v-if="index===0")
                 img(src='./img/iPhone_1200_01-2.jpg',
                   v-if="index===0")
+                img(src='./img/iPhone_1200_05-1.jpg',
+                  v-if="index===1")
+                img(src='./img/iPhone_1200_05-2.jpg',
+                  v-if="index===1")
                 img(src='./img/iPhone_1200_02-1.jpg',
-                  v-if="index===1")
-                img(src='./img/iPhone_1200_02-2.jpg',
-                  v-if="index===1")
-                img(src='./img/iPhone_1200_03-1.jpg',
                   v-if="index===2")
-                img(src='./img/iPhone_1200_03-2.jpg',
+                img(src='./img/iPhone_1200_02-2.jpg',
                   v-if="index===2")
                 img(src='./img/iPhone_1200_04-1.jpg',
                   v-if="index===3")
                 img(src='./img/iPhone_1200_04-2.jpg',
                   v-if="index===3")
-                img(src='./img/iPhone_1200_05-1.jpg',
+                img(src='./img/iPhone_1200_03-1.jpg',
                   v-if="index===4")
-                img(src='./img/iPhone_1200_05-2.jpg',
+                img(src='./img/iPhone_1200_03-2.jpg',
                   v-if="index===4")
         .text
           button
@@ -87,6 +87,16 @@ export default {
       showAdvantage: 0,
       advantages :[
         {
+          title: "Создает заказы<br> из Instagram",
+          text: `
+            Бот сразу находит покупателей и создает<br>
+            с ними чат-заказы в CRM. Обслуживайте<br>
+            клиентов в Instagram совместно, не рискуя<br>
+            паролем или отслеживайте статус выполнения<br>
+            заказов
+          `
+        },
+        {
           title: "Организует работу<br> с блогерами",
           text: `
             Поможет массово создавать фото/видео<br>
@@ -112,7 +122,7 @@ export default {
           `
         },
         {
-          title: 'Превращает <br> Instagram в магазин',
+          title: 'Превращает Instagram<br> в магазин',
           text: `
             Трансформирует вашу Instagram-ленту,
             в интуитивный онлайн-магазин,
