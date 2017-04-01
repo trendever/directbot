@@ -8,11 +8,15 @@
   .bottom-space
     .area-title Расскажите про фонд #ОденьБлогера
     .area-icons
-      img(src="./images/soc_ig.png")
-      img(src="./images/soc_fb.png")
-      img(src="./images/soc_vk.png")
-      img(src="./images/soc_telegram.png")
-      img(src="./images/soc_whatsapp.png")
+      a: img(src="./images/soc_ig.png")
+      a(href="http://www.facebook.com/sharer.php?u=https://www.trendever.com/dressblogger" target="_blank")
+        img(src="./images/soc_fb.png")
+      a(href="http://vk.com/share.php?url=https://www.trendever.com/dressblogger", target="_blank")
+        img(src="./images/soc_vk.png")
+      a(href="https://telegram.me/share/url?url=https://www.trendever.com/dressblogger>" target="_blank")
+        img(src="./images/soc_telegram.png")
+      a(href="whatsapp://send?text=https://www.trendever.com/dressblogger" data-action="share/whatsapp/share")
+        img(src="./images/soc_whatsapp.png")
 
 </template>
 
