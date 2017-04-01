@@ -192,8 +192,10 @@ export default {
       bottom: 0px;
       left: 0;
       &.new-land {
-        background-image: url(../new-parts/img/drbt_pattern_mob_light.jpg);
+        background-image: url(../img/DirectBot_landing-desk_pattern.png);
+        //background-image: url(../new-parts/img/drbt_pattern_mob_light.jpg);
         color:$color__brand;
+        background-position: 0 -340px;
       }
     }
 

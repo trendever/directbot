@@ -209,8 +209,8 @@ export default {
 
 #landing.new-land{
   @media (--tabletandless){
-    background-image: url(./new-parts/img/drbt_pattern_mob_light.jpg);
-    background-position: 0 25px;
+    //background-image: url(./new-parts/img/drbt_pattern_mob_light.jpg);
+    //background-position: 0 25px;
   }
 }
 
