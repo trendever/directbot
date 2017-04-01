@@ -166,11 +166,14 @@ $pc_width: 262px;
   padding: 20px;
   cursor:pointer;
   z-index: 400;
-
   @media (--overtablet){
     top:240px;
     padding: 20px 40px;
   }
+  i::before {
+    font-weight: 900;
+  }
+
 }
 .arrow-right {
   right: 10px;
@@ -178,7 +181,7 @@ $pc_width: 262px;
 
 .arrow-left {
   left: 10px;
-  transform: rotate(180deg) translateY(10px);
+  transform: scale(-1, 1);
 }
 
 .advantages-plank {
