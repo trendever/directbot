@@ -65,7 +65,7 @@ export default {
       if(this.timeId) clearInterval(this.timeId);
       this.timeId = setInterval(()=>{
         this.sliderRun = !this.sliderRun;
-      },3000)
+      },2500)
     },
     next(index){
       let scroll = document.body.scrollTop;
