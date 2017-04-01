@@ -55,14 +55,18 @@
 <script>
 export default {
   mounted(){
-    this.timeId = setInterval(()=>{
-      this.sliderRun = !this.sliderRun;
-    },3000)
+    this.runMiniSlider();
   },
   beforeDestroy(){
     clearInterval(this.timeId)
   },
   methods:{
+    runMiniSlider(){
+      if(this.timeId) clearInterval(this.timeId);
+      this.timeId = setInterval(()=>{
+        this.sliderRun = !this.sliderRun;
+      },3000)
+    },
     next(index){
       let scroll = document.body.scrollTop;
 
@@ -89,6 +93,7 @@ export default {
   },
   data () {
     return {
+      timeId: {},
       margin: 0,
       sliderRun: false,
       showArticle: 0,
@@ -150,6 +155,10 @@ export default {
       } else {
         this.margin = 0;
       }
+    },
+    showArticle(){
+      this.margin = 0;
+      this.runMiniSlider();
     }
   },
 
