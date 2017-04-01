@@ -184,6 +184,7 @@ $pc_width: 262px;
   }
 
 }
+
 .arrow-right {
   right: 10px;
 }

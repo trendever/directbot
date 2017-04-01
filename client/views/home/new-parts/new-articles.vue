@@ -4,10 +4,10 @@
   .body
     template(v-for="article, index in articles", v-if="showArticle === index")
 
-      .arrow-right(@click="next(index)")
+      .arrow-right.centered(@click="next(index)")
         i.ic-review_arrow_right
 
-      .arrow-left(@click="previous(index)")
+      .arrow-left.centered(@click="previous(index)")
         i.ic-review_arrow_right
 
       .plank
@@ -176,6 +176,13 @@ $pc_width: 262px;
   background: transparent;
   height: 100%;
   width: 100%;
+
+
+  .centered {
+  @media (--tabletandless){
+      top:1020px;
+    }
+  }
 
   .body {
     position: relative;
