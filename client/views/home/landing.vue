@@ -1,35 +1,38 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
-#landing
+#landing(:class="{'new-land': newLanding}")
 
   router-view
 
   .top-landing-background
 
-  landing-top
-  who-need
-  show-bot
-  operator-skills
+  landing-top(:new-landing="newLanding")
 
-  articles
+  template(v-if="!newLanding")
 
+    who-need
+    show-bot
+    operator-skills
+    articles
+    .blue-plank
+      | CRM Directbot удобен настолько,#[br.mobile]
+      | что мы готовы предоставить вам#[br]
+      | продавца на аутсорсинг 24/7#[br.mobile]
+      | всего за 3990 руб. в месяц#[br.mobile]
+    operator-actions
+    toggle-role
+    connect-get
+    .fake-height(v-if="toggleBtns")
 
-  .blue-plank
-    | CRM Directbot удобен настолько,#[br.mobile]
-    | что мы готовы предоставить вам#[br]
-    | продавца на аутсорсинг 24/7#[br.mobile]
-    | всего за 3990 руб. в месяц#[br.mobile]
+  template(v-if="newLanding")
 
+    advantages
+    center
+    new-articles
+    bottom
 
+    .fake-bottom
 
-  operator-actions
-  toggle-role
-  connect-get
-
-  .fake-height(v-if="toggleBtns")
-  //-.free-connect(v-if="toggleBtns")
-    a.link-info(@click.stop="openPopup('is10')")
-      | ХОЧЕШЬ ПОДКЛЮЧИТЬ СВОЕГО  ОПЕРАТОРА? ИЛИ ТЫ САМ ОПЕРАТОР?
 
   .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
     button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
@@ -41,6 +44,10 @@
 </template>
 
 <script>
+import newArticles from './new-parts/new-articles';
+import bottom from './new-parts/bottom';
+import center from './new-parts/center';
+import advantages from './new-parts/advantages';
 import articles from './articles';
 import whoNeed from './parts/who-need';
 import showBot from './parts/show-bot';
@@ -61,6 +68,7 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
+      newLanding: true,
       margin: 0,
       toggleBtns: false,
       showBtns: false,
@@ -90,16 +98,17 @@ export default {
         this.showBtns = document.body.scrollTop > window.innerHeight;
       }
 
-      if(document.body.scrollTop >= JQuery('#operator-skills').offset().top) {
-        if(this.pricePopupShown) return;
-        if(this.$store.state.user.pricePopup) return;
-        this.pricePopupShown = true;
-        setTimeout(()=>{
-          if(this.$route.name === 'home'){
-            this.$router.push({name: 'home-info', params: {id: 'price'}});
-          }
-        }, 7000)
-
+      if(!this.newLanding){
+        if(document.body.scrollTop >= JQuery('#operator-skills').offset().top) {
+          if(this.pricePopupShown) return;
+          if(this.$store.state.user.pricePopup) return;
+          this.pricePopupShown = true;
+          setTimeout(()=>{
+            if(this.$route.name === 'home'){
+              this.$router.push({name: 'home-info', params: {id: 'price'}});
+            }
+          }, 7000)
+        }
       }
     })
 
@@ -182,7 +191,12 @@ export default {
     operatorSkills,
     operatorActions,
     toggleRole,
-    connectGet
+    connectGet,
+    //new landing
+    advantages,
+    center,
+    bottom,
+    newArticles
   }
 }
 
@@ -193,12 +207,18 @@ export default {
 
 @import 'style/vars/vars.pcss';
 
+#landing.new-land{
+  @media (--tabletandless){
+    background-image: url(./new-parts/img/drbt_pattern_mob_light.jpg);
+    background-position: 0 25px;
+  }
+}
+
 #landing {
   width: 100%;
   overflow: hidden;
   min-height: 100%;
   background: url(./img/DirectBot_landing-desk_pattern.png)
-
 }
 
 .who-need, #landing-top {
@@ -223,6 +243,14 @@ export default {
 #operator-skills,
 #show-bot,
 .who-need {
+
+  .fake-bottom {
+    @media (--tabletandless){
+      height: 99px;
+    }
+    height: 79px;
+
+  }
 
   .blue-plank {
     text-align: center;

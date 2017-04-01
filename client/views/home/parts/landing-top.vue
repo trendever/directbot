@@ -46,17 +46,21 @@
   .center-logo(v-if="!isMobile")
     img(src="../img/directbot-main-logo.png")
 
-  .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }")
+  .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="!newLanding")
     | Менеджер магазина в Instagram#[br]
-    span.time__text
+    span.time__text(v-if="!newLanding")
       | CRM для продаж в Instagram c#[br]
       | аутсорсингом продавцов и блогеров#[br]
+
+  .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
+    | CRM для Instagram - #[br.mobile]
+    | магазинов
 
   .set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
     | ВХОД И РЕГИСТРАЦИЯ
-  a.how-button(v-on:click="$parent.scrollFirst") КОМУ НУЖЕН DIRECTBOT?
+  a.how-button(v-on:click="$parent.scrollFirst", :class="{'new-land': newLanding }") КОМУ НУЖЕН DIRECTBOT?
 </template>
 
 <script>
@@ -64,6 +68,11 @@ import menuSample from 'components/menu/menu-sample';
 import brandMenu from 'components/menu/brand-menu';
 
 export default {
+  props:{
+    newLanding:{
+      default: false
+    }
+  },
   components: {menuSample, brandMenu},
   data(){
     return {
@@ -182,7 +191,12 @@ export default {
       position: absolute;
       bottom: 0px;
       left: 0;
+      &.new-land {
+        background-image: url(../new-parts/img/drbt_pattern_mob_light.jpg);
+        color:$color__brand;
+      }
     }
+
   }
   .profile-header {
     z-index: 2;
