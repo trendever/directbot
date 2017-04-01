@@ -154,7 +154,7 @@ export default {
     },
     showAdvantage(){
       this.margin = 0;
-      this.runMiniSlider()
+      this.sliderRun = false;
     }
   },
 

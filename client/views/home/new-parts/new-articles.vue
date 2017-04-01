@@ -158,7 +158,7 @@ export default {
     },
     showArticle(){
       this.margin = 0;
-      this.runMiniSlider();
+      this.sliderRun = false;
     }
   },
 
