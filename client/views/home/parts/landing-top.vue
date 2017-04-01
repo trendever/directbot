@@ -24,7 +24,7 @@
           .text.__txt-blue Отмена
 
 
-  a.header-sticker(href="https://trendever.com", target="_blank")
+  a.header-sticker(href="https://trendever.com", target="_blank", :class="{'new-landing': newLanding}")
     span.wrap
       | Подключайтесь и продавайте#[br]
       | на Trendever
@@ -143,6 +143,10 @@ export default {
     }
 
     @media (--overtablet) {
+      &.new-landing {
+        top: 330px;
+      }
+
       span.wrap {
         display: inline-block;
         transform: translateY(70%) rotate(-7deg)
