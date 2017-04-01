@@ -133,7 +133,7 @@ export default {
           `
         },
         {
-          title: 'Превращает Instagram<br> в магазин',
+          title: 'Превращает<br>Instagram в магазин',
           text: `
             Трансформирует вашу Instagram-ленту,
             в интуитивный онлайн-магазин,
@@ -263,6 +263,7 @@ $pc_width: 262px;
           font-family: $font__family__regular;
           font-size: $font__large;
           @media (--tabletandless){
+            margin-top: 8px;
             text-align: center;
             div {
               font-family:$font__family__regular;
