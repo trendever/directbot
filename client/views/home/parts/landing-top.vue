@@ -52,7 +52,7 @@
       | CRM для продаж в Instagram c#[br]
       | аутсорсингом продавцов и блогеров#[br]
 
-  .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
+  .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
     | CRM для Instagram - #[br.mobile]
     | магазинов
 
@@ -312,13 +312,17 @@ export default {
       left: 0;
       font-family: $font__family__semibold;
       line-height: 55px;
+
+      &.new-land {
+        font-size: 60px;
+        font-family: $font__family__regular;
+      }
     }
 
 
     @media screen and (max-height: 1140px){
       margin-bottom: 10px;
     }
-
 
     &.bottom-fix {
       margin-bottom:30px;

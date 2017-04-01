@@ -40,7 +40,13 @@
                   v-if="index===4")
         .text
           button
-            .brand-name(@click="next(index)")
+            .brand-name
+              .dots
+                span(@click="showAdvantage=0", :class="{'choosen': index===0}")
+                span(@click="showAdvantage=1", :class="{'choosen': index===1}")
+                span(@click="showAdvantage=2", :class="{'choosen': index===2}")
+                span(@click="showAdvantage=3", :class="{'choosen': index===3}")
+                span(@click="showAdvantage=4", :class="{'choosen': index===4}")
               div(v-html="advantage.title")
             p(v-html="advantage.text")
 </template>
@@ -89,35 +95,35 @@ export default {
         {
           title: "Создает заказы<br> из Instagram",
           text: `
-            Бот сразу находит покупателей и создает<br>
-            с ними чат-заказы в CRM. Обслуживайте<br>
-            клиентов в Instagram совместно, не рискуя<br>
-            паролем или отслеживайте статус выполнения<br>
+            Бот сразу находит покупателей и создает<br class="desktop">
+            с ними чат-заказы в CRM. Обслуживайте<br class="desktop">
+            клиентов в Instagram совместно, не рискуя<br class="desktop">
+            паролем или отслеживайте статус выполнения<br class="desktop">
             заказов
           `
         },
         {
           title: "Организует работу<br> с блогерами",
           text: `
-            Поможет массово создавать фото/видео<br>
-            с вашими товарами для ленты и рекламы.<br>
-            подберет качественных блогеров<br>
+            Поможет массово создавать фото/видео<br class="desktop">
+            с вашими товарами для ленты и рекламы.<br class="desktop">
+            Подберет качественных блогеров<br class="desktop">
             и договорится на выгодных условиях.
           `
         },
         {
           title: "Интегрируется в<br> Instagram Direct",
           text: `
-            Менеджеры магазина общаются<br>
-            с клиентами в Direct прямо из CRM.<br>
-            Не теряйте покупателей, которым не удобно<br>
+            Менеджеры магазина общаются<br class="desktop">
+            с клиентами в Direct прямо из CRM.<br class="desktop">
+            Не теряйте покупателей, которым не удобно<br class="desktop">
             писать в WhatsApp или переходить на сайт          `
         },
         {
           title: 'Выполняет <br> "мартышкин труд"',
           text: `
-            Автоматизирует ответы на повторяющиеся<br>
-            вопросы и пишет уведомления об этом<br>
+            Автоматизирует ответы на повторяющиеся<br class="desktop">
+            вопросы и пишет уведомления об этом<br class="desktop">
             в комментариях под фото в Instagram
           `
         },
@@ -239,16 +245,50 @@ $pc_width: 262px;
         font-family: $font__family__light;
 
         .brand-name {
+
+          position: relative;
           font-size: calc($font__large + 10px);
           font-family: $font__family__regular;
           font-size: $font__large;
           @media (--tabletandless){
             text-align: center;
-
-
             div {
-              font-family:$font__family__semibold;
+              font-family:$font__family__regular;
               font-size: 60px;
+            }
+          }
+
+          .dots {
+
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 5px;
+            width: 100%;
+            @media (--overtablet){
+              top: -50px;
+            }
+
+            @media (--tabletandless){
+              top: 35px;
+
+            }
+            span {
+              cursor: pointer;
+              display: inline-block;
+              size: 20px;
+              margin: 5px;
+              border: 1px solid $color__brand;
+              border-radius: 50%;
+
+              @media (--tabletandless){
+                top: 35px;
+                margin-left:10px;
+                margin-right:10px;
+              }
+              &.choosen {
+                background:$color__brand;
+              }
             }
           }
         }
