@@ -149,7 +149,7 @@ export default {
           text: `
             Трансформирует вашу Instagram-ленту<br class="desktop">
             в интуитивный онлайн-магазин, с отзывами,<br class="desktop">
-            телефоном, карточками товаров<br class="desktop">
+            телефоном, карточками товаров.<br class="desktop">
             и доступный по короткой<br class="mobile"> ссылке
           `
           // text: `
@@ -276,6 +276,7 @@ $pc_width: 262px;
   }
 
   .title {
+    line-height: 55px;
     font-size: 60px;
     font-family: $font__family__regular;
     text-align: center;

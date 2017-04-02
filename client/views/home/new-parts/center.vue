@@ -60,7 +60,8 @@ export default {
     }
 
     p {
-      //font-size: $font__medium;
+      font-family: $font__family__light;
+      @mixin standart__font;
     }
   }
   .advert-ps {
