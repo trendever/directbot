@@ -42,11 +42,11 @@
           button
             .brand-name
               .dots-action(v-if="!isMobile")
-                span(@click="showAdvantage=0", :class="{'choosen': index===0}")
-                span(@click="showAdvantage=1", :class="{'choosen': index===1}")
-                span(@click="showAdvantage=2", :class="{'choosen': index===2}")
-                span(@click="showAdvantage=3", :class="{'choosen': index===3}")
-                span(@click="showAdvantage=4", :class="{'choosen': index===4}")
+                span(@click="selectAdvantage(0)", :class="{'choosen': index===0}")
+                span(@click="selectAdvantage(1)", :class="{'choosen': index===1}")
+                span(@click="selectAdvantage(2)", :class="{'choosen': index===2}")
+                span(@click="selectAdvantage(3)", :class="{'choosen': index===3}")
+                span(@click="selectAdvantage(4)", :class="{'choosen': index===4}")
               div(v-html="advantage.title")
             p(v-html="advantage.text")
             .dots-action(v-if="isMobile")
