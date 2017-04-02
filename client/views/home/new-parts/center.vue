@@ -40,7 +40,7 @@ export default {
   i.ic-rub {
     display: inline-block;
     font-size: 62px;
-    transform: translate(10px,25px)
+    transform: translate(10px,28px);
   }
 
   .advert-title {

@@ -46,7 +46,7 @@
         .text
           button
             .category {{ article.category }}
-            .brand-name(@click="show(index)")
+            .brand-name
               | {{ article.shop }}
             p(v-html="article.text")
             .ps(v-html="article.author")
