@@ -60,7 +60,7 @@
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
     | ВХОД И РЕГИСТРАЦИЯ
-  a.how-button(v-on:click="$parent.scrollFirst", :class="{'new-land': newLanding }") КОМУ НУЖЕН DIRECTBOT?
+  a.how-button(v-on:click="$parent.scrollFirst", :class="{'new-land': newLanding }") {{ nextButtonText }}
 </template>
 
 <script>
@@ -71,6 +71,11 @@ export default {
   props:{
     newLanding:{
       default: false
+    }
+  },
+  computed:{
+    nextButtonText(){
+      return this.newLanding ? 'КАК ЭТО РАБОТАЕТ?' : 'КОМУ НУЖЕН DIRECTBOT?'
     }
   },
   components: {menuSample, brandMenu},

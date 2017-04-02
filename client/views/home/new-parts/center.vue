@@ -4,9 +4,9 @@
 
   .advert-title Полный доступ#[br.mobile] к функционалу#[br] CRM Directbot стоит
   .advert-price
-    span 590#[br]
-    | рублей в месяц*
-  .advert-ps *позволяет подключить до 5 менеджеров#[br.mobile] одновременно
+    span 590
+    i.ic-rub
+    p в месяц
 
 
 
@@ -35,6 +35,12 @@ export default {
   color: white;
   font-family: $font__family__semibold;
 
+  i.ic-rub {
+    display: inline-block;
+    font-size: 62px;
+    transform: translate(10px,25px)
+  }
+
   .advert-title {
 
     font-size: $font__large;
@@ -49,6 +55,10 @@ export default {
     font-size: $font__normal;
     span {
       font-size: 90px;
+    }
+
+    p {
+      //font-size: $font__medium;
     }
   }
   .advert-ps {
@@ -73,7 +83,10 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: -50px 0px;
-  @media (--mobile){
+  @media screen and (min-width: 1400px){
+    background-position: -10px 0px;
+  }
+  @media (--tabletandless){
     margin-top: 100px;
     margin-bottom: 30px;
     font-size: calc($font__large + 5px);

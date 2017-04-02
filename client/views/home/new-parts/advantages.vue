@@ -1,6 +1,6 @@
 <template lang="pug">
 .advantages-plank
-  .title Система#[br.mobile] автоматизации#[br.mobile] взаимодействия#[br] с клиетами#[br.mobile] и блогерами
+  .title Система#[br.mobile] автоматизации#[br.mobile] взаимодействия#[br] с клиентами#[br.mobile] и блогерами
   .body
 
     template(v-for="advantage, index in advantages", v-if="showAdvantage === index")
