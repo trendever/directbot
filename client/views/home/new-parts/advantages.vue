@@ -5,10 +5,10 @@
 
     template(v-for="advantage, index in advantages", v-if="showAdvantage === index")
 
-      .arrow-right(@click="next(index)")
+      .arrow-right.centered(@click="next(index)")
         i.ic-review_arrow_right
 
-      .arrow-left(@click="previous(index)")
+      .arrow-left.centered(@click="previous(index)")
         i.ic-review_arrow_right
 
       .plank
@@ -221,6 +221,16 @@ $pc_width: 262px;
     background: none;
   }
 
+  .centered {
+    @media (--overtablet){
+      top: 294px;
+    }
+    @media (--tabletandless){
+      top: 1024px;
+    }
+
+  }
+
   .title {
     font-size: 60px;
     font-family: $font__family__regular;
@@ -275,6 +285,7 @@ $pc_width: 262px;
           font-family: $font__family__regular;
           font-size: $font__large;
           @media (--tabletandless){
+            line-height: 84px;
             margin-top: 8px;
             text-align: center;
             div {
@@ -295,7 +306,7 @@ $pc_width: 262px;
             }
 
             @media (--tabletandless){
-              top: 35px;
+              top: 43px;
 
             }
             span {
