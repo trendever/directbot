@@ -41,7 +41,7 @@
         .text
           button
             .brand-name
-              .dots
+              .dots-action(v-if="!isMobile")
                 span(@click="showAdvantage=0", :class="{'choosen': index===0}")
                 span(@click="showAdvantage=1", :class="{'choosen': index===1}")
                 span(@click="showAdvantage=2", :class="{'choosen': index===2}")
@@ -49,6 +49,13 @@
                 span(@click="showAdvantage=4", :class="{'choosen': index===4}")
               div(v-html="advantage.title")
             p(v-html="advantage.text")
+            .dots-action(v-if="isMobile")
+              span(@click="showAdvantage=0", :class="{'choosen': index===0}")
+              span(@click="showAdvantage=1", :class="{'choosen': index===1}")
+              span(@click="showAdvantage=2", :class="{'choosen': index===2}")
+              span(@click="showAdvantage=3", :class="{'choosen': index===3}")
+              span(@click="showAdvantage=4", :class="{'choosen': index===4}")
+
 </template>
 
 <script>
@@ -143,7 +150,7 @@ export default {
             Трансформирует вашу Instagram-ленту<br class="desktop">
             в интуитивный онлайн-магазин, с отзывами,<br class="desktop">
             телефоном, карточками товаров<br class="desktop">
-            и доступный по короткой ссылке
+            и доступный по короткой<br class="mobile"> ссылке
           `
           // text: `
           //   Трансформирует вашу Instagram-ленту,
@@ -210,6 +217,43 @@ $pc_width: 262px;
   background: transparent;
   height: 100%;
   width: 100%;
+
+  .dots-action {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 5px;
+    width: 100%;
+    @media (--overtablet){
+      top: -60px;
+    }
+
+    @media (--tabletandless){
+      position: relative;
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+    }
+    span {
+      cursor: pointer;
+      display: inline-block;
+      size: 20px;
+      margin: 5px;
+      border: 1px solid $color__brand;
+      border-radius: 50%;
+
+      @media (--tabletandless){
+        top: 35px;
+        margin-left:10px;
+        margin-right:10px;
+      }
+      &.choosen {
+        background:$color__brand;
+      }
+    }
+  }
+
   .body {
     position: relative;
   }
@@ -226,7 +270,7 @@ $pc_width: 262px;
       top: 294px;
     }
     @media (--tabletandless){
-      top: 1024px;
+      top: 1010px;
     }
 
   }
@@ -285,46 +329,11 @@ $pc_width: 262px;
           font-family: $font__family__regular;
           font-size: $font__large;
           @media (--tabletandless){
-            line-height: 84px;
             margin-top: 8px;
             text-align: center;
             div {
               font-family:$font__family__regular;
               font-size: 60px;
-            }
-          }
-
-          .dots {
-
-            position: absolute;
-            right: 0;
-            left: 0;
-            top: 5px;
-            width: 100%;
-            @media (--overtablet){
-              top: -60px;
-            }
-
-            @media (--tabletandless){
-              top: 43px;
-
-            }
-            span {
-              cursor: pointer;
-              display: inline-block;
-              size: 20px;
-              margin: 5px;
-              border: 1px solid $color__brand;
-              border-radius: 50%;
-
-              @media (--tabletandless){
-                top: 35px;
-                margin-left:10px;
-                margin-right:10px;
-              }
-              &.choosen {
-                background:$color__brand;
-              }
             }
           }
         }
