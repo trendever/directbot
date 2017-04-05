@@ -89,4 +89,15 @@ base.stats = {
   modules: false
 }
 
+
+base.module.loaders.push(
+  {
+    test: /\.font\.(js|json)$/,
+    loader: ExtractTextPlugin.extract([
+      "css-loader",
+      "webfonts-loader?fileName=static/fonts/[fontname].[hash:7][ext]"
+    ])
+  }
+)
+
 module.exports = base
