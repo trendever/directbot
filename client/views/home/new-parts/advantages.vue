@@ -42,19 +42,19 @@
           button
             .brand-name
               .dots-action(v-if="!isMobile")
-                span(@click="selectAdvantage(0)", :class="{'choosen': index===0}")
-                span(@click="selectAdvantage(1)", :class="{'choosen': index===1}")
-                span(@click="selectAdvantage(2)", :class="{'choosen': index===2}")
-                span(@click="selectAdvantage(3)", :class="{'choosen': index===3}")
-                span(@click="selectAdvantage(4)", :class="{'choosen': index===4}")
+                span(@click="selectAdvantage(0)", :class="{'choosen': index===0}") 1
+                span(@click="selectAdvantage(1)", :class="{'choosen': index===1}") 2
+                span(@click="selectAdvantage(2)", :class="{'choosen': index===2}") 3
+                span(@click="selectAdvantage(3)", :class="{'choosen': index===3}") 4
+                span(@click="selectAdvantage(4)", :class="{'choosen': index===4}") 5
               div(v-html="advantage.title")
             p(v-html="advantage.text")
             .dots-action(v-if="isMobile")
-              span(@click="selectAdvantage(0)", :class="{'choosen': index===0}")
-              span(@click="selectAdvantage(1)", :class="{'choosen': index===1}")
-              span(@click="selectAdvantage(2)", :class="{'choosen': index===2}")
-              span(@click="selectAdvantage(3)", :class="{'choosen': index===3}")
-              span(@click="selectAdvantage(4)", :class="{'choosen': index===4}")
+              span(@click="selectAdvantage(0)", :class="{'choosen': index===0}") 1
+              span(@click="selectAdvantage(1)", :class="{'choosen': index===1}") 2
+              span(@click="selectAdvantage(2)", :class="{'choosen': index===2}") 3
+              span(@click="selectAdvantage(3)", :class="{'choosen': index===3}") 4
+              span(@click="selectAdvantage(4)", :class="{'choosen': index===4}") 5
 
 </template>
 
@@ -232,7 +232,8 @@ $pc_width: 282px;
     top: 5px;
     width: 100%;
     @media (--overtablet){
-      top: -60px;
+      top: -69px;
+      left: -15px;
     }
 
     @media (--tabletandless){
@@ -243,20 +244,35 @@ $pc_width: 282px;
 
     }
     span {
+
       cursor: pointer;
       display: inline-block;
       size: 20px;
-      margin: 5px;
+      margin: 15px;
+      size: 35px;
+      line-height:33px;
       border: 1px solid $color__brand;
       border-radius: 50%;
-
+      color: $color__brand;
+      font-size: calc($font__normal);
+      text-align: center;
+      @media (--overtablet) {
+        font-family: $font__family__light;
+      }
       @media (--tabletandless){
+        display:inline-block;
+        font-size: calc($font__medium + 7px);
+        border: 5px solid $color__brand;
+        line-height:75px;
         top: 35px;
-        margin-left:10px;
-        margin-right:10px;
+        margin-top: 40px;
+        margin-left: 20px;
+        margin-right: 20px;
+        size: 85px;
       }
       &.choosen {
         background:$color__brand;
+        color: white;
       }
     }
   }
