@@ -169,7 +169,7 @@ export default {
 @import 'style/vars/vars.pcss';
 
 $tablet_width: 484px;
-$pc_width: 262px;
+$pc_width: 282px;
 
 .new-articles-plank {
 
@@ -287,7 +287,7 @@ $pc_width: 262px;
     .slider {
       .image {
         background-image: url(../articles/scr_iphone_full.png);
-        background-size: 80%;
+        background-size: 85%;
         background-repeat: no-repeat;
         background-position: 50%;
         float: right;
@@ -302,7 +302,7 @@ $pc_width: 262px;
             height: 810px;
           }
           @media (--overtablet){
-            transform: translate(63px,116px);
+            transform: translate(53px,102px);
             width: $pc_width;
 
           }
@@ -329,6 +329,7 @@ $pc_width: 262px;
         }
 
         @media (--tabletandless){
+          background-size: 80%;
           width: 100%;
           background-image: url(../articles/scr_iphone_crop.png)
         }

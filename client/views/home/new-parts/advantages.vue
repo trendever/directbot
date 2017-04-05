@@ -190,7 +190,7 @@ export default {
 @import 'style/vars/vars.pcss';
 
 $tablet_width: 484px;
-$pc_width: 262px;
+$pc_width: 282px;
 
 .arrow-right, .arrow-left {
   font-size: 50px;
@@ -375,12 +375,12 @@ $pc_width: 262px;
       position: relative;
       .image {
         background-image: url(../articles/scr_iphone_full.png);
-        background-size: 80%;
         background-repeat: no-repeat;
         background-position: 50%;
         float: right;
         width: 400px;
         height: 100%;
+        background-size: 85%;
 
         .wrap-hidden {
           overflow: hidden;
@@ -390,9 +390,8 @@ $pc_width: 262px;
             height: 810px;
           }
           @media (--overtablet){
-            transform: translate(63px,116px);
+            transform: translate(53px,102px);
             width: $pc_width;
-
           }
 
         }
@@ -417,6 +416,7 @@ $pc_width: 262px;
         }
 
         @media (--tabletandless){
+          background-size: 80%;
           width: 100%;
           background-image: url(../articles/scr_iphone_crop.png)
         }
