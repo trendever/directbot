@@ -155,8 +155,8 @@ export default {
           title: 'Превращает<br>Instagram в магазин',
           text: `
             Трансформирует вашу Instagram-ленту<br class="desktop">
-            в интуитивный онлайн-магазин, с отзывами,<br class="desktop">
-            телефоном, карточками товаров.<br class="desktop">
+            в интуитивный онлайн-магазин с отзывами,<br class="desktop">
+            телефоном, карточками товаров<br class="desktop">
             и доступный по короткой<br class="mobile"> ссылке
           `
           // text: `
