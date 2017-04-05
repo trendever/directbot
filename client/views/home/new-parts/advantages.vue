@@ -134,7 +134,7 @@ export default {
           text: `
             Менеджеры магазина общаются<br class="desktop">
             с клиентами в Direct прямо из CRM.<br class="desktop">
-            Не теряйте покупателей, которым не удобно<br class="desktop">
+            Не теряйте покупателей, которым неудобно<br class="desktop">
             писать в WhatsApp или переходить на сайт          `
         },
         {
