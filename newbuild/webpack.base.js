@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const BrandChangePlugin = require('./plugins/brandChange')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const config = require('./config')
+const config = require('./conf')
 const _ = require('./utils')
 
 module.exports = {
