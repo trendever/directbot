@@ -59,7 +59,7 @@ module.exports = {
         test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
         loader: 'file-loader',
         query: {
-          name: 'static/media/[name].[hash:8].[ext]'
+          name: '/static/media/[name].[hash:8].[ext]'
         }
       },
       {
