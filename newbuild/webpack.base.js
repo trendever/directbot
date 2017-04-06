@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: _.outputPath,
     filename: '[name].js',
-    publicPath: config.publicPath
+    publicPath: '/'
   },
   performance: {
     hints: process.env.NODE_ENV === 'production' ? 'warning' : false
