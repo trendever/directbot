@@ -61,6 +61,7 @@ export default {
     nativePopup
   },
   mounted(){
+    
 
     window.eventHub.$on('show-desktop-phone', data=>{
       this.showDesktopPhone = true;
@@ -77,8 +78,22 @@ export default {
     })
   },
   beforeCreate(){
-
-    store
+    if ( this.$route.query ) {
+      if ( this.$route.query.token ) {
+        let token = this.$route.query.token;
+        store.dispatch('authUser',{null,token})
+        .then(()=>{
+          this.authDone = true;
+        })
+        .then( () => {
+          let banners = JSON.parse(localStorage.getItem('bannerInfo'));
+          if(banners){
+            this.$store.state.monetization.bannerInfo = banners;
+          }
+        })
+      }
+    }else{
+      store
       .dispatch('authUser', { null, null } )
       .then( () => {
         this.authDone = true;
@@ -89,6 +104,7 @@ export default {
           this.$store.state.monetization.bannerInfo = banners;
         }
       })
+    }
   }
 }
 
