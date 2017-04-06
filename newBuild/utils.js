@@ -23,7 +23,7 @@ _.cssProcessors = [
 
 _.outputPath = config.electron ?
   path.join(__dirname, '../app/dist') :
-  path.join(__dirname, '../dist')
+  path.join(__dirname, '../dist/vendor')
 
 _.outputIndexPath = config.electron ?
   path.join(__dirname, '../app/dist/index.html') :
