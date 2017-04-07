@@ -299,7 +299,7 @@ $pc_width: 282px;
   }
 
   .title {
-    line-height: 55px;
+    //line-height: 55px;
     font-size: 60px;
     font-family: $font__family__regular;
     text-align: center;

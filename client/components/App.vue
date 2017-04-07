@@ -45,6 +45,7 @@ export default {
     return {
       authDone: false,
       monetizationDone: false,
+      showOperatorInfo: false,
 
       //clipboard
       showCopyMessage: false,
