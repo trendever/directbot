@@ -189,7 +189,7 @@ export default {
 
 @import 'style/vars/vars.pcss';
 
-$tablet_width: 484px;
+$tablet_width: 520px;
 $pc_width: 282px;
 
 .arrow-right, .arrow-left {
@@ -293,7 +293,7 @@ $pc_width: 282px;
       top: 294px;
     }
     @media (--tabletandless){
-      top: 1010px;
+      top: 1070px;
     }
 
   }
@@ -322,7 +322,7 @@ $pc_width: 282px;
       width: 50%;
       height: 700px;
       @media (--tabletandless){
-        height: 970px;
+        height: 1030px;
         width: auto;
         min-width: 750px;
       }
@@ -401,7 +401,7 @@ $pc_width: 282px;
         .wrap-hidden {
           overflow: hidden;
           @media (--tabletandless){
-            transform: translate(121px,150px);
+            transform: translate(104px,159px);
             width: $tablet_width;
             height: 810px;
           }
@@ -432,7 +432,7 @@ $pc_width: 282px;
         }
 
         @media (--tabletandless){
-          background-size: 80%;
+          background-size: 85%;
           width: 100%;
           background-image: url(../articles/scr_iphone_crop.png)
         }
