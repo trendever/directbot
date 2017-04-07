@@ -90,8 +90,8 @@ export default {
     background-position: -10px 0px;
   }
   @media (--tabletandless){
-    margin-top: 100px;
-    margin-bottom: 30px;
+    margin-top: 28px;
+    margin-bottom: 0px;
     font-size: calc($font__large + 5px);
     background-position: -970px 0px;
   }
