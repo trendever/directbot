@@ -1,6 +1,17 @@
 <template lang="pug">
 .advantages-plank
-  .title Система#[br.mobile] автоматизации#[br.mobile] взаимодействия#[br] с клиентами#[br.mobile] и блогерами
+  .title(v-if="!isMobile")
+    | Система#[br.mobile]
+    | автоматизации#[br.mobile]
+    | взаимодействия#[br]
+    | с клиентами#[br.mobile]
+    | и блогерами
+  .title(v-if="isMobile")
+    | Система#[br.mobile]
+    | автоматизации#[br.mobile]
+    | взаимодействия#[br]
+    | с клиентами#[br.mobile]
+    | и блогерами
   .body
 
     template(v-for="advantage, index in advantages", v-if="showAdvantage === index")
@@ -175,7 +186,7 @@ export default {
 @import 'style/vars/vars.pcss';
 
 $tablet_width: 520px;
-$pc_width: 282px;
+$pc_width: 289px;
 
 .arrow-right, .arrow-left {
   font-size: 50px;
@@ -381,7 +392,7 @@ $pc_width: 282px;
         float: right;
         width: 400px;
         height: 100%;
-        background-size: 85%;
+        background-size: 88%;
 
         .wrap-hidden {
           overflow: hidden;
@@ -391,7 +402,7 @@ $pc_width: 282px;
             height: 810px;
           }
           @media (--overtablet){
-            transform: translate(53px,102px);
+            transform: translate(49px,92px);
             width: $pc_width;
           }
 
