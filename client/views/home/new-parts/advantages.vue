@@ -1,12 +1,6 @@
 <template lang="pug">
 .advantages-plank
-  .title(v-if="!isMobile")
-    | Система#[br.mobile]
-    | автоматизации#[br.mobile]
-    | взаимодействия#[br]
-    | с клиентами#[br.mobile]
-    | и блогерами
-  .title(v-if="isMobile")
+  .title
     | Система#[br.mobile]
     | автоматизации#[br.mobile]
     | взаимодействия#[br]
