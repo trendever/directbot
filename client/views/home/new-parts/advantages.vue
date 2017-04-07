@@ -41,7 +41,7 @@
         .text
           button
             .brand-name
-              .dots-action(v-if="!isMobile")
+              .dots-action
                 span(@click="selectAdvantage(0)", :class="{'choosen': index===0}") 1
                 span(@click="selectAdvantage(1)", :class="{'choosen': index===1}") 2
                 span(@click="selectAdvantage(2)", :class="{'choosen': index===2}") 3
@@ -49,12 +49,6 @@
                 span(@click="selectAdvantage(4)", :class="{'choosen': index===4}") 5
               div(v-html="advantage.title")
             p(v-html="advantage.text")
-            .dots-action(v-if="isMobile")
-              span(@click="selectAdvantage(0)", :class="{'choosen': index===0}") 1
-              span(@click="selectAdvantage(1)", :class="{'choosen': index===1}") 2
-              span(@click="selectAdvantage(2)", :class="{'choosen': index===2}") 3
-              span(@click="selectAdvantage(3)", :class="{'choosen': index===3}") 4
-              span(@click="selectAdvantage(4)", :class="{'choosen': index===4}") 5
 
 </template>
 
@@ -253,10 +247,10 @@ $pc_width: 282px;
       @media (--tabletandless){
         display:inline-block;
         font-size: calc($font__medium + 7px);
-        border: 5px solid $color__brand;
+        border: 3px solid $color__brand;
         line-height:75px;
         top: 35px;
-        margin-top: 40px;
+        margin-top: 10px;
         margin-left: 20px;
         margin-right: 20px;
         size: 85px;
@@ -284,7 +278,7 @@ $pc_width: 282px;
       top: 294px;
     }
     @media (--tabletandless){
-      top: 1070px;
+      top: 1200px;
     }
 
   }
