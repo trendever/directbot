@@ -93,7 +93,7 @@ export default {
     margin-bottom: 0px;
   }
   @media (--tabletandless){
-    margin-top: 28px;
+    margin-top: 45px;
     margin-bottom: 0px;
     font-size: calc($font__large + 5px);
     background-position: -970px 0px;
