@@ -36,6 +36,9 @@ export default {
   height: 400px;
   background: url(./img/blogger_girl_bgr_desk.jpg);
   background-size: cover;
+  @media (--overtablet) {
+    margin-top: 40px;
+  }
 
   @media (--tabletandless){
     padding: 90px 0;

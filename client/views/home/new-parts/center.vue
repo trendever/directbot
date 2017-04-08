@@ -89,6 +89,9 @@ export default {
   @media screen and (min-width: 1400px){
     background-position: -10px 0px;
   }
+  @media (--overtablet){
+    margin-bottom: 0px;
+  }
   @media (--tabletandless){
     margin-top: 28px;
     margin-bottom: 0px;
