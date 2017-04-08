@@ -115,6 +115,7 @@ export default {
       code: '',
       password: '',
       login: '' || instagram_username,
+      errorLogin: false,
       needConfirmCode: false,
       connectProcess: false,
       containerHeight: '',

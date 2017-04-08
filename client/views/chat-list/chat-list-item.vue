@@ -11,7 +11,7 @@
       .body-title {{ title }}
 
       .body-status-time
-        .body-status ( {{ status.toLowerCase() }} )
+        .body-status ( {{ status }} )
         .body-time {{ dataTime }}
 
       .body-last-msg
@@ -183,7 +183,7 @@ export default {
     },
     recentMessage(){
       const msgObj = this.getLastMessage[ this.lead.id ];
-      if ( msgObj ) {
+      if ( msgObj && msgObj.message) {
         msgObj.message = msgObj.message.replace(/₽/g, '&nbsp;<i class="ic-currency-rub"></i> ');
         return msgObj;
       }
@@ -193,7 +193,8 @@ export default {
       }
     },
     status(){
-      return leadsService.getStatus( this.lead.status ).name
+      let status = leadsService.getStatus( this.lead.status );
+      if(status) return status.name.toLowerCase();
     },
     dataTime(){
       if ( this.lead.chat !== null ) {
