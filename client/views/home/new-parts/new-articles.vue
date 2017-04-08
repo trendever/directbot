@@ -1,5 +1,5 @@
 <template lang="pug">
-.new-articles-plank
+.new-articles-plank.phone-background
   .title Отзывы клиентов
   .body
     template(v-for="article, index in articles", v-if="showArticle === index")
@@ -168,9 +168,6 @@ export default {
 
 @import 'style/vars/vars.pcss';
 
-$tablet_width: 520px;
-$pc_width: 289px;
-
 .new-articles-plank {
 
   background: transparent;
@@ -180,7 +177,7 @@ $pc_width: 289px;
 
   .centered {
   @media (--tabletandless){
-      top:1074px;
+      top:1074px !important;
     }
   }
 
@@ -209,36 +206,12 @@ $pc_width: 289px;
 
   .plank {
 
-    display: flex;
-    flex-wrap: wrap;
-
-    & > div {
-      width: 50%;
-      height: 700px;
-      @media (--tabletandless){
-        height: 1030px;
-        width: auto;
-        min-width: 750px;
-      }
-    }
 
     .text {
 
-      text-align: left;
-      padding-left: 25px;
-      color: $color__gray-dark;
-      max-width: 550px;
-
-      @media (--tabletandless) {
-        padding-right: 25px;
-        height: auto;
-      }
 
       button, .wrap {
-        height: 100%;
-        text-align: left;
-        color: $color__gray-dark;
-        font-family: $font__family__light;
+
         .category {
           font-size: calc($font__normal + 4px);
           font-family: $font__family__semibold;
@@ -255,7 +228,7 @@ $pc_width: 289px;
           }
         }
 
-        p, .ps {
+        .ps {
           font-size: $font__normal;
           font-family: $font__family__light;
           padding-top: 20px;
@@ -263,7 +236,12 @@ $pc_width: 289px;
 
 
         @media (--tabletandless){
+
+          p {
+            text-align: left !important;
+          }
           .ps {
+            font-size: $font__medium;
             padding-bottom: 50px;
           }
           .category {
@@ -271,67 +249,6 @@ $pc_width: 289px;
             font-family: $font__family__semibold;
             padding-top: 20px;
           }
-
-          .brand-name {
-            font-size: calc($font__large + 30px);
-          }
-
-          p, .ps {
-            font-size: $font__medium;
-          }
-
-        }
-      }
-    }
-
-    .slider {
-      .image {
-        background-image: url(../articles/scr_iphone_full.png);
-        background-size: 88%;
-        background-repeat: no-repeat;
-        background-position: 50%;
-        float: right;
-        width: 400px;
-        height: 100%;
-
-        .wrap-hidden {
-          overflow: hidden;
-          @media (--tabletandless){
-            transform: translate(104px,159px);
-            width: $tablet_width;
-            height: 810px;
-          }
-          @media (--overtablet){
-            transform: translate(49px,92px);
-            width: $pc_width;
-
-          }
-
-        }
-
-        .wrap-images {
-          transition: all .4s;
-          @media (--tabletandless){
-            width: calc($tablet_width * 2);
-          }
-          @media (--overtablet){
-            width: calc($pc_width * 2);
-          }
-        }
-
-        img {
-          @media (--tabletandless){
-            width: $tablet_width;
-          }
-          @media (--overtablet){
-            width: $pc_width;
-          }
-        }
-
-        @media (--tabletandless){
-          background-size: 85%;
-          width: 100%;
-          background-image: url(../articles/scr_iphone_crop.png)
         }
       }
     }

@@ -1,0 +1,164 @@
+@import 'style/vars/vars.pcss';
+
+$tablet_width: 520px;
+$pc_width: 289px;
+
+.phone-background {
+  
+  .arrow-right, .arrow-left {
+    font-size: 50px;
+    position: absolute;
+    top:1000px;
+    color: $color__brand;
+    padding: 20px;
+    cursor:pointer;
+    z-index: 400;
+    @media (--overtablet){
+      top:240px;
+      padding: 20px 40px;
+    }
+    i::before {
+      font-weight: 900;
+    }
+
+  }
+
+  .arrow-right {
+    right: 10px;
+  }
+
+  .arrow-left {
+    left: 10px;
+    transform: scale(-1, 1);
+  }
+
+
+  .plank {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    & > div {
+
+      width: 50%;
+      height: 700px;
+      @media (--tabletandless){
+        height: 1030px;
+        width: auto;
+        min-width: 750px;
+      }
+    }
+
+    .text {
+
+      text-align: left;
+      padding-left: 25px;
+      color: $color__gray-dark;
+      max-width: 550px;
+
+      @media (--tabletandless) {
+        padding-right: 25px;
+        height: auto;
+      }
+
+      button, .wrap {
+        height: 100%;
+        text-align: left;
+        color: $color__gray-dark;
+        font-family: $font__family__light;
+
+        .brand-name {
+
+          position: relative;
+          font-size: calc($font__large + 10px);
+          font-family: $font__family__regular;
+          font-size: $font__large;
+          @media (--tabletandless){
+            margin-top: 8px;
+            text-align: center;
+            div {
+              font-family:$font__family__regular;
+              font-size: 60px;
+            }
+          }
+        }
+
+        p {
+          font-size: $font__normal;
+          font-family: $font__family__light;
+          padding-top: 20px;
+
+          @media (--tabletandless){
+            text-align: center;
+          }
+        }
+
+
+        @media (--tabletandless){
+
+          .brand-name {
+            font-size: calc($font__large + 30px);
+          }
+
+          p {
+            font-size: $font__medium;
+          }
+
+        }
+      }
+    }
+
+    .slider {
+      position: relative;
+      .image {
+        background-image: url(../articles/scr_iphone_full.png);
+        background-repeat: no-repeat;
+        background-position: 50%;
+        float: right;
+        width: 400px;
+        height: 100%;
+        background-size: 88%;
+
+        .wrap-hidden {
+          overflow: hidden;
+          @media (--tabletandless){
+            transform: translate(104px,159px);
+            width: $tablet_width;
+            height: 810px;
+          }
+          @media (--overtablet){
+            transform: translate(49px,92px);
+            width: $pc_width;
+          }
+
+        }
+
+        .wrap-images {
+          transition: all .4s;
+          @media (--tabletandless){
+            width: calc($tablet_width * 2);
+          }
+          @media (--overtablet){
+            width: calc($pc_width * 2);
+          }
+        }
+
+        img {
+          @media (--tabletandless){
+            width: $tablet_width;
+          }
+          @media (--overtablet){
+            width: $pc_width;
+          }
+        }
+
+        @media (--tabletandless){
+          background-size: 85%;
+          width: 100%;
+          background-image: url(../articles/scr_iphone_crop.png)
+        }
+      }
+    }
+  }
+}
