@@ -7,7 +7,7 @@
     .turn-on-bot__close(@click="$router.push({name:'profile'})"): i.ic-close
     .section
       .column-desktop-50.header
-        h1.accept Подключение оператора
+        h1.accept Подключение Instagram
       .column-desktop-50.column-desktop-right
         img(src="./directbot.png").logo
         p.paragraph.enter-screen(v-if="!needConfirmCode")
@@ -90,7 +90,7 @@
               v-if="connectProcess") ПОДКЛЮЧЕНИЕ...
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               v-if="!needConfirmCode && !connectProcess",
-              @click='connectBot') ПОДКЛЮЧИТЬ ОПЕРАТОРА
+              @click='connectBot') ПОДКЛЮЧИТЬ INSTAGRAM
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
               v-if="needConfirmCode && !connectProcess",
               @click='confirmCode') ПОДТВЕРДИТЬ
