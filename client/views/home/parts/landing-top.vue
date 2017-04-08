@@ -47,10 +47,10 @@
     img(src="../img/directbot-main-logo.png")
 
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="!newLanding")
-    | Менеджер магазина в Instagram#[br]
+    | CRM для Instagram-магазинов#[br]
     span.time__text(v-if="!newLanding")
-      | CRM для продаж в Instagram c#[br]
-      | аутсорсингом продавцов и блогеров#[br]
+      | Автоматизация взаимодействия#[br]
+      | с покупателями и блогерами#[br]
 
   .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
     | CRM для Instagram-#[br.mobile]магазинов
