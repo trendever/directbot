@@ -9,7 +9,8 @@
 
       .header__nav(slot='center-content')
         .header__nav__i.header__text._active
-          span Чаты
+          span(v-if="isTrendever") Чаты
+          span(v-if="!isTrendever") Покупатели из Instagram
 
         //- .header__nav__i.header__text(
         //-   :class='{_active: getLeadTab === "customer"}',
