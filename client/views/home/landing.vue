@@ -79,6 +79,10 @@ export default {
   },
   created(){
 
+    if(this.$route.query && this.$route.query.landing === 'first'){
+      this.newLanding = false;
+    }
+
     if(this.isAuth && !this.isFake){
       this.$router.replace({name: 'profile'})
     }
