@@ -343,7 +343,7 @@ export default {
     }
     &.fixed-btns {
       position: fixed * 0 -1px 0;
-      z-index: 300;
+      z-index: 600;
     }
   }
 
@@ -380,6 +380,7 @@ export default {
     margin-top: 20px;
     margin-right: 10px;
     @media(--tabletandless){
+      z-index: 500;
       display: block;
       position: fixed;
       bottom: 0px;
