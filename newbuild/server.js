@@ -37,7 +37,7 @@ app.use(require('webpack-hot-middleware')(compiler, {
 }))
 
 const mfs = devMiddleWare.fileSystem
-const file = path.join(path.join(__dirname, '../dist/')/*webpackConfig.output.path*/, 'index.html')
+const file = path.join(webpackConfig.output.path, 'index.html')
 
 
 devMiddleWare.waitUntilValid()

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo lol",
     "build": "webpack --config newbuild/webpack.prod.js",
-    "dev": "node newbuild/server.js",
+    "dev": "cross-env NODE_ENV=development node newbuild/server.js",
     "lint": "xo **/client/**/*.{vue,js} !node_modules/**"
   },
   "author": "A.Lopan",

@@ -3,6 +3,12 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const config = require('./conf')
 
+let output = process.env.NODE_ENV === 'development'
+?
+path.join(__dirname, '../dist')
+:
+path.join(__dirname, '../dist/vendor')
+
 const _ = module.exports = {}
 
 _.cwd = (file) => {
@@ -21,9 +27,11 @@ _.cssProcessors = [
   {loader: 'sass-loader?indentedSyntax&sourceMap', test: /\.sass$/},
 ]
 
+_.publicPath = process.env.NODE_ENV === 'development' ? '/' : '/vendor'
+
 _.outputPath = config.electron ?
   path.join(__dirname, '../app/dist') :
-  path.join(__dirname, '../dist/vendor')
+  output
 
 _.outputIndexPath = config.electron ?
   path.join(__dirname, '../app/dist/index.html') :

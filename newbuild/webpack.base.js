@@ -7,6 +7,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require('./conf')
 const _ = require('./utils')
 
+let isSlash = process.env.NODE_ENV === 'development' ? '' : '/'
+
 module.exports = {
   entry: {
     client: './client/index.js'
@@ -14,7 +16,7 @@ module.exports = {
   output: {
     path: _.outputPath,
     filename: '[name].js',
-    publicPath: '/vendor'
+    publicPath: _.publicPath
   },
   performance: {
     hints: process.env.NODE_ENV === 'production' ? 'warning' : false
@@ -59,7 +61,7 @@ module.exports = {
         test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
         loader: 'file-loader',
         query: {
-          name: '/static/media/[name].[hash:8].[ext]'
+          name: `${isSlash}static/media/[name].[hash:8].[ext]`
         }
       },
       {
