@@ -31,7 +31,21 @@
           .block-detect(ref="visibleBlock")
 
 
-      .chat-list-cnt-is-empty__banner.directbot-banner(
+      .grey-banner.chats(
+          v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1",
+          :class="{'turn-bottom': sortedList.length}"
+        )
+
+        i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
+        | После подключения, здесь будут#[br.mobile]
+        | чат-заказы с вашими#[br.desktop] покупателями из&nbsp#[br.mobile]
+        span Instagram,&nbsp
+        | которые пишут вопросы#[br.desktop] в комментариях
+        | или&nbsp
+        span Direct
+
+
+      //-.chat-list-cnt-is-empty__banner.directbot-banner(
         v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1", :class="{'turn-bottom': sortedList.length}")
 
         i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
