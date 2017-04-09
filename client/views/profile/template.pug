@@ -116,13 +116,13 @@
                 span мониторю {{  postsCount }} {{postsCountTitle}} #[br]
                 span(v-if="chatsCount") общаюсь в {{ chatsCount }} чатах
 
-          .grey-banner.prof(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
+          .grey-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
             i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
             | После подключения сюда начнут#[br.mobile]
             | добавляться фото#[br.desktop] из вашего&nbsp
             span Instagram.&nbsp#[br.mobile]
             | Это может занять несколько#[br.desktop] минут или часов,#[br.mobile]
-            | в зависимости от вашей активности.
+            | в зависимости от вашей активности
 
           //-.profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
             i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")

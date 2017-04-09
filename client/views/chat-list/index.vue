@@ -33,17 +33,16 @@
 
       .grey-banner.chats(
           v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1",
-          :class="{'turn-bottom': sortedList.length}"
+          :class="{'has-chats': sortedList.length}"
         )
 
         i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
-        | После подключения, здесь будут#[br.mobile]
-        | чат-заказы с вашими#[br.desktop] покупателями из&nbsp#[br.mobile]
-        span Instagram,&nbsp
-        | которые пишут вопросы#[br.desktop] в комментариях
-        | или&nbsp
+        | Это список чатов с вашими#[br.mobile]
+        | покупателями из&nbsp
+        span Instagram,#[br]
+        | синхронизированный с#[br.mobile]
+        | комментариями и&nbsp
         span Direct
-
 
       //-.chat-list-cnt-is-empty__banner.directbot-banner(
         v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1", :class="{'turn-bottom': sortedList.length}")
@@ -56,11 +55,11 @@
           | Instagram Direct
 
       .chat-list-cnt-is-empty(v-if="!sortedList.length")
-        .chat-list-cnt-is-empty__container Нет чатов,#[br]
-        span
-          | потому что мы не #[br]
-          | видим ваших заказов! #[br]
-          a.link-err(@click="openSupport") Это ошибка
+        .chat-list-cnt-is-empty__container Нет чатов#[br]
+        span.link-err(@click="openSupport")
+          | Первое время после#[br] подключения
+          | заказы могут#[br] появляться с задержкой
+
 
       template(v-if="!botActivity")
         connect-button(v-if="!sortedList.length")
