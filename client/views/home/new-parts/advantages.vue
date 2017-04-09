@@ -146,7 +146,7 @@ export default {
             в комментариях под фото в Instagram
           `
         },
-        
+
         {
           title: 'Превращает<br>Instagram в магазин',
           text: `
@@ -208,7 +208,6 @@ export default {
 
       cursor: pointer;
       display: inline-block;
-      size: 20px;
       margin: 15px;
       size: 35px;
       line-height:33px;
@@ -224,12 +223,12 @@ export default {
         display:inline-block;
         font-size: calc($font__medium + 7px);
         border: 3px solid $color__brand;
-        line-height:75px;
+        line-height:70px;
         top: 35px;
         margin-top: 10px;
         margin-left: 20px;
         margin-right: 20px;
-        size: 85px;
+        size: 75px;
       }
       &.choosen {
         background:$color__brand;
