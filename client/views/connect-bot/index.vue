@@ -112,6 +112,7 @@ export default {
     let instagram_username = profileService.getProfile().user.instagram_username;
 
     return {
+      showTitleSlider: true,
       code: '',
       password: '',
       login: '' || instagram_username,
