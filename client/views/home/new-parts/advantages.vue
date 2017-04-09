@@ -223,12 +223,12 @@ export default {
         display:inline-block;
         font-size: calc($font__medium + 7px);
         border: 3px solid $color__brand;
-        line-height:70px;
+        line-height:57px;
         top: 35px;
         margin-top: 10px;
-        margin-left: 20px;
-        margin-right: 20px;
-        size: 75px;
+        margin-left: 26px;
+        margin-right: 26px;
+        size: 65px;
       }
       &.choosen {
         background:$color__brand;
