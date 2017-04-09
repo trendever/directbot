@@ -31,9 +31,6 @@
           .block-detect(ref="visibleBlock")
 
 
-
-
-
       .chat-list-cnt-is-empty__banner.directbot-banner(
         v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1", :class="{'turn-bottom': sortedList.length}")
 

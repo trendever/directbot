@@ -115,7 +115,16 @@
               p.light(v-if="postsCount")
                 span мониторю {{  postsCount }} {{postsCountTitle}} #[br]
                 span(v-if="chatsCount") общаюсь в {{ chatsCount }} чатах
-          .profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
+
+          .grey-banner.prof(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
+            i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
+            | После подключения сюда начнут#[br.mobile]
+            | добавляться фото#[br.desktop] из вашего&nbsp
+            span Instagram.&nbsp#[br.mobile]
+            | Это может занять несколько#[br.desktop] минут или часов,#[br.mobile]
+            | в зависимости от вашей активности.
+
+          //-.profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
             i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
             br(v-if="isMobile")
             span После подключения к Instagram,#[br]
