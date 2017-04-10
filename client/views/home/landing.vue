@@ -68,7 +68,7 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
-      newLanding: true,
+      newLanding: false,
       margin: 0,
       toggleBtns: false,
       showBtns: false,
@@ -79,8 +79,8 @@ export default {
   },
   created(){
 
-    if(this.$route.query && this.$route.query.landing === 'first'){
-      this.newLanding = false;
+    if(this.$route.query && this.$route.query.landing === 'new'){
+      this.newLanding = true;
     }
 
     if(this.isAuth && !this.isFake){
