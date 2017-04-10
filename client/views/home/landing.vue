@@ -212,9 +212,13 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #landing.new-land{
+  @media (--overtablet) {
+    background-attachment: fixed;
+  }
   @media (--tabletandless){
     //background-image: url(./new-parts/img/drbt_pattern_mob_light.jpg);
     //background-position: 0 25px;
+
   }
 }
 
