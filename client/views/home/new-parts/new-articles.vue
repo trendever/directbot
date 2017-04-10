@@ -175,6 +175,7 @@ export default {
     showArticle(){
       this.margin = 0;
       this.sliderRun = false;
+      this.runMiniSlider();
     }
   },
 
