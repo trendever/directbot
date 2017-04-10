@@ -18,7 +18,9 @@
 
             .wrap-hidden
 
-              .wrap-images(:style="{ marginLeft: margin + 'px'}")
+              .wrap-images(
+                :style="{ marginLeft: margin + 'px'}",
+                :class="{ 'opacity-anim': anim}")
                 img(src='../articles/review_bella_scr_1_crop.jpg',
                   v-if="article.shop==='@bella.fiori' && this.isMobile")
                 img(src='../articles/review_bella_scr_2_crop.jpg',
@@ -93,6 +95,7 @@ export default {
   },
   data () {
     return {
+      anim: false,
       timeId: {},
       margin: 0,
       sliderRun: false,
@@ -151,10 +154,23 @@ export default {
   watch:{
     sliderRun(val){
       if(val){
+        this.anim=true
+        setTimeout(()=>{
+          this.anim=false
+          this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
+        },300)
+      } else {
+        this.anim=true
+        setTimeout(()=>{
+          this.anim=false
+          this.margin = 0;
+        },300)
+      }
+/*      if(val){
         this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
       } else {
         this.margin = 0;
-      }
+      }*/
     },
     showArticle(){
       this.margin = 0;

@@ -134,12 +134,15 @@ $pc_width: 289px;
         }
 
         .wrap-images {
-          transition: all .4s;
+          transition: opacity .4s;
           @media (--tabletandless){
             width: calc($tablet_width * 2);
           }
           @media (--overtablet){
             width: calc($pc_width * 2);
+          }
+          &.opacity-anim {
+            opacity: 0;
           }
         }
 

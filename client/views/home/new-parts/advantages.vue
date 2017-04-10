@@ -23,7 +23,10 @@
 
           .image
             .wrap-hidden
-              .wrap-images(:style="{ marginLeft: margin + 'px'}")
+              .wrap-images(
+                :style="{ marginLeft: margin + 'px'}",
+                :class="{'opacity-anim': anim}"
+                )
                 img(src='./img/iPhone_1200_01-1.jpg',
                   v-if="index===0")
                 img(src='./img/iPhone_1200_01-2.jpg',
@@ -106,6 +109,7 @@ export default {
   },
   data () {
     return {
+      anim: false,
       timeId: {},
       margin: 0,
       sliderRun: false,
@@ -163,9 +167,17 @@ export default {
   watch:{
     sliderRun(val){
       if(val){
-        this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
+        this.anim=true
+        setTimeout(()=>{
+          this.anim=false
+          this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
+        },300)
       } else {
-        this.margin = 0;
+        this.anim=true
+        setTimeout(()=>{
+          this.anim=false
+          this.margin = 0;
+        },300)
       }
     },
     showAdvantage(){
