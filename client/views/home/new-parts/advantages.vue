@@ -2,11 +2,11 @@
 <template lang="pug">
 .advantages-plank.phone-background
   .title
-    | Система#[br.mobile]
+    | Система
     | автоматизации#[br.mobile]
-    | взаимодействия#[br]
-    | с клиентами#[br.mobile]
-    | и блогерами
+    | взаимодействия#[br.desktop]
+    | с#[br.mobile] клиентами
+    | и#[br.mobile] блогерами
   .body
 
     template(v-for="advantage, index in advantages", v-if="showAdvantage === index")
