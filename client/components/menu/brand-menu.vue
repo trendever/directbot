@@ -112,6 +112,10 @@ export default {
 
     height: 100px;
 
+    :first-child.land__top-btn {
+      border: 1px solid white;
+    }
+
     img {
       cursor: pointer;
       margin-top: 15px;
@@ -136,7 +140,7 @@ export default {
       margin-right: 1%;
       font-size: 16px;
       font-family: $font__family__semibold;
-      border: 1px solid white;
+
       color: white;
       border-radius: 5px;
 
