@@ -5,7 +5,7 @@
     .signup__close.__hello(v-on:click.stop='closePage'): i.ic-close
     .section
       .column-desktop-50.header(v-if="showTitleSlider")
-        h1.accept(v-if="!fakeReg") Вход и регистрация
+        h1.accept(v-if="!fakeReg") Вход или регистрация
         h1.accept(v-if="fakeReg") Регистрация
 
       .column-desktop-50.column-desktop-right
