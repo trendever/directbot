@@ -11,7 +11,8 @@
       .column-desktop-50.column-desktop-right
         template(v-if="showTitleSlider && !fakeReg")
           img(src="./img/directbot.png").logo
-          p.paragraph Перед подключением оператора, #[br] создайте или войдите #[br(v-if="isMobile")] в свою #[br(v-if="!isMobile")] учетную запись
+          .block(style="height:129px")
+          //-p.paragraph Перед подключением оператора, #[br] создайте или войдите #[br(v-if="isMobile")] в свою #[br(v-if="!isMobile")] учетную запись
 
         template(v-if="fakeReg")
           .logo.fake-logo
@@ -66,7 +67,7 @@
                 i.ic-close.clear
           .btn-container
             button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom(
-              v-on:click='sendSMS') Отправить sms-код
+              v-on:click='sendSMS') Отправить код
             //-.link-container(v-if="false")
               a.link-bottom( v-on:click.prevent='onClickLink') Мне нужна помощь
             .link-container

@@ -305,8 +305,12 @@
   .logo{
     width: 132px;
     height: 147px;
+    @media (--overtablet) {
+      transform: translate(-180px, 100px);
 
-    @media(--tabletandless) {
+    }
+
+    @media (--tabletandless) {
       position: relative;
       top: 0;
       left: 0;
@@ -314,6 +318,7 @@
       margin: 95px auto 100px auto;
       width: 190px;
       height: 211px;
+      transform: translateY(70px);
 
       &.fake-logo {
         margin-left: 34%;
