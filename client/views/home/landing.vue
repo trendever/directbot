@@ -1,4 +1,5 @@
 <style src="./style.pcss"></style>
+<style src="./new-parts/style-global.pcss"></style>
 <template lang="pug">
 #landing(:class="{'new-land': newLanding}")
 

@@ -1,4 +1,3 @@
-<style src="./style.pcss"></style>
 <template lang="pug">
 .advantages-plank.phone-background
   .title

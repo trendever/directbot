@@ -32,49 +32,6 @@ export default {
 @import 'style/vars/vars.pcss';
 
 
-.wrap-advert {
-  text-align: center;
-  color: white;
-  font-family: $font__family__semibold;
-
-  i.ic-rub {
-    display: inline-block;
-    font-size: 62px;
-    transform: translate(10px,28px);
-  }
-
-  .advert-title {
-
-    font-size: $font__large;
-    @media (--tabletandless){
-      font-size: 60px;
-    }
-    @media (--overtablet){
-      font-family: $font__family__light;
-    }
-  }
-  .advert-price {
-    font-size: $font__normal;
-    span {
-      font-size: 90px;
-    }
-
-    p {
-      font-family: $font__family__light;
-      @mixin standart__font;
-    }
-  }
-  .advert-ps {
-    padding-top: 10px;
-    font-size: $font__normal;
-    font-family: $font__family__light;
-    @media (--overtablet){
-      font-size: calc($font__normal - 4px);
-    }
-  }
-
-}
-
 #center-landing {
   margin: 40px 0;
   background: url(./img/collage_blue.png);
