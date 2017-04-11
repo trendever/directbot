@@ -1,6 +1,6 @@
 <template lang="pug">
 
-#center-landing.wrap-advert
+.wrap-advert.center-landing
 
   .advert-title Полный доступ*#[br.mobile] к функционалу#[br] CRM Directbot стоит
   .advert-price
@@ -32,7 +32,7 @@ export default {
 @import 'style/vars/vars.pcss';
 
 
-#center-landing {
+.center-landing {
   margin: 40px 0;
   background: url(./img/collage_blue.png);
   font-size: 45px;

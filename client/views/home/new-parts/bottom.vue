@@ -1,5 +1,5 @@
 <template lang="pug">
-.wrap-advert#bottom-landing
+.wrap-advert.bottom-landing
 
   .advert-title
     | Менеджер, который#[br.mobile]
@@ -31,7 +31,7 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
-#bottom-landing {
+.bottom-landing {
   padding: 85px 0;
   height: 400px;
   background: url(./img/blogger_girl_bgr_desk.jpg);
