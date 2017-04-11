@@ -7,7 +7,7 @@
     .requested-section(v-if="requested")
       h1 Спасибо!
 
-    .body-section
+    .body-section(v-if="!requested")
       img(src="./images/lp_drblog_reg_image.svg")
 
     //-.body-section(v-if="!requested")
@@ -55,7 +55,7 @@
 
 
       .send-btn(@click="request") ОТПРАВИТЬ
-      .bottom-link Условия использования
+      .bottom-link Условия участия
 
 
 
@@ -72,7 +72,7 @@ export default {
   data () {
 
     return {
-      title: 'Оставить заявку',
+      title: 'Заявка на участие',
       phone: '',
       phoneError: false,
       name: '',
