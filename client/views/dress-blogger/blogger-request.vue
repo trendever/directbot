@@ -7,7 +7,10 @@
     .requested-section(v-if="requested")
       h1 Спасибо!
 
-    .body-section(v-if="!requested")
+    .body-section
+      img(src="./images/lp_drblog_reg_image.svg")
+
+    //-.body-section(v-if="!requested")
       .title #ОденьБлогера
       .body
         h1 Фонд одевания блогеров
@@ -156,12 +159,14 @@ export default {
   hidden: true;
   color: white;
   text-align: center;
-  background-image: url(./images/Bgr-fix-desk.jpg);
+  //background-image: url(./images/Bgr-fix-desk.jpg);
+  background-color: black;
   background-attachment: fixed;
   height: 100%;
 
   @media ( --mobile ) {
-    background-image: url(./images/Bgr-fix-mob.jpg);
+    //background-image: url(./images/Bgr-fix-mob.jpg);
+    background-color: black;
     background-size: 97%;
     background-position: 40px 80px;
   }
@@ -174,6 +179,24 @@ export default {
     @media screen and (max-height: 1170px) and (max-width: 750px){
       margin-top: 15px;
     }
+  }
+
+  .body-section {
+
+    @media (--tabletandless){
+      max-height: 607px;
+    }
+
+    img {
+      @media (--tabletandless){
+        transform: translate(50px,0px)
+      }
+      @media (--overtablet){
+        max-width: 400px;
+        transform: translate(40px, -20px)
+      }
+    }
+
   }
 
   .content-wrap {
