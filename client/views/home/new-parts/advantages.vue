@@ -22,30 +22,31 @@
 
           .image
             .wrap-hidden
-              .wrap-images(
-                :style="{ marginLeft: margin + 'px'}",
-                :class="{'opacity-anim': anim}"
-                )
-                img(src='./img/iPhone_1200_01-1.jpg',
-                  v-if="index===0")
-                img(src='./img/iPhone_1200_01-2.jpg',
-                  v-if="index===0")
-                img(src='./img/iPhone_1200_05-1.jpg',
-                  v-if="index===1")
-                img(src='./img/iPhone_1200_05-2.jpg',
-                  v-if="index===1")
-                img(src='./img/iPhone_1200_02-1.jpg',
-                  v-if="index===2")
-                img(src='./img/iPhone_1200_02-2.jpg',
-                  v-if="index===2")
-                img(src='./img/iPhone_1200_04-1.jpg',
-                  v-if="index===3")
-                img(src='./img/iPhone_1200_04-2.jpg',
-                  v-if="index===3")
-                img(src='./img/iPhone_1200_03-1.jpg',
-                  v-if="index===4")
-                img(src='./img/iPhone_1200_03-2.jpg',
-                  v-if="index===4")
+
+              .wrap-images
+
+                transition(name="fade")
+
+                  img(src='./img/iPhone_1200_01-1.jpg',
+                    v-if="index===0 && !sliderRun", key="!sliderRun")
+                  img(src='./img/iPhone_1200_01-2.jpg',
+                    v-if="index===0 && sliderRun", key="sliderRun")
+                  img(src='./img/iPhone_1200_05-1.jpg',
+                    v-if="index===1 && !sliderRun", key="!sliderRun")
+                  img(src='./img/iPhone_1200_05-2.jpg',
+                    v-if="index===1 && sliderRun", key="sliderRun")
+                  img(src='./img/iPhone_1200_02-1.jpg',
+                    v-if="index===2 && !sliderRun", key="!sliderRun")
+                  img(src='./img/iPhone_1200_02-2.jpg',
+                    v-if="index===2 && sliderRun", key="sliderRun")
+                  img(src='./img/iPhone_1200_04-1.jpg',
+                    v-if="index===3 && !sliderRun", key="!sliderRun")
+                  img(src='./img/iPhone_1200_04-2.jpg',
+                    v-if="index===3 && sliderRun", key="sliderRun")
+                  img(src='./img/iPhone_1200_03-1.jpg',
+                    v-if="index===4 && !sliderRun", key="!sliderRun")
+                  img(src='./img/iPhone_1200_03-2.jpg',
+                    v-if="index===4 && sliderRun", key="sliderRun")
         .text
           button
             .brand-name
@@ -94,7 +95,7 @@ export default {
           document.body.scrollTop = scroll;
         })
 
-      }, 6000)
+      }, 10000)
 
     },
     runMiniSlider(){
@@ -131,9 +132,7 @@ export default {
   },
   data () {
     return {
-      anim: false,
       timeId: {},
-      margin: 0,
       sliderRun: false,
       showAdvantage: 0,
       advantages :[
@@ -187,23 +186,7 @@ export default {
     };
   },
   watch:{
-    sliderRun(val){
-      if(val){
-        this.anim=true
-        setTimeout(()=>{
-          this.anim=false
-          this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
-        },300)
-      } else {
-        this.anim=true
-        setTimeout(()=>{
-          this.anim=false
-          this.margin = 0;
-        },300)
-      }
-    },
     showAdvantage(){
-      this.margin = 0;
       this.sliderRun = false;
       this.runMiniSlider()
     }

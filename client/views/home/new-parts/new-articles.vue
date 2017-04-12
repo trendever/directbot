@@ -2,7 +2,8 @@
 .new-articles-plank.phone-background
   .title Отзывы клиентов
   .body
-    template(v-for="article, index in articles", v-if="showArticle === index")
+
+    template(v-for="article, index in articles", v-if="showIndex === index")
 
       .arrow-right.centered(@click="next(index)")
         i.ic-review_arrow_right
@@ -15,36 +16,48 @@
         .slider
 
           .image
-
             .wrap-hidden
 
-              .wrap-images(
-                :style="{ marginLeft: margin + 'px'}",
-                :class="{ 'opacity-anim': anim}")
-                img(src='../articles/review_bella_scr_1_crop.jpg',
-                  v-if="article.shop==='@bella.fiori' && this.isMobile")
-                img(src='../articles/review_bella_scr_2_crop.jpg',
-                  v-if="article.shop==='@bella.fiori' && this.isMobile")
-                img(src='../articles/review_bella_scr_1.jpg',
-                  v-if="article.shop==='@bella.fiori' && !this.isMobile")
-                img(src='../articles/review_bella_scr_2.jpg',
-                  v-if="article.shop==='@bella.fiori' && !this.isMobile")
-                img(src='../articles/review_narspi_shop_1_crop.jpg',
-                  v-if="article.shop==='@narspi_shop' && this.isMobile")
-                img(src='../articles/review_narspi_shop_2_crop.jpg',
-                  v-if="article.shop==='@narspi_shop' && this.isMobile")
-                img(src='../articles/review_narspi_shop_1.jpg',
-                  v-if="article.shop==='@narspi_shop' && !this.isMobile")
-                img(src='../articles/review_narspi_shop_2.jpg',
-                  v-if="article.shop==='@narspi_shop' && !this.isMobile")
-                img(src='../articles/review_grideli_atelier_1_crop.jpg',
-                  v-if="article.shop==='@grideli_atelier' && this.isMobile")
-                img(src='../articles/review_grideli_atelier_2_crop.jpg',
-                  v-if="article.shop==='@grideli_atelier' && this.isMobile")
-                img(src='../articles/review_grideli_atelier_1.jpg',
-                  v-if="article.shop==='@grideli_atelier' && !this.isMobile")
-                img(src='../articles/review_grideli_atelier_2.jpg',
-                  v-if="article.shop==='@grideli_atelier' && !this.isMobile")
+              .wrap-images
+
+                transition(name="fade")
+
+                  img(src='../articles/review_bella_scr_1_crop.jpg',
+                    v-if="article.shop==='@bella.fiori' && this.isMobile",
+                    key="!sliderRun")
+                  img(src='../articles/review_bella_scr_2_crop.jpg',
+                    v-if="article.shop==='@bella.fiori' && this.isMobile",
+                    key="sliderRun")
+                  img(src='../articles/review_bella_scr_1.jpg',
+                    v-if="article.shop==='@bella.fiori' && !this.isMobile",
+                    key="!sliderRun")
+                  img(src='../articles/review_bella_scr_2.jpg',
+                    v-if="article.shop==='@bella.fiori' && !this.isMobile",
+                    key="sliderRun")
+                  img(src='../articles/review_narspi_shop_1_crop.jpg',
+                    v-if="article.shop==='@narspi_shop' && this.isMobile",
+                    key="!sliderRun")
+                  img(src='../articles/review_narspi_shop_2_crop.jpg',
+                    v-if="article.shop==='@narspi_shop' && this.isMobile",
+                    key="sliderRun")
+                  img(src='../articles/review_narspi_shop_1.jpg',
+                    v-if="article.shop==='@narspi_shop' && !this.isMobile",
+                    key="!sliderRun")
+                  img(src='../articles/review_narspi_shop_2.jpg',
+                    v-if="article.shop==='@narspi_shop' && !this.isMobile",
+                    key="sliderRun")
+                  img(src='../articles/review_grideli_atelier_1_crop.jpg',
+                    v-if="article.shop==='@grideli_atelier' && this.isMobile",
+                    key="!sliderRun")
+                  img(src='../articles/review_grideli_atelier_2_crop.jpg',
+                    v-if="article.shop==='@grideli_atelier' && this.isMobile",
+                    key="sliderRun")
+                  img(src='../articles/review_grideli_atelier_1.jpg',
+                    v-if="article.shop==='@grideli_atelier' && !this.isMobile",
+                    key="!sliderRun")
+                  img(src='../articles/review_grideli_atelier_2.jpg',
+                    v-if="article.shop==='@grideli_atelier' && !this.isMobile",
+                    key="sliderRun")
         .text
           button
             .category {{ article.category }}
@@ -73,9 +86,9 @@ export default {
       let scroll = document.body.scrollTop;
 
       if(index+1 >= this.articles.length){
-        this.showArticle=0;
+        this.showIndex=0;
       } else {
-        this.showArticle = index+1;
+        this.showIndex = index+1;
       }
       this.$nextTick(()=>{
         document.body.scrollTop = scroll;
@@ -84,9 +97,9 @@ export default {
     previous(index){
       let scroll = document.body.scrollTop;
       if(index-1 < 0){
-        this.showArticle=this.articles.length-1;
+        this.showIndex=this.articles.length-1;
       } else {
-        this.showArticle = index-1;
+        this.showIndex = index-1;
       }
       this.$nextTick(()=>{
         document.body.scrollTop = scroll;
@@ -95,11 +108,9 @@ export default {
   },
   data () {
     return {
-      anim: false,
       timeId: {},
-      margin: 0,
       sliderRun: false,
-      showArticle: 0,
+      showIndex: 0,
       articles:[
         {
           shop: "@narspi_shop",
@@ -152,28 +163,7 @@ export default {
     };
   },
   watch:{
-    sliderRun(val){
-      if(val){
-        this.anim=true
-        setTimeout(()=>{
-          this.anim=false
-          this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
-        },300)
-      } else {
-        this.anim=true
-        setTimeout(()=>{
-          this.anim=false
-          this.margin = 0;
-        },300)
-      }
-/*      if(val){
-        this.margin = -this.$el.querySelector('.wrap-hidden').offsetWidth;
-      } else {
-        this.margin = 0;
-      }*/
-    },
-    showArticle(){
-      this.margin = 0;
+    showIndex(){
       this.sliderRun = false;
       this.runMiniSlider();
     }
