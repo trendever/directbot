@@ -265,7 +265,7 @@ export default {
       top: 294px;
     }
     @media (--tabletandless){
-      top: 1200px;
+      top: 1053px;
     }
 
   }
