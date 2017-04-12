@@ -42,11 +42,16 @@ export default {
   font-family: $font__family__semibold;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: -50px 0px;
-  @media screen and (min-width: 1400px){
+/*   @media screen and (min-width: 1400px){
     background-position: -10px 0px;
+  } */
+
+  @media screen and (min-width: 1720px){
+    padding-bottom: 240px;
   }
   @media (--overtablet){
+    //background-position: -50px 0px;
+    background-position: 50% 50%;
     margin-bottom: 0px;
   }
   @media (--tabletandless){
