@@ -1,7 +1,7 @@
 @import 'style/vars/vars.pcss';
 
 $tablet_width: 520px;
-$pc_width: 289px;
+$pc_width: 302px;
 
 .phone-background {
 
@@ -41,7 +41,7 @@ $pc_width: 289px;
     & > div {
 
       width: 50%;
-      height: 700px;
+      height: 750px;
       @media (--tabletandless){
         height: 1030px;
         width: auto;
@@ -117,7 +117,16 @@ $pc_width: 289px;
         float: right;
         width: 400px;
         height: 100%;
-        background-size: 88%;
+
+        @media (--overtablet) {
+          background-size: 92%;
+        }
+
+        @media (--tabletandless){
+          background-size: 85%;
+          width: 100%;
+          background-image: url(../articles/scr_iphone_crop.png)
+        }
 
         .wrap-hidden {
           overflow: hidden;
@@ -127,7 +136,7 @@ $pc_width: 289px;
             height: 860px;
           }
           @media (--overtablet){
-            transform: translate(49px,92px);
+            transform: translate(42px,106px);
             width: $pc_width;
           }
 
@@ -153,12 +162,6 @@ $pc_width: 289px;
           @media (--overtablet){
             width: $pc_width;
           }
-        }
-
-        @media (--tabletandless){
-          background-size: 85%;
-          width: 100%;
-          background-image: url(../articles/scr_iphone_crop.png)
         }
       }
     }
