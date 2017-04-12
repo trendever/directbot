@@ -64,17 +64,38 @@
 export default {
   mounted(){
     this.runMiniSlider()
+    this.autoChange()
   },
   beforeDestroy(){
     if(this.timeId) clearInterval(this.timeId);
   },
   methods:{
     selectAdvantage(index){
+      clearInterval(this.autoTime)      
       let scroll = document.body.scrollTop;
       this.showAdvantage=index;
       this.$nextTick(()=>{
         document.body.scrollTop = scroll;
       })
+    },
+    autoChange(){
+      let index=0;
+
+      this.autoTime = setInterval( ()=> { 
+        let scroll = document.body.scrollTop;
+        if(index+1>= this.advantages.length){
+          this.showAdvantage=0;
+          index=0
+        } else {
+          this.showAdvantage = index+1;
+          index++
+        }
+        this.$nextTick(()=>{
+          document.body.scrollTop = scroll;
+        })
+
+      }, 6000)
+
     },
     runMiniSlider(){
       if(this.timeId) clearInterval(this.timeId);
@@ -83,6 +104,7 @@ export default {
       },2500)
     },
     next(index){
+      clearInterval(this.autoTime)
       let scroll = document.body.scrollTop;
       if(index+1 >= this.advantages.length){
         this.showAdvantage=0;
@@ -94,6 +116,7 @@ export default {
       })
     },
     previous(index){
+      clearInterval(this.autoTime)
       let scroll = document.body.scrollTop;
 
       if(index-1 < 0){
@@ -265,7 +288,7 @@ export default {
       top: 294px;
     }
     @media (--tabletandless){
-      top: 1200px;
+      top: 1053px;
     }
 
   }
