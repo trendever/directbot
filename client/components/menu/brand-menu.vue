@@ -115,6 +115,9 @@ export default {
     :first-child.land__top-btn {
       border: 1px solid white;
     }
+    :last-child.land__top-btn {
+      margin-right: -1%;
+    }
 
     img {
       cursor: pointer;
