@@ -2,12 +2,12 @@
 
 .wrap-advert.center-landing
 
-  .advert-title Полный доступ*#[br.mobile] к функционалу#[br] CRM Directbot стоит
+  .advert-title Полный доступ#[br.mobile] к функционалу#[br] CRM Directbot стоит
   .advert-price
     span 590
     i.ic-rub
     p в месяц
-  .advert-ps
+  //-.advert-ps
     | *позвлоляет подключить до 5 менеджеров#[br.mobile] отдновременно
 
 
