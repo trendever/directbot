@@ -348,7 +348,7 @@ export default {
     }
     &.fixed-btns {
       position: fixed * 0 -1px 0;
-      z-index: 600;
+      z-index: 300;
     }
   }
 
