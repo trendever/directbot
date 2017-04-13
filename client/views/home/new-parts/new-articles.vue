@@ -22,42 +22,49 @@
 
                 transition(name="fade")
 
+
                   img(src='../articles/review_bella_scr_1_crop.jpg',
-                    v-if="article.shop==='@bella.fiori' && this.isMobile",
+                    v-if="article.shop==='@bella.fiori' && this.isMobile && !sliderRun",
                     key="!sliderRun")
                   img(src='../articles/review_bella_scr_2_crop.jpg',
-                    v-if="article.shop==='@bella.fiori' && this.isMobile",
+                    v-if="article.shop==='@bella.fiori' && this.isMobile && sliderRun",
                     key="sliderRun")
                   img(src='../articles/review_bella_scr_1.jpg',
-                    v-if="article.shop==='@bella.fiori' && !this.isMobile",
+                    v-if="article.shop==='@bella.fiori' && !this.isMobile && !sliderRun",
                     key="!sliderRun")
                   img(src='../articles/review_bella_scr_2.jpg',
-                    v-if="article.shop==='@bella.fiori' && !this.isMobile",
+                    v-if="article.shop==='@bella.fiori' && !this.isMobile && sliderRun",
                     key="sliderRun")
+
+
                   img(src='../articles/review_narspi_shop_1_crop.jpg',
-                    v-if="article.shop==='@narspi_shop' && this.isMobile",
+                    v-if="article.shop==='@narspi_shop' && this.isMobile && !sliderRun",
                     key="!sliderRun")
                   img(src='../articles/review_narspi_shop_2_crop.jpg',
-                    v-if="article.shop==='@narspi_shop' && this.isMobile",
+                    v-if="article.shop==='@narspi_shop' && this.isMobile && sliderRun",
                     key="sliderRun")
                   img(src='../articles/review_narspi_shop_1.jpg',
-                    v-if="article.shop==='@narspi_shop' && !this.isMobile",
+                    v-if="article.shop==='@narspi_shop' && !this.isMobile && !sliderRun",
                     key="!sliderRun")
                   img(src='../articles/review_narspi_shop_2.jpg',
-                    v-if="article.shop==='@narspi_shop' && !this.isMobile",
+                    v-if="article.shop==='@narspi_shop' && !this.isMobile && sliderRun",
                     key="sliderRun")
+
+
                   img(src='../articles/review_grideli_atelier_1_crop.jpg',
-                    v-if="article.shop==='@grideli_atelier' && this.isMobile",
+                    v-if="article.shop==='@grideli_atelier' && this.isMobile && !sliderRun",
                     key="!sliderRun")
                   img(src='../articles/review_grideli_atelier_2_crop.jpg',
-                    v-if="article.shop==='@grideli_atelier' && this.isMobile",
+                    v-if="article.shop==='@grideli_atelier' && this.isMobile && sliderRun",
                     key="sliderRun")
                   img(src='../articles/review_grideli_atelier_1.jpg',
-                    v-if="article.shop==='@grideli_atelier' && !this.isMobile",
+                    v-if="article.shop==='@grideli_atelier' && !this.isMobile && !sliderRun",
                     key="!sliderRun")
                   img(src='../articles/review_grideli_atelier_2.jpg',
-                    v-if="article.shop==='@grideli_atelier' && !this.isMobile",
+                    v-if="article.shop==='@grideli_atelier' && !this.isMobile && sliderRun",
                     key="sliderRun")
+
+
         .text
           button
             .category {{ article.category }}
