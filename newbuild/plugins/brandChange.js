@@ -8,6 +8,7 @@ MyPlugin.prototype.apply = function (compiler) {
     $color__brand: #31bebc;
     $color__brand-dark: #0e3333;
     $color__brand-opacity: rgba(24, 92, 90, .7);
+    $color__brand-light: #279897;
 
   `;
   var textDirectbot = `

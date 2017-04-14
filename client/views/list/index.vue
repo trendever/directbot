@@ -21,7 +21,7 @@
           .text Блогерам
         .item
           .text.__txt-blue Отмена
-
+  right-nav(:current="'home'")
   header-component(:leftBtnShow="false",
    :className="{class: 'rel', cond: !isAuth && showHero && !isMobile}",
    v-if="$store.getters.isAuth || isMobile && !showHero")
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import rightNav from 'components/right-nav';
 import navbarComponent from 'components/navbar/navbar';
 import trendeverHero from './trendever-hero';
 import photosComponent from 'components/photos';
@@ -78,7 +79,8 @@ export default {
     tagsComponent,
     headerComponent,
     menuSample,
-    brandMenu
+    brandMenu,
+    rightNav
 
   },
   data(){

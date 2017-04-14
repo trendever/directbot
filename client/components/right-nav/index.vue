@@ -16,8 +16,9 @@
     .notify-cout(v-if="getGlobalNotifyCount")
       span {{ getGlobalNotifyCount }}
 
-  .right-nav_i(:class='{"__active": current=="feed"}',
-    @click="$router.push({name: 'home'})")
+  .right-nav_i(:class='{"__active": current=="home"}',
+    @click="$router.push({name: 'home'})",
+    v-if="isTrendever")
     i.ic-gallery_menu
 
 </template>
