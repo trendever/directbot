@@ -94,10 +94,13 @@ export default {
       }
 
       if(store.getters.monetizationStatus === null && to.name !== 'connect-bot' && vm.isSelfPage){
-        let connectShown = vm.$store.state.user.connectBanner;
-        if(!connectShown) {
-          vm.$store.dispatch('hideConnectBanner');
-          vm.$router.push({ name: 'connect-bot'})
+
+        if(!config.trendever) {
+          let connectShown = vm.$store.state.user.connectBanner;
+          if(!connectShown) {
+            vm.$store.dispatch('hideConnectBanner');
+            vm.$router.push({ name: 'connect-bot'})
+          }
         }
       }
     }
