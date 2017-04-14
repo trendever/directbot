@@ -32,7 +32,7 @@
 
 
       .grey-banner.chats(
-          v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1",
+          v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1 && !isTrendever",
           :class="{'has-chats': sortedList.length}"
         )
 
