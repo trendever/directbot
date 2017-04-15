@@ -17,7 +17,7 @@
       | трендовые товары здесь#[br]
       | или прямо в Instaram
 
-    .video-link(v-link='{name: "main-video"}')
+    .video-link
 
       i.ic-play
       p(@click='$router.push({name: "video-trendever"})') (смотреть видео)
