@@ -32,8 +32,8 @@
       input(placeholder="Номер телефона")
       span.app-btn ПОЛУЧИТЬ ССЫЛКУ
 
-  .screen-slider
-    slider(v-if="false")
+  .screen-slider(v-if="false")
+    slider
 
 
 
