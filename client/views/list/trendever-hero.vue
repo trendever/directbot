@@ -5,17 +5,24 @@
     .title-area.no-desktop
       .brand-logo: img(src="../dress-blogger/images/Trendever_logo.png")
 
-    h1 Шопинг в Instagram стал проще!
+    h1.first Шопинг в Instagram стал проще!
 
     .auth-btn: span ПРИЛОЖЕНИЕ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
   .screen-two.no-desktop
 
-    h1
+    h1.second
       | Находи и покупай#[br]
       | трендовые товары здесь#[br]
       | или прямо в Instaram
+
+    .video-link(v-link='{name: "main-video"}')
+
+      i.ic-play
+      p(@click='$router.push({name: "video-trendever"})') (смотреть видео)
+
+      button МАГАЗИНАМ И БРЕНДАМ
 
     .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
 
@@ -25,12 +32,16 @@
       input(placeholder="Номер телефона")
       span.app-btn ПОЛУЧИТЬ ССЫЛКУ
 
+  .screen-slider
+    slider(v-if="false")
+
 
 
 
 </template>
 
 <script>
+import slider from 'components/video/slider'
 import JQuery from 'jquery';
 export default {
   data () {
@@ -41,6 +52,7 @@ export default {
   created(){
     this.heroHeight = window.innerHeight * 2;
   },
+  components:{slider},
   methods:{
     scrollFirst() {
       JQuery(document.body).animate({scrollTop: window.innerHeight},450);
@@ -69,6 +81,34 @@ export default {
   text-align: center;
   @media (--overtablet){
     background: url(./img/hero.jpg);
+  }
+
+  .video-link {
+
+    i {
+      font-size: 150px;
+      color: white;
+    }
+    p {
+      padding: 20px;
+      color: white;
+      font-size: $font__medium;
+      text-align: center;
+    }
+
+    button {
+      padding: 40px 60px;
+      border-radius: 10px;
+      border: 1px solid white;
+      color:white;
+      background: transparent;
+      width: 600px;
+      height: 118px;
+      font-size: 36px;
+      line-height: 118px;
+      padding: 0;
+      margin-top: 100px;
+    }
   }
 
   .screen-getapp {
@@ -144,6 +184,17 @@ export default {
     @media (--mobile){
       font-size: 54px;
       font-family: $font__family__light;
+
+      &.first {
+        padding-top: 50px
+      }
+    }
+
+
+
+    &.second {
+      padding-top: 140px;
+      padding-bottom: 150px;
     }
 
   }
@@ -154,7 +205,12 @@ export default {
       padding-top: 400px;
 
       margin: 0 auto;
-
+      @media (--tabletandless){
+        padding-top: 350px;
+        img {
+          width: 500px;
+        }
+      }
       @media (--overtablet){
         padding-top: 0px;
       }

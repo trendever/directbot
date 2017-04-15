@@ -141,6 +141,11 @@ let router = new Router({
     //   component: require('views/home/landing')
     // },
     {
+      name: 'video-trendever',
+      path: '/video-trendever',
+      component: require('components/video/video')
+    },
+    {
       name: 'user',
       path: '/:id',
       component: require('views/profile/index')
