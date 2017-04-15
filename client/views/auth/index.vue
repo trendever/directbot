@@ -10,7 +10,8 @@
 
       .column-desktop-50.column-desktop-right
         template(v-if="showTitleSlider && !fakeReg")
-          img(src="./img/directbot.png").logo
+          img(v-if="isTrendever" src="./img/trendever.png").logo
+          img(v-else src="./img/directbot.png").logo
           .block(style="height:129px")
           //-p.paragraph Перед подключением оператора, #[br] создайте или войдите #[br(v-if="isMobile")] в свою #[br(v-if="!isMobile")] учетную запись
 
