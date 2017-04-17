@@ -7,7 +7,7 @@
     template(slot="desktop-view")
       //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
       .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
-      .land__top-btn(onclick="window.open('https://www.directbot.io')") ПОКУПАТЕЛЯМ
+      .land__top-btn(onclick="window.open('https://www.directbot.io')") МАГАЗИНАМ
       .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
 
     template(slot="mobile-view" v-if="!isAuth")
@@ -16,7 +16,7 @@
         .item(@click="$router.push({name: 'auth'})")
           .text Вход
         .item(onclick="window.open('https://www.directbot.io')")
-          .text Покупателям
+          .text Магазинам
         .item(@click="$router.push({name: 'dress-blogger'})")
           .text Блогерам
         .item

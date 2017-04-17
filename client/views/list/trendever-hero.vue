@@ -4,7 +4,7 @@
   .screen-one
     .flex-column-center
       .title-area.no-desktop
-        .brand-logo: img(src="../dress-blogger/images/Trendever_logo.png")
+        .brand-logo: img(src="./img/logo.svg")
 
       h1.first Шопинг в Instagram стал проще!
 
@@ -14,9 +14,9 @@
   .screen-two.no-desktop
 
     h1.second
-      | Находи и покупай#[br]
-      | трендовые товары здесь#[br]
-      | или прямо в Instaram
+      | Находите и покупайте#[br]
+      | трендовые товары#[br]
+      | из Instagram
 
     .video-link
 
@@ -230,6 +230,7 @@ export default {
 
 
     &.second {
+      font-family: $font__family__semibold;
       padding-top: 140px;
       //padding-bottom: 150px;
     }
