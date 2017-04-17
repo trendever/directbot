@@ -46,6 +46,7 @@
 <script>
 import slider from 'components/video/slider'
 import JQuery from 'jquery';
+import listen from 'event-listener';
 export default {
   data () {
     return {
@@ -54,6 +55,16 @@ export default {
   },
   created(){
     this.heroHeight = window.innerHeight * 2;
+  },
+  mounted(){
+    this.$nextTick(()=>{
+      if(this.isIos){
+        let resize=listen(window, 'resize',()=>{
+          this.heroHeight = window.innerHeight * 2;
+        })
+        setTimeout(()=>{resize.remove()},400);
+      }
+    })
   },
   components:{slider},
   methods:{
@@ -78,6 +89,22 @@ export default {
   }
 }
 
+.flex-column-center {
+  @media (--tabletandless) {
+    display: flex;
+    height: calc(100% - 100px);
+    flex-direction: column;
+    justify-content: center;
+   .title-area, .first, .brand-logo {
+      padding: 0 !important;
+    }
+    .first {
+      margin-top: 20px;
+    }
+  }
+
+}
+
 
 #trendever-hero {
   position: relative;
@@ -85,30 +112,6 @@ export default {
   @media (--overtablet){
     background: url(./img/hero.jpg);
   }
-
-
-
-
-
-
-
-
-  .flex-column-center {
-    @media (--tabletandless) {
-      display: flex;
-      height: calc(100% - 100px);
-      flex-direction: column;
-      justify-content: center;
-     .title-area, .first, .brand-logo {
-        padding: 0 !important;
-      }
-      .first {
-        margin-top: 20px;
-      }
-    }
-
-  }
-
 
   .video-link {
 
