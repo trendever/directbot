@@ -2,10 +2,11 @@
 #trendever-hero(:style="{ height: (isMobile ? heroHeight : heroHeight/5.157) + 'px'}")
 
   .screen-one
-    .title-area.no-desktop
-      .brand-logo: img(src="../dress-blogger/images/Trendever_logo.png")
+    .flex-column-center
+      .title-area.no-desktop
+        .brand-logo: img(src="../dress-blogger/images/Trendever_logo.png")
 
-    h1.first Шопинг в Instagram стал проще!
+      h1.first Шопинг в Instagram стал проще!
 
     .auth-btn: span СКАЧАТЬ ПРИЛОЖЕНИЕ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -84,6 +85,30 @@ export default {
   @media (--overtablet){
     background: url(./img/hero.jpg);
   }
+
+
+
+
+
+
+
+
+  .flex-column-center {
+    @media (--tabletandless) {
+      display: flex;
+      height: calc(100% - 100px);
+      flex-direction: column;
+      justify-content: center;
+     .title-area, .first, .brand-logo {
+        padding: 0 !important;
+      }
+      .first {
+        margin-top: 20px;
+      }
+    }
+
+  }
+
 
   .video-link {
 
@@ -301,6 +326,8 @@ export default {
       background: url(./img/Bgr_clg_mob.jpg);
     }
     height: calc(50% - 100px);
+
+
   }
   .screen-two {
     position: relative;
