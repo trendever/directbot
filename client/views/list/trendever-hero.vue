@@ -6,7 +6,7 @@
       .title-area.no-desktop
         .brand-logo: img(src="../dress-blogger/images/Trendever_logo.png")
 
-      h1.first Шопинг в Instagram стал проще!
+      h1.first Шопинг в Instagram стал проще
 
     .auth-btn: span СКАЧАТЬ ПРИЛОЖЕНИЕ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -100,6 +100,7 @@ export default {
     }
     .first {
       margin-top: 20px;
+      font-family:  $font__family__semibold;
     }
   }
 
@@ -223,7 +224,8 @@ export default {
       font-family: $font__family__light;
 
       &.first {
-        padding-top: 50px
+        padding-top: 50px;
+        font-family: $font__family__semibold;
       }
     }
 
