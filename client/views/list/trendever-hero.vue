@@ -4,7 +4,7 @@
   .screen-one
     .flex-column-center
       .title-area.no-desktop
-        .brand-logo: img(src="../dress-blogger/images/Trendever_logo.png")
+        .brand-logo: img(src="./Trendever_logo.svg")
 
       h1.first Шопинг в Instagram стал проще
 
