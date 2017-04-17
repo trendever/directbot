@@ -144,6 +144,7 @@ export default {
       line-height: 118px;
       padding: 0;
       margin-top: 100px;
+      font-family: $font__family__semibold;
     }
   }
 
