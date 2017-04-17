@@ -7,7 +7,7 @@
 
     h1.first Шопинг в Instagram стал проще!
 
-    .auth-btn: span ПРИЛОЖЕНИЕ
+    .auth-btn: span СКАЧАТЬ ПРИЛОЖЕНИЕ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
   .screen-two.no-desktop
@@ -19,10 +19,12 @@
 
     .video-link
 
-      i.ic-play
-      p(@click='$router.push({name: "video-trendever"})') (смотреть видео)
+      .wrap
+        i.ic-play
+        p(@click='$router.push({name: "video-trendever"})') (смотреть видео)
 
-      button МАГАЗИНАМ И БРЕНДАМ
+      .wrap
+        button МАГАЗИНАМ И БРЕНДАМ
 
     .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
 
@@ -84,6 +86,12 @@ export default {
   }
 
   .video-link {
+
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 440px);
+    justify-content: center;
+
 
     i {
       font-size: 150px;
@@ -194,7 +202,7 @@ export default {
 
     &.second {
       padding-top: 140px;
-      padding-bottom: 150px;
+      //padding-bottom: 150px;
     }
 
   }
