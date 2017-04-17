@@ -62,7 +62,7 @@ export default {
         let resize=listen(window, 'resize',()=>{
           this.heroHeight = window.innerHeight * 2;
         })
-        setTimeout(()=>{resize.remove()},400);
+        setTimeout(()=>{resize.remove()},1000);
       }
     })
   },
