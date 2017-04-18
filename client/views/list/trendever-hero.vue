@@ -8,7 +8,7 @@
 
       h1.first Шопинг в Instagram стал проще
 
-    .auth-btn: span СКАЧАТЬ ПРИЛОЖЕНИЕ
+    .auth-btn: span ВХОД
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
   .screen-two.no-desktop
@@ -29,7 +29,7 @@
 
     .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
 
-  .screen-getapp.no-mobile
+  .screen-getapp.no-mobile(v-if="false")
     h2 Приложение для шопинга в instagram
     .wrap-input
       input(placeholder="Номер телефона")
