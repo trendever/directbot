@@ -71,7 +71,7 @@
               v-on:click='sendSMS') Отправить код
             //-.link-container(v-if="false")
               a.link-bottom( v-on:click.prevent='onClickLink') Мне нужна помощь
-            .link-container
+            .link-container(v-if="!isTrendever")
               a.link-bottom.some-left(v-on:click.stop='$router.push({name: "popup", params: { id: "conditions"} } )')
                 | Условия использования
 
