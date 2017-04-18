@@ -1,7 +1,7 @@
 <template lang="pug">
 
 #list(ref="list")
-  trendever-hero(v-if="!$store.getters.isAuth && showHero")
+  trendever-hero(v-if="!$store.getters.isAuth")
 
   brand-menu.list-menu
     template(slot="desktop-view")
@@ -10,7 +10,7 @@
       .land__top-btn(onclick="window.open('https://www.directbot.io')") МАГАЗИНАМ
       .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
 
-    template(slot="mobile-view" v-if="!isAuth")
+    template(slot="mobile-view" v-if="!isAuth && showHero")
       i.ic-menu_bullets(@click="showMenu=true")
       menu-sample.blue(:opened="showMenu", v-on:close="showMenu = false")
         .item(@click="$router.push({name: 'auth'})")
@@ -23,8 +23,9 @@
           .text.__txt-blue Отмена
   right-nav(:current="'home'")
   header-component(:leftBtnShow="false",
+   :class="{'no-hero': showHero && !isAuth}",
    :className="{class: 'rel', cond: !isAuth && showHero && !isMobile}",
-   v-if="$store.getters.isAuth || isMobile && !showHero")
+   v-if="$store.getters.isAuth || isMobile")
 
     .search-text(slot="center-content")
 
@@ -101,10 +102,12 @@ export default {
 
     this.$store.dispatch('loadTags');
 
-    listen(window, 'scroll',()=>{
-      if(this.showHero && !this.isAuth){
+    let showListen = listen(window, 'scroll',()=>{
+      if(!this.isAuth){
         if(document.body.scrollTop >= 2 * window.innerHeight && this.isMobile){
           this.showHero = false;
+        } else {
+          this.showHero = true;
         }
       }
     })
@@ -120,9 +123,12 @@ export default {
         .then(()=>this.$refs.search.focus())
     }
   },
+  beforeDestroy(){
+    this.showListen.remove();
+  },
   watch:{
     showHero(){
-      window.scrollTo(0,0)
+      //window.scrollTo(0,0)
     }
   },
   computed: {
@@ -145,6 +151,15 @@ export default {
   .list-menu {
     position: absolute 0 0 * 0;
   }
+
+  .header.no-hero {
+    position: absolute !important;
+    top: 200%;
+    left:0;
+    right:0;
+
+  }
+
   .header.rel {
     position: absolute 378px 0 * 0;
     @media (--tabletandless) {
