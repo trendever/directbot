@@ -8,7 +8,7 @@
 
       h1.first Шопинг в Instagram стал проще
 
-    .auth-btn: span ВХОД
+    .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
   .screen-two.no-desktop
