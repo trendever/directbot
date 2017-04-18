@@ -34,7 +34,7 @@
           @click="$event.target.focus()",
           @keyup="search",
           ref="search",
-          placeholder="..поиск",
+          placeholder="Поиск",
           :value="searchValue")
 
         .s-icon(@click='search(), $refs.search.focus()')
