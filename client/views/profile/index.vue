@@ -44,7 +44,7 @@ export default {
       supplierProfileID: 0,
       shoplocation: "",
       shopabout: "",
-      source: config.trendever ? 'trdv.com' : 'drbt.io'
+      source: config.trendever ? 'tndvr.com' : 'drbt.io'
     }
 
   },
