@@ -96,13 +96,13 @@ export default {
 
   },
   data(){
-    return {showHero: true, showMenu: false}
+    return {showHero: true, showMenu: false,showListen:{}}
   },
   created(){
 
     this.$store.dispatch('loadTags');
 
-    let showListen = listen(window, 'scroll',()=>{
+    this.showListen = listen(window, 'scroll',()=>{
       if(!this.isAuth){
         if(document.body.scrollTop >= 2 * window.innerHeight && this.isMobile){
           this.showHero = false;
