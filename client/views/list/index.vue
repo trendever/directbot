@@ -58,7 +58,7 @@
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='home')
 
-  template(v-if="isTrendever")
+  template(v-if="isTrendever && isAuth")
     .grey-banner.has-chats(v-if="getBannerInfo.indexOf('list-banner') === -1")
       i.ic-close(@click="$store.dispatch('closeStat', 'list-banner')")
       | Лента товаров&nbsp
