@@ -124,6 +124,19 @@
             | Это может занять несколько#[br.desktop] минут или часов,#[br.mobile]
             | в зависимости от вашей активности
 
+        template(v-if="isTrendever")
+          .grey-banner(v-if="getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey",
+            :class="{'has-chats': botActivity}")
+            i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
+            span Нажми Сохранить&nbsp
+            | под товаром#[br.mobile]
+            | или&nbsp
+            span напиши @savetrend&nbsp
+            | под постом в#[br]
+            | Instagram, чтобы добавить тренд сюда в ленту
+
+
+
           //-.profile_no-goods-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
             i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
             br(v-if="isMobile")
@@ -142,7 +155,7 @@
             span OK
 
 
-      connect-button(v-if="isSelfPage && isMobile && !botActivity && !isTrendever")
+      connect-button(v-if="isSelfPage && isMobile && !botActivity")
 
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close

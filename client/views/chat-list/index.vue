@@ -74,6 +74,18 @@
 
 
 
+  template(v-if="isTrendever")
+    .grey-banner(v-if="getBannerInfo.indexOf('chat-banner') === -1 && !hideGrey",
+      :class="{'has-chats': botActivity}")
+      i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
+      | Нажми Купить под товаром#[br]
+      | или&nbsp
+      span напиши @wantit&nbsp
+      | под постом в Instagram,#[br]
+      | и здесь появится шопинг-чат
+
+
+
 </template>
 
 <script type='text/babel'>

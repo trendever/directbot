@@ -58,6 +58,17 @@
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='home')
 
+  template(v-if="isTrendever")
+    .grey-banner.has-chats(v-if="getBannerInfo.indexOf('list-banner') === -1")
+      i.ic-close(@click="$store.dispatch('closeStat', 'list-banner')")
+      | Лента товаров&nbsp
+      span формируется#[br.mobile] из шопинг-желаний&nbsp
+      | покупателей#[br]
+      | и трендскаутов. Места в топе не продаются,#[br]
+      | сортировка строго хронологическая
+
+
+
 </template>
 
 <script>
@@ -119,7 +130,8 @@ export default {
       'selectedTagsId',
       'tags',
       'searchValue',
-      'isAuth'
+      'isAuth',
+      'getBannerInfo'
     ])
   },
 };
