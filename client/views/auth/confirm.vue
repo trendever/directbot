@@ -43,7 +43,7 @@
                 v-on:keydown.enter='onButton()',
                 ref="confirmField",
                 v-model='code',
-                placeholder='9999',
+                placeholder='',
                 autocomplete="off",
                 autocorrect="off",
                 autocapitalize="off",
