@@ -9,6 +9,8 @@ MyPlugin.prototype.apply = function (compiler) {
     $color__brand-dark: #0e3333;
     $color__brand-opacity: rgba(24, 92, 90, .7);
     $color__brand-light: #279897;
+    $color__brand-bright: #c4e4e8;
+    $color__brand-border: #85cccb;
 
   `;
   var textDirectbot = `
@@ -16,6 +18,8 @@ MyPlugin.prototype.apply = function (compiler) {
     $color__brand-dark:#09162B;
     $color__brand-light:#496DA1;
     $color__brand-opacity:rgba(94, 139, 206,.6);
+    $color__brand-bright: #CEDCF2;
+    $color__brand-border: #8FADD9;
   `
 
   compiler.plugin('compile', function() {
