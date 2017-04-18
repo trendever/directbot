@@ -70,7 +70,7 @@
     margin-top: -1px;
     border-radius: 0px;
     position: fixed 0 0 * 0;
-    z-index: 179;
+    z-index: 550;
     size: 100%;
     width: 100%;
     height: 100%;
