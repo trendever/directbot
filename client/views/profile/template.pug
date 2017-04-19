@@ -1,6 +1,8 @@
 #profile
 
-  header-component(:title='getUserName', :left-btn-show='false').directbot-header
+  header-component(:title='getUserName',
+    :left-btn-show='isSelfPage ? false : true',
+    :back-function='backArrow').directbot-header
 
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
 

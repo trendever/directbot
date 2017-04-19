@@ -206,6 +206,9 @@ export default {
   },
 
   methods: {
+    backArrow(){
+      window.history.back();
+    },
     daysclick(){
       this.$router.push( { name: 'monetization' });
     },
