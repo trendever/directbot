@@ -1,6 +1,6 @@
 <template>
   <div>
-<mobile-layout 
+<mobile-layout
   v-if="isSmall"
   :products="products"
   :supplier-available="supplierAvailable"
@@ -238,11 +238,12 @@ export default {
       'setCallbackOnSuccessAuth',
       'setCallBackAfterLoading'
 
-    ])
-
+    ]),
+    goToHome(){return}
   },
 
   computed: {
+    isLiked(){return null},
     ...mapGetters([
 
       'getOpenedProduct',
