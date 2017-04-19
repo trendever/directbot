@@ -36,6 +36,7 @@
           .input-container
             .input.confirm-input.conf
               input(type='tel',
+                autofocus
                 @blur="blurInput",
                 v-on:click="focusClick"
                 v-on:keyup='onInput',
