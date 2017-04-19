@@ -31,6 +31,7 @@ export default {
 
   let showBanner = (window.localStorage.getItem('isMainBannerShow') === null) ? true : false;
     return {
+      hideNavUser: false,
       hideGrey: false,
       loaded: true,
       anotherId: 1, //пустая лента без единого товара
@@ -185,6 +186,13 @@ export default {
         this.scrollSave = listen(window, 'scroll',()=> {
           this.scrl.setValue(this.$route.params.id, document.body.scrollTop)
         })
+      }
+
+      if(!this.isSelfPage){
+        this.hideNavUser = true;
+        setTimeout(()=>{
+          this.hideNavUser = false;
+        }, 10000)
       }
 
     })
@@ -454,6 +462,16 @@ export default {
 
     @mixin button__sample
 
+  }
+  .navbar {
+    bottom: 0;
+  }
+  .directbot-navbar.hide-nav {
+
+    .navbar-cnt .navbar {
+      bottom: -98px;
+      transition: all 0.4s;
+    }
   }
 
 }

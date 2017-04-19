@@ -162,5 +162,5 @@
 
   photos(:shopId="supplierProfileID || userShopId || anotherId", :listName="listId")
 
-  .directbot-navbar(v-if="isMobile && isAuth")
+  .directbot-navbar(v-if="isMobile && isAuth", :class="{'hide-nav': hideNavUser }")
     navbar-component(current='profile')
