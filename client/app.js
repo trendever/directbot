@@ -14,6 +14,11 @@ const app = new Vue({
 })
 
 
+Vue.config.errorHandler = function () {
+  alert("ОШИБКА!")
+}
+
+
 Vue.mixin({
   data(){
     return {
