@@ -75,7 +75,7 @@
 
 
   template(v-if="isTrendever")
-    .grey-banner(v-if="getBannerInfo.indexOf('chat-banner') === -1 && !hideGrey",
+    .grey-banner(v-if="getBannerInfo.indexOf('chat-banner') === -1",
       :class="{'has-chats': botActivity}")
       i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
       | Нажми Купить под товаром#[br]
