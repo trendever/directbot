@@ -2,10 +2,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const pkg = require('../package')
-
+const config = require('../config');
 module.exports = {
   port: 3000,
-  title: 'trendever2',
+  title: config.trendever ?
+    'Trendever.com - шопинг в Instagram стал проще' :
+    'Directbot - легкая работа с клиентами',
   vendor: Object.keys(pkg.dependencies),
   babel: {
     babelrc: true,
