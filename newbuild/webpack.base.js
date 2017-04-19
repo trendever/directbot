@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require('./conf')
 const _ = require('./utils')
+const globalConfig = require('../config');
 
 let isSlash = process.env.NODE_ENV === 'development' ? '' : '/'
 
@@ -77,6 +78,7 @@ module.exports = {
   plugins: [
     new BrandChangePlugin(),
     new HtmlWebpackPlugin({
+      trendever: globalConfig.trendever,
       title: config.title,
       template: path.resolve(__dirname, 'index.html'),
       filename: _.outputIndexPath

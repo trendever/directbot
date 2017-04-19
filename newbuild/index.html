@@ -9,15 +9,18 @@
     <meta name='mobile-web-app-capable', content='yes'>
     <meta name='viewport', id='viewport', content='width=750, maximum-scale=1.0, user-scalable=no'>
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Directbot.io - Менеджер магазина в Instagram</title>
-    <meta name="keywords" content="Оператор instagram, бот instagram, автоответчик instagram, магазин в инстаграм" />
-    <meta name="description" content="CRM для продаж в Instagram, с аутсорсингом продавцов и блогеров" />
-    <meta property="og:image" '<%= require("../client/views/home/img/Bgr-blue.png") %>'>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1000">
     <meta property="og:image:height" content="400">
 
     <!-- ICONS -->
+
+    <% if (!htmlWebpackPlugin.options.trendever) { %>
+
+
+    <meta name="keywords" content="Оператор instagram, бот instagram, автоответчик instagram, магазин в инстаграм" />
+    <meta name="description" content="CRM для продаж в Instagram, с аутсорсингом продавцов и блогеров" />
 
     <link rel='icon', type='image/png', href='<%= require("../client/style/favicons/favicon.ico") %>', sizes='16x16'>
     <link rel='icon', type='image/png', href='<%= require("../client/style/favicons/favicon-16x16.png") %>', sizes='16x16'>
@@ -51,12 +54,31 @@
     <link rel='icon', type='image/png', href='<%= require("../client/style/favicons/ms-icon-144x144.png") %>', sizes='144x144'>
     <link rel='icon', type='image/png', href='<%= require("../client/style/favicons/ms-icon-150x150.png") %>', sizes='150x150'>
     <link rel='icon', type='image/png', href='<%= require("../client/style/favicons/ms-icon-310x310.png") %>', sizes='310x310'>
+    <% } else { %>
 
+    <meta name='keywords', content='Инстаграм, instagram, шопинг, товары, trendever, wantit, модницы, блогеры, инста-шопы, тренды, оригинальный, купить, дизайнерский, одежда, обувь, мебель, интерьер, подарки, цветы, торты'>
+    <meta name='description', content='Покупайте трендовые товары инстаграма, отобранные модницами и блогерами из лучших инста-шопов'>
+    <link rel='icon', type='image/png', href='<%= require("../client/style/favicons/trendever/favicon-16x16.png") %>', sizes='16x16'>
+    <link rel='icon', type='image/png', href='<%= require("../client/style/favicons/trendever/favicon-32x32.png") %>', sizes='32x32'>
+    <link rel='icon', type='image/png', href='<%= require("../client/style/favicons/trendever/favicon-96x96.png") %>', sizes='96x96'>
+
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-57x57.png") %>',   sizes='57x57'>
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-60x60.png") %>',   sizes='60x60'>
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-72x72.png") %>',   sizes='72x72'>
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-76x76.png") %>',   sizes='76x76'>
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-114x114.png") %>', sizes='114x114'>
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-120x120.png") %>', sizes='120x120'>
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-144x144.png") %>', sizes='144x144'>
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-152x152.png") %>', sizes='152x152'>
+    <link rel='apple-touch-icon', href='<%= require("../client/style/favicons/trendever/apple-touch-icon-180x180.png") %>', sizes='180x180'>
+
+
+    <% } %>
   </head>
   <body>
     <div id="app"></div>
   </body>
-  <!-- Yandex.Metrika counter --> 
-  <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter42602829 = new Ya.Metrika({ id:42602829, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/42602829" style="position:absolute; left:-9999px;" alt="" /></div></noscript> 
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter42602829 = new Ya.Metrika({ id:42602829, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div> src="https://mc.yandex.ru/watch/42602829" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
 </html>
