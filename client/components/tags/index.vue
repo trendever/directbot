@@ -49,10 +49,10 @@
     i {
       display: inline-block;
       font-size: 12px;//14px;
-      transform: translateY(7px);
+      transform: translateY(6px);
       @media (--mobile){
         font-size: 26px;
-        transform: translateY(12px);
+        transform: translateY(11px);
       }
     }
   }
