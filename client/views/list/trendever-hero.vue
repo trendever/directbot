@@ -21,11 +21,12 @@
     .video-link
 
       .wrap
-        i.ic-play
-        p(@click='$router.push({name: "video-trendever"})') (смотреть видео)
+        i.ic-play(@click='goVideo')
+        p(@click='goVideo') (смотреть видео)
 
       .wrap
-        button МАГАЗИНАМ И БРЕНДАМ
+        a(href="https://directbot.io", target="_blank")
+          button МАГАЗИНАМ И БРЕНДАМ
 
     .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
 
@@ -68,6 +69,7 @@ export default {
   },
   components:{slider},
   methods:{
+    goVideo(){this.$router.push({name: "video-trendever"})},
     scrollFirst() {
       JQuery(document.body).animate({scrollTop: window.innerHeight},450);
     },
