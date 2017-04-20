@@ -23,7 +23,7 @@
 
 
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
-    //.item
+    .item(v-if="botActivity")
       .text Отключить бота
     .item(v-if="isMobile")
       .text(@click.stop="findBloger") Найти блогера
@@ -91,7 +91,7 @@
             button.turn-on-bot-btn-desk.blue-btn(
               v-if="!botActivity",
               @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
-            button.turn-on-bot-btn-desk.blue-btn(
+            //-button.turn-on-bot-btn-desk.blue-btn(
               v-if="botActivity"
               @click="$router.push({name: 'connect-bot'})") OТКЛЮЧИТЬ БОТА
 
