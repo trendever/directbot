@@ -13,12 +13,12 @@
 
   .screen-two.no-desktop
 
-    h1.second
-      | Находите и покупайте#[br]
-      | трендовые товары#[br]
-      | из Instagram
+    .wrap-second
 
-    .video-link
+      h1.second
+        | Находите и покупайте#[br]
+        | трендовые товары#[br]
+        | из Instagram
 
       .wrap
         i.ic-play(@click='goVideo')
@@ -116,20 +116,28 @@ export default {
     background: url(./img/hero.jpg);
   }
 
-  .video-link {
-
+  .wrap-second {
+    padding-top: 100px;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 440px);
+    height: calc(100% - 100px);
     justify-content: center;
 
+    :last-child.wrap {
+      padding-top: 28%;
+    }
+
+    h1.second {
+      padding-top: 0;
+      padding-bottom: 28%;
+    }
 
     i {
       font-size: 150px;
       color: white;
     }
     p {
-      padding: 20px;
+      padding: 0px;
       color: white;
       font-size: $font__medium;
       text-align: center;
@@ -146,7 +154,6 @@ export default {
       font-size: 36px;
       line-height: 118px;
       padding: 0;
-      margin-top: 100px;
       font-family: $font__family__semibold;
     }
   }
@@ -235,8 +242,6 @@ export default {
 
     &.second {
       font-family: $font__family__semibold;
-      padding-top: 140px;
-      //padding-bottom: 150px;
     }
 
   }
@@ -344,7 +349,9 @@ export default {
     height: calc(50% + 100px);
 
     @media (--tabletandless){
-      background: url(./img/blue_bgr.png);
+      background: url(./img/Trvr_pattern_green_dark.jpg);
+      background-size: cover;
+      //background: url(./img/blue_bgr.png);
     }
 
     @media (--overtablet){
