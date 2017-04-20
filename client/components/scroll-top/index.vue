@@ -34,13 +34,18 @@
     methods: {
       toggleBtnOnScroll(){
 
+        let minimumScrollTop = this.$route.name === 'home' && !this.$store.getters.isAuth  ?
+
+        (document.body.offsetHeight * 2) : (document.body.offsetHeight * 1.5)
+
         if ( this.toUp ) {
 
-          this.is_visible = document.body.scrollTop - (document.body.offsetHeight * 2) >= 0;
+
+          this.is_visible = document.body.scrollTop - minimumScrollTop >= 0;
 
         } else {
 
-          this.is_visible = (document.body.scrollHeight - document.body.scrollTop) > document.body.offsetHeight * 2;
+          this.is_visible = (document.body.scrollHeight - document.body.scrollTop) > minimumScrollTop;
 
         }
 
