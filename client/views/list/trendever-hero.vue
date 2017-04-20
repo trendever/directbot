@@ -4,11 +4,11 @@
   .screen-one
     .flex-column-center
       .title-area.no-desktop
-        .brand-logo: img(src="./Trendever_logo.svg")
+        .brand-logo: img(src="./img/Trendever_logo.svg")
 
       h1.first Шопинг в Instagram стал проще
 
-    .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД
+    .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
   .screen-two.no-desktop
