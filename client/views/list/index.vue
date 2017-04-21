@@ -22,9 +22,9 @@
         .item
           .text.__txt-blue Отмена
   right-nav(:current="'home'")
+
   header-component(:leftBtnShow="false",
-   :class="{'no-hero': showHero && !isAuth}",
-   :className="{class: 'rel', cond: !isAuth && showHero && !isMobile}",
+   :class="{'no-hero': showHero && !isAuth }",
    v-if="$store.getters.isAuth || isMobile")
 
     .search-text(slot="center-content")
@@ -160,12 +160,6 @@ export default {
 
   }
 
-  .header.rel {
-    position: absolute 378px 0 * 0;
-    @media (--tabletandless) {
-      display: none;
-    }
-  }
   .search-text {
 
     max-width: 1050px;

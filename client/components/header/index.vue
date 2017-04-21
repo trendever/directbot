@@ -1,6 +1,6 @@
 <style src='./header.pcss'></style>
 <template lang="pug">
-.header(:class="className ? {[className.class]: className.cond}: {}")
+.header
   .fake-top-standalone(v-if="isStandalone")
   .header__content
     .wrapper.directbot-color(:class="{'chat-slot': $route.name === 'chat' && isMobile}")
@@ -69,9 +69,6 @@
       }
     },
     props: {
-      className: {
-        default: null
-      },
       showDesktopArrow:{
         type: Boolean,
         default: true
