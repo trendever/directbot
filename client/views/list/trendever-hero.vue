@@ -54,17 +54,9 @@ export default {
       heroHeight:0
     };
   },
-  created(){
-    this.heroHeight = window.innerHeight * 2;
-  },
   mounted(){
     this.$nextTick(()=>{
-      if(this.isIos){
-        let resize=listen(window, 'resize',()=>{
-          this.heroHeight = window.innerHeight * 2;
-        })
-        setTimeout(()=>{resize.remove()},1000);
-      }
+      this.heroHeight = window.innerHeight * 2;
     })
   },
   components:{slider},
@@ -110,6 +102,9 @@ export default {
 
 
 #trendever-hero {
+  height: 0;
+  overflow: hidden;
+  transition: all .5s;
   position: relative;
   text-align: center;
   @media (--overtablet){
