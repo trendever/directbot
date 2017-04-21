@@ -17,26 +17,22 @@
     line-height: 100%;
 
 
-    @media (--overmobile) {
+    @media (--overtablet) {
       &:hover {
         color: white;
         background: $color__brand;
       }
     }
 
-    @media (--mobile){
-      font-size: $font__large;
+    @media (--tabletandless){
+      font-size: calc($font__large - 5px);
       font-family: $font__family__thin;
-      padding: 10px 15px;
+      padding: 16px 15px;
     }
 
     span {
-
+      text-transform: uppercase;
       display: inline-block;
-      transform: translateY(-4%);
-      @media (--mobile){
-        transform: translateY(-7%);
-      }
     }
 
 
@@ -48,11 +44,14 @@
 
     i {
       display: inline-block;
-      font-size: 12px;//14px;
-      transform: translateY(6px);
-      @media (--mobile){
-        font-size: 26px;
-        transform: translateY(11px);
+      font-size: 15px;
+      transform: translateY(3px);
+      padding-left: 7px;
+      @media (--tabletandless){
+        display: none;
+        font-size: 30px;
+        padding-left: 5px;
+        transform: translateY(4px);
       }
     }
   }
@@ -71,7 +70,6 @@
           <i class="ic-close close"
             v-if="tag.active"
             @click.stop="delTag(tag)"></i>
-          </span>
         </div>
       </template >
     </div>
