@@ -4,7 +4,8 @@ var path = require('path');
 function MyPlugin() {};
 
 MyPlugin.prototype.apply = function (compiler) {
-  var textTrendever = `
+
+  var textTrendeverOldColors = `
     $color__brand: #31bebc;
     $color__brand-dark: #0e3333;
     $color__brand-opacity: rgba(24, 92, 90, .7);
@@ -13,6 +14,17 @@ MyPlugin.prototype.apply = function (compiler) {
     $color__brand-border: #85cccb;
 
   `;
+
+  var textTrendever = `
+    $color__brand: #1EA503;
+    $color__brand-dark: #0C2107;
+    $color__brand-opacity: rgba(31, 77, 19, .85);
+    $color__brand-light: #23870E;
+    $color__brand-bright: #DBEBDB;
+    $color__brand-border: #A4C2A4;
+
+  `;
+
   var textDirectbot = `
     $color__brand:#5E8BCE;
     $color__brand-dark:#09162B;
