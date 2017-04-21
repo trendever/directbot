@@ -9,9 +9,10 @@
         i.ic-gallery_menu_inactive.navbar_i_wrap_ic(v-if="current !=='home'")
         .navbar_i_wrap_t Лента
 
-    .navbar_i(:class='{"__active": current=="chat"}', @click='$router.push({name: "chat_list"}), scrollTop')
+    .navbar_i(:class='{"__active": current=="chat"}' @click='$router.push({name: "chat_list"}), scrollTop')
       .navbar_i_wrap
-        i.ic-cloud.navbar_i_wrap_ic.__chat_ic
+        //i.ic-cloud.navbar_i_wrap_ic.__chat_ic
+        i.ic-chats_active
         .navbar_i_wrap_t Чаты
         .navbar_i_wrap_notify(v-show='getGlobalNotifyCount')
           span {{ getGlobalNotifyCount }}

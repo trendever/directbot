@@ -12,7 +12,7 @@
 
   .right-nav_i(:class='{"__active": current=="chat"}',
     @click="$router.push({name: 'chat_list'})")
-    i.ic-chats_menu
+    i.ic-chats_active
     .notify-cout(v-if="getGlobalNotifyCount")
       span {{ getGlobalNotifyCount }}
 
@@ -82,7 +82,11 @@ export default {
       width: 50px;
       height: 60px;
     }
-    i.ic-user_menu, i.ic-gallery_menu, i.ic-chats_menu, i.ic-options_menu  {
+    i.ic-user_menu,
+    i.ic-gallery_menu,
+    i.ic-chats_menu,
+    i.ic-options_menu,
+    i.ic-chats_active  {
       font-size: 32px;
       color: white;
     }

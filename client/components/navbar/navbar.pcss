@@ -1,5 +1,11 @@
 @import 'style/vars/vars.pcss';
 .navbar-cnt {
+  i.ic-chats_active {
+    color: #929292;
+    font-size: 46px;
+
+  }
+
   .navbar {
     position: fixed;
     z-index: 9;
@@ -101,14 +107,16 @@
       }
       &:hover {
         .navbar_i_wrap_t {
-          color: $color__green;
+          color: $color_brand;
         }
       }
       &.__active {
         cursor: default;
-
+        i.ic-chats_active {
+          color: $color__brand;
+        }
         .navbar_i_wrap_ic {
-          color: $color__green;
+          color: $color_brand;
 
           &.__chat_ic {
             display: inline-block;
@@ -134,7 +142,7 @@
           }
         }
         .navbar_i_wrap_t {
-          color: $color__green;
+          color: $color_brand;
         }
       }
     }
