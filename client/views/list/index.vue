@@ -167,13 +167,13 @@ export default {
     text-align: right;
     flex-grow: 1;
 
-    @media (--mobile) {
+    @media (--tabletandless) {
       flex-grow: 1;
     }
 
     .search-input {
 
-      @media (--overmobile) {
+      @media (--overtablet) {
         margin-top: 8px;
         position: relative;
         width: 250px;
@@ -181,7 +181,7 @@ export default {
 
       }
 
-      @media (--mobile) {
+      @media (--tabletandless) {
         height: inherit;
         background: white;
       }
@@ -200,7 +200,7 @@ export default {
         height: inherit;
 
 
-        @media (--overmobile) {
+        @media (--overtablet) {
           //transform: translateX(-45px);
           font-family: $font__family__light;
           float: left;
@@ -211,8 +211,8 @@ export default {
           }
         }
 
-        @media (--mobile) {
-          transform: translateX(-17px);
+        @media (--tabletandless) {
+          transform: translate(-17px, -2px);
           color: $color__gray-dark;
           font-size: $font__large;
           font-family: $font__family__light;
@@ -235,7 +235,7 @@ export default {
 
       .tags-count {
         display: none;
-        @media (--mobile) {
+        @media (--tabletandless) {
           position: absolute 20px 90px * * ;
           text-align: center;
           size: 50px;
@@ -256,10 +256,10 @@ export default {
         display: inline-block;
         color: white;
 
-        @media (--overmobile) {
+        @media (--overtablet) {
           display: none;
         }
-        @media (--mobile) {
+        @media (--tabletandless) {
           position: absolute  0 0 * *;
           padding: 28px;
           font-size: $font__medium;
