@@ -212,7 +212,8 @@ export default {
         }
 
         @media (--tabletandless) {
-          transform: translate(-17px, -2px);
+          transform: translate(-17px);
+          padding-bottom: 3px;
           color: $color__gray-dark;
           font-size: $font__large;
           font-family: $font__family__light;
