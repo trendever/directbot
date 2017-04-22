@@ -55,6 +55,7 @@
           | Instagram Direct
 
       .chat-list-cnt-is-empty(v-if="!sortedList.length")
+        i.ic-chats_inactive
         .chat-list-cnt-is-empty__container Нет чатов#[br]
         span.link-err(@click="openSupport")
           | Первое время после#[br] подключения

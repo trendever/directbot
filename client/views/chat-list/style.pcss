@@ -91,7 +91,7 @@
     font-family: $font__family__light;
     margin-top: -40px;
     padding-top: 215px;
-    background: url("img/chats_inactive.svg") no-repeat 50% 0;
+    //background: url("img/chats_inactive.svg") no-repeat 50% 0;
     -webkit-background-size: 190px;
     background-size: 190px;
     color: $color__gray-dark;
@@ -101,6 +101,23 @@
       margin-top: -42px;
       padding-top: 220px;
       line-height: 38px;
+
+
+    }
+
+    i.ic-chats_inactive {
+      color: $color__gray-lighter;
+      position: absolute;
+      top:-50px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0 auto;
+      font-size: 250px;
+
+      @media (--overtablet){
+         font-size: 180px;
+         top: 0px;
+      }
     }
 
     span.link-err {
