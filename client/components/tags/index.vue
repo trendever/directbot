@@ -25,9 +25,9 @@
     }
 
     @media (--tabletandless){
-      font-size: calc($font__large - 5px);
+      font-size: calc($font__large - 8px);
       font-family: $font__family__thin;
-      padding: 16px 15px;
+      padding: 19px 15px;
     }
 
     span {
