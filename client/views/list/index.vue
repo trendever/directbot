@@ -23,6 +23,9 @@
           .text.__txt-blue Отмена
   right-nav(:current="'home'")
 
+
+  .header-mobile(v-if="isMobile && !isAuth")
+    img(src="./img/Trendever_logo.svg")
   header-component(:leftBtnShow="false",
    :class="{'no-hero': showHero && !isAuth }",
    v-if="$store.getters.isAuth || isMobile")
@@ -104,7 +107,7 @@ export default {
 
     this.showListen = listen(window, 'scroll',()=>{
       if(!this.isAuth){
-        if(document.body.scrollTop >= 2 * window.innerHeight && this.isMobile){
+        if(document.body.scrollTop >= (2 * window.innerHeight + 89) && this.isMobile){
           this.showHero = false;
         } else {
           this.showHero = true;
@@ -154,10 +157,21 @@ export default {
 
   .header.no-hero {
     position: absolute !important;
-    top: 200%;
+    top: calc(200% + 89px);
     left:0;
     right:0;
 
+  }
+  .header-mobile {
+    height: 89px;
+    position: relative;
+    background: $color__brand;
+    text-align: center;
+    line-height: 89px;
+    img{
+      width: 250px;
+      padding-top: 12px;
+    }
   }
 
   .search-text {
@@ -212,7 +226,7 @@ export default {
         }
 
         @media (--tabletandless) {
-          transform: translate(-17px, -2px);
+          transform: translate(-17px);
           color: $color__gray-dark;
           font-size: $font__large;
           font-family: $font__family__light;
@@ -305,8 +319,8 @@ export default {
     max-width: 1050px;
     margin: 50px auto 0 auto;
     transition: all .3s ease;
-    @media (--mobile) {
-      margin-top: 89px;
+    @media (--tabletandless) {
+      margin-top: calc(89px * 1 );
     }
 
     &.no-margin {
