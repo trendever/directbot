@@ -16,7 +16,7 @@ MyPlugin.prototype.apply = function (compiler) {
   `;
 
   var textTrendever = `
-    $color__brand: #1EA503;
+    $color__brand: #35D863;
     $color__brand-dark: #0C2107;
     $color__brand-opacity: rgba(31, 77, 19, .85);
     $color__brand-light: #23870E;
