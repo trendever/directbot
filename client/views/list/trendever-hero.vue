@@ -344,8 +344,8 @@ export default {
     height: calc(50% + 100px);
 
     @media (--tabletandless){
-      background: url(./img/Trvr_pattern_green_dark.jpg);
-      background-size: cover;
+      background: url(./img/Trvr_pattern_green_dark.svg);
+      background-size: 190%;
       //background: url(./img/blue_bgr.png);
     }
 
