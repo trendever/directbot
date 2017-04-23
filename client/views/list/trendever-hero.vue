@@ -1,5 +1,5 @@
 <template lang="pug">
-#trendever-hero(:style="{ height: (isMobile ? heroHeight : heroHeight/5.157) + 'px'}")
+#trendever-hero(:style="{ height: (isMobile ? heroHeight : 366) + 'px'}")
 
   .screen-one
     .flex-column-center
@@ -84,6 +84,7 @@ export default {
 }
 
 .flex-column-center {
+  height: 100%;
   @media (--tabletandless) {
     display: flex;
     height: calc(100% - 100px);
@@ -217,9 +218,12 @@ export default {
     color: white;
     padding-top: 400px;
     @media (--overmobile){
-      height: 100%;
-      padding-top: 158px;
-
+      padding-top: 0;
+      position: absolute;
+      top: 50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
       font-size:46px;
       font-family: $font__family__semibold;
     }
@@ -295,7 +299,7 @@ export default {
 
   .how-btn {
     @media (--overtablet){
-      //bottom: 0px;
+      display: none;
     }
     @media (--tabletandless){
       bottom: -100px;
@@ -334,6 +338,9 @@ export default {
     @media (--tabletandless){
       background: url(./img/Bgr_clg_mob.jpg);
     }
+    @media (--overtablet) {
+      height: 366px;
+    }
     height: calc(50% - 100px);
 
 
@@ -355,12 +362,6 @@ export default {
       }
     }
 
-  }
-
-  @media (--overtablet) {
-    .screen-one,.screen-two{
-      height: 50%;
-    }
   }
 
 }
