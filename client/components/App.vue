@@ -40,7 +40,9 @@ import Listener from './Listener.vue';
 import Monetization from './Monetization.vue';
 import nativePopup from 'components/popup/native';
 
+
 export default {
+
   data(){
     return {
       authDone: false,
@@ -55,14 +57,12 @@ export default {
       phoneNumber: ''
     }
   },
-
   components: {
     Listener,
     Monetization,
     nativePopup
   },
   mounted(){
-    
 
     window.eventHub.$on('show-desktop-phone', data=>{
       this.showDesktopPhone = true;

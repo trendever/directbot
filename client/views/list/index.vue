@@ -57,7 +57,7 @@
     tags-component(:tags="tags")
 
   .wrap-photos
-    photos-component(:tags="true", :list-name="'list'")
+    photos-component(:tags="true", :list-name="'list'", ref="photos")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='home')
@@ -97,6 +97,12 @@ export default {
     brandMenu,
     rightNav
 
+  },
+  mounted(){
+    this.$nextTick(()=>{
+      let scroll = localStorage.getItem('home.scroll')
+      document.body.scrollTop = scroll;
+    })
   },
   data(){
     return {showHero: true, showMenu: false,showListen:{}}

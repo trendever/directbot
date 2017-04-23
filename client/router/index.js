@@ -154,7 +154,7 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next)=>{
-  if(from.name === 'home-info')
+  if(from.name === 'home-info' || from.name === "home")
     localStorage.setItem(`home.scroll`, window.scrollY);
   else
   localStorage.setItem(`${from.name}.scroll`, window.scrollY);
@@ -165,6 +165,7 @@ router.beforeEach((to, from, next)=>{
       router.replace({name: 'user', params: {id: replace}})
     }
   }
+
 
   next();
 
