@@ -6,10 +6,15 @@
       .title-area.no-desktop
         .brand-logo: img(src="./img/Trendever_logo.svg")
 
+
+
+      .wrap-mini-slider
+        mini-slider
       h1.first Шопинг в Instagram стал проще
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
+
 
   .screen-two.no-desktop
 
@@ -45,7 +50,8 @@
 </template>
 
 <script>
-import slider from 'components/video/slider'
+import miniSlider from './mini-slider';
+import slider from 'components/video/slider';
 import JQuery from 'jquery';
 import listen from 'event-listener';
 export default {
@@ -59,7 +65,7 @@ export default {
       this.heroHeight = window.innerHeight * 2;
     })
   },
-  components:{slider},
+  components:{slider, miniSlider},
   methods:{
     goVideo(){this.$router.push({name: "video-trendever"})},
     scrollFirst() {
@@ -85,8 +91,17 @@ export default {
 
 .flex-column-center {
   height: 100%;
+  @media (--overtablet) {
+    .first, .wrap-mini-slider {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .first {
+      width: auto !important;
+    }
+  }
   @media (--tabletandless) {
-    display: flex;
     height: calc(100% - 100px);
     flex-direction: column;
     justify-content: center;
@@ -219,10 +234,11 @@ export default {
     padding-top: 400px;
     @media (--overmobile){
       padding-top: 0;
-      position: absolute;
-      top: 50%;
+      position: relative;
+      display: inline-block;
+/*       top: 50%;
       left:50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); */
       width: 100%;
       font-size:46px;
       font-family: $font__family__semibold;
@@ -335,14 +351,21 @@ export default {
 
   .screen-one {
     position: relative;
+    height: calc(50% - 100px);
     @media (--tabletandless){
       background: url(./img/Bgr_clg_mob.jpg);
     }
     @media (--overtablet) {
       height: 366px;
     }
-    height: calc(50% - 100px);
-
+    .wrap-mini-slider {
+      position: relative;
+      bottom: 52px;
+      display: inline-block;
+      @media (--tabletandless){
+        display: none;
+      }
+    }
 
   }
   .screen-two {
