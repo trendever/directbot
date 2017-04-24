@@ -15,7 +15,7 @@ MyPlugin.prototype.apply = function (compiler) {
 
   `;
 
-  var textTrendever = `
+  var textTrendeverGreenForest = `
     $color__brand: #1EA503;
     $color__brand-dark: #0C2107;
     $color__brand-opacity: rgba(31, 77, 19, .85);
@@ -36,7 +36,7 @@ MyPlugin.prototype.apply = function (compiler) {
 
   compiler.plugin('compile', function() {
     var config = require('../../config');
-    var current = config.trendever ? textTrendever : textDirectbot;
+    var current = config.trendever ? textTrendeverOldColors : textDirectbot;
     fs.writeFile(path.join(__dirname, '../../client/style/vars/brand.pcss'), current,'utf-8', function (err) {
       if (err) return console.log(err);
       console.log('make vars.css');
