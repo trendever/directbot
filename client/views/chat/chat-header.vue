@@ -62,6 +62,11 @@
 
         if(this.$route.query){
 
+          if(this.$route.query.product){
+            this.$router.push({name: 'product_detail', params: {id: this.$route.query.product } });
+            return;
+          }
+
           if(this.$route.query.last === 'monetization'){
             this.$router.push({name: 'monetization'});
             return;
