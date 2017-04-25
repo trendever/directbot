@@ -58,8 +58,7 @@
 import miniSlider from './mini-slider';
 import slider from 'components/video/slider';
 import listen from 'event-listener';
-let  JQuery =  require('jquery');
-
+import  JQuery from 'jquery';
 
 export default {
   data () {
@@ -68,8 +67,10 @@ export default {
     };
   },
   mounted(){
+    let jQuery = jQuery;
     this.$nextTick(()=>{
       this.heroHeight = window.innerHeight * 2;
+
       jQuery('img.svg').each( () => {
         var $img = jQuery(this);
         var imgID = $img.attr('id');
