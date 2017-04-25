@@ -355,6 +355,9 @@ export default {
   },
 
   computed: {
+    chatsTitle(){
+      return this.declOfNum(["чат","чата","чатов"])(this.chatsCount);
+    },
     productsCountTitle(){
       return this.declOfNum(["пост","поста","постов"])(this.user.products_count);
     },

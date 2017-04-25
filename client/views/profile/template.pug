@@ -87,6 +87,13 @@
 
         .btns-right_desk(v-if="isAuth && isSelfPage")
 
+          .text-box(v-if="!isMobile && botActivity && !isTrendever")
+            p.bold Активирован ... #[br]
+            p.light(v-if="!postsCount") нет активных постов, ожидаю..
+            p.light(v-if="postsCount")
+              span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
+              span(v-if="chatsCount") Создано {{ chatsCount }} чатов
+
           button.connect(v-if="!botActivity && !isTrendever",
               @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
           button(@click="findBloger") НАЙТИ БЛОГЕРА
@@ -103,14 +110,14 @@
             //-span.empty Деактивирован
             //-span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
           .profile_active(v-if="botActivity")
-            //-img(src="./img/active-directbot-profile.png", v-if="isMobile")
+            img(src="./img/active-directbot-profile.png", v-if="isMobile")
             //-img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
-            .text-box
-              p.bold Активирован #[br]
+            .text-box(v-if="isMobile")
+              p.bold Активирован ... #[br]
               p.light(v-if="!postsCount") нет активных постов, ожидаю..
               p.light(v-if="postsCount")
-                span мониторю {{  postsCount }} {{postsCountTitle}} #[br]
-                span(v-if="chatsCount") общаюсь в {{ chatsCount }} чатах
+                span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
+                span(v-if="chatsCount") Создано {{ chatsCount }} чатов
 
           .grey-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
             i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
