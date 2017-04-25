@@ -1,24 +1,25 @@
 <template lang="pug">
 
-#dress-blogger
-
-  top-blogger
-  how-win
-  bottom-blogger
-  .bottom-space
-    .area-title Расскажите про фонд #ОденьБлогера
-    .area-icons
-      a: img(src="./images/soc_ig.png")
-      a(href="http://www.facebook.com/sharer.php?u=https://www.trendever.com/dressblogger" target="_blank")
-        img(src="./images/soc_fb.png")
-      a(href="http://vk.com/share.php?url=https://www.trendever.com/dressblogger", target="_blank")
-        img(src="./images/soc_vk.png")
-      a(href="https://telegram.me/share/url?url=https://www.trendever.com/dressblogger>" target="_blank")
-        img(src="./images/soc_telegram.png")
-      a(href="whatsapp://send?text=https://www.trendever.com/dressblogger",
-        data-text="https://www.trendever.com/dressblogger"
-        data-action="share/whatsapp/share")
-        img(src="./images/soc_whatsapp.png")
+#dress-blogger(:class="{wait: wait}")
+  span Скоро запуск!
+  template(v-if="!wait")
+    top-blogger
+    how-win
+    bottom-blogger
+    .bottom-space
+      .area-title Расскажите про фонд #ОденьБлогера
+      .area-icons
+        a: img(src="./images/soc_ig.png")
+        a(href="http://www.facebook.com/sharer.php?u=https://www.trendever.com/dressblogger" target="_blank")
+          img(src="./images/soc_fb.png")
+        a(href="http://vk.com/share.php?url=https://www.trendever.com/dressblogger", target="_blank")
+          img(src="./images/soc_vk.png")
+        a(href="https://telegram.me/share/url?url=https://www.trendever.com/dressblogger>" target="_blank")
+          img(src="./images/soc_telegram.png")
+        a(href="whatsapp://send?text=https://www.trendever.com/dressblogger",
+          data-text="https://www.trendever.com/dressblogger"
+          data-action="share/whatsapp/share")
+          img(src="./images/soc_whatsapp.png")
 
 </template>
 
@@ -36,7 +37,7 @@ export default {
   },
   data () {
     return {
-
+      wait: true
     };
   }
 };
@@ -78,6 +79,18 @@ export default {
     background-image: url(./images/Bgr-fix-mob.jpg);
     background-size: 97%;
     background-position: 40px 80px;
+  }
+
+  &.wait {
+    height: 100%;
+    line-height: 100%;
+    span {
+      position: relative;
+      top:50%;
+      transform: traslateY(-50%);
+      font-size: $font__medium;
+      font-family: $font__family__semibold;
+    }
   }
 
   .bottom-space {
