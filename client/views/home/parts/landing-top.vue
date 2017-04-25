@@ -47,13 +47,13 @@
     img(src="../img/directbot-main-logo.png")
 
   .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="!newLanding")
-    | CRM для Instagram-магазинов#[br]
+    | CRM для бизнеса в Instagram#[br]
     span.time__text(v-if="!newLanding")
       | Автоматизация взаимодействия#[br]
       | с покупателями и блогерами#[br]
 
   .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
-    | CRM для Instagram-#[br.mobile]магазинов
+    | CRM для бизнеса#[br.mobile] в Instagram
 
   .set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
