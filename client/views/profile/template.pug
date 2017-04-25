@@ -48,8 +48,9 @@
 
         .profile_info
 
-          .profile_info_img
+          .profile_info_img(:class="{'no-hidden': !getUserPhoto && !isTrendever && isSelfPage }")
             img(:src="getUserPhoto")
+            img.bot-mini(src="./img/bot-mini.svg" v-if="isSelfPage && !getUserPhoto && !isTrendever")
 
 
           .profile_info_about(v-if="user.location && user.products_count")

@@ -128,8 +128,21 @@
           -webkit-background-size: 165px;
           background-size: 165px;
         }
+
+        &.no-hidden {
+          overflow: initial !important;
+        }
+
         img {
           height: 100%;
+        }
+
+        img.bot-mini {
+          display: inline-block;
+          position: absolute * -5px 10px *;
+          width: 40px;
+          height: 40px;
+          z-index: 200;
         }
       }
       &_about{

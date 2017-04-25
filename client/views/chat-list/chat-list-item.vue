@@ -192,6 +192,13 @@ export default {
         user_name: '',
       }
     },
+    statusClass(){
+      switch (this.status){
+        case '': '';
+
+      }
+
+    },
     status(){
       let status = leadsService.getStatus( this.lead.status );
       if(status) return status.name.toLowerCase();

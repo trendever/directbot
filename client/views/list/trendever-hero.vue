@@ -67,42 +67,42 @@ export default {
     };
   },
   mounted(){
-    let jQuery = jQuery;
+
     this.$nextTick(()=>{
       this.heroHeight = window.innerHeight * 2;
 
-      jQuery('img.svg').each( () => {
-        var $img = jQuery(this);
-        var imgID = $img.attr('id');
-        var imgClass = $img.attr('class');
-        var imgURL = $img.attr('src');
+      // jQuery('img.svg').each( () => {
+      //   let $img = jQuery(this);
+      //   let imgID = $img.attr('id');
+      //   let imgClass = $img.attr('class');
+      //   let imgURL = $img.attr('src');
 
-        jQuery.get(imgURL, (data) => {
-          // Get the SVG tag, ignore the rest
-          var $svg = jQuery(data).find('svg');
+      //   jQuery.get(imgURL, (data) => {
+      //     // Get the SVG tag, ignore the rest
+      //     let $svg = jQuery(data).find('svg');
 
-          // Add replaced image's ID to the new SVG
-          if(typeof imgID !== 'undefined') {
-              $svg = $svg.attr('id', imgID);
-          }
-          // Add replaced image's classes to the new SVG
-          if(typeof imgClass !== 'undefined') {
-              $svg = $svg.attr('class', imgClass+' replaced-svg');
-          }
+      //     // Add replaced image's ID to the new SVG
+      //     if(typeof imgID !== 'undefined') {
+      //         $svg = $svg.attr('id', imgID);
+      //     }
+      //     // Add replaced image's classes to the new SVG
+      //     if(typeof imgClass !== 'undefined') {
+      //         $svg = $svg.attr('class', imgClass+' replaced-svg');
+      //     }
 
-          // Remove any invalid XML tags as per http://validator.w3.org
-          $svg = $svg.removeAttr('xmlns:a');
+      //     // Remove any invalid XML tags as per http://validator.w3.org
+      //     $svg = $svg.removeAttr('xmlns:a');
 
-          // Check if the viewport is set, else we gonna set it if we can.
-          if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-              $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-          }
-          alert($svg)
-          // Replace image with new SVG
-          $img.replaceWith($svg);
+      //     // Check if the viewport is set, else we gonna set it if we can.
+      //     if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+      //         $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+      //     }
+      //     alert($svg)
+      //     // Replace image with new SVG
+      //     $img.replaceWith($svg);
 
-        }, 'xml');
-      });
+      //   }, 'xml');
+      // });
     })
   },
   components:{slider, miniSlider},
