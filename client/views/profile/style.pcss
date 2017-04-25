@@ -82,6 +82,41 @@
       display: block;
     }
 
+
+    .btns-right_desk {
+        display: none;
+      @media (--overtablet){
+        display: block;
+        padding-top: 25px;
+        position: absolute 0 0 * *;
+        text-align: center;
+        width: 260px;
+        button {
+          cursor: pointer;
+          font-family: $font__family__light;
+          margin-bottom: 7px;
+          width: 240px;
+          height: 32px;
+          background: transparent;
+          color: $color__brand;
+          border: 1px solid $color__brand;
+          font-size: 16px;
+          border-radius: 5px;
+
+          &:hover, &.connect {
+            color: white;
+            background: $color__brand;
+
+          }
+          &.connect {
+            border: none;
+            background: $color-orange;
+            color: black;
+          }
+        }
+      }
+    }
+
     &_insta-link {
 
       &.change-padding {
@@ -228,7 +263,7 @@
       right: 245px;
       top: 20px;
       font-size: 16px;
-      @media(--mobile) {
+      @media (--mobile) {
         position: relative;
         right: 0;
         top: 0;
@@ -237,10 +272,11 @@
         margin-top: -60px;
         margin-bottom: 25px;
       }
+
       img{
         width: 200px;
         height: 66px;
-        @media(--mobile) {
+        @media (--mobile) {
           width: 639px;
           height: 211px;
           position: relative;

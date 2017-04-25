@@ -85,20 +85,13 @@
             .profile_desc_caption {{ user.shipping_rules }}
 
 
-        template(v-if="!isMobile && isAuth && isSelfPage")
+        .btns-right_desk(v-if="isAuth && isSelfPage")
 
-
-          template(v-if="!isTrendever")
-            button.turn-on-bot-btn-desk.blue-btn(
-              v-if="!botActivity",
+          button.connect(v-if="!botActivity && !isTrendever",
               @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
-            //-button.turn-on-bot-btn-desk.blue-btn(
-              v-if="botActivity"
-              @click="$router.push({name: 'connect-bot'})") OТКЛЮЧИТЬ БОТА
+          button(@click="findBloger") НАЙТИ БЛОГЕРА
 
-
-          button.find-bloger-btn.blue-btn(@click="findBloger") НАЙТИ БЛОГЕРА
-
+          //-button() АНАЛИТИКА
 
 
       template(v-if="loaded && isSelfPage")
@@ -106,12 +99,12 @@
 
         template(v-if="!isTrendever")
           .profile_inactive(v-if="!botActivity")
-            img(src="./img/empty-directbot-profile.png")
-            span.empty Деактивирован
-            span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
+            //-img(src="./img/empty-directbot-profile.png")
+            //-span.empty Деактивирован
+            //-span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
           .profile_active(v-if="botActivity")
-            img(src="./img/active-directbot-profile.png", v-if="isMobile")
-            img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
+            //-img(src="./img/active-directbot-profile.png", v-if="isMobile")
+            //-img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
             .text-box
               p.bold Активирован #[br]
               p.light(v-if="!postsCount") нет активных постов, ожидаю..
