@@ -2,15 +2,20 @@
 #trendever-hero(:style="{ height: (isMobile ? heroHeight : 366) + 'px'}")
 
   .screen-one
-    .flex-column-center
+    .wrap-together
+
       .title-area.no-desktop
         .brand-logo: img(src="./img/Trendever_logo.svg")
-
 
 
       .wrap-mini-slider
         mini-slider
       h1.first Шопинг в Instagram стал проще
+        .social-icons
+          a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/fb_color.svg")
+          a(href="https://www.vk.com/trendever", target="_blank"): img.svg(src="./img/vk_color.svg")
+          //a(href="https://www.vk.com/trendever"): img.svg(src="./img/insta_c.svg")
+
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -52,8 +57,10 @@
 <script>
 import miniSlider from './mini-slider';
 import slider from 'components/video/slider';
-import JQuery from 'jquery';
 import listen from 'event-listener';
+let  JQuery =  require('jquery');
+
+
 export default {
   data () {
     return {
@@ -63,6 +70,38 @@ export default {
   mounted(){
     this.$nextTick(()=>{
       this.heroHeight = window.innerHeight * 2;
+      jQuery('img.svg').each( () => {
+        var $img = jQuery(this);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
+
+        jQuery.get(imgURL, (data) => {
+          // Get the SVG tag, ignore the rest
+          var $svg = jQuery(data).find('svg');
+
+          // Add replaced image's ID to the new SVG
+          if(typeof imgID !== 'undefined') {
+              $svg = $svg.attr('id', imgID);
+          }
+          // Add replaced image's classes to the new SVG
+          if(typeof imgClass !== 'undefined') {
+              $svg = $svg.attr('class', imgClass+' replaced-svg');
+          }
+
+          // Remove any invalid XML tags as per http://validator.w3.org
+          $svg = $svg.removeAttr('xmlns:a');
+
+          // Check if the viewport is set, else we gonna set it if we can.
+          if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+              $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+          }
+          alert($svg)
+          // Replace image with new SVG
+          $img.replaceWith($svg);
+
+        }, 'xml');
+      });
     })
   },
   components:{slider, miniSlider},
@@ -74,7 +113,8 @@ export default {
     scrollSecond() {
       JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
     },
-  }
+  },
+
 };
 </script>
 
@@ -89,19 +129,47 @@ export default {
   }
 }
 
-.flex-column-center {
+.wrap-together {
   height: 100%;
   @media (--overtablet) {
+    line-height: 366px;
+    transform: translateX(-20px);
     .first, .wrap-mini-slider {
       display: inline-block;
-      vertical-align: middle;
     }
-
     .first {
+      position: relative;
       width: auto !important;
+      margin-left: 40px;
+      .social-icons {
+
+        padding-left: 15px;
+        position: absolute * * 0 0;
+        a {
+
+        }
+        img {
+          fill: #000 !important;
+          width: 50px;
+          cursor: pointer;
+          vertical-align: bottom;
+          margin-bottom:20px;
+          padding-right: 10px;
+          color: white;
+        }
+      }
     }
   }
+
+  .social-icons {
+
+    @media (--tabletandless){
+      display: none;
+    }
+  }
+
   @media (--tabletandless) {
+    display: flex;
     height: calc(100% - 100px);
     flex-direction: column;
     justify-content: center;
@@ -359,12 +427,13 @@ export default {
       height: 366px;
     }
     .wrap-mini-slider {
+      height: 100%;
       position: relative;
-      bottom: 52px;
       display: inline-block;
       @media (--tabletandless){
         display: none;
       }
+      vertical-align: middle;
     }
 
   }

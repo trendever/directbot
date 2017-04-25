@@ -2,12 +2,12 @@
 #mini-slide
   .slider
     .wrap(:style="{marginLeft: currentMargin + 'px'}")
-      .item(ref="item").bg-image
+      .item( @click="$router.push({name: 'video-trendever'})", ref="item").bg-image
         i.ic-play.white
-      .item
+      .item(@click="$router.push({name: 'video-trendever'})")
         i.ic-play.opacity
         img(src="./img/slide_2.svg")
-      .item
+      .item(@click="$router.push({name: 'video-trendever'})")
         i.ic-play.opacity
         img(src="./img/slide_3.svg")
 
@@ -69,6 +69,7 @@ $img_width: 282px;
 
 
 #mini-slide {
+  text-align:center;
   padding-top: 100px;
   height: calc($img_height + 140px);
   width: calc($img_width + 100px);
@@ -101,6 +102,7 @@ $img_width: 282px;
   }
 
   .wrap {
+
     transition: all .4s;
     width: calc($img_width * 3.01);
     height: $img_height;
