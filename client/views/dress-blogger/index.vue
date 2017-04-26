@@ -83,13 +83,11 @@ export default {
 
   &.wait {
     height: 100%;
-    line-height: 100%;
     span {
-      position: absolute;
-      left: 50%;
-      top:50%;
-      transform: translate(-50%, -100%);
-      font-size: calc( $font__medium + 10px);
+      width: 100%;
+      position: relative;
+      top: calc( 50% - 50px);
+      font-size: calc( $font__medium + 25px);
       font-family: $font__family__semibold;
     }
   }
