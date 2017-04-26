@@ -7,7 +7,7 @@
   .tag-name {
     flex-grow: 1;
     font-size: calc($font__normal - 3px);
-    padding: 8px 13px;
+    padding: 13px 13px;
     border: 1px solid $color__brand;
     color: $color__brand;
     text-align: center;
