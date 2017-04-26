@@ -62,7 +62,7 @@ export default {
     float: right;
     text-align: center;
     vertical-align:middle;
-    padding-top: 11px;
+    padding-top: 10px;
     cursor:pointer;
 
     &:hover {
