@@ -85,9 +85,10 @@ export default {
     height: 100%;
     line-height: 100%;
     span {
-      position: relative;
+      position: absolute;
+      left: 50%;
       top:50%;
-      transform: traslateY(-50%);
+      transform: translate(-50%, -50%);
       font-size: $font__medium;
       font-family: $font__family__semibold;
     }
