@@ -1,5 +1,5 @@
 <template lang="pug">
-#landing-top.section__content(:style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }").hero__content
+#landing-top(:style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }")
 
   .hero__content__background
 
@@ -57,7 +57,7 @@
 
   .set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
-  button.btn.btn_primary.__orange.__xl.enter__btn.fast__big__btn(v-on:click="$router.push({name: 'auth'})")
+  button.enter-btn(v-on:click="$router.push({name: 'auth'})")
     | ВХОД И РЕГИСТРАЦИЯ
   a.how-button(v-on:click="$parent.scrollFirst", :class="{'new-land': newLanding }") {{ nextButtonText }}
 </template>
@@ -102,8 +102,31 @@ export default {
   }
 }
 #landing-top {
-
+  @media (--tabletandless) {
+    background: url(../img/Bgr_clg_mob.jpg), no-repeat;
+    background-size: cover;
+    background-position-x: 0px;
+    height: 100%;
+  }
+  position: relative;
+  width: 100%;
+  text-align: center;
   height: 100%;
+
+
+  .enter-btn {
+    @media (--overtablet){
+      display: none;
+    }
+    font-size: 36px;
+    position: absolute * 0 100px 0;
+    height: 100px;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: $font__family__light;
+    background: $color-orange;
+  }
 
   .brand-section {
     position: absolute 0 0 * 0;
