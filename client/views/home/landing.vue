@@ -237,7 +237,7 @@ export default {
   position: absolute 0 0 * 0;
   height: 483px;
   @media screen and (min-width: 1024px) {
-    background: url(/static/media/Bgr_clg-blue_1920.2c872bac.png) no-repeat;
+    background: url(./img/Bgr_clg-blue_1920.png) no-repeat;
     background-size: cover;
   }
 }
