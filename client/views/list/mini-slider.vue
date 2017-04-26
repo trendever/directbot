@@ -2,8 +2,10 @@
 #mini-slide
   .slider
     .wrap(:style="{marginLeft: currentMargin + 'px'}")
-      .item( @click="$router.push({name: 'video-trendever'})", ref="item").bg-image
+      .item.bg-image( @click="$router.push({name: 'video-trendever'})", ref="item")
+        img(src="./img/Trendever_logo.svg")
         i.ic-play.white
+        .watch (смотреть видео)
       .item(@click="$router.push({name: 'video-trendever'})")
         i.ic-play.opacity
         img(src="./img/slide_2.svg")
@@ -18,37 +20,23 @@
 export default {
 
   mounted(){
-
-
     let current=true;
     this.time = setInterval(()=>{
-
       let width=this.$refs.item.offsetWidth;
-
       if(current){
-
         this.currentMargin -= width;
         if(Math.abs(this.currentMargin)>=width*2){
           current=!current
           return;
         }
-
-
       } else {
-
         this.currentMargin += width;
         if(this.currentMargin>=0){
           current=!current
           return;
         }
-
-
       }
-
-
     },4000)
-
-
   },
 
   data () {
@@ -123,6 +111,31 @@ $img_width: 282px;
     &.bg-image {
       background-image: url('./img/blue_slide.jpg');
       background-size: 150%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .ic-play {
+        position: relative;
+        top: initial;
+        left: initial;
+        transform: none;
+        margin: 15px 0;
+
+      }
+      img {
+        max-width: 220px;
+        margin: 0 auto;
+        display: inline-block;
+      }
+
+      .watch {
+        margin-top: -10px;
+        line-height: initial;
+        color: white;
+        height: 50px;
+        z-index: 400;
+      }
     }
   }
 
