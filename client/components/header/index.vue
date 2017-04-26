@@ -4,6 +4,11 @@
   .fake-top-standalone(v-if="isStandalone")
   .header__content
     .wrapper.directbot-color(:class="{'chat-slot': $route.name === 'chat' && isMobile}")
+
+      .logos
+        i.ic-logo_trendever_txt(v-if="isTrendever")
+        i.ic-logo_directbot_txt(v-if="!isTrendever")
+
       slot(name="left-content")
       .header__arrow(
         @click='leftBtnAction',
