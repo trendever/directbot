@@ -2,12 +2,12 @@
 <template lang="pug">
 
 .header__menu(v-if="isMobile && notFromUser")
- .header__menu-icon(@click.stop='openMenu', v-show="showBullets")
-  i.ic-menu_bullets
- .header__menu-links.bubble.bubble--arrow.bubble--arrow-ne(v-if="menuOpened")
-  a.header__menu-link.text-regular.clip_copy Копировать ссылку
-  a.header__menu-link.text-delete(@click.stop="showPopup = true", v-if="isSelfProduct" ) Удалить
-  a.header__menu-link.text-cancel Отмена
+  .header__menu-icon(@click.stop='openMenu', v-show="showBullets")
+    i.ic-menu_bullets
+  .header__menu-links.bubble.bubble--arrow.bubble--arrow-ne(v-if="menuOpened")
+    a.header__menu-link.text-regular.clip_copy Копировать ссылку
+    a.header__menu-link.text-delete(@click.stop="showPopup = true", v-if="isSelfProduct" ) Удалить
+    a.header__menu-link.text-cancel Отмена
 
   native-popup.del-popup(:show-popup="showPopup")
     .title-text.title-font Осторожно!
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import clipboard from 'clipboard'; 
+  import clipboard from 'clipboard';
   import * as productService from 'services/products';
   import nativePopup from 'components/popup/native';
   import listen from 'event-listener';
@@ -39,12 +39,12 @@
       }
     },
     created(){
-      
+
       this.outerClose = listen(document.body, 'click',(e)=>{
         targetClass(e, 'menu-cnt', ()=>{
           if(this.menuOpened) this.menuOpened = false;
           if(this.showPopup) this.showPopup = false;
-        
+
         });
 
       })
@@ -89,7 +89,7 @@
           window.eventHub.$emit('copy-product-link', text)
           this.showCopyMessage = true;
 
-        }) 
+        })
 
       },
       deleteProduct(){
