@@ -202,6 +202,10 @@ export default {
 
       }
 
+      @media screen and (min-width: 751px) and (max-width: 1400px) {
+        margin-right: 160px;
+      }
+
       @media (--tabletandless) {
         height: inherit;
         background: white;
