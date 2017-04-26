@@ -23,10 +23,10 @@
           .text.__txt-blue Отмена
 
 
-  .header-mobile(v-if="isMobile && !isAuth")
-    img(src="./img/Trendever_logo.svg")
+  .header-mobile(v-if="isMobile")
+    i.ic-logo_trendever_txt
   header-component(:leftBtnShow="false",
-   :class="{'no-hero': showHero && !isAuth }",
+   :class="{'no-hero': showHero && !isAuth, 'no-hero-auth': showHero && isAuth }",
    v-if="$store.getters.isAuth || isMobile")
 
     right-nav(:current="'home'" slot="content")
@@ -106,15 +106,22 @@ export default {
     })
   },
   data(){
-    return {showHero: true, showMenu: false,showListen:{}}
+    return {showHero: true, showMenu: false,changeListen:{}}
   },
   created(){
 
     this.$store.dispatch('loadTags');
 
-    this.showListen = listen(window, 'scroll',()=>{
+    this.changeListen = listen(window, 'scroll',()=>{
       if(!this.isAuth){
         if(document.body.scrollTop >= (2 * window.innerHeight + 89) && this.isMobile){
+          this.showHero = false;
+        } else {
+          this.showHero = true;
+        }
+      }
+      if(this.isAuth){
+        if(document.body.scrollTop >= 89 && this.isMobile){
           this.showHero = false;
         } else {
           this.showHero = true;
@@ -134,7 +141,7 @@ export default {
     }
   },
   beforeDestroy(){
-    this.showListen.remove();
+    this.changeListen.remove();
   },
   watch:{
     showHero(){
@@ -167,18 +174,26 @@ export default {
     top: calc(200% + 89px);
     left:0;
     right:0;
-
   }
+
+  .header.no-hero-auth {
+    position: absolute !important;
+    top: 89px;
+    left:0;
+    right:0;
+  }
+
+
+
   .header-mobile {
     height: 89px;
     position: relative;
-    background: $color__brand;
+    color: $color__brand;
     text-align: center;
     line-height: 89px;
-    img{
-      width: 250px;
-      padding-top: 12px;
-    }
+    background: #f7f7f7;
+    font-size: 64px;
+    padding-top: 13px;
   }
 
   .search-text {
