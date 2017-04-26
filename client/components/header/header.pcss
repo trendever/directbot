@@ -1,6 +1,6 @@
 @import 'style/vars/vars.pcss';
 .fake-top-standalone {
-  background-color: $color__brand;
+  bbackground-color: #F7F7F7;
   height: 40px;
 }
 
@@ -11,12 +11,12 @@
   right: 0;
   left: 0;
   z-index: 150;
-
+  color: $color__brand;
 
   .wrapper{
     width: 100%;
     height: 100%;
-    background-color: $color__brand;
+    background-color: #F7F7F7;
 
     .header__use-days {
       position: absolute 18px * * 30px;
@@ -74,7 +74,6 @@
       &__ic {
         width: 26px;
         height: 26px;
-        color: $color__white;
         font-size: 26px;
         transition: all 0.3s ease-in-out;
 
@@ -107,7 +106,6 @@
       i {
         width: 26px;
         height: 26px;
-        color: $color__white;
         font-size: 26px;
         transition: all 0.3s ease-in-out;
 
@@ -207,7 +205,7 @@
     position: relative;
     max-width: calc(100% - 220px);
     height: 50px;
-    color: $color__white;
+    //color: $color__white;
     text-overflow: ellipsis;
     white-space: nowrap;
     word-wrap: normal;
@@ -262,10 +260,6 @@
       }
       &._active {
         cursor: default;
-
-        span {
-          color: $color__white;
-        }
       }
     }
   }

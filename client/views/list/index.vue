@@ -21,7 +21,6 @@
           .text Блогерам
         .item
           .text.__txt-blue Отмена
-  right-nav(:current="'home'")
 
 
   .header-mobile(v-if="isMobile && !isAuth")
@@ -29,6 +28,8 @@
   header-component(:leftBtnShow="false",
    :class="{'no-hero': showHero && !isAuth }",
    v-if="$store.getters.isAuth || isMobile")
+
+    right-nav(:current="'home'" slot="content")
 
     .search-text(slot="center-content")
 
@@ -223,10 +224,13 @@ export default {
         @media (--overtablet) {
           //transform: translateX(-45px);
           font-family: $font__family__light;
+          color: $color__brand;
+          border-bottom: 1px solid  $color__brand;
           float: left;
           width: 200px;
+          background: #F7F7F7;
           &::placeholder {
-            color: white;
+            color: $color__brand;
             opacity: .5;
           }
         }
@@ -247,7 +251,6 @@ export default {
           border-top: none;
           border-left: none;
           border-right: none;
-          border-bottom: 1px solid white;
           outline: none;
         }
 
@@ -292,7 +295,6 @@ export default {
     .s-icon {
 
       display: inline-block;
-      color: white;
       cursor: pointer;
       font-size: $font__normal;
       //position: absolute 0 0 * *;

@@ -6,7 +6,7 @@
   .chat-list-cnt(v-if='isDoneLead')
 
     header-component(:title='getTitle', :left-btn-show='false')
-
+      right-nav-component(current="chat", slot="content")
       .header__nav(slot='center-content')
         .header__nav__i.header__text._active
           span(v-if="isTrendever") Чаты
@@ -67,8 +67,6 @@
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')
-  .directbot-right-nav
-    right-nav-component(current="chat")
 
   scroll-top
   //-app-loader.list-loader(v-if="!needLoadLeads")

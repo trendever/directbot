@@ -14,6 +14,7 @@
 
       phone-component(slot="center-content", v-if="!isSelfPage", :phone="shoptel")
 
+      right-nav-component(  slot="content" current="profile" v-on:open-profile-menu="showProfileMenu = true")
       //-div.profile-cash(
         slot='content',
         v-if="isSelfPage && user.plan_id && monetizationDays === 0",
@@ -38,8 +39,9 @@
 
 
 
-  .directbot-right-nav
-    right-nav-component(current="profile" v-on:open-profile-menu="showProfileMenu = true")
+
+
+
   .fake-top-standalone(v-if="isStandalone")
   .section.top.bottom.db-bottom
     .section__content(v-cloak)

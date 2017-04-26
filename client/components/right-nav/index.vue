@@ -66,7 +66,8 @@ export default {
     cursor:pointer;
 
     &:hover {
-      background: $color__brand-light;
+      //background: $color__brand-light;
+      background:$color__gray-light;
     }
 
     &.menu__btn {
@@ -76,7 +77,8 @@ export default {
     }
 
     &.__active {
-      background: $color__brand-light;
+      //background: $color__brand-light;
+      background:$color__gray-light;
     }
     i.ic-user_menu{
       width: 50px;
@@ -88,7 +90,6 @@ export default {
     i.ic-options_menu,
     i.ic-chats_active  {
       font-size: 32px;
-      color: white;
     }
 
     .notify-cout{
