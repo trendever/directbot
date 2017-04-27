@@ -145,7 +145,20 @@
 
     &_insta-link {
 
+      @media (--overtablet) {
+        display: none;
+      }
+
+
       &.directbot {
+        @media (--overtablet) {
+          display: block;
+          padding-left: 160px;
+          .insta-link-text, .insta-link {
+            font-size: 16px;
+          }
+        }
+
         padding-top: 0;
         padding-left: 25px;
         text-align: left;
@@ -156,6 +169,8 @@
           color: $color__brand;
         }
       }
+
+
       &.change-padding {
         padding-top: 15px;
       }
