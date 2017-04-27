@@ -113,13 +113,6 @@ export default {
     this.$store.dispatch('loadTags');
 
     this.changeListen = listen(window, 'scroll',()=>{
-      if(!this.isAuth){
-        if(document.body.scrollTop >= (2 * window.innerHeight + 89) && this.isMobile){
-          this.showHero = false;
-        } else {
-          this.showHero = true;
-        }
-      }
       if(this.isAuth){
         if(document.body.scrollTop >= 89 && this.isMobile){
           this.showHero = false;
@@ -192,8 +185,8 @@ export default {
     text-align: center;
     line-height: 89px;
     background: #f7f7f7;
-    font-size: 64px;
-    padding-top: 13px;
+    font-size: 60px;
+    padding-top: 17px;
   }
 
   .search-text {
