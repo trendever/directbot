@@ -4,7 +4,7 @@
   .screen-one
     .wrap-together
 
-      .title-area.no-desktop
+      .title-area.no-desk
         .brand-logo: img(src="./img/Trendever_logo.svg")
 
 
@@ -21,7 +21,7 @@
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
 
-  .screen-two.no-desktop
+  .screen-two.no-desk
 
     .wrap-second
 
@@ -40,7 +40,7 @@
 
     .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
 
-  .screen-getapp.no-mobile(v-if="false")
+  .screen-getapp.no-mob(v-if="false")
     h2 Приложение для шопинга в instagram
     .wrap-input
       input(placeholder="Номер телефона")
@@ -237,7 +237,7 @@ export default {
     margin: 0 auto;
     padding-bottom: 20px;
 
-    &.no-mobile {
+    &.no-mob {
       @media (--tabletandless) {
         display: none;
       }
@@ -444,7 +444,7 @@ export default {
     }
 
     @media (--overtablet){
-      &.no-desktop {
+      &.no-desk {
         display: none;
       }
     }

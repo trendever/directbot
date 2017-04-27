@@ -73,54 +73,73 @@
     padding-left: 16px;
     padding-bottom: 35px;
 
-    @media(--mobile) {
+    @media (--tabletandless) {
       display: block;
+      padding-right: 10px;
+      padding-left: 10px;
     }
 
 
-    .buttons-right_desk {
+    .profile-buttons {
       display: none;
-      @media (--overtablet){
+
+      @media (--tabletandless) {
+        display: block;
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        button {
+          width: 47%;
+          height: 64px;
+          font-size: $font__medium;
+          margin: 10px;
+        }
+      }
+
+      @media (--overtablet) {
         display: block;
         padding-top: 25px;
         position: absolute 0 0 * *;
         text-align: center;
         width: 260px;
         button {
-          text-transform: uppercase;
-          cursor: pointer;
-          font-family: $font__family__light;
-          margin-bottom: 7px;
           width: 240px;
           height: 32px;
-          background: transparent;
-          color: $color__brand;
-          border: 1px solid $color__brand;
           font-size: 16px;
-          border-radius: 5px;
+        }
+      }
 
-          &:hover, &.connect {
-            color: white;
-            background: $color__brand;
+      button {
+        text-transform: uppercase;
+        cursor: pointer;
+        font-family: $font__family__light;
+        margin-bottom: 7px;
+        background: transparent;
+        color: $color__brand;
+        border: 1px solid $color__brand;
+        border-radius: 5px;
 
-          }
-          &.connect {
-            border: none;
-            background: $color-orange;
-            color: black;
+        &:hover, &.connect {
+          color: white;
+          background: $color__brand;
 
-            &:hover {
-              background: $color-orange-dark;
-            }
+        }
+        &.connect {
+          border: none;
+          background: $color-orange;
+          color: black;
+
+          &:hover {
+            background: $color-orange-dark;
           }
         }
+      }
 
-        .text-box {
-          display: inline-block;
-          color: $color__brand;
-          margin-bottom: 24px;
-        }
-
+      .text-box {
+        display: inline-block;
+        color: $color__brand;
+        margin-bottom: 24px;
       }
     }
 

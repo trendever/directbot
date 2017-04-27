@@ -67,6 +67,29 @@
             //-span.profile_info_about_posts-quantity
               |  {{ user.products_count }} {{productsCountTitle}}
 
+
+        .profile-buttons(v-if="isAuth && isSelfPage")
+
+          template(v-if="!isTrendever")
+            .text-box(v-if="!isMobile && botActivity")
+              p.bold Активирован ... #[br]
+              p.light(v-if="!postsCount") нет активных постов, ожидаю..
+              p.light(v-if="postsCount")
+                span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
+                span(v-if="chatsCount") Создано {{ chatsCount }} чатов
+
+            button.connect.no-mob(v-if="!botActivity",
+                @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
+            template(v-if="isAuth")
+              button(@click="findBloger") НАЙТИ БЛОГЕРА
+              button.no-desk(@click="supportChat") ПОДДЕРЖКА
+
+
+          template(v-if="isTrendever")
+            button.connect.no-mob Подключить бизнес
+
+
+
         //-v-if="longcaption"
         .profile_desc(v-on:click="isMoreClass = !isMoreClass",
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
@@ -86,24 +109,6 @@
             .profile_desc_t Условия
             .profile_desc_caption {{ user.shipping_rules }}
 
-
-        .buttons-right_desk(v-if="isAuth && isSelfPage")
-
-          template(v-if="!isTrendever")
-            .text-box(v-if="!isMobile && botActivity")
-              p.bold Активирован ... #[br]
-              p.light(v-if="!postsCount") нет активных постов, ожидаю..
-              p.light(v-if="postsCount")
-                span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
-                span(v-if="chatsCount") Создано {{ chatsCount }} чатов
-
-            button.connect(v-if="!botActivity",
-                @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
-            button(@click="findBloger") НАЙТИ БЛОГЕРА
-
-
-          template(v-if="isTrendever")
-            button.connect Подключить бизнес
 
           //-button() АНАЛИТИКА
 

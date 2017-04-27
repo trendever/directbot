@@ -23,8 +23,14 @@ body {
   box-sizing: border-box;
 }
 
-*.no-desktop {
+*.no-desk {
   @media (--overtablet){
+    display: none;
+  }
+}
+
+*.no-mob {
+  @media (--tabletandless){
     display: none;
   }
 }
