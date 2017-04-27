@@ -26,7 +26,7 @@
   .header-mobile(v-if="isMobile")
     i.ic-logo_trendever_txt
   header-component(:leftBtnShow="false",
-   :class="{'no-hero': showHero && !isAuth, 'no-hero-auth': showHero && isAuth }",
+   :class="{'no-hero': showHero && !isAuth, 'no-hero-auth': showHero && isAuth && isMobile }",
    v-if="$store.getters.isAuth || isMobile")
 
     right-nav(:current="'home'" slot="content")
