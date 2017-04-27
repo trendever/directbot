@@ -124,12 +124,6 @@ export default {
 @import 'style/vars/vars.pcss';
 
 
-*.no-desktop {
-  @media (--overtablet){
-    display: none;
-  }
-}
-
 .wrap-together {
   height: 100%;
   @media (--overtablet) {
