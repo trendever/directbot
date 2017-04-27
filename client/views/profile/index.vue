@@ -298,35 +298,33 @@ export default {
     },
 
     clipboardLogic(){
-      if(this.isMobile) {
-          let self = this;
-          this.$nextTick(()=>{
-            this.copy =  new clipboard('.profile_insta-link', {
-                text(trigger){
-                  return self.$refs.instaLink.textContent;
-                }
-              })
-            this.copy.on('success',()=>{
-
-
-              let text = `Ссылка ${this.getUserNameLinked}.${this.source} скопирована для вставки.`;
-              if(this.isIos){
-                alert(text)
-                return;
-              }
-
-              this.copyMessage = text;
-              this.showCopyMessage = true;
-
-            })
-            this.copy.on('error', () =>{
-              this.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
-              this.showCopyMessage = true;
-              this.copy.destroy();
-              this.copy = false;
-            });
+      let self = this;
+      this.$nextTick(()=>{
+        this.copy =  new clipboard('.profile_insta-link', {
+            text(trigger){
+              return self.$refs.instaLink.textContent;
+            }
           })
-      }
+        this.copy.on('success',()=>{
+
+
+          let text = `Ссылка ${this.getUserNameLinked}.${this.source} скопирована для вставки.`;
+          if(this.isIos){
+            alert(text)
+            return;
+          }
+
+          this.copyMessage = text;
+          this.showCopyMessage = true;
+
+        })
+        this.copy.on('error', () =>{
+          this.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
+          this.showCopyMessage = true;
+          this.copy.destroy();
+          this.copy = false;
+        });
+      })
     },
     logout(){
       this.$store.dispatch('logOut')
