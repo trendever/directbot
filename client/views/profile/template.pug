@@ -117,10 +117,12 @@
 
 
         template(v-if="!isTrendever")
-          .profile_inactive(v-if="!botActivity")
-            //-img(src="./img/empty-directbot-profile.png")
-            //-span.empty Деактивирован
-            //-span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
+
+          //-.profile_inactive(v-if="!botActivity")
+            img(src="./img/empty-directbot-profile.png")
+            span.empty Деактивирован
+            span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
+
           .profile_active(v-if="botActivity")
             img(src="./img/active-directbot-profile.png", v-if="isMobile")
             //-img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
@@ -160,8 +162,10 @@
             span отвечать покупателям и добавлять сюда товары
 
 
-      .profile_insta-link(v-if="isMobile", :class="{'change-padding': !isSelfPage}")
-        .insta-link-text ссылка на эту витрину
+      .profile_insta-link(v-if="isMobile", :class="{'change-padding': !isSelfPage, directbot: !isTrendever}")
+        .insta-link-text
+          template(v-if="isTrendever") ссылка на эту витрину
+          template(v-if="!isTrendever") Cсылка сюда&nbsp
         .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
         native-popup(:show-popup="showCopyMessage")
           .title-text.title-font Ссылка скопирована
