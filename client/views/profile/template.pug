@@ -87,7 +87,7 @@
             .profile_desc_caption {{ user.shipping_rules }}
 
 
-        .btns-right_desk(v-if="isAuth && isSelfPage")
+        .buttons-right_desk(v-if="isAuth && isSelfPage")
 
           template(v-if="!isTrendever")
             .text-box(v-if="!isMobile && botActivity")
@@ -99,9 +99,12 @@
 
             button.connect(v-if="!botActivity",
                 @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
+            button(@click="findBloger") НАЙТИ БЛОГЕРА
 
 
-          button(@click="findBloger") НАЙТИ БЛОГЕРА
+          template(v-if="isTrendever")
+            button.connect Подключить бизнес
+
           //-button() АНАЛИТИКА
 
 

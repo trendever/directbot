@@ -78,7 +78,7 @@
     }
 
 
-    .btns-right_desk {
+    .buttons-right_desk {
       display: none;
       @media (--overtablet){
         display: block;
@@ -87,6 +87,7 @@
         text-align: center;
         width: 260px;
         button {
+          text-transform: uppercase;
           cursor: pointer;
           font-family: $font__family__light;
           margin-bottom: 7px;
@@ -107,6 +108,10 @@
             border: none;
             background: $color-orange;
             color: black;
+
+            &:hover {
+              background: $color-orange-dark;
+            }
           }
         }
 
