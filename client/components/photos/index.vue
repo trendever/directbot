@@ -40,6 +40,9 @@ export default {
     tags: {
       default: false
     },
+    mentionerId: {
+      default: null
+    },
     shopId: {
       default:null
     },
@@ -165,6 +168,7 @@ export default {
       this.openList( {
         listId: this.listName,
         shop_id: this.shopId,
+        mentioner_id: this.mentionerId,
         updateInstagram
       } ).then(()=>{
 
@@ -183,7 +187,8 @@ export default {
               query: this.searchValue || null,
               tags: this.tags ? this.selectedTagsId : null,
               shop_id: null || this.shopId,
-              offset: this.offset + 30
+              offset: this.offset + 30,
+              mentioner_id: this.mentionerId
             }).then((data)=>{
               setTimeout(()=> { this.load = false },100);
             })

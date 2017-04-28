@@ -34,7 +34,7 @@ export default {
       hideNavUser: false,
       hideGrey: false,
       loaded: true,
-      anotherId: 1, //пустая лента без единого товара
+      //anotherId: 1, //пустая лента без единого товара
       isMoreClass: false,
       showBanner: showBanner,
       copyMessage: '',
@@ -411,6 +411,11 @@ export default {
 
       return this.$route.name === 'profile';
 
+    },
+    mentionerId() {
+      if(this.user){
+        return this.user.supplier_id ? null : this.user.id;
+      }
     },
 
     ...mapGetters([

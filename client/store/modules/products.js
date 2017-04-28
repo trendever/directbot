@@ -58,7 +58,7 @@ let actions = {
 
   },
 
-  openList({ commit, state }, { listId, shop_id = null, limit = 30, updateInstagram } ) {
+  openList({ commit, state }, { listId, shop_id = null, limit = 30, updateInstagram, mentioner_id = null } ) {
 
     if(state.lists[listId] && !updateInstagram) {
 
@@ -68,7 +68,7 @@ let actions = {
 
     }
 
-    return productsService.find( { shop_id, limit }).then(data=>{
+    return productsService.find( { shop_id, limit, mentioner_id }).then(data=>{
 
       commit( types.PRODUCTS_ADD_LIST, { listId , data } );
 

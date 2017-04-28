@@ -179,7 +179,7 @@
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
 
-  photos(:shopId="supplierProfileID || userShopId || anotherId", :listName="listId")
+  photos( :mentionerId="mentionerId", :shopId="supplierProfileID || userShopId", :listName="listId")
 
   .directbot-navbar(v-if="isMobile && isAuth", :class="{'hide-nav': hideNavUser }")
     navbar-component(current='profile')
