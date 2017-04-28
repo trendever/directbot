@@ -1,8 +1,10 @@
 <template lang="pug">
 .photos.columns
+
   template(v-if="noResults && this.$route.name === 'list'")
     .reset-search(@click="$store.dispatch('clearSearch')")
       span Сбросить поиск
+
   template(v-for="photo, index in listProducts")
     single(
       :product="photo.data",
@@ -10,6 +12,12 @@
       :class-name="'p-item-' + index",
       :class-data="index%2",
       ref="single")
+
+  template(v-if="$route.name === 'profile' && noResults")
+    .single-photo.photo__container.fake-photos(v-for="i in [1,2,3]")
+      .photo__img-space
+        img.photo__img(src='./img/image_placeholder_drbt.svg', v-if="!isTrendever")
+        img.photo__img(src='./img/image_placeholder_trndvr.svg', v-if="isTrendever")
 
   #infinitie
   scroll-top

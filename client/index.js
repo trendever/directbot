@@ -7,8 +7,7 @@ window.Promise = window.Promise || Promise
 
 for (var i = 0; i < localStorage.length; i++){
     let key = localStorage.key(i);
-    console.log(key)
-    if(localStorage.getItem(key).indexOf('scroll'  -1)){
+    if(localStorage.getItem(key).indexOf('scroll') !== -1){
       localStorage.removeItem(key);
     }
 }
