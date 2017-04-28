@@ -145,10 +145,10 @@
           .grey-banner(v-if="getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey",
             :class="{'has-chats': botActivity}")
             i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
-            span Нажмите Сохранить&nbsp
+            | Нажмите Сохранить
             | под товаром#[br]
-            | или&nbsp
-            span напишите @savetrend&nbsp
+            | или
+            | напишите @savetrend
             | под постом в#[br]
             | Instagram, чтобы добавить тренд сюда в ленту
 

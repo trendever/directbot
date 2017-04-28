@@ -77,11 +77,11 @@
     .grey-banner(v-if="getBannerInfo.indexOf('chat-banner') === -1",
       :class="{'has-chats': botActivity}")
       i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
-      | Нажмите&nbsp
-      span Купить&nbsp
+      | Нажмите
+      | Купить
       | под товаром#[br]
-      | или&nbsp
-      span напишите @wantit&nbsp
+      | или
+      | напишите @wantit
       | под постом в Instagram,#[br]
       | и здесь появится шопинг-чат
 
