@@ -1,10 +1,10 @@
 <template>
-  <div class="user-info">
-    <img class="avatar" :src="img" v-if="name" @click='$router.push({name: "user", params: {id: name}})'>
+  <div class="user-info" @click='goFinder'>
+    <img class="avatar" :src="img" v-if="name">
     <div class="description" :class="{'no-name': !name}">
       <div class="userName" v-if="name">
-        <span class="title" @click='$router.push({name: "user", params: {id: name}})'>Нашёл</span>
-        <span class="name" @click='$router.push({name: "user", params: {id: name}})'>{{name}}</span>
+        <span class="title">Нашёл</span>
+        <span class="name">{{name}}</span>
       </div>
       <span class="code">{{code}}, {{ lastUpdate}}</span>
     </div>
@@ -15,6 +15,14 @@
 
 <script type="text/babel">
   export default {
+    methods:{
+      goFinder(){
+        if(this.name){
+          this.$router.push({name: "user", params: {id: this.name}})
+        }
+        return;
+      }
+    },
     props: {
       img: {
         type: String,
