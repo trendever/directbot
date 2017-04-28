@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const pkg = require('../package')
 const config = require('../config');
 module.exports = {
-  port: 3000,
+  port: config.webserver.port,
   title: config.trendever ?
     'Trendever.com - шопинг в Instagram стал проще' :
     'Directbot.io - Менеджер магазина в Instagram',
