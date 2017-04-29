@@ -7,7 +7,7 @@ module.exports = {
   port: config.webserver.port,
   title: config.trendever ?
     'Trendever.com - шопинг в Instagram стал проще' :
-    'Directbot.io - Менеджер магазина в Instagram',
+    'Directbot.io - CRM для бизнеса в Instagram',
   vendor: Object.keys(pkg.dependencies),
   babel: {
     babelrc: true,
