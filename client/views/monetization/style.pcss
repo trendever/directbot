@@ -55,9 +55,11 @@
     p.rate-title {
       font-size: $font__medium;
       padding-bottom: 20px;
+      margin-top: 36px;
 
-      @media (--overmobile){
+      @media (--overtablet){
         font-size: $font__normal;
+        margin-top: 24px;
       }
     }
 
@@ -130,7 +132,7 @@
     &.is__end {
       color: #FFDE1E;
     }
-    @media(--tabletandless) {
+    @media (--tabletandless) {
       position: absolute;
       left: 0;
       right: 0;
@@ -152,6 +154,15 @@
 
     @media (--overmobile) {
       margin-bottom: 30px;
+    }
+
+
+    &.help {
+      @media (--overtablet){
+        margin-top: 24px;
+      }
+      margin-top: 36px;
+      width: 100%;
     }
   }
   .bot{
