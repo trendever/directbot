@@ -55,14 +55,29 @@
             img.bot-mini(src="./img/bot-mini.svg" v-if="isSelfPage && !getUserPhoto && !isTrendever")
 
 
-          .profile_info_about(v-if="user.location && user.products_count")
-            span.profile_info_about_type(v-if="shopabout")
-              | {{ shopabout }} &nbsp
-            span.profile_info_about_location(v-if="shoplocation")
-              | {{ shoplocation}}&nbsp&nbsp
-              span(v-if="!isMobile && user.working_time") |&nbsp
-            span.profile_info_about_work-time(v-if="user.working_time")
-              |  {{ shoptime }}&nbsp
+          .profile_info_about
+
+            template
+              span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage")
+                | [категория бизнеса] &nbsp
+              span.profile_info_about_type(v-if="shopabout")
+                | {{ shopabout }} &nbsp
+
+            template
+              span.profile_info_about_location.fake__text(v-if="!shoplocation && isSelfPage")
+                | [местоположение]&nbsp&nbsp
+                span(v-if="!isMobile && user.working_time") |&nbsp
+              span.profile_info_about_location(v-if="shoplocation")
+                | {{ shoplocation}}&nbsp&nbsp
+                span(v-if="!isMobile && user.working_time") |&nbsp
+
+            template
+              span.profile_info_about_work-time.fake__text(v-if="!user.working_time && isSelfPage")
+                |  [часы работы]&nbsp
+              span.profile_info_about_work-time(v-if="user.working_time")
+                |  {{ shoptime }}&nbsp
+
+
               //-span(v-if="!isMobile") |&nbsp
             //-span.profile_info_about_posts-quantity
               |  {{ user.products_count }} {{productsCountTitle}}
@@ -93,12 +108,15 @@
         //-v-if="longcaption"
         .profile_desc(v-on:click="isMoreClass = !isMoreClass",
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
+          .profile_desc_t.fake__text(v-if="!getSlogan && isSelfPage") [слоган вашего бизнеса]
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
-          .shipping_rules(v-if="user.shipping_rules")
-            .profile_desc_t Условия
-            .profile_desc_caption {{ user.shipping_rules }}
+          .shipping_rules(:class="{'fake__text': !user.shipping_rules && isSelfPage }")
+            .profile_desc_t(v-if="user.shipping_rules") Условия
+            .profile_desc_caption.fake__text(v-if="!user.shipping_rules && isSelfPage")
+              | [подробное описание вашего бизнеса, преимуществ и условий работы]
+            .profile_desc_caption(v-if="user.shipping_rules") {{ user.shipping_rules }}
 
 
         //-.profile_desc(v-else :class="less")
