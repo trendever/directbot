@@ -414,7 +414,7 @@ export default {
     },
     mentionerId() {
       if(this.user){
-        return this.user.supplier_id ? null : this.user.id;
+        return this.user.supplier_of !== null ? null : this.user.id;
       }
     },
 
