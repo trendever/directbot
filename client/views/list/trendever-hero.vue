@@ -138,7 +138,7 @@ export default {
       margin-left: 40px;
       .social-icons {
 
-        padding-left: 15px;
+        padding-left: 0px;
         position: absolute * * 0 0;
         a {
 
