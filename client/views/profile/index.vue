@@ -100,7 +100,7 @@ export default {
           let connectShown = vm.$store.state.user.connectBanner;
           if(!connectShown) {
             vm.$store.dispatch('hideConnectBanner');
-            vm.$router.push({ name: 'connect-bot'})
+            //vm.$router.push({ name: 'connect-bot'})
           }
         }
       }
