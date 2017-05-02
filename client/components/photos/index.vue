@@ -179,8 +179,8 @@ export default {
         let elem = document.getElementById("infinitie")
 
         this.windowListener = listen( window , 'scroll', () => {
-
           if (this.checkVisible(elem)){
+            if(this.noResults) return;
             if (this.load) return;
             this.load = true;
             this.increaseListLength( {
