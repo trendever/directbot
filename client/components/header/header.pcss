@@ -21,7 +21,7 @@
 
       display: block;
       color: $color__brand;
-      position: absolute 10px * * 70px;
+      position: absolute 10px * * 26px;
       i {
         font-size: 30px;
       }
@@ -75,7 +75,7 @@
     }
   }
   &__arrow {
-    display: none;
+
 
     @media(--mobile) {
       position: absolute 0 * 0 0;
@@ -118,6 +118,11 @@
       }
 
       i {
+
+        @media (--overtablet){
+          display: none;
+        }
+
         width: 26px;
         height: 26px;
         font-size: 26px;
