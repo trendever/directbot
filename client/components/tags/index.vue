@@ -64,7 +64,7 @@
     <div class="flex-tags">
       <template v-for="tag in filtredTags">
         <div class="tag-name"
-          @click.stop="addTag(tag)"
+          @click.stop="addTag(tag), $router.push({name: isTrendever ? 'home': 'list'})"
           :class="{'selected': tag.active}">
           <span>{{tag.name}}</span>
           <i class="ic-close close"

@@ -35,22 +35,22 @@
         <div class="description-wrapper">
           <description :text="caption"></description>
         </div>
+        <tags :tags="tags"></tags>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <style src="./style.pcss" scoped lang="postcss"></style>
 
 <script type="text/babel">
-  import userInfo from '../user-info/index'; 
+  import userInfo from '../user-info/index';
   import picture from '../picture/index.vue';
   import products from '../products/index.vue';
   import buttons from '../buttons/index.vue';
   import description from '../description/index.vue';
   import listener from 'event-listener';
+  import tags from 'components/tags';
 
 
   export default {
@@ -167,6 +167,7 @@
       products,
       buttons,
       description,
+      tags
     }
   }
 </script>

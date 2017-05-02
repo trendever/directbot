@@ -49,6 +49,7 @@
     </span>
 
   </div>
+
   <photos :list-name="listId" :shop-id="supplier.id"></photos>
 <!--   <navbar v-if="false"></navbar> -->
 </div>
@@ -68,7 +69,6 @@ import mobileLayout from '../mobileLayout/index.vue'
 import desktopLayout from '../desktopLayout/index.vue'
 import photos from 'root/components/photos/index.vue'
 //import navbar from 'components/navbar/navbar.vue'
-
 
 import * as leads from 'services/leads'
 import * as auth from 'services/auth'
@@ -239,7 +239,9 @@ export default {
       'setCallBackAfterLoading'
 
     ]),
-    goToHome(){return}
+    goToHome(){
+      this.$router.push({name: this.isTrendever ? 'home': 'list'});
+    }
   },
 
   computed: {

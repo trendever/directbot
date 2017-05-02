@@ -192,12 +192,31 @@ export default {
 </script>
 
 <style lang="postcss">
-
+@import 'style/vars/vars.pcss';
 .section__content {
     box-sizing: border-box;
     max-width: 1050px;
     margin: 0 auto;
     position: relative;
+}
+
+#product-detail {
+
+  @media (--overtablet){
+    .header__arrow {
+      display: none;
+    }
+
+    #tags {
+      //max-width: 413px;
+      margin-left: 22px;
+    }
+  }
+
+  @media (--tabletandless) {
+    #tags{margin: 10px 0px;}
+  }
+
 }
 
 </style>

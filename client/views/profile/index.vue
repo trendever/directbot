@@ -413,6 +413,7 @@ export default {
 
     },
     mentionerId() {
+      return null;
       if(this.user){
         return this.user.supplier_of !== null ? null : this.user.id;
       }

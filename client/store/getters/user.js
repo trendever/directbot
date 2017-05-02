@@ -87,7 +87,8 @@ export const userShopId =  (state) => {
     return shop.id;
 
   }
-  return null;
+
+  return null || shop.id;
 
 }
 
