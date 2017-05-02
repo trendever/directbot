@@ -21,6 +21,7 @@ let router = new Router({
 
 	routes: [
     { path: '/', redirect: { name: 'home' }},
+    { path: '/create', component: require('views/home/create-your-business')},
 		{
       path: '/home',
       component: config.trendever ? require('views/list/index.vue') : require('views/home/landing.vue'),

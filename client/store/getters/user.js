@@ -83,7 +83,9 @@ export const userShopId =  (state) => {
   let shop = user(state)
 
   if(shop && shop.supplier_of !== null){
+
     return shop.id;
+
   }
   return null;
 
