@@ -11,7 +11,10 @@
         img(src="./img/lp_icons_7.png")
       .sub-title Личного #[br(v-if="!isMobile")] оператора
       .caption
-        a.link-info(@click.stop="$parent.openPopup('is7')") Личный оператор #[br(v-if="!isMobile")] на связи с вашими клиентами #[br(v-if="!isMobile")] 24/7. В 10+ раз дешевле*
+        a.link-info(@click.stop="$parent.openPopup('is7')")
+          | Личный оператор
+          | на связи#[br(v-if="!isMobile")] с вашими клиентами
+          | 7 дней в неделю.#[br(v-if="!isMobile")] В 10+ раз дешевле*
 
       .badge: span 10+ РАЗ#[br] ДЕШЕВЛЕ
 
