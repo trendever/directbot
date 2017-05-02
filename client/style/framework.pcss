@@ -1,0 +1,64 @@
+.tags-buttons_mobile {
+
+  display: none;
+
+  @media (--tabletandless) {
+    display: flex;//block;
+    position: relative;
+    width: 100%;
+    justify-content: center;//text-align: center;
+    margin-top: 10px;
+
+    button {
+      padding: 0;
+      flex: 1;//width: 47%;
+      padding: 19px 15px;//height: 64px;
+      font-size: $font__medium;
+      margin: 2px;
+    }
+  }
+
+  @media (--overtablet) {
+    display: block;
+    padding-top: 25px;
+    position: absolute 0 0 * *;
+    text-align: center;
+    width: 260px;
+    button {
+      width: 240px;
+      height: 32px;
+      font-size: 16px;
+    }
+  }
+
+  button {
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: $font__family__light;
+    margin-bottom: 7px;
+    background: transparent;
+    color: $color__brand;
+    border: 1px solid $color__brand;
+    border-radius: 5px;
+
+    &:hover, &.connect {
+      color: white;
+      background: $color__brand;
+
+    }
+    &.connect {
+      border: none;
+      background: $color-orange;
+      color: black;
+
+      &:hover {
+        background: $color-orange-dark;
+      }
+    }
+  }
+  .text-box {
+    display: inline-block;
+    color: $color__brand;
+    margin-bottom: 24px;
+  }
+}
