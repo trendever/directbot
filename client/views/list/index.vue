@@ -187,6 +187,13 @@ export default {
     background: #f7f7f7;
     font-size: 60px;
     padding-top: 17px;
+
+    .standalone & {
+      z-index: 999;
+      padding-top: 50px;
+    }
+
+
   }
 
   .search-text {
