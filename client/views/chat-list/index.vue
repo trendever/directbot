@@ -9,8 +9,7 @@
       right-nav-component(current="chat", slot="content")
       .header__nav(slot='center-content')
         .header__nav__i.header__text._active
-          span(v-if="isTrendever") Чаты
-          span(v-if="!isTrendever") Чаты
+          span Чаты
 
         //- .header__nav__i.header__text(
         //-   :class='{_active: getLeadTab === "customer"}',
@@ -243,10 +242,14 @@
       leadsArray(){
         if(this.isTrendever) {
           let state = this.$store.state.leads;
-          return state.seller.filter(item=>{
-              //Убрать удаленные
+          return [
+              ...state.seller.filter(item=>{
               return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
-          });
+             }),
+              ...state.customer.filter(item=>{
+              return !(item.cancel_reason === 2) && !(item.cancel_reason === 1);
+             })
+          ]
 
         } else {
           if(this.$store.state.leads.tab === 'customer') {
