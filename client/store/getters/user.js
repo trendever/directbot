@@ -81,14 +81,13 @@ export const user = ( user ) => {
 export const userShopId =  (state) => {
 
   let shop = user(state)
-
-  if(shop && shop.supplier_of !== null){
-
-    return shop.id;
-
+  if(shop){
+    if(window.profileRequest === 'shop'){
+      return shop.id;
+    }
   }
 
-  return null || shop.id;
+  return null;
 
 }
 

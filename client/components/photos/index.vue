@@ -188,7 +188,7 @@ export default {
               tags: this.tags ? this.selectedTagsId : null,
               shop_id: null || this.shopId,
               offset: this.offset + 30,
-              mentioner_id: this.shopId == null ? this.$store.getters.user.id : this.mentionerId
+              mentioner_id: this.mentionerId
             }).then((data)=>{
               setTimeout(()=> { this.load = false },100);
             })

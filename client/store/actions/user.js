@@ -8,7 +8,7 @@ import { removeToken } from 'services/profile'
 
 export const hideConnectBanner = ({ state, commit } ) => {
   state.connectBanner = true;
-} 
+}
 
 
 
@@ -31,10 +31,18 @@ export const getValidUserObject = ( user, user_id ) => {
 };
 
 export const authUser = ( { commit }, { user, token } ) => {
-  
+
   return new Promise( ( resolve, reject ) => {
 
     const { user: cookieUser } = profile.getProfile();
+    console.log('<---------------------------------------')
+    colorLog('CookieUser')
+    prettyLog(cookieUser);
+    console.log('--------------------------------------->')
+
+    if(cookieUser === null){
+
+    }
 
     if ( typeof token === 'string' && user ) {
 
@@ -178,6 +186,7 @@ export const openProfile = ( { commit, state }, id ) => {
         shopService
           .get( requestData )
           .then( ( user ) => {
+            window.profileRequest = 'shop'
             commit( types.USER_RECEIVE_PROFILE,{ profile: getValidUserObject( user, id ), id } );
             commit( types.USER_SET_PHOTOS_CONFIG, { listId: photosConfig.listId, photoFilter:photosConfig.photosFilter, id });
             commit( types.USER_SET_PROFILE, id );
@@ -188,11 +197,12 @@ export const openProfile = ( { commit, state }, id ) => {
             userService
               .get(requestData)
               .then(user=>{
+                window.profileRequest = 'user'
                 commit( types.USER_RECEIVE_PROFILE,{ profile: getValidUserObject( user, id ), id } );
                 commit( types.USER_SET_PHOTOS_CONFIG, { listId: photosConfig.listId, photoFilter:photosConfig.photosFilter, id });
                 commit( types.USER_SET_PROFILE, id );
               })
-              .then(()=>{
+              .catch(()=>{
                 console.warn(
                   new Error( '[SHOP doesn`t exists so use user.get service' ),
                   {
