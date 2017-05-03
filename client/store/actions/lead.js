@@ -72,7 +72,7 @@ export const loadLeads = ( { commit, state }, count = getCountForLoading ) => {
 
     } else {
 
-      if ( true /*getHasMore( state )*/ ) {
+      if ( getHasMore( state )) {
 
 
         //-Тупо правим ошибку загрузки чатов для магазина
