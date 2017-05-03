@@ -1,8 +1,9 @@
 <template lang="pug">
 
-#phone(slot="center-content" v-if="phone")
+#phone(slot="center-content" v-if="true", :class="$route.name")
   a( :href="phone", @click="showPhone($event)")
-    img(src="./phone.png")
+    //img(src="./phone.png")
+    i.ic-icon_phone
 
 </template>
 
@@ -29,18 +30,58 @@ export default {
   cursor: pointer;
   max-width: 40px;
   height: auto;
-
-  img {
+  i.ic-icon_phone {
+    font-size: 30px;
+    color: $color__brand;
+    @media (--tabletandless){
+      font-size: 45px;
+    }
+  }
+/*   img {
     width: 100%;
     height: auto;
-  }
+  } */
   a {
     display: initial;
-    padding: 15px;
+    padding: 10px;
+    height: 129px;
   }
 
-  @media (--overmobile){
-    position: absolute -5px 20% 0 *;
+  &.chat {
+    @media screen and (min-width: 1200px){
+      transform: translateY(-27px);
+      left: 480px !important;
+    }
+
+    @media screen and (min-width: 1025px) and (max-width: 1199px){
+      left: 390px !important;
+      transform: translateY(-27px);
+    }
+  }
+
+  &.user {
+    @media screen and (min-width: 1400px){
+      left: 420px !important;
+      transform: translateY(40px);
+    }
+
+    @media screen and (min-width: 1025px) and (max-width: 1399px){
+      left: 240px !important;
+      transform: translateY(40px);
+    }
+  }
+
+  &.product-detail {
+    @media screen and (min-width: 1200px){
+
+      left: 480px !important;
+    }
+
+  }
+
+  @media (--overtablet){
+    position: relative;
+    left: 20%;
     display: inline-block;
     text-align: center;
     a {
@@ -50,7 +91,7 @@ export default {
 
   }
 
-  @media (--mobile) {
+  @media (--tabletandless) {
     box-sizing: content-box;
     display: block;
     position: absolute 23px 45px 0 *;

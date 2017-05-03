@@ -1,4 +1,11 @@
 <style src='./styles/chat-header.pcss'></style>
+<style lang="postcss">
+  #chat-header {
+    .inline-span {
+      display: inline-block;
+    }
+  }
+</style>
 <template lang="pug">
 #chat-header
 
@@ -33,6 +40,7 @@
 
         .chat-header_cnt.support
           .chat-header_cnt_t Поддержка
+
 
       phone-component(slot="center-content")
 
