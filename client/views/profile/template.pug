@@ -104,6 +104,10 @@
             button.connect.no-mob Подключить бизнес
 
 
+        .profile-buttons(v-if="isTrendever && !isSelfPage")
+            button.no-mob Написать в магазин
+
+
 
         //-v-if="longcaption"
         .profile_desc(v-on:click="isMoreClass = !isMoreClass",
