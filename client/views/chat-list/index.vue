@@ -141,7 +141,7 @@
 
         })
 
-        this.$router.push( { name: 'signup' } );
+        this.$router.push( { name: 'auth' } );
 
       }
 
@@ -199,7 +199,7 @@
         this.run();
 
       } else {
-        this.$router.push( { name: 'signup' } );
+        this.$router.push( { name: 'auth' } );
       }
     },
     beforeDestroy(){

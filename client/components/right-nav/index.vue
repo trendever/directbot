@@ -1,5 +1,5 @@
 <template lang="pug">
-.right-nav(v-if="isAuth && !isMobile && !isFake")
+.right-nav(v-if="isAuth && !isMobile")
 
   .right-nav_i(:class='{"__active": current=="profile"}',
     @click="$router.push({name: 'profile'})",

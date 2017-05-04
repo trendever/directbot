@@ -153,7 +153,7 @@ export default {
 
     } else {
 
-      this.$router.push( { name: 'signup' } );
+      this.$router.push( { name: 'auth' } );
 
     }
 

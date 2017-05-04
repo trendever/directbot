@@ -140,7 +140,7 @@
 
         })
 
-        this.$router.push( { name: 'signup' } );
+        this.$router.push( { name: 'auth' } );
 
       }
 
@@ -198,7 +198,7 @@
         leads.onEvent( this.onEvent );
 
       } else {
-        this.$router.push( { name: 'signup' } );
+        this.$router.push( { name: 'auth' } );
       }
     },
     beforeDestroy(){

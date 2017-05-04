@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Popup from '../views/popup/index'
 import config from 'root/../config'
+import store from 'root/store'
 
 Vue.use(Router)
 
@@ -155,11 +156,16 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next)=>{
+
   if(from.name === 'home-info' || from.name === "home")
     localStorage.setItem(`home.scroll`, window.scrollY);
   else
   localStorage.setItem(`${from.name}.scroll`, window.scrollY);
-
+  if(to.name === 'profile' && store.getters.isFake){
+    router.push({name: 'auth'});
+    next();
+    return;
+  }
   if(to.name === 'user'){
     if(to.params.id.indexOf('_') !== -1){
       let replace = to.params.id.replace(new RegExp("_", 'g'),"-");
