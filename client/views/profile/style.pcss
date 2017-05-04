@@ -169,6 +169,26 @@
         display: none;
       }
 
+      &.trendever {
+        @media (--overtablet) {
+          display: block;
+          padding-left: 160px;
+          padding-top: 0;
+          padding-left: 25px;
+          .insta-link-text, .insta-link {
+            font-size: 16px;
+          }
+          .insta-link-text {
+            margin-right: 5px;
+          }
+          > div {
+            display: inline-block;
+          }
+          .insta-link {
+            color: $color__brand;
+          }
+        }
+      }
 
       &.directbot {
         @media (--overtablet) {

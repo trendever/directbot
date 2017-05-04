@@ -24,8 +24,8 @@
           //-a: i.ic-social_facebook
 
           a
-           .facebook(href="https://www.fb.com/trendevercom", target="_blank")
-            //-img.svg(src="./img/social_facebook_color.svg")
+            .facebook(href="https://www.fb.com/trendevercom", target="_blank")
+            img.svg(src="./img/social_facebook_color.svg")
 
           //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_vkontakte.svg")
           //-a: i.ic-social_vkontakte
@@ -191,9 +191,9 @@ export default {
 
         .instagram{
           border-radius: 13px !important;
-          background-image: url(./img/social_instagram_linear.svg);
+          background-image: url(./img/social_instagram_linear_white.svg);
           &:hover {
-            //background-image: url(./img/social_instagram_mainpg.svg);
+            background-image: url(./img/social_instagram_linear.svg);
             background-color: white;
             background-size: 47px;
             size: 47px;
@@ -208,7 +208,6 @@ export default {
           opacity: .92;
           cursor: pointer;
           background-repeat: no-repeat;
-          background-color: white;
           overflow: hidden;
           background-size: 45px;
           size: 45px;

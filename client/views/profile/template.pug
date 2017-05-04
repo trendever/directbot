@@ -185,7 +185,7 @@
             span отвечать покупателям и добавлять сюда товары
 
 
-      .profile_insta-link(:class="{'change-padding': !isSelfPage, directbot: !isTrendever}")
+      .profile_insta-link(:class="{'change-padding': !isSelfPage, directbot: !isTrendever, trendever: isTrendever}")
         .insta-link-text
           template(v-if="isTrendever") ссылка на эту витрину
           template(v-if="!isTrendever") Cсылка сюда&nbsp
