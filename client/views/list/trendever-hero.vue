@@ -190,13 +190,13 @@ export default {
 
 
         .instagram{
-          border-radius: 15px !important;
+          border-radius: 13px !important;
           background-image: url(./img/social_instagram_linear.svg);
           &:hover {
             //background-image: url(./img/social_instagram_mainpg.svg);
             background-color: white;
-            background-size: 52px;
-            size: 52px;
+            background-size: 47px;
+            size: 47px;
           }
 
         }
@@ -210,8 +210,8 @@ export default {
           background-repeat: no-repeat;
           background-color: white;
           overflow: hidden;
-          background-size: 50px;
-          size: 50px;
+          background-size: 45px;
+          size: 45px;
           border-radius: 7px;
 
         }
