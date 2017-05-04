@@ -53,13 +53,13 @@ export default {
 
   &.chat {
     @media screen and (min-width: 1200px){
-      transform: translateY(-34px);
+      transform: translateY(-35px);
       left: 480px !important;
     }
 
     @media screen and (min-width: 1025px) and (max-width: 1199px){
       left: 390px !important;
-      transform: translateY(-34px);
+      transform: translateY(-35px);
     }
   }
 
