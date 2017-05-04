@@ -1,6 +1,6 @@
 <template lang="pug">
 
-#phone(slot="center-content" v-if="phone", :class="$route.name")
+#phone(slot="center-content", v-if="true", :class="$route.name")
   a( :href="phone", @click="showPhone($event)")
     //img(src="./phone.png")
     i.ic-icon_phone
@@ -30,6 +30,8 @@ export default {
   cursor: pointer;
   max-width: 40px;
   height: auto;
+
+
   i.ic-icon_phone {
     font-size: 30px;
     color: $color__brand;
@@ -44,30 +46,31 @@ export default {
   a {
     display: initial;
     padding: 10px;
-    height: 129px;
+    @media (--overtablet){
+      height: 50px;
+    }
   }
 
   &.chat {
     @media screen and (min-width: 1200px){
-      transform: translateY(-27px);
+      transform: translateY(-34px);
       left: 480px !important;
     }
 
     @media screen and (min-width: 1025px) and (max-width: 1199px){
       left: 390px !important;
-      transform: translateY(-27px);
+      transform: translateY(-34px);
     }
   }
 
   &.user {
     @media screen and (min-width: 1400px){
-      left: 420px !important;
-      transform: translateY(40px);
+      left: 430px !important;
+
     }
 
     @media screen and (min-width: 1025px) and (max-width: 1399px){
       left: 240px !important;
-      transform: translateY(40px);
     }
   }
 
