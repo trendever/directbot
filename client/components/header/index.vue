@@ -12,7 +12,7 @@
       slot(name="left-content")
       .header__arrow(
         @click='leftBtnAction',
-        v-if='leftBtnShow',
+        v-if='leftBtnShow && isMobile',
         :class="{'show-desktop-arrow': showDesktopArrow}")
 
         i.header__arrow__ic.ic-arrow-left(
@@ -27,6 +27,12 @@
 
       .header__center
 
+        .header__arrow(
+          @click='leftBtnAction',
+          v-if='leftBtnShow && !isMobile',
+          :class="{'show-desktop-arrow': showDesktopArrow, [$route.name]: true }")
+          i.header__arrow__ic.ic-arrow-left(
+            :class='{"_up": is_action_up}')
 
         .header__left-logo
           router-link(:to="{name: 'home'}")
