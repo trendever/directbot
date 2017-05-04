@@ -62,7 +62,7 @@
 
 
       template(v-if="!botActivity")
-        connect-button(v-if="!sortedList.length")
+        connect-button(v-if="!sortedList.length || isTrendever")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')
