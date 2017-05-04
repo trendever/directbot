@@ -215,6 +215,10 @@
     &_info {
 
       &_img {
+        &.bordered {
+          border: 1px solid $color__gray-lighter;
+        }
+
         position: relative;
         overflow: hidden;
         border-radius: 50%;
@@ -223,7 +227,7 @@
         -webkit-background-size: 120px;
         background-size: 120px;
         size: 120px;
-        border: 1px solid $color__gray-lighter;
+
 
         @media(--mobile) {
           position: relative;
@@ -243,6 +247,7 @@
 
         img {
           height: 100%;
+
         }
 
         img.bot-mini {
