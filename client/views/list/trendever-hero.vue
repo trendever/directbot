@@ -12,10 +12,38 @@
         mini-slider
       h1.first Шопинг в Instagram стал проще
         .social-icons
-          a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/fb_color.svg")
-          a(href="https://www.vk.com/trendever", target="_blank"): img.svg(src="./img/vk_color.svg")
-          //a(href="https://www.vk.com/trendever"): img.svg(src="./img/insta_c.svg")
 
+          //- a: i.ic-social_facebook
+          //- a: i.ic-social_facebook_color
+          //- a: i.ic-social_vkontakte
+          //- a: i.ic-social_vkontakte_color
+          //- a: i.ic-social_instagram_linear
+          //- a: i.ic-social_instagram_mainpg
+
+          //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_facebook.svg")
+          //-a: i.ic-social_facebook
+
+          a
+           .facebook(href="https://www.fb.com/trendevercom", target="_blank")
+            //-img.svg(src="./img/social_facebook_color.svg")
+
+          //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_vkontakte.svg")
+          //-a: i.ic-social_vkontakte
+
+          a
+            .vkontakte(href="https://www.fb.com/trendevercom", target="_blank")
+              //-img.svg(src="./img/social_vkontakte_color.svg")
+
+          //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_instagram_linear.svg")
+          //-a: i.ic-social_instagram_linear
+
+          a
+            .instagram(href="https://www.fb.com/trendevercom", target="_blank")
+            //-img.svg(src="./img/social_instagram_mainpg.svg")
+
+          //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/fb_color.svg")
+          //-a(href="https://www.vk.com/trendever", target="_blank"): img.svg(src="./img/vk_color.svg")
+          //-a(href="https://www.vk.com/trendever"): img.svg(src="./img/insta_c.svg")
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -140,17 +168,96 @@ export default {
 
         padding-left: 0px;
         position: absolute * * 0 0;
-        a {
+
+        .vkontakte {
+          background-image: url(./img/social_vkontakte.svg);
+          &:hover {
+            background-image: url(./img/social_vkontakte_color.svg);
+            background-color: white;
+          }
 
         }
+
+        .facebook{
+          background-image: url(./img/social_facebook.svg);
+          &:hover {
+            background-image: url(./img/social_facebook_color.svg);
+            background-color: white;
+          }
+
+        }
+
+
+        .instagram{
+          border-radius: 14px !important;
+          background-image: url(./img/social_instagram_mainpg.svg);
+          &:hover {
+            background-image: url(./img/social_instagram_linear.svg);
+            background-color: white;
+          }
+
+        }
+
+
+        .vkontakte,
+        .facebook,
+        .instagram {
+          cursor: pointer;
+          background-repeat: no-repeat;
+          background-color: white;
+          overflow: hidden;
+          background-size: 50px;
+          size: 50px;
+          border-radius: 7px;
+
+        }
+
+
+
+/*         i.ic-social_facebook{
+          color: initial;
+          &:hover a.facebok {
+            display: inline-block;
+          }
+        };
+
+        i.ic-social_vkontakte{
+          color:initial;
+          &:hover a.vkontakte img {
+            display: inline-block;
+          }
+        };
+        i.ic-social_instagram_linear {
+          color:initial;
+          &::hover a.instagram{
+            display: inline-block;
+          }
+        };
+        i.ic-social_instagram_mainpg{
+          color:initial;
+          &::hover a.instagram {
+            display: inline-block;
+          }
+        }; */
+
+        a {
+          margin-right: 10px;
+          margin-bottom: 20px;
+          vertical-align: bottom;
+          i {
+            color: inherit;
+          }
+        }
         img {
-          fill: #000 !important;
+          display: none;
+        }
+        img, i {
+
           width: 50px;
           cursor: pointer;
           vertical-align: bottom;
           margin-bottom:20px;
           padding-right: 10px;
-          color: white;
         }
       }
     }
