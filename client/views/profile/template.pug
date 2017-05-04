@@ -61,14 +61,14 @@
               span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage")
                 | [категория бизнеса] &nbsp
               span.profile_info_about_type(v-if="shopabout")
-                | {{ shopabout }} &nbsp
+                | {{ shopabout }} &nbsp|&nbsp
 
             template
               span.profile_info_about_location.fake__text(v-if="!shoplocation && isSelfPage")
                 | [местоположение]&nbsp&nbsp
                 span(v-if="!isMobile && user.working_time") |&nbsp
               span.profile_info_about_location(v-if="shoplocation")
-                | {{ shoplocation}}&nbsp&nbsp
+                | &nbsp{{ shoplocation}}&nbsp&nbsp
                 span(v-if="!isMobile && user.working_time") |&nbsp
 
             template

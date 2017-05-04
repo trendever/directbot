@@ -216,6 +216,7 @@
         -webkit-background-size: 120px;
         background-size: 120px;
         size: 120px;
+        border: 1px solid $color__gray-lighter;
 
         @media(--mobile) {
           position: relative;
@@ -460,6 +461,9 @@
       vertical-align: super;
       overflow: hidden;
       align-self: flex-end;
+      @media (--overtablet){
+        top: -15px;
+      }
       padding-left: 24px;
       padding-top: 24px;
       @media(--mobile) {
