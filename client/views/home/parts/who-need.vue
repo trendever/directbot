@@ -51,7 +51,6 @@ export default {
 
 @import 'style/vars/vars.pcss';
 
-
 .who-need {
 
   position: relative;

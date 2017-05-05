@@ -1,14 +1,18 @@
 <template lang="pug">
 .advantages-plank.phone-background
-  .title
-    | Система
-    | автоматизации#[br.mobile]
-    | взаимодействия#[br.desktop]
-    | с#[br.mobile] покупателями
-    | и#[br.mobile] блогерами
+
+  template(v-if="!propAdvantages")
+    .title
+      | Система
+      | автоматизации#[br.mobile]
+      | взаимодействия#[br.desktop]
+      | с#[br.mobile] покупателями
+      | и#[br.mobile] блогерами
+  slot(name="title")
+
   .body
 
-    template(v-for="advantage, index in advantages", v-if="showAdvantage === index")
+    template(v-for="advantage, index in propAdvantages || advantages", v-if="showAdvantage === index")
 
       .arrow-right.centered(@click="next(index)")
         i.ic-review_arrow_right
@@ -63,6 +67,11 @@
 
 <script>
 export default {
+  props:{
+    propAdvantages:{
+      default: false
+    }
+  },
   mounted(){
     this.runMiniSlider()
     this.autoChange()
@@ -72,7 +81,7 @@ export default {
   },
   methods:{
     selectAdvantage(index){
-      clearInterval(this.autoTime)      
+      clearInterval(this.autoTime)
       let scroll = document.body.scrollTop;
       this.showAdvantage=index;
       this.$nextTick(()=>{
@@ -82,7 +91,7 @@ export default {
     autoChange(){
       let index=0;
 
-      this.autoTime = setInterval( ()=> { 
+      this.autoTime = setInterval( ()=> {
         let scroll = document.body.scrollTop;
         if(index+1>= this.advantages.length){
           this.showAdvantage=0;

@@ -74,7 +74,7 @@ export default {
   },
   computed:{
     nextButtonText(){
-      return this.newLanding ? 'КАК ЭТО РАБОТАЕТ?' : 'КОМУ НУЖЕН DIRECTBOT?'
+      return this.newLanding ? 'КАК ЭТО РАБОТАЕТ?' : 'ЗАЧЕМ НУЖЕН DIRECTBOT'
     }
   },
   components: {menuSample, brandMenu},
@@ -113,6 +113,15 @@ export default {
   text-align: center;
   height: 100%;
 
+  &.not-old {
+    background-image: url(../img/Pattern_bgr_mob.svg);
+    .how-button {
+      background: none;
+    }
+    .enter-btn {
+      display: none;
+    }
+  }
 
   .enter-btn {
     @media (--overtablet){

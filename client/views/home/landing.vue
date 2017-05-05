@@ -6,15 +6,50 @@
 
   .top-landing-background
 
-  landing-top(:new-landing="newLanding")
+  landing-top(:new-landing="newLanding", :class="{'not-old':!old}")
 
   template(v-if="!newLanding")
 
-    who-need
-    show-bot
-    operator-skills
-    articles
-    .blue-plank
+    template(v-if="old")
+      who-need
+      show-bot
+      operator-skills
+      articles
+
+    template(v-if="!old")
+      #full-mobile-screen(:style="{height: isMobile ? windowHeight + 'px': 100 + 'px'}")
+        .wrap
+          .item-text.one
+            | Организует продажи#[br]
+            | в Instagram, чтобы вы#[br]
+            | не теряли клиентов#[br]
+            | и контролировали#[br]
+            | результаты
+          .item-text.two
+            | Продвигает Instаgram#[br]
+            | органически, заказывая#[br]
+            | контент и рекламу#[br]
+            | у качественных#[br]
+            | блогеров
+          .item-logos
+            img(src="./img/logos/Telegram_sign_word_white.png")
+            img(src="./img/logos/amocrm_logo_white.png")
+            img(src="./img/logos/bitrix_logo_white.png")
+            img(src="./img/logos/viber_logo_bubble_word_white.png")
+
+        button.bottom-mobile(@click="scrollSecond") Как это работает
+
+
+
+
+      advantages(:prop-advantages="advantages")
+        .title(slot="title")
+          | Как это работает
+      center
+      new-articles
+      bottom
+
+    .blue-plank(v-if="old")
       | CRM Directbot удобен настолько,#[br.mobile]
       | что мы готовы предоставить вам#[br]
       | продавца на аутсорсинг 24/7#[br.mobile]
@@ -68,12 +103,69 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
+      old: false,
       newLanding: false,
       margin: 0,
       toggleBtns: false,
       showBtns: false,
       windowHeight: 0,
-      pricePopupShown: false
+      pricePopupShown: false,
+      advantages: [
+
+        {
+          title: 'Создает заказы из Instagram',
+          text: `
+            Автоматом создаёт чат-заказы<br>
+            в CRM с покупателями из Instagram.<br>
+            Обслуживайте клиентов совместно,<br>
+            не рискуя паролем, и отслеживайте<br>
+            статус выполнения заказов
+          `
+        },
+        {
+          title: 'Организует работу с блогерами',
+          text: `
+            Поможет массово создавать фото/видео<br>
+            с вашими товарами для ленты и рекламы.<br>
+            Подберет блогеров, проверить их<br>
+            аудиториюи договориться на<br>
+            выгодных условиях
+          `
+        },
+        {
+          title: 'Интегрируется в Instagram Direct',
+          text: `
+            Менеджеры магазина общаются<br>
+            с клиентами в Direct прямо из CRM.<br>
+            Не теряйте покупателей, которым<br>
+            неудобно писать в WhatsApp<br>
+            или переходить на сайт
+          `
+        },
+        {
+
+          title: 'Выполняет «мартышкин труд»',
+          text: `
+            Автоматизирует ответы на<br>
+            повторяющиеся вопросы, создает<br>
+            шаблоны ответов по товарам и<br>
+            пишет уведомления в комментариях<br>
+            под фото в Instagram
+          `
+        },
+        {
+
+          title: 'Превращает Instagram в магазин',
+          text: `
+            Транформирует вашу Instagram-ленту<br>
+            в интуитивный онлайн-магазин<br>
+            с отзывами, телефоном, карточками<br>
+            товаров и доступный по<br>
+            короткой ссылке
+          `
+        },
+
+      ]
 
     }
   },
@@ -211,6 +303,83 @@ export default {
 
 @import 'style/vars/vars.pcss';
 
+#full-mobile-screen {
+  position: relative;
+
+  button.bottom-mobile {
+    display: none;
+    @media (--tabletandless){
+      font-family: $font__family__light;
+      text-transform: uppercase;
+      background-color:$color__brand;
+      width: 100%;
+      position: absolute * 0 0 0;
+      display: block;
+      height: 100px;
+      border:none;
+      outline: none;
+      font-size: 36px;
+      text-align:center;
+      color: white;
+    }
+  }
+}
+
+
+
+#full-mobile-screen .wrap{
+  height: calc(100% - 100px);
+
+  display: flex;
+  justify-content: center;
+
+
+  @media (--tabletandless){
+    flex-direction: column;
+    background-image: url(./img/Pattern_bgr_mob.svg);
+    background-repeat: repeat;
+    background-size: cover;
+    background-position-y: -100px;
+  }
+
+  .item-text {
+    //flex: 2;
+    text-align: center;
+    @media (--tabletandless){
+      font-size: calc($font__large + 10px);
+      //font-family: $font__family__semibold;
+      color:white;
+      &.one {
+        order: 1;
+      }
+      &.two {
+        order: 3;
+      }
+    }
+  }
+
+  .item-logos {
+    text-align: center;
+    @media (--tabletandless){
+      order: 2;
+      margin: 20px 0px;
+    }
+
+    img {
+      display: inline-block;
+      width: calc(100%/2 - 70px);
+      margin: 20px;
+
+    }
+  }
+}
+
+
+
+
+
+
+
 #landing.new-land{
   @media (--overtablet) {
     background-attachment: fixed;
@@ -221,6 +390,8 @@ export default {
 
   }
 }
+
+
 
 #landing {
   width: 100%;

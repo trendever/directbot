@@ -4,8 +4,8 @@
   .advert-title
     | Менеджер, который#[br.mobile]
     | за вас работает#[br]
-    | с клиентами и#[br.mobile]
-    | блогерами, стоит
+    | с покупателями и#[br.mobile]
+    | блогерами, стоит от
   .advert-price
     span 3990
     i.ic-rub

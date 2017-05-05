@@ -5,7 +5,7 @@
   .bg-face-2
   .bg-face-3
 
-  .landing-title Как это работает?
+  .landing-title Как работает#[br] менеджер
 
   .actions-body.wrap-flex
     .screen.one

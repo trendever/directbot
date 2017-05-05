@@ -2,7 +2,7 @@
 
 .wrap-advert.center-landing
 
-  .advert-title Полный доступ#[br.mobile] к функционалу#[br] CRM Directbot стоит
+  .advert-title Полный доступ#[br.mobile] к функционалу#[br.desktop] CRM Directbot стоит от
   .advert-price
     span 590
     i.ic-rub
