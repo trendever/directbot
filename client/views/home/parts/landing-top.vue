@@ -2,6 +2,7 @@
 #landing-top(:style="{ height: isMobile ? $parent.windowHeight + 'px': 'initial' }")
 
   .hero__content__background
+  .mobile__bg(v-if="!$parent.old")
 
 
   brand-menu
@@ -108,19 +109,45 @@ export default {
     background-position-x: 0px;
     height: 100%;
   }
+  //z-index: 10;
   position: relative;
   width: 100%;
   text-align: center;
   height: 100%;
 
-  &.not-old {
-    background-image: url(../img/Pattern_bgr_mob.svg);
-    .how-button {
-      background: none;
+  &.update-land {
+    @media (--tabletandless){
+
+      background-image: url(../img/Pattern_bgr_mob.svg);
+      .how-button {
+        background: none;
+      }
+      .enter-btn {
+        display: none;
+      }
     }
-    .enter-btn {
-      display: none;
+  }
+
+  .hero__content__background {
+
+  }
+
+  .mobile__bg {
+    display: none;
+    @media (--tabletandless){
+      display:block;
+      position: absolute 0 0 * 0;
+      float: right;
+      background: url(../img/Bgr_clg-blue_1920.png) no-repeat;
+      background-size: 430%;
+      background-position: 50% 50%;
+      z-index: 1;
+      height: 50%;
+      width: 100%;
+
     }
+
+
   }
 
   .enter-btn {
@@ -144,6 +171,7 @@ export default {
   a.header-sticker {
 
     //display: none;
+    z-index: 100;
     text-decoration: none;
     color: white;
     text-align: center;
@@ -319,7 +347,9 @@ export default {
   //mobile logo on first welcome screen
   .logo__mobile{
     display: none;
-    @media(--tabletandless) {
+    @media (--tabletandless) {
+      position: relative;
+      z-index: 50;
       background: url(../img/directbot-logo.svg) no-repeat;
       display: inline-block !important;
       width: 445px;
@@ -344,7 +374,9 @@ export default {
     text-align: center;
     margin-top: 4px;
 
-    @media(--tabletandless) {
+    @media (--tabletandless) {
+      position: relative;
+      z-index: 50;
       width: 100%;
       font-size: 46px;
       text-align: center;
@@ -412,6 +444,8 @@ export default {
       }
     }
     @media (--tabletandless) {
+      position: relative;
+      z-index: 50;
       display: block;
       button{
         width: 600px;

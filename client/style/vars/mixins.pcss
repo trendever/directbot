@@ -1,3 +1,18 @@
+@define-mixin no_desk {
+  @media (--overtablet){
+    display: none;
+  }
+}
+
+@define-mixin no_mob {
+  @media (--tabletandless){
+    display: none;
+  }
+}
+
+
+
+
 @define-mixin auth__button $background: #FFDE1E {
 
 

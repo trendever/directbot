@@ -1,12 +1,12 @@
 <style src="./new-parts/style-global.pcss"></style>
 <template lang="pug">
-#landing(:class="{'new-land': newLanding}")
+#landing(:class="{'new-land': newLanding, 'update-land': !old}")
 
   router-view
 
   .top-landing-background
 
-  landing-top(:new-landing="newLanding", :class="{'not-old':!old}")
+  landing-top(:new-landing="newLanding", :class="{'update-land':!old}")
 
   template(v-if="!newLanding")
 
@@ -17,25 +17,32 @@
       articles
 
     template(v-if="!old")
-      #full-mobile-screen(:style="{height: isMobile ? windowHeight + 'px': 100 + 'px'}")
+      #full-mobile-screen(:style="{height: isMobile ? windowHeight + 'px': 'auto'}")
         .wrap
           .item-text.one
-            | Организует продажи#[br]
-            | в Instagram, чтобы вы#[br]
-            | не теряли клиентов#[br]
-            | и контролировали#[br]
-            | результаты
+            p
+              | Организует продажи#[br]
+              | в Instagram, чтобы вы#[br]
+              | не теряли клиентов#[br]
+              | и контролировали#[br]
+              | результаты
           .item-text.two
-            | Продвигает Instаgram#[br]
-            | органически, заказывая#[br]
-            | контент и рекламу#[br]
-            | у качественных#[br]
-            | блогеров
+            p
+              | Продвигает Instаgram#[br]
+              | органически, заказывая#[br]
+              | контент и рекламу#[br]
+              | у качественных#[br]
+              | блогеров
           .item-logos
-            img(src="./img/logos/Telegram_sign_word_white.png")
-            img(src="./img/logos/amocrm_logo_white.png")
-            img(src="./img/logos/bitrix_logo_white.png")
-            img(src="./img/logos/viber_logo_bubble_word_white.png")
+            img.no-desk(src="./img/logos/Telegram_sign_word_white.png")
+            img.no-desk(src="./img/logos/amocrm_logo_white.png")
+            img.no-desk(src="./img/logos/bitrix_logo_white.png")
+            img.no-desk(src="./img/logos/viber_logo_bubble_word_white.png")
+
+            img.no-mob(src="./img/logos/Telegram_sign_word_blue.png")
+            img.no-mob(src="./img/logos/amocrm_logo_blue.png")
+            img.no-mob(src="./img/logos/bitrix_logo_blue.png")
+            img.no-mob(src="./img/logos/viber_logo_bubble_word_blue.png")
 
         button.bottom-mobile(@click="scrollSecond") Как это работает
 
@@ -195,15 +202,18 @@ export default {
       }
 
       if(!this.newLanding){
-        if(document.body.scrollTop >= JQuery('#operator-skills').offset().top) {
-          if(this.pricePopupShown) return;
-          if(this.$store.state.user.pricePopup) return;
-          this.pricePopupShown = true;
-          setTimeout(()=>{
-            if(this.$route.name === 'home'){
-              this.$router.push({name: 'home-info', params: {id: 'price'}});
-            }
-          }, 7000)
+        let  elem = JQuery('#operator-skills');
+        if(elem && elem.offset()){
+          if(document.body.scrollTop >= elem.offset().top) {
+            if(this.pricePopupShown) return;
+            if(this.$store.state.user.pricePopup) return;
+            this.pricePopupShown = true;
+            setTimeout(()=>{
+              if(this.$route.name === 'home'){
+                this.$router.push({name: 'home-info', params: {id: 'price'}});
+              }
+            }, 7000)
+          }
         }
       }
     })
@@ -301,9 +311,12 @@ export default {
 
 <style lang="postcss">
 
+
 @import 'style/vars/vars.pcss';
 
+
 #full-mobile-screen {
+
   position: relative;
 
   button.bottom-mobile {
@@ -323,60 +336,100 @@ export default {
       color: white;
     }
   }
+
+  .wrap {
+    height: calc(100% - 100px);
+
+    display: flex;
+    justify-content: center;
+
+
+    @media (--tabletandless){
+      flex-direction: column;
+      background-image: url(./img/Pattern_bgr_mob.svg);
+      background-repeat: repeat;
+      background-size: cover;
+      background-position-y: -100px;
+    }
+
+
+    @media (--overtablet) {
+      margin-top: 140px;
+      display:block;
+    }
+
+    .item-text {
+      //flex: 2;
+      text-align: center;
+
+      @media (--overtablet) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        width: calc(100%/2);
+        display: inline-block;
+        float: right;
+        font-size: $font__medium;
+        font-family: $font__family__semibold;
+        color: $color__gray-dark;
+
+        &.one p {
+          padding-right: 100px;
+        }
+        &.two p {
+          padding-left: 100px;
+        }
+      }
+
+      @media (--tabletandless){
+        font-size: calc($font__large + 10px);
+        //font-family: $font__family__semibold;
+        color:white;
+        &.one {
+          order: 1;
+        }
+        &.two {
+          order: 3;
+        }
+      }
+    }
+
+    .item-logos {
+      text-align: center;
+
+      @media (--overtablet) {
+
+      }
+
+      @media (--tabletandless){
+        order: 2;
+        margin: 20px 0px;
+      }
+
+      img.no-desk {@mixin no_desk;}
+      img.no-mob {@mixin no_mob;}
+
+
+      img {
+        display: inline-block;
+        width: calc(100%/2 - 70px);
+        margin: 20px;
+        @media (--overtablet){
+          width: 200px;
+        }
+
+      }
+    }
+  }
 }
 
 
-
-#full-mobile-screen .wrap{
-  height: calc(100% - 100px);
-
-  display: flex;
-  justify-content: center;
-
-
-  @media (--tabletandless){
-    flex-direction: column;
-    background-image: url(./img/Pattern_bgr_mob.svg);
-    background-repeat: repeat;
-    background-size: cover;
-    background-position-y: -100px;
-  }
-
-  .item-text {
-    //flex: 2;
-    text-align: center;
-    @media (--tabletandless){
-      font-size: calc($font__large + 10px);
-      //font-family: $font__family__semibold;
-      color:white;
-      &.one {
-        order: 1;
-      }
-      &.two {
-        order: 3;
-      }
-    }
-  }
-
-  .item-logos {
-    text-align: center;
-    @media (--tabletandless){
-      order: 2;
-      margin: 20px 0px;
-    }
-
-    img {
-      display: inline-block;
-      width: calc(100%/2 - 70px);
-      margin: 20px;
-
+#landing.update-land {
+  @media (--overtablet){
+    .advantages-plank .title {
+      padding-top: 20px;
     }
   }
 }
-
-
-
-
 
 
 
