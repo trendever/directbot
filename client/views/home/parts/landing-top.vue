@@ -138,11 +138,11 @@ export default {
       display:block;
       position: absolute 0 0 * 0;
       float: right;
-      background: url(../img/Bgr_clg-blue_1920.png) no-repeat;
-      background-size: 430%;
-      background-position: 50% 50%;
+      background: url(../img/lp_drbt_collage-mob-crop.png) no-repeat;
+      background-size: 100%;
+      background-position: 50% 0px;
       z-index: 1;
-      height: 50%;
+      height: calc(100% - 100px);
       width: 100%;
 
     }
