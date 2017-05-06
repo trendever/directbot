@@ -65,6 +65,9 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 #connect-get {
+  @media (--tabletandless){
+    padding-bottom: 100px;
+  }
 
   .info-box {
     position: relative;

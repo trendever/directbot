@@ -467,11 +467,18 @@ $ball__size: 120px;
     background-color: transparent;
   .landing-title {
     @mixin landing__title;
+    @media (--overtablet){
+      padding-top: 30px;
+    }
   }
 
   .toggle-title, .bottom-wrapper{
     background: transparent;
     background-color: transparent;
+  }
+
+   div[class^='bg-face'] {
+    background-image: none;
   }
 }
 
