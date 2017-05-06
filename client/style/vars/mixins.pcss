@@ -1,3 +1,18 @@
+@define-mixin landing__title {
+  font-size: 60px;
+  font-family: $font__family__regular;
+  text-align: center;
+  padding: 30px 0;
+  color: $color__gray-dark;
+
+  @media (--overtablet){
+    font-size: $font__large;
+    padding-top: 180px;
+  }
+}
+
+
+
 @define-mixin no_desk {
   @media (--overtablet){
     display: none;

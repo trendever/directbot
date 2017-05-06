@@ -17,7 +17,7 @@
       articles
 
     template(v-if="!old")
-      #full-mobile-screen(:style="{height: isMobile ? windowHeight + 'px': 'auto'}")
+      #second-mobile-screen(:style="{height: isMobile ? windowHeight + 'px': 'auto'}")
         .wrap
           .item-text.one
             p
@@ -61,9 +61,9 @@
       | что мы готовы предоставить вам#[br]
       | продавца на аутсорсинг 24/7#[br.mobile]
       | всего за 3990 руб. в месяц#[br.mobile]
-    operator-actions
-    toggle-role
-    connect-get
+    operator-actions(:class="{'update-land': !old}")
+    toggle-role(:class="{'update-land': !old}")
+    connect-get(:class="{'update-land': !old}")
     .fake-height(v-if="toggleBtns")
 
   template(v-if="newLanding")
@@ -75,7 +75,7 @@
 
     .fake-bottom
 
-
+  .chat-ball(v-if="showChatBall",  @click="ask") ЧАТ
   .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
     button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
       v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
@@ -117,6 +117,7 @@ export default {
       showBtns: false,
       windowHeight: 0,
       pricePopupShown: false,
+      showChatBall: true,
       advantages: [
 
         {
@@ -197,8 +198,10 @@ export default {
 
       if(this.isMobile){
         this.showBtns = document.body.scrollTop > window.innerHeight * 2;
+        this.showChatBall = document.body.scrollTop <= window.innerHeight * 1.1;
       } else {
         this.showBtns = document.body.scrollTop > window.innerHeight;
+        this.showChatBall = document.body.scrollTop <= window.innerHeight;
       }
 
       if(!this.newLanding){
@@ -315,7 +318,41 @@ export default {
 @import 'style/vars/vars.pcss';
 
 
-#full-mobile-screen {
+
+
+
+$ball__size: 120px;
+
+.chat-ball {
+  cursor: pointer;
+  position: fixed * 20px 30px *;
+  size: $ball__size;
+  border-radius: 50%;
+  background-color: $color-orange;
+  text-align: center;
+  line-height: calc($ball__size + 4px);
+  font-size: $font__medium;
+
+  &::after {
+    display: block;
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 20px 40px 20px 0px;
+    border-color: transparent $color-orange transparent transparent;
+    position: absolute * * 0 -10px;
+    transform: rotate(-42deg);
+  }
+
+  @media (--overtablet){
+    transform: scale(.5) translate(-70px,30px);
+  }
+
+}
+
+
+#second-mobile-screen {
 
   position: relative;
 
@@ -421,6 +458,23 @@ export default {
     }
   }
 }
+
+
+#toggle-role.update-land,
+#connect-get.update-land,
+#operator-actions.update-land {
+    background: transparent;
+    background-color: transparent;
+  .landing-title {
+    @mixin landing__title;
+  }
+
+  .toggle-title, .bottom-wrapper{
+    background: transparent;
+    background-color: transparent;
+  }
+}
+
 
 
 #landing.update-land {
