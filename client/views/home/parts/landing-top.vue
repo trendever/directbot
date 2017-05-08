@@ -5,6 +5,8 @@
   .mobile__bg(v-if="!$parent.old")
 
 
+  phone-component(:phone="'+79854107012'")
+
   brand-menu
     template(slot="desktop-view")
       //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
@@ -66,6 +68,7 @@
 <script>
 import menuSample from 'components/menu/menu-sample';
 import brandMenu from 'components/menu/brand-menu';
+import phoneComponent from 'components/phone/phone-btn';
 
 export default {
   props:{
@@ -78,7 +81,7 @@ export default {
       return this.newLanding ? 'КАК ЭТО РАБОТАЕТ?' : 'ЗАЧЕМ НУЖЕН DIRECTBOT'
     }
   },
-  components: {menuSample, brandMenu},
+  components: {menuSample, brandMenu,phoneComponent},
   data(){
     return {
       isSafari: window.browser.safari,

@@ -50,6 +50,23 @@ export default {
       height: 50px;
     }
   }
+  &.home {
+    display: none;
+    @media (--tabletandless){
+      display: inline-block;
+      position: absolute 22px 120px initial *;
+      z-index: 200;
+      max-width: 100px;
+      i {
+        color: white;
+        font-size: 50px;
+      }
+
+      a {
+        display: inline-block;
+      }
+    }
+  }
 
   &.chat {
     @media screen and (min-width: 1200px){
@@ -76,10 +93,8 @@ export default {
 
   &.product-detail {
     @media screen and (min-width: 1200px){
-
       left: 480px !important;
     }
-
   }
 
   @media (--overtablet){
@@ -91,7 +106,6 @@ export default {
       display: inline-block;
       width: 60px;
     }
-
   }
 
   @media (--tabletandless) {

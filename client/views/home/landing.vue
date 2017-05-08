@@ -48,10 +48,10 @@
 
 
 
-
       advantages(:prop-advantages="advantages")
         .title(slot="title")
           | Как это работает
+      .why-button Почему мы это делаем
       center
       new-articles
       bottom
@@ -543,6 +543,25 @@ $ball__size: 120px;
     }
     height: 79px;
 
+  }
+
+  .why-button {
+    display: none;
+    margin: 35px auto 25px auto;
+    @media (--tabletandless){
+      display: block;
+      border-radius: 5px;
+      font-family: $font__family__semibold;
+      color: $color__brand;
+      border: 1px solid $color__brand;
+      width: 600px;
+      height: 118px;
+      font-size: 36px;
+
+      text-align: center;
+      line-height: 118px;
+      text-transform: uppercase;
+    }
   }
 
   .blue-plank {
