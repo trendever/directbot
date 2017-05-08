@@ -23,22 +23,22 @@
           //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_facebook.svg")
           //-a: i.ic-social_facebook
 
-          a
-            .facebook(href="https://www.fb.com/trendevercom", target="_blank")
+          a(href="https://www.fb.com/trendevercom", target="_blank")
+            .facebook
             img.svg(src="./img/social_facebook_color.svg")
 
           //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_vkontakte.svg")
           //-a: i.ic-social_vkontakte
 
-          a
-            .vkontakte(href="https://www.vk.com/trendever", target="_blank")
+          a(href="https://www.vk.com/trendever", target="_blank")
+            .vkontakte
               //-img.svg(src="./img/social_vkontakte_color.svg")
 
           //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_instagram_linear.svg")
           //-a: i.ic-social_instagram_linear
 
-          a
-            .instagram(href="https://www.fb.com/trendevercom", target="_blank")
+          a(href="https://www.instagram.com/trendevercom", target="_blank")
+            .instagram
             //-img.svg(src="./img/social_instagram_mainpg.svg")
 
           //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/fb_color.svg")
