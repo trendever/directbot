@@ -10,7 +10,7 @@
 
       .wrap-mini-slider
         mini-slider
-      h1.first Шопинг в Instagram стал проще
+      h1.first Шопинг в Instagram#[br.mobile] стал проще
         .social-icons
 
           //- a: i.ic-social_facebook
