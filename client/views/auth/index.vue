@@ -71,8 +71,8 @@
               v-on:click='sendSMS') Отправить код
             //-.link-container(v-if="false")
               a.link-bottom( v-on:click.prevent='onClickLink') Мне нужна помощь
-            .link-container(v-if="!isTrendever")
-              a.link-bottom.some-left(v-on:click.stop='$router.push({name: "popup", params: { id: "conditions"} } )')
+            .link-container
+              a.link-bottom.some-left(v-on:click.stop='conditions')
                 | Условия использования
 
 </template>
@@ -179,6 +179,13 @@ export default {
     }
   },
   methods: {
+    conditions(){
+      if(!this.isTrendever){
+        this.$router.push({name: "popup", params: { id: "conditions"} } )
+        return;
+      }
+      this.$router.push({name: "agreement" } )
+    },
     ...mapActions([
       'saveAuthData',
       'signup',

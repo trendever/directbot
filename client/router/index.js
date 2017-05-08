@@ -46,6 +46,11 @@ let router = new Router({
       ]
 		},
     {
+      path: '/agreement',
+      name: 'agreement',
+      component: require('views/info/agreement')
+    },
+    {
       name: 'dress-blogger',
       path: '/dressblogger',
       component: require('views/dress-blogger')
