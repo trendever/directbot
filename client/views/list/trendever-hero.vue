@@ -548,7 +548,7 @@ export default {
 
     @media (--tabletandless){
       background: url(./img/Trvr_pattern_green_dark.svg);
-      background-size: 190%;
+      background-size: 200%;
       //background: url(./img/blue_bgr.png);
     }
 
