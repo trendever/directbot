@@ -247,7 +247,7 @@ export default {
           border-bottom: 1px solid  $color__brand;
           float: left;
           width: 200px;
-          background: #F7F7F7;
+          background: $color__header__bg;
           &::placeholder {
             color: $color__brand;
             opacity: .5;
