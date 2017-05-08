@@ -75,7 +75,7 @@
 
     .fake-bottom
 
-  .chat-ball(v-if="showChatBall",  @click="ask") ЧАТ
+  .chat-ball(v-if="showChatBall && !old",  @click="ask") ЧАТ
   .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
     button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
       v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
