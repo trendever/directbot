@@ -140,14 +140,15 @@
   @media (--overtablet) {
     i{
       display: inline-block;
-      position: absolute 1px * * 77%;
+      position: absolute 1px 200px * *;
       color: $color__brand;
       transform: rotate(90deg);
       padding: 10px;
       width: 50px;
     }
     #menu-sample {
-      left: 64%;
+      right: 188px;
+      top: 64px;
     }
   }
 
