@@ -136,19 +136,12 @@
 @import 'style/vars/vars.pcss';
 
 .product-menu {
-
   @media (--overtablet) {
+    display: none;
     i{
-      display: inline-block;
-      position: absolute 1px 200px * *;
       color: $color__brand;
       transform: rotate(90deg);
       padding: 10px;
-      width: 50px;
-    }
-    #menu-sample {
-      right: 188px;
-      top: 64px;
     }
   }
 
@@ -159,6 +152,26 @@
       color: #b2b2b2;
       transform: rotate(90deg) translateY(4%);
       padding: 20px;
+    }
+  }
+
+  &.product-header {
+    display: none;
+    @media (--overtablet){
+      transform: translateX(390px);
+      display: inline-block;
+      i {
+        position: static;
+      }
+    }
+
+    @media screen and (min-width: 1400px){
+      transform: translateX(550px);
+    }
+
+    #menu-sample {
+      display: block;
+      transform: translateX(22px);
     }
   }
 }

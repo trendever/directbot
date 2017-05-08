@@ -13,6 +13,8 @@
     .directbot-right-nav(slot="content")
       right-nav-component
 
+    product-menu(slot="center-content").product-header
+
   .section.main.product
     .section__content
       post-component
@@ -28,6 +30,7 @@ import store from 'root/store';
 import RightNavComponent from 'components/right-nav';
 import HeaderComponent from 'components/header/index.vue';
 import PostComponent from './components/root/index.vue';
+import productMenu from 'components/productmenu';
 
 
 
@@ -185,7 +188,8 @@ export default {
 
     RightNavComponent,
     HeaderComponent,
-    PostComponent
+    PostComponent,
+    productMenu
 
   },
 }
