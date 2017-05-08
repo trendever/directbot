@@ -8,8 +8,9 @@ button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot
     span.no-desk -ПРОФИЛЬ
 </template>
 
-<script>
-export default {
-};
-</script>
+<style lang="postcss">
+  button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn {
+    position: fixed;
+  }
+</style>
 
