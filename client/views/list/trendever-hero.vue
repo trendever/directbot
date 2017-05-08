@@ -193,10 +193,9 @@ export default {
           border-radius: 13px !important;
           background-image: url(./img/social_instagram_linear_white.svg);
           &:hover {
-            background-image: url(./img/social_instagram_linear.svg);
+            //background-image: url(./img/social_instagram_linear.svg);
+            background-image: url(./img/instagram_newicon_col_small.png);
             background-color: white;
-            background-size: 47px;
-            size: 47px;
           }
 
         }

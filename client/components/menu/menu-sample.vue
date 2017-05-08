@@ -82,7 +82,7 @@
 
   .content {
 
-    @media (--overmobile) {
+    @media (--overtablet) {
 
       :first-child{
         border-top-right-radius: 4px;
@@ -99,7 +99,7 @@
 
     .item {
 
-      @media (--overmobile) {
+      @media (--overtablet) {
         background: #F0F0F0;
         &:hover {
 
@@ -131,7 +131,7 @@
         color: #595959;
         background: white;
 
-        @media screen and (--overmobile){
+        @media screen and (--overtablet){
 
           padding-left: 30px;
 
