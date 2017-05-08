@@ -84,7 +84,10 @@
       clipboardLogic(){
 
         if (this.copy) return;
-        let link = `https://directbot.io/product/${this.$route.params.id}`;
+
+        let source = this.isTrendever ? 'trendever.com' : 'directbot.io'
+
+        let link = `https://${source}/product/${this.$route.params.id}`;
 
         this.copy =  new clipboard('.clip_copy', {
             text(trigger){
