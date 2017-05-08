@@ -64,6 +64,9 @@
     &.prof-menu {
       width: 242px;
     }
+    &.product-menu {
+      width: 275px;
+    }
   }
 
   @media (--tabletandless) {

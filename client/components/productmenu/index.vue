@@ -1,13 +1,16 @@
 <style src='./menu.pcss'></style>
 <template lang="pug">
+.product-menu(v-if="notFromUser")
 
-.header__menu(v-if="isMobile && notFromUser")
-  .header__menu-icon(@click.stop='openMenu', v-show="showBullets")
-    i.ic-menu_bullets
-  .header__menu-links.bubble.bubble--arrow.bubble--arrow-ne(v-if="menuOpened")
-    a.header__menu-link.text-regular.clip_copy Копировать ссылку
-    a.header__menu-link.text-delete(@click.stop="showPopup = true", v-if="isSelfProduct" ) Удалить
-    a.header__menu-link.text-cancel Отмена
+  i.ic-menu_bullets(@click.stop='openMenu', v-show="showBullets")
+
+  menu-sample.product-menu(:opened="menuOpened", v-on:close="menuOpened = false")
+    .item
+      .text.clip_copy Копировать ссылку
+    .item(@click.stop="showPopup = true", v-if="isSelfProduct" )
+      .text.__txt-red Удалить
+    .item
+      .text.__txt-blue Отмена
 
   native-popup.del-popup(:show-popup="showPopup")
     .title-text.title-font Осторожно!
@@ -15,6 +18,17 @@
     .button-text
       span(@click.stop="deleteProduct") OK
       span(@click.stop="showPopup = false, menuOpened = false") Отмена
+
+
+  //-Старый вариант
+    .header__menu(v-if="isMobile && notFromUser")
+      .header__menu-icon(@click.stop='openMenu', v-show="showBullets")
+        i.ic-menu_bullets
+      .header__menu-links.bubble.bubble--arrow.bubble--arrow-ne(v-if="menuOpened")
+        a.header__menu-link.text-regular.clip_copy Копировать ссылку
+        a.header__menu-link.text-delete(@click.stop="showPopup = true", v-if="isSelfProduct" ) Удалить
+        a.header__menu-link.text-cancel Отмена
+
 
 </template>
 
@@ -25,11 +39,12 @@
   import listen from 'event-listener';
   import { targetClass } from 'root/utils';
   import settings from 'root/settings';
+  import menuSample from 'components/menu/menu-sample';
 
   import { mapGetters } from 'vuex';
 
   export default{
-    components: {nativePopup},
+    components: {nativePopup, menuSample},
     data(){
       return {
         showPopup: false,
@@ -113,3 +128,36 @@
     }
   }
 </script>
+
+<style lang="postcss">
+@import 'style/vars/vars.pcss';
+
+.product-menu {
+
+  @media (--overtablet) {
+    i{
+      display: inline-block;
+      position: absolute 1px * * 77%;
+      color: $color__brand;
+      transform: rotate(90deg);
+      padding: 10px;
+      width: 50px;
+    }
+    #menu-sample {
+      left: 64%;
+    }
+  }
+
+  @media (--tabletandless){
+    i{
+      display: inline-block;
+      position: absolute 88px 15px * *;
+      color: #b2b2b2;
+      transform: rotate(90deg) translateY(4%);
+      padding: 20px;
+    }
+  }
+}
+
+
+</style>

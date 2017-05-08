@@ -1,58 +1,58 @@
 <template>
   <div>
-<mobile-layout
-  v-if="isSmall"
-  :products="products"
-  :supplier-available="supplierAvailable"
-  :avatar-url="avatarUrl"
-  :code="code"
-  :name="mentionedName"
-  :tags="tags"
-  :picture="picture"
-  :caption="caption"
-  :is-liked="isLiked"
-  :last-update="lastUpdate"
-  :product-id="productId"
-  :like="like"
-  :buy="buy"
-  :buy-promo-product="buyPromoProduct"
-  :go-to-home="goToHome"
-></mobile-layout>
-<desktop-layout
-  v-if="!isSmall"
-  :products="products"
-  :supplier-available="supplierAvailable"
-  :avatar-url="avatarUrl"
-  :code="code"
-  :name="mentionedName"
-  :tags="tags"
-  :picture="picture"
-  :caption="caption"
-  :is-liked="isLiked"
-  :last-update="lastUpdate"
-  :is-mobile="isMobile"
-  :product-id="productId"
-  :like="like"
-  :buy="buy"
-  :buy-promo-product="buyPromoProduct"
-  :go-to-home="goToHome"
-></desktop-layout>
+    <mobile-layout
+      v-if="isSmall"
+      :products="products"
+      :supplier-available="supplierAvailable"
+      :avatar-url="avatarUrl"
+      :code="code"
+      :name="mentionedName"
+      :tags="tags"
+      :picture="picture"
+      :caption="caption"
+      :is-liked="isLiked"
+      :last-update="lastUpdate"
+      :product-id="productId"
+      :like="like"
+      :buy="buy"
+      :buy-promo-product="buyPromoProduct"
+      :go-to-home="goToHome"
+    ></mobile-layout>
+    <desktop-layout
+      v-if="!isSmall"
+      :products="products"
+      :supplier-available="supplierAvailable"
+      :avatar-url="avatarUrl"
+      :code="code"
+      :name="mentionedName"
+      :tags="tags"
+      :picture="picture"
+      :caption="caption"
+      :is-liked="isLiked"
+      :last-update="lastUpdate"
+      :is-mobile="isMobile"
+      :product-id="productId"
+      :like="like"
+      :buy="buy"
+      :buy-promo-product="buyPromoProduct"
+      :go-to-home="goToHome"
+    ></desktop-layout>
 
- <div class="products" v-if="isProduct">
-  <div class="title-wrapper">
+     <div class="products" v-if="isProduct">
+      <div class="title-wrapper">
 
-    <span class="title">
-      <p class="title-not-link">Больше от </p>
-      <router-link :to='{name: "user", params: {id: supplierName}}' class="title-link">
-        <p>{{supplierName}}</p>
-      </router-link>
-    </span>
+        <span class="title">
+          <p class="title-not-link">Больше от </p>
+          <router-link :to='{name: "user", params: {id: supplierName}}' class="title-link">
+            <p>{{supplierName}}</p>
+          </router-link>
+        </span>
 
-  </div>
+      </div>
 
-  <photos :list-name="listId" :shop-id="supplier.id"></photos>
-<!--   <navbar v-if="false"></navbar> -->
-</div>
+      <photos :list-name="listId" :shop-id="supplier.id"></photos>
+    <!--   <navbar v-if="false"></navbar> -->
+    </div>
   </div>
 </template>
 
