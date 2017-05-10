@@ -13,7 +13,10 @@
     .directbot-right-nav(slot="content")
       right-nav-component
 
-    product-menu(slot="center-content").product-header
+
+    .action-elements(slot="action-elements")
+      span.right
+        product-menu.product-header
 
   .section.main.product
     .section__content

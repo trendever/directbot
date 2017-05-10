@@ -1,4 +1,42 @@
 <style src='./header.pcss'></style>
+
+<style lang="postcss">
+@import 'style/vars/vars.pcss';
+
+.center-main-width {
+  position: relative;
+  background: red;
+  margin: 0 auto;
+  height: 0px;
+  .action-elements {
+    span {
+      display: inline-block;
+      transform: translateY(-100%);
+      @media (--overtablet) {
+        size: 50px;
+        line-height: 50px;
+      }
+      @media (--tabletandless) {
+        size: 100px;
+        line-height: 100px;
+      }
+      &.right {
+        float:right;
+      }
+      &.left {
+        float:left;
+      }
+    }
+  }
+
+}
+
+.header:not(.center-main-width){
+  z-index: 100;
+}
+
+
+</style>
 <template lang="pug">
 .header
   .fake-top-standalone(v-if="isStandalone")
@@ -56,6 +94,11 @@
 
 
       slot(name='content')
+
+
+
+      .center-main-width(:style="{ width: width + 'px' }")
+        slot(name="action-elements")
 
     product-menu(v-if="$route.name === 'product_detail'")
 
@@ -157,7 +200,6 @@
     },
     mounted() {
 
-
       if ( this.show_on_elem ) {
         this.showOnEl = document.getElementById( this.show_on_elem );
       }
@@ -167,6 +209,21 @@
       this.toggleHeaderOnScroll();
 
       this.scrollEvent = listen( window , 'scroll', this.toggleHeaderOnScroll.bind( this ) )
+
+      this.$nextTick(()=>{
+
+        switch (this.$route.name) {
+          case 'home': this.width = 800;
+          break;
+          case 'product': this.width = 1050;
+          break;
+          case 'list': this.width = 800;
+          break;
+          default: this.width = 1050;
+        }
+
+
+      })
     },
     computed:{
       isNotEmptyHistory(){

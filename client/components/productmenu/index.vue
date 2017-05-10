@@ -156,9 +156,14 @@
   }
 
   &.product-header {
-    display: none;
+    display: inline-block;
+    #menu-sample {
+      display: block;
+      transform: translate(22px,2px);
+    }
+
     @media (--overtablet){
-      transform: translateX(390px);
+      transform: translateX(-150px);
       display: inline-block;
       i {
         position: static;
@@ -166,12 +171,7 @@
     }
 
     @media screen and (min-width: 1400px){
-      transform: translateX(550px);
-    }
-
-    #menu-sample {
-      display: block;
-      transform: translateX(22px);
+      transform: translateX(0px);
     }
   }
 }
