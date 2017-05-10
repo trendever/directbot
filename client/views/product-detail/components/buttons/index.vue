@@ -1,9 +1,10 @@
 <template>
 <div v-if="loaded || !$store.getters.isAuth">
   <div class="buttons" :class="{'glued-btns': isMobile && !isSelfProduct}" v-if="!isSelfProduct">
+    <div class="tags-buttons">
       <button class="buy_btn" @click="buy">КУПИТЬ</button>
+    </div>
   </div>
-
   <!-- <div class="find-bloger" v-if="isSelfProduct" @click="buyServiceProduct">Найти блогера</div> -->
 </div>
 
