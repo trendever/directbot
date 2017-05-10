@@ -17,6 +17,66 @@ button.bottom-mobile {
   }
 }
 
+.tags-buttons {
+  display: flex;
+  flex-wrap: wrap;
+
+  button {
+    background: transparent;
+    outline: none;
+    border: none;
+    flex-grow: 1;
+    font-size: calc($font__normal - 3px);
+    padding: 13px 13px;
+    border: 1px solid $color__brand;
+    color: $color__brand;
+    text-align: center;
+    cursor: pointer;
+    margin: 1px;
+    border-radius: 4px;
+    line-height: 100%;
+
+
+    @media (--overtablet) {
+      &:hover {
+        color: white;
+        background: $color__brand;
+      }
+    }
+
+    @media (--tabletandless){
+      font-size: calc($font__large - 8px);
+      font-family: $font__family__thin;
+      padding: 19px 15px;
+    }
+
+    span {
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+
+
+    &.selected {
+      color: white;
+      background: $color__brand;
+    }
+
+    i {
+      display: inline-block;
+      font-size: 15px;
+      transform: translateY(3px);
+      padding-left: 7px;
+      @media (--tabletandless){
+        display: none;
+        font-size: 30px;
+        padding-left: 5px;
+        transform: translateY(4px);
+      }
+    }
+  }
+}
+
 
 .tags-buttons_mobile {
 

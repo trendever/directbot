@@ -85,28 +85,28 @@
 
 
         .profile-buttons(v-if="isAuth && isSelfPage")
+          .tags-buttons
+            template(v-if="!isTrendever")
+              .text-box(v-if="!isMobile && botActivity")
+                p.bold Активирован ... #[br]
+                p.light(v-if="!postsCount") нет активных постов, ожидаю..
+                p.light(v-if="postsCount")
+                  span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
+                  span(v-if="chatsCount") Создано {{ chatsCount }} чатов
 
-          template(v-if="!isTrendever")
-            .text-box(v-if="!isMobile && botActivity")
-              p.bold Активирован ... #[br]
-              p.light(v-if="!postsCount") нет активных постов, ожидаю..
-              p.light(v-if="postsCount")
-                span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
-                span(v-if="chatsCount") Создано {{ chatsCount }} чатов
-
-            button.connect.no-mob(v-if="!botActivity",
-                @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
-            template(v-if="isAuth")
-              button(@click="findBloger") НАЙТИ БЛОГЕРА
-              button.no-desk(@click="supportChat") ПОДДЕРЖКА
-
-
-          template(v-if="isTrendever")
-            button.connect.no-mob Подключить бизнес
+              button.connect.no-mob(v-if="!botActivity",
+                  @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
+              template(v-if="isAuth")
+                button(@click="findBloger", :class="{grey: !botActivity }", :disable="!botActivity") НАЙТИ БЛОГЕРА
+                button.no-desk(@click="supportChat") ПОДДЕРЖКА
 
 
-        .profile-buttons(v-if="!isSelfPage")
-          button.no-mob Написать в магазин
+            template(v-if="isTrendever")
+              button.connect.no-mob Подключить бизнес
+
+
+            .profile-buttons(v-if="!isSelfPage")
+              button.no-mob Написать в магазин
 
 
 

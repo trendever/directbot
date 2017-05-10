@@ -4,31 +4,34 @@
 @import 'style/vars/vars.pcss';
 
 .center-main-width {
-  position: relative;
-  background: red;
-  margin: 0 auto;
-  height: 0px;
-  .action-elements {
-    span {
-      display: inline-block;
-      transform: translateY(-100%);
-      @media (--overtablet) {
-        size: 50px;
-        line-height: 50px;
-      }
-      @media (--tabletandless) {
-        size: 100px;
-        line-height: 100px;
-      }
-      &.right {
-        float:right;
-      }
-      &.left {
-        float:left;
+  display: none;
+  @media (--overtablet){
+    display: block;
+    position: relative;
+    background: red;
+    margin: 0 auto;
+    height: 0px;
+    .action-elements {
+      span {
+        display: inline-block;
+        transform: translateY(-100%);
+        @media (--overtablet) {
+          size: 50px;
+          line-height: 50px;
+        }
+/*         @media (--tabletandless) {
+          size: 100px;
+          line-height: 100px;
+        } */
+        &.right {
+          float:right;
+        }
+        &.left {
+          float:left;
+        }
       }
     }
   }
-
 }
 
 .header:not(.center-main-width){
@@ -115,6 +118,7 @@
     components: {productMenu},
     data(){
       return {
+        width: 1050,
         is_visible: false,
         is_action_up: false,
         scrollEvent: null,
