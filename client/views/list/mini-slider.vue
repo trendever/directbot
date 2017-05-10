@@ -109,7 +109,8 @@ $img_width: 282px;
     }
 
     &.bg-image {
-      background-image: url('./img/blue_slide.jpg');
+      background: url(./img/Trvr_pattern_green_dark.svg);
+      //background-image: url('./img/blue_slide.jpg');
       background-size: 150%;
       display: flex;
       flex-direction: column;
