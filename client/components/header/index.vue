@@ -215,18 +215,11 @@
       this.scrollEvent = listen( window , 'scroll', this.toggleHeaderOnScroll.bind( this ) )
 
       this.$nextTick(()=>{
-
         switch (this.$route.name) {
-          case 'home': this.width = 800;
-          break;
-          case 'product': this.width = 1050;
-          break;
-          case 'list': this.width = 800;
+          case 'chat': this.width = 900;
           break;
           default: this.width = 1050;
         }
-
-
       })
     },
     computed:{
