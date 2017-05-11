@@ -36,7 +36,7 @@ export default {
     font-size: 30px;
     color: $color__brand;
     @media (--tabletandless){
-      font-size: 45px;
+      font-size: 42px;
     }
   }
 /*   img {
@@ -81,6 +81,10 @@ export default {
   }
 
   &.user {
+
+    @media (--tabletandless){
+
+    }
     @media screen and (min-width: 1400px){
       left: 430px !important;
 
