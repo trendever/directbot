@@ -14,7 +14,10 @@
 
       phone-component(slot="center-content", v-if="!isSelfPage", :phone="shoptel")
 
-      right-nav-component(  slot="content" current="profile" v-on:open-profile-menu="showProfileMenu = true")
+      right-nav-component(
+        slot="content",
+        :current="$route.name === 'profile' ?  'profile' : ''",
+        v-on:open-profile-menu="showProfileMenu = true")
       //-div.profile-cash(
         slot='content',
         v-if="isSelfPage && user.plan_id && monetizationDays === 0",
@@ -84,9 +87,9 @@
               |  {{ user.products_count }} {{productsCountTitle}}
 
 
-        .profile-buttons(v-if="isAuth && isSelfPage")
+        .profile-buttons
           .tags-buttons
-            template(v-if="!isTrendever")
+            template(v-if="!isTrendever && isSelfPage")
               .text-box(v-if="!isMobile && botActivity")
                 p.bold Активирован ... #[br]
                 p.light(v-if="!postsCount") нет активных постов, ожидаю..
@@ -101,7 +104,7 @@
                 button.no-desk(@click="supportChat") ПОДДЕРЖКА
 
 
-            template(v-if="isTrendever")
+            template(v-if="isTrendever && isSelfPage")
               button.connect.no-mob Подключить бизнес
 
 
@@ -205,4 +208,4 @@
   photos( :mentionerId="mentionerId", :shopId="supplierProfileID || userShopId", :listName="listId")
 
   .directbot-navbar(v-if="isMobile && isAuth", :class="{'hide-nav': hideNavUser }")
-    navbar-component(current='profile')
+    navbar-component(:current='$route.name === "profile" ? "profile" : ""')

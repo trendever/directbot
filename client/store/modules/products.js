@@ -133,7 +133,7 @@ let actions = {
 
     }
 
-    return productsService.find( { shop_id, offset, tags, query } ).then(data=>{
+    return productsService.find( { offset, tags, query } ).then(data=>{
 
       commit(types.PRODUCTS_INCREASE_LIST_LENGTH, data)
 
