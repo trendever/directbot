@@ -88,10 +88,10 @@ let actions = {
       }
 
       return Promise.all([findProducts, findLikes]).then(data=>{
-        console.log('Товавы ------------------------------>')
-        prettyLog(data[0])
-        console.log('Лайки ------------------------------>')
-        prettyLog(data[1])
+        console.log('%cТовавы:','font-size:1.2rem')
+        console.log(data[0] ? data[0].length : null)
+        console.log('%cЛайки:','font-size:1.2rem')
+        console.log(data[1] ? data[1].length : null)
         let products =[].concat(data[0],data[1]).filter(i=>i !== null);
         commit( types.PRODUCTS_ADD_LIST, { listId , data: products } );
         commit( types.PRODUCTS_SET_LIST, listId );
