@@ -1,9 +1,9 @@
 <template lang="pug">
 
 #list(ref="list")
-  trendever-hero(v-if="!$store.getters.isAuth")
+  trendever-hero(v-if="!$store.getters.isAuth && isTrendever")
 
-  brand-menu.list-menu
+  brand-menu.list-menu(v-if="!$store.getters.isAuth && isTrendever")
     template(slot="desktop-view")
       //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
       .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
@@ -24,7 +24,8 @@
 
 
   .header-mobile(v-if="isMobile")
-    i.ic-logo_trendever_txt
+    i.ic-logo_trendever_txt(v-if="isTrendever")
+    i.ic-logo_directbot_txt(v-else)
   header-component(:leftBtnShow="false",
    :class="{'no-hero': showHero && !isAuth, 'no-hero-auth': showHero && isAuth && isMobile }",
    v-if="$store.getters.isAuth || isMobile")
@@ -67,7 +68,7 @@
     .grey-banner.has-chats(v-if="getBannerInfo.indexOf('list-banner') === -1")
       i.ic-close(@click="$store.dispatch('closeStat', 'list-banner')")
       | Лента товаров&nbsp
-      span формируется#[br.mobile] из шопинг-желаний&nbsp
+      | формируется#[br.mobile] из шопинг-желаний&nbsp
       | покупателей#[br]
       | и трендскаутов. Места в топе не продаются,#[br]
       | сортировка строго хронологическая
