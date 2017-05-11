@@ -108,7 +108,30 @@ let actions = {
 
   },
 
-  increaseListLength({commit}, { shop_id, offset, tags, query }){
+  increaseListLength({commit}, { shop_id, mentioner_id, offset, tags, query }){
+
+    if(shop_id || mentioner_id) {
+
+      let findProducts = null;
+      if(shop_id){
+        findProducts = productsService.find( { shop_id, offset})
+      }
+
+      let findLikes = null;
+      if(mentioner_id){
+        findLikes = productsService.find( { offset, mentioner_id })
+      }
+
+      return Promise.all([findProducts, findLikes]).then(data=>{
+        console.log('%cProducts added:','font-size:1.2rem')
+        console.log(data[0] ? data[0].length : null)
+        console.log('%cLikes added:','font-size:1.2rem')
+        console.log(data[1] ? data[1].length : null)
+        let products =[].concat(data[0],data[1]).filter(i=>i !== null);
+        commit(types.PRODUCTS_INCREASE_LIST_LENGTH, products)
+      })
+
+    }
 
     return productsService.find( { shop_id, offset, tags, query } ).then(data=>{
 
