@@ -68,13 +68,37 @@ let actions = {
 
     }
 
-    return productsService.find( { shop_id, limit, mentioner_id }).then(data=>{
+    if(!shop_id && !mentioner_id){
+      return productsService.find( { shop_id, limit, mentioner_id }).then(data=>{
+        commit( types.PRODUCTS_ADD_LIST, { listId , data } );
+        commit( types.PRODUCTS_SET_LIST, listId );
+      })
+    }
 
-      commit( types.PRODUCTS_ADD_LIST, { listId , data } );
+    if(shop_id || mentioner_id) {
 
-      commit( types.PRODUCTS_SET_LIST, listId );
+      let findProducts = null;
+      if(shop_id){
+        findProducts = productsService.find( { shop_id, limit})
+      }
 
-    })
+      let findLikes = null;
+      if(mentioner_id){
+        findLikes = productsService.find( { limit, mentioner_id })
+      }
+
+      return Promise.all([findProducts, findLikes]).then(data=>{
+        console.log('Товавы ------------------------------>')
+        prettyLog(data[0])
+        console.log('Лайки ------------------------------>')
+        prettyLog(data[1])
+        let products =[].concat(data[0],data[1]).filter(i=>i !== null);
+        commit( types.PRODUCTS_ADD_LIST, { listId , data: products } );
+        commit( types.PRODUCTS_SET_LIST, listId );
+      })
+
+
+    }
 
   },
 

@@ -413,10 +413,11 @@ export default {
 
     },
     mentionerId() {
-      //return null;
+
       if(this.user){
-        return this.user.supplier ? null : this.user.id;
+        return this.user.supplier ? this.user.supplier.id : this.user.id;
       }
+
     },
 
     ...mapGetters([
