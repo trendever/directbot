@@ -354,6 +354,12 @@ export default {
   },
 
   computed: {
+    firstOpenAppPage(){
+      if(window.history.length){
+        return false;
+      }
+      return true;
+    },
     chatsTitle(){
       return this.declOfNum(["чат","чата","чатов"])(this.chatsCount);
     },

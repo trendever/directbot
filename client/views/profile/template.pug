@@ -1,7 +1,7 @@
 #profile
 
   header-component(:title='getUserName',
-    :left-btn-show='isSelfPage ? false : true',
+    :left-btn-show='isSelfPage || firstOpenAppPage ? false : true',
     :back-function='backArrow').directbot-header
 
       div.profile-right-menu(slot="content", v-if="isMobile && isSelfPage")
@@ -188,7 +188,9 @@
             span отвечать покупателям и добавлять сюда товары
 
 
-      .profile_insta-link(:class="{'change-padding': !isSelfPage, directbot: !isTrendever, trendever: isTrendever}")
+      .profile_insta-link(
+        :class="{'change-padding': !isSelfPage, directbot: !isTrendever, trendever: isTrendever, 'margin-top': !isTrendever && !isMoreClass }"
+        )
         .insta-link-text
           template(v-if="isTrendever") ссылка на эту витрину
           template(v-if="!isTrendever") Cсылка сюда&nbsp

@@ -210,7 +210,15 @@
         .insta-link {
           color: $color__brand;
         }
+        @media (--tabletandless){
+
+          &.margin-top {
+            margin-top: 25px;
+          }
+          padding-left: 15px;
+        }
       }
+
 
 
       &.change-padding {
@@ -223,7 +231,7 @@
       margin-bottom: 24px;
       cursor: pointer;
       .insta-link-text {
-        color: $color__gray;
+        color: $color__gray-dark;
         font-size: 32px;
         font-family: $font__family__light;
       }
@@ -232,6 +240,7 @@
         font-family: $font__family__semibold;
         font-size: 32px;
       }
+
     }
 
     &_info {
