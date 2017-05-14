@@ -61,13 +61,13 @@
           .profile_info_about
 
             template
-              span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage")
+              span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage && !hasAnyInfo")
                 | [категория бизнеса] &nbsp
               span.profile_info_about_type(v-if="shopabout")
                 | {{ shopabout }} &nbsp
 
             template
-              span.profile_info_about_location.fake__text(v-if="!shoplocation && isSelfPage")
+              span.profile_info_about_location.fake__text(v-if="!shoplocation && isSelfPage && !hasAnyInfo")
                 | [местоположение]&nbsp&nbsp
                 span(v-if="!isMobile && user.working_time") |&nbsp
               span.profile_info_about_location(v-if="shoplocation")
@@ -76,7 +76,7 @@
                 span(v-if="!isMobile && user.working_time") |&nbsp
 
             template
-              span.profile_info_about_work-time.fake__text(v-if="!user.working_time && isSelfPage")
+              span.profile_info_about_work-time.fake__text(v-if="!user.working_time && isSelfPage && !hasAnyInfo")
                 |  [часы работы]&nbsp
               span.profile_info_about_work-time(v-if="user.working_time")
                 |  {{ shoptime }}&nbsp

@@ -45,12 +45,13 @@ export default {
       supplierProfileID: 0,
       shoplocation: "",
       shopabout: "",
-      source: config.trendever ? 'tndvr.com' : 'drbt.io'
+      source: config.trendever ? 'tndvr.com' : 'drbt.io',
+      firstOpenAppPage: false
     }
 
   },
 
-  beforeRouteEnter({ params: { id }, name }, to, next ){
+  beforeRouteEnter({ params: { id }, name }, from, next ){
 
     let instagram_username;
 
@@ -94,7 +95,11 @@ export default {
         return;
       }
 
-      if(store.getters.monetizationStatus === null && to.name !== 'connect-bot' && vm.isSelfPage){
+      if(!from.name) {
+        vm.firstOpenAppPage = true;
+      }
+
+      if(store.getters.monetizationStatus === null && from.name !== 'connect-bot' && vm.isSelfPage){
 
         if(!config.trendever) {
           let connectShown = vm.$store.state.user.connectBanner;
@@ -354,11 +359,8 @@ export default {
   },
 
   computed: {
-    firstOpenAppPage(){
-      if(window.history.length){
-        return false;
-      }
-      return true;
+    hasAnyInfo(){
+      return this.shoplocation || this.shopabout || this.user.working_time;
     },
     chatsTitle(){
       return this.declOfNum(["чат","чата","чатов"])(this.chatsCount);
