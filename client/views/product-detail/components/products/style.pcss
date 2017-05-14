@@ -1,6 +1,6 @@
 @import 'style/vars/vars.pcss';
 
-/*@use postcss-autoreset {
+/* @use postcss-autoreset {
   reset: {
     all: initial;
     sizes: 0;
@@ -9,8 +9,8 @@
 
 @use postcss-initial {
   reset: inherited;
-}*/
-
+}
+ */
 .products {
   display: flex;
   justify-content: space-between;
@@ -25,6 +25,9 @@
 }
 
 .name {
+  @media (--overmobile){
+    line-height: 22px;
+  }
   flex-grow: 1;
   display: -webkit-box;
   color: $color__gray-dark;
