@@ -61,8 +61,8 @@
           | заказы могут#[br] появляться с задержкой
 
 
-      template(v-if="!botActivity")
-        connect-button(v-if="!sortedList.length || isTrendever")
+      template(v-if="!botActivity && !isTrendever")
+        connect-button(v-if="!sortedList.length")
 
   .directbot-navbar(v-if="isMobile && isAuth")
     navbar-component(current='chat')
