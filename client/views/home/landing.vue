@@ -93,7 +93,7 @@
 
     center
 
-    div отзывы
+    last-articles
 
     bottom
     .fake-bottom
@@ -129,6 +129,7 @@ import toggleRole from './parts/toggle-role';
 import connectGet from './parts/connect-get';
 import landingTop from './parts/landing-top';
 import skills from './last-parts/skills';
+import lastArticles from './last-parts/articles';
 
 
 import listen from 'event-listener';
@@ -342,8 +343,9 @@ export default {
     center,
     bottom,
     newArticles,
-
-    skills
+    //last landing
+    skills,
+    lastArticles
   }
 }
 
