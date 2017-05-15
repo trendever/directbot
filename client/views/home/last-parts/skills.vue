@@ -1,14 +1,16 @@
 <template lang="pug">
-#last-landing
+#slills
   .title Зачем нужен Directbot
   .info-blocks
+    
     template(v-for="block in blocks")
       .block
+
         .image
           img(:src="block.image")
+
         .text
           span(v-html="block.text")
-
 
 
 </template>
@@ -22,30 +24,30 @@ export default {
 
       blocks: [
         {
-          image: require("./img/info_box_1.png"),
+          image: require("../img/info_box_1.png"),
           text: `
-            Организует продажи в<br>
-            Instagram, чтобы вы не<br>
-            теряли клиентов и<br>
-            контролировали результаты<br>
+            Организует продажи в<br class="desktop">
+            Instagram,<br class="mobile"> чтобы вы не<br class="desktop">
+            теряли клиентов<br class="mobile"> и<br class="desktop">
+            контролировали результаты
           `
         },
         {
-          image: require("./img/info_box_2.png"),
+          image: require("../img/info_box_2.png"),
           text: `
-            Продвигает Instagram<br>
-            органически, заказывая<br>
-            контент и рекламу у<br>
-            качественных блогеров<br>
+            Продвигает Instagram<br class="desktop">
+            органически,<br class="mobile"> заказывая<br class="desktop">
+            контент и рекламу<br class="mobile"> у<br class="desktop">
+            качественных блогеров
           `
         },
         {
-          image: require("./img/info_box_3.png"),
+          image: require("../img/info_box_3.png"),
           text: `
-            Превращает Instagram<br>
-            в онлайн-магазин,<br>
-            доступный вашим клиентам<br>
-            по короткой ссылке<br>
+            Превращает Instagram<br class="desktop">
+            в<br class="mobile"> онлайн-магазин,<br class="desktop">
+            доступный вашим<br class="mobile"> клиентам<br class="desktop">
+            по короткой ссылке
           `
         }
 
@@ -59,7 +61,7 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
-#last-landing {
+#slills {
 
   max-width: 1050px;
   margin:  60px auto 0 auto;
@@ -69,6 +71,10 @@ export default {
     text-align: center;
     padding: 30px 0;
     color: #595959;
+
+    @media (--tabletandless){
+      display: none;
+    }
   }
 
 }
@@ -101,17 +107,21 @@ export default {
     @media (--tabletandless){
       display: block;
       position: relative;
+      .image img {
+        width: 100%;
+      }
       .text {
-        display: absolute;
+        position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         span {
+          background: rgba(94, 139, 206,.8);
           transform: translate(0,0);
           top:0;
           width: 100%;
           font-size: 36px;
-          padding: 20px 0px;
+          padding: 30px 0px;
           text-align: center;
         }
       }

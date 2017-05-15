@@ -118,15 +118,26 @@ export default {
   text-align: center;
   height: 100%;
 
-  &.update-land {
+
+  &.update-land, &.last-landing {
     @media (--tabletandless){
 
-      background-image: url(../img/Pattern_bgr_mob.svg);
+      background-image: none;
       .how-button {
         background: none;
       }
       .enter-btn {
         display: none;
+      }
+    }
+  }
+
+  &.last-landing {
+
+    @media (--tabletandless){
+
+      .how-button {
+        color:$color__brand;
       }
     }
   }

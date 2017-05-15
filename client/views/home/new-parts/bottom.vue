@@ -12,6 +12,9 @@
     p в месяц
 
 
+  .big-landing-btn Как работает менеджер
+
+
 
 
 
@@ -43,7 +46,8 @@ export default {
   @media (--tabletandless){
     padding: 90px 0;
     background: url(./img/blogger_girl_bgr_mob.jpg);
-    height: 600px;
+    height: 697px;
+
   }
 
 }

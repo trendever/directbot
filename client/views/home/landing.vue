@@ -6,7 +6,7 @@
 
   .top-landing-background
 
-  landing-top(:new-landing="newLanding", :class="{'update-land':!old && !lastLanding}")
+  landing-top(:new-landing="newLanding", :class="{'update-land':!old && !lastLanding, 'last-landing': lastLanding}")
 
   template(v-if="!lastLanding")
 
@@ -53,7 +53,7 @@
         advantages(:prop-advantages="advantages")
           .title(slot="title")
             | Как это работает
-        .why-button Почему мы это делаем
+        .mobile-landing-btn Почему мы это делаем
         center
         new-articles
         bottom
@@ -84,12 +84,34 @@
       button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn ЧАТ FAQ
       button(v-if="!isMobile && showBtns", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
 
+
+
+
   template(v-if="lastLanding")
-    last-landing
+
+    skills
+
+    center
+
+    div отзывы
+
+    bottom
+    .fake-bottom
+
     operator-actions(:class="{'update-land': !old}")
+
     toggle-role(:class="{'update-land': !old}")
+
     connect-get(:class="{'update-land': !old}")
     .fake-height(v-if="toggleBtns")
+
+    .chat-ball(v-if="showChatBall && !old",  @click="ask") ЧАТ
+    .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
+      button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
+        v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
+      button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn ЧАТ FAQ
+      button(v-if="!isMobile && showBtns", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
+
 
 </template>
 
@@ -106,7 +128,7 @@ import operatorActions from './parts/operator-actions';
 import toggleRole from './parts/toggle-role';
 import connectGet from './parts/connect-get';
 import landingTop from './parts/landing-top';
-import lastLanding from './last-landing';
+import skills from './last-parts/skills';
 
 
 import listen from 'event-listener';
@@ -321,7 +343,7 @@ export default {
     bottom,
     newArticles,
 
-    lastLanding
+    skills
   }
 }
 
@@ -561,7 +583,31 @@ $ball__size: 120px;
 
   }
 
-  .why-button {
+  .big-landing-btn {
+    display: none;
+    margin: 35px auto 25px auto;
+    color: $color__brand;
+    border: 1px solid $color__brand;
+    @media (--tabletandless){
+      display: block;
+      border-radius: 5px;
+      font-family: $font__family__semibold;
+      width: 600px;
+      height: 118px;
+      font-size: 36px;
+      text-align: center;
+      line-height: 118px;
+      text-transform: uppercase;
+    }
+
+    &.white{
+      color: white;
+      border: 1px solid white;
+    }
+
+  }
+
+  .mobile-landing-btn {
     display: none;
     margin: 35px auto 25px auto;
     @media (--tabletandless){
@@ -573,7 +619,6 @@ $ball__size: 120px;
       width: 600px;
       height: 118px;
       font-size: 36px;
-
       text-align: center;
       line-height: 118px;
       text-transform: uppercase;
