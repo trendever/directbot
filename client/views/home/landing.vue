@@ -1,87 +1,95 @@
 <style src="./new-parts/style-global.pcss"></style>
 <template lang="pug">
-#landing(:class="{'new-land': newLanding, 'update-land': !old}")
+#landing(:class="{'new-land': newLanding && !lastLanding, 'update-land': !old && !lastLanding}")
 
   router-view
 
   .top-landing-background
 
-  landing-top(:new-landing="newLanding", :class="{'update-land':!old}")
+  landing-top(:new-landing="newLanding", :class="{'update-land':!old && !lastLanding}")
 
-  template(v-if="!newLanding")
+  template(v-if="!lastLanding")
 
-    template(v-if="old")
-      who-need
-      show-bot
-      operator-skills
-      articles
+    template(v-if="!newLanding")
 
-    template(v-if="!old")
-      #second-mobile-screen(:style="{height: isMobile ? windowHeight + 'px': 'auto'}")
-        .wrap
-          .item-text.one
-            p
-              | Организует продажи#[br]
-              | в Instagram, чтобы вы#[br]
-              | не теряли клиентов#[br]
-              | и контролировали#[br]
-              | результаты
-          .item-text.two
-            p
-              | Продвигает Instаgram#[br]
-              | органически, заказывая#[br]
-              | контент и рекламу#[br]
-              | у качественных#[br]
-              | блогеров
-          .item-logos
-            img.no-desk(src="./img/logos/Telegram_sign_word_white.png")
-            img.no-desk(src="./img/logos/amocrm_logo_white.png")
-            img.no-desk(src="./img/logos/bitrix_logo_white.png")
-            img.no-desk(src="./img/logos/viber_logo_bubble_word_white.png")
+      template(v-if="old")
+        who-need
+        show-bot
+        operator-skills
+        articles
 
-            img.no-mob(src="./img/logos/Telegram_sign_word_blue.png")
-            img.no-mob(src="./img/logos/amocrm_logo_blue.png")
-            img.no-mob(src="./img/logos/bitrix_logo_blue.png")
-            img.no-mob(src="./img/logos/viber_logo_bubble_word_blue.png")
+      template(v-if="!old")
+        #second-mobile-screen(:style="{height: isMobile ? windowHeight + 'px': 'auto'}")
+          .wrap
+            .item-text.one
+              p
+                | Организует продажи#[br]
+                | в Instagram, чтобы вы#[br]
+                | не теряли клиентов#[br]
+                | и контролировали#[br]
+                | результаты
+            .item-text.two
+              p
+                | Продвигает Instаgram#[br]
+                | органически, заказывая#[br]
+                | контент и рекламу#[br]
+                | у качественных#[br]
+                | блогеров
+            .item-logos
+              img.no-desk(src="./img/logos/Telegram_sign_word_white.png")
+              img.no-desk(src="./img/logos/amocrm_logo_white.png")
+              img.no-desk(src="./img/logos/bitrix_logo_white.png")
+              img.no-desk(src="./img/logos/viber_logo_bubble_word_white.png")
 
-        button.bottom-mobile(@click="scrollSecond") Как это работает
+              img.no-mob(src="./img/logos/Telegram_sign_word_blue.png")
+              img.no-mob(src="./img/logos/amocrm_logo_blue.png")
+              img.no-mob(src="./img/logos/bitrix_logo_blue.png")
+              img.no-mob(src="./img/logos/viber_logo_bubble_word_blue.png")
+
+          button.bottom-mobile(@click="scrollSecond") Как это работает
 
 
 
-      advantages(:prop-advantages="advantages")
-        .title(slot="title")
-          | Как это работает
-      .why-button Почему мы это делаем
+        advantages(:prop-advantages="advantages")
+          .title(slot="title")
+            | Как это работает
+        .why-button Почему мы это делаем
+        center
+        new-articles
+        bottom
+
+      .blue-plank(v-if="old")
+        | CRM Directbot удобен настолько,#[br.mobile]
+        | что мы готовы предоставить вам#[br]
+        | продавца на аутсорсинг 24/7#[br.mobile]
+        | всего за 3990 руб. в месяц#[br.mobile]
+      operator-actions(:class="{'update-land': !old}")
+      toggle-role(:class="{'update-land': !old}")
+      connect-get(:class="{'update-land': !old}")
+      .fake-height(v-if="toggleBtns")
+
+    template(v-if="newLanding")
+
+      advantages
       center
       new-articles
       bottom
 
-    .blue-plank(v-if="old")
-      | CRM Directbot удобен настолько,#[br.mobile]
-      | что мы готовы предоставить вам#[br]
-      | продавца на аутсорсинг 24/7#[br.mobile]
-      | всего за 3990 руб. в месяц#[br.mobile]
+      .fake-bottom
+
+    .chat-ball(v-if="showChatBall && !old",  @click="ask") ЧАТ
+    .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
+      button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
+        v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
+      button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn ЧАТ FAQ
+      button(v-if="!isMobile && showBtns", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
+
+  template(v-if="lastLanding")
+    last-landing
     operator-actions(:class="{'update-land': !old}")
     toggle-role(:class="{'update-land': !old}")
     connect-get(:class="{'update-land': !old}")
     .fake-height(v-if="toggleBtns")
-
-  template(v-if="newLanding")
-
-    advantages
-    center
-    new-articles
-    bottom
-
-    .fake-bottom
-
-  .chat-ball(v-if="showChatBall && !old",  @click="ask") ЧАТ
-  .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
-    button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
-      v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
-    button(v-if="isMobile && showBtns", :style="{zIndex: showBtns ? 190 : 0}", @click="ask").ask-btn ЧАТ FAQ
-    button(v-if="!isMobile && showBtns", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
-
 
 </template>
 
@@ -98,6 +106,7 @@ import operatorActions from './parts/operator-actions';
 import toggleRole from './parts/toggle-role';
 import connectGet from './parts/connect-get';
 import landingTop from './parts/landing-top';
+import lastLanding from './last-landing';
 
 
 import listen from 'event-listener';
@@ -110,8 +119,13 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
+
+      //Landing pages
       old: false,
       newLanding: false,
+      lastLanding: true,
+      //---------------
+
       margin: 0,
       toggleBtns: false,
       showBtns: false,
@@ -305,7 +319,9 @@ export default {
     advantages,
     center,
     bottom,
-    newArticles
+    newArticles,
+
+    lastLanding
   }
 }
 

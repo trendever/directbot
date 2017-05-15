@@ -29,6 +29,8 @@ export default class {
     self.sock.onclose = (function () {
         self.connected = false;
 
+        window.eventHub.$emit('no-sock-connection', true);
+
         setTimeout(function () {
           console.log('try recconect');
           self.init.call(self, onOpen, onMessage);
@@ -43,6 +45,7 @@ export default class {
 
         self._resendOfflineRequests();
       }
+      window.eventHub.$emit('no-sock-connection', false);
       onOpen.call(self, self.sock);
     });
   }

@@ -1,9 +1,15 @@
 <template lang="pug">
 #app.directbot(:class="{'standalone': isStandalone}")
-  router-view(v-if="authDone && monetizationDone")
-  listener(v-if="authDone")
-  monetization(v-if="authDone", v-on:checkbot="monetizationDone = true")
 
+  template(v-if="!noSockConnection")
+
+    router-view(v-if="authDone && monetizationDone")
+    listener(v-if="authDone")
+    monetization(v-if="authDone", v-on:checkbot="monetizationDone = true")
+
+  template(v-if="noSockConnection")
+
+    router-view
 
   //-clipboard
   native-popup(:show-popup="showCopyMessage")
@@ -55,7 +61,9 @@ export default {
       //phone
       showDesktopPhone: false,
       phoneNumber: '',
-      isStandalone: window.browser.standalone
+      isStandalone: window.browser.standalone,
+
+      noSockConnection: false
     }
   },
   components: {
@@ -64,6 +72,10 @@ export default {
     nativePopup
   },
   mounted(){
+
+    window.eventHub.$on('no-sock-connection',data=>{
+      this.noSockConnection = data;
+    })
 
     window.eventHub.$on('show-desktop-phone', data=>{
       this.showDesktopPhone = true;
