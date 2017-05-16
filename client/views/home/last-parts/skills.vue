@@ -10,7 +10,10 @@
           img(:src="block.image")
 
         .text
-          span(v-html="block.text")
+          span
+            p(v-html="block.text")
+            p.overview(v-html="block.overview")
+
 
 
   slot(name="bottom")
@@ -124,6 +127,10 @@ export default {
         top:50%;
         position: relative;
         transform: translateY(-50%);
+
+        p.overview {
+          font-family: $font__family__light;
+        }
       }
     }
     @media (--tabletandless){
