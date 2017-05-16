@@ -46,7 +46,7 @@
   .header__content
     .wrapper.directbot-color(:class="{'chat-slot': $route.name === 'chat' && isMobile}")
 
-      .logos
+      .logos(v-if="showLogo")
         i.ic-logo_trendever_txt(v-if="isTrendever", @click="$router.push({name: 'home'})")
         i.ic-logo_directbot_txt(v-if="!isTrendever", @click="$router.push({name: 'home'})")
 
@@ -223,6 +223,18 @@
       })
     },
     computed:{
+      showLogo(){
+        switch(this.$route.name){
+          case 'profile': return false;
+          break;
+          case 'user': return false;
+          break;
+          case 'product_detail': return false;
+          break;
+          default: return true;
+
+        }
+      },
       isNotEmptyHistory(){
         if(window.before && this.$route.name) {
           if (window.before && window.before.prev){
