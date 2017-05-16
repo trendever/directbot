@@ -136,7 +136,6 @@ export default {
 
           &.opened{
             height: 150px;
-            overflow: visible;
           }
         }
       }
