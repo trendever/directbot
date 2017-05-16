@@ -100,7 +100,7 @@
     center
 
     last-articles
-      .btn-wrap.bottom-margin(slot="bottom")
+      .btn-wrap(slot="bottom")
         .big-landing-btn Часто задаваемые вопросы
 
     bottom
@@ -619,6 +619,10 @@ $ball__size: 120px;
 
     &.bottom-margin {
       margin-bottom: 20px;
+    }
+
+    @media (--tabletandless){
+       margin-bottom: 60px;
     }
 
     .big-landing-btn {
