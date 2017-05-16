@@ -94,21 +94,32 @@
   template(v-if="lastLanding")
 
     skills
+      .btn-wrap(slot="bottom")
+        .big-landing-btn Почему мы это делаем
 
     center
 
     last-articles
+      .btn-wrap.bottom-margin(slot="bottom")
+        .big-landing-btn Часто задаваемые вопросы
 
     bottom
-      .big-landing-btn.white(slot="bottom") Как работает менеджер
-    .fake-bottom
+      .btn-wrap(slot="bottom")
+        .big-landing-btn.white(@click="openManager") Как работает менеджер
 
-    operator-actions(:class="{'update-land': !old}")
 
-    toggle-role(:class="{'update-land': !old}")
+    .fake-bottom(v-if="!managerShow")
 
-    connect-get(:class="{'update-land': !old}")
-    .fake-height(v-if="toggleBtns")
+
+
+    template(v-if="managerShow")
+
+      operator-actions(ref="operator", :class="{'update-land': !old}")
+
+      toggle-role(:class="{'update-land': !old}")
+
+      connect-get(:class="{'update-land': !old}")
+      .fake-height(v-if="toggleBtns")
 
     .chat-ball(v-if="showChatBall && !old",  @click="ask") ЧАТ
     .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
@@ -160,6 +171,7 @@ export default {
       windowHeight: 0,
       pricePopupShown: false,
       showChatBall: true,
+      managerShow: false,
       advantages: [
 
         {
@@ -289,6 +301,15 @@ export default {
     if(this.resize)this.resize.remove();
   },
   methods: {
+    showArticles(){
+      JQuery(document.body).animate({scrollTop: JQuery('#last-articles').offset().top}, 450)
+    },
+    openManager(){
+      this.managerShow = true;
+      this.$nextTick(()=>{
+        JQuery(document.body).animate({scrollTop: JQuery('#operator-actions').offset().top}, 450)
+      })
+    },
     openPopup(name){
       this.$router.push({name: 'home-info', params: {id: name}})
     },
@@ -589,54 +610,62 @@ $ball__size: 120px;
     height: 79px;
 
   }
+  .btn-wrap {
 
-  .big-landing-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
 
 
-    @define-mixin blue {
-      color: $color__brand;
-      border: 1px solid $color__brand;
+    &.bottom-margin {
+      margin-bottom: 20px;
     }
 
-    @define-mixin white {
-      color: white;
-      border: 1px solid white;
-    }
+    .big-landing-btn {
 
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 5px;
-    font-family: $font__family__semibold;
-
-    @mixin blue;
-
-    @media (--overtablet){
-      margin-top: 20px;
-      padding: 14px 30px;
-      display: inline-block;
-      font-size: $font__normal;
-    }
-
-    @media (--tabletandless){
-      width: 600px;
-      height: 118px;
-      font-size: 36px;
-      text-align: center;
-      line-height: 118px;
-    }
-
-    &:hover {
-      background: white;
-      @mixin white;
-    }
-    &.white{
-      @mixin white;
-      &:hover {
-        background: white;
+      @define-mixin blue {
         color: $color__brand;
+        border: 1px solid $color__brand;
       }
-    }
 
+      @define-mixin white {
+        color: white;
+        border: 1px solid white;
+      }
+
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 5px;
+      font-family: $font__family__semibold;
+
+      @mixin blue;
+
+      @media (--overtablet){
+        display: inline-block;
+        padding: 14px 30px;
+        font-size: $font__normal;
+      }
+
+      @media (--tabletandless){
+        display: inline-block;
+        padding: 36px 30px;//width: 600px;
+        font-size: 36px;
+        text-align: center;
+      }
+
+      &:hover {
+        background: $color__brand;
+        color: white;
+      }
+      &.white{
+        @mixin white;
+        &:hover {
+          background: white;
+          color: $color__brand;
+        }
+      }
+
+    }
   }
 
   .mobile-landing-btn {

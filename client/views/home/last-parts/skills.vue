@@ -2,7 +2,7 @@
 #slills
   .title Зачем нужен Directbot
   .info-blocks
-    
+
     template(v-for="block in blocks")
       .block
 
@@ -11,6 +11,8 @@
 
         .text
           span(v-html="block.text")
+
+  slot(name="bottom")
 
 
 </template>
@@ -24,7 +26,7 @@ export default {
 
       blocks: [
         {
-          image: require("../img/info_box_1.png"),
+          image: require("./images/info_box_1.png"),
           text: `
             Организует продажи в<br class="desktop">
             Instagram,<br class="mobile"> чтобы вы не<br class="desktop">
@@ -33,7 +35,7 @@ export default {
           `
         },
         {
-          image: require("../img/info_box_2.png"),
+          image: require("./images/info_box_2.png"),
           text: `
             Продвигает Instagram<br class="desktop">
             органически,<br class="mobile"> заказывая<br class="desktop">
@@ -42,7 +44,7 @@ export default {
           `
         },
         {
-          image: require("../img/info_box_3.png"),
+          image: require("./images/info_box_3.png"),
           text: `
             Превращает Instagram<br class="desktop">
             в<br class="mobile"> онлайн-магазин,<br class="desktop">
@@ -93,7 +95,7 @@ export default {
         padding-top: 70px;
         padding-left: 30px;
         padding-bottom: 70px;
-        background: $color__brand;
+        background: rgba(94, 139, 206,.8);
         display: block;
         margin: 0 auto;
         width: 400px;

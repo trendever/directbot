@@ -10,7 +10,7 @@
   //-.advert-ps
     | *позвлоляет подключить до 5 менеджеров#[br.mobile] отдновременно
 
-
+  slot(name="bottom")
 
 
 </template>

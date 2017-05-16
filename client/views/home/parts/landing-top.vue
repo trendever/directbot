@@ -7,12 +7,17 @@
 
   phone-component(:phone="'+79854107012'")
 
+  .telegram_logo
+    .text интегрирован
+    img(src="../img/telegram_logo.svg")
+
   brand-menu
     template(slot="desktop-view")
       //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
       .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
       .land__top-btn(onclick="window.open('https://www.trendever.com')") ПОКУПАТЕЛЯМ
       .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
+      .land__top-btn(@click="$parent.showArticles") ОТЗЫВЫ
 
     template(slot="mobile-view")
       i.ic-menu_bullets(@click="showMenu=true")
@@ -142,7 +147,35 @@ export default {
     }
   }
 
+  .telegram_logo  {
+    display: inline-block;
+    z-index: 200;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 15px;
+    position: absolute 150px 20px * *;
+
+    @media (--tabletandless){
+      position: absolute 100px 50px * *;
+      .text {
+      }
+      img {
+        width: 70px;
+      }
+    }
+    .text {
+      color: white;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 50px;
+    }
+
+  }
+
   .hero__content__background {
+
+
 
   }
 

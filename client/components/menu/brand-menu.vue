@@ -119,6 +119,10 @@ export default {
       margin-right: -1%;
     }
 
+    :nth-child(3).land__top-btn {
+      margin-right: -1%;
+    }
+
     img {
       cursor: pointer;
       margin-top: 15px;

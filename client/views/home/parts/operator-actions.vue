@@ -176,7 +176,6 @@ export default {
     }
   }
 
-
  .actions-bottom {
 
   text-align: center;

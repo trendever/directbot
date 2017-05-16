@@ -35,6 +35,9 @@
 
             p(v-html="article.text")
             .ps(v-html="article.author")
+
+  slot(name="bottom")
+
 </template>
 
 <script>
@@ -72,7 +75,7 @@ export default {
       showIndex: 0,
       articles:[
         {
-          img: require('../img/info_box_1.png'),
+          img: require('./images/review_narspi_shop_book_zoom.png'),
           shop: "@narspi_shop",
           category: "Шубы и меховые жилеты",
           text: `
@@ -89,7 +92,7 @@ export default {
           author:'Катя,<br>Владелец бренда'
         },
         {
-          img: require('../img/info_box_1.png'),
+          img: require('./images/review_bella-fiori_book_zoom.png'),
           shop: "@bella.fiori",
           category: "Цветочный бутик",
           text: `
@@ -104,7 +107,7 @@ export default {
           author:'Нарек,<br>Основатель и управляющий партнер'
         },
         {
-          img: require('../img/info_box_1.png'),
+          img: require('./images/review_grideli_atelier_book_zoom.png'),
           shop: '@grideli_atelier',
           category: 'Магазин одежды',
           text: `
@@ -236,7 +239,7 @@ export default {
 
       @media (--overtablet){
         button {
-          background: $color__brand;
+          background: rgba(94, 139, 206,.8);
           color:white;
           padding-left: 30px;
           height: auto;

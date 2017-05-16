@@ -52,6 +52,20 @@ export default {
   }
   &.home {
     display: none;
+    @media (--overtablet){
+      display: inline-block;
+      position: absolute 10px 620px * initial;
+      z-index: 200;
+
+      i {
+        color: white;
+        font-size: 30px;
+      }
+      a {
+        display: inline-block;
+      }
+
+    }
     @media (--tabletandless){
       display: inline-block;
       position: absolute 22px 120px initial *;
