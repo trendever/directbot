@@ -12,6 +12,7 @@
         .text
           span(v-html="block.text")
 
+
   slot(name="bottom")
 
 
@@ -32,6 +33,12 @@ export default {
             Instagram,<br class="mobile"> чтобы вы не<br class="desktop">
             теряли клиентов<br class="mobile"> и<br class="desktop">
             контролировали результаты
+          `,
+          overview:`
+            Автоматом создаёт чат-заказы в CRM<br class="desktop">
+            с покупателями из Instagram. Обслуживайте<br class="desktop">
+            клиентов совместно, не рискуя паролем,<br class="desktop">
+            и отслеживайте статус выполнения заказов
           `
         },
         {
@@ -41,6 +48,13 @@ export default {
             органически,<br class="mobile"> заказывая<br class="desktop">
             контент и рекламу<br class="mobile"> у<br class="desktop">
             качественных блогеров
+          `,
+          overview: `
+            Поможет массово создавать фото/видео<br class="desktop">
+            с вашими товарами для ленты и рекламы.<br class="desktop">
+            Подберет блогеров, проверит их аудиторию<br class="desktop">
+            и договориться на выгодных условиях
+
           `
         },
         {
@@ -50,6 +64,12 @@ export default {
             в<br class="mobile"> онлайн-магазин,<br class="desktop">
             доступный вашим<br class="mobile"> клиентам<br class="desktop">
             по короткой ссылке
+          `,
+          overview: `
+            Трансформирует вашу Instagram-ленту<br class="desktop">
+            в интуитивный онлайн-магазин с отзывами,<br class="desktop">
+            телефоном и карточками товаров. Ваш<br class="desktop">
+            сайт доступен по короткой<br class="mobile"> ссылке
           `
         }
 
