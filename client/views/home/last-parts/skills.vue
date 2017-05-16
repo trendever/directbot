@@ -3,16 +3,16 @@
   .title Зачем нужен Directbot
   .info-blocks
 
-    template(v-for="block in blocks")
+    template(v-for="block, index in blocks")
       .block
 
         .image
           img(:src="block.image")
 
         .text
-          span
+          span(@click="openedIndex = index" @mouseover="openedIndex = index ")
             p(v-html="block.text")
-            p.overview(v-html="block.overview")
+            p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
 
 
@@ -27,7 +27,7 @@ export default {
 
   data () {
     return {
-
+      openedIndex: null,
       blocks: [
         {
           image: require("./images/info_box_1.png"),
@@ -129,7 +129,15 @@ export default {
         transform: translateY(-50%);
 
         p.overview {
+          transition: all .4s ease;
+          height: 0px;
+          overflow: hidden;
           font-family: $font__family__light;
+
+          &.opened{
+            height: 150px;
+            overflow: visible;
+          }
         }
       }
     }
