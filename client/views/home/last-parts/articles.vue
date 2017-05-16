@@ -5,11 +5,13 @@
 
     template(v-for="article, index in articles", v-if="showIndex === index")
 
-      .arrow-right.centered(@click="next(index)")
-        i.ic-review_arrow_right
+      template(v-if="!isMobile")
 
-      .arrow-left.centered(@click="previous(index)")
-        i.ic-review_arrow_right
+        .arrow-right.centered(@click="next(index)")
+          i.ic-review_arrow_right
+
+        .arrow-left.centered(@click="previous(index)")
+          i.ic-review_arrow_right
 
       .plank
 
@@ -19,28 +21,26 @@
 
         .text
           button
-            .category {{ article.category }}
-            .brand-name
-              | {{ article.shop }}
+            .info
+              .category {{ article.category }}
+              .brand-name {{ article.shop }}
+
+              .wrap-arrows
+
+                .arrow-right.centered(@click="next(index)")
+                  i.ic-review_arrow_right
+
+                .arrow-left.centered(@click="previous(index)")
+                  i.ic-review_arrow_right
+
             p(v-html="article.text")
             .ps(v-html="article.author")
 </template>
 
 <script>
 export default {
-  mounted(){
-    this.runMiniSlider();
-  },
-  beforeDestroy(){
-    clearInterval(this.timeId)
-  },
+
   methods:{
-    runMiniSlider(){
-      if(this.timeId) clearInterval(this.timeId);
-      this.timeId = setInterval(()=>{
-        this.sliderRun = !this.sliderRun;
-      },2500)
-    },
     next(index){
       let scroll = document.body.scrollTop;
 
@@ -71,8 +71,8 @@ export default {
       sliderRun: false,
       showIndex: 0,
       articles:[
-        { 
-          img: require('../img/info_box_1.png'),  
+        {
+          img: require('../img/info_box_1.png'),
           shop: "@narspi_shop",
           category: "Шубы и меховые жилеты",
           text: `
@@ -88,8 +88,8 @@ export default {
           `,
           author:'Катя,<br>Владелец бренда'
         },
-        { 
-          img: require('../img/info_box_1.png'), 
+        {
+          img: require('../img/info_box_1.png'),
           shop: "@bella.fiori",
           category: "Цветочный бутик",
           text: `
@@ -103,7 +103,7 @@ export default {
           `,
           author:'Нарек,<br>Основатель и управляющий партнер'
         },
-        { 
+        {
           img: require('../img/info_box_1.png'),
           shop: '@grideli_atelier',
           category: 'Магазин одежды',
@@ -123,14 +123,7 @@ export default {
         }
       ]
     };
-  },
-  watch:{
-    showIndex(){
-      this.sliderRun = false;
-      this.runMiniSlider();
-    }
-  },
-
+  }
 };
 </script>
 <style lang="postcss">
@@ -145,9 +138,51 @@ export default {
 
 
   @media (--overtablet) {
+    .slider img { width: 530px;}
+    .text .wrap-arrows{display: none;}
   }
 
   @media (--tabletandless) {
+    .plank {
+      overflow: visible;
+      margin-top: 200px;
+    }
+    .slider{
+      overflow: visible;
+      height: 500px;
+      img { width: 100%;}
+    }
+
+    .text {
+      padding: 0;
+      button {
+        padding: 0;
+        .info {
+          position: relative;
+          padding: 20px 0 40px 0;
+          background:rgba(94, 139, 206,.8);
+          color: white;
+
+          [class^="arrow"] {
+            top:0;
+            position: relative;
+            display: inline-block;
+            color: white;
+          }
+          .wrap-arrows {
+            display: block;
+            position: absolute 60px 0 * 0;
+          }
+          .arrow-left {
+            float: left;
+          }
+
+          .arrow-right {
+            float: right;
+          }
+        }
+      }
+    }
   }
 
   .slider {
@@ -157,17 +192,15 @@ export default {
       text-align: center;
       vertical-align: middle;
       position: relative;
-      width: 500px;
       top: 50%;
       transform: translateY(-50%);
     }
-  }          
+  }
 
 
   .centered {
-  @media (--tabletandless){
-      top:1074px !important;
-    }
+    top: 330px;
+
   }
 
   .body {
@@ -179,6 +212,9 @@ export default {
     border:none;
     display: block;
     background: none;
+
+
+
   }
 
   .title {
@@ -203,6 +239,12 @@ export default {
           background: $color__brand;
           color:white;
           padding-left: 30px;
+          height: auto;
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 600px;
+          width: 550px;
         }
       }
 
@@ -236,10 +278,12 @@ export default {
 
           p {
             text-align: left !important;
+            padding-left: 15px;
           }
           .ps {
             font-size: $font__medium;
             padding-bottom: 50px;
+            padding-left: 15px;
           }
           .category {
             font-size: calc($font__normal + 20px);

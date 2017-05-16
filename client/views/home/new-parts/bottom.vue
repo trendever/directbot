@@ -12,7 +12,7 @@
     p в месяц
 
 
-  .big-landing-btn Как работает менеджер
+  slot(name="bottom")
 
 
 
@@ -35,8 +35,7 @@ export default {
 @import 'style/vars/vars.pcss';
 
 .bottom-landing {
-  padding: 85px 0;
-  height: 400px;
+  padding: 45px 0;
   background: url(./img/blogger_girl_bgr_desk.jpg);
   background-size: cover;
   @media (--overtablet) {

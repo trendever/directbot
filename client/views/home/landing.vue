@@ -8,6 +8,9 @@
 
   landing-top(:new-landing="newLanding", :class="{'update-land':!old && !lastLanding, 'last-landing': lastLanding}")
 
+
+  //- СТАРЫЙ ЛЕНДИНГ
+
   template(v-if="!lastLanding")
 
     template(v-if="!newLanding")
@@ -85,6 +88,7 @@
       button(v-if="!isMobile && showBtns", @click="ask").ask-btn СПРОСИТЬ В ЧАТЕ
 
 
+  //- НОВЫЙ ЛЕНДИНГ
 
 
   template(v-if="lastLanding")
@@ -96,6 +100,7 @@
     last-articles
 
     bottom
+      .big-landing-btn.white(slot="bottom") Как работает менеджер
     .fake-bottom
 
     operator-actions(:class="{'update-land': !old}")
@@ -586,25 +591,50 @@ $ball__size: 120px;
   }
 
   .big-landing-btn {
-    display: none;
-    margin: 35px auto 25px auto;
-    color: $color__brand;
-    border: 1px solid $color__brand;
+
+
+    @define-mixin blue {
+      color: $color__brand;
+      border: 1px solid $color__brand;
+    }
+
+    @define-mixin white {
+      color: white;
+      border: 1px solid white;
+    }
+
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: $font__family__semibold;
+
+    @mixin blue;
+
+    @media (--overtablet){
+      margin-top: 20px;
+      padding: 14px 30px;
+      display: inline-block;
+      font-size: $font__normal;
+    }
+
     @media (--tabletandless){
-      display: block;
-      border-radius: 5px;
-      font-family: $font__family__semibold;
       width: 600px;
       height: 118px;
       font-size: 36px;
       text-align: center;
       line-height: 118px;
-      text-transform: uppercase;
     }
 
+    &:hover {
+      background: white;
+      @mixin white;
+    }
     &.white{
-      color: white;
-      border: 1px solid white;
+      @mixin white;
+      &:hover {
+        background: white;
+        color: $color__brand;
+      }
     }
 
   }
