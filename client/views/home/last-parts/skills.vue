@@ -10,8 +10,9 @@
           img(:src="block.image")
 
         .text
-          span(@click="openedIndex = index" @mouseover="openedIndex = index ")
-            p(v-html="block.text")
+          span(@click="open(index)" @mouseover="openedIndex = index")
+            .counter {{ index+1 + '/' + blocks.length }}
+            p.first(v-html="block.text")
             p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
 
@@ -38,10 +39,10 @@ export default {
             контролировали результаты
           `,
           overview:`
-            Автоматом создаёт чат-заказы в CRM<br class="desktop">
-            с покупателями из Instagram. Обслуживайте<br class="desktop">
-            клиентов совместно, не рискуя паролем,<br class="desktop">
-            и отслеживайте статус выполнения заказов
+            Автоматом создаёт чат-заказы<br> в CRM
+            с покупателями из Instagram. Обслуживайте
+            клиентов совместно, не рискуя паролем,
+            и отслеживайте<br> статус выполнения заказов
           `
         },
         {
@@ -53,10 +54,10 @@ export default {
             качественных блогеров
           `,
           overview: `
-            Поможет массово создавать фото/видео<br class="desktop">
-            с вашими товарами для ленты и рекламы.<br class="desktop">
-            Подберет блогеров, проверит их аудиторию<br class="desktop">
-            и договориться на выгодных условиях
+            Поможет массово создавать<br class="mobile"> фото/видео
+            с вашими товарами для<br class="mobile"> ленты и рекламы.
+            Подберет блогеров,<br class="mobile"> проверит их аудиторию
+            и<br class="mobile"> договориться на выгодных условиях
 
           `
         },
@@ -69,16 +70,25 @@ export default {
             по короткой ссылке
           `,
           overview: `
-            Трансформирует вашу Instagram-ленту<br class="desktop">
-            в интуитивный онлайн-магазин с отзывами,<br class="desktop">
-            телефоном и карточками товаров. Ваш<br class="desktop">
-            сайт доступен по короткой<br class="mobile"> ссылке
+            Трансформирует вашу<br> Instagram-ленту
+            в интуитивный онлайн-магазин с отзывами,
+            телефоном и карточками товаров. Ваш
+            сайт доступен по короткой ссылке
           `
         }
 
       ]
 
     };
+  },
+  methods:{
+    open(index){
+      if(this.openedIndex === index){
+        this.openedIndex = null;
+        return;
+      }
+      this.openedIndex = index;
+    }
   }
 };
 </script>
@@ -106,18 +116,33 @@ export default {
 .info-blocks {
 
   .block {
+
     display: flex;
     margin-bottom: 40px;
     & > div {
       flex:1;
     }
+    @media (--overtablet) {
+      height: 500px;
+      .image {
+        text-align: center;
+
+        img {
+          top:50%;
+          position: relative;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
     .text {
       font-size: $font__normal;
       position: relative;
       span {
+        cursor: pointer;
         padding-top: 70px;
         padding-left: 30px;
-        padding-bottom: 70px;
+        padding-bottom: 55px;
         background: rgba(94, 139, 206,.8);
         display: block;
         margin: 0 auto;
@@ -128,6 +153,12 @@ export default {
         position: relative;
         transform: translateY(-50%);
 
+        p.first {
+          @media (--tabletandless){
+            margin-bottom: 20px;
+          }
+          margin-bottom: 20px;
+        }
         p.overview {
           transition: all .4s ease;
           height: 0px;
@@ -135,7 +166,23 @@ export default {
           font-family: $font__family__light;
 
           &.opened{
-            height: 150px;
+            height: 190px;
+            @media (--tabletandless){
+             height: 220px;
+            }
+          }
+        }
+
+        .counter {
+          font-family: $font__family__light;
+          position: absolute;
+          top: 27px;
+          left: 30px;
+          font-size: 20px;
+          @media (--tabletandless){
+            font-size: $font__normal;
+            top:20px;
+            left: 20px;
           }
         }
       }
@@ -157,17 +204,12 @@ export default {
           top:0;
           width: 100%;
           font-size: 36px;
-          padding: 30px 0px;
+          padding: 40px 0px;
           text-align: center;
         }
       }
     }
-
-
   }
-
-
-
 }
 
 

@@ -398,6 +398,7 @@ $ball__size: 120px;
   text-align: center;
   line-height: calc($ball__size + 4px);
   font-size: $font__medium;
+  z-index: 240;
 
   &::after {
     display: block;

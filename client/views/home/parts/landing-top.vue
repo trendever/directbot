@@ -5,7 +5,7 @@
   .mobile__bg(v-if="!$parent.old")
 
 
-  phone-component(:phone="'+79854107012'")
+  phone-component(:phone="'tel:+79854107012'")
 
   .telegram_logo
     .text интегрирован
@@ -155,20 +155,22 @@ export default {
     margin-top: 15px;
     position: absolute 150px 20px * *;
 
-    @media (--tabletandless){
-      position: absolute 100px 50px * *;
-      .text {
-      }
-      img {
-        width: 70px;
-      }
-    }
     .text {
       color: white;
       margin-bottom: 10px;
     }
     img {
       width: 50px;
+    }
+
+    @media (--tabletandless){
+      position: absolute 100px 30px * *;
+      .text {
+        font-size: $font__normal;
+      }
+      img {
+        width: 70px;
+      }
     }
 
   }
