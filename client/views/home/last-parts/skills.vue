@@ -123,14 +123,15 @@ export default {
       flex:1;
     }
     @media (--overtablet) {
-      height: 500px;
+      height: 700px;
       .image {
-        text-align: center;
+        text-align: right;
 
         img {
           top:50%;
           position: relative;
           transform: translateY(-50%);
+          width: 550px;
         }
       }
     }
@@ -152,6 +153,10 @@ export default {
         top:50%;
         position: relative;
         transform: translateY(-50%);
+
+        @media (--overtablet){
+          margin-left: 20px;
+        }
 
         p.first {
           @media (--tabletandless){
