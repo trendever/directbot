@@ -97,13 +97,11 @@
       .btn-wrap(slot="bottom")
         .big-landing-btn(@click="$router.push({name: 'why-popup'})") Почему мы это делаем
 
-    //-popup-why(:show="showWhyPopup")
-
     center
 
     last-articles
       .btn-wrap(slot="bottom")
-        .big-landing-btn Часто задаваемые вопросы
+        .big-landing-btn(@click="ask") Часто задаваемые вопросы
 
     bottom
       .btn-wrap(slot="bottom")
@@ -148,7 +146,6 @@ import connectGet from './parts/connect-get';
 import landingTop from './parts/landing-top';
 import skills from './last-parts/skills';
 import lastArticles from './last-parts/articles';
-import popupWhy from './last-parts/popup-why';
 
 
 import listen from 'event-listener';
@@ -161,8 +158,6 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
-      showWhyPopup: false,
-
       //Landing pages
       old: false,
       newLanding: false,
@@ -375,8 +370,7 @@ export default {
     newArticles,
     //last landing
     skills,
-    lastArticles,
-    popupWhy
+    lastArticles
   }
 }
 

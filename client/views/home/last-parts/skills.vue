@@ -10,7 +10,9 @@
           img(:src="block.image")
 
         .text
+
           span(@click="open(index)" @mouseover="openedIndex = index")
+            i.ic-info_icon
             .counter {{ index+1 + '/' + blocks.length }}
             p.first(v-html="block.text")
             p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
@@ -117,6 +119,7 @@ export default {
 
   .block {
 
+
     display: flex;
     margin-bottom: 40px;
     & > div {
@@ -177,7 +180,6 @@ export default {
             }
           }
         }
-
         .counter {
           font-family: $font__family__light;
           position: absolute;
@@ -188,6 +190,21 @@ export default {
             font-size: $font__normal;
             top:20px;
             left: 20px;
+          }
+        }
+
+        .ic-info_icon {
+          display: inline-block;
+          color: white;
+          font-family: $font__family__light;
+          position: absolute;
+          top: 32px;
+          right: 30px;
+          font-size: 20px;
+          @media (--tabletandless){
+            font-size: $font__normal;
+            top:20px;
+            right: 20px;
           }
         }
       }
