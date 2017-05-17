@@ -46,6 +46,11 @@ let router = new Router({
       ]
 		},
     {
+      path: '/why-popup',
+      name: 'why-popup',
+      component: require('views/home/last-parts/popup-why')
+    },
+    {
       path: '/agreement',
       name: 'agreement',
       component: require('views/info/agreement')
