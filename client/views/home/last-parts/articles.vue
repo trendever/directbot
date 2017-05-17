@@ -190,13 +190,19 @@ export default {
 
   .slider {
     text-align: center;
+
+    @media (--overtablet){
+      text-align: right;
+    }
     img {
       display: inline-block;
-      text-align: center;
-      vertical-align: middle;
       position: relative;
       top: 50%;
       transform: translateY(-50%);
+
+      @media (--overtablet){
+        width: 550px;
+      }
     }
   }
 
@@ -238,6 +244,7 @@ export default {
     .text {
 
       @media (--overtablet){
+        padding-left: 10px;
         button {
           background: rgba(94, 139, 206,.8);
           color:white;
