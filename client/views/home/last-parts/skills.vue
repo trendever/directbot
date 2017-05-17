@@ -131,7 +131,7 @@ export default {
           top:50%;
           position: relative;
           transform: translateY(-50%);
-          width: 550px;
+          width: 610px;
         }
       }
     }

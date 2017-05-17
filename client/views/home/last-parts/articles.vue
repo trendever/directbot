@@ -201,7 +201,7 @@ export default {
       transform: translateY(-50%);
 
       @media (--overtablet){
-        width: 550px;
+        width: 610px;
       }
     }
   }
