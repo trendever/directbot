@@ -412,17 +412,17 @@ export default {
 }
 
 
-$ball__size: 120px;
+$ball__size: 105px;
 
 .chat-ball {
   cursor: pointer;
-  position: fixed * 20px 30px *;
+  position: fixed * 20px 50px *;
   size: $ball__size;
   border-radius: 50%;
   background-color: $color-orange;
   text-align: center;
   line-height: calc($ball__size + 4px);
-  font-size: $font__medium;
+  font-size: calc($font__medium - 3px);
   z-index: 240;
 
   &::after {
@@ -433,8 +433,8 @@ $ball__size: 120px;
     border-style: solid;
     border-width: 20px 40px 20px 0px;
     border-color: transparent $color-orange transparent transparent;
-    position: absolute * * 0 100px;
-    transform: rotate(-144deg);
+    position: absolute * * 0 80px;
+    transform: rotate(-147deg);
   }
 
   @media (--overtablet){
