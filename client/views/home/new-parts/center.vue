@@ -4,8 +4,9 @@
 
   .advert-title Полный доступ#[br.mobile] к функционалу#[br.desktop] CRM Directbot стоит от
   .advert-price
-    span 590
-    i.ic-rub
+    .c-element
+      span 590
+      i.ic-rub
     p в месяц
   //-.advert-ps
     | *позвлоляет подключить до 5 менеджеров#[br.mobile] отдновременно
@@ -60,6 +61,10 @@ export default {
     margin-bottom: 0px;
     font-size: calc($font__large + 5px);
     background-position: -970px 0px;
+    .advert-price .c-element {
+      display: block;
+    }
   }
+
 }
 </style>
