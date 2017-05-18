@@ -652,15 +652,15 @@ $ball__size: 120px;
     }
 
     .big-landing-btn {
-
+      $size: 4px;
       @define-mixin blue {
         color: $color__brand;
-        border: 1px solid $color__brand;
+        border: $size solid $color__brand;
       }
 
       @define-mixin white {
         color: white;
-        border: 1px solid white;
+        border: $size solid white;
       }
 
       text-transform: uppercase;
@@ -677,6 +677,7 @@ $ball__size: 120px;
       }
 
       @media (--tabletandless){
+        width: 639px;
         display: inline-block;
         padding: 36px 30px;//width: 600px;
         font-size: 36px;

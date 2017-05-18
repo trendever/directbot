@@ -131,6 +131,7 @@ export default {
 
       background-image: none;
       .how-button {
+        font-family: $font__family__semibold;
         background: none;
       }
       .enter-btn {

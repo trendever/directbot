@@ -1,5 +1,12 @@
 <template lang="pug">
 #last-articles.phone-background
+
+  template
+    .hidden-images
+      img(:src="firstImg")
+      img(:src="secondImg")
+      img(:src="thirdImg")
+
   .title Отзывы клиентов
   .body
 
@@ -41,6 +48,10 @@
 </template>
 
 <script>
+
+let firstImg = require('./images/review_narspi_shop_book_zoom.png');
+let secondImg = require('./images/review_bella-fiori_book_zoom.png');
+let thirdImg = require('./images/review_grideli_atelier_book_zoom.png');
 export default {
 
   methods:{
@@ -69,13 +80,17 @@ export default {
     }
   },
   data () {
+
     return {
+      firstImg,
+      secondImg,
+      thirdImg,
       timeId: {},
       sliderRun: false,
       showIndex: 0,
       articles:[
         {
-          img: require('./images/review_narspi_shop_book_zoom.png'),
+          img: firstImg,
           shop: "@narspi_shop",
           category: "Шубы и меховые жилеты",
           text: `
@@ -92,7 +107,7 @@ export default {
           author:'Катя,<br>Владелец бренда'
         },
         {
-          img: require('./images/review_bella-fiori_book_zoom.png'),
+          img: secondImg,
           shop: "@bella.fiori",
           category: "Цветочный бутик",
           text: `
@@ -107,7 +122,7 @@ export default {
           author:'Нарек,<br>Основатель и управляющий партнер'
         },
         {
-          img: require('./images/review_grideli_atelier_book_zoom.png'),
+          img: thirdImg,
           shop: '@grideli_atelier',
           category: 'Магазин одежды',
           text: `
@@ -186,6 +201,11 @@ export default {
         }
       }
     }
+  }
+  .hidden-images {
+    position: absolute * 0 0 0;
+    z-index: -10;
+    opacity: 0;
   }
 
   .slider {
