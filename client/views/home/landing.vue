@@ -80,7 +80,9 @@
 
       .fake-bottom
 
-    .chat-ball(v-if="showChatBall && !old",  @click="ask") ЧАТ
+    .chat-ball(v-if="showChatBall && !old",  @click="ask")
+      span(v-if="chatText") ЧАТ
+      span(v-if="!chatText") FAQ
     .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
       button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
         v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
@@ -121,7 +123,11 @@
       connect-get(:class="{'update-land': !old}")
       .fake-height(v-if="toggleBtns")
 
-    .chat-ball(v-if="showChatBall && !old",  @click="ask") ЧАТ
+    .chat-ball(v-if="showChatBall && !old",  @click="ask")
+      transition(name="slide-fade")
+        span(v-show="chatText") ЧАТ
+      transition(name="slide-fade")
+        span(v-show="!chatText") FAQ
     .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
       button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
         v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
@@ -158,6 +164,8 @@ import JQuery from 'jquery';
 export default {
   data(){
     return {
+      timeId: null,
+      chatText: true,
       //Landing pages
       old: false,
       newLanding: false,
@@ -232,6 +240,11 @@ export default {
   },
   created(){
 
+    this.timeId = setInterval(()=>{
+      this.chatText = !this.chatText;
+      console.log(this.chatText);
+    }, 5000)
+
     if(this.$route.query && this.$route.query.landing === 'new'){
       this.newLanding = true;
     }
@@ -296,6 +309,7 @@ export default {
     })
   },
   beforeDestroy(){
+    if(this.timeId)clearInterval(this.timeId);
     if(this.scrollListener)this.scrollListener.remove();
     if(this.resize)this.resize.remove();
   },
@@ -383,7 +397,19 @@ export default {
 @import 'style/vars/vars.pcss';
 
 
-
+.slide-fade-enter-active {
+  transition: all .5s ease;
+  position: absolute 0 0 * 0;
+}
+.slide-fade-leave-active {
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  position: absolute 0 0 * 0;
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 
 
 $ball__size: 120px;
@@ -407,8 +433,8 @@ $ball__size: 120px;
     border-style: solid;
     border-width: 20px 40px 20px 0px;
     border-color: transparent $color-orange transparent transparent;
-    position: absolute * * 0 -10px;
-    transform: rotate(-42deg);
+    position: absolute * * 0 100px;
+    transform: rotate(-144deg);
   }
 
   @media (--overtablet){
