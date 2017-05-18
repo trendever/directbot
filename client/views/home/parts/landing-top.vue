@@ -24,9 +24,11 @@
       menu-sample.blue(:opened="showMenu", v-on:close="showMenu = false")
         .item(@click="$router.push({name: 'auth'})")
           .text Вход
+        .item(@click="$parent.showArticles")
+          .text Отзывы
         .item(onclick="window.open('https://www.trendever.com')")
           .text Покупателям
-        .item(@click="$router.push({name: 'dress-blogger'})")
+        .item(@click.stop="$router.push({name: 'dress-blogger'})")
           .text Блогерам
         .item
           .text.__txt-blue Отмена
