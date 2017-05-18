@@ -174,7 +174,7 @@ export default {
           }
           .wrap-arrows {
             display: block;
-            position: absolute 60px 0 * 0;
+            position: absolute 56px 0 * 0;
           }
           .arrow-left {
             float: left;
@@ -273,6 +273,7 @@ export default {
         .brand-name {
           font-size: calc($font__large + 10px);
           @media (--tabletandless){
+            font-family: $font__family__semibold;
             text-align: center;
           }
         }
@@ -289,6 +290,7 @@ export default {
           p {
             text-align: left !important;
             padding-left: 15px;
+            padding-right: 15px;
           }
           .ps {
             font-size: $font__medium;

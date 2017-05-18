@@ -11,7 +11,7 @@
 
         .text
 
-          span(@click="open(index)" @mouseover="openedIndex = index")
+          span(@click="open(index)" @mouseover="openedIndex = index" @mouseleave="openedIndex=''")
             i.ic-info_icon
             .counter {{ index+1 + '/' + blocks.length }}
             p.first(v-html="block.text")
@@ -63,10 +63,10 @@ export default {
             качественных блогеров
           `,
           overview: `
-            Поможет массово создавать<br class="mobile"> фото/видео
-            с вашими товарами для<br class="mobile"> ленты и рекламы.
-            Подберет блогеров,<br class="mobile"> проверит их аудиторию
-            и<br class="mobile"> договориться на выгодных условиях
+            Поможет массово создавать<br> фото/видео
+            с вашими товарами<br class="desktop"> для<br class="mobile"> ленты и рекламы.
+            Подберет блогеров,<br class="mobile"> проверит их аудиторию<br>
+            и договориться на выгодных<br class="desktop"> условиях
 
           `
         },
@@ -79,10 +79,10 @@ export default {
             по короткой ссылке
           `,
           overview: `
-            Трансформирует вашу<br> Instagram-ленту
-            в интуитивный онлайн-магазин с отзывами,
-            телефоном и карточками товаров. Ваш
-            сайт доступен по короткой ссылке
+            Трансформирует Instagram-ленту<br class="desktop">
+            в интуитивный онлайн-магазин<br class="desktop"> с отзывами,
+            телефоном<br class="desktop"> и карточками товаров.<br class="desktop"> Ваш
+            сайт доступен<br class="desktop"> по короткой ссылке
           `
         }
 
@@ -157,7 +157,7 @@ export default {
         background: rgba(94, 139, 206,.8);
         display: block;
         margin: 0 auto;
-        width: 400px;
+        width: 470px;
         color: white;
         font-family: $font__family__semibold;
         top:50%;
