@@ -68,12 +68,12 @@ export default {
     }
     @media (--tabletandless){
       display: inline-block;
-      position: absolute 22px 120px initial *;
+      position: absolute 22px 125px initial *;
       z-index: 200;
       max-width: 100px;
       i {
         color: white;
-        font-size: 50px;
+        font-size: 40px;
       }
 
       a {

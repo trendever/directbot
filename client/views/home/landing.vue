@@ -242,7 +242,6 @@ export default {
 
     this.timeId = setInterval(()=>{
       this.chatText = !this.chatText;
-      console.log(this.chatText);
     }, 1500)
 
     if(this.$route.query && this.$route.query.landing === 'new'){
@@ -421,8 +420,9 @@ $ball__size: 105px;
   border-radius: 50%;
   background-color: $color-orange;
   text-align: center;
-  line-height: calc($ball__size + 4px);
-  font-size: calc($font__medium - 3px);
+  padding-left: 2px;
+  line-height: calc($ball__size + 2px);
+  font-size: calc($font__medium - 5px);
   z-index: 240;
 
   &::after {
@@ -431,10 +431,10 @@ $ball__size: 105px;
     width: 0px;
     height: 0px;
     border-style: solid;
-    border-width: 20px 40px 20px 0px;
+    border-width: 20px 40px 30px 0px;
     border-color: transparent $color-orange transparent transparent;
     position: absolute * * 0 80px;
-    transform: rotate(-147deg);
+    transform: rotate(-149deg);
   }
 
   @media (--overtablet){
