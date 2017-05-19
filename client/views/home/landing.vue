@@ -327,7 +327,7 @@ export default {
       this.$router.push({name: 'home-info', params: {id: name}})
     },
     scrollFirst() {
-      JQuery(document.body).animate({scrollTop: window.innerHeight - 100},450);
+      JQuery(document.body).animate({scrollTop: this.isTrendever ? window.innerHeight : window.innerHeight - 100},450);
     },
     scrollSecond() {
       JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
