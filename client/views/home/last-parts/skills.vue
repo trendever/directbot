@@ -42,16 +42,11 @@ export default {
           `,
           overview:`
 
-            Автоматом создаёт чат-заказы из<br>
-            Instagram. Ускоряет обслуживание<br>
-            покупателей, пишет автосообщения<br>
-            в Direct и комментарии. Сортирует<br>
-            заказы по статусам в едином окне
-
-            <!--Автоматом создаёт чат-заказы<br> в CRM
-            с покупателями из Instagram. Обслуживайте
-            клиентов совместно, не рискуя паролем,
-            и отслеживайте<br> статус выполнения заказов-->
+            Автоматом создаёт чат-заказы<br class="desktop"> из<br class="mobile">
+            Instagram. Ускоряет<br class="desktop"> обслуживание<br class="mobile">
+            покупателей,<br class="desktop"> пишет автосообщения<br class="mobile">
+            в Direct<br class="desktop"> и комментарии. Сортирует<br class="mobile">
+            заказы<br class="desktop"> по статусам в едином окне
           `
         },
         {
@@ -151,9 +146,9 @@ export default {
       position: relative;
       span {
         cursor: pointer;
-        padding-top: 70px;
+        padding-top: 120px;
         padding-left: 30px;
-        padding-bottom: 55px;
+        padding-bottom: 110px;
         background: rgba(94, 139, 206,.8);
         display: block;
         margin: 0 auto;

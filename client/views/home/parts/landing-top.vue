@@ -8,7 +8,7 @@
   phone-component(:phone="'tel:+79854107012'")
 
   .telegram_logo
-    .text интегрирован
+    //-.text интегрирован
     img(src="../img/telegram_logo.svg")
 
   brand-menu
@@ -167,12 +167,12 @@ export default {
     }
 
     @media (--tabletandless){
-      position: absolute 100px 30px * *;
+      position: absolute 5px 225px * *;
       .text {
         font-size: $font__normal;
       }
       img {
-        width: 70px;
+        width: 60px;
       }
     }
 
