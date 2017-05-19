@@ -34,7 +34,7 @@
           .text.__txt-blue Отмена
 
 
-  a.header-sticker(href="https://trendever.com", target="_blank", :class="{'new-landing': newLanding}")
+  //-a.header-sticker(href="https://trendever.com", target="_blank", :class="{'new-landing': newLanding}")
     span.wrap
       | Подключайтесь и продавайте#[br]
       | на Trendever
@@ -48,7 +48,7 @@
     //-a(href="https://www.trendever.com/dressblogger", target="_blank").for-blogers БЛОГЕРАМ
 
   //-.logo__mobile
-
+  i.ic-logo_directbot_txt
   .left-logo(v-if="!isMobile")
     a(@click="$store.dispatch('logOut')")
       img(src="../img/directbot-logo-txt.svg")
@@ -170,6 +170,19 @@ export default {
       }
     }
   }
+
+   i.ic-logo_directbot_txt {
+    display: none;
+    @media (--tabletandless){
+      display: block;
+      position: absolute 35px * * 35px;
+      font-size: 50px;
+      z-index: 800;
+      color: white;
+    }
+
+
+   }
   .telegram_logo  {
     display: inline-block;
     z-index: 200;
