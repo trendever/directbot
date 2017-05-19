@@ -243,7 +243,7 @@ export default {
     this.timeId = setInterval(()=>{
       this.chatText = !this.chatText;
       console.log(this.chatText);
-    }, 5000)
+    }, 1500)
 
     if(this.$route.query && this.$route.query.landing === 'new'){
       this.newLanding = true;
