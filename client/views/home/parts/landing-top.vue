@@ -47,25 +47,29 @@
     //-button(v-on:click="$router.push({name: 'auth'})").profile-header__auth-btn.btn-smaller ВХОД И РЕГИСТРАЦИЯ
     //-a(href="https://www.trendever.com/dressblogger", target="_blank").for-blogers БЛОГЕРАМ
 
-  .logo__mobile
+  //-.logo__mobile
 
   .left-logo(v-if="!isMobile")
     a(@click="$store.dispatch('logOut')")
       img(src="../img/directbot-logo-txt.svg")
 
-  .center-logo(v-if="!isMobile")
+  //-.center-logo(v-if="!isMobile")
     img(src="../img/directbot-main-logo.png")
 
-  .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="!newLanding")
-    | CRM для бизнеса в Instagram#[br]
-    span.time__text(v-if="!newLanding")
-      | Автоматизация взаимодействия#[br]
-      | с покупателями и блогерами#[br]
+  .wrap-landing-title
+    .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="!newLanding")
+      span.top-text CRM для бизнеса#[br.mobile] в Instagram#[br]
+      span.bottom-text.time__text(v-if="!newLanding")
+        | Автоматизация#[br.mobile] работы#[br.desktop]
+        | с клиентами#[br.mobile] и блогерами
 
-  .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
-    | CRM для бизнеса#[br.mobile] в Instagram
+    .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
+      | CRM для бизнеса#[br.mobile] в Instagram
 
-  .set-up
+
+    .set-up.btn-wrap
+          .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
+  //-.set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.enter-btn(v-on:click="$router.push({name: 'auth'})")
     | ВХОД И РЕГИСТРАЦИЯ
@@ -118,6 +122,7 @@ export default {
     background-size: cover;
     background-position-x: 0px;
     height: 100%;
+    position: static;
   }
   //z-index: 10;
   position: relative;
@@ -149,7 +154,22 @@ export default {
       }
     }
   }
+  .wrap-landing-title {
+    @media (--tabletandless){
+      position: relative;
+      margin-top: 150px;
+      height: calc(900px - 150px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
+      .top-text, .bottom-text {
+        font-size: calc($font__large + 10px) !important;
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+    }
+  }
   .telegram_logo  {
     display: inline-block;
     z-index: 200;
@@ -424,7 +444,7 @@ export default {
     color: $color__white;
     font-size: 46px;
     text-align: center;
-    margin-top: 4px;
+    margin-top: 45px;
 
     @media (--tabletandless) {
       position: relative;

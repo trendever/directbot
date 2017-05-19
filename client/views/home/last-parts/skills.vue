@@ -103,7 +103,7 @@ export default {
 #slills {
 
   max-width: 1050px;
-  margin:  60px auto 0 auto;
+  margin:  120px auto 0 auto;
   .title {
     font-size: 45px;
     font-family: $font__family__regular;
@@ -214,8 +214,10 @@ export default {
     @media (--tabletandless){
       display: block;
       position: relative;
+      margin-bottom: 70px;
       .image img {
         width: 100%;
+        transform: translateY(-32px);
       }
       .text {
         position: absolute;

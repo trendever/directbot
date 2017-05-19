@@ -671,7 +671,9 @@ $ball__size: 105px;
       @mixin blue;
 
       @media (--overtablet){
+        border-width: 3px;
         display: inline-block;
+        width: 448px;
         padding: 14px 30px;
         font-size: $font__normal;
       }
@@ -689,6 +691,7 @@ $ball__size: 105px;
         color: white;
       }
       &.white{
+        border-color: white;
         @mixin white;
         &:hover {
           background: white;
