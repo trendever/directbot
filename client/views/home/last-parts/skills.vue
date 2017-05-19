@@ -104,6 +104,9 @@ export default {
 
   max-width: 1050px;
   margin:  120px auto 0 auto;
+  @media (--tabletandless){
+    margin-top: 34px;
+  }
   .title {
     font-size: 45px;
     font-family: $font__family__regular;

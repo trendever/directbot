@@ -157,8 +157,8 @@ export default {
   .wrap-landing-title {
     @media (--tabletandless){
       position: relative;
-      margin-top: 150px;
-      height: calc(900px - 150px);
+      top: 200px;
+      height: calc(900px - 200px);
       display: flex;
       flex-direction: column;
       justify-content: center;
