@@ -28,6 +28,8 @@
 
         .text
           button
+            .land__top-btn
+              a(:href="storeWindow", target="_blank") посмотреть витрину
             .info
               .category {{ article.category }}
               .brand-name {{ article.shop }}
@@ -53,7 +55,12 @@ let firstImg = require('./images/review_narspi_shop_book_zoom.png');
 let secondImg = require('./images/review_bella-fiori_book_zoom.png');
 let thirdImg = require('./images/review_grideli_atelier_book_zoom.png');
 export default {
-
+  computed: {
+    storeWindow(){
+      let name  = this.shopName.replace('@','');
+      return 'https://directbot.io/' + name;
+    }
+  },
   methods:{
     next(index){
       let scroll = document.body.scrollTop;
@@ -79,12 +86,18 @@ export default {
       })
     }
   },
+  watch: {
+    showIndex(val){
+      this.shopName = this.articles[val].shop
+    }
+  },
   data () {
 
     return {
       firstImg,
       secondImg,
       thirdImg,
+      shopName: 'narspi_shop',
       timeId: {},
       sliderRun: false,
       showIndex: 0,
@@ -241,6 +254,28 @@ export default {
     border:none;
     display: block;
     background: none;
+
+
+
+    .land__top-btn {
+      display: none;
+      @media (--overtablet){
+        display: inline-block;
+        position: absolute * 10px -50px *;
+        padding: 10px 20px;
+        border-radius: 3px;
+        text-transform: uppercase;
+        color: whited;
+        background: $color__brand;
+        a {color: white;text-decoration: none};
+        &:hover {
+          color: $color__brand;
+          background: white;
+          cursor: pointer;
+           a {color: $color__brand}
+        }
+      }
+    }
 
 
 

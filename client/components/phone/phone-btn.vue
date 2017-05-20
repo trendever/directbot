@@ -2,7 +2,7 @@
 
 #phone(slot="center-content", v-if="phone", :class="$route.name")
   a( :href="phone", @click="showPhone($event)")
-    //img(src="./phone.png")
+    //-img(src="./phone.png")
     i.ic-icon_phone
 
 </template>
