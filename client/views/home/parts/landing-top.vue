@@ -34,7 +34,10 @@
           .text.__txt-blue Отмена
 
 
-  //-a.header-sticker(href="https://trendever.com", target="_blank", :class="{'new-landing': newLanding}")
+  a.header-sticker(
+    href="https://trendever.com", target="_blank",
+    :class="{'new-landing': newLanding, move: timeout}",
+  )
     span.wrap
       | Подключайтесь и продавайте#[br]
       | на Trendever
@@ -93,8 +96,12 @@ export default {
     }
   },
   components: {menuSample, brandMenu,phoneComponent},
+  created(){
+    setTimeout(()=>{this.timeout=true},2000)
+  },
   data(){
     return {
+      timeout: false,
       isSafari: window.browser.safari,
       isFacebok: window.browser.facebook,
       isInstagram: window.browser.instagram,
@@ -256,7 +263,7 @@ export default {
   a.header-sticker {
 
     //display: none;
-    z-index: 100;
+    z-index: 1001;
     text-decoration: none;
     color: white;
     text-align: center;
@@ -266,6 +273,16 @@ export default {
     background-image: url(../img/header_sticker.png);
     background-repeat: no-repeat;
     background-size: contain;
+    transition: all .6s ease;
+    &.move {
+      @media (--tabletandless){
+        margin-left: -700px;
+      }
+
+      @media (--overtablet){
+        right: -1500px;
+      }
+    }
 
     @media (--tabletandless) {
       animation: margin-move .6s ease;
