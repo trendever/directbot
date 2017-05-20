@@ -162,6 +162,22 @@ export default {
     }
   }
   .wrap-landing-title {
+    @media (--overtablet){
+      position: relative;
+      top: 20px;
+
+      .description {
+        margin-top: 0px;
+      }
+       .top-text {
+          font-family: $font__family__semibold;
+       }
+
+       .bottom-text {
+         font-size: $font__large !important;
+         margin-top: 20px;
+       }
+    }
     @media (--tabletandless){
       position: relative;
       top: 200px;

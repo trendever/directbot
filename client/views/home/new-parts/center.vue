@@ -54,7 +54,7 @@ export default {
     //background-position: -50px 0px;
     background-position: 50% 50%;
     margin-bottom: 0px;
-    max-height: 570px;
+    max-height: 650px;
   }
   @media (--tabletandless){
     margin-top: 45px;
