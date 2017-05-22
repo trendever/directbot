@@ -104,7 +104,7 @@ export default {
 
 #slills {
 
-  max-width: 1050px;
+  max-width: 1500px;
   margin:  120px auto 0 auto;
   @media (--tabletandless){
     margin-top: 34px;
