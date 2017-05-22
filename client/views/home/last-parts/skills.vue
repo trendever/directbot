@@ -11,7 +11,10 @@
 
         .text
 
-          span(@click="open(index)" @mouseover="openedIndex = index" @mouseleave="openedIndex=''")
+          span(@click="open(index)",
+            @mouseover="openedIndex = index",
+            @mouseleave="openedIndex=''",
+            :class="{ opened: openedIndex === index }")
             i.ic-info_icon
             .counter {{ index+1 + '/' + blocks.length }}
             p.first(v-html="block.text")
@@ -41,7 +44,6 @@ export default {
             контролировали результаты
           `,
           overview:`
-
             Автоматом создаёт чат-заказы<br class="desktop"> из<br class="mobile">
             Instagram. Ускоряет<br class="desktop"> обслуживание<br class="mobile">
             покупателей,<br class="desktop"> пишет автосообщения<br class="mobile">
@@ -155,15 +157,26 @@ export default {
         background: rgba(94, 139, 206,.8);
         display: block;
         margin: 0 auto;
-        width: 470px;
+        width: 550px;
         color: white;
         font-family: $font__family__semibold;
         top:50%;
         position: relative;
         transform: translateY(-50%);
+        transition: all .4s ease;
 
         @media (--overtablet){
+          //letter-spacing: 1px;
+          padding-top: 60px;
+          padding-bottom: 45px;
           margin-left: 20px;
+          font-size: calc($font__normal + 7px);
+
+          &.opened {
+            padding-top: 120px;
+            padding-bottom: 110px;
+          }
+
         }
 
         p.first {
@@ -179,7 +192,7 @@ export default {
           font-family: $font__family__light;
 
           &.opened{
-            height: 190px;
+            height: 240px;
             @media (--tabletandless){
              height: 220px;
             }
@@ -188,7 +201,7 @@ export default {
         .counter {
           font-family: $font__family__light;
           position: absolute;
-          top: 27px;
+          top: 24px;
           left: 30px;
           font-size: 20px;
           @media (--tabletandless){
@@ -203,7 +216,7 @@ export default {
           color: white;
           font-family: $font__family__light;
           position: absolute;
-          top: 32px;
+          top: 26px;
           right: 30px;
           font-size: 20px;
           @media (--tabletandless){
