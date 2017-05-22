@@ -94,7 +94,7 @@ export default {
   beforeCreate(){
     if ( this.$route.query && this.$route.query.token) {
       let token = this.$route.query.token;
-      store.dispatch('authUser',{null,token})
+      store.dispatch('authUser',{token})
       .then(()=>{
         this.authDone = true;
       })
@@ -106,7 +106,7 @@ export default {
       })
     }else{
       store
-      .dispatch('authUser', { null, null } )
+      .dispatch('authUser', {} )
       .then( () => {
         this.authDone = true;
       })
