@@ -4,7 +4,7 @@
   .info-blocks
 
     template(v-for="block, index in blocks")
-      .block
+      .block(:class="{'top-margin': index > 0 }")
 
         .image
           img(:src="block.image")
@@ -194,7 +194,7 @@ export default {
           &.opened{
             height: 240px;
             @media (--tabletandless){
-             height: 220px;
+             height: 240px;
             }
           }
         }
@@ -206,8 +206,8 @@ export default {
           font-size: 20px;
           @media (--tabletandless){
             font-size: $font__normal;
-            top:20px;
-            left: 20px;
+            top:11px;
+            left: 11px;
           }
         }
 
@@ -220,9 +220,9 @@ export default {
           right: 30px;
           font-size: 20px;
           @media (--tabletandless){
-            font-size: $font__normal;
-            top:20px;
-            right: 20px;
+            font-size: calc($font__normal + 2px);
+            top:16px;
+            right: 16px;
           }
         }
       }
@@ -231,6 +231,11 @@ export default {
       display: block;
       position: relative;
       margin-bottom: 70px;
+
+      &.top-margin {
+        margin-bottom: 60px;
+      }
+
       .image img {
         width: 100%;
         transform: translateY(-32px);
@@ -246,8 +251,9 @@ export default {
           top:0;
           width: 100%;
           font-size: 36px;
-          padding: 40px 0px;
+          padding: 30px 0px 15px 0px;
           text-align: center;
+
         }
       }
     }
