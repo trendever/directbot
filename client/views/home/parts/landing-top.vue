@@ -198,8 +198,8 @@ export default {
     display: none;
     @media (--tabletandless){
       display: block;
-      position: absolute 35px * * 35px;
-      font-size: 50px;
+      position: absolute 30px * * 30px;
+      font-size: 45px;
       z-index: 800;
       color: white;
     }
