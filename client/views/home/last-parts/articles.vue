@@ -22,17 +22,16 @@
 
       .plank
 
-        .slider
-
+        .slider(@click="goShop")
           img(:src="article.img")
 
         .text
           button
-            .land__top-btn
+            //-.land__top-btn
               a(:href="storeWindow", target="_blank") посмотреть витрину
             .info
               .category {{ article.category }}
-              .brand-name {{ article.shop }}
+              .brand-name(@click="goShop") {{ article.shop }}
 
               .wrap-arrows
 
@@ -62,6 +61,9 @@ export default {
     }
   },
   methods:{
+    goShop(){
+      window.open(this.storeWindow)
+    },
     next(index){
       let scroll = document.body.scrollTop;
 
@@ -179,6 +181,7 @@ export default {
       margin-top: 200px;
     }
     .slider{
+      display: block;
       overflow: visible;
       height: 500px;
       img { width: 100%;}
@@ -326,8 +329,14 @@ export default {
         }
 
         .brand-name {
+          display: block;
+          color: white;
           font-size: calc($font__large + 10px);
           @media (--tabletandless){
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+            z-index: 1100;
             font-family: $font__family__semibold;
             text-align: center;
           }
