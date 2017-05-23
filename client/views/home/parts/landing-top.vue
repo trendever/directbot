@@ -169,13 +169,13 @@ export default {
       .description {
         margin-top: 0px;
       }
-       .top-text {
+      .top-text {
           font-family: $font__family__semibold;
        }
 
-       .bottom-text {
-         font-size: $font__large !important;
-         margin-top: 20px;
+      .bottom-text {
+        font-size: $font__large !important;
+        margin-top: 20px;
        }
     }
     @media (--tabletandless){
@@ -190,6 +190,10 @@ export default {
         font-size: calc($font__large + 10px) !important;
         margin-top: 40px;
         margin-bottom: 40px;
+      }
+
+      .bottom-text {
+        font-family: $font__family__light !important;
       }
     }
   }
