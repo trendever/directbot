@@ -185,7 +185,7 @@ export default {
     color: $color__brand;
     text-align: center;
     line-height: 89px;
-    background: #f7f7f7;
+    background: $color__header__bg;
     font-size: 60px;
     padding-top: 17px;
 
