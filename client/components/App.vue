@@ -32,7 +32,7 @@
     .button-text(v-on:click.stop="showDesktopPhone = false")
       span СПАСИБО
 
-
+  input(type="hidden", value="", id="get-user-login")
 </template>
 
 <script>
