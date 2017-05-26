@@ -46,7 +46,7 @@ import Listener from './Listener.vue';
 import Monetization from './Monetization.vue';
 import nativePopup from 'components/popup/native';
 
-window.browser.standalone = true
+//window.browser.standalone = true
 export default {
 
   data(){
