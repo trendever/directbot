@@ -35,7 +35,7 @@
 }
 
 .header:not(.center-main-width){
-  z-index: 100;
+  z-index: 250;
 }
 
 

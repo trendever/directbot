@@ -37,11 +37,9 @@
 
         i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
         | Это список чатов с вашими#[br.mobile]
-        | покупателями из&nbsp
-        | Instagram,#[br]
+        | покупателями из Instagram,#[br]
         | синхронизированный с#[br.mobile]
-        | комментариями и&nbsp
-        | Direct
+        | комментариями и Direct
 
       //-.chat-list-cnt-is-empty__banner.directbot-banner(
         v-if="!botActivity && getBannerInfo.indexOf('chat-banner') === -1", :class="{'turn-bottom': sortedList.length}")
