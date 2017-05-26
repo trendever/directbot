@@ -100,7 +100,7 @@
               button.connect.no-mob(v-if="!botActivity",
                   @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
               template(v-if="isAuth")
-                button(@click="findBloger", :class="{grey: !botActivity }", :disable="!botActivity") НАЙТИ БЛОГЕРА
+                button(@click="findBloger", :class="{grey: !botActivity }") НАЙТИ БЛОГЕРА
                 button.no-desk(@click="supportChat") ПОДДЕРЖКА
 
 
