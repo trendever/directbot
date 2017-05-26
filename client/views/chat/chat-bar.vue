@@ -2,8 +2,9 @@
 <template lang="pug">
 #chat-bar
   .chat-bar
-    .chat-approve-btn.noaction(v-if='getAction === "approve" && getCurrentMember.role === 1', @click='approveChat($event)') ПОДТВЕРДИТЬ
-    .chat-bar.section__content(v-if="getAction !== 'approve' && getAction !== 'pay' && getAction !== 'pendingpayment' ", id="inputbar")
+    //-.chat-approve-btn.noaction(v-if='getAction === "approve" && getCurrentMember.role === 1',
+      @click='approveChat($event)') ПОДТВЕРДИТЬ
+    .chat-bar.section__content(v-if="showSection", id="inputbar")
       .chat-bar_menu-btn(@click.stop='openChatmenu', :class="{'directbot-color': directbot}")
         i.ic-chat_menu
       .chat-bar_input(ref="bar")
@@ -58,7 +59,12 @@
         'getStatus',
         'getShopName',
         'getLeadId'
-      ])
+      ]),
+      showSection(){
+        return true
+/*        let action = this.getAction
+        return action !== 'approve' && action !== 'pay' && action !== 'pendingpayment'*/
+      }
     },
 
     mounted(){
