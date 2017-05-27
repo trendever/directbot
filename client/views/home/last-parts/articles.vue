@@ -294,6 +294,13 @@ export default {
       font-family: $font__family__regular;
       font-size: $font__large;
     }
+
+    @media (--tabletandless){
+      font-size: $font__medium;
+      color: $color__brand;
+      text-transform: uppercase;
+      font-family: $font__family__semibold;
+    }
   }
 
   .plank {
