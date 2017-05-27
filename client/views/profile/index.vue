@@ -211,6 +211,20 @@ export default {
   },
 
   methods: {
+    openOptions(){
+      this
+        .createLead( 32158 )
+        .then(
+          ( lead ) => {
+            if ( lead !== undefined && lead !== null ) {
+              this.$router.go( { name: 'chat', params: { id: lead.id } } )
+            }
+          }
+        )
+        .catch(()=>{
+          console.warn("NO LEAD '32158'")
+        })
+    },
     backArrow(){
       window.history.back();
     },
@@ -339,11 +353,6 @@ export default {
 
 
     },
-
-    openOptions(){
-      return;
-    },
-
     hideBanner(){
       window.localStorage.setItem('isMainBannerShow',false);
       this.showBanner = false;
