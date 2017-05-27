@@ -232,11 +232,11 @@ export default {
     @media (--tabletandless){
       display: block;
       position: relative;
-      margin-bottom: 120px;//70px;
+      margin-bottom: 70px;
 
-/*       &.top-margin {
-        margin-bottom: 60px;
-      } */
+      &.top-margin {
+        margin-top: 120px;
+      }
 
       .image img {
         width: 100%;
