@@ -20,7 +20,7 @@
             p.first(v-html="block.text")
             p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
-
+        i.ic-arrow-down.no-desk
 
   slot(name="bottom")
 
@@ -236,6 +236,17 @@ export default {
 
       &.top-margin {
         margin-top: 120px;
+      }
+
+      i.ic-arrow-down {
+        color: white;
+        display: inline-block;
+        z-index: 200;
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        transform: translateX(-50%);
+        font-weight: bold;
       }
 
       .image img {
