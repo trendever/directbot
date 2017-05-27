@@ -31,7 +31,7 @@
               a(:href="storeWindow", target="_blank") посмотреть витрину
             .info
               .category {{ article.category }}
-              .brand-name(@click="goShop") {{ article.shop }}
+              .brand-name(@click="goShop"): span {{ article.shop }}
 
               .wrap-arrows
 
@@ -346,6 +346,11 @@ export default {
             z-index: 1100;
             font-family: $font__family__semibold;
             text-align: center;
+          }
+
+          span {
+            cursor: pointer;
+            border-bottom: 2px solid white;
           }
         }
 
