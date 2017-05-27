@@ -61,6 +61,7 @@
 
   @media (--overtablet) {
     box-shadow: 1px 1px 5px #595959;
+    z-index: 300;
     &.prof-menu {
       width: 242px;
     }
