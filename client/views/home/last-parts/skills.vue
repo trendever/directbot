@@ -133,6 +133,8 @@ export default {
       flex:1;
     }
     @media (--overtablet) {
+      margin-bottom: 150px;
+      margin-top: 50px;
       height: 700px;
       .image {
         text-align: right;
@@ -230,11 +232,11 @@ export default {
     @media (--tabletandless){
       display: block;
       position: relative;
-      margin-bottom: 70px;
+      margin-bottom: 120px;//70px;
 
-      &.top-margin {
+/*       &.top-margin {
         margin-bottom: 60px;
-      }
+      } */
 
       .image img {
         width: 100%;
