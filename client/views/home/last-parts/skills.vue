@@ -241,7 +241,7 @@ export default {
       i.ic-arrow-down {
         color: white;
         display: inline-block;
-        z-index: 200;
+        z-index:50;
         position: absolute;
         left: 50%;
         bottom: 12px;

@@ -206,6 +206,7 @@ export default {
           .wrap-arrows {
             display: block;
             position: absolute 56px 0 * 0;
+            z-index: 100;
           }
           .arrow-left {
             float: left;
@@ -343,7 +344,7 @@ export default {
             position: relative;
             max-width: 400px;
             margin: 0 auto;
-            z-index: 1100;
+            z-index: 105;
             font-family: $font__family__semibold;
             text-align: center;
           }
