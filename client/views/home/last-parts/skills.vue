@@ -20,7 +20,7 @@
             p.first(v-html="block.text")
             p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
-        i.ic-arrow-down.no-desk
+        i.ic-white_arrow_down.no-desk(v-if="openedIndex !== index")
 
   slot(name="bottom")
 
@@ -78,8 +78,9 @@ export default {
           overview: `
             Трансформирует Instagram-ленту<br>
             в интуитивный онлайн-магазин<br> с отзывами,
-            телефоном<br class="desktop"> и карточками товаров.<br class="desktop"> Ваш
-            сайт доступен<br> по короткой ссылке
+            телефоном<br class="desktop"> и карточками товаров.<br class="desktop">
+            Сайт адаптирован,<br class="mobile"> под все<br class="desktop">
+            размеры экранов
           `
         }
 
@@ -238,7 +239,7 @@ export default {
         margin-top: 120px;
       }
 
-      i.ic-arrow-down {
+      i.ic-white_arrow_down {
         color: white;
         display: inline-block;
         z-index:50;
