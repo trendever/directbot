@@ -20,7 +20,7 @@
         p.tooltip необходима #[br.mobile]синхронизация
         img.photo__img(src='./img/image_placeholder_drbt.svg', v-if="!isTrendever")
         img.photo__img(src='./img/image_placeholder_trndvr.svg', v-if="isTrendever")
-      .photo__description(v-if="!isTrendever")
+      .photo__description
         .photo__row.photo__title Наименование товара
           .photo__summ
             | 0
