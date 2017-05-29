@@ -41,7 +41,7 @@
 
 </style>
 <template lang="pug">
-.header
+.header.grey_bg
   .fake-top-standalone(v-if="isStandalone")
   .header__content
     .wrapper.directbot-color(:class="{'chat-slot': $route.name === 'chat' && isMobile}")
