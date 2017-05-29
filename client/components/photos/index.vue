@@ -13,11 +13,18 @@
       :class-data="index%2",
       ref="single")
 
+  //-FAKE PHOTOS
   template(v-if="$route.name === 'profile' && noResults")
-    .single-photo.photo__container.fake-photos(v-for="i in [1,2,3]")
+    .single-photo.photo__container.fake-photos(v-for="i in [1,2,3,4,5,6]")
       .photo__img-space
+        p.tooltip необходима #[br.mobile]синхронизация
         img.photo__img(src='./img/image_placeholder_drbt.svg', v-if="!isTrendever")
         img.photo__img(src='./img/image_placeholder_trndvr.svg', v-if="isTrendever")
+      .photo__description(v-if="!isTrendever")
+        .photo__row.photo__title Наименование товара
+          .photo__summ
+            | 0
+            i.ic-currency-rub
 
   #infinitie
   scroll-top

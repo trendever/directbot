@@ -20,7 +20,8 @@
             p.first(v-html="block.text")
             p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
-        i.ic-white_arrow_down.no-desk(v-if="openedIndex !== index")
+        i.ic-white_arrow_down.no-desk(
+          v-if="openedIndex !== index",@click="open(index)")
 
   slot(name="bottom")
 
