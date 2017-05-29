@@ -46,6 +46,8 @@ import Listener from './Listener.vue';
 import Monetization from './Monetization.vue';
 import nativePopup from 'components/popup/native';
 
+import { setToken } from 'services/user';
+
 //window.browser.standalone = true
 export default {
 
@@ -71,6 +73,28 @@ export default {
     Monetization,
     nativePopup
   },
+
+  //get user for ios push actions logic
+
+  created(){
+
+    let self = this;
+
+    window.setUserToken = function(token,type){
+      setToken(token,type).then(data => console.log(data));
+    },
+
+    window.authIsDone = function(){
+      if (self.$store.state.user.token != null){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    window.entryPoint = this.$route.name;
+  },
+
+
   mounted(){
 
     window.eventHub.$on('no-sock-connection',data=>{
