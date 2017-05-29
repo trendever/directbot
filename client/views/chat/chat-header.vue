@@ -42,7 +42,7 @@
           .chat-header_cnt_t Поддержка
 
 
-      phone-component(slot="center-content")
+      phone-component(slot="center-content", :phone="'tel:+79854107012'")
 
 </template>
 
