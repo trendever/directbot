@@ -1,6 +1,6 @@
 <style>
 .faderoute-enter-active, .faderoute-leave-active {
-  transition: opacity .5s ease;
+  transition: opacity .3s ease;
 }
 .faderoute-enter, .faderoute-leave-active {
   opacity: 0;
