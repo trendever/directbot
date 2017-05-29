@@ -80,7 +80,7 @@ export default {
             Трансформирует Instagram-ленту<br>
             в интуитивный онлайн-магазин<br> с отзывами,
             телефоном<br class="desktop"> и карточками товаров.<br class="desktop">
-            Сайт адаптирован,<br class="mobile"> под все<br class="desktop">
+            Сайт адаптирован<br class="mobile"> под все<br class="desktop">
             размеры экранов
           `
         }
