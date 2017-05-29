@@ -1,9 +1,21 @@
+<style>
+.faderoute-enter-active, .faderoute-leave-active {
+  transition: opacity .5s ease;
+}
+.faderoute-enter, .faderoute-leave-active {
+  opacity: 0;
+}
+
+</style>
+
 <template lang="pug">
 #app.directbot(:class="{'standalone': isStandalone}")
 
   template(v-if="!noSockConnection")
 
-    router-view(v-if="authDone && monetizationDone")
+    transition(:name="transName" mode="out-in")
+      router-view(v-if="authDone && monetizationDone")
+
     listener(v-if="authDone")
     monetization(v-if="authDone", v-on:checkbot="monetizationDone = true")
 
@@ -51,6 +63,12 @@ import { setToken } from 'services/user';
 //window.browser.standalone = true
 export default {
 
+  watch: {
+    '$route' (to, from) {
+      this.transName = to.name==="chat" ? 'faderoute' : ''
+    }
+  },
+
   data(){
     return {
       authDone: false,
@@ -65,7 +83,8 @@ export default {
       phoneNumber: '',
       isStandalone: window.browser.standalone,
 
-      noSockConnection: false
+      noSockConnection: false,
+      transName: ''
     }
   },
   components: {
