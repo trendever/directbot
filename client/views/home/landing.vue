@@ -819,7 +819,8 @@ $ball__size: 105px;
     margin-bottom: 0px !important;
     line-height: normal !important;
     padding: 0;
-    @media(--tabletandless){
+    @media (--tabletandless){
+      border-radius: 0;
       display: block;
       position: fixed;
       bottom: -50px;
