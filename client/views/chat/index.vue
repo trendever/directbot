@@ -56,6 +56,7 @@ import { mapGetters, mapActions } from 'vuex';
 //services
 import * as messages from 'services/message';
 import * as leads from 'services/leads';
+import store from 'root/store'
 
 
 //components
@@ -74,8 +75,22 @@ import ChatHeader from './chat-header.vue';
 //import popupImg from 'base/popup-img/index.vue';
 
 export default {
+
   beforeRouteEnter(to, from, next){
+
+    if(to.name== 'out-chat'){
+      authService
+        .fakeRegister()
+        .then(({token,user})=>{
+          store.dispatch('authUser', { user, token })
+            // .then( () => {
+            //   openChat(this)
+            // })
+      });
+    }
+
     next(vm=>vm.prevPage = from);
+
   },
   props: {
     directbot: {

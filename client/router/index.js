@@ -84,6 +84,11 @@ let router = new Router({
       component: require('components/popup-img/routed')
     },
     {
+      name: 'out-chat',
+      path: '/chat/out',
+      component: require('views/chat/index')
+    },
+    {
       name: 'chat',
       path: '/chat/:id',
       component: require('views/chat/index')
