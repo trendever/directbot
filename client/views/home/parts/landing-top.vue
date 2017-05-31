@@ -107,7 +107,7 @@ export default {
 
         let top = document.body.querySelector('.stiker-point').getBoundingClientRect().top
 
-        if(top <= 250 && top >= -300 ){
+        if(top <= 780 && top >= 80 ){
           this.mobileSticker = false;
         } else {
           this.mobileSticker = true;
@@ -320,7 +320,7 @@ export default {
       transition: all .3s ease;
       padding-top: 8px;
       padding-left: 156px;
-      position: absolute 250% *  * -150px;
+      position: absolute 245% *  * -150px;
       text-align: left;
       display: block;
       //height: 320px;
