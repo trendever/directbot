@@ -36,7 +36,7 @@
 
   a.header-sticker(
     href="https://trendever.com", target="_blank",
-    :class="{'new-landing': newLanding, move: timeout && !isMobile || mobileSticker}",
+    :class="{'new-landing': newLanding, move: timeout && !isMobile}",
   )
     span.wrap
       | Подключайтесь и продавайте#[br]
@@ -76,7 +76,7 @@
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.enter-btn(v-on:click="$router.push({name: 'auth'})")
     | ВХОД И РЕГИСТРАЦИЯ
-  a.how-button(v-on:click="scrollAction",
+  a.how-button(v-on:click="$parent.scrollFirst",
     :class="{'new-land': newLanding }") {{ nextButtonText }}
 </template>
 
@@ -109,14 +109,7 @@ export default {
       showMenu: false,
       mobileSticker: false
     }
-  },
-  methods:{
-    scrollAction(){
-      this.$parent.scrollFirst()
-      setTimeout(()=>this.mobileSticker = true,1500);
-    }
   }
-
 };
 </script>
 
@@ -316,7 +309,7 @@ export default {
       animation: margin-move .6s ease;
       padding-top: 8px;
       padding-left: 156px;
-      position: absolute 100% *  * -150px;
+      position: absolute 250% *  * -150px;
       text-align: left;
       display: block;
       //height: 320px;
