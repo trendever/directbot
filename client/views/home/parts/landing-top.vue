@@ -108,10 +108,16 @@ export default {
         let top = document.body.querySelector('.stiker-point').getBoundingClientRect().top
 
         if(top <= 150 )this.mobileSticker = false;
-        if(top >= 450) this.mobileSticker = true;
+        setTimeout(()=>{
+          this.scrl.remove();
+          this.mobileSticker = true;
+        }, 4000)
 
       })
     }
+  },
+  beforeDestroy(){
+    if(this.scrl) this.scrl.remove();
   },
   data(){
     return {
