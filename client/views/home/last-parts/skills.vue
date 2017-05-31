@@ -4,7 +4,7 @@
   .info-blocks
 
     template(v-for="block, index in blocks")
-      .block(:class="{'top-margin': index > 0 }")
+      .block(:class="{'top-margin': index > 0, 'stiker-point': index == 2 }")
 
         .image
           img(:src="block.image")

@@ -36,7 +36,7 @@
 
   a.header-sticker(
     href="https://trendever.com", target="_blank",
-    :class="{'new-landing': newLanding, move: timeout && !isMobile}",
+    :class="{'new-landing': newLanding, move: timeout && !isMobile || mobileSticker}",
   )
     span.wrap
       | Подключайтесь и продавайте#[br]
@@ -84,6 +84,7 @@
 import menuSample from 'components/menu/menu-sample';
 import brandMenu from 'components/menu/brand-menu';
 import phoneComponent from 'components/phone/phone-btn';
+import listen from 'event-listener';
 
 export default {
   props:{
@@ -100,6 +101,16 @@ export default {
   created(){
     setTimeout(()=>{this.timeout=true},2000)
   },
+  mounted(){
+    if(this.isMobile){
+      this.scrl = listen(window,'scroll',()=>{
+        if(document.body.querySelector('.stiker-point').getBoundingClientRect().top <= 150 ){
+          this.mobileSticker = false;
+          setTimeout(()=>{this.mobileSticker = true}, 2500);
+        }
+      })
+    }
+  },
   data(){
     return {
       timeout: false,
@@ -107,7 +118,7 @@ export default {
       isFacebok: window.browser.facebook,
       isInstagram: window.browser.instagram,
       showMenu: false,
-      mobileSticker: false
+      mobileSticker: true
     }
   }
 };
@@ -116,14 +127,6 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
-@keyframes margin-move {
-  from {
-    margin-left: -700px;
-  }
-  to {
-    margin-left: 0px;
-  }
-}
 #landing-top {
   @media (--tabletandless) {
     background: url(../img/Bgr_clg_mob.jpg), no-repeat;
@@ -306,7 +309,7 @@ export default {
     }
 
     @media (--tabletandless) {
-      animation: margin-move .6s ease;
+      transition: all .3s ease;
       padding-top: 8px;
       padding-left: 156px;
       position: absolute 250% *  * -150px;
