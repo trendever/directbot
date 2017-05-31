@@ -72,7 +72,7 @@
 
   template(v-if="isTrendever")
     .grey-banner(v-if="getBannerInfo.indexOf('chat-banner') === -1",
-      :class="{'has-chats': botActivity}")
+      :class="{'has-chats': botActivity || isTrendever}")
       i.ic-close(@click="$store.dispatch('closeStat', 'chat-banner')")
       | Нажмите
       | Купить
