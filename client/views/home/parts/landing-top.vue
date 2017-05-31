@@ -104,10 +104,12 @@ export default {
   mounted(){
     if(this.isMobile){
       this.scrl = listen(window,'scroll',()=>{
-        if(document.body.querySelector('.stiker-point').getBoundingClientRect().top <= 150 ){
-          this.mobileSticker = false;
-          setTimeout(()=>{this.mobileSticker = true}, 2500);
-        }
+
+        let top = document.body.querySelector('.stiker-point').getBoundingClientRect().top
+
+        if(top <= 150 )this.mobileSticker = false;
+        if(top >= 450) this.mobileSticker = true;
+
       })
     }
   },
