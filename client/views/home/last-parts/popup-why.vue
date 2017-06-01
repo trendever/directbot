@@ -1,5 +1,5 @@
 <template lang="pug">
-#popup-why
+#popup-why(:style="style")
   .close-right: i.ic-close(@click="$router.push({name: 'home'})")
   .title Почему мы это делаем?
 
@@ -59,7 +59,9 @@
 
   .price от 590 руб. в месяц
 
-  button(@click="$router.push({name: 'auth'})") Попробовать бесплатно
+
+  .wrap-button
+    button(@click="$router.push({name: 'auth'})") Попробовать бесплатно
 
   .bottom.no-desk
 
@@ -72,10 +74,16 @@ export default {
       default: false
     }
   },
-  name: 'popup-why',
-
+  mounted(){
+    if(!this.isMobile){
+      this.style = {
+        height: document.body.scrollHeight + 'px'
+      }
+    }
+  },
   data () {
     return {
+      style: {},
       close: true
     };
   }
@@ -154,9 +162,12 @@ $margin__bottom: 20px;
     text-align: center;
   }
 
-
   @media (--overtablet){
     size: 100%;
+    .wrap-button {
+      background: $color__brand-dark;
+      padding-bottom: 40px;
+    }
     p {
       margin-bottom: $margin__bottom;
       &.no-bottom {
