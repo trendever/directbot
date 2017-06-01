@@ -57,7 +57,7 @@ import store from 'root/store';
 import Listener from './Listener.vue';
 import Monetization from './Monetization.vue';
 import nativePopup from 'components/popup/native';
-
+import config from 'root/../config';
 import { setToken } from 'services/user';
 
 export default {
@@ -80,8 +80,7 @@ export default {
       //phone
       showDesktopPhone: false,
       phoneNumber: '',
-      isStandalone: window.browser.standalone,
-
+      isStandalone: config.testBrowserStandalone || window.browser.standalone,
       noSockConnection: false,
       transName: ''
     }

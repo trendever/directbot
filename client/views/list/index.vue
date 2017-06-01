@@ -191,7 +191,7 @@ export default {
 
     .standalone & {
       z-index: 999;
-      padding-top: 50px;
+      padding-top: 55px;
     }
 
 
