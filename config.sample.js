@@ -48,7 +48,9 @@ var config = {
 
   directbot: true,
 
-  trendever: false
+  trendever: false,
+
+  testBrowserStandalone: false
 
 };
 
