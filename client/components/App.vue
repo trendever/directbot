@@ -60,7 +60,7 @@ import nativePopup from 'components/popup/native';
 
 import { setToken } from 'services/user';
 
-//window.browser.standalone = true
+window.browser.standalone = true
 export default {
 
   watch: {
