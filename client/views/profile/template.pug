@@ -191,11 +191,8 @@
 
 
       .profile_insta-link(
-        :class="{'change-padding': !isSelfPage, directbot: !isTrendever, trendever: isTrendever, 'margin-top': !isTrendever && !isMoreClass }"
-        )
-        .insta-link-text
-          template(v-if="isTrendever") ссылка на эту витрину
-          template(v-if="!isTrendever") Cсылка сюда&nbsp
+        :class="{'change-padding': !isSelfPage, directbot: true,'margin-top': !isMoreClass }")
+        .insta-link-text Cсылка сюда&nbsp
         .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
         native-popup(:show-popup="showCopyMessage")
           .title-text.title-font Ссылка скопирована
