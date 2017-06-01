@@ -59,7 +59,7 @@
         i.header__arrow__ic.ic-arrow-left(
         :class='{"_up": is_action_up}')
 
-      .header__notify-count(v-if='notifyCount')
+      .header__notify-count(v-if="notifyCount")
         span {{ notifyCount }}
 
       div(style="width: 46px", v-if="isMobile && !notifyCount")

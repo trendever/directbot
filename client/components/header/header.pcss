@@ -190,6 +190,7 @@
         transition: all 0.3s ease-in-out;
 
         @media( --tabletandless) {
+          margin-top: 3px;
           width: 42px;
           height: 42px;
           font-size: 42px;
@@ -212,23 +213,27 @@
     height: 26px;
     border-radius: 25px;
     background: white;
+    color: $color__brand;
 
-    @media(--mobile) {
+    @media (--tabletandless) {
       top: 23px;
       left: 85px;
       display: flex;
       min-width: 46px;
-      height: 46px;
+      height: 100%;
       background: none;
+      margin-top: 0;
 
       span {
-        color: white;
-        font-size: 42px !important;
+        font-size: 39px !important;
+        margin-left: 8px;
+        margin-right: 10px;
+        padding-bottom: 3px;
       }
     }
 
     span {
-      color: $color__green;
+      color: $color__brand;
       font-size: 20px;
     }
   }
