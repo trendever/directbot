@@ -46,15 +46,12 @@ export default {
   mounted(){
     if(this.isMobile){
       this.scrl = listen(window,'scroll',()=>{
-
         let top = document.body.querySelector('.stiker-point').getBoundingClientRect().top
-
         if(top <= 780 && top >= 80 ){
           this.mobileSticker = false;
         } else {
           this.mobileSticker = true;
         }
-
       })
     }
   },

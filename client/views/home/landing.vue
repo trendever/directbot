@@ -950,8 +950,8 @@ $ball__size: 105px;
     font-size: 16px;
     font-family: $font__family__light;
     color: $color__gray-dark;
-    @media(--tabletandless) {
-      font-size: 28px;
+    @media (--tabletandless) {
+      font-size: calc($font__normal - 4px);
       margin-top: 14px;
     }
 
