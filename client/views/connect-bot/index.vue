@@ -6,7 +6,7 @@
   .turn-on-bot(:style='{ height: containerHeight }')
     .turn-on-bot__close(@click="$router.push({name:'profile'})"): i.ic-close
     .section
-      .column-desktop-50.header
+      .column-desktop-50.head
         h1.accept Подключение Instagram
       .column-desktop-50.column-desktop-right
         img(src="./directbot.png").logo

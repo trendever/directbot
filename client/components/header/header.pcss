@@ -3,7 +3,6 @@
 .fake-top-standalone {
   background-color: $color__header__bg;
   height: $standalone__fake__height;
-  border-bottom: 3px solid $color__header__bg;
 }
 
 
@@ -15,11 +14,12 @@
   z-index: 150;
   color: $color__brand;
 
-  @media (--overtablet) {
+  .standalone & {
+    background: $color__header__bg;
+  }
 
-    &.grey_bg{
-      background: $color__header__bg !important;
-    }
+  @media (--overtablet) {
+    background: $color__header__bg !important;
   }
 
   .header__center .header__arrow {

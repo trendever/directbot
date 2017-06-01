@@ -4,7 +4,7 @@
   .signup(:style='{ height: height }')
     .signup__close.__hello(v-on:click.stop='closePage'): i.ic-close
     .section
-      .column-desktop-50.header(v-if="showTitleSlider")
+      .column-desktop-50.head(v-if="showTitleSlider")
         h1.accept(v-if="!fakeReg") Вход или регистрация
         h1.accept(v-if="fakeReg") Регистрация
 
