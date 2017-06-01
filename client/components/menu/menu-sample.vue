@@ -1,5 +1,6 @@
 <template lang="pug">
 #menu-sample(v-if="opened", @click="$emit('close')")
+  .fake-standalone(v-if="isStandalone")
   .content
     slot
       template(v-if="false")
@@ -74,11 +75,17 @@
     margin-top: -1px;
     border-radius: 0px;
     position: fixed 0 0 * 0;
-    z-index: 550;
+    z-index: 9999;
     size: 100%;
     width: 100%;
     height: 100%;
     background: $color__brand-opacity;
+  }
+
+  .fake-standalone {
+    height: $standalone__fake__height;
+    position: absolute 0 0 * 0;
+    background: $color__header__bg;
   }
 
   .content {
@@ -94,6 +101,12 @@
         border-bottom-right-radius: 5px;
         border-bottom-left-radius: 5px;
       }
+
+    }
+
+    .standalone & {
+
+      padding-top: $standalone__fake__height;
 
     }
 

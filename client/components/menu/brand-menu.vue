@@ -77,7 +77,12 @@ export default {
       @media (--overtablet){
         display: none;
       }
+      .standalone & {
+        margin-top: $standalone__fake__height;
+      }
     }
+
+
 
 
     @media (--mobile) {
