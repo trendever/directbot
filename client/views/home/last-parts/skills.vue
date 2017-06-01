@@ -4,7 +4,18 @@
   .info-blocks
 
     template(v-for="block, index in blocks")
+
       .block(:class="{'top-margin': index > 0, 'stiker-point': index == 2 }")
+
+        template(v-if="index == 2")
+          a.header-sticker.no-desk(
+            href="https://trendever.com", target="_blank",
+            :class="{move: mobileSticker}")
+            span.wrap
+              | Подключайтесь и продавайте#[br]
+              | на Trendever
+              span(style="font-weight: bold") &nbspбесплатно
+
 
         .image
           img(:src="block.image")
@@ -29,11 +40,31 @@
 </template>
 
 <script>
-
+import listen from 'event-listener';
 export default {
+
+  mounted(){
+    if(this.isMobile){
+      this.scrl = listen(window,'scroll',()=>{
+
+        let top = document.body.querySelector('.stiker-point').getBoundingClientRect().top
+
+        if(top <= 780 && top >= 80 ){
+          this.mobileSticker = false;
+        } else {
+          this.mobileSticker = true;
+        }
+
+      })
+    }
+  },
+  beforeDestroy(){
+    if(this.scrl) this.scrl.remove();
+  },
 
   data () {
     return {
+      mobileSticker: true,
       openedIndex: null,
       blocks: [
         {

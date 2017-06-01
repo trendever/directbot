@@ -34,9 +34,9 @@
           .text.__txt-blue Отмена
 
 
-  a.header-sticker(
+  a.header-sticker.no-mob(
     href="https://trendever.com", target="_blank",
-    :class="{'new-landing': newLanding, move: timeout && !isMobile || mobileSticker}",
+    :class="{'new-landing': newLanding, move: timeout && !isMobile}",
   )
     span.wrap
       | Подключайтесь и продавайте#[br]
@@ -101,32 +101,13 @@ export default {
   created(){
     setTimeout(()=>{this.timeout=true},2000)
   },
-  mounted(){
-    if(this.isMobile){
-      this.scrl = listen(window,'scroll',()=>{
-
-        let top = document.body.querySelector('.stiker-point').getBoundingClientRect().top
-
-        if(top <= 780 && top >= 80 ){
-          this.mobileSticker = false;
-        } else {
-          this.mobileSticker = true;
-        }
-
-      })
-    }
-  },
-  beforeDestroy(){
-    if(this.scrl) this.scrl.remove();
-  },
   data(){
     return {
       timeout: false,
       isSafari: window.browser.safari,
       isFacebok: window.browser.facebook,
       isInstagram: window.browser.instagram,
-      showMenu: false,
-      mobileSticker: true
+      showMenu: false
     }
   }
 };
@@ -134,6 +115,82 @@ export default {
 
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
+
+a.header-sticker {
+  //display: none;
+  z-index: 1001;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  font-size: $font__normal;
+  height: 220px;
+  width: 420px;
+  background-image: url(../img/header_sticker.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: all .6s ease;
+  &.move {
+    @media (--tabletandless){
+      margin-left: -700px;
+    }
+
+    @media (--overtablet){
+      right: -1500px;
+    }
+  }
+
+  @media (--tabletandless) {
+    &.no-mob {
+      display: none;
+    }
+    transition: all .3s ease;
+    padding-top: 8px;
+    padding-left: 156px;
+    position: absolute -50px *  * -150px;
+    text-align: left;
+    display: block;
+    //height: 320px;
+    width: 520px;
+    transform: translateY(0%) rotate(5deg)
+  }
+
+  @media screen and (min-width: 1301px){
+    display: block;
+    position: absolute 400px -40px * *;
+    z-index: 200;
+  }
+
+  @media screen and (min-width: 1024px) and (max-width: 1300px){
+    display: block;
+    position: absolute 300px -40px * *;
+  }
+
+  @media (--overtablet) {
+    &.no-desk {
+      display: none;
+    }
+
+    &.new-landing {
+      top: 330px;
+    }
+
+    span.wrap {
+      display: inline-block;
+      transform: translateY(70%) rotate(-7deg)
+    }
+
+  }
+
+  @media (--tabletandless) {
+    span.wrap {
+      display: inline-block;
+      transform: translateY(70%) rotate(-5deg)
+    }
+  }
+}
+
+
+
 
 #landing-top {
   @media (--tabletandless) {
@@ -292,74 +349,6 @@ export default {
     position: absolute 0 0 * 0;
   }
 
-  a.header-sticker {
-
-    //display: none;
-    z-index: 1001;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    font-size: $font__normal;
-    height: 220px;
-    width: 420px;
-    background-image: url(../img/header_sticker.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    transition: all .6s ease;
-    &.move {
-      @media (--tabletandless){
-        margin-left: -700px;
-      }
-
-      @media (--overtablet){
-        right: -1500px;
-      }
-    }
-
-    @media (--tabletandless) {
-      transition: all .3s ease;
-      padding-top: 8px;
-      padding-left: 156px;
-      position: absolute 245% *  * -150px;
-      text-align: left;
-      display: block;
-      //height: 320px;
-      width: 520px;
-      transform: translateY(0%) rotate(5deg)
-
-
-    }
-    @media screen and (min-width: 1301px){
-      display: block;
-      position: absolute 400px -40px * *;
-      z-index: 200;
-    }
-
-    @media screen and (min-width: 1024px) and (max-width: 1300px){
-      display: block;
-      position: absolute 300px -40px * *;
-    }
-
-    @media (--overtablet) {
-      &.new-landing {
-        top: 330px;
-      }
-
-      span.wrap {
-        display: inline-block;
-        transform: translateY(70%) rotate(-7deg)
-      }
-
-    }
-
-    @media (--tabletandless) {
-      span.wrap {
-        display: inline-block;
-        transform: translateY(70%) rotate(-5deg)
-      }
-    }
-  }
-
   .landing-top {
 
     display: none;
@@ -372,12 +361,7 @@ export default {
       text-align: center;
       text-decoration: none;
       padding: 14px 0;
-
-
     }
-
-
-
   }
   .how-button {
     display: none;
