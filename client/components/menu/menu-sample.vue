@@ -83,7 +83,7 @@
   }
 
   .fake-standalone {
-    height: $standalone__fake__height;
+    height: calc($standalone__fake__height + 1px);
     position: absolute 0 0 * 0;
     background: $color__header__bg;
   }
