@@ -97,15 +97,9 @@ let router = new Router({
     //AUTH
 
     {
-      name: 'auth-change',
-      path: '/auth-change',
-      component: require('views/auth/auth')
-    },
-
-    {
       name: 'auth',
       path: '/auth',
-      component: require('views/auth/index')
+      component: require('views/auth/auth')
     },
 
     {
