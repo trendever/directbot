@@ -6,7 +6,7 @@
   .content-wrap
 
     .body-section
-      img(v-if="isTrendever" src="./img/Trendever_reg_img.svg")
+      img(v-if="isTrendever" src="./img/Trendever_reg_img.svg").trend
       img(v-else src="./img/directbot.png").direct
 
     .form-section
@@ -252,7 +252,6 @@ export default {
 
     .form-section {
 
-
     }
 
     .body-section .title {
@@ -274,26 +273,32 @@ export default {
         &.direct {
           @media (--tabletandless){
             max-width: 220px;
-            transform: translateY(50%)
+            transform: translateY(50%);
           }
           @media (--overtablet){
             max-width: 160px;
-            transform: translate(70px, 120px)
+            transform: translate(70px, 120px);
           }
         }
+        &.trend {
 
-        @media (--tabletandless){
-          transform: translateY(15%)
-        }
-        @media (--overtablet){
-          width: 400px;
-          transform: translate(100px, 100px)
+          @media screen and (max-height: 1100px){
+            transform: translateY(0%) !important;
+          }
+
+          @media (--tabletandless){
+            transform: translateY(15%);
+          }
+
+
+          @media (--overtablet){
+            width: 400px;
+            transform: translate(100px, 100px);
+          }
         }
       }
     }
-
   }
-
 
   .page-title {
     display: none;
@@ -363,7 +368,7 @@ export default {
 
       @media (--tabletandless){
         margin-top: 50px;
-        transform: translateX(-23px)
+        transform: translateX(-42px)
 
       }
     }
