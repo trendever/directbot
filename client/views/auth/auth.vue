@@ -5,11 +5,11 @@
 
   .content-wrap
 
-    .body-section(v-if="!requested")
+    .body-section
       img(v-if="isTrendever" src="./img/Trendever_reg_img.svg")
       img(v-else src="./img/directbot.png").direct
 
-    .form-section(v-if="!requested")
+    .form-section
       .page-title.desktop {{ title }}
       .name
         i.ic-insta-name
@@ -70,8 +70,8 @@ export default {
       phone: '',
       phoneError: false,
       name: '',
-      nameError: false,
-      requested: false
+      nameError: false
+
     };
 
   },
@@ -123,78 +123,63 @@ export default {
         return;
       }
 
-
-      this.save();
-
-      if (this.isFake && window.fakeAuth){
-        this.setData().then( ()=> {
-          this.$router.push({ name: 'confirm' });
-        }).catch( (errorData) => {
-
-          if(errorData.log_list){
-           if( errorData.log_list[0].user_msg === 'rpc error: code = 2 desc = User exists'){
-            this.dublicate = true;
-           }
-          }
-
-          this.signin().then( ()=> {
-            this.setCallbackOnSuccessAuth(()=>{
-              this.$router.push({name: 'home'});
-            })
-            this.$router.push({ name: 'confirm' });
-          }).catch( (error) => {
-             this.onErrorPhone();
-             this.onErrorLogin()
-          })
-        })
-
-      } else {
-        //Logout possible fake user
-        this.$store.dispatch('logOut');
-
-        this.signup().then( ()=> {
-
-          this.$router.push({ name: 'confirm' });
-
-        }).catch( (error) => {
-
-          this.onErrorPhone();
-
-        })
-
-      }
-
       if(this.name && this.phone) {
 
-        let phone = formatPhone(this.phone, true);
+        this.save();
 
-        signup(phone, this.name, true, 'dressblogger')
+        if (this.isFake && window.fakeAuth){
+          this.setData().then( ()=> {
+            this.$router.push({ name: 'confirm' });
+          }).catch( (errorData) => {
 
-          .then(data=>{
-            console.log('%cБлоггер успешно добавлен',Green30)
-            this.requested=true;
-            setTimeout(()=>{
+            if(errorData.log_list){
+             if( errorData.log_list[0].user_msg === 'rpc error: code = 2 desc = User exists'){
+              this.dublicate = true;
+             }
+            }
 
-              this.$router.push({name: 'dress-blogger'})
+            this.signin().then( ()=> {
+              this.setCallbackOnSuccessAuth(()=>{
+                this.$router.push({name: 'home'});
+              })
+              this.$router.push({ name: 'confirm' });
+            }).catch( (err) => {
+              this.onErrorRequest(err)
+            })
+          })
 
-            },1000)
+        } else {
+          //Logout possible fake user
+          this.$store.dispatch('logOut');
+
+          this.signup().then( ()=> {
+
+            this.$router.push({ name: 'confirm' });
+
+          }).catch( (err) => {
+
+            this.onErrorRequest(err)
 
           })
 
-          .catch(err=>{
-            if(err.user_msg === "Invalid instagram name"){
-              this.nameError=true
-              this.name="Не валидное Instaram имя.."
-            }
-            if(err==6){
-              this.phoneError=true
-              this.phone='Введете верный номер..'
-            }
-          })
+        }
 
       }
+
     },
 
+    onErrorRequest(err){
+
+      if(err.user_msg === "Invalid instagram name"){
+        this.nameError=true
+        this.name="Не валидное Instaram имя.."
+      }
+      if(err==6){
+        this.phoneError=true
+        this.phone='Введете верный номер..'
+      }
+
+    },
 
     //FOCUSES
     focusName(){
