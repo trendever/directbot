@@ -60,6 +60,7 @@
 import { formatPhone } from 'root/utils';
 import { signup } from 'services/auth';
 import { mapActions, mapGetters } from 'vuex';
+import listen from 'event-listener';
 
 export default {
 
@@ -89,7 +90,15 @@ export default {
     };
 
   },
-
+  mounted(){
+    this.scrollRemove = listen(document, 'touchmove',e=>{e.preventDefault()})
+    this.phone = this.authData.phone;
+    this.login = this.authData.username;
+    this.instagram = this.authData.instagram;
+  },
+  beforeDestroy(){
+    this.scrollRemove.remove();
+  },
   methods: {
     ...mapActions([
       'saveAuthData',
@@ -244,7 +253,7 @@ export default {
   }
 
   .content-wrap {
-
+    overflow: hidden;
     max-width: 1050px;
     margin: 0 auto;
     display: flex;
@@ -319,7 +328,7 @@ export default {
     display: none;
 
     .standalone & {
-      margin-top: $standalone__fake__height;
+      padding-top: calc($standalone__fake__height + 40px) !important;
     }
 
     &.desktop {
