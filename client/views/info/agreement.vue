@@ -693,6 +693,10 @@ export default {
 
   color: #808080;
 
+  .standalone & {
+    margin-top: $standalone__fake__height;
+  }
+
   // elements
   p{
     &:not(:first-child){
@@ -757,8 +761,8 @@ export default {
 
       color: $color__green;
       border-bottom: 1px solid #dee4e4;
-
       font-size: 46px;
+
     }
   }
 }
