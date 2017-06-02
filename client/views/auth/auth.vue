@@ -306,7 +306,7 @@ export default {
         }
         &.trend {
 
-          @media screen and (max-height: 1100px) and (max-width: 768px){
+          @media screen and (max-height: 1160px) and (max-width: 768px){
             transform: translateY(0%) !important;
           }
 
