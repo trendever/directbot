@@ -63,6 +63,14 @@ import { mapActions } from 'vuex';
 
 export default {
 
+  computed:{
+    ...mapGetters([
+      'authData',
+      'callbackOnSuccessAuth',
+      'isFake',
+    ]),
+  },
+
   data () {
 
     return {
@@ -70,14 +78,14 @@ export default {
       phone: '',
       phoneError: false,
       name: '',
-      nameError: false
+      nameError: false,
+      instagram: true
 
     };
 
   },
 
   methods: {
-
     ...mapActions([
       'saveAuthData',
       'signup',
@@ -134,7 +142,7 @@ export default {
 
             if(errorData.log_list){
              if( errorData.log_list[0].user_msg === 'rpc error: code = 2 desc = User exists'){
-              this.dublicate = true;
+              this.onErrorRequest({}, true)
              }
             }
 
@@ -168,7 +176,7 @@ export default {
 
     },
 
-    onErrorRequest(err){
+    onErrorRequest(err, dublicate=false){
 
       if(err.user_msg === "Invalid instagram name"){
         this.nameError=true
@@ -177,6 +185,13 @@ export default {
       if(err==6){
         this.phoneError=true
         this.phone='Введете верный номер..'
+      }
+
+      if(dublicate){
+        this.nameError=true
+        this.name="Имя или номер"
+        this.phoneError=true
+        this.phone='уже заняты'
       }
 
     },
