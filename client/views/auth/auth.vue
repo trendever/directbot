@@ -1,6 +1,6 @@
 <template lang="pug">
 #auth
-  .close-page(@click="$router.push({name: 'dress-blogger'})"): i.ic-close
+  .close-page(@click="$router.push({name: 'home'})"): i.ic-close
   .page-title.mobile {{ title }}
 
   .content-wrap
@@ -64,6 +64,12 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
 
   computed:{
+    title(){
+      return this.fakeReg ? 'Регистрация' : 'Вход или регистрация'
+    },
+    fakeReg(){
+      return window.fakeAuth ? true : false
+    },
     ...mapGetters([
       'authData',
       'callbackOnSuccessAuth',
@@ -74,7 +80,6 @@ export default {
   data () {
 
     return {
-      title: 'Вход или регистрация',
       phone: '',
       phoneError: false,
       name: '',
@@ -384,7 +389,7 @@ export default {
     }
 
     .phone, .name {
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid rgba(255,255,255, 0.4);
       position: relative;
       margin-left: 40px;
       margin-top: 23px;
@@ -446,17 +451,15 @@ export default {
     }
 
     input {
+      display: inline-block;
       padding: 0;
       width: 100%;
       font-family: $font__family__light;
       height: 4rem;
       background: transparent;
       outline: none;
-      border: 0px transparent;
+      border: none;
       color: white;
-      //border-bottom: 1px solid rgba(255,255,255, 0.4);;
-      border-color: inherit;
-      -webkit-box-shadow: none;
       box-shadow: none;
 
 
