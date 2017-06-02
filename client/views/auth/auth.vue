@@ -258,15 +258,10 @@ export default {
 
     .form-section, .body-section {
       width: 420px;
-      @media (--mobile) {
+      @media (--tabletandless) {
         min-height: 362px;
         width: 100%;
-        margin: 0 10px;
       }
-    }
-
-    .form-section {
-
     }
 
     .body-section .title {
@@ -308,7 +303,7 @@ export default {
 
           @media (--overtablet){
             width: 400px;
-            transform: translate(100px, 50px);
+            transform: translate(60px, 50px);
           }
         }
       }
@@ -344,7 +339,7 @@ export default {
   .form-section {
 
     @media (--tabletandless) {
-      padding: 70px 15px 22px 80px;
+      padding: 70px 15px 22px 100px;
     }
 
     .send-btn {
