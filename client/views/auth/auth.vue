@@ -59,7 +59,7 @@
 <script>
 import { formatPhone } from 'root/utils';
 import { signup } from 'services/auth';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
 
