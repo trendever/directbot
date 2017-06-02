@@ -282,18 +282,18 @@ export default {
         }
         &.trend {
 
-          @media screen and (max-height: 1100px){
+          @media screen and (max-height: 1100px) and (max-width: 768px){
             transform: translateY(0%) !important;
           }
 
           @media (--tabletandless){
-            transform: translateY(15%);
+            transform: translateY(15%) translateX(-5px);
           }
 
 
           @media (--overtablet){
             width: 400px;
-            transform: translate(100px, 100px);
+            transform: translate(100px, 50px);
           }
         }
       }
