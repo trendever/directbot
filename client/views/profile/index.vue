@@ -211,6 +211,13 @@ export default {
   },
 
   methods: {
+    openConditions(){
+      if(!this.isTrendever){
+        this.$router.push({name: "popup", params: { id: "conditions"} } )
+        return;
+      }
+      this.$router.push({name: "agreement" } )
+    },
     openOptions(){
       this
         .createLead( 32158 )

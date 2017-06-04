@@ -48,7 +48,7 @@
 
 
       .send-btn(@click="request") ОТПРАВИТЬ КОД
-      .bottom-link(@click="conditions") Условия использования
+      .bottom-link(@click="openConditions") Условия использования
 
 
 
@@ -115,7 +115,7 @@ export default {
       })
     },
 
-    conditions(){
+    openConditions(){
       if(!this.isTrendever){
         this.$router.push({name: "popup", params: { id: "conditions"} } )
         return;
