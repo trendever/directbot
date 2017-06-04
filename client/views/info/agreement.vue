@@ -1,18 +1,36 @@
 <template lang="pug">
 #agreement
-  header-component(
+  //-header-component(
     title='Условия использования',
     show_on_elem='headerAnchor',
     :back-link="{name: 'home'}",
     :left-btn-show="false")
 
-  .section.main.top
+  .close-right(@click='$router.push({name: "auth"})')
+    i.ic-close
+
+  .section.main
     .section__content
       article.article
-        header.article__header
+        //-header.article__header
           a(@click="$router.push({name: 'home'})")
             //-img(src='../../../base/img/logo.svg')
             i.ic-logo_trendever_txt
+
+        .title
+
+          .title-head Условия использования
+
+          .title-body.one
+
+            | Пожалуйста внимательно ознакомьтесь#[br(v-if="isMobile")]
+            | с условиями использования Trendever#[br(v-if="isMobile")]
+
+          .title-body
+            | Используя сервис Trendever, вы #[br(v-if="isMobile")]
+            | подтверждаете, #[br(v-if="!isMobile")]что прочитали и согласны#[br(v-if="isMobile")]
+            | с нижеприведенными условиями:
+
         .article__content
           h3
             | 1. Срок действия, расторжение и изменение
@@ -666,8 +684,7 @@
           p
             | Все уведомления следует отправлять по адресу
             a(href='mailto:legal@trendever.co.uk') hello@trendever.com
-        .main__bottom
-          a.link.link_primary(@click='$router.push({name: "home"})') На главную
+
 </template>
 
 <script>
@@ -688,84 +705,127 @@ export default {
 
  @import 'style/vars/vars.pcss';
 
-.article{
-  padding: 0 30px;
+#agreement {
 
-  color: #808080;
+  background-color: $color__brand-dark;
+  color: white;
 
-  .standalone & {
-    margin-top: $standalone__fake__height;
-  }
+  .title {
 
-  // elements
-  p{
-    &:not(:first-child){
-      margin-top: 30px;
+    padding: 10px * 40px *;
+    text-align: center;
+    font-family: $font__family__semibold;
+    font-size: 32px;
+
+    @media (--mobile) {
+      font-size: 40px;
     }
-  }
-  h1, h2, h3, h4, h5, h6{
-    color: black;
 
-    &:not(:first-child){
+    .title-head {
+
       margin: 30px 0;
+
+    }
+
+    .title-body{
+
+        font-family: $font__family__light;
+        @media (--mobile ) {
+          font-size: 4.6vw;
+        }
+
+        @media screen and (min-width: 751px) {
+          margin-bottom: 24px;
+          font-size: 24px;
+        }
+
+        &.one {
+
+          margin-bottom: 20px;
+
+        }
     }
   }
-  a:not([class]){
-    text-decoration: none;
 
-    color: inherit;
+  .article{
 
-    padding-left: 5px;
-
-    &:hover{
-      text-decoration: underline;
+    .standalone & {
+      padding-top: $standalone__fake__height;
     }
-  }
-  li{
-    position: relative;
 
-    margin: 30px 0;
-    padding: 0 0 0 20px;
-
-    &:before{
-      position: absolute * * * 0;
-
-      content: '-';
-    }
-    &:after{
-      content: ';';
-    }
-  }
-  &__{
-    &header{
-      padding: 26px 0;
-      text-align: center;
-      i {
-        color: $color__brand;
-        font-size: 40px;
+    // elements
+    p{
+      &:not(:first-child){
+        margin-top: 30px;
       }
     }
-    &content{
-      font-size: 22px;
-    }
-    &footer{
-      margin: 70px 0 35px 0;
+    h1, h2, h3, h4, h5, h6{
 
-      text-align: center;
-
-      font-size: 1.875em;
+      &:not(:first-child){
+        margin: 30px 0;
+      }
     }
-    &back{
-      text-decoration: none;
+    a:not([class]){
       text-decoration: none;
 
-      color: $color__green;
-      border-bottom: 1px solid #dee4e4;
-      font-size: 46px;
+      color: inherit;
 
+      padding-left: 5px;
+
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+    li{
+      position: relative;
+
+      margin: 30px 0;
+      padding: 0 0 0 20px;
+
+      &:before{
+        position: absolute * * * 0;
+
+        content: '-';
+      }
+      &:after{
+        content: ';';
+      }
+    }
+    &__{
+      &header{
+        padding: 26px 0;
+        text-align: center;
+        i {
+          color: $color__brand;
+          font-size: 40px;
+        }
+      }
+      &content{
+        font-size: 22px;
+        padding: 0 30px;
+        @media (--tabletandless){
+          font-size: 4.6vw;
+        }
+        padding-bottom: 40px;
+      }
+      &footer{
+        margin: 70px 0 35px 0;
+
+        text-align: center;
+
+        font-size: 1.875em;
+      }
+      &back{
+        text-decoration: none;
+        text-decoration: none;
+
+        color: $color__green;
+        border-bottom: 1px solid #dee4e4;
+        font-size: 46px;
+
+      }
     }
   }
 }
-
 
 </style>

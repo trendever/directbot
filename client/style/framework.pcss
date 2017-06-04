@@ -1,3 +1,6 @@
+@import 'style/vars/vars.pcss';
+
+
 .close-right {
   position: fixed 10px 10px * *;
   z-index: 210;
@@ -12,6 +15,10 @@
     right: 15px;
     size: $font__medium;
     font-size: $font__medium;
+  }
+
+  .standalone & {
+    top: calc(15px + $standalone__fake__height);
   }
 }
 
