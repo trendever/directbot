@@ -31,6 +31,7 @@
       .phone
         i.ic-mobile-phone
         input(
+          type='tel',
           :class='{error: phoneError}',
           ref="phone",
           v-model="phone",
