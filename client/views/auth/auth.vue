@@ -41,7 +41,6 @@
           autocomplete="off",
           autocorrect="off",
           autocapitalize="off",
-          type="phone",
           @keyup.enter="request"
         )
         i.ic-close(v-if="phone",
