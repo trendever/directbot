@@ -64,8 +64,12 @@ export default {
 
   watch: {
     '$route' (to, from) {
+      console.log(to)
+      console.log(from)
       if(to.name === 'chat' || from.name === 'chat') {
         this.transName = 'faderoute';
+      } else {
+        this.transName = '';
       }
     }
   },
