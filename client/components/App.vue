@@ -1,6 +1,6 @@
 <style>
 .faderoute-enter-active, .faderoute-leave-active {
-  transition: opacity .3s ease;
+  transition: opacity .1s ease;
 }
 .faderoute-enter, .faderoute-leave-active {
   opacity: 0;
@@ -64,7 +64,9 @@ export default {
 
   watch: {
     '$route' (to, from) {
-      this.transName = to.name==="chat" ? 'faderoute' : ''
+      if(to.name === 'chat' || from.name === 'chat') {
+        this.transName = 'faderoute';
+      }
     }
   },
 
