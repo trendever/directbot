@@ -107,7 +107,7 @@
 
 
             template(v-if="isTrendever && isSelfPage")
-              button.connect.no-mob Начать бизнес
+              button.connect.no-mob(@click="connectDirect") Начать бизнес
 
 
             .profile-buttons(v-if="!isSelfPage")

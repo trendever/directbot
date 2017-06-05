@@ -211,6 +211,9 @@ export default {
   },
 
   methods: {
+    connectDirect(){
+      window.open('https://directbot.io/profile?token=' + this.$store.state.user.token)
+    },
     openConditions(){
       if(!this.isTrendever){
         this.$router.push({name: "popup", params: { id: "conditions"} } )

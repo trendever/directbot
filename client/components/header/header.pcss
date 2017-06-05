@@ -84,7 +84,11 @@
     width: 100%;
     height: 100%;
     background-color: $color__header__bg;
-    border-bottom: 1px solid $color__header__border;//$color__gray-lighter;
+    border-bottom: 1px solid $color__header__border;
+
+    @media (--overtablet){
+       border-bottom: 1px solid $color__gray-lighter;
+    }
 
     .header__use-days {
       position: absolute 18px * * 30px;
