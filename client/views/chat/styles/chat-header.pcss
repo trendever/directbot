@@ -2,17 +2,17 @@
 #chat-header {
 
   .chat-header_cnt.support {
-    @media (--mobile){
+    @media (--tabletandless){
       margin-top: 22px;
     }
-    @media (--overmobile){
+    @media (--overtablet){
       margin-top: 7px;
     }
   }
 
   .wrapper.chat-slot {
 
-    @media (--mobile){
+    @media (--tabletandless){
       display: flex;
     }
 
@@ -58,7 +58,7 @@
   /*Стрелка и каунтер
   */
   //дублирую так как нодо только в этом компоненте
-  @media(--mobile) {
+  @media(--tabletandless) {
     .chat-header_arrow {
 
       .standalone & {
@@ -139,7 +139,7 @@
         //color: $color__white;
         font-size: 26px;
         line-height: 24px;
-          @media(--mobile) {
+          @media(--tabletandless) {
             font-size: 36px;
           }
       }
@@ -149,7 +149,7 @@
 
   &_cnt {
     //color: white;
-    @media (--mobile) {
+    @media (--tabletandless) {
       padding-top: 2px;
     }
 
@@ -158,7 +158,8 @@
       font-size: 26px;
       line-height: 31.2px;
 
-      @media(--mobile) {
+      @media (--tabletandless) {
+        padding-top: 2px;
         font-size: 36px;
         line-height: 42px;
         font-family: $font__family__semibold;
@@ -170,7 +171,7 @@
       font-size: 16px;
       line-height: 19.2px;
 
-      @media(--mobile) {
+      @media(--tabletandless) {
         margin-top: 4px;
 
         font-size: 28px;
@@ -195,7 +196,7 @@
     img {
       width: 100%;
     }
-    @media(--mobile) {
+    @media(--tabletandless) {
       top: 10px;
 
       size: 70px;
