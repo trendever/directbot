@@ -91,6 +91,7 @@ export default {
 
   },
   mounted(){
+    if(this.isFake || this.isAuth) this.$router.push({name: 'profile'})
     this.scrollRemove = listen(document, 'touchmove',e=>{e.preventDefault()})
     this.phone = this.authData.phone;
     this.login = this.authData.username;
@@ -101,6 +102,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'isAuth',
       'saveAuthData',
       'signup',
       'setData',
