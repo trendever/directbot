@@ -26,38 +26,13 @@ export const isDone = ( user ) => {
 };
 
 export const isFake = ( state ) => {
-
   if(state.all[state.myId]){
     if (state.all[state.myId].is_fake){
       return true;
     }else{
       return false;
     }
-  }else{
-    return true;
   }
-
-
-
-  // if(state.all[state.myId]){
-  //   if (state.all[state.myId].phone){
-  //     return false;
-  //   }
-  // }
-  // const userData = user( state );
-  // let username = userData.name;
-  // let is_fake = false;
-  // if (username && username.indexOf("customer_") >= 0){
-  //   is_fake = true;
-  // }
-  // if (username && username.indexOf("Client") >= 0){
-  //   is_fake = true;
-  // }
-  // if (userData.isFake){
-  //   return userData.isFake;
-  // }
-  // return is_fake;
-
 };
 
 
