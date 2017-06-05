@@ -136,7 +136,7 @@ export default {
 
   .header.no-hero-auth {
     position: absolute !important;
-    top: 89px;
+    top: calc(89px + 1px);
     left:0;
     right:0;
   }
@@ -172,7 +172,7 @@ export default {
     margin: 50px auto 0 auto;
     transition: all .3s ease;
     @media (--tabletandless) {
-      margin-top: calc(89px * 1 );
+      margin-top: calc(89px + 1px);
     }
 
     &.no-margin {
