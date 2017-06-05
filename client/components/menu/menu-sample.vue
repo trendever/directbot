@@ -54,13 +54,13 @@
   box-sizing: border-box;
   border-radius: 5px;
   background: #ececec;
-  position: absolute 60px 10px * * ;
   z-index: 150;
   height: auto;
   width: 210px;
 
 
   @media (--overtablet) {
+    position: fixed 60px 10px * * ;
     box-shadow: 1px 1px 5px #595959;
     z-index: 300;
     &.prof-menu {
