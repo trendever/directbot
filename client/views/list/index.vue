@@ -23,39 +23,20 @@
           .text.__txt-blue Отмена
 
 
+
   .header-mobile(v-if="isMobile")
     i.ic-logo_trendever_txt(v-if="isTrendever")
     i.ic-logo_directbot_txt(v-else)
+
   header-component(:leftBtnShow="false",
-   :class="{'no-hero': showHero && !isAuth, 'no-hero-auth': showHero && isAuth && isMobile }",
-   v-if="$store.getters.isAuth || isMobile")
-
+    :class="{'no-hero-auth': showHero && isAuth && isMobile }",
+    v-if="isAuth")
     right-nav(:current="'home'" slot="content")
+    search-text(slot="center-content")
 
-    .search-text(slot="center-content")
+  search-text(v-if="!isAuth")
 
-      .search-input
-
-        input(
-          @click="$event.target.focus()",
-          @keyup="search",
-          ref="search",
-          placeholder="Поиск",
-          :value="searchValue")
-
-        .s-icon(@click='search(), $refs.search.focus()')
-          i.ic-search.__mirror
-
-
-
-        .tags-count(v-if="selectedTagsId.length", @click="clear")
-          span {{ selectedTagsId.length }}
-
-        i.ic-close(v-if="selectedTagsId.length || searchValue", @click="clear")
-
-
-  .tags-wrap(:class="{'no-margin': !isAuth && !isMobile}")
-    .fake-top-standalone(v-if="isStandalone")
+  .tags-wrap(:class="{'no-margin': !isAuth }")
     tags-component(:tags="tags")
 
   .wrap-photos
@@ -86,6 +67,7 @@ import tagsComponent from 'components/tags';
 import headerComponent from 'components/header';
 import menuSample from 'components/menu/menu-sample';
 import brandMenu from 'components/menu/brand-menu';
+import searchText from './search-text';
 import { mapGetters } from 'vuex';
 import listen from 'event-listener';
 export default {
@@ -97,7 +79,8 @@ export default {
     headerComponent,
     menuSample,
     brandMenu,
-    rightNav
+    rightNav,
+    searchText
 
   },
   mounted(){
@@ -124,16 +107,6 @@ export default {
     })
 
   },
-  methods: {
-    search() {
-      this.$store.dispatch('setSearchValue', this.$refs.search.value);
-    },
-    clear(){
-      this.$store
-        .dispatch('clearSearch')
-        .then(()=>this.$refs.search.focus())
-    }
-  },
   beforeDestroy(){
     this.changeListen.remove();
   },
@@ -144,9 +117,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'selectedTagsId',
       'tags',
-      'searchValue',
       'isAuth',
       'getBannerInfo'
     ])
@@ -161,13 +132,6 @@ export default {
 #list {
   .list-menu {
     position: absolute 0 0 * 0;
-  }
-
-  .header.no-hero {
-    position: absolute !important;
-    top: calc(200% + 89px);
-    left:0;
-    right:0;
   }
 
   .header.no-hero-auth {
@@ -188,159 +152,17 @@ export default {
     background: $color__header__bg;
     font-size: 60px;
     padding-top: 17px;
+    border-bottom: 1px solid $color__header__border;
 
     .standalone & {
       z-index: 999;
       padding-top: 55px;
+      height: calc($standalone__fake__height + 89px)
     }
 
 
   }
 
-  .search-text {
-
-    max-width: 1050px;
-    height: 100%;
-    text-align: right;
-    flex-grow: 1;
-
-    @media (--tabletandless) {
-      flex-grow: 1;
-    }
-
-    .search-input {
-
-      @media (--overtablet) {
-        margin-top: 8px;
-        position: relative;
-        width: 250px;
-        float: right;
-
-      }
-
-      @media screen and (min-width: 751px) and (max-width: 1400px) {
-        margin-right: 160px;
-      }
-
-      @media (--tabletandless) {
-        height: inherit;
-        background: white;
-      }
-
-      input {
-
-        display: inline-block;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        color: white;
-        border-bottom: 1px solid white;
-        font-size: $font__normal;
-        background: $color__brand;
-        font-family: $font__family__semibold;
-        height: inherit;
-
-
-        @media (--overtablet) {
-          //transform: translateX(-45px);
-          font-family: $font__family__light;
-          color: $color__brand;
-          border-bottom: 1px solid  $color__brand;
-          float: left;
-          width: 200px;
-          background: $color__header__bg;
-          &::placeholder {
-            color: $color__brand;
-            opacity: .5;
-          }
-        }
-
-        @media (--tabletandless) {
-          padding-top: 2px;
-          border: none;
-          transform: translate(-17px);
-          color: $color__gray-dark;
-          font-size: $font__large;
-          font-family: $font__family__light;
-          width: 70%;
-          display: block;
-          margin-left: 120px;
-          background: white;
-        }
-
-
-        &:focus {
-          border-top: none;
-          border-left: none;
-          border-right: none;
-          outline: none;
-        }
-
-      }
-
-      .tags-count {
-        display: none;
-        @media (--tabletandless) {
-          position: absolute 20px 90px * * ;
-          text-align: center;
-          size: 50px;
-          line-height: 50px;
-          color: white;
-          background: $color__red__true;
-          border-radius: 50%;
-          span {
-            display: inline-block;
-            font-size: $font__medium;
-
-          }
-
-        }
-      }
-
-      i.ic-close {
-        display: inline-block;
-        color: white;
-
-        @media (--overtablet) {
-          display: none;
-        }
-        @media (--tabletandless) {
-          position: absolute  0 0 * *;
-          padding: 28px;
-          font-size: $font__medium;
-          color: $color__gray-dark;
-        }
-      }
-
-    }
-
-    .s-icon {
-
-      display: inline-block;
-      cursor: pointer;
-      font-size: $font__normal;
-      //position: absolute 0 0 * *;
-      @media (--overmobile){
-        float: left;
-        padding-left: 5px;
-      }
-      @media (--mobile){
-        padding-right: 20px;
-        color: $color__brand;
-        font-size: $font__large;
-        position: absolute 0 * * 0 ;
-        width: 100px;
-      }
-
-      i {
-        transform: rotate(90deg);
-        padding: 5px;
-        @media (--mobile){
-          padding: 22px;
-        }
-      }
-    }
-  }
   .tags-wrap {
     border-top: 1px solid white;
     border-bottom: 1px solid white;
