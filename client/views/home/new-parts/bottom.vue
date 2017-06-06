@@ -1,3 +1,4 @@
+<style src="./style-global.pcss"></style>
 <template lang="pug">
 .wrap-advert.bottom-landing
 
@@ -13,9 +14,6 @@
 
 
   slot(name="bottom")
-
-
-
 
 
 </template>
@@ -47,16 +45,6 @@ export default {
     background: url(./img/blogger_girl_bgr_mob.jpg);
     height: 697px;
 
-  }
-
-  .advert-title {
-    font-size: $font__large;
-    @media (--tabletandless){
-      font-size: 60px;
-    }
-    @media (--overtablet){
-      font-family: $font__family__light;
-    }
   }
 
 }
