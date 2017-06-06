@@ -21,7 +21,9 @@
         router-link.chat-msg-product(
             :to='{name: "product_detail", params: {id: product.id}}'
           )
-          .chat-msg-product-txt(:class="{'-closest':isClosest}", v-html="getMessage")
+
+          .chat-msg-product-txt(:class="{'-closest':isClosest}")
+            .fix-width(v-html="getMessage")
 
 </template>
 
