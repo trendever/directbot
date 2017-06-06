@@ -49,6 +49,16 @@ export default {
 
   }
 
+  .advert-title {
+    font-size: $font__large;
+    @media (--tabletandless){
+      font-size: 60px;
+    }
+    @media (--overtablet){
+      font-family: $font__family__light;
+    }
+  }
+
 }
 
 </style>

@@ -37,21 +37,18 @@ export default {
   margin: 40px 0;
   background: url(./img/collage_blue.png);
   font-size: 45px;
-  padding-top: 155px;
-  padding-bottom: 170px;
+  padding-top: 170px;
+  padding-bottom: 185px;
   font-size: $font__large;
   font-family: $font__family__semibold;
   background-size: cover;
   background-repeat: no-repeat;
-/*   @media screen and (min-width: 1400px){
-    background-position: -10px 0px;
-  } */
 
   @media screen and (min-width: 1720px){
     padding-bottom: 240px;
   }
+
   @media (--overtablet){
-    //background-position: -50px 0px;
     background-position: 50% 50%;
     margin-bottom: 0px;
     max-height: 650px;
@@ -63,6 +60,16 @@ export default {
     background-position: -970px 0px;
     .advert-price .c-element {
       display: block;
+    }
+  }
+
+  .advert-title {
+    font-size: $font__large;
+    @media (--tabletandless){
+      font-size: 60px;
+    }
+    @media (--overtablet){
+      font-family: $font__family__light;
     }
   }
 
