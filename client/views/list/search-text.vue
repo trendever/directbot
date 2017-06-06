@@ -121,7 +121,7 @@ export default {
       }
 
       @media (--tabletandless) {
-        padding-top: 2px;
+
         border: none;
         transform: translate(-17px);
         color: $color__gray-dark;
@@ -132,6 +132,7 @@ export default {
         margin-left: 120px;
         background: white;
         height: 89px;
+
       }
 
 
@@ -172,7 +173,7 @@ export default {
       }
       @media (--tabletandless) {
         position: absolute  0 0 * *;
-        padding: 28px;
+        padding: 24px;
         font-size: $font__medium;
         color: $color__gray-dark;
       }
