@@ -34,7 +34,7 @@
     right-nav(:current="'home'" slot="content")
     search-text(slot="center-content")
 
-  search-text(v-if="!isAuth")
+  search-text.no-desk(v-if="!isAuth")
 
   .tags-wrap(:class="{'no-margin': !isAuth }")
     tags-component(:tags="tags")
