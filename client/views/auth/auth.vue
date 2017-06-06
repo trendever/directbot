@@ -302,7 +302,7 @@ export default {
           }
           @media (--overtablet){
             max-width: 160px;
-            transform: translate(70px, 120px);
+            transform: translate(70px, 160px);
           }
         }
         &.trend {
@@ -318,7 +318,7 @@ export default {
 
           @media (--overtablet){
             width: 400px;
-            transform: translate(60px, 50px);
+            transform: translate(60px, 130px);
           }
         }
       }
