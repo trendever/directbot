@@ -18,6 +18,7 @@
       .land__top-btn(onclick="window.open('https://www.trendever.com')") ПОКУПАТЕЛЯМ
       .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
       .land__top-btn(@click="$parent.showArticles") ОТЗЫВЫ
+      a.land__top-btn(href="tel:+79854107012") КОЛЛ-ЦЕНТР
 
     template(slot="mobile-view")
       i.ic-menu_bullets(@click="showMenu=true")

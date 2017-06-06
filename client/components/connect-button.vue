@@ -27,7 +27,7 @@ export default {
       if(!this.isTrendever){
         this.$router.push({name: 'connect-bot'})
       } else {
-        window.open('directbot.io/profile?token=' + this.$store.state.user.token)
+        window.open('https://directbot.io/profile?token=' + this.$store.state.user.token)
       }
     }
   }

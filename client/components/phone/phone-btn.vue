@@ -53,7 +53,7 @@ export default {
   &.home {
     display: none;
     @media (--overtablet){
-      display: inline-block;
+      display: none;//inline-block;
       position: absolute 10px 620px * initial;
       z-index: 200;
 

@@ -145,7 +145,7 @@ export default {
     }
 
     .land__top-btn {
-
+      text-decoration: none;
       display: inline-block;
       float:right;
       margin-top: 15px;
