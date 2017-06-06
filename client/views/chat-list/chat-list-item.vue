@@ -4,7 +4,10 @@
 
   template(v-if="isVisible")
     .chat-list-i-photo(v-if="!showDelete")
-      img(:src='getPhoto()')
+      template(v-if="isHelpProduct()")
+        img(src="./img/chats_inactive.svg")
+      template(v-else)
+        img(:src='getPhoto()')
 
     .chat-list-i-body
 
@@ -139,8 +142,15 @@ export default {
         });
 
     },
+    isHelpProduct(){
+      if ( Array.isArray( this.lead.products ) && this.lead.products.length > 0) {
+        if (this.lead.products[0].code == this.lead.products[0].mentioned_id + "_help") {
+            return true;
+        }
+      }
+      return false;
+    },
     getPhoto() {
-
       if ( Array.isArray( this.lead.products ) ) {
 
         if ( this.lead.products.length > 0 ) {
