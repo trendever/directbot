@@ -46,8 +46,6 @@
 
           if(bodyScroll - minScrollTop + 40 >= 0){
             window.eventHub.$emit('hide-connect-btn', true);
-          } else {
-            window.eventHub.$emit('hide-connect-btn', false);
           }
 
           this.is_visible = bodyScroll - minScrollTop >= 0;

@@ -21,7 +21,7 @@ export default {
     }
   },
   mounted(){
-    window.eventHub.$on('hide-connect-btn', val => {this.hideConnectBtn = true});
+    window.eventHub.$on('hide-connect-btn', val => {this.hideConnectBtn = val});
   },
   methods:{
     connectDirect

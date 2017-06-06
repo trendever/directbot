@@ -37,10 +37,10 @@
       .text(@click.stop="openConditions") Условия
     .item
       .text(@click.stop="openOptions") Настройки
-    .item(v-if="isTrendever")
+    .item(v-if="isTrendever && !botActivity")
       .text(@click.stop="connectDirect") Начать бизнес
-    .item(v-if="!isTrendever")
-      .text(@click.stop="connectDirect") Начать бизнес
+    .item(v-if="!isTrendever && !botActivity")
+      .text(@click.stop="connectDirect") Подключить Instagram
     .item
       .text.__txt-red(@click.stop="logout") Выход
     .item
