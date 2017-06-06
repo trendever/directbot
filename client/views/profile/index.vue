@@ -22,7 +22,7 @@ import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
 import ConnectButton from 'components/connect-button';
 import phoneComponent from 'components/phone/phone-btn';
-import { ScrollStorage } from 'root/utils';
+import { ScrollStorage, connectDirect } from 'root/utils';
 
 export default {
 
@@ -212,9 +212,7 @@ export default {
   },
 
   methods: {
-    connectDirect(){
-      window.open('https://directbot.io/profile?token=' + this.$store.state.user.token)
-    },
+    connectDirect,
     openConditions(){
       if(!this.isTrendever){
         this.$router.push({name: "popup", params: { id: "conditions"} } )

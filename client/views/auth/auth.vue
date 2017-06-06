@@ -75,6 +75,7 @@ export default {
       'authData',
       'callbackOnSuccessAuth',
       'isFake',
+      'isAuth'
     ]),
   },
 
@@ -91,7 +92,7 @@ export default {
 
   },
   mounted(){
-    if(this.$store.getters.isAuth) this.$router.push({name: 'profile'})
+    if(this.isAuth && !this.isFake) this.$router.push({name: 'profile'})
     this.scrollRemove = listen(document, 'touchmove',e=>{e.preventDefault()})
     this.phone = this.authData.phone;
     this.login = this.authData.username;

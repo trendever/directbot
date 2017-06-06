@@ -18,7 +18,7 @@
       .land__top-btn(onclick="window.open('https://www.trendever.com')") ПОКУПАТЕЛЯМ
       .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
       .land__top-btn(@click="$parent.showArticles") ОТЗЫВЫ
-      a.land__top-btn(href="tel:+79854107012") КОЛЛ-ЦЕНТР
+      a.land__top-btn(@click="showPhone") КОЛЛ-ЦЕНТР
 
     template(slot="mobile-view")
       i.ic-menu_bullets(@click="showMenu=true")
@@ -96,6 +96,11 @@ export default {
   computed:{
     nextButtonText(){
       return this.newLanding ? 'КАК ЭТО РАБОТАЕТ?' : 'ЗАЧЕМ НУЖЕН DIRECTBOT'
+    }
+  },
+  methods:{
+    showPhone(){
+      window.eventHub.$emit('show-desktop-phone', '+79854107012');
     }
   },
   components: {menuSample, brandMenu,phoneComponent},

@@ -457,3 +457,14 @@ export const declOfNum = (titles) => {
       return  titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
   }
 }
+
+
+export const connectDirect = () => {
+
+  if(!this.isTrendever){
+    this.$router.push({name: 'connect-bot'})
+  } else {
+    window.open('https://directbot.io/profile?token=' + this.$store.state.user.token)
+  }
+
+}
