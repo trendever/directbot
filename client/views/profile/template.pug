@@ -29,7 +29,7 @@
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item(v-if="botActivity")
       .text Отключить бота
-    .item(v-if="isMobile")
+    .item(v-if="isMobile && !isTrendever")
       .text(@click.stop="findBloger") Найти блогера
     .item
       .text(@click.stop="supportChat") Поддержка
@@ -37,6 +37,8 @@
       .text(@click.stop="openConditions") Условия
     .item
       .text(@click.stop="openOptions") Настройки
+    .item(v-if="isTrendever")
+      .text(@click.stop="connectDirect") Начать бизнес
     .item
       .text.__txt-red(@click.stop="logout") Выход
     .item
