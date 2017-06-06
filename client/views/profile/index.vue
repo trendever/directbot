@@ -160,6 +160,7 @@ export default {
   },
 
   mounted(){
+
     window.eventHub.$on('hide-grey',() => { this.hideGrey = true });
 
     this.clipboardLogic();

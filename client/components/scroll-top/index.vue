@@ -1,6 +1,8 @@
 <style src="./style.pcss"></style>
 <template lang="pug">
-.scroll-top( @click='up()', v-show="is_visible", :class='{"__fly": !$store.getters.isAuth, "directbot-color": directbot }' )
+.scroll-top( @click='up()',
+  v-show="is_visible",
+  :class='{"__fly": !$store.getters.isAuth, "directbot-color": directbot }' )
   i.ic-arrow-up-thin(:class='{"arrow__down": !toUp}')
 </template>
 
@@ -34,18 +36,25 @@
     methods: {
       toggleBtnOnScroll(){
 
-        let minimumScrollTop = this.$route.name === 'home' && !this.$store.getters.isAuth  ?
+        let minScrollTop = this.$route.name === 'home' && !this.$store.getters.isAuth  ?
 
         (document.body.offsetHeight * 2) : (document.body.offsetHeight * 1.5)
 
+        let bodyScroll = document.body.scrollTop
+
         if ( this.toUp ) {
 
+          if(bodyScroll - minScrollTop + 40 >= 0){
+            window.eventHub.$emit('hide-connect-btn', true);
+          } else {
+            window.eventHub.$emit('hide-connect-btn', false);
+          }
 
-          this.is_visible = document.body.scrollTop - minimumScrollTop >= 0;
+          this.is_visible = bodyScroll - minScrollTop >= 0;
 
         } else {
 
-          this.is_visible = (document.body.scrollHeight - document.body.scrollTop) > minimumScrollTop;
+          this.is_visible = (document.body.scrollHeight - bodyScroll) > minScrollTop;
 
         }
 
