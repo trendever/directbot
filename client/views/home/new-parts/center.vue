@@ -1,9 +1,8 @@
-<style src="./style-global.pcss"></style>
 <template lang="pug">
 
 .wrap-advert.center-landing
 
-  .advert-title Полный доступ#[br.mobile] к функционалу#[br.desktop] CRM Directbot стоит от
+  .__title Полный доступ#[br.mobile] к функционалу#[br.desktop] CRM Directbot стоит от
   .advert-price
     .c-element
       span 590
@@ -61,6 +60,16 @@ export default {
     background-position: -970px 0px;
     .advert-price .c-element {
       display: block;
+    }
+  }
+
+  .__title {
+    font-size: $font__large;
+    @media (--tabletandless){
+      font-size: 60px;
+    }
+    @media (--overtablet){
+      font-family: $font__family__light;
     }
   }
 }

@@ -303,7 +303,7 @@ export default {
           }
           @media (--overtablet){
             max-width: 160px;
-            transform: translate(70px, 160px);
+            margin: 80px 0 0 60px;
           }
         }
         &.trend {
@@ -319,7 +319,7 @@ export default {
 
           @media (--overtablet){
             width: 400px;
-            transform: translate(60px, 130px);
+            margin: 65px 0 0 60px;
           }
         }
       }

@@ -2,7 +2,7 @@
 <template lang="pug">
 .wrap-advert.bottom-landing
 
-  .advert-title
+  .__title
     | Менеджер, который#[br.mobile]
     | за вас работает#[br]
     | с покупателями и#[br.mobile]
@@ -47,6 +47,15 @@ export default {
 
   }
 
+  .__title {
+    font-size: $font__large;
+    @media (--tabletandless){
+      font-size: 60px;
+    }
+    @media (--overtablet){
+      font-family: $font__family__light;
+    }
+  }
 }
 
 </style>
