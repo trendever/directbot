@@ -297,6 +297,7 @@ export default {
     }
 
     @media (--tabletandless){
+      padding: 30px 0 0 0;
       font-size: $font__medium;
       color: $color__brand;
       text-transform: uppercase;
