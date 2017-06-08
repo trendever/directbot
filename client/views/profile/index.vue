@@ -376,6 +376,9 @@ export default {
   },
 
   computed: {
+    appWord(){
+      return this.isTrendever ? 'профиля' : 'бизнеса'
+    },
     hasAnyInfo(){
       return this.shoplocation || this.shopabout || this.user.working_time;
     },
