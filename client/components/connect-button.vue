@@ -12,8 +12,6 @@ button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot
   }
 </style>
 <script>
-import { connectDirect } from 'root/utils';
-
 export default {
   data(){
     return {
@@ -22,9 +20,6 @@ export default {
   },
   mounted(){
     window.eventHub.$on('hide-connect-btn', val => {this.hideConnectBtn = val});
-  },
-  methods:{
-    connectDirect
   }
 }
 

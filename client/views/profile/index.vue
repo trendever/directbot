@@ -22,7 +22,7 @@ import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
 import ConnectButton from 'components/connect-button';
 import phoneComponent from 'components/phone/phone-btn';
-import { ScrollStorage, connectDirect } from 'root/utils';
+import { ScrollStorage } from 'root/utils';
 
 export default {
 
@@ -150,6 +150,7 @@ export default {
   },
 
   created(){
+    this.connectDirect.bind(this)
     if(this.monetizationTestOver) {
       //this.$router.replace({name: 'connect-bot'});
     }
@@ -212,7 +213,6 @@ export default {
   },
 
   methods: {
-    connectDirect,
     openConditions(){
       if(!this.isTrendever){
         this.$router.push({name: "popup", params: { id: "conditions"} } )

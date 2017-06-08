@@ -459,12 +459,3 @@ export const declOfNum = (titles) => {
 }
 
 
-export const connectDirect = () => {
-
-  if(!this.isTrendever){
-    this.$router.push({name: 'connect-bot'})
-  } else {
-    window.open('https://directbot.io/profile?token=' + this.$store.state.user.token)
-  }
-
-}

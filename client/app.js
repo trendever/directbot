@@ -31,6 +31,15 @@ Vue.mixin({
       isDirectbot: config.directbot,
       isStandalone: config.testBrowserStandalone || window.browser.standalone
     }
+  },
+  methods:{
+    connectDirect(){
+      if(!this.isTrendever){
+        this.$router.push({name: 'connect-bot'})
+      } else {
+        window.open('https://directbot.io/profile?token=' + this.$store.state.user.token)
+      }
+    }
   }
 });
 

@@ -17,7 +17,7 @@
   template(v-if="$route.name === 'profile' && noResults")
     .single-photo.photo__container.fake-photos(v-for="i in [1,2,3,4,5,6]")
       .photo__img-space
-        p.tooltip необходима #[br.mobile]синхронизация
+        p.tooltip(v-if="!isTrendever") необходима #[br.mobile]синхронизация
         img.photo__img(src='./img/image_placeholder_drbt.svg', v-if="!isTrendever")
         img.photo__img(src='./img/image_placeholder_trndvr.svg', v-if="isTrendever")
       .photo__description

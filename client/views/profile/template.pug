@@ -195,6 +195,7 @@
 
 
       .profile_insta-link(
+        v-if="!isTrendever",
         :class="{'change-padding': !isSelfPage, directbot: true,'margin-top': !isMoreClass }")
         .insta-link-text Cсылка сюда&nbsp
         .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
