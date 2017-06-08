@@ -115,7 +115,6 @@ export default {
     store
       .dispatch('openProfile', replace  )
       .then(()=>{
-
         next(handler);
       })
       .catch( () => {

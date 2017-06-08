@@ -201,6 +201,7 @@ export const openProfile = ( { commit, state }, id ) => {
                 commit( types.USER_RECEIVE_PROFILE,{ profile: getValidUserObject( user, id ), id } );
                 commit( types.USER_SET_PHOTOS_CONFIG, { listId: photosConfig.listId, photoFilter:photosConfig.photosFilter, id });
                 commit( types.USER_SET_PROFILE, id );
+                resolve();
               })
               .catch(()=>{
                 console.warn(
