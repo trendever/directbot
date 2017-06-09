@@ -132,6 +132,7 @@ export default {
         margin-left: 120px;
         background: white;
         height: 89px;
+        padding-top: 3px;
 
       }
 
