@@ -212,7 +212,7 @@ export default {
           break;
         case 'На доставке': return '__blue'
           break;
-        case 'Выполнен': return '__green'
+        case 'Выполнен': return '__grey'
           break;
         case 'В процессе': return '__yellow'
       }
