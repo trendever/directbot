@@ -318,8 +318,8 @@ export default {
 
 
           @media (--overtablet){
-            width: 400px;
-            margin: 65px 0 0 60px;
+            width: 440px;
+            margin: 45px 0 0 60px;
           }
         }
       }
