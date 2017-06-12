@@ -56,11 +56,6 @@
   import config from 'root/../config.js';
 
   export default {
-    data(){
-      return {
-        userImage: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
-      }
-    },
     methods: {
        onUserImageError(){
         console.warn(`Load user photo has failed. Chat id: ${this.getId}`);
@@ -158,6 +153,9 @@
     },
 
     computed: {
+      userImage(){
+        return this.getPhoto || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+      },
       unreadCount(){
         return this.isFake ? 0 : this.getGlobalNotifyCount;
       },
@@ -187,11 +185,6 @@
     components: {
       HeaderComponent,
       phoneComponent
-    },
-    watch:{
-      getPhoto(val){
-        this.userImage = val;
-      }
     }
   }
 </script>
