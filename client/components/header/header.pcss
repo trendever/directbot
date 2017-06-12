@@ -298,11 +298,26 @@
     font-family: $font__family__semibold;
     line-height: 50px;
 
-    @media(--mobile) {
+    @media (--tabletandless) {
       max-width: calc(100% - 270px);
       height: 89px;
       font-size: 36px;
       line-height: 89px;
+    }
+
+    @media (--overtablet){
+      line-height: 47px;
+    }
+
+    ._title {
+      @media (--tabletandless){
+
+      }
+      @media (--overtablet){
+        height: 100%;
+        line-height: 47px;
+      }
+
     }
 
     .center-avatar{

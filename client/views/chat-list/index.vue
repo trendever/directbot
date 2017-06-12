@@ -9,7 +9,7 @@
       right-nav-component(current="chat", slot="content")
       .header__nav(slot='center-content')
         .header__nav__i.header__text._active
-          span Чаты
+          span._title Чаты
 
         //- .header__nav__i.header__text(
         //-   :class='{_active: getLeadTab === "customer"}',
