@@ -14,7 +14,7 @@
       .body-title {{ title }}
 
       .body-status-time
-        .body-status ( {{ status }} )
+        .body-status(:class="statusColor") {{ status }}
         .body-time {{ dataTime }}
 
       .body-last-msg
@@ -202,16 +202,24 @@ export default {
         user_name: '',
       }
     },
-    statusClass(){
-      switch (this.status){
-        case '': '';
-
+    statusColor(){
+      switch(this.status){
+        case 'Подтвержден': return '__green'
+          break;
+        case 'Новый': return '__red'
+          break;
+        case 'Отменен': return '__grey'
+          break;
+        case 'На доставке': return '__blue'
+          break;
+        case 'Выполнен': return '__green'
+          break;
+        case 'В процессе': return '__yellow'
       }
-
     },
     status(){
       let status = leadsService.getStatus( this.lead.status );
-      if(status) return status.name.toLowerCase();
+      if(status) return status.name
     },
     dataTime(){
       if ( this.lead.chat !== null ) {
