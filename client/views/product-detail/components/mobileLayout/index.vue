@@ -1,6 +1,6 @@
 <template>
 <div class="mobileLayout">
-  <div class="fake-top-standalone" v-if="isStandalone"></div>
+  <div class="fake-standalone-transparent" v-if="isStandalone"></div>
   <div class="wrapper" v-if="notFromUser">
       <user-info
         :img="avatarUrl"

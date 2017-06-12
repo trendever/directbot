@@ -22,7 +22,7 @@
         //-   @click='$store.dispatch("setTab", "seller")',
         //-   v-if="getLeadTab === 'seller'")
         //-   span Чаты с покупателями
-    .fake-top-standalone(v-if="isStandalone")
+    .fake-standalone-transparent(v-if="isStandalone")
     .section.top.bottom
       .section__content
         .chat-list(v-bind:style="styleObject", ref="chatList")
