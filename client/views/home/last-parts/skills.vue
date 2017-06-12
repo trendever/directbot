@@ -146,6 +146,10 @@ export default {
     padding: 30px 0;
     color: #595959;
 
+    @media (--overtablet){
+      padding-bottom: 0;
+    }
+
     @media (--tabletandless){
       display: none;
     }
