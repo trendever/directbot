@@ -37,7 +37,7 @@
       .text(@click.stop="openConditions") Условия
     .item
       .text(@click.stop="openOptions") Настройки
-    .item(v-if="isTrendever && !botActivity").no-desk
+    .item(v-if="isTrendever && !botActivity")
       .text(@click.stop="connectDirect") Начать бизнес
     .item(v-if="!isTrendever && !botActivity").no-desk
       .text(@click.stop="connectDirect") Подключить Instagram
@@ -103,15 +103,15 @@
                   span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
                   span(v-if="chatsCount") Создано {{ chatsCount }} чатов
 
-              button.connect.no-mob(v-if="!botActivity",
+              button.no-mob(v-if="!botActivity",
                   @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
               template(v-if="isAuth")
-                button(@click="findBloger", :class="{grey: !botActivity }") НАЙТИ БЛОГЕРА
+                button(@click="findBloger") НАЙТИ БЛОГЕРА
                 button.no-desk(@click="supportChat") ПОДДЕРЖКА
 
 
             template(v-if="isTrendever && isSelfPage")
-              button.connect.no-mob(@click="connectDirect") Начать бизнес
+              //-button.connect.no-mob(@click="connectDirect") Начать бизнес
 
 
             .profile-buttons(v-if="!isSelfPage")
