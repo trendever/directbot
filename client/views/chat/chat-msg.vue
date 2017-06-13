@@ -38,7 +38,7 @@
     methods:{
       action(){
         if(this.getUsername === '<b>operator</b>'){
-          window.eventHub.$emit('show-operator', 'ok');
+          window.eventHub.$emit('popup-operator-info', 'ok');
           return;
         }
         if(this.isServiceShop) return;

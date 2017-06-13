@@ -200,12 +200,6 @@
         :class="{'change-padding': !isSelfPage, directbot: true,'margin-top': !isMoreClass }")
         .insta-link-text Cсылка сюда&nbsp
         .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
-        native-popup(:show-popup="showCopyMessage")
-          .title-text.title-font Ссылка скопирована
-          .main-text {{copyMessage}}
-          .button-text(v-on:click.stop="showCopyMessage = false")
-            span OK
-
 
       connect-button(v-if="isSelfPage && isMobile && !botActivity")
 

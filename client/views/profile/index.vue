@@ -18,7 +18,6 @@ import photos from 'components/photos/index';
 import headerComponent from 'components/header';
 import RightNavComponent from 'components/right-nav';
 import NavbarComponent from 'components/navbar/navbar';
-import nativePopup from 'components/popup/native';
 import MenuSample from 'components/menu/menu-sample';
 import ConnectButton from 'components/connect-button';
 import phoneComponent from 'components/phone/phone-btn';
@@ -37,8 +36,6 @@ export default {
       //anotherId: 1, //пустая лента без единого товара
       isMoreClass: false,
       showBanner: showBanner,
-      copyMessage: '',
-      showCopyMessage: false,
       showProfileMenu: false,
       timeID: null,
       bodyListner: '',
@@ -335,22 +332,18 @@ export default {
           })
         this.copy.on('success',()=>{
 
-
           let text = `Ссылка ${this.getUserNameLinked}.${this.source} скопирована для вставки.`;
           if(this.isIos){
             alert(text)
             return;
           }
-
-          this.copyMessage = text;
-          this.showCopyMessage = true;
-
+          window.eventHub.$emit('popup-clipboard',text)
         })
         this.copy.on('error', () =>{
-          this.copyMessage = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
-          this.showCopyMessage = true;
+          let text = 'К сожалению скопировать ссылку не удалось.<br><br> Сделайте это вручную'
           this.copy.destroy();
           this.copy = false;
+          window.eventHub.$emit('popup-clipboard',text)
         });
       })
     },
@@ -479,7 +472,6 @@ export default {
   components: {
     phoneComponent,
     ConnectButton,
-    nativePopup,
     photos,
     headerComponent,
     RightNavComponent,

@@ -1,6 +1,6 @@
 <template lang="pug">
 
-#native-popup(v-if="showPopup")
+#native-popup(v-if="showPopup", @click="close")
   .popup-content
     slot
 
@@ -8,6 +8,11 @@
 
 <script>
 export default {
+  methods:{
+    close(){
+      window.eventHub.$emit('close-native-popup')
+    }
+  },
   props: {
     showPopup: {
       default: false

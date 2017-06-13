@@ -23,28 +23,37 @@
 
     router-view
 
-  //-clipboard
-  native-popup(:show-popup="showCopyMessage")
+
+  native-popup(:show-popup="popups.clipboard")
     .title-text.title-font Ссылка скопирована
     .main-text {{copyMessage}}
-    .button-text(v-on:click.stop="showCopyMessage = false")
+    .button-text(v-on:click.stop="closePopup")
       span OK
 
-  //-show-operator
-  native-popup(:show-popup="showOperatorInfo")
+  //-popup-operator-info
+  native-popup(:show-popup="popups.operatorInfo")
     .title-text.title-font Внимание!
     .main-text ДИАЛОГ КОНТРОЛИРУЮТ ЖИВЫЕ ОПЕРАТОРЫ
-    .button-text(v-on:click.stop="showOperatorInfo = false")
+    .button-text(v-on:click.stop="closePopup")
       span OK
 
   //-desktop-phone
-  native-popup(:show-popup="showDesktopPhone")
+  native-popup(:show-popup="popups.showPhone")
     .title-text.title-font Звоните на
     .main-text {{ phoneNumber }}
-    .button-text(v-on:click.stop="showDesktopPhone = false")
+    .button-text(v-on:click.stop="closePopup")
       span СПАСИБО
 
+  native-popup.del-popup(:show-popup="popups.deleteChat")
+    .title-text.title-font Осторожно!
+    .main-text Подтвердите удаление
+    .button-text
+      span(@click.stop="deleteProduct") OK
+      span(@click.stop="closePopup") Отмена
+
   input(type="hidden", value="", id="get-user-login")
+
+
 </template>
 
 <script>
@@ -64,8 +73,6 @@ export default {
 
   watch: {
     '$route' (to, from) {
-      console.log(to)
-      console.log(from)
       if(to.name === 'chat' || from.name === 'chat') {
         this.transName = 'faderoute';
       } else {
@@ -78,23 +85,35 @@ export default {
     return {
       authDone: false,
       monetizationDone: false,
-      showOperatorInfo: false,
-
-      //clipboard
-      showCopyMessage: false,
-      copyMessage: '',
-      //phone
-      showDesktopPhone: false,
-      phoneNumber: '',
       isStandalone: config.testBrowserStandalone || window.browser.standalone,
       noSockConnection: false,
-      transName: ''
+      transName: '',
+
+      //popups
+      popups: {
+        deleteChat: false,
+        clipboard: false,
+        operatorInfo: false,
+        showPhone: false
+      },
+      //clipboard
+      copyMessage: '',
+      //phone
+      phoneNumber: '',
     }
   },
   components: {
     Listener,
     Monetization,
     nativePopup
+  },
+
+  methods:{
+    closePopup(){
+      for(let k in this.popups){
+        this.popups[k]=false
+      }
+    }
   },
 
   //get user for ios push actions logic
@@ -120,23 +139,33 @@ export default {
 
   mounted(){
 
-    window.eventHub.$on('no-sock-connection',data=>{
-      this.noSockConnection = data;
+    window.eventHub.$on('no-sock-connection',val=>{
+      this.noSockConnection = val;
     })
 
-    window.eventHub.$on('show-desktop-phone', data=>{
-      this.showDesktopPhone = true;
-      this.phoneNumber = data;
+    //Native popups
+    window.eventHub.$on('popup-clipboard',val=>{
+      this.popups.clipboard = true
+      this.copyMessage = val
     })
 
-    window.eventHub.$on('copy-product-link', data=>{
-      this.showCopyMessage = true;
-      this.copyMessage = data;
+    window.eventHub.$on('popup-delete-chat', val=>{
+      this.popups.deleteChat = val
     })
 
-    window.eventHub.$on('show-operator', data=>{
-      this.showOperatorInfo = true;
+    window.eventHub.$on('popup-show-phone', val=>{
+      this.popups.showPhone = true;
+      this.phoneNumber = val;
     })
+
+    window.eventHub.$on('popup-operator-info', val=>{
+      this.popups.operatorInfo = true;
+    })
+
+    window.eventHub.$on('close-native-popup', val=>{
+      this.closePopup()
+    })
+
   },
   beforeCreate(){
     if ( this.$route.query && this.$route.query.token) {

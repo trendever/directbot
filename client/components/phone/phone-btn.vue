@@ -17,7 +17,7 @@ export default {
       if(!this.isMobile){
         e.preventDefault();
         let phone = this.phone.replace(/tel:/g, "");
-        window.eventHub.$emit('show-desktop-phone', phone);
+        window.eventHub.$emit('popup-show-phone', phone);
       }
     }
   }

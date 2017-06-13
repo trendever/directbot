@@ -100,7 +100,7 @@ export default {
   },
   methods:{
     showPhone(){
-      window.eventHub.$emit('show-desktop-phone', '+79854107012');
+      window.eventHub.$emit('popup-show-phone', '+79854107012');
     }
   },
   components: {menuSample, brandMenu,phoneComponent},
