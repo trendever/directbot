@@ -83,22 +83,23 @@ export default {
   }
 
   &.chat {
-    @media screen and (min-width: 1200px){
-      transform: translateY(-27px);
-      left: 480px !important;
+
+    @media (--tabletandless){
+      position: absolute 24px 40px * *;
     }
 
+    @media screen and (min-width: 1200px){
+      transform: translateY(-88px);
+      left: 480px !important;
+    }
     @media screen and (min-width: 1025px) and (max-width: 1199px){
       left: 390px !important;
-      transform: translateY(-27px);
+      transform: translateY(-88px);
     }
   }
 
   &.user {
 
-    @media (--tabletandless){
-
-    }
     @media screen and (min-width: 1400px){
       left: 430px !important;
 

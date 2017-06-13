@@ -9,6 +9,7 @@
     display: block;
     position: relative;
     background: red;
+    top: 0px;
     margin: 0 auto;
     height: 0px;
     .action-elements {

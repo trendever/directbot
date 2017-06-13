@@ -42,7 +42,8 @@
           .chat-header_cnt_t Поддержка
 
 
-      phone-component(slot="center-content", :phone="'tel:+79854107012'")
+    phone-component.no-mob(slot="action-elements", :phone="'tel:+79854107012'")
+    phone-component.no-desk(slot="center-content", :phone="'tel:+79854107012'")
 
 </template>
 

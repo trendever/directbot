@@ -14,7 +14,7 @@
 
     }
     @media (--overtablet){
-      margin-top: 7px;
+      padding-top: 7px;
     }
   }
 
@@ -62,11 +62,14 @@
   }
 }
 .chat-header {
+  @media (--overtablet){
+    height: 50px;
+  }
   /*
   /*Стрелка и каунтер
   */
   //дублирую так как нодо только в этом компоненте
-  @media(--tabletandless) {
+  @media (--tabletandless) {
     .chat-header_arrow {
 
       .standalone & {
