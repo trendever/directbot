@@ -69,13 +69,14 @@ export const getStatusCode = key => {
 };
 
 export const STATUS_EVENTS = [
-  {name: 'Новый', key:'CREATE'},
-  {name: 'В процессе', key:'PROGRESS'},
-  {name: 'Подтвержден', key:'SUBMIT'},
-  {name: 'На доставке', key:'DELIVERY'},
-  {name: 'Выполнен', key:'COMPLETE'},
-  {name: 'Отменен', key:'CANCEL'},
+  {name: STATUSES.NEW.name, key:'CREATE'},
+  {name: STATUSES.IN_PROGRESS.name, key:'PROGRESS'},
+  {name: STATUSES.SUBMITTED.name, key:'SUBMIT'},
+  {name: STATUSES.ON_DELIVERY.name, key:'DELIVERY'},
+  {name: STATUSES.COMPLETED.name, key:'COMPLETE'},
+  {name: STATUSES.CANCELLED.name, key:'CANCEL'},
 ];
+
 
 
 /**
