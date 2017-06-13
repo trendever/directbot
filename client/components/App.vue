@@ -109,6 +109,9 @@ export default {
   },
 
   methods:{
+    deleteProduct(){
+      window.eventHub.$emit('action-delete-product')
+    },
     closePopup(){
       for(let k in this.popups){
         this.popups[k]=false
@@ -149,7 +152,7 @@ export default {
       this.copyMessage = val
     })
 
-    window.eventHub.$on('popup-delete-chat', val=>{
+    window.eventHub.$on('popup-delete-product', val=>{
       this.popups.deleteChat = val
     })
 

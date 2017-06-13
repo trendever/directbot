@@ -32,7 +32,9 @@
       }
     },
     created(){
-
+      window.eventHub.$on('action-delete-product',()=>{
+        this.deleteProduct();
+      })
       this.outerClose = listen(document.body, 'click',(e)=>{
         targetClass(e, 'menu-cnt', ()=>{
           if(this.menuOpened) this.menuOpened = false;
@@ -53,7 +55,7 @@
     },
     methods: {
       openPopup(){
-        window.eventHub.$emit('popup-delete-chat', true)
+        window.eventHub.$emit('popup-delete-product')
       },
       openMenu(){
         this.clipboardLogic();
