@@ -98,7 +98,7 @@ export default {
     border-top: 1px solid grey;
     display: flex;
     justify-content: center;
-    color:#226ABB ;
+    color:$color__brand;
     padding: 20px 20px 20px 20px;
     display: flex;
     @media (--mobile) {

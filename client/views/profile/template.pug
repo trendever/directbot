@@ -206,7 +206,10 @@
         //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
           i.ic-close
 
-  photos( :mentionerId="mentionerId", :shopId="supplierProfileID || userShopId", :listName="listId")
+  photos(:mentionerId="mentionerId",
+    :shopId="supplierProfileID || userShopId",
+    :listName="listId",
+    :class="{'little-top':isTrendever}")
 
   .directbot-navbar(v-if="isMobile && isAuth", :class="{'hide-nav': hideNavUser }")
     navbar-component(:current='$route.name === "profile" ? "profile" : ""')
