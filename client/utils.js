@@ -1,3 +1,6 @@
+import config from 'root/../config'
+
+
 export const formatPhone = (phonenum, simpleOut) => {
   phonenum = phonenum.replace(/[^\+0-9]/gi, '');
   var regexObj = /^(?:\+?7?8?[-. ]?)?(?:\(?([0-9]{3})\)?[-. ]?)?([0-9]{3})[-. ]?([0-9]{2})([0-9]{2})$/;
@@ -198,6 +201,23 @@ export const browser = {
   mac: /mac/i.test(_ua),
   search_bot: /(yandex|google|stackrambler|aport|slurp|msnbot|bingbot|twitterbot|ia_archiver|facebookexternalhit)/i.test(_ua)
 }
+
+
+export const isStandalone = function(){
+  if(config.testBrowserStandalone){
+    return true
+  }
+  if(browser.standalone){
+    if(browser.instagram||browser.facebook ){
+      return false
+    }
+    return true
+  }
+  return false
+}
+
+
+
 // legacy support
 window.browser = browser;
 

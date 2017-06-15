@@ -66,8 +66,8 @@ import store from 'root/store';
 import Listener from './Listener.vue';
 import Monetization from './Monetization.vue';
 import nativePopup from 'components/popup/native';
-import config from 'root/../config';
 import { setToken } from 'services/user';
+import { isStandalone } from 'root/utils'
 
 export default {
 
@@ -85,7 +85,7 @@ export default {
     return {
       authDone: false,
       monetizationDone: false,
-      isStandalone: config.testBrowserStandalone || window.browser.standalone,
+      isStandalone: isStandalone(),
       noSockConnection: false,
       transName: '',
 

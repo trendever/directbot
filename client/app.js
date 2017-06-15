@@ -4,6 +4,7 @@ import App from './components/App'
 import router from './router'
 import store from './store'
 import config from 'root/../config'
+import {isStandalone} from 'root/utils'
 
 sync(store, router)
 
@@ -29,7 +30,7 @@ Vue.mixin({
       isInstagram: window.browser.instagram,
       isTrendever: config.trendever,
       isDirectbot: config.directbot,
-      isStandalone: config.testBrowserStandalone || window.browser.standalone
+      isStandalone: isStandalone()
     }
   },
   methods:{
