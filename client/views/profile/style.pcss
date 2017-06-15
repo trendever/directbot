@@ -120,10 +120,10 @@
 
       @media (--overtablet) {
         display: block;
-        padding-top: 22px;
+        padding-top: 58px;
         position: absolute 0 0 * *;
         text-align: center;
-        width: 290px;
+        width: 280px;
       }
 
       button {
@@ -131,7 +131,9 @@
         text-transform: uppercase;
         cursor: pointer;
         font-family: $font__family__light;
-
+        @media( --overtablet){
+          font-size: 20px;
+        }
         &:hover {
           color: white;
           background: $color__brand;
@@ -188,7 +190,7 @@
       &.directbot {
         @media (--overtablet) {
           display: block;
-          padding-left: 160px;
+          //padding-left: 160px;
           .insta-link-text, .insta-link {
             font-size: 16px;
           }
@@ -239,9 +241,6 @@
     &_info {
 
       &_img {
-        &.bordered {
-          border: 1px solid $color__gray-lighter;
-        }
 
         position: relative;
         overflow: hidden;
@@ -250,10 +249,13 @@
         background-repeat: no-repeat;
         -webkit-background-size: 120px;
         background-size: 120px;
-        size: 120px;
+        size: 152px;
 
+        @media (--overtablet) {
+          margin: 30px 30px;
+        }
 
-        @media(--mobile) {
+        @media (--tabletandless) {
           position: relative;
           display: inline-block;
           float: none;
@@ -263,6 +265,10 @@
           margin: -10px 27px 0px 15px;
           -webkit-background-size: 165px;
           background-size: 165px;
+        }
+
+        &.bordered {
+          border: 1px solid $color__gray-lighter;
         }
 
         &.no-hidden {
@@ -282,7 +288,7 @@
           z-index: 200;
 
           @media (--overtablet) {
-            position: absolute * -5px 10px *;
+            position: absolute * 25px 35px *;
             width: 40px;
             height: 40px;
           }
@@ -291,8 +297,8 @@
       &_about{
         position: absolute;
         top: 20px;
-        left: 160px;
-        @media(--mobile) {
+        left: 252px;
+        @media (--tabletandless) {
           left: 223px;
         }
 
@@ -496,10 +502,10 @@
       width: 495px;
       vertical-align: super;
       overflow: hidden;
-      align-self: flex-end;
+      align-self: flex-start;
       padding-left: 24px;
-      padding-top: 24px;
-      @media(--mobile) {
+      padding-top: 34px;
+      @media (--tabletandless) {
         position: relative;
         left: 0;
         top: 0;
@@ -594,9 +600,12 @@
     }
   }
   .less{
-    max-height: 110px;//94px;
-    position: relative;
-    @media(--mobile) {
+
+    @media (--overtablet){
+      max-height: 210px;//94px;
+      position: relative;
+    }
+    @media (--tabletandless) {
       max-height: 285px;
     }
   }
