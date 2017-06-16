@@ -1,5 +1,7 @@
 <template lang="pug">
-#trendever-hero(:style="{ height: (isMobile ? heroHeight : 366) + 'px'}")
+#trendever-hero(
+  :style="{ height: (isMobile ? heroHeight : /*heroHeight/2*/366) + 'px'}",
+  )
 
   .screen-one
     .wrap-together
@@ -297,7 +299,22 @@ export default {
   text-align: center;
   @media (--overtablet){
     background: url(./img/hero.jpg);
+
+    &.full-screen {
+      background: $color__brand;
+
+      .screen-one {
+        height: 100%;
+      }
+
+      .wrap-mini-slider {
+        padding-top: 15%;
+      }
+    }
   }
+
+
+
 
   .wrap-second {
     padding-top: 100px;

@@ -1,4 +1,4 @@
-import Vue from 'vue'
+  import Vue from 'vue'
 import Router from 'vue-router'
 import Popup from '../views/popup/index'
 import config from 'root/../config'
