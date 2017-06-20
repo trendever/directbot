@@ -1,6 +1,6 @@
 <template lang="pug">
-#trendever-hero(
-  :style="{ height: (isMobile ? heroHeight : /*heroHeight/2*/366) + 'px'}",
+#trendever-hero.full-screen-desk(
+  :style="{ height: (isMobile ? heroHeight : heroHeight/2/*366*/) + 'px'}",
   )
 
   .screen-one
@@ -9,43 +9,21 @@
       .title-area.no-desk
         .brand-logo: img(src="./img/Trendever_logo.svg")
 
-
+      .fake-vertical-align
       .wrap-mini-slider
         mini-slider
       h1.first Шопинг в Instagram#[br.mobile] стал проще
         .social-icons
 
-          //- a: i.ic-social_facebook
-          //- a: i.ic-social_facebook_color
-          //- a: i.ic-social_vkontakte
-          //- a: i.ic-social_vkontakte_color
-          //- a: i.ic-social_instagram_linear
-          //- a: i.ic-social_instagram_mainpg
-
-          //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_facebook.svg")
-          //-a: i.ic-social_facebook
-
           a(href="https://www.fb.com/trendevercom", target="_blank")
             .facebook
             img.svg(src="./img/social_facebook_color.svg")
 
-          //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_vkontakte.svg")
-          //-a: i.ic-social_vkontakte
-
           a(href="https://www.vk.com/trendever", target="_blank")
             .vkontakte
-              //-img.svg(src="./img/social_vkontakte_color.svg")
-
-          //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/social_instagram_linear.svg")
-          //-a: i.ic-social_instagram_linear
 
           a(href="https://www.instagram.com/trendevercom", target="_blank")
             .instagram
-            //-img.svg(src="./img/social_instagram_mainpg.svg")
-
-          //-a(href="https://www.fb.com/trendevercom", target="_blank"): img.svg(src="./img/fb_color.svg")
-          //-a(href="https://www.vk.com/trendever", target="_blank"): img.svg(src="./img/vk_color.svg")
-          //-a(href="https://www.vk.com/trendever"): img.svg(src="./img/insta_c.svg")
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -311,6 +289,42 @@ export default {
         padding-top: 15%;
       }
     }
+  }
+
+  &.full-screen-desk{
+    .fake-vertical-align{display: none;}
+    @media (--overtablet){
+      background: url(./hero-imgs/images_pattern_light_desk-green.jpg);
+      background-position: 20%;
+      background-size: 70%;
+
+      .wrap-together {
+        //display: flex;
+        height: 100% !important;
+
+        >div {
+          vertical-align: middle;
+        }
+      }
+
+      .wrap-mini-slider {
+        height: 650px !important;
+      }
+
+      .fake-vertical-align {
+        display: inline-block;
+        height: 100%;
+      }
+
+    }
+    .screen-one {
+      @media (--overtablet) {
+        background: url(./hero-imgs/Bgr_clg_1920_green.png) no-repeat;
+        height: 100%;
+
+      }
+    }
+
   }
 
 

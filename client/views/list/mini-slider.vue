@@ -1,7 +1,11 @@
 <template lang="pug">
-#mini-slide
-  .slider
-    .wrap(:style="{marginLeft: currentMargin + 'px'}")
+#mini-slide.fullscreen-slider
+
+
+
+
+  .slider(v-if="little")
+
       .item.bg-image( @click="$router.push({name: 'video-trendever'})", ref="item")
         img(src="./img/Trendever_logo.svg")
         i.ic-play.white
@@ -14,11 +18,29 @@
         img(src="./img/slide_3.svg")
 
 
+  .slider(v-else)
+    .wrap(:style="{marginLeft: currentMargin + 'px'}")
+      .item.bg-image( @click="$router.push({name: 'video-trendever'})", ref="item")
+        img(src="./img/Trendever_logo.svg")
+        i.ic-play.white
+        .watch (смотреть видео)
+      .item(@click="$router.push({name: 'video-trendever'})")
+        i.ic-play.opacity
+        img(src="./hero-imgs/screen-1.jpg")
+      .item(@click="$router.push({name: 'video-trendever'})")
+        i.ic-play.opacity
+        img(src="./hero-imgs/screen-2.jpg")
+
+
 </template>
 
 <script>
 export default {
-
+  props:{
+    little:{
+      default: false
+    }
+  },
   mounted(){
     let current=true;
     this.time = setInterval(()=>{
@@ -51,9 +73,11 @@ export default {
 </script>
 
 <style lang="postcss">
+
 @import 'style/vars/vars.pcss';
 $img_height: 263px;
 $img_width: 282px;
+
 
 
 #mini-slide {
@@ -66,6 +90,28 @@ $img_width: 282px;
   background-repeat: no-repeat;
   background-size: calc($img_width + 69px);
   background-position: 16px 20px;
+
+
+  $h: 600px;
+  $w: 600px;
+  &.fullscreen-slider {
+    background: url(./hero-imgs/iPhone6_darkgreen_vector.png) no-repeat;
+    background-size: 320px;
+    width: 320px;
+    height: 650px;
+    padding: 0;
+
+    .wrap {
+      height: 500px;
+    }
+    .slider {
+      height: 500px;
+      transform: translateY(78px);
+      .item {
+        width: 282px;
+      }
+    }
+  }
 }
 
 .slider {
