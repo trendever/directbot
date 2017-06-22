@@ -303,13 +303,13 @@ export default {
         vertical-align: top;
         height: 300px;
         line-height: 300px;
-        margin-top: 100px;
+        margin-top: 90px;
       }
 
 
       .screen-one {
-        background: url(./hero-imgs/Bgr_clg_1920_green.png) no-repeat;
-        background-size: 120%;
+        background: url(./hero-imgs/Bgr_clg_1920_green.png);
+        background-repeat: no-repeat;
         height: 100%;
       }
     }
