@@ -299,8 +299,10 @@ export default {
       background: url(./hero-imgs/Pattern_green_light_desk.svg);
       //background-size: 50%;
       .wrap-together {
-        //display: flex;
+        line-height: initial;
+        transform: translateX(0px);
         height: 100% !important;
+        width: 100%;
 
         >div {
           vertical-align: middle;
