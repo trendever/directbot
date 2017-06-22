@@ -131,7 +131,7 @@ export default {
         display: block;
         margin-left: 120px;
         background: white;
-        height: 89px;
+        height: 92px;
         padding-top: 3px;
 
       }

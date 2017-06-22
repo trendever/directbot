@@ -277,27 +277,13 @@ export default {
   text-align: center;
   @media (--overtablet){
     background: url(./img/hero.jpg);
-
-    &.full-screen {
-      background: $color__brand;
-
-      .screen-one {
-        height: 100%;
-      }
-
-      .wrap-mini-slider {
-        padding-top: 15%;
-      }
-    }
   }
 
   &.full-screen-desk{
     .fake-vertical-align{display: none;}
     @media (--overtablet){
-      background: url(./hero-imgs/images_pattern_light_desk-green.jpg);
-      background-position: 20%;
-      background-size: 70%;
-
+      background: url(./hero-imgs/Pattern_green_light_desk.svg);
+      //background-size: 50%;
       .wrap-together {
         //display: flex;
         height: 100% !important;
@@ -306,25 +292,27 @@ export default {
           vertical-align: middle;
         }
       }
-
       .wrap-mini-slider {
         height: 650px !important;
       }
-
       .fake-vertical-align {
         display: inline-block;
         height: 100%;
       }
+      .first {
+        vertical-align: top;
+        height: 300px;
+        line-height: 300px;
+        margin-top: 100px;
+      }
 
-    }
-    .screen-one {
-      @media (--overtablet) {
+
+      .screen-one {
         background: url(./hero-imgs/Bgr_clg_1920_green.png) no-repeat;
+        background-size: 120%;
         height: 100%;
-
       }
     }
-
   }
 
 

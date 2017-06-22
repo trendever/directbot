@@ -92,21 +92,25 @@ $img_width: 282px;
   background-position: 16px 20px;
 
 
-  $h: 600px;
-  $w: 600px;
   &.fullscreen-slider {
+    $h: 600px;
+    $w: 600px;
     background: url(./hero-imgs/iPhone6_darkgreen_vector.png) no-repeat;
     background-size: 320px;
     width: 320px;
     height: 650px;
     padding: 0;
+    .watch {
+      font-family: $font__family__thin;
+      cursor: pointer;
+    }
 
     .wrap {
       height: 500px;
     }
     .slider {
       height: 500px;
-      transform: translateY(78px);
+      transform: translateY(67px);
       .item {
         width: 282px;
       }
@@ -142,6 +146,7 @@ $img_width: 282px;
     height: $img_height;
   }
   .item {
+    cursor: pointer;
     position: relative;
     width: $img_width;
     height: 100%;
