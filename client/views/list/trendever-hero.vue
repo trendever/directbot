@@ -25,6 +25,18 @@
           a(href="https://www.instagram.com/trendevercom", target="_blank")
             .instagram
 
+        .screen-getapp.no-mob
+          h2 Приложение для шопинга в instagram
+          .wrap-input
+            input(type="text" placeholder="Номер телефона" v-model="phoneNumber")
+            button(:disable="disableButton").app-btn {{ getLinkTitle }}
+
+        .application-icons.no-mob
+          a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
+            img(src="./hero-imgs/appstore.svg")
+          a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
+            img(src="./hero-imgs/google_play.svg")
+
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
@@ -48,30 +60,22 @@
 
     .watch-btn(@click="scrollSecond"): span ЗАГЛЯНУТЬ ВНУТРЬ
 
-  .screen-getapp.no-mob(v-if="false")
-    h2 Приложение для шопинга в instagram
-    .wrap-input
-      input(placeholder="Номер телефона")
-      span.app-btn ПОЛУЧИТЬ ССЫЛКУ
-
-  .screen-slider(v-if="false")
-    slider
-
-
-
 
 </template>
 
 <script>
 import miniSlider from './mini-slider';
-import slider from 'components/video/slider';
 import listen from 'event-listener';
 import  JQuery from 'jquery';
+import * as commonService from 'services/common';
 
 export default {
   data () {
     return {
-      heroHeight:0
+      heroHeight:0,
+      phoneNumber: '',
+      smsSent: false,
+      phoneError: false
     };
   },
   mounted(){
@@ -113,7 +117,33 @@ export default {
       // });
     })
   },
-  components:{slider, miniSlider},
+  components:{miniSlider},
+  computed:{
+    disableButton(){
+      if (this.phoneNumber.length >= 11 && !this.phoneError){
+        return false;
+      }else{
+        return true;
+      }
+    },
+    getLinkTitle(){
+      if (this.phoneError){
+        return "НЕВЕРНЫЙ НОМЕР";
+      }
+      if (this.smsSent){
+        return "ОТПРАВЛЕНО";
+      }else{
+        return "ПОЛУЧИТЬ ССЫЛКУ";
+      }
+    },
+    disableButton(){
+      if (this.phoneNumber.length >= 11 && !this.phoneError){
+        return false;
+      }else{
+        return true;
+      }
+    }
+  },
   methods:{
     goVideo(){this.$router.push({name: "video-trendever"})},
     scrollFirst() {
@@ -121,6 +151,18 @@ export default {
     },
     scrollSecond() {
       JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
+    },
+    getLink(){
+      commonService.marketSms({phone: this.phoneNumber }).then(data=>{
+          yaCounter35346175.reachGoal('get_link')
+          this.smsSent = true
+          this.phoneNumber = ''
+          setTimeout( () => {this.smsSent =  false}, 3000)
+        },err=>{
+          this.phoneError=true
+          setTimeout( () => {this.phoneError =  false}, 3000)
+        }
+      );
     },
   },
 
@@ -193,34 +235,6 @@ export default {
           border-radius: 7px;
 
         }
-
-
-
-/*         i.ic-social_facebook{
-          color: initial;
-          &:hover a.facebok {
-            display: inline-block;
-          }
-        };
-
-        i.ic-social_vkontakte{
-          color:initial;
-          &:hover a.vkontakte img {
-            display: inline-block;
-          }
-        };
-        i.ic-social_instagram_linear {
-          color:initial;
-          &::hover a.instagram{
-            display: inline-block;
-          }
-        };
-        i.ic-social_instagram_mainpg{
-          color:initial;
-          &::hover a.instagram {
-            display: inline-block;
-          }
-        }; */
 
         a {
           margin-right: 10px;
@@ -360,10 +374,25 @@ export default {
     }
   }
 
+  .application-icons {
+    display: block;
+    position: absolute * -20px -319px *;
+    z-index: 10;
+    a {
+      height: 50px;
+      img {
+        display: inline-block;
+        margin: 5px;
+      }
+    }
+  }
   .screen-getapp {
     max-width: 500px;
     margin: 0 auto;
     padding-bottom: 20px;
+    position: absolute * * -200px 0;
+    font-size: $font__normal;
+    z-index: 20;
 
     &.no-mob {
       @media (--tabletandless) {
@@ -376,6 +405,7 @@ export default {
       font-family: $font__family__semibold;
       padding: 5px;
       padding-bottom: 15px;
+      line-height: 50px;
     }
     .wrap-input {
       margin: 0 auto;
@@ -385,7 +415,7 @@ export default {
       width: 100%;
       height: 40px;
 
-      input, span {
+      input, button {
         display: inline-block;
         width: 50%;
         height: 100%;
@@ -399,25 +429,20 @@ export default {
         background: white;
         padding: 0 10px;
         &::focus {
-
         }
-
       }
-      span {
+      button {
+        border: none;
+        outline: none;
+        color: black;
         background-color: $color-orange;
         cursor: pointer;
         line-height: 40px;
+        font-family: $font__family__light;
         font-size: calc($font__normal - 5px);
       }
 
     }
-  }
-
-
-  .screen-getapp {
-    position: absolute * 0 0 0;
-    font-size: $font_normal;
-
   }
 
   h1 {
