@@ -105,7 +105,7 @@ export default {
   },
   components: {menuSample, brandMenu,phoneComponent},
   created(){
-    setTimeout(()=>{this.timeout=true},2000)
+    setTimeout(()=>{this.timeout=true},1000)
   },
   data(){
     return {
@@ -134,14 +134,15 @@ a.header-sticker {
   background-image: url(../img/header_sticker.png);
   background-repeat: no-repeat;
   background-size: contain;
-  transition: all .6s ease;
+  transition: all .3s ease;
+
   &.move {
     @media (--tabletandless){
       margin-left: -700px;
     }
 
     @media (--overtablet){
-      right: -1500px;
+      right: -35px;
     }
   }
 
@@ -172,6 +173,7 @@ a.header-sticker {
   }
 
   @media (--overtablet) {
+    right: -1500px;
     &.no-desk {
       display: none;
     }
