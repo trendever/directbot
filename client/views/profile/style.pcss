@@ -37,14 +37,22 @@
   }
 
   .profile-right-menu {
-    position: absolute;
-    top: 30px;
-    right: 30px;
+    @media (--tabletandless){
+      position: absolute;
+      height: 89px;
+      width: 89px;
+      top: 0px;
+      right: 0px;
+      line-height: 89px;
+      .ic-options_menu {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 40px;
 
-
-    .ic-options_menu {
-      transform: translateY(-4px);
-      font-size: 40px;
+        &.ios-fix {
+          transform: translateY(-2px)
+        }
+      }
     }
   }
 
