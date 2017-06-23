@@ -23,7 +23,6 @@
       .item.bg-image( @click="$router.push({name: 'video-trendever'})", ref="item")
         img(src="./img/Trendever_logo.svg")
         i.ic-play.white
-        .watch (смотреть видео)
       .item(@click="$router.push({name: 'video-trendever'})")
         i.ic-play.opacity
         img(src="./hero-imgs/screen-1.jpg")

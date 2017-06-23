@@ -4,6 +4,8 @@
   )
 
   .screen-one
+
+    i.ic-arrow-down(@click="scrollFirst").no-mobile
     .wrap-together
 
       .title-area.no-desk
@@ -13,32 +15,40 @@
       .wrap-mini-slider
         mini-slider
       h1.first Шопинг в Instagram#[br.mobile] стал проще
-        .social-icons
-
+        //-.social-icons
           a(href="https://www.fb.com/trendevercom", target="_blank")
             .facebook
             img.svg(src="./img/social_facebook_color.svg")
-
           a(href="https://www.vk.com/trendever", target="_blank")
             .vkontakte
-
           a(href="https://www.instagram.com/trendevercom", target="_blank")
             .instagram
 
         .screen-getapp.no-mob
-          h2 Приложение для шопинга в instagram
-          .wrap-input
-            input(type="text" placeholder="Номер телефона" v-model="phoneNumber")
-            button(:disable="disableButton").app-btn {{ getLinkTitle }}
-
-        .application-icons.no-mob
-          a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
-            img(src="./hero-imgs/appstore.svg")
-          a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
-            img(src="./hero-imgs/google_play.svg")
+          .contain
+            .application-icons.no-mob
+              a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
+                img(src="./hero-imgs/appstore.svg")
+              a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
+                img(src="./hero-imgs/google_play.svg")
+          .contain
+            //h2 СКАЧАТЬ ПРИЛОЖЕНИЕ
+            .wrap-input
+              input(type="text" placeholder="Номер телефона" v-model="phoneNumber")
+              button(:disable="disableButton").app-btn {{ getLinkTitle }}
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
+
+
+    .social-icons.column.no-mobile
+      a(href="https://www.fb.com/trendevercom", target="_blank")
+        .facebook
+        img.svg(src="./img/social_facebook_color.svg")
+      a(href="https://www.vk.com/trendever", target="_blank")
+        .vkontakte
+      a(href="https://www.instagram.com/trendevercom", target="_blank")
+        .instagram
 
 
   .screen-two.no-desk
@@ -133,7 +143,7 @@ export default {
       if (this.smsSent){
         return "ОТПРАВЛЕНО";
       }else{
-        return "ПОЛУЧИТЬ ССЫЛКУ";
+        return "СКАЧАТЬ ПРИЛОЖЕНИЕ";
       }
     },
     disableButton(){
@@ -172,7 +182,88 @@ export default {
 <style lang="postcss">
 
 @import 'style/vars/vars.pcss';
+.screen-one {
+  position: relative;
+  .social-icons {
 
+    padding-left: 0px;
+    //position: absolute -30px -500px 0 0;
+    z-index: 100;
+
+    &.column {
+      height: 200px;
+      position: absolute 200px 0 *  *;
+      display: inline-block;
+      width: 80px;
+    }
+
+    .vkontakte {
+      background-image: url(./img/social_vkontakte.svg);
+      &:hover {
+        background-image: url(./img/social_vkontakte_color.svg);
+        background-color: white;
+      }
+
+    }
+
+    .facebook{
+      background-image: url(./img/social_facebook.svg);
+
+      &:hover {
+        background-image: url(./img/social_facebook_color.svg);
+        background-color: white;
+      }
+
+    }
+
+
+    .instagram{
+      border-radius: 13px !important;
+      background-image: url(./img/social_instagram_linear_white.svg);
+      &:hover {
+        //background-image: url(./img/social_instagram_linear.svg);
+        background-image: url(./img/instagram_newicon_col_small.png);
+        background-color: white;
+      }
+
+    }
+
+
+    .vkontakte,
+    .facebook,
+    .instagram {
+      opacity: .92;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      background-size: 45px;
+      size: 45px;
+      border-radius: 7px;
+
+    }
+
+    a {
+      margin-right: 10px;
+      margin-bottom: 20px;
+      vertical-align: bottom;
+      i {
+        color: inherit;
+      }
+    }
+    img {
+      display: none;
+    }
+    img, i {
+
+      width: 50px;
+      cursor: pointer;
+      vertical-align: bottom;
+      margin-bottom:20px;
+      padding-right: 10px;
+    }
+  }
+
+}
 
 .wrap-together {
   height: 100%;
@@ -186,79 +277,8 @@ export default {
       position: relative;
       width: auto !important;
       margin-left: 40px;
-      .social-icons {
-
-        padding-left: 0px;
-        position: absolute * * 0 0;
-
-        .vkontakte {
-          background-image: url(./img/social_vkontakte.svg);
-          &:hover {
-            background-image: url(./img/social_vkontakte_color.svg);
-            background-color: white;
-          }
-
-        }
-
-        .facebook{
-          background-image: url(./img/social_facebook.svg);
-
-          &:hover {
-            background-image: url(./img/social_facebook_color.svg);
-            background-color: white;
-          }
-
-        }
-
-
-        .instagram{
-          border-radius: 13px !important;
-          background-image: url(./img/social_instagram_linear_white.svg);
-          &:hover {
-            //background-image: url(./img/social_instagram_linear.svg);
-            background-image: url(./img/instagram_newicon_col_small.png);
-            background-color: white;
-          }
-
-        }
-
-
-        .vkontakte,
-        .facebook,
-        .instagram {
-          opacity: .92;
-          cursor: pointer;
-          background-repeat: no-repeat;
-          overflow: hidden;
-          background-size: 45px;
-          size: 45px;
-          border-radius: 7px;
-
-        }
-
-        a {
-          margin-right: 10px;
-          margin-bottom: 20px;
-          vertical-align: bottom;
-          i {
-            color: inherit;
-          }
-        }
-        img {
-          display: none;
-        }
-        img, i {
-
-          width: 50px;
-          cursor: pointer;
-          vertical-align: bottom;
-          margin-bottom:20px;
-          padding-right: 10px;
-        }
-      }
     }
   }
-
   .social-icons {
 
     @media (--tabletandless){
@@ -319,7 +339,7 @@ export default {
         vertical-align: top;
         height: 300px;
         line-height: 300px;
-        margin-top: 90px;
+        margin-top: 120px;
       }
 
 
@@ -327,6 +347,13 @@ export default {
         background: url(./hero-imgs/Bgr_clg_1920_green.png);
         background-repeat: no-repeat;
         height: 100%;
+
+        i.ic-arrow-down {
+          z-index: 200;
+          cursor: pointer;
+          position: absolute * * 20px *;
+          color: $color__brand-dark;
+        }
       }
     }
   }
@@ -377,22 +404,24 @@ export default {
   }
 
   .application-icons {
+    line-height: initial;
     display: block;
-    position: absolute * -20px -319px *;
+    position: absolute * 0 -75px 0;
+    text-align: left;
     z-index: 10;
     a {
-      height: 50px;
+      display: inline-block;
+      margin: 0 5px 5px 0;
       img {
-        display: inline-block;
-        margin: 5px;
+
       }
     }
   }
   .screen-getapp {
-    max-width: 500px;
+    max-width: 700px;
     margin: 0 auto;
     padding-bottom: 20px;
-    position: absolute * * -200px 0;
+    position: absolute * * -230px 0;
     font-size: $font__normal;
     z-index: 20;
 
@@ -402,20 +431,21 @@ export default {
       }
     }
     h2 {
-      color: white;
+      color: $color__brand-dark;
       font-size: calc($font__normal - 4px);
       font-family: $font__family__semibold;
       padding: 5px;
       padding-bottom: 15px;
-      line-height: 50px;
+      line-height: 30px;
+      text-align: left;
+
     }
     .wrap-input {
-      margin: 0 auto;
-      max-width: 405px;
+      margin: 3px auto 0 auto;
+      width: 570px;
       overflow: hidden;
       border-radius: 5px;
-      width: 100%;
-      height: 40px;
+      height: 50px;
 
       input, button {
         display: inline-block;
@@ -424,8 +454,9 @@ export default {
         float: left;
       }
       input {
+        font-family: $font__family__light;
         color: $color__gray-dark;
-        font-size: calc($font__normal - 5px);
+        font-size: calc($font__normal - 3px);
         border: none;
         outline: none;
         background: white;
@@ -441,7 +472,7 @@ export default {
         cursor: pointer;
         line-height: 40px;
         font-family: $font__family__light;
-        font-size: calc($font__normal - 5px);
+        font-size: calc($font__normal - 3px);
       }
 
     }
