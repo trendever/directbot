@@ -41,7 +41,7 @@
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
 
 
-    .social-icons.column.no-mobile
+    .social-icons.column
       a(href="https://www.fb.com/trendevercom", target="_blank")
         .facebook
         img.svg(src="./img/social_facebook_color.svg")
@@ -191,6 +191,9 @@ export default {
     z-index: 100;
 
     &.column {
+      @media (--tabletandless){
+        display: none;
+      }
       height: 200px;
       position: absolute 200px 0 *  *;
       display: inline-block;
@@ -314,9 +317,10 @@ export default {
   }
 
   &.full-screen-desk{
-    .fake-vertical-align{display: none;}
+    .fake-vertical-align,.bg-plank{display: none;}
+
     @media (--overtablet){
-      background: url(./hero-imgs/Pattern_green_light_desk.svg);
+      background: url(./hero-imgs/Pattern_green_light_desk_1920x900.jpg);
       //background-size: 50%;
       .wrap-together {
         line-height: initial;
@@ -328,6 +332,7 @@ export default {
           vertical-align: middle;
         }
       }
+
       .wrap-mini-slider {
         height: 650px !important;
       }
@@ -339,7 +344,7 @@ export default {
         vertical-align: top;
         height: 300px;
         line-height: 300px;
-        margin-top: 120px;
+        margin-top: 170px;
       }
 
 
@@ -421,7 +426,7 @@ export default {
     max-width: 700px;
     margin: 0 auto;
     padding-bottom: 20px;
-    position: absolute * * -230px 0;
+    position: absolute * * -110px 0;
     font-size: $font__normal;
     z-index: 20;
 
