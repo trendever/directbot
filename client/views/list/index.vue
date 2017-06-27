@@ -25,6 +25,7 @@
 
 
   .header-mobile(v-if="isMobile")
+    .fake-top-standalone
     i.ic-logo_trendever_txt(v-if="isTrendever")
     i.ic-logo_directbot_txt(v-else)
 
@@ -158,6 +159,16 @@ export default {
       z-index: 999;
       padding-top: 55px;
       height: calc($standalone__fake__height + 89px)
+    }
+
+    .fake-top-standalone {
+      position: absolute;
+      width: 100%;
+      top:0;
+    }
+
+    i {
+     line-height: 75px;
     }
 
 
