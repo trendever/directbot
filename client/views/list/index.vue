@@ -25,7 +25,7 @@
 
 
   .header-mobile(v-if="isMobile")
-    .fake-top-standalone
+    .fake-top-standalone(:class="{fixed:fixedFakeTop}")
     i.ic-logo_trendever_txt(v-if="isTrendever")
     i.ic-logo_directbot_txt(v-else)
 
@@ -91,7 +91,12 @@ export default {
     })
   },
   data(){
-    return {showHero: true, showMenu: false,changeListen:{}}
+    return {
+      fixedFakeTop: false,
+      showHero: true,
+      showMenu: false,
+      changeListen:{}
+    }
   },
   created(){
 
@@ -104,6 +109,9 @@ export default {
         } else {
           this.showHero = true;
         }
+      }
+      if(!this.isAuth){
+        this.fixedFakeTop = document.body.scrollTop > window.innerHeight*2
       }
     })
 
@@ -165,6 +173,10 @@ export default {
       position: absolute;
       width: 100%;
       top:0;
+
+      &.fixed {
+        position: fixed;
+      }
     }
 
     i {
