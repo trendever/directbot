@@ -25,7 +25,7 @@
 
 
   .header-mobile(v-if="isMobile")
-    .fake-top-standalone(:class="{fixed:fixedFakeTop}")
+    .fake-top-standalone(v-if="isStandalone", :class="{fixed:fixedFakeTop}")
     i.ic-logo_trendever_txt(v-if="isTrendever")
     i.ic-logo_directbot_txt(v-else)
 
