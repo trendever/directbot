@@ -191,7 +191,7 @@
 
       .profile_insta-link(
         v-if="!isTrendever",
-        :class="{'change-padding': !isSelfPage, directbot: true,'margin-top': !isMoreClass }")
+        :class="{ directbot: true,'margin-top': !isMoreClass }")
         .insta-link-text Cсылка сюда&nbsp
         .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
 
@@ -203,7 +203,7 @@
   photos(:mentionerId="mentionerId",
     :shopId="supplierProfileID || userShopId",
     :listName="listId",
-    :class="{'little-top':isTrendever}")
+    :class="{'little-top':isTrendever, 'change-padding': !isSelfPage && isTrendever}")
 
   .directbot-navbar(v-if="isMobile && isAuth", :class="{'hide-nav': hideNavUser }")
     navbar-component(:current='$route.name === "profile" ? "profile" : ""')
