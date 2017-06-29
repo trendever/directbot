@@ -122,16 +122,19 @@
         }
 
         .tags-buttons {
+
           width: 100%;
         }
       }
 
       @media (--overtablet) {
         display: block;
-        padding-top: 58px;
         position: absolute 0 0 * *;
         text-align: center;
-        width: 280px;
+        width: 900px;
+        .tags-buttons {
+          display: block;
+        }
       }
 
       button {
@@ -139,8 +142,13 @@
         text-transform: uppercase;
         cursor: pointer;
         font-family: $font__family__light;
-        @media( --overtablet){
-          font-size: 20px;
+        @media (--overtablet){
+          margin-top: 15px;
+          float: right;
+          font-size: 15px;
+          width: 220px;
+          padding-top: 7px;
+          padding-bottom: 7px;
         }
         &:hover {
           color: white;
@@ -261,6 +269,8 @@
 
         @media (--overtablet) {
           margin: 30px 30px;
+          -webkit-background-size: 150px;
+          background-size: 150px;
         }
 
         @media (--tabletandless) {
@@ -296,9 +306,9 @@
           z-index: 200;
 
           @media (--overtablet) {
-            position: absolute * 25px 35px *;
-            width: 40px;
-            height: 40px;
+            position: absolute * 0px 15px *;
+            width: 50px;
+            height: 50px;
           }
         }
       }
@@ -306,6 +316,33 @@
         position: absolute;
         top: 20px;
         left: 252px;
+
+        &.no-mob{
+          @media (--tabletandless){
+            display: none;
+          }
+        }
+        &.no-desk {
+          @media (--overtablet){
+            display: none;
+          }
+        }
+        @media (--overtablet){
+
+          width: 540px;
+          position: relative;
+          display: block;
+          left: 0;
+          top:0;
+          margin-top: 12px;
+          margin-bottom: 20px;
+          span {
+            color: $color__gray-dark;
+            display: inline-block;
+            width: initial !important;
+          }
+        }
+
         @media (--tabletandless) {
           left: 223px;
         }
@@ -513,6 +550,12 @@
       align-self: flex-start;
       padding-left: 24px;
       padding-top: 34px;
+
+      @media (--overtablet){
+        width: 600px;
+        padding-top: 0;
+        top: 34px;
+      }
       @media (--tabletandless) {
         position: relative;
         left: 0;

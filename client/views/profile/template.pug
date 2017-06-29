@@ -57,11 +57,11 @@
         .profile_info
 
           .profile_info_img(:class="{'no-hidden': !getUserPhoto && !isTrendever && isSelfPage, bordered: !!getUserPhoto}")
-            img(:src="getUserPhoto")
+            img(:src="getUserPhoto" v-if="getUserPhoto")
             img.bot-mini(src="./img/bot-mini.svg" v-if="isSelfPage && !getUserPhoto && !isTrendever")
 
 
-          .profile_info_about
+          .profile_info_about.no-desk
 
             template
               span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage && !hasAnyInfo")
@@ -114,6 +114,33 @@
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
           .profile_desc_t.fake__text(v-if="!getSlogan && isSelfPage") [слоган вашего {{appWord}}]
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
+
+
+          .profile_info_about.no-mob
+
+            template
+              span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage && !hasAnyInfo")
+                | [категория {{appWord}}] &nbsp
+              span.profile_info_about_type(v-if="shopabout")
+                | {{ shopabout }} &nbsp
+
+            template(v-if="!isTrendever")
+              span.profile_info_about_location.fake__text(v-if="!shoplocation && isSelfPage && !hasAnyInfo")
+                | [местоположение]&nbsp&nbsp
+                span(v-if="!isMobile && user.working_time") |&nbsp
+              span.profile_info_about_location(v-if="shoplocation")
+                span(v-if="shoplocation && !isMobile") |&nbsp
+                | &nbsp{{ shoplocation}}&nbsp&nbsp
+                span(v-if="!isMobile && user.working_time") |&nbsp
+
+            template(v-if="!isTrendever")
+              span.profile_info_about_work-time.fake__text(v-if="!user.working_time && isSelfPage && !hasAnyInfo")
+                |  [часы работы]&nbsp
+              span.profile_info_about_work-time(v-if="user.working_time")
+                |  {{ shoptime }}&nbsp
+
+
+
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
           .shipping_rules(:class="{'fake__text': !user.shipping_rules && isSelfPage }")
