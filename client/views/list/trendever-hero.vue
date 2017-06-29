@@ -4,7 +4,7 @@
   )
 
   .screen-one
-
+    .bg-plank
     i.ic-arrow-down(@click="scrollFirst").no-mobile
     .wrap-together
 
@@ -14,7 +14,10 @@
       .fake-vertical-align
       .wrap-mini-slider
         mini-slider
-      h1.first Шопинг в Instagram#[br.mobile] стал проще
+      h1.first
+        .wrap-title
+          span Шопинг в Instagram#[br]
+          span.second-word стал проще
         //-.social-icons
           a(href="https://www.fb.com/trendevercom", target="_blank")
             .facebook
@@ -34,8 +37,8 @@
           .contain
             //h2 СКАЧАТЬ ПРИЛОЖЕНИЕ
             .wrap-input
-              input(type="text" placeholder="Номер телефона" v-model="phoneNumber")
-              button(:disable="disableButton").app-btn {{ getLinkTitle }}
+              input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
+              button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -164,7 +167,7 @@ export default {
     },
     getLink(){
       commonService.marketSms({phone: this.phoneNumber }).then(data=>{
-          yaCounter35346175.reachGoal('get_link')
+          //yaCounter35346175.reachGoal('get_link')
           this.smsSent = true
           this.phoneNumber = ''
           setTimeout( () => {this.smsSent =  false}, 3000)
@@ -195,7 +198,7 @@ export default {
         display: none;
       }
       height: 200px;
-      position: absolute 200px 0 *  *;
+      position: absolute 165px 0 *  *;
       display: inline-block;
       width: 80px;
     }
@@ -317,9 +320,17 @@ export default {
   }
 
   &.full-screen-desk{
-    .fake-vertical-align,.bg-plank{display: none;}
+    .fake-vertical-align,
+    .bg-plank {
+      display: none;
+    }
+
+
 
     @media (--overtablet){
+
+
+
       background: url(./hero-imgs/Pattern_green_light_desk_1920x900.jpg);
       //background-size: 50%;
       .wrap-together {
@@ -349,9 +360,15 @@ export default {
 
 
       .screen-one {
-        background: url(./hero-imgs/Bgr_clg_1920_green.png);
-        background-repeat: no-repeat;
         height: 100%;
+
+        .bg-plank {
+          background: url(./hero-imgs/Bgr_clg_1920_green.png);
+          background-size: cover;
+          display: block;
+          position: absolute 0 0 * 0;
+          height: calc(50% + 60px);
+        }
 
         i.ic-arrow-down {
           z-index: 200;
@@ -478,6 +495,9 @@ export default {
         line-height: 40px;
         font-family: $font__family__light;
         font-size: calc($font__normal - 3px);
+        &:hover {
+          background: $color-orange-dark;
+        }
       }
 
     }
@@ -511,6 +531,17 @@ export default {
 
     &.second {
       font-family: $font__family__semibold;
+    }
+
+    &.first {
+      .second-word {
+        @media (--overtablet) {
+          text-align: left;
+          display: block;
+          position: relative;
+          top: -240px;
+        }
+      }
     }
 
   }
