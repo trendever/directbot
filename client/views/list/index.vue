@@ -160,10 +160,11 @@ export default {
     line-height: 89px;
     background: $color__header__bg;
     font-size: 60px;
-    padding-top: 17px;
+    padding-top: 10px;
     border-bottom: 1px solid $color__header__border;
 
     .standalone & {
+      padding-top: 17px;
       z-index: 999;
       padding-top: 55px;
       height: calc($standalone__fake__height + 89px)
