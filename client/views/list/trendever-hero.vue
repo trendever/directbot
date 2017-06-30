@@ -279,10 +279,19 @@ export default {
     .first, .wrap-mini-slider {
       display: inline-block;
     }
+
+
+
+
     .first {
       position: relative;
       width: auto !important;
       margin-left: 40px;
+      .wrap-title {
+        @media screen and (max-height:800px){
+          transform: translateY(-70px);
+        }
+      }
     }
   }
   .social-icons {
