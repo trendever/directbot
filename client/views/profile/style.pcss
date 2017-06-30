@@ -17,12 +17,18 @@
 
   .shipping_rules {
     margin-top: 17px;
-    @media (--mobile){
+    @media (--tabletandless){
       margin-top: 40px;
     }
 
     &.fake__text {
       margin-top: 0px;
+    }
+
+    .profile_desc_caption {
+      @media (--overtablet){
+        padding-bottom: 15px;
+      }
     }
   }
   .profile-cash {
@@ -104,7 +110,6 @@
 
     }
 
-
     @media (--tabletandless) {
       display: block;
       padding-right: 0px;//10px;
@@ -176,8 +181,12 @@
         display: inline-block;
         color: $color__brand;
         margin-bottom: 24px;
+        @media (--tabletandless){
+
+        }
         @media (--overtablet) {
-          width: 100%;
+          position: absolute 100px 22px * *;
+
         }
       }
     }
@@ -211,6 +220,7 @@
 
       &.directbot {
         @media (--overtablet) {
+          padding-top: 30px;
           display: block;
 
           .insta-link-text, .insta-link {
@@ -334,10 +344,11 @@
           display: block;
           left: 0;
           top:0;
-          margin-top: 12px;
-          margin-bottom: 20px;
+          //margin-top: 12px;
+          margin-bottom: 5px;
           span {
-            color: $color__gray-dark;
+            color: black !important;
+            //color: $color__gray-dark !important;
             display: inline-block;
             width: initial !important;
           }
@@ -355,19 +366,19 @@
         span{
           color: $color__gray-dark;
           font-size: 16px;
-          @media(--mobile) {
+          @media (--tabletandless) {
             font-size: 28px;
           }
 
           &:first-child{
-            @media(--mobile) {
+            @media (--tabletandless) {
               padding-top: 4px;
               display: block;
             }
           }
 
           &:after{
-            @media(--mobile) {
+            @media (--tabletandless) {
               content: '';
               position: relative;
               display: block;
@@ -454,10 +465,13 @@
       }
       .text-box{
 
-        @media(--mobile) {
+        @media (--tabletandless) {
           position: relative;
-          top: 0;
+          margin-top: 70px;
           right: 0;
+        }
+        @media (--overtablet) {
+
         }
       }
       .bold{
@@ -583,7 +597,7 @@
       .fake__text {
         color: $color__gray;
         font-family: $font__family__light;
-        margin-bottom: 15px;
+        //margin-bottom: 15px;
       }
     }
   }
@@ -655,6 +669,7 @@
     @media (--overtablet){
       max-height: 210px;//94px;
       position: relative;
+      margin-bottom: 15px;
     }
     @media (--tabletandless) {
       max-height: 285px;

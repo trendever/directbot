@@ -82,13 +82,13 @@
               span.profile_info_about_work-time.fake__text(v-if="!user.working_time && isSelfPage && !hasAnyInfo")
                 |  [часы работы]&nbsp
               span.profile_info_about_work-time(v-if="user.working_time")
-                |  {{ shoptime }}&nbsp
+                |  &nbsp{{ shoptime }}
 
 
         .profile-buttons
           .tags-buttons
             template(v-if="!isTrendever && isSelfPage")
-              .text-box(v-if="!isMobile && botActivity")
+              //-.text-box(v-if="!isMobile && botActivity")
                 p.bold Активирован ... #[br]
                 p.light(v-if="!postsCount") нет активных постов, ожидаю..
                 p.light(v-if="postsCount")
@@ -137,7 +137,7 @@
               span.profile_info_about_work-time.fake__text(v-if="!user.working_time && isSelfPage && !hasAnyInfo")
                 |  [часы работы]&nbsp
               span.profile_info_about_work-time(v-if="user.working_time")
-                |  {{ shoptime }}&nbsp
+                |  &nbsp{{ shoptime }}
 
 
 
@@ -161,9 +161,9 @@
             span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
 
           .profile_active(v-if="botActivity")
-            img(src="./img/active-directbot-profile.png", v-if="isMobile")
+            //-img(src="./img/active-directbot-profile.png", v-if="isMobile")
             //-img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
-            .text-box(v-if="isMobile")
+            //-.text-box(v-if="isMobile")
               p.bold Активирован ... #[br]
               p.light(v-if="!postsCount") нет активных постов, ожидаю..
               p.light(v-if="postsCount")
