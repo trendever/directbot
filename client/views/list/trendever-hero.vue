@@ -281,8 +281,6 @@ export default {
     }
 
 
-
-
     .first {
       position: relative;
       width: auto !important;
