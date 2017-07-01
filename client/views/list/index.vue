@@ -164,10 +164,12 @@ export default {
     border-bottom: 1px solid $color__header__border;
 
     .standalone & {
-      padding-top: 17px;
       z-index: 999;
-      padding-top: 55px;
-      height: calc($standalone__fake__height + 89px)
+      padding-top: 40px;
+      height: calc($standalone__fake__height + 89px);
+      i {
+        line-height: 100px;
+      }
     }
 
     .fake-top-standalone {
