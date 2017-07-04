@@ -168,7 +168,7 @@ export default {
       padding-top: 40px;
       height: calc($standalone__fake__height + 89px);
       i {
-        line-height: 100px;
+        line-height: 92px;
       }
     }
 
