@@ -1,6 +1,7 @@
 @import 'style/vars/vars.pcss';
 #profile {
 
+
   .photos {
     &.change-padding {
         padding-top: 15px;
@@ -15,6 +16,14 @@
   }
 
 
+  .profile_desc_caption {
+    @media (--overtablet){
+      color: black !important;
+      padding-bottom: 15px;
+    }
+
+  }
+
   .shipping_rules {
     margin-top: 17px;
     @media (--tabletandless){
@@ -27,6 +36,7 @@
 
     .profile_desc_caption {
       @media (--overtablet){
+        color: $color__gray-dark !important;
         padding-bottom: 15px;
       }
     }
@@ -222,6 +232,8 @@
         @media (--overtablet) {
           padding-top: 30px;
           display: block;
+          clear: both;
+          padding-left: 262px;
 
           .insta-link-text, .insta-link {
             font-size: 16px;
@@ -229,7 +241,6 @@
         }
 
 
-        padding-left: 252px;
         text-align: left;
         > div {
           display: inline-block;
@@ -278,7 +289,7 @@
         size: 152px;
 
         @media (--overtablet) {
-          margin: 30px 30px;
+          margin: 30px 30px 30px 40px;
           -webkit-background-size: 150px;
           background-size: 150px;
         }
@@ -338,6 +349,10 @@
           }
         }
         @media (--overtablet){
+          .profile_info_about_type,
+          .profile_info_about_working_time {
+            margin-top: 0;
+          }
 
           width: 540px;
           position: relative;
@@ -347,8 +362,7 @@
           //margin-top: 12px;
           margin-bottom: 5px;
           span {
-            color: black !important;
-            //color: $color__gray-dark !important;
+            color: $color__gray-dark !important;
             display: inline-block;
             width: initial !important;
           }
@@ -569,7 +583,9 @@
         width: 600px;
         padding-top: 0;
         top: 34px;
+
       }
+
       @media (--tabletandless) {
         position: relative;
         left: 0;
@@ -590,7 +606,10 @@
       span{
         display: inline-block;
         width: 100%;
-        margin-top: 8px;
+
+        @media (--tabletandless){
+          margin-top: 8px;
+        }
         word-wrap: break-word;
       }
 
@@ -667,7 +686,7 @@
   .less{
 
     @media (--overtablet){
-      max-height: 210px;//94px;
+      max-height: 130px;//94px;
       position: relative;
       margin-bottom: 15px;
     }
