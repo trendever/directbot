@@ -5,15 +5,20 @@
     .monetization__fake-block
     .monetization__days-block
 
+      .monetization__text.help.no-mob
+        | После истечения пробного периода#[br]
+        | выберите подхоящий тарифный план
       .monetization__days-to-end(:class="{is__end: monetizationDays === 0, 'red_none': noPlanSelected }")
         template(v-if="!monetizationDays") 0
         tempalte(v-if="monetizationDays") {{ monetizationDays }}
       .monetization__text.end-txt
         | {{ daysCount }} осталось до конца #[br] пробного периода
 
-      .monetization__text.help
+
+      .monetization__text.help.no-desk
         | После истечения пробного периода#[br]
         | выберите подхоящий тарифный план
+
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
         button(v-if="selectedPlan === 0", @click.stop.prevent="goProfile", :class="{'red_none': noPlanSelected}")
           span(v-if="!noPlanSelected") ПРОДОЛЖИТЬ
@@ -22,7 +27,9 @@
           | ПОДТВЕРДИТЬ
       .monetization__zero-days-link(v-if="!isMobile")
         a(@click="getHelp")
-          | У меня есть вопросы
+          span Мне нужно больше дней
+          br
+          span на испытания Directbot
 
 
     .monetization__plans
