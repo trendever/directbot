@@ -171,7 +171,7 @@
             | Instagram, чтобы добавить тренд сюда в ленту
 
       .profile_insta-link(
-        v-if="!isTrendever",
+        v-if="!isTrendever && isMoreClass",
         :class="{ directbot: true,'margin-top': !isMoreClass }")
         .insta-link-text Cсылка сюда&nbsp
         .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}

@@ -1,4 +1,6 @@
 @import 'style/vars/vars.pcss';
+
+$font__profile__description: 18px;
 #profile {
 
 
@@ -19,7 +21,7 @@
   .profile_desc_caption {
     @media (--overtablet){
       line-height: 24px;
-      font-size: 18px;
+      font-size: $font__profile__description;
       color: black !important;
       padding-bottom: 15px;
     }
@@ -35,7 +37,11 @@
     &.fake__text {
       margin-top: 0px;
     }
-
+    .profile_desc_t {
+      @media (--overtablet){
+        font-size: $font__profile__description;
+      }
+    }
     .profile_desc_caption {
       @media (--overtablet){
         color: black !important;
@@ -239,7 +245,11 @@
           padding-left: 262px;
 
           .insta-link-text, .insta-link {
-            font-size: 16px;
+            font-size: $font__profile__description;
+          }
+
+          .insta-link-text  {
+            color: $color__gray;
           }
         }
 
@@ -382,7 +392,7 @@
 
         span{
           color: $color__gray-dark;
-          font-size: 18px;
+          font-size: $font__profile__description;
           @media (--tabletandless) {
             font-size: 28px;
           }
@@ -691,7 +701,7 @@
   .less{
 
     @media (--overtablet){
-      max-height: 180px;//94px;
+      max-height: 190px;//94px;
       position: relative;
       margin-bottom: 15px;
     }

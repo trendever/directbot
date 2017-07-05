@@ -232,6 +232,8 @@
           break;
           case 'product_detail': return false;
           break;
+          case 'chat': return false;
+          break;
           default: return true;
 
         }
