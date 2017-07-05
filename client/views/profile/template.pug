@@ -88,13 +88,6 @@
         .profile-buttons
           .tags-buttons
             template(v-if="!isTrendever && isSelfPage")
-              //-.text-box(v-if="!isMobile && botActivity")
-                p.bold Активирован ... #[br]
-                p.light(v-if="!postsCount") нет активных постов, ожидаю..
-                p.light(v-if="postsCount")
-                  span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
-                  span(v-if="chatsCount") Создано {{ chatsCount }} чатов
-
               button.no-mob(v-if="!botActivity",
                   @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
               template(v-if="isAuth")
@@ -103,7 +96,7 @@
 
 
             template(v-if="isTrendever && isSelfPage")
-              //-button.connect.no-mob(@click="connectDirect") Начать бизнес
+              button.no-mob(@click="connectDirect") Начать бизнес
 
 
             .profile-buttons(v-if="!isSelfPage")
@@ -111,6 +104,7 @@
 
 
         .profile_desc(v-on:click="isMoreClass = !isMoreClass",
+          ref="profileDesk",
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
           .profile_desc_t.fake__text(v-if="!getSlogan && isSelfPage") [слоган вашего {{appWord}}]
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
@@ -155,20 +149,7 @@
 
         template(v-if="!isTrendever")
 
-          //-.profile_inactive(v-if="!botActivity")
-            img(src="./img/empty-directbot-profile.png")
-            span.empty Деактивирован
-            span(v-if="false") мониторю {{ postsCount  }}  постов #[br] общаюсь в {{ chatsCount }} чатах
-
           .profile_active(v-if="botActivity")
-            //-img(src="./img/active-directbot-profile.png", v-if="isMobile")
-            //-img(src="./img/Directbot_profile_bot-on.svg", v-if="!isMobile")
-            //-.text-box(v-if="isMobile")
-              p.bold Активирован ... #[br]
-              p.light(v-if="!postsCount") нет активных постов, ожидаю..
-              p.light(v-if="postsCount")
-                span Добавлено {{  postsCount }} {{postsCountTitle}} #[br]
-                span(v-if="chatsCount") Создано {{ chatsCount }} чатов
 
           .grey-banner(v-if="!botActivity && getBannerInfo.indexOf('profile-banner') === -1 && !hideGrey")
             i.ic-close(@click="$store.dispatch('closeStat', 'profile-banner')")
@@ -196,9 +177,6 @@
         .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
 
       connect-button(v-if="isSelfPage && isMobile && !botActivity")
-
-        //-button.bot-active-btn(v-if="false") БОТ АКТИВЕН
-          i.ic-close
 
   photos(:mentionerId="mentionerId",
     :shopId="supplierProfileID || userShopId",

@@ -34,7 +34,7 @@ export default {
       hideGrey: false,
       loaded: true,
       //anotherId: 1, //пустая лента без единого товара
-      isMoreClass: false,
+      isMoreClass: true,
       showBanner: showBanner,
       showProfileMenu: false,
       timeID: null,
@@ -196,6 +196,11 @@ export default {
         setTimeout(()=>{
           this.hideNavUser = false;
         }, 10000)
+      }
+
+
+      if(this.$refs.profileDesk.offsetHeight > 200){
+        this.isMoreClass=false
       }
 
     })

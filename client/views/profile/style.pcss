@@ -18,6 +18,8 @@
 
   .profile_desc_caption {
     @media (--overtablet){
+      line-height: 24px;
+      font-size: 18px;
       color: black !important;
       padding-bottom: 15px;
     }
@@ -36,7 +38,7 @@
 
     .profile_desc_caption {
       @media (--overtablet){
-        color: $color__gray-dark !important;
+        color: black !important;
         padding-bottom: 15px;
       }
     }
@@ -153,6 +155,7 @@
         position: absolute 0 0 * *;
         text-align: center;
         width: 900px;
+        z-index: 100;
         .tags-buttons {
           display: block;
         }
@@ -169,7 +172,7 @@
           font-size: 15px;
           width: 220px;
           padding-top: 7px;
-          padding-bottom: 6px;
+          padding-bottom: 5px;
         }
         &:hover {
           color: white;
@@ -354,7 +357,7 @@
             margin-top: 0;
           }
 
-          width: 540px;
+          width: 800px;
           position: relative;
           display: block;
           left: 0;
@@ -362,7 +365,7 @@
           //margin-top: 12px;
           margin-bottom: 5px;
           span {
-            color: $color__gray-dark !important;
+            color: $color__gray !important;
             display: inline-block;
             width: initial !important;
           }
@@ -373,13 +376,13 @@
         }
 
         .fake__text {
-          color: $color__gray;
+          color: $color__gray-dark;
           font-family: $font__family__light;
         }
 
         span{
           color: $color__gray-dark;
-          font-size: 16px;
+          font-size: 18px;
           @media (--tabletandless) {
             font-size: 28px;
           }
@@ -580,7 +583,7 @@
       padding-top: 34px;
 
       @media (--overtablet){
-        width: 600px;
+        width: 800px;
         padding-top:34px;
 
       }
@@ -601,6 +604,9 @@
         font-family: $font__family__semibold;
         margin-bottom: 5px;
         cursor: pointer;
+        @media (--overtablet){
+          font-size: 21px;
+        }
       }
       span{
         display: inline-block;
@@ -685,7 +691,7 @@
   .less{
 
     @media (--overtablet){
-      max-height: 190px;//94px;
+      max-height: 180px;//94px;
       position: relative;
       margin-bottom: 15px;
     }
