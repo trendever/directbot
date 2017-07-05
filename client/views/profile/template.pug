@@ -17,7 +17,7 @@
       right-nav-component(
         slot="content",
         :current="$route.name === 'profile' ?  'profile' : ''",
-        v-on:open-profile-menu="showProfileMenu = true")
+        v-on:open-profile-menu="showProfileMenu = !showProfileMenu")
       //-div.profile-cash(
         slot='content',
         v-if="isSelfPage && user.plan_id && monetizationDays === 0",
