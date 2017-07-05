@@ -54,6 +54,9 @@ export default {
     }
   },
   methods:{
+    changeName(val){
+      return val.replace(/Р/g, '<i class="ic-currency-rub"></i>')
+    },
     goProfile(){
       if(this.getUseDays == 0 && !this.selectedPlan){
         this.noPlanSelected = true;
