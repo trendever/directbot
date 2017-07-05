@@ -6,7 +6,9 @@
 
   .top-landing-background
 
-  landing-top(:new-landing="newLanding", :class="{'update-land':!old && !lastLanding, 'last-landing': lastLanding}")
+  landing-top(
+    :new-landing="newLanding",
+    :class="{'update-land':!old && !lastLanding, 'last-landing': lastLanding}")
 
 
   //- СТАРЫЙ ЛЕНДИНГ
@@ -95,6 +97,8 @@
 
   template(v-if="lastLanding")
 
+    //-top-desk
+
     skills
       .btn-wrap(slot="bottom")
         .big-landing-btn(@click="$router.push({name: 'why-popup'})") Почему мы это делаем
@@ -152,7 +156,7 @@ import connectGet from './parts/connect-get';
 import landingTop from './parts/landing-top';
 import skills from './last-parts/skills';
 import lastArticles from './last-parts/articles';
-
+import topDesk from './last-parts/top-desk'
 
 import listen from 'event-listener';
 import { mapGetters } from 'vuex';
@@ -383,7 +387,8 @@ export default {
     newArticles,
     //last landing
     skills,
-    lastArticles
+    lastArticles,
+    topDesk
   }
 }
 

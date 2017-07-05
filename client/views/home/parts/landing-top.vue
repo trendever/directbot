@@ -275,7 +275,7 @@ a.header-sticker {
     }
   }
 
-   i.ic-logo_directbot_txt {
+  i.ic-logo_directbot_txt {
     display: none;
     @media (--tabletandless){
       display: block;
@@ -284,9 +284,7 @@ a.header-sticker {
       z-index: 800;
       color: white;
     }
-
-
-   }
+  }
   .telegram_logo  {
     display: inline-block;
     z-index: 200;

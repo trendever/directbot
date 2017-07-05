@@ -3,6 +3,8 @@
   :style="{ height: (isMobile ? heroHeight : heroHeight/2/*366*/) + 'px'}",
   )
 
+  slot
+
   .screen-one
     .bg-plank
     i.ic-arrow-down(@click="scrollFirst").no-mobile
@@ -15,17 +17,7 @@
       .wrap-mini-slider
         mini-slider
       h1.first
-        .wrap-title
-          span Шопинг в Instagram#[br]
-          span.second-word стал проще
-        //-.social-icons
-          a(href="https://www.fb.com/trendevercom", target="_blank")
-            .facebook
-            img.svg(src="./img/social_facebook_color.svg")
-          a(href="https://www.vk.com/trendever", target="_blank")
-            .vkontakte
-          a(href="https://www.instagram.com/trendevercom", target="_blank")
-            .instagram
+        .wrap-title(v-html="title")
 
         .screen-getapp.no-mob
           .contain
@@ -35,7 +27,6 @@
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
                 img(src="./hero-imgs/google_play.svg")
           .contain
-            //h2 СКАЧАТЬ ПРИЛОЖЕНИЕ
             .wrap-input
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
@@ -45,12 +36,12 @@
 
 
     .social-icons.column
-      a(href="https://www.fb.com/trendevercom", target="_blank")
+      a.s-facebook(:href="'https://www.fb.com/'+ socialLinks[0]", target="_blank")
         .facebook
         img.svg(src="./img/social_facebook_color.svg")
-      a(href="https://www.vk.com/trendever", target="_blank")
+      a.s-vkontakte(:href="'https://www.vk.com/'+ socialLinks[1]", target="_blank")
         .vkontakte
-      a(href="https://www.instagram.com/trendevercom", target="_blank")
+      a.s-instagram(:href="'https://www.instagram.com/'+ socialLinks[2]", target="_blank")
         .instagram
 
 
@@ -83,6 +74,21 @@ import  JQuery from 'jquery';
 import * as commonService from 'services/common';
 
 export default {
+
+  props:{
+    socialLinks: {
+      type: Array,
+      default:['trendevercom','trendever','trendevercom']
+    },
+    title:{
+      type: String,
+      default:`
+        <span>Шопинг в Instagram</span>
+        <br />
+        <span class="second-word">стал проще</span>
+      `
+    }
+  },
   data () {
     return {
       heroHeight:0,
@@ -94,42 +100,13 @@ export default {
   mounted(){
 
     this.$nextTick(()=>{
+
       this.heroHeight = window.innerHeight * 2;
 
-      // jQuery('img.svg').each( () => {
-      //   let $img = jQuery(this);
-      //   let imgID = $img.attr('id');
-      //   let imgClass = $img.attr('class');
-      //   let imgURL = $img.attr('src');
-
-      //   jQuery.get(imgURL, (data) => {
-      //     // Get the SVG tag, ignore the rest
-      //     let $svg = jQuery(data).find('svg');
-
-      //     // Add replaced image's ID to the new SVG
-      //     if(typeof imgID !== 'undefined') {
-      //         $svg = $svg.attr('id', imgID);
-      //     }
-      //     // Add replaced image's classes to the new SVG
-      //     if(typeof imgClass !== 'undefined') {
-      //         $svg = $svg.attr('class', imgClass+' replaced-svg');
-      //     }
-
-      //     // Remove any invalid XML tags as per http://validator.w3.org
-      //     $svg = $svg.removeAttr('xmlns:a');
-
-      //     // Check if the viewport is set, else we gonna set it if we can.
-      //     if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-      //         $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-      //     }
-      //     alert($svg)
-      //     // Replace image with new SVG
-      //     $img.replaceWith($svg);
-
-      //   }, 'xml');
-      // });
     })
+
   },
+
   components:{miniSlider},
   computed:{
     disableButton(){
@@ -286,6 +263,7 @@ export default {
       width: auto !important;
       margin-left: 40px;
       .wrap-title {
+        text-align: left;
         @media screen and (max-height:800px){
           transform: translateY(-70px);
         }
@@ -326,17 +304,14 @@ export default {
     background: url(./img/hero.jpg);
   }
 
+
   &.full-screen-desk{
     .fake-vertical-align,
     .bg-plank {
       display: none;
     }
 
-
-
     @media (--overtablet){
-
-
 
       background: url(./hero-imgs/Pattern_green_light_desk_1920x900.jpg);
       //background-size: 50%;
@@ -370,7 +345,7 @@ export default {
         height: 100%;
 
         .bg-plank {
-          background: url(./hero-imgs/Bgr_clg_1920_green.png);
+          background-image: url(./hero-imgs/Bgr_clg_1920_green.png);
           background-size: cover;
           display: block;
           position: absolute 0 0 * 0;
@@ -387,6 +362,21 @@ export default {
     }
   }
 
+  &.directbot-top {
+    display: none;
+    position: relative;
+
+
+    @media (--overtablet){
+      display: block;
+      background: none;
+    }
+
+    .bg-plank {
+      background-image: url(../home/img/Bgr_clg-blue_1920.png) !important;
+    }
+
+  }
 
 
 
@@ -541,6 +531,14 @@ export default {
     }
 
     &.first {
+      .third-word {
+        @media (--overtablet) {
+          text-align: left;
+          display: block;
+          position: relative;
+          top: -780px;
+        }
+      }
       .second-word {
         @media (--overtablet) {
           text-align: left;
