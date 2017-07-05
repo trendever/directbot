@@ -50,7 +50,11 @@ export default {
 
   h1.first {
     .wrap-title {
-      margin-top: 50px;
+      margin-top: 90px;
+
+      @media screen and (max-height:900px){
+        transform: translateY(-70px);
+      }
     }
   }
 }
