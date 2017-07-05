@@ -16,18 +16,20 @@
 
   &__wrap{
     height: 100%;
-    width: 975px;
+
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     padding-right: 73px;
     margin: 0 auto;
     @media (--tabletandless) {
+      width: 975px;
       display: block;
       width: auto;
       padding: 40px 0px 0px 0px;
     }
-    @media (--overmobile){
+    @media (--overtablet){
+      width: 1050px;
       padding-top: 150px;
     }
   }
@@ -78,7 +80,7 @@
 
     position: fixed 22px * * 22px;
 
-    @media (--overmobile) {
+    @media (--overtablet) {
       top: 17px;
       left: 17px;
       font-size: $font__normal;
@@ -104,11 +106,21 @@
       font-size: $font__medium;
     }
   }
-
+  &__fake-block {
+    display: none;
+    @media (--overmobile) {
+      display: block;
+      width: 420px;
+      height: 300px;
+    }
+  }
   &__days-block{
 
-    @media (--overmobile){
-      padding-top:80px;
+    @media (--overtablet){
+      position: fixed;
+      //padding-top:80px;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 
@@ -121,7 +133,7 @@
 
   &__days-to-end{
     font-size: 100px;
-    @media (--overmobile){
+    @media (--overtablet){
       padding: 50px;
     }
 
@@ -146,13 +158,13 @@
 
   &__text{
     font-size: 24px;
-    @media(--tabletandless) {
+    @media (--tabletandless) {
       font-size: 36px;
       width: 490px;
       margin: 195px auto 0px auto;
     }
 
-    @media (--overmobile) {
+    @media (--overtablet) {
       margin-bottom: 30px;
     }
 
@@ -167,7 +179,7 @@
   }
   .bot{
     font-size: 40px;
-    @media(--tabletandless) {
+    @media (--tabletandless) {
       font-size: 36px;
       margin-top: 36px;
       margin-bottom: 17px;
@@ -176,7 +188,7 @@
   }
 
   .zero-days{
-    @media(--tabletandless) {
+    @media (--tabletandless) {
       margin-top: 25px;
     }
   }
@@ -191,7 +203,7 @@
     color: #fff;
     margin-bottom: 20px;
 
-      @media(--tabletandless) {
+      @media (--tabletandless) {
         width: 490px;
         height: 118px;
         margin-bottom: 30px;
@@ -199,7 +211,7 @@
 
     i.ic-currency-rub {
       line-height: 34px;
-      @media (--overmobile){
+      @media (--overtablet){
         line-height: 17px;
       }
     }
@@ -207,7 +219,7 @@
     .bold {
       font-family: $font__family__semibold;
       font-size: 24px;
-      @media(--tabletandless) {
+      @media (--tabletandless) {
         font-size: 36px;
       }
 
@@ -216,11 +228,11 @@
         font-size: 17px;
         padding-top: 6px;
         padding-left: 3px;
-        @media(--tabletandless) {
+        @media (--tabletandless) {
           font-size: 24px;
           padding-top: 10px;
         }
-        @media (--overmobile) {
+        @media (--overtablet) {
           line-height: 20px;
         }
       }
@@ -229,7 +241,7 @@
     .light{
       font-family: $font__family__light;
       font-size: 16px;
-        @media(--tabletandless) {
+        @media (--tabletandless) {
           font-size: 28px;
         }
 
@@ -237,7 +249,7 @@
           padding-top: 3px;
           padding-left: 3px;
           font-size: 12px;
-            @media(--tabletandless) {
+            @media (--tabletandless) {
               padding-top: 7px;
               font-size: 20px;
             }
@@ -251,7 +263,7 @@
 
   .first{
     padding-top: 23px;
-      @media(--tabletandless) {
+      @media (--tabletandless) {
         padding-top: 0px;
       }
   }
@@ -260,7 +272,7 @@
     margin-top: 5px;
     font-size: 25px;
     margin-bottom: 25px;
-    @media(--tabletandless){
+    @media (--tabletandless){
       margin-top: initial;
       font-size: 50px;
       margin-bottom: 55px;
@@ -288,7 +300,7 @@
       margin-top: 5px;
       text-decoration: none;
       cursor: pointer;
-      @media (--overmobile) {
+      @media (--overtablet) {
         padding-top: 5px;
         font-size: $font__normal;
       }

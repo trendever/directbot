@@ -39,7 +39,6 @@ export default {
       'monetizationDays'
     ]),
     daysCount(){
-
       return declOfNum(['день','дня',"дней" ])(this.monetizationDays);
     },
 

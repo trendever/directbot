@@ -1,15 +1,15 @@
 .monetization
+  i.ic-close(@click='closePage')
+  i.question ?
   .monetization__wrap
-
-    i.ic-close(@click='closePage')
-
-    i.question ?
-
+    .monetization__fake-block
     .monetization__days-block
 
-      .monetization__days-to-end(:class="{is__end: monetizationDays === 0, 'red_none': noPlanSelected }") {{ monetizationDays }}
+      .monetization__days-to-end(:class="{is__end: monetizationDays === 0, 'red_none': noPlanSelected }")
+        template(v-if="!monetizationDays") 0
+        tempalte(v-if="monetizationDays") {{ monetizationDays }}
       .monetization__text.end-txt
-        | {{ 0 || daysCount }} осталось до конца #[br] пробного периода
+        | {{ daysCount }} осталось до конца #[br] пробного периода
 
       .monetization__text.help
         | После истечения пробного периода#[br]
