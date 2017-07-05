@@ -51,7 +51,6 @@ export default {
   h1.first {
     .wrap-title {
       margin-top: 50px;
-      line-height: 60px;
     }
   }
 }

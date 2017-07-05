@@ -263,6 +263,8 @@ export default {
       width: auto !important;
       margin-left: 40px;
       .wrap-title {
+        margin-top: 100px;
+        line-height: 60px;
         text-align: left;
         @media screen and (max-height:800px){
           transform: translateY(-70px);
@@ -524,29 +526,8 @@ export default {
       }
     }
 
-
-
     &.second {
       font-family: $font__family__semibold;
-    }
-
-    &.first {
-      .third-word {
-        @media (--overtablet) {
-          text-align: left;
-          display: block;
-          position: relative;
-          top: -780px;
-        }
-      }
-      .second-word {
-        @media (--overtablet) {
-          text-align: left;
-          display: block;
-          position: relative;
-          top: -240px;
-        }
-      }
     }
 
   }
