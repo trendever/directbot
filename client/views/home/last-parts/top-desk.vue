@@ -51,11 +51,18 @@ export default {
   h1.first {
     .wrap-title {
       margin-top: 90px;
-
       @media screen and (max-height:900px){
         transform: translateY(-70px);
       }
     }
+  }
+
+  .social-icons {
+    top: 315px !important;
+    @media screen and (max-height:900px){
+      transform: translateY(-70px);
+    }
+
   }
 }
 </style>

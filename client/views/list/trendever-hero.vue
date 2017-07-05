@@ -175,9 +175,12 @@ export default {
         display: none;
       }
       height: 200px;
-      position: absolute 165px 0 *  *;
+      position: absolute 205px 0 *  *;
       display: inline-block;
       width: 80px;
+      @media screen and (max-height:800px){
+          transform: translateY(-70px);
+      }
     }
 
     .vkontakte {
@@ -505,7 +508,7 @@ export default {
   h1 {
     color: white;
     padding-top: 400px;
-    @media (--overmobile){
+    @media (--overtablet){
       padding-top: 0;
       position: relative;
       display: inline-block;
@@ -516,7 +519,7 @@ export default {
       font-size:46px;
       font-family: $font__family__semibold;
     }
-    @media (--mobile){
+    @media (--tabletandless){
       font-size: 54px;
       font-family: $font__family__light;
 
