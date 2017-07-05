@@ -465,6 +465,7 @@ export default {
 
     }
     .wrap-input {
+      border: 1px solid $color__gray;
       margin: 3px auto 0 auto;
       width: 570px;
       overflow: hidden;
