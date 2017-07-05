@@ -1,6 +1,8 @@
 @import 'style/vars/vars.pcss';
 
 $font__profile__description: 18px;
+$about__width: 780px;
+
 #profile {
 
 
@@ -367,7 +369,7 @@ $font__profile__description: 18px;
             margin-top: 0;
           }
 
-          width: 800px;
+          width: $about__width;
           position: relative;
           display: block;
           left: 0;
@@ -589,11 +591,11 @@ $font__profile__description: 18px;
       vertical-align: super;
       overflow: hidden;
       align-self: flex-start;
-      padding-left: 24px;
+      padding-left: 40px;
       padding-top: 34px;
 
       @media (--overtablet){
-        width: 800px;
+        width: $about__width;
         padding-top:34px;
 
       }
