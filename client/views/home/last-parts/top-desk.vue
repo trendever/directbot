@@ -56,7 +56,11 @@ export default {
       }
     }
   }
-
+  .application-icons {
+    .tooltip {
+      display: none;
+    }
+  }
   .social-icons {
     top: 315px !important;
     @media screen and (max-height:900px){

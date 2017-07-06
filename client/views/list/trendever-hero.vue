@@ -21,11 +21,14 @@
 
         .screen-getapp.no-mob
           .contain
-            .application-icons.no-mob
+            .application-icons
               a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
                 img(src="./hero-imgs/appstore.svg")
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
                 img(src="./hero-imgs/google_play.svg")
+              .tooltip
+                | *сервис для бизнеса в Instagram, Directbot.io,#[br]
+                | &nbsp&nbspдоступен через приложение Trendever
           .contain
             .wrap-input
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
@@ -439,6 +442,13 @@ export default {
       img {
 
       }
+    }
+
+    .tooltip {
+      position: absolute * * -40px *;
+      font-size: $font__size;
+      color: $color__gray-dark;
+      font-family: $font__family__regular;
     }
   }
   .screen-getapp {
