@@ -4,7 +4,8 @@
   span(class='bubble_info bubble_info_time') {{ datetime }}
   .bubble_info.bubble_info_status(v-if='isOwnMessage')
     i(:class='{"ic-check": isLoaded && !isRead, "ic-check-double": isRead, "ic-clock": !isLoaded}')
-  .chat-msg.bubble(:class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage }')
+  .chat-msg.bubble(
+    :class='{"chat-msg-closest":isClosest, "chat-msg-not-closest":!isClosest && !isAfterServiceMessage,payment: isPayment }')
     .chat-msg_t(
         v-if='!isOwnMessage && !isClosest',
         :class='{"chat-msg_t-customer-color":isCustomer}',
@@ -23,6 +24,11 @@
   import { mapGetters } from 'vuex';
 
   export default{
+    data(){
+      return {
+        isPayment: false
+      }
+    },
     props: {
       type: {
         type: String,
@@ -39,7 +45,7 @@
       }
     },
     mounted(){
-      //console.log(this.msg)
+      this.isPayment =this.type=='text/payment'||this.type=='coins'
     },
     computed: {
       ...mapGetters([
@@ -91,6 +97,10 @@
         if(this.msg.user.name === 'trendever'){
           return '<b>trendever</b>';
         }
+
+        if(this.isPayment){
+          return '<b>trendever</b>';
+        }
         if (this.isCustomer) {
           if (this.msg.user.name.indexOf("customer_") >= 0){
             return `<b>${this.msg.user.name.replace("customer_","client")}</b>`
@@ -114,7 +124,7 @@
         return this.msg.closestMessage;
       },
       isOwnMessage() {
-        if ( this.getCurrentMember !== null ) {
+        if ( this.getCurrentMember !== null && !this.isPayment) {
           return this.getCurrentMember.user_id === this.msg.user.user_id;
         }
         return false;

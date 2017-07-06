@@ -81,6 +81,7 @@ export default {
           }
 
           let coinsMessageObject = {
+            closestMessage: true,
             created_at: time,
             parts: [coinsPartsObject],
             user:{user_id: config.service_user_id}
@@ -148,8 +149,7 @@ export default {
         let payCount = this.getMessages.filter(i=>{
           return i.parts[0].mime_type=="text/payment"
         })
-
-        if(payCount < this.coinsLog.length)window.eventHub.$emit('chat-payment')
+        if(payCount.length < this.coinsLog.length)window.eventHub.$emit('chat-payment')
 
       }else if (this.action === "error"){
         // отправляем сообщение об ошибке оплаты
