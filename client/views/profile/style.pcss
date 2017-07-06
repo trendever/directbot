@@ -38,6 +38,7 @@ $about__width: 780px;
 
     &.fake__text {
       margin-top: 0px;
+
     }
     .profile_desc_t {
       @media (--overtablet){
@@ -45,9 +46,13 @@ $about__width: 780px;
       }
     }
     .profile_desc_caption {
+
       @media (--overtablet){
         color: black !important;
         padding-bottom: 15px;
+        &.fake__text {
+          color: $color__gray !important;
+        }
       }
     }
   }
