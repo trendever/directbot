@@ -44,7 +44,7 @@ export default {
     messages.offMsg( this.onMessage );
   },
   mounted(){
-    
+
     switch (this.$route.params.result){
       case "true": this.action = "subscibe"; break;
       case "false": this.action = "error"; break;
@@ -116,15 +116,17 @@ export default {
         })
       });
     },
-    /* Это место запускается при переходе в чат из платежного шлюза, 
-    в этот момент нам нужно взять подходящий план и 
+    /* Это место запускается при переходе в чат из платежного шлюза,
+    в этот момент нам нужно взять подходящий план и
     подписаться на него если мы еще на него не подписаны*/
     processMonetization(){
       if (this.action === "subscibe"){
         let last_coins_package = this.coinsLog.pop();
         // data = last_coins_package.data
         // amount = data.amount
-        // здесь ищем подходящий план, 
+        // здесь ищем подходящий план,
+
+        window.eventHub.$emit('chat-payment')
         console.log(last_coins_package)
       }else if (this.action === "error"){
         // отправляем сообщение об ошибке оплаты

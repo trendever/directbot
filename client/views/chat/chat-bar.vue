@@ -74,6 +74,15 @@
         this.send(null, true)
       })
 
+      window.eventHub.$on("chat-payment",()=>{
+        let i = setInterval(()=>{
+          if(this.getId){
+            this.send(null, false, true)
+            clearInterval(i)
+          }
+        },500)
+      })
+
       this.addPadding();
 
       this.scroll = document.body;
@@ -99,6 +108,7 @@
 
       this.$nextTick(()=>{
         if(window.fakeUserRegistrationDone) this.approveChat();
+
       })
 
     },
@@ -213,9 +223,14 @@
         }
       },
 
-      send ( event, autoAnswer = false ) {
+      send ( event, autoAnswer = false, payment = false ) {
 
         let mime_type = autoAnswer ? 'auto/answer' : 'text/plain'
+
+        if(payment){
+          mime_type = 'text/payment'
+          this.txtMsg='Оплата принята, ожидайте подтверждения'
+        }
 
         if(!this.isMobile) this.$emit('addPadding', 57)
 
@@ -234,7 +249,6 @@
         }
 
         this.txtMsg = ''
-
         const promise = this.createMessage({ conversation_id: this.getId, text:txtMsg, mime_type } )
         promise.then( () => {
           if (

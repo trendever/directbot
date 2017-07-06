@@ -98,7 +98,7 @@ export default {
       monetization.coins_offers().then((data)=>{
         let selectedAmmount = this.plansAmmounts[this.selectedPlan];
         let offer = data.offers.find((offer) => offer.price === selectedAmmount);
-        monetization.buy_coins(offer.id,"payture_ewallet","directbot").then((result)=>{
+        monetization.buy_coins(offer.id,"payture_ewallet","test").then((result)=>{
           this.pay(result.order_id);
         });
       });
