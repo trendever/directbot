@@ -72,12 +72,23 @@ export default {
 
       if(this.coinsLog) {
 
+
         this.coinsLog.forEach((elem)=>{
-          let time = elem.created_at;
-          let coinsPartsObject = {content: "Ваш счет пополнен на " + elem.data.amount + '<i class="ic-currency-rub"></i>',mime_type:"text/coins"}
-          let coinsMessageObject = {created_at: time,parts: [coinsPartsObject],user:{user_id: config.service_user_id}};
+          let time = elem.created_at + 10;
+          let coinsPartsObject = {
+            content: "Ваш счет пополнен на " + elem.data.amount + '<i class="ic-currency-rub"></i>',
+            mime_type:"text/coins"
+          }
+
+          let coinsMessageObject = {
+            created_at: time,
+            parts: [coinsPartsObject],
+            user:{user_id: config.service_user_id}
+
+          };
           messages.push(coinsMessageObject)
         });
+
         return this.sortMessages(messages)
       }else{
         return messages;
@@ -110,10 +121,18 @@ export default {
 
       }).then((lead_id)=>{
         this.run(lead_id);
-        getTransactionsLog().then((data)=>{
-          this.coinsLog = data.transactions;
-          this.processMonetization();
-        })
+
+
+        let  id =setInterval(()=>{
+          if(this.getMessages.length){
+            clearInterval(id)
+            getTransactionsLog().then((data)=>{
+              this.coinsLog = data.transactions
+              this.processMonetization();
+            })
+          }
+        },500)
+
       });
     },
     /* Это место запускается при переходе в чат из платежного шлюза,
@@ -121,13 +140,17 @@ export default {
     подписаться на него если мы еще на него не подписаны*/
     processMonetization(){
       if (this.action === "subscibe"){
-        let last_coins_package = this.coinsLog.pop();
+        //let last_coins_package = this.coinsLog.pop();
         // data = last_coins_package.data
         // amount = data.amount
         // здесь ищем подходящий план,
 
-        window.eventHub.$emit('chat-payment')
-        console.log(last_coins_package)
+        let payCount = this.getMessages.filter(i=>{
+          return i.parts[0].mime_type=="text/payment"
+        })
+
+        if(payCount < this.coinsLog.length)window.eventHub.$emit('chat-payment')
+
       }else if (this.action === "error"){
         // отправляем сообщение об ошибке оплаты
       }

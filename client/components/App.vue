@@ -11,6 +11,9 @@
 <template lang="pug">
 #app.directbot(:class="{'standalone': isStandalone}")
 
+  .router-header
+    .plank
+
   template(v-if="!noSockConnection")
 
     transition(:name="transName" mode="out-in")
@@ -205,9 +208,37 @@ export default {
 <style lang="postcss">
 
 @import 'style/vars/fonts.pcss';
+@import 'style/vars/vars.pcss';
 
 #app{
   height: 100%;
+
+  &.standalone {
+    .router-header {
+      height: calc(89px + $standalone__fake__height);
+      .plank {
+        display: block;
+        height: $standalone__fake__height;
+        background: $color__brand;
+      }
+    }
+
+
+
+  }
+  .router-header {
+    background: rgba(247,247,247,1);
+    position: fixed 0 0 * 0;
+    z-index: -1;
+    height: 50px;
+    @media (--tabletandless){
+      height: 89px;
+    }
+
+    .plank {
+      display: none;
+    }
+  }
 }
 
 </style>
