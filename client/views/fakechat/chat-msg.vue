@@ -39,7 +39,7 @@
       }
     },
     mounted(){
-      console.log(this.type)
+      console.log(this.msg)
     },
     computed: {
       ...mapGetters([
@@ -52,7 +52,11 @@
 
       ]),
       typeAllow(){
-        let allowed_types = ["text","coins"];
+        let allowed_types = [
+         "text",
+         "coins",
+         "text/payment"
+        ];
         return (allowed_types.indexOf(this.type) >= 0) ? true : false;
       },
       isLoaded(){

@@ -26,27 +26,28 @@ body {
   box-sizing: border-box;
 }
 
+
+
 *.no-desk {
   @media (--overtablet){
-    display: none;
+    display: none !important;
   }
 }
-
 *.no-mob {
   @media (--tabletandless){
-    display: none;
+    display: none !important;
   }
 }
 
 
 br.mobile {
-  @media screen and (min-width: 751px){
+  @media (--overtablet){
     display: none;
   }
 }
 
 br.desktop {
-  @media (--mobile){
+  @media (--tabletandless){
     display: none;
   }
 }

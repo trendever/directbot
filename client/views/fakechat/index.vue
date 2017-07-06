@@ -136,7 +136,7 @@ export default {
       switch (mime_type){
         case "text/plain": return "text";break;
         case "text/coins": return "coins";break;
-        default: return "notext";break;
+        default: return mime_type;
       }
     },
     ...mapActions([

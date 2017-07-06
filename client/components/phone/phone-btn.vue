@@ -82,7 +82,7 @@ export default {
     }
   }
 
-  &.chat {
+  &.chat, &.fake_chat  {
 
     @media (--tabletandless){
       position: absolute 24px 40px * *;
