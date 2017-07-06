@@ -153,11 +153,6 @@ let router = new Router({
       component: require('views/profile/index')
 
     },
-    // {
-    //   name: 'land',
-    //   path: '/land',
-    //   component: require('views/home/landing')
-    // },
     {
       name: 'video-trendever',
       path: '/video-trendever',

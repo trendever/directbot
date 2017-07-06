@@ -73,11 +73,12 @@ export default {
 
   watch: {
     '$route' (to, from) {
-      //if(to.name === 'chat' || from.name === 'chat') {
-        this.transName = 'faderoute';
-     // } else {
-     //   this.transName = '';
-     // }
+      let routes = ['chat', 'profile', 'user', 'chat_list', 'product', 'home']
+      if(routes.indexOf(to.name) != -1){
+        this.transName = 'faderoute'
+      } else {
+        this.transName = ''
+      }
     }
   },
 
