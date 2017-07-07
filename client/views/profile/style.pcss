@@ -54,16 +54,25 @@ $about__width: 780px;
           color: $color__gray !important;
         }
       }
+
     }
   }
   .profile-cash {
-
     position: absolute 0px * * 0px;
-    padding-left: 30px;
-    padding-top: 22px;
-    img{
-      width: 60px;
+    padding-left: 20px;
+    i.ic-wallet-icon {
+      font-size: 35px;
+      height: 50px;
+      line-height: 55px;
     }
+    @media (--tabletandless){
+      i.ic-wallet-icon {
+        font-size: 50px;
+        height: 100px;
+        line-height: 90px;
+      }
+    }
+
   }
 
   .db-bottom{

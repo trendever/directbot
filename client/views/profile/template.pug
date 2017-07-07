@@ -18,6 +18,10 @@
         slot="content",
         :current="$route.name === 'profile' ?  'profile' : ''",
         v-on:open-profile-menu="showProfileMenu = !showProfileMenu")
+
+      .profile-cash(slot='center-content')
+        i.ic-wallet-icon
+
       //-div.profile-cash(
         slot='content',
         v-if="isSelfPage && user.plan_id && monetizationDays === 0",
