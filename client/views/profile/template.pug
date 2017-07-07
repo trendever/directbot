@@ -19,8 +19,12 @@
         :current="$route.name === 'profile' ?  'profile' : ''",
         v-on:open-profile-menu="showProfileMenu = !showProfileMenu")
 
-      .profile-cash(slot='center-content')
-        i.ic-wallet-icon
+
+      template(v-if="isSelfPage")
+        .profile-cash(slot='center-content', @click="monetizationAction").no-desk
+          i.ic-wallet-icon
+        .profile-cash(slot='action-elements', @click="monetizationAction").no-mob
+          i.ic-wallet-icon
 
       //-div.profile-cash(
         slot='content',
