@@ -20,7 +20,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding-right: 73px;
+    //padding-right: 73px;
     margin: 0 auto;
     @media (--tabletandless) {
       width: 975px;
@@ -53,7 +53,10 @@
 
   }
   &__plans{
-
+    @media (--overtablet) {
+      width: 620px;
+      margin-right: -50px;
+    }
     p.rate-title {
       font-size: $font__medium;
       padding-bottom: 20px;
@@ -61,7 +64,8 @@
 
       @media (--overtablet){
         font-size: $font__normal;
-        margin-top: 24px;
+        margin-top: 54px;
+
       }
     }
 
@@ -135,6 +139,13 @@
     font-size: 100px;
     @media (--overtablet){
       padding: 50px;
+      span {
+        font-size: 50px;
+        i {
+          line-height: 150px;
+        }
+      }
+
     }
 
     &.red_none {

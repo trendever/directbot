@@ -10,10 +10,18 @@
         | выберите подхоящий тарифный план
 
       .monetization__days-to-end(:class="{is__end: monetizationDays === 0, 'red_none': noPlanSelected }")
-        template(v-if="!monetizationDays") 0
-        tempalte(v-if="monetizationDays") {{ monetizationDays }}
+        template(v-if="!monetizationDays && !activePlan") 0
+        tempalte(v-if="monetizationDays && !activePlan") {{ monetizationDays }}
+        span(v-html="activePlanName")
       .monetization__text.end-txt
-        | {{ daysCount }} осталось до конца #[br] пробного периода
+        template(v-if="!activePlan")
+          | {{ daysCount }} осталось до конца #[br] пробного периода
+        template(v-if="activePlan").no-mob
+          .monetization__about
+            ul
+              li(v-for="text in activePlan")
+                | {{ text }}
+
 
       .monetization__text.help.no-desk
         | После истечения пробного периода#[br]
@@ -39,9 +47,9 @@
 
 
       p.rate-title
-        | Тарифы сaмостоятельного обслуживания#[br]
-        | помогут вам организовать продажи,#[br]
-        | контролировать результаты и подбирать#[br]
+        | Тарифы сaмостоятельного обслуживания#[br.mobile]
+        | помогут вам организовать продажи,#[br.mobile]
+        | контролировать результаты и подбирать#[br.mobile]
         | качественных блогеров
 
       template(v-for="plan in selfPlans")
@@ -53,15 +61,15 @@
               i.ic-rub
             //span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
             span.light(v-html="replace(parse(plan.about).sub)")
-        .monetization__about(v-if="selectedPlan === plan.id")
+        .monetization__about(v-if="selectedPlan === plan.id").no-desk
           ul
             li(v-for="text in parse(plan.about).adv")
               | {{ text }}
 
       p.rate-title
-        | Тарифы полного обслуживания включают#[br]
-        | личного менеджера, который за вас#[br]
-        | консультирует клиентов и сотрудничает#[br]
+        | Тарифы полного обслуживания включают#[br.mobile]
+        | личного менеджера, который за вас#[br.mobile]
+        | консультирует клиентов и сотрудничает#[br.mobile]
         | с блогерами от вашего имени
 
       template(v-for="plan in fullPlans")
@@ -73,7 +81,7 @@
               i.ic-rub
             //span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
             span.light(v-html="replace(parse(plan.about).sub)")
-        .monetization__about(v-if="selectedPlan === plan.id")
+        .monetization__about(v-if="selectedPlan === plan.id").no-desk
           ul
             li(v-for="text in parse(plan.about).adv")
               | {{ text }}
