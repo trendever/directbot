@@ -168,8 +168,8 @@ let router = new Router({
 
 router.beforeEach((to, from, next)=>{
 
-  if(to.query && to.query.token && to.name !== "home"){
-    router.push({name: "home", query:{token: to.query.token}})
+  if(to.query && to.query.token){
+    next()
     return
   }
 
