@@ -34,7 +34,7 @@ export default {
       hideGrey: false,
       loaded: true,
       //anotherId: 1, //пустая лента без единого товара
-      isMoreClass: true,
+      isMoreClass: false,
       showBanner: showBanner,
       showProfileMenu: false,
       timeID: null,

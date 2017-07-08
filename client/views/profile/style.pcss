@@ -3,6 +3,8 @@
 $font__profile__description: 18px;
 $about__width: 780px;
 
+
+
 #profile {
 
 
@@ -140,9 +142,7 @@ $about__width: 780px;
     padding-bottom: 35px;
 
     .directbot & {
-
-      padding-bottom: 5px;
-
+      padding-bottom: 2px;
     }
 
     @media (--tabletandless) {
@@ -259,7 +259,7 @@ $about__width: 780px;
           padding-top: 0px;
           display: block;
           clear: both;
-          padding-left: 282px;
+          padding-left: 270px;
 
           .insta-link-text, .insta-link {
             font-size: $font__profile__description;
@@ -319,7 +319,7 @@ $about__width: 780px;
         size: 152px;
 
         @media (--overtablet) {
-          margin: 30px 30px 30px 40px;
+          margin: 30px 30px 48px 40px;
           -webkit-background-size: 150px;
           background-size: 150px;
         }
@@ -367,6 +367,13 @@ $about__width: 780px;
         position: absolute;
         top: 20px;
         left: 252px;
+
+        &.fake_only {
+
+          @media (--overtablet){
+            padding-bottom: 8px;
+          }
+        }
 
         &.no-mob{
           @media (--tabletandless){
@@ -606,7 +613,7 @@ $about__width: 780px;
       vertical-align: super;
       overflow: hidden;
       align-self: flex-start;
-      padding-left: 40px;
+      padding-left: 32px;
       padding-top: 34px;
 
       @media (--overtablet){
@@ -722,7 +729,7 @@ $about__width: 780px;
   .less{
 
     @media (--overtablet){
-      max-height: 190px;//94px;
+      max-height: 187px;//94px;
       position: relative;
       margin-bottom: 15px;
     }

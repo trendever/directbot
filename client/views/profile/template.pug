@@ -118,7 +118,8 @@
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
 
 
-          .profile_info_about.no-mob
+          .profile_info_about(
+            :class="{'fake_only': isSelfPage && !hasAnyInfo || isSelfPage && !getUserCaption}").no-mob
 
             template
               span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage && !hasAnyInfo")
