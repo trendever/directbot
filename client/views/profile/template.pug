@@ -155,7 +155,7 @@
               template(v-if="isTrendever") подробное описание профиля
             .profile_desc_caption(v-if="user.shipping_rules") {{ user.shipping_rules }}
 
-          .profile_insta-link(
+          //-.profile_insta-link(
             v-if="!isTrendever && isMoreClass",
             :class="{ directbot: true,'margin-top': !isMoreClass }")
             .insta-link-text Cсылка сюда&nbsp
@@ -187,7 +187,7 @@
             | под постом в#[br]
             | Instagram, чтобы добавить тренд сюда в ленту
 
-      //-.profile_insta-link(
+      .profile_insta-link(
         v-if="!isTrendever && isMoreClass",
         :class="{ directbot: true,'margin-top': !isMoreClass }")
         .insta-link-text Cсылка сюда&nbsp
