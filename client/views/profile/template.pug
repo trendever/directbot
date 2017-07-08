@@ -146,12 +146,20 @@
 
           .profile_desc_caption(v-if="getUserCaption" v-html="caption_spaces(getUserCaption)")
 
-          .shipping_rules(:class="{'fake__text': !user.shipping_rules && isSelfPage }")
+          .shipping_rules(
+            :class="{'fake__text': !user.shipping_rules && isSelfPage }",
+            v-if="user.shipping_rules && !isSelfPage || isSelfPage")
             .profile_desc_t(v-if="user.shipping_rules") Условия
             .profile_desc_caption.fake__text(v-if="!user.shipping_rules && isSelfPage")
               template(v-if="!isTrendever") подробное описание вашего бизнеса, преимуществ и условий работы
               template(v-if="isTrendever") подробное описание профиля
             .profile_desc_caption(v-if="user.shipping_rules") {{ user.shipping_rules }}
+
+          .profile_insta-link(
+            v-if="!isTrendever && isMoreClass",
+            :class="{ directbot: true,'margin-top': !isMoreClass }")
+            .insta-link-text Cсылка сюда&nbsp
+            .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
 
       template(v-if="loaded && isSelfPage")
 
@@ -179,7 +187,7 @@
             | под постом в#[br]
             | Instagram, чтобы добавить тренд сюда в ленту
 
-      .profile_insta-link(
+      //-.profile_insta-link(
         v-if="!isTrendever && isMoreClass",
         :class="{ directbot: true,'margin-top': !isMoreClass }")
         .insta-link-text Cсылка сюда&nbsp
