@@ -5,18 +5,26 @@
     .monetization__fake-block
     .monetization__days-block
 
-      .monetization__text.help.no-mob
+      .monetization__text.help(v-if="!activePlanName && !isMobile")
         | После истечения пробного периода#[br]
         | выберите подхоящий тарифный план
+      .monetization__text.help.no-mob(v-if="activePlanName && !isMobile")
+        | Вы выбрали тариф за#[br]
+
+
 
       .monetization__days-to-end(:class="{is__end: monetizationDays === 0, 'red_none': noPlanSelected }")
-        template(v-if="!monetizationDays && !activePlan") 0
-        tempalte(v-if="monetizationDays && !activePlan") {{ monetizationDays }}
-        span(v-html="activePlanName")
+        template(v-if="!monetizationDays && !activePlan || isMobile && !monetizationDays") 0
+        tempalte(v-if="monetizationDays && !activePlan || isMobile && monetizationDays") {{ monetizationDays }}
+        transition(name="fademonetization")
+          .monetization__btn(v-if="activePlanName && !isMobile")
+            button.make__choice
+              span.bold.plan-name(v-html="activePlanName")
+              br
       .monetization__text.end-txt
-        template(v-if="!activePlan")
+        template(v-if="isMobile || !activePlan")
           | {{ daysCount }} осталось до конца #[br] пробного периода
-        template(v-if="activePlan").no-mob
+        template(v-if="activePlan && !isMobile").no-mob
           .monetization__about
             ul
               li(v-for="text in activePlan")
@@ -53,7 +61,8 @@
         | качественных блогеров
 
       template(v-for="plan in selfPlans")
-        .monetization__btn(@click="selectPlan(plan.id, $event)")
+        .monetization__btn(@click="selectPlan(plan.id, $event)",
+          v-if="activePlanName!==changeName(plan.name) || isMobile")
           button(:class="{make__choice: selectedPlan === plan.id}")
             span.bold.plan-name(v-html="changeName(plan.name)")
             br
@@ -73,7 +82,8 @@
         | с блогерами от вашего имени
 
       template(v-for="plan in fullPlans")
-        .monetization__btn(@click="selectPlan(plan.id, $event)")
+        .monetization__btn(@click="selectPlan(plan.id, $event)",
+          v-if="activePlanName!==changeName(plan.name) || isMobile")
           button(:class="{make__choice: selectedPlan === plan.id}")
             span.bold.plan-name(v-html="changeName(plan.name)")
             br

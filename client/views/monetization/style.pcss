@@ -1,6 +1,20 @@
 @import 'style/vars/vars.pcss';
+
+
+.fademonetization-enter-active, .fademonetization-leave-active {
+  transition: opacity .2s
+}
+.fademonetization-enter, .fademonetization-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
+
+
 .monetization{
-  min-height: 100%;
+
+  @media (--overtablet){
+    height: 100%;
+  }
   background-color: $color__brand-dark;
   font-family: $font__family__light;
   color: #fff;
@@ -15,7 +29,6 @@
   }
 
   &__wrap{
-    height: 100%;
 
     display: flex;
     justify-content: space-between;
@@ -23,14 +36,17 @@
     //padding-right: 73px;
     margin: 0 auto;
     @media (--tabletandless) {
+
       width: 975px;
       display: block;
       width: auto;
       padding: 40px 0px 0px 0px;
     }
     @media (--overtablet){
-      width: 1050px;
-      padding-top: 3%;
+      height: 100%;
+      display: block;
+      width: 100%;
+      //padding-top: 3%;
     }
   }
   &__about{
@@ -54,8 +70,12 @@
   }
   &__plans{
     @media (--overtablet) {
+      display: inline-block;
       width: 620px;
-      margin-right: -50px;
+      vertical-align: middle;
+      //margin-right: -50px;
+      //position: fixed 50% 25% * *;
+      //transform: translate(25%,-50%);
     }
     p.rate-title {
       font-size: $font__medium;
@@ -64,7 +84,7 @@
 
       @media (--overtablet){
         font-size: $font__normal;
-        margin-top: 54px;
+        margin-top: 0px;
 
       }
     }
@@ -112,19 +132,23 @@
   }
   &__fake-block {
     display: none;
-    @media (--overmobile) {
-      display: block;
-      width: 420px;
-      height: 300px;
+    @media (--overtablet) {
+      display: inline-block;
+      width: 1px;
+      height: 100%;
+      vertical-align: middle;
     }
   }
   &__days-block{
 
     @media (--overtablet){
-      position: fixed;
+      display: inline-block;
+      vertical-align: middle;
+      //position: fixed;
       //padding-top:80px;
-      top: 50%;
-      transform: translateY(-50%);
+      //top: 50%;
+      //transform: translate(-21%,-50%);
+      //left: 21%;
     }
   }
 
@@ -213,6 +237,11 @@
     border-radius: 5px;
     color: #fff;
     margin-bottom: 20px;
+
+    &:hover {
+      background-color: $color__brand;
+      border: none;
+    }
 
       @media (--tabletandless) {
         width: 490px;
