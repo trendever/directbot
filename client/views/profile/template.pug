@@ -73,13 +73,13 @@
 
             template
               span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage && !hasAnyInfo")
-                | [категория {{appWord}}] &nbsp
+                | категория {{appWord}} &nbsp
               span.profile_info_about_type(v-if="shopabout")
                 | {{ shopabout }} &nbsp
 
             template(v-if="!isTrendever")
               span.profile_info_about_location.fake__text(v-if="!shoplocation && isSelfPage && !hasAnyInfo")
-                | [местоположение]&nbsp&nbsp
+                | местоположение&nbsp&nbsp
                 span(v-if="!isMobile && user.working_time") |&nbsp
               span.profile_info_about_location(v-if="shoplocation")
                 span(v-if="shoplocation && !isMobile") |&nbsp
@@ -88,7 +88,7 @@
 
             template(v-if="!isTrendever")
               span.profile_info_about_work-time.fake__text(v-if="!user.working_time && isSelfPage && !hasAnyInfo")
-                |  [часы работы]&nbsp
+                |  часы работы&nbsp
               span.profile_info_about_work-time(v-if="user.working_time")
                 |  &nbsp{{ shoptime }}
 
@@ -114,7 +114,7 @@
         .profile_desc(v-on:click="isMoreClass = !isMoreClass",
           ref="profileDesk",
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
-          .profile_desc_t.fake__text(v-if="!getSlogan && isSelfPage") [слоган вашего {{appWord}}]
+          .profile_desc_t.fake__text(v-if="!getSlogan && isSelfPage") слоган вашего {{appWord}}
           .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
 
 
@@ -123,13 +123,13 @@
 
             template
               span.profile_info_about_type.fake__text(v-if="!shopabout && isSelfPage && !hasAnyInfo")
-                | [категория {{appWord}}] &nbsp
+                | категория {{appWord}} &nbsp|&nbsp&nbsp
               span.profile_info_about_type(v-if="shopabout")
                 | {{ shopabout }} &nbsp
 
             template(v-if="!isTrendever")
               span.profile_info_about_location.fake__text(v-if="!shoplocation && isSelfPage && !hasAnyInfo")
-                | [местоположение]&nbsp&nbsp
+                | местоположение &nbsp|&nbsp&nbsp
                 span(v-if="!isMobile && user.working_time") |&nbsp
               span.profile_info_about_location(v-if="shoplocation")
                 span(v-if="shoplocation && !isMobile") |&nbsp
@@ -138,7 +138,7 @@
 
             template(v-if="!isTrendever")
               span.profile_info_about_work-time.fake__text(v-if="!user.working_time && isSelfPage && !hasAnyInfo")
-                |  [часы работы]&nbsp
+                |  часы работы&nbsp
               span.profile_info_about_work-time(v-if="user.working_time")
                 |  &nbsp{{ shoptime }}
 
@@ -149,8 +149,8 @@
           .shipping_rules(:class="{'fake__text': !user.shipping_rules && isSelfPage }")
             .profile_desc_t(v-if="user.shipping_rules") Условия
             .profile_desc_caption.fake__text(v-if="!user.shipping_rules && isSelfPage")
-              template(v-if="!isTrendever") [подробное описание вашего бизнеса, преимуществ и условий работы]
-              template(v-if="isTrendever") [подробное описание профиля]
+              template(v-if="!isTrendever") подробное описание вашего бизнеса, преимуществ и условий работы
+              template(v-if="isTrendever") подробное описание профиля
             .profile_desc_caption(v-if="user.shipping_rules") {{ user.shipping_rules }}
 
       template(v-if="loaded && isSelfPage")
