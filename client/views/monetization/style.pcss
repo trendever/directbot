@@ -8,7 +8,7 @@
   opacity: 0
 }
 
-
+$space_beetwen: 40px;
 
 .monetization{
 
@@ -70,6 +70,7 @@
   }
   &__plans{
     @media (--overtablet) {
+      margin-left:  $space_beetwen;
       display: inline-block;
       width: 620px;
       vertical-align: middle;
@@ -144,6 +145,7 @@
     @media (--overtablet){
       display: inline-block;
       vertical-align: middle;
+      margin-right: $space_beetwen;
       //position: fixed;
       //padding-top:80px;
       //top: 50%;
@@ -153,14 +155,15 @@
   }
 
   .end-txt{
-    padding-top: 16px;
-      @media(--tabletandless) {
+    padding-top: 10px;
+      @media (--tabletandless) {
         padding-top: 0px;
       }
   }
 
   &__days-to-end{
     font-size: 100px;
+
     @media (--overtablet){
       padding: 50px;
       span {
@@ -169,7 +172,12 @@
           line-height: 150px;
         }
       }
-
+    }
+    &.active-plan {
+      @media (--overtablet){
+        padding-bottom: 0;
+        padding-top: 0;
+      }
     }
 
     &.red_none {
@@ -207,6 +215,9 @@
     &.help {
       @media (--overtablet){
         margin-top: 24px;
+        &.active-plan {
+          margin-bottom: 0;
+        }
       }
       margin-top: 36px;
       width: 100%;

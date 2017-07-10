@@ -29,7 +29,8 @@ export default {
       selectedAmmount: 0,
       noPlanSelected: false,
       activePlan: '',
-      activePlanName: ''
+      activePlanName: '',
+      activePlanAbout: ''
     }
   },
   computed: {
@@ -53,7 +54,10 @@ export default {
       return this.plans
         .filter(i=>this.parse(i.about).tariff=== 'full')
         .sort((a,b)=>a.subscription_price - b.subscription_price )
-    }
+    },
+    activePlanObject(){
+      return this.plans.find(i=>i.id==this.selectedPlan)
+    },
   },
   watch:{
     selectedPlan(val){
