@@ -22,16 +22,15 @@
 
       template(v-if="isSelfPage")
         .profile-cash(slot='center-content', @click="monetizationAction").no-desk
-          i.ic-wallet-icon
+          .circle-none-monet(v-if="monetizationDays==0")
+            .what !
+            span
+          i.ic-wallet-icon(v-if="monetizationDays!=0")
         .profile-cash(slot='action-elements', @click="monetizationAction").no-mob
-          i.ic-wallet-icon
-
-      //-div.profile-cash(
-        slot='content',
-        v-if="isSelfPage && user.plan_id && monetizationDays === 0",
-        @click="monetizationAction")
-        img(src="./icons/wallet.png")
-
+          .circle-none-monet(v-if="monetizationDays==0")
+            .what !
+            span
+          i.ic-wallet-icon(v-if="monetizationDays!=0")
 
 
   menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
