@@ -117,12 +117,12 @@ div
             image.addEventListener("load",() => {
 
               let base64Prefix = `data:${MIME};base64,`;
-  
+
               this.addPreLoadMessage({
                 base64: reader.result.substr( base64Prefix.length, reader.result.length ),
                 base64WithPrefix: reader.result,
                 MIME: 'image/base64',
-                width, 
+                width,
                 height
               });
 

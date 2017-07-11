@@ -1,11 +1,12 @@
 <template lang="pug">
-#menu-sample(v-if="opened", @click="$emit('close')")
-  .fake-standalone(v-if="isStandalone")
-  .content
-    slot
-      template(v-if="false")
-        .item
-          .text Выход
+transition(:name="isMobile ? 'fade-menu' : ''")
+  #menu-sample(v-if="opened", @click="$emit('close')")
+    .fake-standalone(v-if="isStandalone")
+    .content
+      slot
+        template(v-if="false")
+          .item
+            .text Выход
 
 </template>
 
@@ -22,6 +23,14 @@
 <style lang="postcss">
 
 @import 'style/vars/vars.pcss';
+
+
+.fade-menu-enter-active, .fade-menu-leave-active {
+  transition: opacity .2s
+}
+.fade-menu-enter, .fade-menu-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
 
 #menu-sample {
 
