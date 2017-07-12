@@ -72,8 +72,8 @@
 
       template(v-if="isMobile")
         span.top-text
-          | Автоматизация#[br.mobile] работы#[br.desktop]
-          | с клиентами#[br.mobile] и блогерами в Instagram#[br]
+          | Автоматизация#[br.mobile] работы
+          | с клиентами#[br.mobile] и блогерами в #[br] Instagram
 
 
     .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
@@ -273,7 +273,7 @@ a.header-sticker {
       justify-content: center;
 
       .top-text, .bottom-text {
-        font-size: calc($font__large + 10px) !important;
+        font-size: calc($font__large + 13px) !important;
         margin-top: 40px;
         margin-bottom: 40px;
       }
