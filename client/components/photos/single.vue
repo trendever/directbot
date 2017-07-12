@@ -10,7 +10,7 @@ div.single-photo.photo__container(v-if='!error', @click="goToProduct")
         :class='{"animate": animate}'
       )
   .photo__description
-    .photo__row.photo__title {{ title}}
+    .photo__row.photo__title {{ title }}
     .photo__row
      .photo__summ(v-if="discountPrice")
       | {{ curency_spaces(discountPrice) }}
