@@ -95,7 +95,7 @@
         .profile-buttons
           .tags-buttons
             template(v-if="!isTrendever && isSelfPage")
-              button.no-mob(v-if="!botActivity",
+              button.connect.no-mob(v-if="!botActivity",
                   @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
               template(v-if="isAuth")
                 button(@click="findBloger") НАЙТИ БЛОГЕРА
