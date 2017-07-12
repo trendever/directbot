@@ -63,20 +63,19 @@
         | качественных блогеров
 
       template(v-for="plan in selfPlans")
-        transition(name="fademonetization")
-          .monetization__btn(@click="selectPlan(plan.id, $event)",
-            v-if="activePlanName!==changeName(plan.name) || isMobile")
-            button(:class="{make__choice: selectedPlan === plan.id}")
-              span.bold.plan-name(v-html="changeName(plan.name)")
-              br
-              //span.bold {{plan.subscription_price}}
-                i.ic-rub
-              //span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
-              span.light(v-html="replace(parse(plan.about).sub)")
-          .monetization__about(v-if="selectedPlan === plan.id").no-desk
-            ul
-              li(v-for="text in parse(plan.about).adv")
-                | {{ text }}
+        .monetization__btn(@click="selectPlan(plan.id, $event)",
+          v-if="activePlanName!==changeName(plan.name) || isMobile")
+          button(:class="{make__choice: selectedPlan === plan.id}")
+            span.bold.plan-name(v-html="changeName(plan.name)")
+            br
+            //span.bold {{plan.subscription_price}}
+              i.ic-rub
+            //span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
+            span.light(v-html="replace(parse(plan.about).sub)")
+        .monetization__about(v-if="selectedPlan === plan.id").no-desk
+          ul
+            li(v-for="text in parse(plan.about).adv")
+              | {{ text }}
 
       p.rate-title
         | Тарифы полного обслуживания включают#[br.mobile]
@@ -85,16 +84,15 @@
         | с блогерами от вашего имени
 
       template(v-for="plan in fullPlans")
-        transition(name="fademonetization")
-          .monetization__btn(@click="selectPlan(plan.id, $event)",
-            v-if="activePlanName!==changeName(plan.name) || isMobile")
-            button(:class="{make__choice: selectedPlan === plan.id}")
-              span.bold.plan-name(v-html="changeName(plan.name)")
-              br
-              //span.bold {{plan.subscription_price}}
-                i.ic-rub
-              //span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
-              span.light(v-html="replace(parse(plan.about).sub)")
+        .monetization__btn(@click="selectPlan(plan.id, $event)",
+          v-if="activePlanName!==changeName(plan.name) || isMobile")
+          button(:class="{make__choice: selectedPlan === plan.id}")
+            span.bold.plan-name(v-html="changeName(plan.name)")
+            br
+            //span.bold {{plan.subscription_price}}
+              i.ic-rub
+            //span.bold  ЗА {{plan.subscription_period}} ДНЕЙ #[br]
+            span.light(v-html="replace(parse(plan.about).sub)")
         .monetization__about(v-if="selectedPlan === plan.id").no-desk
           ul
             li(v-for="text in parse(plan.about).adv")
