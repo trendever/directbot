@@ -9,7 +9,8 @@
 </style>
 
 <template lang="pug">
-#app.directbot(:class="{'standalone': isStandalone}")
+#app.directbot(:class="{'standalone': isStandalone }")
+  .landing-background(v-if="$route.name=='home'&&!isTrendever")
 
   .router-header
     .plank
@@ -212,6 +213,21 @@ export default {
 
 #app{
   height: 100%;
+
+  .landing-background {
+    display: none;
+    position: fixed;
+    top:0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url(../views/home/img/DirectBot_landing-desk_pattern.png) repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 
   &.standalone {
     .router-header {

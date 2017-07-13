@@ -1,5 +1,7 @@
 @import 'style/vars/vars.pcss';
 
+
+
 .chat-bar.inputon{
   padding-bottom: 75%;
 }
@@ -13,210 +15,242 @@
 
 .chat {}
 
-  #chat {
-    a { text-decoration: none; display: inline }
-    .link_primary { color: $color__brand }
-    ._blue { color: $color__brand }
-    .product-username { display: inline-block}
+#chat {
+  a { text-decoration: none; display: inline }
+  .link_primary { color: $color__brand }
+  ._blue { color: $color__brand }
+  .product-username { display: inline-block}
 
-  }
-
-  .chat-shadow {
-
-    position: fixed 0 0 * 0;
+  &.directbot-bg:before {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: $color__green-light;
+    z-index: -10;
 
-    z-index: 300;
+    background: url(../../home/img/Directbot_landing-desk_pattern.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  &.trendever-bg:before {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: url(../../list/hero-imgs/Pattern_green_light_desk_1920x900.jpg)  no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 
-    &.directbot-color {
-      background-color: $color__brand;
-      opacity: .6;
+}
 
-    }
+.chat-shadow {
+
+  position: fixed 0 0 * 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color__green-light;
+
+  z-index: 300;
+
+  &.directbot-color {
+    background-color: $color__brand;
+    opacity: .6;
 
   }
 
-  .chat_messages {
-    padding-top: 78px;
-    @media(--mobile){
-      padding-top: 600px;
+}
+
+.chat_messages {
+  padding-top: 78px;
+  @media(--mobile){
+    padding-top: 600px;
+  }
+  .bubble {
+    position: relative;
+
+    border-radius: 12px;
+
+    max-width: 640px;
+    @media(--mobile) {
+      max-width: 600px;
     }
+
+    &:before {
+      position: absolute;
+      top: 0;
+      height: 20px;
+      content: '';
+    }
+
+    &:after {
+      position: absolute;
+      top: -12px;
+      height: 20px;
+      content: '';
+    }
+
+    &_info {
+      .ic-clock {
+        display: block;
+        font-size: 13px;
+        @media(--mobile) {
+          margin-top: -1px;
+          font-size: 20px;
+          padding-bottom: 0;
+        }
+      }
+
+      margin-top: auto;
+      margin-bottom: 10px;
+      @media(--mobile) {
+        margin-bottom: 16px;
+      }
+      &_time {
+        display: flex;
+        color: $color__gray-light;
+        //color: #91A6A2;
+        font-size: 16px;
+
+        @media(--mobile) {
+          font-size: 24px;
+        }
+        flex-shrink: 0;
+      }
+      &_status {
+        display: flex;
+        height: 19px;
+        color: #91A6A2;
+        margin-left: 5px;
+        margin-right: 15px;
+        font-size: 13px;
+        @media(--mobile) {
+          margin-left: 8.5px;
+          font-size: 20px;
+          height: 29px;
+          padding-bottom: 2px;
+        }
+        align-items: center;
+        justify-content: center;
+      }
+
+    }
+  }
+}
+
+.chat-row {
+  display: flex;
+  margin-bottom: 5px;
+
+  &.__center {
+
+    justify-content: center;
+
+  }
+
+  &.__right {
+    color: #333;
+
+    justify-content: flex-end;
+
+    .chat-msg-product-txt {
+
+      -webkit-line-clamp: 6;
+
+      @media(--mobile) {
+
+        -webkit-line-clamp: 7;
+
+      }
+
+    }
+
     .bubble {
       position: relative;
+      margin-right: 21.75px;
+      //background: #CAE6E1;
+      background: $color__brand-bright;
+      border: 0.5px solid $color__brand-border;
+    }
+  }
 
-      border-radius: 12px;
+  &.__left {
 
-      max-width: 640px;
-      @media(--mobile) {
-        max-width: 600px;
+    flex-direction: row-reverse;
+    color: $color__gray-dark;
+    justify-content: flex-end;
+
+    .chat-msg-product-txt {
+      &.-closest {
+        height: 135px;
+        padding-top: 15px;
+        @media(--mobile) {
+          height: 265px;
+          padding-top: 15px;
+          -webkit-line-clamp: 2;
+        }
       }
+      padding: 0 20px 0;
+      height: 103px;
+      -webkit-line-clamp: 5;
+      @media(--mobile) {
+        height: 221px;
+        -webkit-line-clamp: 6;
+      }
+    }
+
+    .chat-msg-product-wrap {
+      flex-direction: row-reverse;
+    }
+
+    .chat-msg-product-photo {
+      border-radius: 0 12px 12px 0;
+    }
+
+    .bubble_info_time {
+      margin: auto 10px 10px;
+      color: $color__gray-light;
+    }
+
+    .bubble {
+
+      margin-left: 21.75px;
+      background: #f0f0f0;
+      border: .5px solid $color__gray-light;
 
       &:before {
+        //content: url(../icons/left.png);
         position: absolute;
-        top: 0;
-        height: 20px;
-        content: '';
+        transform: scale(.40);
+        top: -11px;
+        left: -21px;
+        //left: -11px;
+        //border-left: 12px solid #f0f0f0;
+        //border-bottom-left-radius: 20px 30px;
+        //background: #f0f0f0;
       }
-
       &:after {
-        position: absolute;
-        top: -12px;
-        height: 20px;
-        content: '';
-      }
 
-      &_info {
-        .ic-clock {
-          display: block;
-          font-size: 13px;
-          @media(--mobile) {
-            margin-top: -1px;
-            font-size: 20px;
-            padding-bottom: 0;
-          }
-        }
-
-        margin-top: auto;
-        margin-bottom: 10px;
-        @media(--mobile) {
-          margin-bottom: 16px;
-        }
-        &_time {
-          display: flex;
-          color: $color__gray-light;
-          //color: #91A6A2;
-          font-size: 16px;
-
-          @media(--mobile) {
-            font-size: 24px;
-          }
-          flex-shrink: 0;
-        }
-        &_status {
-          display: flex;
-          height: 19px;
-          color: #91A6A2;
-          margin-left: 5px;
-          margin-right: 15px;
-          font-size: 13px;
-          @media(--mobile) {
-            margin-left: 8.5px;
-            font-size: 20px;
-            height: 29px;
-            padding-bottom: 2px;
-          }
-          align-items: center;
-          justify-content: center;
-        }
-
-      }
-    }
-  }
-
-  .chat-row {
-    display: flex;
-    margin-bottom: 5px;
-
-    &.__center {
-
-      justify-content: center;
-
-    }
-
-    &.__right {
-      color: #333;
-
-      justify-content: flex-end;
-
-      .chat-msg-product-txt {
-
-        -webkit-line-clamp: 6;
-
-        @media(--mobile) {
-
-          -webkit-line-clamp: 7;
-
-        }
-
-      }
-
-      .bubble {
-        position: relative;
-        margin-right: 21.75px;
-        //background: #CAE6E1;
-        background: $color__brand-bright;
-        border: 0.5px solid $color__brand-border;
-      }
-    }
-
-    &.__left {
-
-      flex-direction: row-reverse;
-      color: $color__gray-dark;
-      justify-content: flex-end;
-
-      .chat-msg-product-txt {
-        &.-closest {
-          height: 135px;
-          padding-top: 15px;
-          @media(--mobile) {
-            height: 265px;
-            padding-top: 15px;
-            -webkit-line-clamp: 2;
-          }
-        }
-        padding: 0 20px 0;
-        height: 103px;
-        -webkit-line-clamp: 5;
-        @media(--mobile) {
-          height: 221px;
-          -webkit-line-clamp: 6;
-        }
-      }
-
-      .chat-msg-product-wrap {
-        flex-direction: row-reverse;
-      }
-
-      .chat-msg-product-photo {
-        border-radius: 0 12px 12px 0;
-      }
-
-      .bubble_info_time {
-        margin: auto 10px 10px;
-        color: $color__gray-light;
-      }
-
-      .bubble {
-
-        margin-left: 21.75px;
-        background: #f0f0f0;
-        border: .5px solid $color__gray-light;
-
-        &:before {
-          //content: url(../icons/left.png);
-          position: absolute;
-          transform: scale(.40);
-          top: -11px;
-          left: -21px;
-          //left: -11px;
-          //border-left: 12px solid #f0f0f0;
-          //border-bottom-left-radius: 20px 30px;
-          //background: #f0f0f0;
-        }
-        &:after {
-
-          //left: -13px;
-          //width: 14px;
-          //height: 20px;
-          //border-bottom-left-radius: 20px 15px;
-          //background: white;
-        }
-
+        //left: -13px;
+        //width: 14px;
+        //height: 20px;
+        //border-bottom-left-radius: 20px 15px;
+        //background: white;
       }
 
     }
 
   }
+
+}

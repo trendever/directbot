@@ -1,6 +1,6 @@
 <style src='./styles/chat.pcss'></style>
 <template lang="pug">
-#chat
+#chat(:class="{'directbot-bg': !isTrendever,'trendever-bg': isTrendever}")
   //.loader-center(v-if="showLoader"): app-loader
 
   chat-header(:prev-page="prevPage")
