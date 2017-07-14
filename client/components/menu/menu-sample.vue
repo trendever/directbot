@@ -75,7 +75,7 @@ transition(:name="isMobile ? 'fade-menu' : ''")
     &.prof-menu {
       width: 242px;
     }
-    &.product-menu {
+    &.product {
       width: 275px;
     }
   }

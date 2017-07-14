@@ -2,7 +2,7 @@
 <template lang="pug">
 .product-menu(v-if="notFromUser")
   i.ic-menu_bullets(@click.stop='openMenu', v-show="showBullets")
-  menu-sample.product-menu(:opened="menuOpened", v-on:close="menuOpened = false")
+  menu-sample.product(:opened="menuOpened", v-on:close="menuOpened = false")
     .item
       .text.clip_copy Копировать ссылку
     .item(@click.stop="openPopup", v-if="isSelfProduct" )
