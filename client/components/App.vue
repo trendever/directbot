@@ -10,7 +10,7 @@
 
 <template lang="pug">
 #app.directbot(:class="{'standalone': isStandalone }")
-  .landing-background(v-if="$route.name=='home'&&!isTrendever")
+  //-.landing-background(v-if="$route.name=='home'&&!isTrendever")
 
   .router-header(v-if="$route.name!='home'")
     .plank
