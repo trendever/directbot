@@ -2,13 +2,13 @@
 
 
 .section.top.bottom.little-move-up {
-  @media (--mobile) {
+  @media (--tabletandless) {
     padding-top: 91px;
   }
 }
 
 .section.top.bottom.little-move-up-standalone {
-  @media (--mobile) {
+  @media (--tabletandless) {
     padding-top:3px;
 
   }
@@ -47,7 +47,7 @@
   color: $color__gray-dark !important;
   border: none !important;
   top: auto !important;
-  @media(--mobile) {
+  @media(--tabletandless) {
     bottom: 98px;
     width: 100% !important;
     height: 100px !important;
@@ -141,7 +141,7 @@
         position: fixed;
         z-index: 100;
         bottom: 0;
-        @media( --mobile) {
+        @media (--tabletandless) {
           bottom:97px;
         }
       }
@@ -168,7 +168,7 @@
       color: $color__gray-dark;
       font-family: $font__family__light;
       height: auto;
-      @media(--mobile) {
+      @media (--tabletandless) {
         display: block;
         position: fixed;
         font-size: 32px;
@@ -192,7 +192,7 @@
     }
   }
   .sell{
-    @media(--mobile) {
+    @media (--tabletandless) {
       bottom: 197px;
     }
   }
@@ -207,7 +207,7 @@
 
       cursor: default;
 
-      @media (--mobile) {
+      @media (--tabletandless) {
         height: 230px;
         //padding: 20px 20px 20px 10px;
         padding: 0 0 0 10px;
@@ -225,7 +225,7 @@
         border-radius: 50%;
 
         flex-shrink: 0;
-        @media (--mobile) {
+        @media (--tabletandless) {
           margin-top: 18px;
           width: 190px;
           height: 190px;
@@ -253,7 +253,7 @@
         line-height: 174px;
         overflow: hidden;
 
-        @media (--mobile) {
+        @media (--tabletandless) {
           line-height: 220px;
         }
 
@@ -273,7 +273,7 @@
 
         color: $color__gray-dark;
 
-        @media (--mobile) {
+        @media (--tabletandless) {
           padding: 20px 15px;
           width: calc(100% - 190px);
         }
@@ -292,7 +292,7 @@
           font-size: 24px;
           line-height: 28.8px;
 
-          @media (--mobile) {
+          @media (--tabletandless) {
             height: 47.5px;
             font-size: 38px;
             line-height: 45.6px;
@@ -306,10 +306,15 @@
         }
 
         .body-status {
-          font-size: 16px;
+
+          font-size: $font__profile__standart;
           line-height: 20.85px;
 
-          @media (--mobile) {
+          @media (--overtablet){
+            margin: 2px 0;
+          }
+
+          @media (--tabletandless) {
             font-size: 24px;
             line-height: 36px;
             font-family: $font__family__light;
@@ -332,7 +337,7 @@
           font-size: 17px;
 
           flex-shrink: 0;
-          @media(--mobile) {
+          @media(--tabletandless) {
             font-size: 28px;
           }
         }
@@ -344,7 +349,7 @@
 
           color: $color__gray;
 
-          font-size: 16px;
+          font-size: $font__profile__standart;
           line-height: 20.85px;
           font-family: $font__family__light;
 
@@ -361,7 +366,7 @@
             display: -webkit-box;
             overflow: hidden;
             height: 42px;
-            @media (--mobile) {
+            @media (--tabletandless) {
               height: 76px;
 
               font-size: 28px;
@@ -382,7 +387,7 @@
           background: $color__brand;
 
           flex-shrink: 0;
-          @media(--mobile) {
+          @media(--tabletandless) {
             width: 46px;
             height: 46px;
           }
@@ -391,10 +396,10 @@
           span {
             color: white;
 
-            font-size: 16px;
+            font-size: $font__profile__standart;
             line-height: 19.2px;
 
-            @media(--mobile) {
+            @media(--tabletandless) {
               font-size: 28px;
               line-height: 33.6px;
             }
