@@ -125,7 +125,7 @@ export default {
     this.scrollRemove = listen(document, 'touchmove',e=>{e.preventDefault()})
   },
   mounted() {
-
+    setTimeout(()=>this.needNewSMS=true,15000)
     this.$nextTick(()=>{
 
       this.containerHeight = `${ document.body.scrollHeight }px`;
