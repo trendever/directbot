@@ -12,7 +12,7 @@
 #app.directbot(:class="{'standalone': isStandalone }")
   .landing-background(v-if="$route.name=='home'&&!isTrendever")
 
-  .router-header
+  .router-header(v-if="$route.name!='home'")
     .plank
 
   template(v-if="!noSockConnection")
@@ -72,6 +72,7 @@ import Monetization from './Monetization.vue';
 import nativePopup from 'components/popup/native';
 import { setToken } from 'services/user';
 import { isStandalone } from 'root/utils'
+import config from 'root/../config'
 
 export default {
 
@@ -91,6 +92,7 @@ export default {
       authDone: false,
       monetizationDone: false,
       isStandalone: isStandalone(),
+      isTrendever: config.isTrendever,
       noSockConnection: false,
       transName: '',
 
@@ -215,14 +217,14 @@ export default {
   height: 100%;
 
   .landing-background {
-    display: none;
+    padding: 0;
     position: fixed;
-    top:0px;
+    top:0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% + 100px);
     z-index: -1;
-    background: url(../views/home/img/DirectBot_landing-desk_pattern.png) repeat center center;
+    background: url(../style/pattern/blue-light.png) repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

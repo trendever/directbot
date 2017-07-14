@@ -608,7 +608,7 @@ $ball__size: 105px;
   width: 100%;
   overflow: hidden;
   min-height: 100%;
-  background: url(./img/DirectBot_landing-desk_pattern.png);
+  //background: url(./img/DirectBot_landing-desk_pattern.png);
   background-attachment: fixed;
 }
 
