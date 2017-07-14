@@ -193,8 +193,7 @@
 
   photos(:mentionerId="mentionerId",
     :shopId="supplierProfileID || userShopId",
-    :listName="listId",
-    :class="{'little-top':isTrendever, 'change-padding': !isSelfPage && isTrendever}")
+    :listName="listId")
 
   .directbot-navbar(v-if="isMobile && isAuth", :class="{'hide-nav': hideNavUser }")
     navbar-component(:current='$route.name === "profile" ? "profile" : ""')

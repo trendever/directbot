@@ -5,7 +5,7 @@
     .reset-search(@click="$store.dispatch('clearSearch')")
       span Сбросить поиск
 
-  template(v-for="photo, index in listProducts")
+  template(v-for="photo, index in filterProductCode(listProducts)")
     single(
       :product="photo.data",
       :key="photo.id",
@@ -136,7 +136,11 @@ export default {
   },
 
   methods:{
-
+    filterProductCode(arr){
+      if(arr){
+        return arr.filter(i=>i.data.title!="Help")
+      }
+    },
     ...mapActions([
 
       'increaseListLength',
