@@ -39,7 +39,7 @@
           img(:src='userImage' v-on:error='onUserImageError' v-if="!fakeChat")
 
         .chat-header_cnt.support
-          .chat-header_cnt_t Поддержка
+          .chat-header_cnt_t {{ $route.name=='fake_chat' ? 'Кошелёк': 'Поддержка'}}
 
 
     phone-component.no-mob(slot="action-elements", :phone="'tel:+79854107012'")
