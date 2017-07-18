@@ -2,6 +2,18 @@
 
 
 
+@define-mixin before__bg {
+  opacity: 0.6;
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+}
+
 .chat-bar.inputon{
   padding-bottom: 75%;
 }
@@ -22,34 +34,20 @@
   .product-username { display: inline-block}
 
   &.directbot-bg:before {
-    content: "";
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    background: url(../../../style/pattern/blue-light.png) no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    background: url(../../../style/pattern/blue_light_mob.svg) no-repeat center center;
     background-size: cover;
+    @media (--tabletandless){
+      background: url(../../../style/pattern/blue_light_mob.svg) no-repeat center center;
+    }
+    @mixin before__bg;
   }
   &.trendever-bg:before {
-    content: "";
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    background: url(../../../style/pattern/green-light.jpg)  no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    background: url(../../../style/pattern/green_light_mob.svg)  no-repeat center center;
     background-size: cover;
+    @media (--tabletandless){
+      background: url(../../../style/pattern/green_light_mob.svg)  no-repeat center center;
+    }
+    @mixin before__bg;
   }
 
 }
