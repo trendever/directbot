@@ -34,17 +34,26 @@
   .product-username { display: inline-block}
 
   &.directbot-bg:before {
-    background: url(../../../style/pattern/blue_light_mob.svg) no-repeat center center;
-    background-size: cover;
+
+    @media (--overtablet) {
+      background: url(../../../style/pattern/blue_light_desk.svg) repeat;
+      background-size: 70%;
+    }
+
     @media (--tabletandless){
+      background-size: cover;
       background: url(../../../style/pattern/blue_light_mob.svg) no-repeat center center;
     }
     @mixin before__bg;
   }
   &.trendever-bg:before {
-    background: url(../../../style/pattern/green_light_mob.svg)  no-repeat center center;
-    background-size: cover;
+    @media (--overtablet) {
+      background: url(../../../style/pattern/green_light_desk.svg) repeat;
+      background-size: 70%;
+    }
+
     @media (--tabletandless){
+      background-size: cover;
       background: url(../../../style/pattern/green_light_mob.svg)  no-repeat center center;
     }
     @mixin before__bg;
