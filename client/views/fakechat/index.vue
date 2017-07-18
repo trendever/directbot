@@ -2,7 +2,6 @@
 <template lang="pug">
 #chat
   chat-header(:disable-notifier='true', :fake-chat="true")
-  .chat-shadow.directbot-color(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu")
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat_messages(id="chatmessages", ref="messages")

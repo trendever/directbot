@@ -6,8 +6,6 @@
   chat-header(:prev-page="prevPage")
   .section.top.bottom(ref="section")
     .chat.section__content
-      transition(:name="isMobile ? 'fade-menu' : ''")
-        .chat-shadow.directbot-color(v-if="isMobile && getShowMenu || isMobile && getShowStatusMenu")
       .chat_messages(id="chatmessages", ref="messages")
         div(v-for='(msg, index) in messagesList', :key='index')
           div
