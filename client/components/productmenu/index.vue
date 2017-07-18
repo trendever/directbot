@@ -145,7 +145,11 @@
 
     @media (--overtablet){
       transform: translateX(-150px);
+
       display: inline-block;
+      #menu-sample {
+        width: 275px;
+      }
       i {
         position: static;
       }
