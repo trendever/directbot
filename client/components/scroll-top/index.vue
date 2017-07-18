@@ -65,7 +65,8 @@
 
         } else {
 
-          window.scrollTo(0,document.body.scrollHeight);
+          JQuery(document.body).animate({scrollTop: document.body.scrollHeight},450);
+          //window.scrollTo(0,document.body.scrollHeight);
 
         }
 
