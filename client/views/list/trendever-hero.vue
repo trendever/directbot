@@ -15,7 +15,7 @@
 
       .fake-vertical-align
       .wrap-mini-slider
-        mini-slider
+        mini-slider(:directbot="directbotHero")
       h1.first
         .wrap-title(v-html="title")
 
@@ -79,6 +79,9 @@ import * as commonService from 'services/common';
 export default {
 
   props:{
+    directbotHero:{
+      default:false,
+    },
     socialLinks: {
       type: Array,
       default:['trendevercom','trendever','trendevercom']

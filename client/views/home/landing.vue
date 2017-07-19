@@ -4,9 +4,9 @@
 
   router-view
 
-  .top-landing-background
+  .top-landing-background.no-desk
 
-  landing-top(
+  landing-top.no-desk(
     :new-landing="newLanding",
     :class="{'update-land':!old && !lastLanding, 'last-landing': lastLanding}")
 
@@ -97,7 +97,7 @@
 
   template(v-if="lastLanding")
 
-    //-top-desk
+    top-desk
 
     skills
       .btn-wrap(slot="bottom")

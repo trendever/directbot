@@ -1,10 +1,10 @@
 <template lang="pug">
-#mini-slide.fullscreen-slider
+#mini-slide.fullscreen-slider(:class="{'directbot-iphone':directbot}")
 
 
 
 
-  .slider(v-if="little")
+  .slider(v-if="halfPart")
 
       .item.bg-image( @click="$router.push({name: 'video-trendever'})", ref="item")
         img(src="./img/Trendever_logo.svg")
@@ -20,15 +20,19 @@
 
   .slider(v-else)
     .wrap(:style="{marginLeft: currentMargin + 'px'}")
-      .item.bg-image( @click="$router.push({name: 'video-trendever'})", ref="item")
-        img(src="./img/Trendever_logo.svg")
-        i.ic-play.white
-      .item(@click="$router.push({name: 'video-trendever'})")
-        i.ic-play.opacity
-        img(src="./hero-imgs/screen-1.jpg")
-      .item(@click="$router.push({name: 'video-trendever'})")
-        i.ic-play.opacity
-        img(src="./hero-imgs/screen-2.jpg")
+      template(v-if="!directbot")
+        .item.bg-image( @click="$router.push({name: 'video-trendever'})", ref="item")
+          img(src="./img/Trendever_logo.svg")
+          i.ic-play.white
+        .item(@click="$router.push({name: 'video-trendever'})")
+          i.ic-play.opacity
+          img(src="./hero-imgs/screen-1.jpg")
+        .item(@click="$router.push({name: 'video-trendever'})")
+          i.ic-play.opacity
+          img(src="./hero-imgs/screen-2.jpg")
+      template(v-if="directbot")
+        .item.bg-directbot-image
+          i.ic-logo_directbot_txt
 
 
 </template>
@@ -36,7 +40,10 @@
 <script>
 export default {
   props:{
-    little:{
+    directbot:{
+      default:false
+    },
+    halfPart:{
       default: false
     }
   },
@@ -114,6 +121,10 @@ $img_width: 282px;
         width: 282px;
       }
     }
+    &.directbot-iphone {
+      //background: url(./hero-imgs/src_iphone_full.png) no-repeat;
+      //background-size: 333px;
+    }
   }
 }
 
@@ -157,7 +168,16 @@ $img_width: 282px;
     img {
       width: 100%;
     }
-
+    &.bg-directbot-image {
+      background: url(../../style/pattern/blue_dark_mob.svg);
+      background-size: 150%;
+      i {
+        font-size: 40px;
+        height: 100%;
+        line-height: calc($img_height * 1.83);
+        color: white;
+      }
+    }
     &.bg-image {
       background: url(./img/Trvr_pattern_green_dark.svg);
       //background-image: url('./img/blue_slide.jpg');

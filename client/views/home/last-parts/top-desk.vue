@@ -1,7 +1,8 @@
 <template lang="pug">
 trendever-hero(
   :title="title",
-  :social-links="['directbot','directbot','directbot']"
+  :social-links="['directbot','directbot','directbot']",
+  :directbot-hero="true"
 ).directbot-top
 
   brand-menu

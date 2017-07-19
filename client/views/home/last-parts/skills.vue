@@ -1,5 +1,5 @@
 <template lang="pug">
-#slills
+#skills
   .title Зачем нужен Directbot
   .info-blocks
 
@@ -132,10 +132,11 @@ export default {
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
 
-#slills {
+#skills {
 
   max-width: 1500px;
-  margin:  120px auto 0 auto;
+  //margin:  120px auto 0 auto;
+  margin: 0 auto;
   @media (--tabletandless){
     margin-top: 34px;
   }
