@@ -27,8 +27,9 @@
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
                 img(src="./hero-imgs/google_play.svg")
               .tooltip
-                | *сервис для бизнеса в Instagram, Directbot.io,#[br]
-                | &nbsp&nbspдоступен через приложение Trendever
+                | *сервис для бизнеса в Instagram, 
+                a(src="https://directbot.io", target="_blank") Directbot.io,
+                | доступен через приложение Trendever
           .contain
             .wrap-input
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
@@ -452,6 +453,9 @@ export default {
       font-size: $font__size;
       color: $color__gray-dark;
       font-family: $font__family__regular;
+      a {
+        border-bottom: 1px solid $color__gray-dark;
+      }
     }
   }
   .screen-getapp {
