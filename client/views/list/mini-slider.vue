@@ -58,7 +58,8 @@ export default {
       let width=this.$refs.item.offsetWidth;
       if(current){
         this.currentMargin -= width;
-        if(Math.abs(this.currentMargin)>=width*2){
+        let max = this.directbot?width*3:width*2
+        if(Math.abs(this.currentMargin)>=max){
           current=!current
           return;
         }
@@ -157,7 +158,7 @@ $img_width: 282px;
   .wrap {
 
     transition: all .4s;
-    width: calc($img_width * 3.01);
+    width: calc($img_width * 4.01);
     height: $img_height;
   }
   .item {
