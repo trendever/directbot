@@ -2,8 +2,6 @@
 #mini-slide.fullscreen-slider(:class="{'directbot-iphone':directbot}")
 
 
-
-
   .slider(v-if="halfPart")
 
       .item.bg-image( @click="$router.push({name: 'video-trendever'})", ref="item")
@@ -31,8 +29,15 @@
           i.ic-play.opacity
           img(src="./hero-imgs/screen-2.jpg")
       template(v-if="directbot")
-        .item.bg-directbot-image
+        .item.bg-directbot-image(ref="item")
           i.ic-logo_directbot_txt
+        .item
+          img(src="./hero-imgs/slide-directbot_1.jpg")
+        .item
+          img(src="./hero-imgs/slide-directbot_2.jpg")
+        .item
+          img(src="./hero-imgs/slide-directbot_3.jpg")
+
 
 
 </template>

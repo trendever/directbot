@@ -24,6 +24,9 @@ import brandMenu from 'components/menu/brand-menu'
 
 export default {
   components:{trendeverHero,brandMenu},
+  methods:{
+    showPhone(){}
+  },
   data () {
     return {
       title:`
