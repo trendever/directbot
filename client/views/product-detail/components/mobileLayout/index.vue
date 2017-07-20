@@ -10,7 +10,7 @@
       ></user-info>
       </div>
       <div class="picture-wrapper">
-        <picture :img="picture"></picture>
+        <picture-component :img="picture"></picture-component>
       </div>
       <div class="wrapper">
       <template v-for="product of products">
@@ -42,7 +42,7 @@
 <script type="text/babel">
 
   import userInfo from '../user-info/index';
-  import picture from '../picture/index.vue';
+  import pictureComponent from '../picture/index.vue';
   import products from '../products/index.vue';
   import buttons from '../buttons/index.vue';
   import description from '../description/index.vue';
@@ -85,7 +85,7 @@
     },
     components: {
       userInfo,
-      picture,
+      pictureComponent,
       products,
       buttons,
       description,

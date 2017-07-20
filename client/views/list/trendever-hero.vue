@@ -85,7 +85,9 @@ export default {
     },
     socialLinks: {
       type: Array,
-      default:['trendevercom','trendever','trendevercom']
+      default(){
+        return ['trendevercom','trendever','trendevercom']
+      }
     },
     title:{
       type: String,
