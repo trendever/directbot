@@ -128,8 +128,11 @@ $img_width: 282px;
       }
     }
     &.directbot-iphone {
-      //background: url(./hero-imgs/src_iphone_full.png) no-repeat;
-      //background-size: 333px;
+      background: url(./hero-imgs/iPhone6_darkblue_vector.png) no-repeat;
+      background-size: 328px;
+      .slider {
+        transform: translate(4px, 67px);
+      }
     }
   }
 }
