@@ -33,7 +33,7 @@
           i.ic-logo_directbot_txt
         .item
           img(src="./hero-imgs/slide-directbot_1.jpg")
-        .item
+        //-.item
           img(src="./hero-imgs/slide-directbot_2.jpg")
         .item
           img(src="./hero-imgs/slide-directbot_3.jpg")
@@ -58,7 +58,7 @@ export default {
       let width=this.$refs.item.offsetWidth;
       if(current){
         this.currentMargin -= width;
-        let max = this.directbot?width*3:width*2
+        let max = width*2
         if(Math.abs(this.currentMargin)>=max){
           current=!current
           return;

@@ -29,12 +29,12 @@
               .tooltip
                 | *сервис для бизнеса в Instagram, 
                 a(src="https://directbot.io", target="_blank") Directbot.io,
-                | доступен через приложение Trendever
+                | доступен в приложении Trendever
           .contain
             .wrap-input
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
-            .button-auth(@click="$router.push({name: 'auth'})",v-if="!isTrendever") Регистрация
+            button.button-auth(@click="$router.push({name: 'auth'})",v-if="!isTrendever") Регистрация
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -172,6 +172,8 @@ export default {
 <style lang="postcss">
 
 @import 'style/vars/vars.pcss';
+
+$wrap__width: 470px;
 .screen-one {
   position: relative;
   .social-icons {
@@ -380,13 +382,10 @@ export default {
   &.directbot-top {
     display: none;
     position: relative;
-
-
     @media (--overtablet){
       display: block;
       background: none;
     }
-
     .bg-plank {
       background-image: url(../home/img/Bgr_clg-blue_1920.png) !important;
     }
@@ -459,6 +458,7 @@ export default {
       a {
         border-bottom: 1px solid $color__gray-dark;
       }
+      width: calc(100% + 150px);
     }
   }
   .screen-getapp {
@@ -484,21 +484,24 @@ export default {
       text-align: left;
 
     }
+
+    
     .wrap-input {
       border: 1px solid $color__gray;
       margin: 3px auto 0 auto;
-      width: 570px;
+      width: $wrap__width;
       overflow: hidden;
       border-radius: 5px;
       height: 50px;
 
       input, button {
+        position: relative;
         display: inline-block;
-        width: 50%;
         height: 100%;
         float: left;
       }
       input {
+        width: 43%;
         font-family: $font__family__light;
         color: $color__gray-dark;
         font-size: calc($font__normal - 3px);
@@ -510,6 +513,7 @@ export default {
         }
       }
       button {
+        width: 57%;
         border: none;
         outline: none;
         color: black;
@@ -523,15 +527,19 @@ export default {
         }
       }
     }
-    .button-auth {
-      position: absolute 8px -200px * *;
+    button.button-auth {
+      outline: none;
+      background: transparent;
+      position: absolute 3px -190px * *;
       border: 1px solid $color__brand;
       line-height:initial; 
-      padding: 9px 35px;
+      padding: 0 20px;
+      height:50px;
       border-radius: 5px;
+      font-family: $font__family__light;
       color: $color__brand;
       cursor: pointer;
-      font-size: 16px;
+      font-size: calc($font__normal - 3px);
       text-transform: uppercase;
       &:hover {
         color: white;

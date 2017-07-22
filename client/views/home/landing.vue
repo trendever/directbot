@@ -126,12 +126,13 @@
 
       connect-get(:class="{'update-land': !old}")
       .fake-height(v-if="toggleBtns")
-
-    .chat-ball(v-if="showChatBall && !old",  @click="ask")
-      transition(name="slide-fade")
-        span(v-show="chatText") ЧАТ
-      transition(name="slide-fade")
-        span(v-show="!chatText") FAQ
+    template(v-if="showChatBall && !old")
+      .chat-ball.fake-border.no-mob
+      .chat-ball(@click="ask")
+        transition(name="slide-fade")
+          span(v-show="chatText") ЧАТ
+        transition(name="slide-fade")
+          span(v-show="!chatText") FAQ
     .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
       button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
         v-on:click="$router.push({name: 'auth'})").btn.btn_primary.__orange.__xl.fast__big__btn.try-free ПОПРОБОВАТЬ БЕСПЛАТНО
@@ -417,6 +418,7 @@ export default {
 
 
 $ball__size: 105px;
+$tablet__ball: 135px;
 
 .chat-ball {
   cursor: pointer;
@@ -429,7 +431,7 @@ $ball__size: 105px;
   line-height: calc($ball__size + 2px);
   font-size: calc($font__medium - 5px);
   z-index: 240;
-
+ 
   &::after {
     display: block;
     content: '';
@@ -439,14 +441,30 @@ $ball__size: 105px;
     border-width: 20px 40px 30px 0px;
     border-color: transparent $color-orange transparent transparent;
     position: absolute * * 0 80px;
-    transform: rotate(-149deg);
+    transform: rotate(-148deg);
   }
 
   @media (--overtablet){
-    transform: scale(.5) translate(-70px,30px);
+    transform: scale(0.7) translate(-70px,60px);
   }
 
+  &.fake-border {
+
+    z-index: 239;
+    background: grey;
+    &:after {
+      border-color: transparent grey transparent transparent;
+    }
+    @media (--tabletandless) {
+      display:none;
+    }
+    @media (--overtablet){
+      transform: scale(0.71) translate(-69px,59px);
+    }
+  }
 }
+
+
 
 
 #second-mobile-screen {
