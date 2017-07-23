@@ -62,7 +62,7 @@
 
 import { ratioFit, formatPastTime} from 'root/utils'
 
-import settings from 'root/settings';
+import config from 'root/../config';
 import listen from 'event-listener'
 
 import mobileLayout from '../mobileLayout/index.vue'
@@ -178,7 +178,7 @@ export default {
 
     buyPromoProduct() {
 
-      this._buy( settings.promoProductID );
+      this._buy( config.promo_product_id );
 
     },
 

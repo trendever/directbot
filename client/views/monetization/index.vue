@@ -4,7 +4,6 @@
 <script>
 
 import jquery from 'jquery';
-import settings from 'root/settings';
 import { declOfNum } from 'root/utils';
 
 import config from 'root/../config';
@@ -117,12 +116,14 @@ export default {
       monetization.coins_offers().then((data)=>{
         let selectedAmmount = this.plansAmmounts[this.selectedPlan];
         let offer = data.offers.find((offer) => offer.price === selectedAmmount);
+        monetization.setSelectedPlan(this.selectedPlan.id)
+        monetization.setSelectedCoinOffer(offer.id)
         monetization.buy_coins(
-          offer.id,
-          "payture_ewallet",
-          window.location.hostname=="localhost"?"test":"directbot"
+            offer.id,
+            "payture_ewallet",
+            window.location.hostname == "localhost" ? "test" : "directbot"
           ).then((result)=>{
-          this.pay(result.order_id);
+            this.pay(result.order_id);
         });
       });
     },

@@ -110,7 +110,7 @@
 </template>
 
 <script >
-  import settings from 'root/settings';
+  import config from 'root/../config';
   import listen from 'event-listener';
   import productMenu from 'root/components/productmenu/index';
 

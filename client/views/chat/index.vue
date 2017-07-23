@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import settings from 'root/settings';
 
 import listen from 'event-listener';
 import { mapGetters, mapActions } from 'vuex';

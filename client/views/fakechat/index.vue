@@ -87,7 +87,6 @@ export default {
             created_at: time,
             parts: [coinsPartsObject],
             user:{user_id: config.service_user_id}
-
           };
           messages.push(coinsMessageObject)
         });

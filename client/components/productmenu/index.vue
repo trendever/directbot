@@ -17,7 +17,6 @@
   import * as productService from 'services/products';
   import listen from 'event-listener';
   import { targetClass } from 'root/utils';
-  import settings from 'root/settings';
   import menuSample from 'components/menu/menu-sample';
 
   import { mapGetters } from 'vuex';

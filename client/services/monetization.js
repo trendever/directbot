@@ -103,6 +103,10 @@ export function subscribe ( plan_id, shop_id ){
 
 }
 
+export function setSelectedPlan(plan_id){
+	localStorage.setItem("directbot_monetization_plan",plan_id)
+}
 
-
-
+export function setSelectedCoinOffer(offer_id){
+	localStorage.setItem("directbot_monetization_coinoffer",offer_id)
+}
