@@ -196,7 +196,7 @@ export default {
     },
     isMonetizationProduct(){
       if ( Array.isArray( this.lead.products ) && this.lead.products.length > 0) {
-        if (this.lead.products.id === config.monetization_help_id){
+        if (this.lead.products[0].id === config.monetization_help_id){
             return true;
         }
       }
