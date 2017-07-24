@@ -21,11 +21,13 @@
 
         .screen-getapp.no-mob
           .contain
-            .application-icons
+            .application-icons(:class="{'trendever': isTrendever}")
               a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
-                img(src="./hero-imgs/appstore.svg")
+                //-img(src="./hero-imgs/appstore.svg")
+                i.ic-google_play
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
-                img(src="./hero-imgs/google_play.svg")
+                //-img(src="./hero-imgs/google_play.svg")
+                i.ic-app_store
               .tooltip
                 | *сервис для бизнеса в Instagram, 
                 a(src="https://directbot.io", target="_blank") Directbot.io,
@@ -445,6 +447,12 @@ $wrap__width: 470px;
     position: absolute * 0 -75px 0;
     text-align: left;
     z-index: 10;
+
+    &.trendever {
+      i {
+        color: #095609;
+      }
+    }
     a {
       display: inline-block;
       margin: 0 5px 5px 0;
@@ -452,7 +460,10 @@ $wrap__width: 470px;
 
       }
     }
-
+    i {
+      font-size: 42px;
+      //color: $color__brand-dark;
+    }
     .tooltip {
       position: absolute * * -40px *;
       font-size: $font__size;
