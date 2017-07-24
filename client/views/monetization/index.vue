@@ -116,8 +116,9 @@ export default {
       monetization.coins_offers().then((data)=>{
         let selectedAmmount = this.plansAmmounts[this.selectedPlan];
         let offer = data.offers.find((offer) => offer.price === selectedAmmount);
-        monetization.setSelectedPlan(this.selectedPlan.id)
-        monetization.setSelectedCoinOffer(offer.id)
+
+        monetization.setPendingMonetization({plan_id: this.selectedPlan,offer: offer})
+
         monetization.buy_coins(
             offer.id,
             "payture_ewallet",
