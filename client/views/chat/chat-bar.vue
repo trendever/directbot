@@ -69,19 +69,9 @@
 
     mounted(){
 
-      window.eventHub.$on("get-answer",data=>{
-        this.txtMsg = data;
-        this.send(null, true)
-      })
+      window.eventHub.$on("get-answer",this.onGetAnswer)
 
-      window.eventHub.$on("chat-payment",()=>{
-        let i = setInterval(()=>{
-          if(this.getId){
-            this.send(null, false, true)
-            clearInterval(i)
-          }
-        },500)
-      })
+      window.eventHub.$on("monetization-message",this.onMonetizationMessage)
 
       this.addPadding();
 
@@ -127,8 +117,25 @@
       if ( this.sendMessage ) {
         this.sendMessage.remove()
       }
+
+      this.$off( 'get-answer', this.onGetAnswer )
+      this.$off( 'monetization-message', this.onMonetizationMessage )
     },
     methods: {
+      onGetAnswer(data){
+        this.txtMsg = data;
+        this.send(null, 'auto/answer')
+      },
+      onMonetizationMessage(data){
+        let i = setInterval(()=>{
+          if(this.getId){
+            clearInterval(i)
+            this.txtMsg = data.data
+            this.send(null,"directbot/monetization")
+          }
+        },500)
+      },
+
       ...mapActions([
         //auth
         'setCallbackOnSuccessAuth',
@@ -223,18 +230,14 @@
         }
       },
 
-      send ( event, autoAnswer = false, payment = false ) {
+      send ( event, type = "text/plain" ) {
+        let mime_type = type
 
-        let mime_type = autoAnswer ? 'auto/answer' : 'text/plain'
-
-        if(payment){
-          mime_type = 'text/payment'
-          this.txtMsg='Оплата принята, ожидайте подтверждения'
+        if(!this.isMobile){
+          this.$emit('addPadding', 57)
+        }else{
+          this.$emit('addPadding', 95)
         }
-
-        if(!this.isMobile) this.$emit('addPadding', 57)
-
-        else this.$emit('addPadding', 95)
 
         if(event) {
 

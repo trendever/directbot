@@ -22,7 +22,7 @@
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg(
-              v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg) || msg.parts[0].mime_type === "auto/answer"',
+              v-if='msg.parts[0].mime_type === "text/plain" && !hasData(msg) || msg.parts[0].mime_type === "auto/answer" || msg.parts[0].mime_type === "directbot/monetization"',
               :msg='msg',
               v-on:goToBottom="goToBottom")
             chat-msg-info(
@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import settings from 'root/settings';
 
 import listen from 'event-listener';
 import { mapGetters, mapActions } from 'vuex';

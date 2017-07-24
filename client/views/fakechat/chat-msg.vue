@@ -9,7 +9,6 @@
     .chat-msg_t(
         v-if='!isOwnMessage && !isClosest',
         :class='{"chat-msg_t-customer-color":isCustomer}',
-        v-on:click="goInstagramProfile"
         v-html="getUsername"
       )
     .chat-msg-wrap.fake-chat
@@ -39,11 +38,6 @@
         required: true
       }
     },
-    methods:{
-      goInstagramProfile(){
-        navigateTolink(`http://instagram.com/${this.getUserNameLink}`, true);
-      }
-    },
     mounted(){
       this.isPayment =this.type=='text/payment'||this.type=='coins'
     },
@@ -61,7 +55,8 @@
         let allowed_types = [
          "text",
          "coins",
-         "text/payment"
+         "text/payment",
+         "directbot/monetization",
         ];
         return (allowed_types.indexOf(this.type) >= 0) ? true : false;
       },
@@ -93,29 +88,7 @@
         return this.getShopName;
       },
       getUsername() {
-        //сервисные сообщения
-        if(this.msg.user.name === 'trendever'){
-          return '<b>trendever</b>';
-        }
-
-        if(this.isPayment){
-          return '<b>trendever</b>';
-        }
-        if (this.isCustomer) {
-          if (this.msg.user.name.indexOf("customer_") >= 0){
-            return `<b>${this.msg.user.name.replace("customer_","client")}</b>`
-          }
-          return `<b>${this.msg.user.name}</b>`
-        }
-        if (this.msg.user.role === leads.USER_ROLES.SUPPLIER.key) {
-          return `<b>${this.getShopName}</b>`
-        }
-        if ( this.getCurrentMember !== null ) {
-          if(this.getCurrentMember.role === leads.USER_ROLES.CUSTOMER.key){
-            return `<b>${this.getShopName}</b>`
-          }
-        }
-        return `<b>${this.getShopName}</b> (${this.msg.user.name})`
+        return `<b>Поддержка</b>`
       },
       isCustomer(){
         return this.msg.user.role === leads.USER_ROLES.CUSTOMER.key;
@@ -124,6 +97,8 @@
         return this.msg.closestMessage;
       },
       isOwnMessage() {
+        if (this.type === 'directbot/monetization') return false;
+
         if ( this.getCurrentMember !== null && !this.isPayment) {
           return this.getCurrentMember.user_id === this.msg.user.user_id;
         }

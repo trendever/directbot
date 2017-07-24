@@ -7,7 +7,6 @@
 </template>
 
 <script type="text/babel">
-  import settings from 'root/settings';
   import listen from 'event-listener';
   import JQuery from 'jquery';
 

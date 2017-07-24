@@ -55,13 +55,13 @@
 </template>
 
 <script>
-import settings from 'root/settings';
+import config from 'root/../config';
 export default {
 
   methods: {
 
     help(){
-      this.$store.dispatch('createLead', settings.supportID )
+      this.$store.dispatch('createLead', config.support_id )
         .then(
           ( lead ) => {
             if ( lead !== undefined && lead !== null ) {

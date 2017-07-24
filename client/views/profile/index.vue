@@ -5,7 +5,6 @@
 import listen from 'event-listener';
 import * as userService from 'services/user';
 import * as productsService from 'services/products';
-import settings from 'root/settings';
 import * as profileService from 'services/profile';
 import clipboard from 'clipboard';
 import store from 'root/store';
@@ -287,7 +286,7 @@ export default {
     caption_spaces,
 
     supportChat(){
-      this.$store.dispatch('createLead', settings.supportID )
+      this.$store.dispatch('createLead', config.service_product_id )
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {

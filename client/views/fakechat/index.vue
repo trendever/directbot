@@ -5,7 +5,7 @@
   .section.top.bottom(ref="section")
     .chat.section__content
       .chat_messages(id="chatmessages", ref="messages")
-        div(v-for='(msg, index) in getFakeMessages', :key='index')
+        div(v-for='(msg, index) in getChatMessages', :key='index')
           div
             chat-msg(
               :type="getMessageType(msg.parts[0].mime_type)",
@@ -20,7 +20,7 @@ import scrollTop from 'components/scroll-top';
 import ChatBar from '../chat/chat-bar.vue';
 import ChatHeader from '../chat/chat-header.vue';
 import ChatMsg from './chat-msg.vue';
-import {getTransactionsLog} from 'services/monetization';
+import * as monetization from 'services/monetization';
 import { mapActions,mapGetters } from 'vuex';
 import * as messages from 'services/message';
 import config from 'root/../config.js';
@@ -36,8 +36,8 @@ export default {
     return {
       fullScroll: 0,
       noGoBottom: false,
-      coinsLog: [],
-      action: ""
+      action: "",
+      fakeMessage: false
     }
   },
   beforeDestroy() {
@@ -66,37 +66,20 @@ export default {
       'getShowMenu'
     ]),
 
-    getFakeMessages(){
+    getChatMessages(){
       let messages = [];
-      messages.push(...this.getMessages);
+      this.getMessages.forEach((elem)=>{
+        //skip auto messages (they got 2 parts)
+        if (elem.parts.length < 2) {
+          messages.push(elem)
+        } 
+      })
 
-      //Merge сообщений монетизации в чат
-
-      if(this.coinsLog) {
-
-
-        this.coinsLog.forEach((elem)=>{
-          let time = elem.created_at + 10;
-          let coinsPartsObject = {
-            content: "Ваш счет пополнен на " + elem.data.amount + '<i class="ic-currency-rub"></i>',
-            mime_type:"text/coins"
-          }
-
-          let coinsMessageObject = {
-            closestMessage: true,
-            created_at: time,
-            parts: [coinsPartsObject],
-            user:{user_id: config.service_user_id}
-
-          };
-          messages.push(coinsMessageObject)
-        });
-
-        return this.sortMessages(messages)
-      }else{
-        return messages;
+      if (this.fakeMessage){
+        messages.push(this.fakeMessage)
       }
 
+      return messages
     }
   },
   methods:{
@@ -124,38 +107,7 @@ export default {
 
       }).then((lead_id)=>{
         this.run(lead_id);
-
-
-        let  id =setInterval(()=>{
-          if(this.getMessages.length){
-            clearInterval(id)
-            getTransactionsLog().then((data)=>{
-              this.coinsLog = data.transactions
-              this.processMonetization();
-            })
-          }
-        },500)
-
       });
-    },
-    /* Это место запускается при переходе в чат из платежного шлюза,
-    в этот момент нам нужно взять подходящий план и
-    подписаться на него если мы еще на него не подписаны*/
-    processMonetization(){
-      if (this.action === "subscibe"){
-        //let last_coins_package = this.coinsLog.pop();
-        // data = last_coins_package.data
-        // amount = data.amount
-        // здесь ищем подходящий план,
-
-        let payCount = this.getMessages.filter(i=>{
-          return i.parts[0].mime_type=="text/payment"
-        })
-        if(payCount.length < this.coinsLog.length)window.eventHub.$emit('chat-payment')
-
-      }else if (this.action === "error"){
-        // отправляем сообщение об ошибке оплаты
-      }
     },
     getMessageType(mime_type){
       switch (mime_type){
@@ -169,7 +121,62 @@ export default {
       'loadLeads',
       'createLead'
     ]),
+    sendSuccesMonetizationMessage(){
+
+    },
+    processMonetization(lead_id){
+      let pendingMonetization = monetization.getPendingMonetization()
+      if (pendingMonetization){
+        //Если у текущего юзера нету магазина, то нам нечего ловить - шлём сообщение в поддержку по этому поводу
+        if (!this.authUserShopId){
+          window.eventHub.$emit("monetization-message",{data: "Ошибка с подключенным магазином - мы уже работаем над решением этой проблемы!"})
+          monetization.unsetPendingMonetization();
+          return
+        }
+
+        let plan_id = pendingMonetization.plan_id
+        let offer_id = pendingMonetization.offer.id
+        let summ_to_process = pendingMonetization.offer.price
+        let plan_name = pendingMonetization.plan_name
+
+        monetization.balance().then((balance) => {
+          if (balance > summ_to_process){
+            //подписываемся на всё, а тазем говорим что всё окей и очищаем монетизацию
+            monetization.subscribe(plan_id,offer_id,this.authUserShopId).then(()=> {
+              window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
+              monetization.unsetPendingMonetization();
+              return
+            });
+          }else{
+            var statusParts = {
+                content: "Операция обрабатывается, пожалуйста подождите",
+                mime_type: "directbot/monetization"
+            }
+            var statusMessageObject = {
+              parts: [statusParts],
+              user:{user_id: config.service_user_id}
+            };
+
+            this.fakeMessage = statusMessageObject
+
+            let i = setInterval(()=>{
+              this.fakeMessage.parts.content += "."
+
+              monetization.balance().then((balance) => {
+                if (balance > summ_to_process){
+                  clearInterval(i)
+                  this.fakeMessage = false;
+                  window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
+                  monetization.unsetPendingMonetization();
+                }
+              });
+            },500)
+          }
+        });
+      }
+    },
     run(lead_id){
+      this.processMonetization(lead_id);
       return this.setConversation( lead_id ).then(
           () => {
                   this.$nextTick( () => {
