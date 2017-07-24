@@ -117,7 +117,7 @@ export default {
         let selectedAmmount = this.plansAmmounts[this.selectedPlan];
         let offer = data.offers.find((offer) => offer.price === selectedAmmount);
 
-        monetization.setPendingMonetization({plan_id: this.selectedPlan,offer: offer})
+        monetization.setPendingMonetization({plan_id: this.selectedPlan,offer: offer,plan_name: this.activePlanName})
 
         monetization.buy_coins(
             offer.id,

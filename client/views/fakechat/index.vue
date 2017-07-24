@@ -137,12 +137,13 @@ export default {
         let plan_id = pendingMonetization.plan_id
         let offer_id = pendingMonetization.offer.id
         let summ_to_process = pendingMonetization.offer.price
+        let plan_name = pendingMonetization.plan_name
 
         monetization.balance().then((balance) => {
           if (balance > summ_to_process){
             //подписываемся на всё, а тазем говорим что всё окей и очищаем монетизацию
             monetization.subscribe(plan_id,offer_id,this.authUserShopId).then(()=> {
-              window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован!!"})
+              window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
               monetization.unsetPendingMonetization();
               return
             });
@@ -165,7 +166,7 @@ export default {
                 if (balance > summ_to_process){
                   clearInterval(i)
                   this.fakeMessage = false;
-                  window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован!!"})
+                  window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
                   monetization.unsetPendingMonetization();
                 }
               });
