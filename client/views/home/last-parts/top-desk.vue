@@ -30,6 +30,9 @@ export default {
     },
     goDressBlogger(){
       window.open('https://www.trendever.com/dressblogger')
+    },
+    showPhone(){
+      window.eventHub.$emit('popup-show-phone', '+79854107012')
     }
   },
   data () {
