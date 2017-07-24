@@ -4,8 +4,10 @@
 
   template(v-if="isVisible")
     .chat-list-i-photo(v-if="!showDelete")
-      template(v-if="isHelpProduct()")
+      template(v-if="isHelpProduct")
         img(src="./img/chats_inactive.svg")
+      template(v-if="isMonetizationProduct")
+        img(src="./img/money-icon.png")
       template(v-else)
         img(:src='getPhoto()')
 
@@ -40,6 +42,8 @@ import * as leadsService from 'services/leads';
 import Hammer from 'hammerjs';
 
 import { mapGetters } from 'vuex';
+
+import config from 'root/../config'
 
 export default {
   data(){
@@ -143,18 +147,13 @@ export default {
         });
 
     },
-    isHelpProduct(){
-      if ( Array.isArray( this.lead.products ) && this.lead.products.length > 0) {
-        if (this.lead.products[0].code == this.lead.products[0].mentioned_id + "_help") {
-            return true;
-        }
-      }
-      return false;
-    },
     getPhoto() {
       if ( Array.isArray( this.lead.products ) ) {
 
         if ( this.lead.products.length > 0 ) {
+
+          console.log(this.lead.products)
+          
 
           const { instagram_images } = this.lead.products[ 0 ];
 
@@ -187,6 +186,22 @@ export default {
       'getLeadTab'
     ]),
 
+    isHelpProduct(){
+      if ( Array.isArray( this.lead.products ) && this.lead.products.length > 0) {
+        if (this.lead.products[0].code == this.lead.products[0].mentioned_id + "_help") {
+            return true;
+        }
+      }
+      return false;
+    },
+    isMonetizationProduct(){
+      if ( Array.isArray( this.lead.products ) && this.lead.products.length > 0) {
+        if (this.lead.products.id === config.monetization_help_id){
+            return true;
+        }
+      }
+      return false;
+    },
     unreadCount(){
 
       return this.getNotifyCountList[ this.lead.id ];
