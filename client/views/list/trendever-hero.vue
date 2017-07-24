@@ -34,7 +34,9 @@
             .wrap-input
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
-            button.button-auth(@click="$router.push({name: 'auth'})",v-if="!isTrendever") Регистрация
+            button.button-auth(
+              @click="$router.push({name: 'auth'})",
+              v-if="!isTrendever") Зарегистрироваться
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -274,6 +276,7 @@ $wrap__width: 470px;
 
 
     .first {
+
       position: relative;
       width: auto !important;
       margin-left: 40px;
@@ -530,7 +533,7 @@ $wrap__width: 470px;
     button.button-auth {
       outline: none;
       background: transparent;
-      position: absolute 3px -190px * *;
+      position: absolute 3px -280px * *;
       border: 1px solid $color__brand;
       line-height:initial; 
       padding: 0 20px;

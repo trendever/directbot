@@ -30,6 +30,7 @@
           img(src="./hero-imgs/screen-2.jpg")
       template(v-if="directbot")
         .item.bg-directbot-image(ref="item")
+          img(:src="directImg")
           i.ic-logo_directbot_txt
         .item
           img(src="./hero-imgs/slide-directbot_1.jpg")
@@ -53,28 +54,29 @@ export default {
     }
   },
   mounted(){
-    let current=true;
-    this.time = setInterval(()=>{
-      let width=this.$refs.item.offsetWidth;
-      if(current){
-        this.currentMargin -= width;
-        let max = width*2
-        if(Math.abs(this.currentMargin)>=max){
-          current=!current
-          return;
-        }
-      } else {
-        this.currentMargin += width;
-        if(this.currentMargin>=0){
-          current=!current
-          return;
-        }
-      }
-    },4000)
+    // let current=true;
+    // this.time = setInterval(()=>{
+    //   let width=this.$refs.item.offsetWidth;
+    //   if(current){
+    //     this.currentMargin -= width;
+    //     let max = width*2
+    //     if(Math.abs(this.currentMargin)>=max){
+    //       current=!current
+    //       return;
+    //     }
+    //   } else {
+    //     this.currentMargin += width;
+    //     if(this.currentMargin>=0){
+    //       current=!current
+    //       return;
+    //     }
+    //   }
+    // },4000)
   },
 
   data () {
     return {
+      directImg: require('root/views/auth/img/directbot.png'),
       currentMargin: 0
     };
   },
@@ -181,11 +183,19 @@ $img_width: 282px;
       background: url(../../style/pattern/blue_dark_mob.svg);
       background-size: 150%;
       i {
+        display: block;
         font-size: 40px;
-        height: 100%;
-        line-height: calc($img_height * 1.83);
         color: white;
       }
+      img{
+        display: block;
+        margin: 0 auto;
+        width: 100px;
+        margin-top: 140px;
+        margin-bottom: 20px;
+      }
+
+
     }
     &.bg-image {
       background: url(./img/Trvr_pattern_green_dark.svg);

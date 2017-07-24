@@ -56,6 +56,7 @@ export default {
     .wrap-title {
       margin-top: 90px;
       @media screen and (max-height:900px){
+        margin-top: 80px;
         transform: translateY(-70px);
       }
     }
