@@ -9,8 +9,8 @@ trendever-hero(
     template(slot="desktop-view")
       //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
       .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
-      .land__top-btn(onclick="window.open('https://www.trendever.com')") ПОКУПАТЕЛЯМ
-      .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
+      .land__top-btn(@click="goTrendever") ПОКУПАТЕЛЯМ
+      .land__top-btn(@click="goDressBlogger") БЛОГЕРАМ
       .land__top-btn(@click="$parent.showArticles") ОТЗЫВЫ
       a.land__top-btn(@click="showPhone") КОЛЛ-ЦЕНТР
 
@@ -25,7 +25,12 @@ import brandMenu from 'components/menu/brand-menu'
 export default {
   components:{trendeverHero,brandMenu},
   methods:{
-    showPhone(){}
+    goTrendever(){
+      window.open('https://www.trendever.com')
+    },
+    goDressBlogger(){
+      window.open('https://www.trendever.com/dressblogger')
+    }
   },
   data () {
     return {

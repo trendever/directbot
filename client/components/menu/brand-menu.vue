@@ -63,6 +63,10 @@ export default {
 
 #brand-menu {
 
+  @media (--overtablet){
+    width: 100%;
+  }
+
   .menu-section {
     z-index: 300;
     position: absolute 30px 30px * *;
@@ -85,7 +89,7 @@ export default {
 
 
 
-    @media (--mobile) {
+    @media (--tabletandless) {
 
       #menu-sample.blue  {
         background: $color__brand-opacity;
@@ -101,14 +105,13 @@ export default {
     }
 
     #menu-sample {
-      @media (--mobile) {
+      @media (--tabletandless) {
         border-radius: 0px;
         position: fixed 0 0 * 0;
         z-index: 179;
         size: 100%;
         width: 100%;
         height: 100%;
-
       }
     }
   }
@@ -139,7 +142,7 @@ export default {
       float:left;
       max-width: 150px;
 
-      @media (--mobile ){
+      @media (--tabletandless ){
 
         margin-left: 27px;
         margin-top: 30px;

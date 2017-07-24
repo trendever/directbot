@@ -54,24 +54,24 @@ export default {
     }
   },
   mounted(){
-    // let current=true;
-    // this.time = setInterval(()=>{
-    //   let width=this.$refs.item.offsetWidth;
-    //   if(current){
-    //     this.currentMargin -= width;
-    //     let max = width*2
-    //     if(Math.abs(this.currentMargin)>=max){
-    //       current=!current
-    //       return;
-    //     }
-    //   } else {
-    //     this.currentMargin += width;
-    //     if(this.currentMargin>=0){
-    //       current=!current
-    //       return;
-    //     }
-    //   }
-    // },4000)
+    let current=true;
+    this.time = setInterval(()=>{
+      let width=this.$refs.item.offsetWidth;
+      if(current){
+        this.currentMargin -= width;
+        let max = width*2
+        if(Math.abs(this.currentMargin)>=max){
+          current=!current
+          return;
+        }
+      } else {
+        this.currentMargin += width;
+        if(this.currentMargin>=0){
+          current=!current
+          return;
+        }
+      }
+    },4000)
   },
 
   data () {
