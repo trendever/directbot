@@ -140,7 +140,7 @@ export default {
         let plan_name = pendingMonetization.plan_name
 
         monetization.balance().then((balance) => {
-          if (balance > summ_to_process){
+          if (balance >= summ_to_process){
             //подписываемся на всё, а тазем говорим что всё окей и очищаем монетизацию
             monetization.subscribe(plan_id,offer_id,this.authUserShopId).then(()=> {
               window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
@@ -163,7 +163,7 @@ export default {
               this.fakeMessage.parts.content += "."
 
               monetization.balance().then((balance) => {
-                if (balance > summ_to_process){
+                if (balance >= summ_to_process){
                   clearInterval(i)
                   this.fakeMessage = false;
                   window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
