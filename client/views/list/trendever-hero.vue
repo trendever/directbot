@@ -28,6 +28,10 @@
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
                 //-img(src="./hero-imgs/google_play.svg")
                 i.ic-app_store
+              a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
+                //-img(src="./hero-imgs/google_play.svg")
+                img(src="./hero-imgs/telegram_icon_blue.svg", v-if="!isTrendever")
+                img(src="./hero-imgs/telegram_icon_green.svg", v-if="isTrendever")
               .tooltip
                 | *сервис для бизнеса в Instagram, 
                 a(src="https://directbot.io", target="_blank") Directbot.io,
@@ -37,8 +41,8 @@
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
             button.button-auth(
-              @click="$router.push({name: 'auth'})",
-              v-if="!isTrendever") Зарегистрироваться
+              @click="$router.push({name: 'auth'})"
+              ) Зарегистрироваться
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -456,13 +460,17 @@ $wrap__width: 470px;
     a {
       display: inline-block;
       margin: 0 5px 5px 0;
+      vertical-align: middle;
       img {
-
+        clear: both;
+        display: inline-block;
+        width: 134px; 
+        
       }
     }
     i {
       font-size: 42px;
-      //color: $color__brand-dark;
+      color: $color__brand;
     }
     .tooltip {
       position: absolute * * -40px *;
