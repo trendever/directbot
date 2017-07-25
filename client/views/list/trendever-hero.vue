@@ -24,10 +24,10 @@
             .application-icons(:class="{'trendever': isTrendever}")
               a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
                 //-img(src="./hero-imgs/appstore.svg")
-                i.ic-google_play
+                i.ic-app_store
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
                 //-img(src="./hero-imgs/google_play.svg")
-                i.ic-app_store
+                i.ic-google_play
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
                 //-img(src="./hero-imgs/google_play.svg")
                 img(src="./hero-imgs/telegram_icon_blue.svg", v-if="!isTrendever")
