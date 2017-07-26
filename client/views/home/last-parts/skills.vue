@@ -5,7 +5,10 @@
 
     template(v-for="block, index in blocks")
 
-      .block(:class="{'top-margin': index > 0, 'stiker-point': index == 2 }")
+      .block(
+        :class="{'top-margin': index > 0, 'stiker-point': index == 2 }", 
+        :data-index="index"
+        ref="block")
 
         template(v-if="index == 2")
           a.header-sticker.no-desk(
@@ -31,7 +34,7 @@
             p.first(v-html="block.text")
             p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
-        i.ic-white_arrow_down.no-desk(
+        //-i.ic-white_arrow_down.no-desk(
           v-if="openedIndex !== index",@click="open(index)")
 
   slot(name="bottom")
@@ -52,6 +55,7 @@ export default {
         } else {
           this.mobileSticker = true;
         }
+        this.scrollBlocksAction()
       })
     }
   },
@@ -63,6 +67,7 @@ export default {
     return {
       mobileSticker: true,
       openedIndex: null,
+      currentScrollIndex: null,
       blocks: [
         {
           image: require("./images/info_box_1.png"),
@@ -118,6 +123,29 @@ export default {
     };
   },
   methods:{
+    scrollBlocksAction(i){
+      this.$refs.block.forEach(i=>{
+        let index = +i.getAttribute('data-index')
+        let rect = i.getBoundingClientRect()
+        let point = -500
+        if(rect.top <= 20 && rect.top > point){
+          if(this.openedIndex == index){
+            return 
+          } else {
+            this.open(index)
+            this.currentScrollIndex=index
+          }
+        }
+        if(this.currentScrollIndex == index && rect.top < point){
+          this.openedIndex = null
+          console.log(index)
+        } 
+        if(this.currentScrollIndex == index && rect.top > 20){
+          this.currentScrollIndex = null
+          this.openedIndex = null
+        }
+      })
+    },
     open(index){
       if(this.openedIndex === index){
         this.openedIndex = null;
