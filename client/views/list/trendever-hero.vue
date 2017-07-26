@@ -28,14 +28,12 @@
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
                 //-img(src="./hero-imgs/google_play.svg")
                 i.ic-google_play
-              a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
-                //-img(src="./hero-imgs/google_play.svg")
-                img(src="./hero-imgs/telegram_icon_blue.svg", v-if="!isTrendever")
-                img(src="./hero-imgs/telegram_icon_green.svg", v-if="isTrendever")
+              a
+                i.ic-telegram_icon
               .tooltip
-                | *сервис для бизнеса в Instagram, 
+                span *сервис для бизнеса в Instagram, 
                 a(src="https://directbot.io", target="_blank") Directbot.io,
-                | доступен в приложении Trendever
+                span доступен в приложении Trendever
           .contain
             .wrap-input
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
@@ -448,7 +446,7 @@ $wrap__width: 470px;
   .application-icons {
     line-height: initial;
     display: block;
-    position: absolute * 0 -75px 0;
+    position: absolute * 0 -65px 0;
     text-align: left;
     z-index: 10;
 
@@ -461,10 +459,12 @@ $wrap__width: 470px;
       display: inline-block;
       margin: 0 5px 5px 0;
       vertical-align: middle;
+      height: 42px; 
       img {
         clear: both;
         display: inline-block;
-        width: 134px; 
+        width: 134px;
+
         
       }
     }
@@ -478,7 +478,10 @@ $wrap__width: 470px;
       color: $color__gray-dark;
       font-family: $font__family__regular;
       a {
+        display: inline-block;
         border-bottom: 1px solid $color__gray-dark;
+        height: 19px;
+        cursor: pointer;
       }
       width: calc(100% + 150px);
     }

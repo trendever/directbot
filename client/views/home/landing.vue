@@ -83,7 +83,7 @@
       .fake-bottom
 
     .chat-ball(v-if="showChatBall && !old",  @click="ask")
-      span(v-if="chatText") ЧАТ
+      //- span(v-if="chatText") ЧАТ
       span(v-if="!chatText") FAQ
     .free-wrap(:class="{'fixed-btns': !isMobile && showBtns}")
       button( v-if="showBtns", :style="{zIndex: showBtns ? 190 : 0}",
