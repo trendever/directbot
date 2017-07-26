@@ -138,7 +138,6 @@ export default {
         }
         if(this.currentScrollIndex == index && rect.top < point){
           this.openedIndex = null
-          console.log(index)
         } 
         if(this.currentScrollIndex == index && rect.top > 20){
           this.currentScrollIndex = null
