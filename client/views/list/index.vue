@@ -7,8 +7,8 @@
     template(slot="desktop-view")
       //-img(src="../img/directbot-logo-txt.svg" onclick="window.open('https://www.trendever.com')")
       .land__top-btn(@click="$router.push({name: 'auth'})") ВХОД
-      .land__top-btn(onclick="window.open('https://www.directbot.io')") МАГАЗИНАМ
-      .land__top-btn(onclick="window.open('https://www.trendever.com/dressblogger')") БЛОГЕРАМ
+      .land__top-btn(@click="openDirectbot") МАГАЗИНАМ
+      .land__top-btn(@click="openDressBlogger") БЛОГЕРАМ
 
     template(slot="mobile-view" v-if="!isAuth && showHero")
       i.ic-menu_bullets(@click="showMenu=true")
@@ -89,6 +89,10 @@ export default {
       let scroll = localStorage.getItem('home.scroll')
       document.body.scrollTop = scroll;
     })
+  },
+  methods:{
+    openDirectbot(){window.open('https://www.directbot.io')},
+    openDressBlogger(){window.open('https://www.trendever.com/dressblogger')}
   },
   data(){
     return {

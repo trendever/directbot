@@ -38,7 +38,8 @@
             .wrap-input
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
-            button.button-auth(
+            button.button-auth( 
+              :class="{trendever: isTrendever}",
               @click="$router.push({name: 'auth'})"
               ) Зарегистрироваться
 
@@ -178,7 +179,7 @@ export default {
 <style lang="postcss">
 
 @import 'style/vars/vars.pcss';
-
+$dark_green_btn: #095609;
 $wrap__width: 470px;
 .screen-one {
   position: relative;
@@ -446,13 +447,13 @@ $wrap__width: 470px;
   .application-icons {
     line-height: initial;
     display: block;
-    position: absolute * 0 -65px 0;
+    position: absolute * 0 -62px 0;
     text-align: left;
     z-index: 10;
 
     &.trendever {
       i {
-        color: #095609;
+        color: $dark_green_btn;
       }
     }
     a {
@@ -569,6 +570,15 @@ $wrap__width: 470px;
       &:hover {
         color: white;
         background: $color__brand;
+      }
+
+      &.trendever {
+        color: $dark_green_btn;
+        border-color: $dark_green_btn;
+        &:hover {
+          color: white;
+          background: $dark_green_btn;
+        }
       }
 
     }
