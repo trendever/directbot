@@ -273,12 +273,16 @@ a.header-sticker {
       justify-content: center;
 
       .top-text, .bottom-text {
-        font-size: calc($font__large + 13px) !important;
         margin-top: 40px;
         margin-bottom: 40px;
       }
+      .top-text {
+        font-size: 66px!important;
+        line-height: 74px;
+      }
 
       .bottom-text {
+        font-size: calc($font__large + 13px) !important;
         font-family: $font__family__light !important;
       }
     }
