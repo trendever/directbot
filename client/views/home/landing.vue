@@ -127,7 +127,7 @@
       connect-get(:class="{'update-land': !old}")
       .fake-height(v-if="toggleBtns")
     template(v-if="showChatBall && !old")
-      .chat-ball.fake-border.no-mob
+      .chat-ball.fake-border
       .chat-ball(@click="ask")
         transition(name="slide-fade")
           span(v-show="chatText") ЧАТ
@@ -456,7 +456,7 @@ $tablet__ball: 135px;
       border-color: transparent grey transparent transparent;
     }
     @media (--tabletandless) {
-      display:none;
+      transform: scale(1.02);
     }
     @media (--overtablet){
       transform: scale(0.71) translate(-69px,59px);
