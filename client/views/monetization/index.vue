@@ -29,7 +29,8 @@ export default {
       noPlanSelected: false,
       activePlan: '',
       activePlanName: '',
-      activePlanAbout: ''
+      activePlanAbout: '',
+      fakeMonetizationCount: 0
     }
   },
   computed: {
@@ -72,6 +73,25 @@ export default {
     }
   },
   methods:{
+    fakeMonetization(){
+      this.fakeMonetizationCount += 1;
+      if (this.fakeMonetizationCount == 3){
+        monetization.coins_offers().then((data)=>{
+          let selectedAmmount = 10;
+          let offer = data.offers.find((offer) => offer.price === selectedAmmount);
+
+          monetization.setPendingMonetization({plan_id: 9,offer: offer,plan_name: "Low cost test"})
+
+          monetization.buy_coins(
+              offer.id,
+              "payture_ewallet",
+              window.location.hostname == "localhost" ? "test" : "directbot"
+            ).then((result)=>{
+              this.pay(result.order_id);
+          });
+        });
+      }
+    },
     changeName(val){
       return val.replace(/Р/g, '<i class="ic-currency-rub"></i>')
     },
