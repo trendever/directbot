@@ -14,7 +14,8 @@
 
 
       .monetization__days-to-end(
-        :class="{is__end: monetizationDays === 0, 'red_none': noPlanSelected, 'active-plan': activePlanName }")
+        :class="{is__end: monetizationDays === 0, 'red_none': noPlanSelected, 'active-plan': activePlanName }"
+        @click="fakeMonetization")
         template(v-if="!monetizationDays && !activePlan || isMobile && !monetizationDays") 0
         tempalte(v-if="monetizationDays && !activePlan || isMobile && monetizationDays") {{ monetizationDays }}
         transition(name="fademonetization")
