@@ -213,6 +213,9 @@ export default {
   },
 
   methods: {
+    ConnectNoimage(){
+      if(!this.getUserPhoto && this.isSelfPage)this.$router.push({name: "connect-bot"})
+    },
     openConditions(){
       if(!this.isTrendever){
         this.$router.push({name: "popup", params: { id: "conditions"} } )

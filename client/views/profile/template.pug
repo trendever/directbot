@@ -59,7 +59,8 @@
 
         .profile_info
 
-          .profile_info_img(:class="{'no-hidden': !getUserPhoto && !isTrendever && isSelfPage, bordered: !!getUserPhoto}")
+          .profile_info_img(
+            :class="{'no-hidden': !getUserPhoto && !isTrendever && isSelfPage, bordered: !!getUserPhoto}", @click="ConnectNoimage")
             img(:src="getUserPhoto" v-if="getUserPhoto")
             img.bot-mini(src="./img/bot-mini.svg" v-if="isSelfPage && !getUserPhoto && !isTrendever")
 
