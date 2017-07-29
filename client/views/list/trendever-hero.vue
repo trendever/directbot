@@ -181,6 +181,7 @@ export default {
 @import 'style/vars/vars.pcss';
 $dark_green_btn: #095609;
 $wrap__width: 470px;
+$color_blue_change: #5986c7;
 .screen-one {
   position: relative;
   .social-icons {
@@ -471,7 +472,7 @@ $wrap__width: 470px;
     }
     i {
       font-size: 42px;
-      color: $color__brand;
+      color: $color_blue_change;
     }
     .tooltip {
       position: absolute * * -40px *;
@@ -553,23 +554,25 @@ $wrap__width: 470px;
         }
       }
     }
+
+
     button.button-auth {
       outline: none;
       background: transparent;
       position: absolute 3px -280px * *;
-      border: 1px solid $color__brand;
+      border: 1px solid $color_blue_change;
       line-height:initial; 
       padding: 0 20px;
       height:50px;
       border-radius: 5px;
       font-family: $font__family__light;
-      color: $color__brand;
+      color: $color_blue_change;
       cursor: pointer;
       font-size: calc($font__normal - 3px);
       text-transform: uppercase;
       &:hover {
         color: white;
-        background: $color__brand;
+        background: $color_blue_change;
       }
 
       &.trendever {
