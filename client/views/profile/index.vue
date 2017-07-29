@@ -251,7 +251,7 @@ export default {
       }
     },
     findBloger(){
-      if( !this.botActivity ) return;
+      //if( !this.botActivity ) return;
       this.$store.dispatch('createLead', config.bloger_product_id)
           .then(
             ( lead ) => {
