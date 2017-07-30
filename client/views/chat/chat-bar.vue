@@ -153,9 +153,7 @@
 
       },
       openChatmenu(){
-
-        this.setShowMenu(true);
-
+        this.setShowMenu(!this.getShowMenu);
       },
       normalizeScroll() {
         // Hard hack for ios jumping, why open keyboard
