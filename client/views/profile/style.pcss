@@ -196,15 +196,19 @@ $slogan_font: 22px;
       }
 
       button {
-        width: 100%;
         text-transform: uppercase;
         cursor: pointer;
         font-family: $font__family__light;
+        @media (--tabletandless) {
+          width: 100%;
+        }
         @media (--overtablet){
           margin-top: 15px;
           float: right;
           font-size: 15px;
-          width: 220px;
+          padding-left: 16px;
+          padding-right: 16px;
+          display: inline-block;
           padding-top: 7px;
           padding-bottom: 5px;
         }

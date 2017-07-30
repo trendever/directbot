@@ -7,8 +7,13 @@ button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot
 </template>
 
 <style lang="postcss">
+@import 'style/vars/vars.pcss';
   button.btn.btn_primary.__orange.__xl.fast__big__btn.btn_fixed-bottom.turn-on-bot-btn {
     position: fixed;
+
+    @media (--overtablet){
+      font-size: 25px;
+    }
   }
 </style>
 <script>

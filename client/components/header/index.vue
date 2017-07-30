@@ -226,6 +226,8 @@
     computed:{
       showLogo(){
         switch(this.$route.name){
+          case 'chat_list': return false;
+          break;
           case 'profile': return false;
           break;
           case 'user': return false;

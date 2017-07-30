@@ -96,6 +96,7 @@
                   @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
               template(v-if="isAuth")
                 button(@click="findBloger") НАЙТИ БЛОГЕРА
+                button(@click="openOptions") РЕДАКТИРОВАТЬ
                 button.no-desk(@click="supportChat") ПОДДЕРЖКА
 
 
