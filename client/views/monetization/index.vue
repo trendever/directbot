@@ -44,17 +44,6 @@ export default {
     daysCount(){
       return declOfNum(['день','дня',"дней" ])(this.monetizationDays);
     },
-
-    selfPlans(){
-      return this.plans
-        .filter(i=>this.parse(i.about).tariff=== 'self')
-        .sort((a,b)=>a.subscription_price - b.subscription_price )
-    },
-    fullPlans(){
-      return this.plans
-        .filter(i=>this.parse(i.about).tariff=== 'full')
-        .sort((a,b)=>a.subscription_price - b.subscription_price )
-    },
     activePlanObject(){
       return this.plans.find(i=>i.id==this.selectedPlan)
     },
@@ -73,6 +62,16 @@ export default {
     }
   },
   methods:{
+    getPlans(type){
+       return this.plans
+        .filter(i=>{
+          if (i.about){
+            return this.parse(i.about).tariff === type
+          }
+          return false
+        })
+        .sort((a,b)=>a.subscription_price - b.subscription_price )
+    },
     fakeMonetization(){
       this.fakeMonetizationCount += 1;
       if (this.fakeMonetizationCount == 3){

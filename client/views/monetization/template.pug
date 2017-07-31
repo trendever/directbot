@@ -63,7 +63,7 @@
         | контролировать результаты и подбирать#[br.mobile]
         | качественных блогеров
 
-      template(v-for="plan in selfPlans")
+      template(v-for="plan in getPlans('self')")
         .monetization__btn(@click="selectPlan(plan.id, $event)",
           v-if="activePlanName!==changeName(plan.name) || isMobile")
           button(:class="{make__choice: selectedPlan === plan.id}")
@@ -84,7 +84,7 @@
         | консультирует клиентов и сотрудничает#[br.mobile]
         | с блогерами от вашего имени
 
-      template(v-for="plan in fullPlans")
+      template(v-for="plan in getPlans('full')")
         .monetization__btn(@click="selectPlan(plan.id, $event)",
           v-if="activePlanName!==changeName(plan.name) || isMobile")
           button(:class="{make__choice: selectedPlan === plan.id}")
