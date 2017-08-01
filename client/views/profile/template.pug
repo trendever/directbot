@@ -108,7 +108,7 @@
               button.no-mob Написать в магазин
 
 
-        .profile_desc(v-on:click="isMoreClass = !isMoreClass",
+        .profile_desc(v-on:click="isMoreClass = true",
           ref="profileDesk",
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
           .profile_desc_t.fake__text(v-if="!getSlogan && isSelfPage") слоган вашего {{appWord}}
@@ -153,8 +153,8 @@
               template(v-if="isTrendever") подробное описание профиля
             .profile_desc_caption(v-if="user.shipping_rules") {{ user.shipping_rules }}
 
-          //-.profile_insta-link(
-            v-if="!isTrendever && isMoreClass",
+          .profile_insta-link.info.no-mob(
+            v-if="!isTrendever",
             :class="{ directbot: true,'margin-top': !isMoreClass }")
             .insta-link-text Cсылка сюда&nbsp
             .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
@@ -185,7 +185,7 @@
             | под постом в#[br]
             | Instagram, чтобы добавить тренд сюда в ленту
 
-      .profile_insta-link(
+      .profile_insta-link.no-desk(
         v-if="!isTrendever && isMoreClass",
         :class="{ directbot: true,'margin-top': !isMoreClass }")
         .insta-link-text Cсылка сюда&nbsp
