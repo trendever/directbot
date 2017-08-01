@@ -197,5 +197,7 @@
     :shopId="supplierProfileID || userShopId",
     :listName="listId")
 
+
+  .fake-bottom.no-desk(style="height: 84px;width: 100%;")
   .directbot-navbar(v-if="isMobile && isAuth", :class="{'hide-nav': hideNavUser }")
     navbar-component(:current='$route.name === "profile" ? "profile" : ""')
