@@ -12,7 +12,7 @@ trendever-hero(
       .land__top-btn(@click="goTrendever") ПОКУПАТЕЛЯМ
       .land__top-btn(@click="goDressBlogger") БЛОГЕРАМ
       .land__top-btn(@click="$parent.showArticles") ОТЗЫВЫ
-      a.land__top-btn(@click="showPhone") КОЛЛ-ЦЕНТР
+      //-a.land__top-btn(@click="showPhone") КОЛЛ-ЦЕНТР
 
   //i.ic-logo_directbot_txt
 
