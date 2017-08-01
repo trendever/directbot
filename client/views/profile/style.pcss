@@ -176,7 +176,7 @@ $slogan_font: 22px;
         position: relative;
         width: 100%;
         margin-top: -33px;
-        margin-bottom: 35px;
+        margin-bottom: 15px;
         .tags-buttons {
           button {
             flex: 1 0 auto;//хак для ios вместо flex 1
@@ -323,6 +323,9 @@ $slogan_font: 22px;
 
     &_info {
       position: relative;
+      @media (--tabletandless){
+        padding-top: 15px;
+      }
       &_img {
 
         position: relative;
@@ -657,9 +660,12 @@ $slogan_font: 22px;
         @media (--overtablet){
           font-size: $slogan_font;
           &.fake__text {
-            font-family: $font__family__semibold !important;
             margin-bottom: 12px;
           }
+        }
+
+        &.fake__text {
+          font-family: $font__family__semibold !important;
         }
       }
       span{
