@@ -56,6 +56,27 @@
     .section__content(v-cloak)
 
       .profile
+        //-.p-buttons 
+          button(@click="findBloger") НАЙТИ БЛОГЕРА
+          button(@click="openOptions") РЕДАКТИРОВАТЬ
+          button(@click="supportChat") ПОДДЕРЖКА
+        .profile-buttons
+          .tags-buttons
+            template(v-if="!isTrendever && isSelfPage")
+              button.connect.no-mob(v-if="!botActivity",
+                  @click="$router.push({name: 'connect-bot'})") ПОДКЛЮЧИТЬ INSTAGRAM
+              template(v-if="isAuth")
+                button(@click="findBloger") НАЙТИ БЛОГЕРА
+                button(@click="openOptions") РЕДАКТИРОВАТЬ
+                button(@click="supportChat") ПОДДЕРЖКА
+
+
+            template(v-if="isTrendever && isSelfPage")
+              button.no-mob(@click="connectDirect") Начать бизнес
+
+
+            template(v-if="!isSelfPage")
+              button.no-mob Написать в магазин
 
         .profile_info
 
@@ -89,7 +110,7 @@
                 |  &nbsp{{ shoptime }}
 
 
-        .profile-buttons
+        //-.profile-buttons
           .tags-buttons
             template(v-if="!isTrendever && isSelfPage")
               button.connect.no-mob(v-if="!botActivity",
