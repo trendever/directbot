@@ -8,6 +8,8 @@
         img(src="./img/chats_inactive.svg")
       template(v-if="isMonetizationProduct")
         img(src="./img/money-icon.png")
+      template(v-if="noProducts")
+        img(:src="getOpponentAvatar")
       template(v-else)
         img(:src='getPhoto()')
 
@@ -147,6 +149,7 @@ export default {
         });
 
     },
+
     getPhoto() {
       if ( Array.isArray( this.lead.products ) ) {
 
@@ -174,7 +177,6 @@ export default {
         }
 
       }
-
       return null;
 
     }
@@ -185,7 +187,12 @@ export default {
       'getLastMessage',
       'getLeadTab'
     ]),
-
+    noProducts(){
+      return !(Array.isArray( this.lead.products ) && this.lead.products.length > 0)
+    },
+    getOpponentAvatar(){
+     return this.lead.shop.instagram_avatar_url || ""
+    },
     isHelpProduct(){
       if ( Array.isArray( this.lead.products ) && this.lead.products.length > 0) {
         if (this.lead.products[0].code == this.lead.products[0].mentioned_id + "_help") {
