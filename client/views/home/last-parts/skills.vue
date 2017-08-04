@@ -1,41 +1,48 @@
 <template lang="pug">
 #skills
-  .title Зачем нужен Directbot
-  .info-blocks
+  .title 3 функции Directbot
+  .info-blocks(ref="hiddenWrap")
 
-    template(v-for="block, index in blocks")
+    .arrows
+      .right(@click="move(true)")
+        i.ic-review_arrow_right
+      .left(@click="move(false)")
+        i.ic-review_arrow_right
 
-      .block(
-        :class="{'top-margin': index > 0, 'stiker-point': index == 2 }", 
-        :data-index="index"
-        ref="block")
+    .slide-screen(:style="{marginLeft: marginMove+'px'}", ref="hiddenWrap")
+      template(v-for="block, index in blocks")
 
-        template(v-if="index == 2")
-          a.header-sticker.no-desk(
-            href="https://trendever.com", target="_blank",
-            :class="{move: mobileSticker}")
-            span.wrap
-              | Подключайтесь и продавайте#[br]
-              | на Trendever
-              span(style="font-weight: bold") &nbspбесплатно
+        .block(
+          :class="{'top-margin': index > 0, 'stiker-point': index == 2 }", 
+          :data-index="index"
+          ref="block")
+
+          template(v-if="index == 2")
+            a.header-sticker.no-desk(
+              href="https://trendever.com", target="_blank",
+              :class="{move: mobileSticker}")
+              span.wrap
+                | Подключайтесь и продавайте#[br]
+                | на Trendever
+                span(style="font-weight: bold") &nbspбесплатно
 
 
-        .image
-          img(:src="block.image")
+          .image
+            img(:src="block.image")
 
-        .text
+          .text
 
-          span(@click="open(index)",
-            @mouseover="openedIndex = index",
-            @mouseleave="openedIndex=''",
-            :class="{ opened: openedIndex === index }")
-            i.ic-info_icon
-            .counter {{ index+1 + '/' + blocks.length }}
-            p.first(v-html="block.text")
-            p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
+            span(@click="open(index)",
+              @mouseover="openedIndex = index",
+              @mouseleave="openedIndex=''",
+              :class="{ opened: openedIndex === index }")
+              i.ic-info_icon
+              .counter {{ index==0?"Первая функция":index+1 + '/' + blocks.length }}
+              p.first(v-html="block.text")
+              p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
-        //-i.ic-white_arrow_down.no-desk(
-          v-if="openedIndex !== index",@click="open(index)")
+          //-i.ic-white_arrow_down.no-desk(
+            v-if="openedIndex !== index",@click="open(index)")
 
   slot(name="bottom")
 
@@ -68,6 +75,7 @@ export default {
       mobileSticker: true,
       openedIndex: null,
       currentScrollIndex: null,
+      marginMove: 0,
       blocks: [
         {
           image: require("./images/info_box_1.png"),
@@ -151,6 +159,17 @@ export default {
         return;
       }
       this.openedIndex = index;
+    },
+
+    move(right){
+      let width = this.$refs.hiddenWrap.offsetWidth
+      if(!right){
+        if(this.marginMove >= 0) return 
+        this.marginMove += width
+      } else {
+        if(Math.abs(this.marginMove) >= width*2) return
+        this.marginMove -= width
+      }
     }
   }
 };
@@ -160,7 +179,7 @@ export default {
 @import 'style/vars/vars.pcss';
 
 #skills {
-
+  position: relative;
   max-width: 1500px;
   //margin:  120px auto 0 auto;
   margin: 0 auto;
@@ -186,15 +205,60 @@ export default {
 }
 .info-blocks {
 
-  .block {
+  @media (--overtablet) {
+    
+    overflow: hidden;
+    width: 1180px;
+    margin: 0 auto;  
+  }
 
+
+  .arrows {
+
+    @media (--tabletandless) {
+      display: none;
+    }
+    display: block;
+    i {
+      color: $color__brand;
+      font-size: 50px;
+
+    }
+    
+
+    .right {
+      position: absolute;
+      top: 50%;
+      right: 30px;
+      transform: translateY(-75px);
+    }
+    .left {
+      position: absolute;
+      left: 30px;
+      top: 50%;
+      transform: scale(-1,1) translateY(-75px);
+    }
+  }
+
+  .slide-screen {
+    @media (--overtablet) {
+      width: calc(1180px * 3);
+    }
+    transition: all 0.4s ease;
+  }
+
+  .block {
 
     display: flex;
     margin-bottom: 40px;
     & > div {
       flex:1;
     }
+
+
+
     @media (--overtablet) {
+      display: inline-flex;
       margin-bottom: 150px;
       margin-top: 50px;
       height: 700px;
