@@ -28,7 +28,7 @@
               a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
                 //-img(src="./hero-imgs/google_play.svg")
                 i.ic-google_play
-              a
+              a(href="https://t.me/InstaDirectbot" target="_blank")
                 i.ic-telegram_icon
               .tooltip
                 span *сервис для бизнеса в Instagram, 
