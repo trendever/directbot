@@ -1,7 +1,7 @@
 <template lang="pug">
 #skills
   .title 3 функции Directbot
-  .info-blocks(ref="hiddenWrap")
+  .info-blocks
 
     .arrows
       .right(@click="move(true)")
@@ -9,7 +9,7 @@
       .left(@click="move(false)")
         i.ic-review_arrow_right
 
-    .slide-screen(:style="{marginLeft: marginMove+'px'}", ref="hiddenWrap")
+    .slide-screen(:style="{marginLeft: marginMove+'px'}")
       template(v-for="block, index in blocks")
 
         .block(
@@ -163,7 +163,7 @@ export default {
     },
 
     move(right){
-      let width = this.$refs.hiddenWrap.offsetWidth
+      let width = this.$refs.block[0].offsetWidth
       if(!right){
         if(this.marginMove >= 0) return 
         this.marginMove += width
@@ -232,12 +232,12 @@ export default {
     .right {
       position: absolute;
       top: 50%;
-      right: 13px;
+      right: 10px;
       transform: translateY(-75px);
     }
     .left {
       position: absolute;
-      left: 13px;
+      left: 10px;
       top: 50%;
       transform: scale(-1,1) translateY(-75px);
     }
