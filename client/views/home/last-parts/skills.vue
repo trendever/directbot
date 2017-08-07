@@ -37,7 +37,7 @@
               @mouseleave="openedIndex=''",
               :class="{ opened: openedIndex === index }")
               i.ic-info_icon
-              .counter {{ index==0?"Первая функция":index+1 + '/' + blocks.length }}
+              .counter {{ words[index]+" функция" }}
               p.first(v-html="block.text")
               p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
@@ -72,6 +72,7 @@ export default {
 
   data () {
     return {
+      words:["Первая", "Вторая", "Третья"],
       mobileSticker: true,
       openedIndex: null,
       currentScrollIndex: null,
@@ -99,7 +100,7 @@ export default {
             Продвигает Instagram<br class="desktop">
             органически,<br class="mobile"> заказывая<br class="desktop">
             контент и рекламу<br class="mobile"> у<br class="desktop">
-            качественных блогеров
+            проверенных блогеров
           `,
           overview: `
             Поможет массово создавать<br> фото/видео
@@ -222,6 +223,8 @@ export default {
     i {
       color: $color__brand;
       font-size: 50px;
+      font-weight: 900 !important;
+      cursor: pointer;
 
     }
     
@@ -229,12 +232,12 @@ export default {
     .right {
       position: absolute;
       top: 50%;
-      right: 30px;
+      right: 13px;
       transform: translateY(-75px);
     }
     .left {
       position: absolute;
-      left: 30px;
+      left: 13px;
       top: 50%;
       transform: scale(-1,1) translateY(-75px);
     }
