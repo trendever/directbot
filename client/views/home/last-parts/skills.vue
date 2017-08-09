@@ -37,7 +37,7 @@
               @mouseleave="openedIndex=''",
               :class="{ opened: openedIndex === index }")
               i.ic-info_icon
-              .counter {{ words[index]+" функция" }}
+              .counter.no-mob {{ words[index]+" функция" }}
               p.first(v-html="block.text")
               p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
