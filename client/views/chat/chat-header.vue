@@ -16,7 +16,7 @@
     .chat-header(slot='flex-item')
 
       <!-- Default chat header -->
-      template(v-if="!isServiceShop")
+      template(v-if="!isServiceShop && !findBlogger")
 
         .chat-header_photo
           img(
@@ -33,7 +33,7 @@
 
 
       <!-- Chat header for service chat -->
-      template(v-if="isServiceShop")
+      template(v-if="isServiceShop && !findBlogger")
 
         .chat-header_photo
           img(:src='userImage' v-on:error='onUserImageError' v-if="!fakeChat")
@@ -41,6 +41,10 @@
         .chat-header_cnt.support
           .chat-header_cnt_t {{ $route.name=='fake_chat' ? 'Кошелёк': 'Поддержка'}}
 
+
+      template(v-if="findBlogger")
+        .chat-header_cnt.support.blogger
+          .chat-header_cnt_t Поиск блогера 
 
     phone-component.no-mob(slot="action-elements", :phone="'tel:+79854107012'")
     phone-component.no-desk(slot="center-content", :phone="'tel:+79854107012'")
@@ -57,6 +61,16 @@
   import config from 'root/../config.js';
 
   export default {
+    data(){
+      return {
+        findBlogger: false
+      }
+    },
+    created(){
+      if(this.$route.query.type=='blogger'){
+        this.findBlogger=true
+      }
+    },
     methods: {
        onUserImageError(){
         console.warn(`Load user photo has failed. Chat id: ${this.getId}`);

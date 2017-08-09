@@ -259,7 +259,14 @@ export default {
           .then(
             ( lead ) => {
               if ( lead !== undefined && lead !== null ) {
-                this.$router.push( { name: 'chat', params: { id: lead.id }, query: { action: 'support' } } )
+                this.$router.push( { 
+                  name: 'chat', 
+                  params: { id: lead.id }, 
+                  query: { 
+                    action: 'support',
+                    type: 'blogger'
+                  } 
+                } )
               }
             }
           )
