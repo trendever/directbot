@@ -44,6 +44,8 @@ var config = {
 
   monetization_help_id: 32069,
 
+  options_product_id: 32158,
+
   bloger_product_id: 30683,
 
   directbot: true,

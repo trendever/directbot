@@ -227,8 +227,8 @@ export default {
       this.$router.push({name: "agreement" } )
     },
     openOptions(){
-      this
-        .createLead( 32158 )
+      this.$store
+        .dispatch("createLead", config.options_product_id )
         .then(
           ( lead ) => {
             if ( lead !== undefined && lead !== null ) {
