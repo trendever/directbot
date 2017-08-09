@@ -213,6 +213,9 @@ export default {
   },
 
   methods: {
+    connectAsistent(){
+      return
+    },
     ConnectNoimage(){
       if(!this.getUserPhoto && this.isSelfPage)this.$router.push({name: "connect-bot"})
     },

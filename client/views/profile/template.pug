@@ -64,7 +64,8 @@
               template(v-if="isAuth")
                 button(@click="findBloger") СОТРУДНИЧАТЬ С БЛОГЕРАМИ
                 button.no-mob(@click="openOptions") РЕДАКТИРОВАТЬ
-                button(@click="supportChat") ПОДДЕРЖКА
+                //-button(@click="supportChat") ПОДДЕРЖКА
+                button(@click="connectAsistent") ПОДКЛЮЧИТЬ АССИСТЕНТА
 
 
             template(v-if="isTrendever && isSelfPage")
