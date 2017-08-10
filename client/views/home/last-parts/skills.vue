@@ -1,50 +1,51 @@
 <template lang="pug">
 #skills
-  .title 3 функции Directbot
-  .info-blocks
+  .hole-wrap
+    .title 3 функции Directbot
+    .info-blocks
 
-    .arrows
-      .right(@click="move(true)")
-        i.ic-review_arrow_right
-      .left(@click="move(false)")
-        i.ic-review_arrow_right
+      .arrows
+        .right(@click="move(true)")
+          i.ic-review_arrow_right
+        .left(@click="move(false)")
+          i.ic-review_arrow_right
 
-    .slide-screen(:style="{marginLeft: marginMove+'px'}")
-      template(v-for="block, index in blocks")
+      .slide-screen(:style="{marginLeft: marginMove+'px'}")
+        template(v-for="block, index in blocks")
 
-        .block(
-          :class="{'top-margin': index > 0, 'stiker-point': index == 2 }", 
-          :data-index="index"
-          ref="block")
+          .block(
+            :class="{'top-margin': index > 0, 'stiker-point': index == 2 }", 
+            :data-index="index"
+            ref="block")
 
-          template(v-if="index == 2")
-            a.header-sticker.no-desk(
-              href="https://trendever.com", target="_blank",
-              :class="{move: mobileSticker}")
-              span.wrap
-                | Подключайтесь и продавайте#[br]
-                | на Trendever
-                span(style="font-weight: bold") &nbspбесплатно
+            template(v-if="index == 2")
+              a.header-sticker.no-desk(
+                href="https://trendever.com", target="_blank",
+                :class="{move: mobileSticker}")
+                span.wrap
+                  | Подключайтесь и продавайте#[br]
+                  | на Trendever
+                  span(style="font-weight: bold") &nbspбесплатно
 
 
-          .image
-            img(:src="block.image")
+            .image
+              img(:src="block.image")
 
-          .text
+            .text
 
-            span(@click="open(index)",
-              @mouseover="openedIndex = index",
-              @mouseleave="openedIndex=''",
-              :class="{ opened: openedIndex === index }")
-              i.ic-info_icon
-              .counter.no-mob {{ words[index]+" функция" }}
-              p.first(v-html="block.text")
-              p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
+              span(@click="open(index)",
+                @mouseover="openedIndex = index",
+                @mouseleave="openedIndex=''",
+                :class="{ opened: openedIndex === index }")
+                i.ic-info_icon
+                .counter.no-mob {{ words[index]+" функция" }}
+                p.first(v-html="block.text")
+                p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
-          //-i.ic-white_arrow_down.no-desk(
-            v-if="openedIndex !== index",@click="open(index)")
+            //-i.ic-white_arrow_down.no-desk(
+              v-if="openedIndex !== index",@click="open(index)")
 
-  slot(name="bottom")
+    slot(name="bottom")
 
 
 </template>
@@ -181,11 +182,14 @@ export default {
 
 #skills {
   position: relative;
-  max-width: 1500px;
-  //margin:  120px auto 0 auto;
-  margin: 0 auto;
+  width: 100%;
   @media (--tabletandless){
     margin-top: 34px;
+  }
+
+  .hole-wrap {
+    max-width: 1500px;
+    margin: 0 auto;
   }
   .title {
     font-size: 45px;
@@ -224,20 +228,23 @@ export default {
       color: $color__brand;
       font-size: 50px;
       font-weight: 900 !important;
-      cursor: pointer;
 
     }
     
 
     .right {
+      cursor: pointer;
       position: absolute;
       top: 50%;
+      padding: 20px 40px;
       right: 10px;
       transform: translateY(-75px);
     }
     .left {
+      cursor: pointer;
       position: absolute;
       left: 10px;
+      padding: 20px 40px;
       top: 50%;
       transform: scale(-1,1) translateY(-75px);
     }
