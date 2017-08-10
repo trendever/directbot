@@ -68,52 +68,33 @@ export function coins_offers (currency, offer_id){
 
 export function balance(){
 	return new Promise((resolve, reject)=>{
-
 		channel
-			.req( 'balance' , 'coins' )
-
-			.then( data => {
-
-				resolve( data.response_map.balance )
-
-			} )
-		
+		.req( 'balance' , 'coins' )
+		.then( data => {
+			resolve( data.response_map.balance )
+		});		
 	})
 }
 
 export function subscribe (plan_id, offer_id, shop_id){
 	return new Promise((resolve, reject)=>{
 		channel.req( 'set_autorefill' , 'monetization' , { offer_id} )
-		.then( data => {
-			console.log("AUTOREFILL:")
-			console.log(data.response_map)
-			
+		.then( data => {			
 			channel.req( 'subscribe' , 'monetization' , { plan_id,shop_id} )
 			.then( subscribe_data => {
-				console.log("SUBSCRIBE:",subscribe_data.response_map);
 				resolve()
 			}).catch(error => reject(error))
 		}).catch(error => reject(error))
-	})
-
+	});
 }
 
 export function buy_coins ( offer_id, gateway, redirect ){
-
 	return new Promise((resolve, reject)=>{
-
-		channel
-
-			.req( 'buy_coins' , 'monetization' , { offer_id, gateway, redirect } )
-
-			.then( data => {
-
-				resolve( data.response_map )
-
-			} )
-		
+		channel.req( 'buy_coins' , 'monetization' , { offer_id, gateway, redirect } )
+		.then( data => {
+			resolve( data.response_map );
+		});		
 	})
-
 }
 
 export function setPendingMonetization(object){
