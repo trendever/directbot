@@ -24,3 +24,14 @@ export function get({ user_id, instagram_name }) {
 
   });
 }
+
+export function create(){
+  return new Promise((resolve,reject)=>{
+    channel.req('create', 'shop')
+    .then( data => {
+      resolve(data.response_map.shop_id);
+    }).catch( error => {
+      reject({ code: ERROR_CODES.NOT_FOUND, response: error });
+    });
+  });
+}

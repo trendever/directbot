@@ -247,7 +247,7 @@ export default {
       this.$router.push( { name: 'monetization' });
     },
     monetizationAction(){
-      if(this.user.plan_id){
+      if(this.user.plan_id && this.user.plan_id != 1){
         this.$router.push({name: 'fake_chat', params:{result: true}, query: {last: 'profile'}})
       } else {
         this.$router.push({name: 'monetization'})

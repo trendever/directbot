@@ -16,6 +16,7 @@
 
 <script>
 
+import * as shop from 'services/shop';
 import scrollTop from 'components/scroll-top';
 import ChatBar from '../chat/chat-bar.vue';
 import ChatHeader from '../chat/chat-header.vue';
@@ -124,16 +125,10 @@ export default {
     sendSuccesMonetizationMessage(){
 
     },
-    processMonetization(lead_id){
+    processMonetization(lead_id,shop_id){
       let pendingMonetization = monetization.getPendingMonetization()
       if (pendingMonetization){
-        //Если у текущего юзера нету магазина, то нам нечего ловить - шлём сообщение в поддержку по этому поводу
-        if (!this.authUserShopId){
-          window.eventHub.$emit("monetization-message",{data: "Ошибка с подключенным магазином - мы уже работаем над решением этой проблемы!"})
-          monetization.unsetPendingMonetization();
-          return
-        }
-
+ 
         let plan_id = pendingMonetization.plan_id
         let offer_id = pendingMonetization.offer.id
         let summ_to_process = pendingMonetization.offer.price
@@ -142,7 +137,7 @@ export default {
         monetization.balance().then((balance) => {
           if (balance >= summ_to_process){
             //подписываемся на всё, а тазем говорим что всё окей и очищаем монетизацию
-            monetization.subscribe(plan_id,offer_id,this.authUserShopId).then(()=> {
+            monetization.subscribe(plan_id,offer_id,shop_id).then(()=> {
               window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
               monetization.unsetPendingMonetization();
               return
@@ -176,7 +171,18 @@ export default {
       }
     },
     run(lead_id){
-      this.processMonetization(lead_id);
+      let shop_id = this.authUserShopId
+      console.log("SHOP ID",shop_id)
+      //Create shop for user, if it not yet created
+      if (!shop_id){
+        shop.create().then((id)=>{
+          console.log("RECIEVED",id)
+          this.processMonetization(lead_id,id);
+        });
+      }else{
+        this.processMonetization(lead_id,shop_id);
+      }
+
       return this.setConversation( lead_id ).then(
           () => {
                   this.$nextTick( () => {
