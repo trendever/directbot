@@ -246,6 +246,9 @@ export default {
 
   .centered {
     top: 330px;
+    @media (--overtablet){
+      top: 30px;
+    }
 
   }
 
