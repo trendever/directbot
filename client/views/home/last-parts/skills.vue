@@ -228,20 +228,23 @@ export default {
       color: $color__brand;
       font-size: 50px;
       font-weight: 900 !important;
-      cursor: pointer;
 
     }
     
 
     .right {
+      cursor: pointer;
       position: absolute;
       top: 50%;
-      right: 50px;
+      padding: 20px 40px;
+      right: 10px;
       transform: translateY(-75px);
     }
     .left {
+      cursor: pointer;
       position: absolute;
-      left: 50px;
+      left: 10px;
+      padding: 20px 40px;
       top: 50%;
       transform: scale(-1,1) translateY(-75px);
     }
