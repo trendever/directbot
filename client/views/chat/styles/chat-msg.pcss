@@ -37,7 +37,7 @@
     font-size: 16px;
     line-height: 20px;
 
-    @media(--mobile) {
+    @media (--tabletandless) {
       font-size: 28px;
       line-height: 36px;
     }
@@ -52,11 +52,15 @@
   &_txt {
     color:#333;
     min-height: 18.6px;
-    font-size: $font__profile__description !important;//16px;
     line-height: 20px;
     max-width: 600px;
     font-family: $font__family__light;
-    @media(--mobile) {
+
+    @media (--overtablet) {
+      font-size: $font__profile__description;
+    }
+
+    @media (--tabletandless) {
       max-width: 560px;
       min-height: 35.35px;
       font-size: 32px;

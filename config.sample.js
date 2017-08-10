@@ -48,8 +48,6 @@ var config = {
 
   bloger_product_id: 30683,
 
-  directbot: true,
-
   trendever: false,
 
   testBrowserStandalone: false
