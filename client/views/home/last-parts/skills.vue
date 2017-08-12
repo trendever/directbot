@@ -10,10 +10,14 @@
         .left(@click="move(false)")
           i.ic-review_arrow_right
 
-      .slide-screen(:style="{marginLeft: marginMove+'px'}")
-        template(v-for="block, index in blocks")
+      //-.slide-screen(:style="{marginLeft: marginMove+'px'}")
+      template(v-for="block, index in blocks")
+
+        transition-group(:name="transName", tag="div")
 
           .block(
+            key="block",
+            v-if="index==currentIndex",
             :class="{'top-margin': index > 0, 'stiker-point': index == 2 }", 
             :data-index="index"
             ref="block")
@@ -73,11 +77,13 @@ export default {
 
   data () {
     return {
+      currentIndex: 0,
       words:["Первая", "Вторая", "Третья"],
       mobileSticker: true,
       openedIndex: null,
       currentScrollIndex: null,
       marginMove: 0,
+      transName: 'slide-right',
       blocks: [
         {
           image: require("./images/info_box_1.png"),
@@ -165,12 +171,24 @@ export default {
 
     move(right){
       let width = this.$refs.block[0].offsetWidth
-      if(!right){
-        if(this.marginMove >= 0) return 
-        this.marginMove += width
+      if(right){
+        this.transName = 'slide-left'
+        if(this.currentIndex>=2){
+          this.currentIndex=0
+          return
+        }
+        this.currentIndex++
+        //if(this.marginMove >= 0) return 
+        //this.marginMove += width
       } else {
-        if(Math.abs(this.marginMove) >= width*2) return
-        this.marginMove -= width
+        this.transName = 'slide-right'
+        if(this.currentIndex<=0){
+          this.currentIndex=2
+          return
+        }
+        this.currentIndex--
+        //if(Math.abs(this.marginMove) >= width*2) return
+        //this.marginMove -= width
       }
     }
   }
@@ -179,6 +197,40 @@ export default {
 
 <style lang="postcss">
 @import 'style/vars/vars.pcss';
+
+
+.slide-left-enter-active {
+  transition: all .5s ease;
+  position: absolute 84px 0 * 35px;
+}
+.slide-left-leave-active {
+  transition: all .5s ease;
+}
+
+.slide-left-enter {
+  transform: translate(100%, 0);
+  opacity: 1;
+}
+.slide-left-leave-to {
+  transform: translate(-100%, 0);
+}
+
+.slide-right-enter-active {
+  transition: all .5s ease;
+  position: absolute 84px 0 * 35px;
+}
+.slide-right-leave-active {
+  transition: all .5s ease;
+}
+
+.slide-right-enter {
+  transform: translate(-100%, 0);
+  opacity: 1;
+}
+.slide-right-leave-to {
+  transform: translate(100%, 0);
+}
+
 
 #skills {
   position: relative;
@@ -252,7 +304,7 @@ export default {
 
   .slide-screen {
     @media (--overtablet) {
-      width: calc(1180px * 3);
+      //width: calc(1180px * 3);
     }
     transition: all 0.4s ease;
   }
