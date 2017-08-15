@@ -63,17 +63,9 @@
   .wrap-landing-title
     .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="!newLanding")
 
-
-      template(v-if="!isMobile")
-        span.top-text CRM для бизнеса#[br.mobile] в Instagram#[br]
-        span.bottom-text.time__text(v-if="!newLanding")
-          | Автоматизация#[br.mobile] работы#[br.desktop]
-          | с клиентами#[br.mobile] и блогерами
-
-      template(v-if="isMobile")
-        span.top-text
-          | Автоматизация#[br.mobile] работы
-          | с клиентами#[br.mobile] и блогерами в #[br] Instagram
+      span.top-text
+        | Ассистент #[br.mobile] продаж #[br]
+        | для бизнеса#[br.mobile] в Instagram
 
 
     .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")

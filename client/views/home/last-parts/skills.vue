@@ -17,7 +17,7 @@
 
           .block(
             key="block",
-            v-if="index==currentIndex",
+            v-if="showBlock(index)",
             :class="{'top-margin': index > 0, 'stiker-point': index == 2 }", 
             :data-index="index"
             ref="block")
@@ -83,7 +83,7 @@ export default {
       openedIndex: null,
       currentScrollIndex: null,
       marginMove: 0,
-      transName: 'slide-right',
+      transName: '',
       blocks: [
         {
           image: require("./images/info_box_1.png"),
@@ -139,6 +139,10 @@ export default {
     };
   },
   methods:{
+    showBlock(index){
+      if(this.isMobile) return true
+      return index==this.currentIndex
+    },
     scrollBlocksAction(i){
       this.$refs.block.forEach(i=>{
         let index = +i.getAttribute('data-index')
