@@ -236,10 +236,29 @@ export default {
       this.$router.push( { name: 'monetization' });
     },
     monetizationAction(){
-      if(this.user.plan_id && this.user.plan_id != 1){
-        this.$router.push({name: 'fake_chat', params:{result: true}, query: {last: 'profile'}})
-      } else {
-        this.$router.push({name: 'monetization'})
+      
+      function push(param){
+        this.$router.push({
+          name: 'fake_chat', 
+          params:{result: param}, 
+          query: {last: 'profile'}
+        })
+      }
+      let plan = this.user.plan_id
+      let suspended = this.user.suspended
+
+      if(plan) {
+        if(suspended && plan==1){
+          this.$router.push({name: 'monetization'})
+          return
+        }
+        if(suspended && plan!=1) {
+          push(false)
+          return
+        }
+        if(!suspended && plan!=1){
+          push('none')
+        }
       }
     },
     findBloger(){
