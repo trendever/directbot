@@ -236,9 +236,9 @@ export default {
       this.$router.push( { name: 'monetization' });
     },
     monetizationAction(){
-      
+      let self = this
       function push(param){
-        this.$router.push({
+        self.$router.push({
           name: 'fake_chat', 
           params:{result: param}, 
           query: {last: 'profile'}
