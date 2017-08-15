@@ -22,10 +22,10 @@
 
       template(v-if="isSelfPage")
         .profile-cash(slot='center-content', @click="monetizationAction").no-desk
-          .circle-none-monet(v-if="monetizationDays==0") !
+          .circle-none-monet(v-if="getAuthUser.suspended") !
           i.ic-wallet-icon
         .profile-cash(slot='action-elements', @click="monetizationAction").no-mob
-          .circle-none-monet(v-if="monetizationDays==0") !
+          .circle-none-monet(v-if="getAuthUser.suspended") !
           i.ic-wallet-icon
 
 
