@@ -81,7 +81,7 @@
 
 
     .set-up.btn-wrap
-          .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
+          .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") РЕГИСТРАЦИЯ
   //-.set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.enter-btn(v-on:click="$router.push({name: 'auth'})")

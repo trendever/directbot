@@ -22,20 +22,22 @@
         .screen-getapp.no-mob
           .contain
             .application-icons(:class="{'trendever': isTrendever}")
-              a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
+              a(href="https://itunes.apple.com/ru/app/trendever/id1124212231",
+                v-if="isTrendever")
                 //-img(src="./hero-imgs/appstore.svg")
                 i.ic-app_store
-              a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
+              a(href="https://play.google.com/store/apps/details?id=com.trendever.app",
+                v-if="isTrendever")
                 //-img(src="./hero-imgs/google_play.svg")
                 i.ic-google_play
               a(href="https://t.me/InstaDirectbot" target="_blank")
                 i.ic-telegram_icon
-              .tooltip
+              .tooltip(v-if="isTrendever")
                 span *сервис для бизнеса в Instagram, 
                 a(src="https://directbot.io", target="_blank") Directbot.io,
                 span доступен в приложении Trendever
           .contain
-            .wrap-input
+            .wrap-input(v-if="isTrendever")
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
             button.button-auth( 
@@ -466,10 +468,15 @@ $color_blue_change: #5986c7;
         clear: both;
         display: inline-block;
         width: 134px;
-
-        
+      }
+      i.ic-telegram_icon {
+        .directbot & {
+          font-size: 60px;
+        }
       }
     }
+
+
     i {
       font-size: 42px;
       color: $color_blue_change;
@@ -584,6 +591,12 @@ $color_blue_change: #5986c7;
         }
       }
 
+      .directbot & {
+        position: relative;
+        left: 0;
+        top: 100px;
+
+      }
     }
   }
 

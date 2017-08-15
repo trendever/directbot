@@ -23,7 +23,7 @@
 
   column-gap: 0px;
 
-  @media (--mobile) {
+  @media (--tabletandless) {
 
     column-count: 2;
 
@@ -70,7 +70,7 @@
 
       //background: whitesmoke;
 
-      @media (--mobile) {
+      @media (--tabletandless) {
         width: calc(50% - 2px);
       }
 
@@ -120,7 +120,7 @@
         &:nth-child(3n+3) {
           margin-right: 0;
         }
-        @media (--mobile) {
+        @media (--tabletandless) {
           margin-bottom: 2px;
 
           .photo__description {
@@ -165,12 +165,9 @@
       word-spacing: -1px;
       margin-right: 5px;
       font-family: $font__family__regular;
-
-      .directbot & {
-        color: $color__brand;
-      }
-
-      @media(--mobile) {
+      color: $color__brand;
+      
+      @media(--tabletandless) {
         font-size: 28px;
         word-spacing: -1px;
       }
@@ -182,7 +179,7 @@
         font-weight: lighter;
         line-height: 17px;
         margin-left: 3px;
-        @media(--mobile) {
+        @media(--tabletandless) {
           font-size: 26px;
           line-height: 30px;
         }
@@ -194,7 +191,7 @@
       color: rgb(128, 128, 128);
       font-family: $font__family__light;
 
-      @media(--mobile) {
+      @media(--tabletandless) {
         height: 26px;
         font-size: 28px;
       }
@@ -211,7 +208,7 @@
       color: #ccc;
       font-size: 16px;
       font-family: $font__family__light;
-      @media(--mobile) {
+      @media(--tabletandless) {
         font-size: 28px;
       }
     }
