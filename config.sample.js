@@ -38,6 +38,8 @@ var config = {
 
   edit_product_id: 32929,
 
+  connect_assistant_id: 43641,
+
   service_product_id: 32158,
 
   promo_product_id: 21499,

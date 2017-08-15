@@ -213,8 +213,8 @@ export default {
   },
 
   methods: {
-    connectAsistent(){
-      return
+    connectAssistant(){
+      this.openMenuProduct(config.connect_assistant_id)
     },
     ConnectNoimage(){
       if(!this.getUserPhoto && this.isSelfPage)this.$router.push({name: "connect-bot"})
@@ -227,18 +227,7 @@ export default {
       this.$router.push({name: "agreement" } )
     },
     openOptions(){
-      this.$store
-        .dispatch("createLead", config.options_product_id )
-        .then(
-          ( lead ) => {
-            if ( lead !== undefined && lead !== null ) {
-              this.$router.go( { name: 'chat', params: { id: lead.id } } )
-            }
-          }
-        )
-        .catch(()=>{
-          console.warn("NO LEAD '32158'")
-        })
+      this.openMenuProduct(config.options_product_id)
     },
     backArrow(){
       window.history.back();

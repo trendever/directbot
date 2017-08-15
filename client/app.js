@@ -39,6 +39,22 @@ Vue.mixin({
       } else {
         window.open('https://directbot.io/profile?token=' + this.$store.state.user.token)
       }
+    },
+    openMenuProduct(product_id){
+      this
+        .$store
+        .dispatch("createLead", product_id )
+        .then(
+          ( lead ) => {
+            if ( lead !== undefined && lead !== null ) {
+              this.$router.push( { name: 'chat', params: { id: lead.id } } )
+            }
+          }
+        )
+        .catch(()=>{
+          console.warn(`NO LEAD '${product_id}'`)
+        })
+
     }
   }
 });
