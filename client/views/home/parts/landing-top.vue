@@ -7,8 +7,7 @@
 
   phone-component(:phone="'tel:+79854107012'")
 
-  .telegram_logo
-    //-.text интегрирован
+  //-.telegram_logo
     img(src="../img/telegram_logo.svg")
 
   brand-menu
