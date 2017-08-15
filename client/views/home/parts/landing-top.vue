@@ -72,8 +72,9 @@
 
 
     .set-up.btn-wrap
-      i.ic-telegram_icon
       .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") РЕГИСТРАЦИЯ
+      a(href="https://t.me/InstaDirectbot" target="_blank")
+        i.ic-telegram_icon
   //-.set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.enter-btn(v-on:click="$router.push({name: 'auth'})")
@@ -589,8 +590,11 @@ a.header-sticker {
       width: initial;
       border-radius: 15px !important;
       vertical-align: middle;
-      height: 120px;
-      margin-left: 5px;
+      width: 337px;
+      height: 107px;
+      margin-right: 5px;
+      line-height: 100px;
+      padding: 0;
     }
 
     i.ic-telegram_icon {
@@ -598,9 +602,9 @@ a.header-sticker {
       display: inline-block;
       color: white;
       margin-top: 20px;
-      font-size: 120px;
-       margin-right: 5px;
-       margin-bottom: 5px;
+      font-size: 105px;
+      margin-left: 5px;
+      margin-bottom: 6px;
     }
     
 
