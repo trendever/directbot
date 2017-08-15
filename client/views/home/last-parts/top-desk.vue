@@ -38,12 +38,9 @@ export default {
   data () {
     return {
       title:`
-
-        Ассистент продаж 
+        Ассистент продаж для  
         <br />
-        для бизнеса
-        <br /> 
-        в Instagram
+        бизнеса в Instagram
       `
     };
   }
