@@ -64,16 +64,16 @@
     .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="!newLanding")
 
       span.top-text
-        | Ассистент #[br.mobile] продаж #[br]
-        | для бизнеса#[br.mobile] в Instagram
-
+        | Ассистент продаж #[br]
+        | для бизнеса в#[br.mobile]  Instagram
 
     .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
       | CRM для бизнеса#[br.mobile] в Instagram
 
 
     .set-up.btn-wrap
-          .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") РЕГИСТРАЦИЯ
+      i.ic-telegram_icon
+      .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") РЕГИСТРАЦИЯ
   //-.set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.enter-btn(v-on:click="$router.push({name: 'auth'})")
@@ -583,6 +583,27 @@ a.header-sticker {
         margin-top: 0px;
       }
     }
+
+    .big-landing-btn {
+      display: inline-block;
+      width: initial;
+      border-radius: 15px !important;
+      vertical-align: middle;
+      height: 120px;
+      margin-left: 5px;
+    }
+
+    i.ic-telegram_icon {
+      vertical-align: middle;
+      display: inline-block;
+      color: white;
+      margin-top: 20px;
+      font-size: 120px;
+       margin-right: 5px;
+       margin-bottom: 5px;
+    }
+    
+
   }
 }
 
