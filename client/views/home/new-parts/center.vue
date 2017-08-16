@@ -2,12 +2,15 @@
 
 .wrap-advert.center-landing
 
-  .__title Полный доступ#[br.mobile] к функционалу#[br.desktop] CRM Directbot стоит от
+  .__title 
+    | Полный доступ#[br.mobile] к функционалу#[br.desktop] CRM Directbot 
+    //-|стоит от
   .advert-price
     .c-element
-      span 590
-      i.ic-rub
-    p в месяц
+      //-span 590
+      span.free БЕСПЛАТНО
+      //-i.ic-rub
+    //-p в месяц
   //-.advert-ps
     | *позвлоляет подключить до 5 менеджеров#[br.mobile] отдновременно
 
@@ -70,6 +73,16 @@ export default {
     }
     @media (--overtablet){
       font-family: $font__family__light;
+    }
+  }
+
+  span.free {
+    @media (--overtablet) {
+      font-size: 50px;
+    }
+
+    @media (--tabletandless) {
+      font-size: 70px;
     }
   }
 }

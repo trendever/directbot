@@ -38,11 +38,9 @@ export default {
   data () {
     return {
       title:`
-        Автоматизация работы
+        Ассистент продаж для  
         <br />
-        с клиентами и блогерами
-        <br />
-        в Instagram
+        бизнеса в Instagram
       `
     };
   }

@@ -7,8 +7,7 @@
 
   phone-component(:phone="'tel:+79854107012'")
 
-  .telegram_logo
-    //-.text интегрирован
+  //-.telegram_logo
     img(src="../img/telegram_logo.svg")
 
   brand-menu
@@ -63,25 +62,18 @@
   .wrap-landing-title
     .description(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="!newLanding")
 
-
-      template(v-if="!isMobile")
-        span.top-text CRM для бизнеса#[br.mobile] в Instagram#[br]
-        span.bottom-text.time__text(v-if="!newLanding")
-          | Автоматизация#[br.mobile] работы#[br.desktop]
-          | с клиентами#[br.mobile] и блогерами
-
-      template(v-if="isMobile")
-        span.top-text
-          | Автоматизация#[br.mobile] работы
-          | с клиентами#[br.mobile] и блогерами в #[br] Instagram
-
+      span.top-text
+        | Ассистент продаж #[br]
+        | для бизнеса в#[br.mobile]  Instagram
 
     .description.new-land(:class="{'bottom-fix': isSafari || isFacebok && !isInstagram }", v-if="newLanding")
       | CRM для бизнеса#[br.mobile] в Instagram
 
 
     .set-up.btn-wrap
-          .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") ПОПРОБОВАТЬ БЕСПЛАТНО
+      .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") РЕГИСТРАЦИЯ
+      a(href="https://t.me/InstaDirectbot" target="_blank")
+        i.ic-telegram_icon
   //-.set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.enter-btn(v-on:click="$router.push({name: 'auth'})")
@@ -591,6 +583,30 @@ a.header-sticker {
         margin-top: 0px;
       }
     }
+
+    .big-landing-btn {
+      display: inline-block;
+      width: initial;
+      border-radius: 15px !important;
+      vertical-align: middle;
+      width: 337px;
+      height: 107px;
+      margin-right: 5px;
+      line-height: 100px;
+      padding: 0;
+    }
+
+    i.ic-telegram_icon {
+      vertical-align: middle;
+      display: inline-block;
+      color: white;
+      margin-top: 20px;
+      font-size: 105px;
+      margin-left: 5px;
+      margin-bottom: 6px;
+    }
+    
+
   }
 }
 

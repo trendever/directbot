@@ -213,8 +213,8 @@ export default {
   },
 
   methods: {
-    connectAsistent(){
-      return
+    connectAssistant(){
+      this.openMenuProduct(config.connect_assistant_id)
     },
     ConnectNoimage(){
       if(!this.getUserPhoto && this.isSelfPage)this.$router.push({name: "connect-bot"})
@@ -227,18 +227,7 @@ export default {
       this.$router.push({name: "agreement" } )
     },
     openOptions(){
-      this.$store
-        .dispatch("createLead", config.options_product_id )
-        .then(
-          ( lead ) => {
-            if ( lead !== undefined && lead !== null ) {
-              this.$router.go( { name: 'chat', params: { id: lead.id } } )
-            }
-          }
-        )
-        .catch(()=>{
-          console.warn("NO LEAD '32158'")
-        })
+      this.openMenuProduct(config.options_product_id)
     },
     backArrow(){
       window.history.back();
@@ -247,10 +236,29 @@ export default {
       this.$router.push( { name: 'monetization' });
     },
     monetizationAction(){
-      if(this.user.plan_id && this.user.plan_id != 1){
-        this.$router.push({name: 'fake_chat', params:{result: true}, query: {last: 'profile'}})
-      } else {
-        this.$router.push({name: 'monetization'})
+      let self = this
+      function push(param){
+        self.$router.push({
+          name: 'fake_chat', 
+          params:{result: param}, 
+          query: {last: 'profile'}
+        })
+      }
+      let plan = this.user.plan_id
+      let suspended = this.user.suspended
+
+      if(plan) {
+        if(suspended && plan==1){
+          this.$router.push({name: 'monetization'})
+          return
+        }
+        if(suspended && plan!=1) {
+          push(false)
+          return
+        }
+        if(!suspended && plan!=1){
+          push('none')
+        }
       }
     },
     findBloger(){

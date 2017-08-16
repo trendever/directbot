@@ -9,7 +9,7 @@
 </style>
 
 <template lang="pug">
-#app.directbot(:class="{'standalone': isStandalone }")
+#app(:class="{'standalone': isStandalone, directbot: !isTrendever }")
   //-.landing-background(v-if="$route.name=='home'&&!isTrendever")
 
   .router-header(v-if="$route.name!='home'")
@@ -92,7 +92,7 @@ export default {
       authDone: false,
       monetizationDone: false,
       isStandalone: isStandalone(),
-      isTrendever: config.isTrendever,
+      isTrendever: config.trendever,
       noSockConnection: false,
       transName: '',
 

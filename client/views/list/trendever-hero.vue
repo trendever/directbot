@@ -21,27 +21,37 @@
 
         .screen-getapp.no-mob
           .contain
-            .application-icons(:class="{'trendever': isTrendever}")
-              a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
-                //-img(src="./hero-imgs/appstore.svg")
-                i.ic-app_store
-              a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
-                //-img(src="./hero-imgs/google_play.svg")
-                i.ic-google_play
-              a(href="https://t.me/InstaDirectbot" target="_blank")
-                i.ic-telegram_icon
-              .tooltip
-                span *сервис для бизнеса в Instagram, 
-                a(src="https://directbot.io", target="_blank") Directbot.io,
-                span доступен в приложении Trendever
+            template(v-if="isTrendever")
+              .application-icons(:class="{'trendever': isTrendever}")
+                a(href="https://itunes.apple.com/ru/app/trendever/id1124212231")
+                  //-img(src="./hero-imgs/appstore.svg")
+                  i.ic-app_store
+                a(href="https://play.google.com/store/apps/details?id=com.trendever.app")
+                  //-img(src="./hero-imgs/google_play.svg")
+                  i.ic-google_play
+                a(href="https://t.me/InstaDirectbot" target="_blank")
+                  i.ic-telegram_icon
+                .tooltip
+                  span *сервис для бизнеса в Instagram, 
+                  a(src="https://directbot.io", target="_blank") Directbot.io,
+                  span доступен в приложении Trendever
           .contain
-            .wrap-input
+            .wrap-input(v-if="isTrendever")
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
+            
             button.button-auth( 
               :class="{trendever: isTrendever}",
               @click="$router.push({name: 'auth'})"
-              ) Зарегистрироваться
+              ) 
+              template(v-if="isTrendever") Зарегистрироваться
+              template(v-else) Регистрация 
+
+            template(v-if="!isTrendever")
+              a(href="https://t.me/InstaDirectbot" target="_blank",
+                  v-if="!isTrendever")
+                  i.ic-telegram_icon
+
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
     .how-btn(@click="scrollFirst"): span КАК ЭТО РАБОТАЕТ?
@@ -293,6 +303,13 @@ $color_blue_change: #5986c7;
         @media screen and (max-height:800px){
           transform: translateY(-70px);
         }
+
+        .directbot & {
+          @media screen and (max-height:800px){
+            transform: translateY(-8px);
+          }
+
+        }
       }
     }
   }
@@ -445,6 +462,16 @@ $color_blue_change: #5986c7;
     }
   }
 
+  i.ic-telegram_icon {
+    .directbot & {
+      font-size: 60px;
+      color: $color_blue_change;
+      vertical-align: bottom;
+      margin-bottom: 15px;
+      margin-left: 10px;
+    }
+  }
+
   .application-icons {
     line-height: initial;
     display: block;
@@ -466,10 +493,10 @@ $color_blue_change: #5986c7;
         clear: both;
         display: inline-block;
         width: 134px;
-
-        
       }
     }
+
+
     i {
       font-size: 42px;
       color: $color_blue_change;
@@ -584,6 +611,15 @@ $color_blue_change: #5986c7;
         }
       }
 
+      .directbot & {
+        position: relative;
+        left: 0;
+        top: 100px;
+        height: 60px;
+        border-width: 2px;
+        font-family: $font__family__semibold;
+        border-radius: 8px;
+      }
     }
   }
 
