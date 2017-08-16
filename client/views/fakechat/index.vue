@@ -47,7 +47,7 @@ export default {
   mounted(){
 
     switch (this.$route.params.result){
-      case "true": this.action = "subscibe"; break;
+      case "true": this.action = "subscribe"; break;
       case "false": this.action = "error"; break;
       default: break;
     }
@@ -127,7 +127,7 @@ export default {
     },
     processMonetization(lead_id,shop_id){
       let pendingMonetization = monetization.getPendingMonetization()
-      if (pendingMonetization){
+      if (pendingMonetization && this.action == 'subscribe'){
  
         let plan_id = pendingMonetization.plan_id
         let offer_id = pendingMonetization.offer.id
@@ -138,7 +138,7 @@ export default {
           if (balance >= summ_to_process){
             //подписываемся на всё, а тазем говорим что всё окей и очищаем монетизацию
             monetization.subscribe(plan_id,offer_id,shop_id).then(()=> {
-              window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
+              window.eventHub.$emit("monetization-message",{data: "Ваш тарифный план (" + plan_name + ") активирован!"})
               monetization.unsetPendingMonetization();
               return
             });
@@ -161,7 +161,7 @@ export default {
                 if (balance >= summ_to_process){
                   clearInterval(i)
                   this.fakeMessage = false;
-                  window.eventHub.$emit("monetization-message",{data: "Выбранный тариф активирован (" + plan_name + ")"})
+                  window.eventHub.$emit("monetization-message",{data: "Ваш тарифный план (" + plan_name + ") активирован!"})
                   monetization.unsetPendingMonetization();
                 }
               });
@@ -169,14 +169,14 @@ export default {
           }
         });
       }
+      if (this.action == 'error'){
+        window.eventHub.$emit("monetization-message",{data: "Возникла ошибка при снятии денег. Пожалуйста проверьте баланс карты или <a href='/monetization'>привежите новую</a>."})
+      }
     },
     run(lead_id){
       let shop_id = this.authUserShopId
-      console.log("SHOP ID",shop_id)
-      //Create shop for user, if it not yet created
       if (!shop_id){
         shop.create().then((id)=>{
-          console.log("RECIEVED",id)
           this.processMonetization(lead_id,id);
         });
       }else{
