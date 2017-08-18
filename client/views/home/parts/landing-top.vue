@@ -599,7 +599,7 @@ a.header-sticker {
       padding: 0;
       i {
         font-size: 55px;
-        transform: translate(-4px,22px);
+        transform: translate(-6px,25px);
       }
     }
   }
