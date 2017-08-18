@@ -41,16 +41,15 @@
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
             
             button.button-auth( 
+              v-if="isTrendever"
               :class="{trendever: isTrendever}",
               @click="$router.push({name: 'auth'})"
-              ) 
-              template(v-if="isTrendever") Зарегистрироваться
-              template(v-else) Регистрация 
+              ) Регистрация 
 
-            template(v-if="!isTrendever")
-              a(href="https://t.me/InstaDirectbot" target="_blank",
-                  v-if="!isTrendever")
-                  i.ic-telegram_icon
+            .directbot-hero-btns(v-if="!isTrendever")
+              button(@click="$router.push({name: 'auth'})") Регистрация
+              button(@click="windowOpen('https://t.me/InstaDirectbot')" target="_blank")
+                  i.ic-telegram-icon_none-border
 
 
     .auth-btn(@click="$router.push({name: 'auth'})"): span ВХОД И РЕГИСТРАЦИЯ
@@ -162,6 +161,9 @@ export default {
     }
   },
   methods:{
+    windowOpen(href){
+      window.open(href)
+    },
     goVideo(){this.$router.push({name: "video-trendever"})},
     scrollFirst() {
       JQuery(document.body).animate({scrollTop: window.innerHeight},450);
@@ -192,6 +194,40 @@ export default {
 $dark_green_btn: #095609;
 $wrap__width: 470px;
 $color_blue_change: #5986c7;
+
+
+.directbot-hero-btns {
+  width: 420px;
+  button {
+    vertical-align: bottom;
+    width: 200px;
+    display: inline-block;
+    font-size: 21px;
+    height: 60px;
+    border-radius: 8px;
+    border: 2px solid $color_blue_change;
+    color: $color_blue_change;
+    background: transparent;
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-family: $font__family__semibold;
+    &:hover {
+      color: white;
+      background: $color_blue_change;
+      cursor: pointer;
+    }
+  }
+
+  i {
+    font-size: 32px; 
+    transform: translate(-2px,1px); 
+
+  }
+
+
+}
+
+
 .screen-one {
   position: relative;
   .social-icons {

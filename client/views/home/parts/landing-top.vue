@@ -72,8 +72,8 @@
 
     .set-up.btn-wrap
       .big-landing-btn.white(v-on:click="$router.push({name: 'auth'})") РЕГИСТРАЦИЯ
-      a(href="https://t.me/InstaDirectbot" target="_blank")
-        i.ic-telegram_icon
+      .big-landing-btn.white(@click="windowOpen('https://t.me/InstaDirectbot')" target="_blank")
+        i.ic-telegram-icon_none-border
   //-.set-up
     button(v-on:click="$router.push({name: 'auth'})").set-up-btn ПОПРОБОВАТЬ БЕСПЛАТНО
   button.enter-btn(v-on:click="$router.push({name: 'auth'})")
@@ -100,6 +100,9 @@ export default {
     }
   },
   methods:{
+    windowOpen(href){
+      window.open(href)
+    },
     showPhone(){
       window.eventHub.$emit('popup-show-phone', '+79854107012');
     }
@@ -594,19 +597,11 @@ a.header-sticker {
       margin-right: 5px;
       line-height: 100px;
       padding: 0;
+      i {
+        font-size: 55px;
+        transform: translate(-4px,22px);
+      }
     }
-
-    i.ic-telegram_icon {
-      vertical-align: middle;
-      display: inline-block;
-      color: white;
-      margin-top: 20px;
-      font-size: 105px;
-      margin-left: 5px;
-      margin-bottom: 6px;
-    }
-    
-
   }
 }
 
