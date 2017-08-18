@@ -44,7 +44,7 @@
               v-if="isTrendever"
               :class="{trendever: isTrendever}",
               @click="$router.push({name: 'auth'})"
-              ) Регистрация 
+              ) Зарегистрироваться
 
             .directbot-hero-btns(v-if="!isTrendever")
               button(@click="$router.push({name: 'auth'})") Регистрация
