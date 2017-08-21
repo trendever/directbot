@@ -3,7 +3,7 @@
 
 
 @define-mixin before__bg {
-  opacity: 0.6;
+  opacity: 0.45;
   content: "";
   display: block;
   position: fixed;
@@ -33,21 +33,21 @@
   ._blue { color: $color__brand }
   .product-username { display: inline-block}
 
-/*   &.directbot-bg:before {
+  &.directbot-bg:before {
     @media (--tabletandless){
       background-size: cover;
-      background: url(../../../style/pattern/blue_light_mob.svg) no-repeat center center;
+      background: url(../../../style/pattern/blue_light_mob.svg);
     }
     @mixin before__bg;
   }
   &.trendever-bg:before {
     @media (--tabletandless){
       background-size: cover;
-      background: url(../../../style/pattern/green_light_mob.svg)  no-repeat center center;
+      background: url(../../../style/pattern/green_light_mob.svg) ;
     }
     @mixin before__bg;
   }
- */
+
 }
 
 .chat-shadow {
