@@ -272,3 +272,18 @@ export function deleteProduct( product_id ) {
 
   } );
 }
+
+export function editProduct (product){
+  return new Promise((resolve, reject)=>{
+    channel.req('edit', 'product', product)
+      .then(data=>{
+        if ( data.response_map.success) {
+          resolve( data.response_map );
+        } else {
+          reject( { success: false } );
+        }
+      }).catch( error => {
+        reject( { code: ERROR_CODES.SERVER_ERROR, response: error } );
+      })
+  })
+}

@@ -74,25 +74,29 @@ export const getLastProduct = ( state ) => {
 
 export const getOpenedProduct = ( products ) => products.openedProduct;
 
-export const getScrollTopOfProduct = ( products ) => {
+// export const getScrollTopOfProduct = ( products ) => {
+//   console.log("-------------------------------------->")
+//   console.log(products)
+//   return
+//   if( products.openedProduct )
 
-  if ( products.openedProduct !== null ) {
+//   if ( products.openedProduct !== null ) {
 
-    if ( products.openedProduct.hasOwnProperty( 'id' ) ) {
+//     if ( products.openedProduct && products.openedProduct.hasOwnProperty( 'id' ) ) {
 
-      if ( products.saveScrollByProduct.hasOwnProperty( products.openedProduct.id ) ) {
+//       if ( products.saveScrollByProduct.hasOwnProperty( products.openedProduct.id ) ) {
 
-        return products.saveScrollByProduct[ products.openedProduct.id ];
+//         return products.saveScrollByProduct[ products.openedProduct.id ];
 
-      }
+//       }
 
-    }
+//     }
 
-  }
+//   }
 
-  return 0;
+//   return 0;
 
-};
+// };
 
 export const isLiked = ( state ) => {
 
@@ -104,7 +108,7 @@ export const isLiked = ( state ) => {
 
       for ( let i = product.liked_by.length; i; i-- ) {
 
-        if ( store.getters.userID( state ) === product.liked_by[ i - 1 ].id && store.getters.isAuth(state)) {
+        if ( store.getters.userID === product.liked_by[ i - 1 ].id && store.getters.isAuth(state)) {
 
           return true;
 
