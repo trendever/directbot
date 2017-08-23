@@ -32,16 +32,16 @@
                 a(href="https://t.me/InstaDirectbot" target="_blank")
                   i.ic-telegram_icon
                 .tooltip
-                  span *сервис для бизнеса в Instagram, 
+                  span *сервис для бизнеса в Instagram,
                   a(src="https://directbot.io", target="_blank") Directbot.io,
                   span доступен в приложении Trendever
           .contain
             .wrap-input(v-if="isTrendever")
               input(type="text" placeholder="Номер телефона" v-model="phoneNumber" @keydown.enter="getLink")
               button(:disable="disableButton" @click="getLink").app-btn {{ getLinkTitle }}
-            
-            button.button-auth( 
-              v-if="isTrendever"
+
+            button.button-auth(
+              v-if="isTrendever",
               :class="{trendever: isTrendever}",
               @click="$router.push({name: 'auth'})"
               ) Зарегистрироваться
@@ -219,9 +219,13 @@ $color_blue_change: #5986c7;
   }
 
   i {
-    font-size: 32px; 
-    transform: translate(-2px,1px); 
+    font-size: 32px;
+    transform: translate(-2px,1px);
 
+  }
+
+  @media screen and (min-height: 800px){
+    transform: translateY(40px);
   }
 
 
@@ -246,6 +250,14 @@ $color_blue_change: #5986c7;
       width: 80px;
       @media screen and (max-height:800px){
           transform: translateY(-70px);
+      }
+
+      .directbot & {
+
+        @media screen and (min-height:800px){
+            transform: translateY(-52px);
+        }
+
       }
     }
 
@@ -524,7 +536,7 @@ $color_blue_change: #5986c7;
       display: inline-block;
       margin: 0 5px 5px 0;
       vertical-align: middle;
-      height: 42px; 
+      height: 42px;
       img {
         clear: both;
         display: inline-block;
@@ -575,7 +587,7 @@ $color_blue_change: #5986c7;
 
     }
 
-    
+
     .wrap-input {
       border: 1px solid $color__gray;
       margin: 3px auto 0 auto;
@@ -624,7 +636,7 @@ $color_blue_change: #5986c7;
       background: transparent;
       position: absolute 3px -280px * *;
       border: 1px solid $color_blue_change;
-      line-height:initial; 
+      line-height:initial;
       padding: 0 20px;
       height:50px;
       border-radius: 5px;
