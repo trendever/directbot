@@ -1,7 +1,7 @@
 <template lang="pug">
 .search-text(slot="center-content")
 
-  .search-input
+  .search-input(:class="{'fix-h': !isAuth}")
 
     input(
       @click="$event.target.focus()",
@@ -87,9 +87,13 @@ export default {
       margin-right: 160px;
     }
 
-    @media (--tabletandless) {
+    @media (--tabletandless) {  
       height: inherit;
       background: white;
+      &.fix-h {
+        margin-top: 1px;
+        height: 90px !important;
+      }
     }
 
     input {
