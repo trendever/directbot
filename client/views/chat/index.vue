@@ -55,6 +55,8 @@ import { mapGetters, mapActions } from 'vuex';
 import * as messages from 'services/message';
 import * as leads from 'services/leads';
 import store from 'root/store'
+import * as productService from 'root/services/products'
+import {getLeadByConversationId} from 'root/store/getters/lead'
 
 
 //components
@@ -115,6 +117,7 @@ export default {
 
   data(){
     return {
+      loaded: false,
       needLoadMessage: true,
       lead_id: null,
       showLoader: true,
@@ -129,6 +132,36 @@ export default {
     isDoneLead( done ){
       if ( done ) {
         return this.run();
+      }
+    },
+    messagesList(val){
+      let id = this.$store.state.conversation.id
+      if(id){
+        let lead =  getLeadByConversationId(this.$store.state.lead,id)
+        if(this.loaded) return
+        this.loaded = true
+        this.$store
+          .dispatch("openProduct",lead.products[0].id)
+          .then(()=>{
+            if(val.length>0) {
+              let answer = val.find(i=>{
+                if(i.user){
+                  return i.user.role==4
+                }
+              })
+              if(answer) {
+                let p = this.getOpenedProduct
+                if(p.id && !p.chat_message){
+                  let role = this.getCurrentMember.role
+                  let accept = [2,3,4]
+                  if(accept.indexOf(role)!=-1){
+                    p.chat_message = answer.parts[0].content
+                    productService.editProduct(p)
+                  }
+                }
+              }  
+            }
+          })
       }
     }
   },
@@ -219,6 +252,7 @@ export default {
     },
 
     ...mapGetters([
+      'getOpenedProduct',
       'fakeAction',
       'isFake',
       'imgPopUpUrl',
