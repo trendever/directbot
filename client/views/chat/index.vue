@@ -136,6 +136,7 @@ export default {
     },
     messagesList(val){
       let id = this.$store.state.conversation.id
+      let accept = [2,3,4]
       if(id){
         let lead =  getLeadByConversationId(this.$store.state.lead,id)
         if(this.loaded) return
@@ -146,14 +147,14 @@ export default {
             if(val.length>0) {
               let answer = val.find(i=>{
                 if(i.user){
-                  return i.user.role==4
+                  return accept.indexOf(i.user.role) != -1
                 }
               })
               if(answer) {
                 let p = this.getOpenedProduct
+                console.log(p)
                 if(p.id && !p.chat_message){
                   let role = this.getCurrentMember.role
-                  let accept = [2,3,4]
                   if(accept.indexOf(role)!=-1){
                     p.chat_message = answer.parts[0].content
                     productService.editProduct(p)
