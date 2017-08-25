@@ -215,7 +215,7 @@ export default {
       return this.getNotifyCountList[ this.lead.id ];
 
     },
-    recentMessage(){
+    recentMessagee(){
       const msgObj = this.getLastMessage[ this.lead.id ];
       if ( msgObj && msgObj.message) {
         msgObj.message = msgObj.message.replace(/₽/g, '&nbsp;<i class="ic-currency-rub"></i> ');
