@@ -133,40 +133,9 @@ export default {
       if ( done ) {
         return this.run();
       }
-    },
-    messagesList(val){
-      let id = this.$store.state.conversation.id
-      let accept = [2,3,4]
-      if(id){
-        let lead =  getLeadByConversationId(this.$store.state.lead,id)
-        if(this.loaded) return
-        this.loaded = true
-        this.$store
-          .dispatch("openProduct",lead.products[0].id)
-          .then(()=>{
-            if(val.length>0) {
-              let answer = val.find(i=>{
-                if(i.user){
-                  return accept.indexOf(i.user.role) != -1
-                }
-              })
-              if(answer) {
-                let p = this.getOpenedProduct
-                console.log(p)
-                if(p.id && !p.chat_message){
-                  let role = this.getCurrentMember.role
-                  if(accept.indexOf(role)!=-1){
-                    p.chat_message = answer.parts[0].content
-                    productService.editProduct(p)
-                  }
-                }
-              }  
-            }
-          })
-      }
     }
   },
-
+ 
 
   created(){
     //open chat
@@ -274,6 +243,35 @@ export default {
 
   },
   methods: {
+    setDefaultProductMessage(){
+      let id = this.$store.state.conversation.id
+      let role = this.getCurrentMember.role
+      let accept = [2,3,4]
+        if(id && accept.indexOf(role)!=-1){
+          let lead =  getLeadByConversationId(this.$store.state.lead,id)
+          if(this.loaded) return
+          this.loaded = true
+          this.$store
+            .dispatch("openProduct",lead.products[0].id)
+            .then(()=>{
+              if(this.messagesList.length>0) {
+                let answer = this.messagesList.find(i=>{
+                  if(i.user){
+                    return accept.indexOf(i.user.role) != -1
+                  }
+                })
+                if(answer) {
+                  let p = this.getOpenedProduct
+                  console.log(p)
+                  if(p.id && !p.chat_message){
+                    p.chat_message = answer.parts[0].content
+                    productService.editProduct(p)
+                  }
+                }  
+              }
+            })
+        }
+    },
     ...mapActions([
 
       'setConversationAction',
@@ -421,10 +419,10 @@ export default {
 
       }
 
-
       Promise.resolve().then(()=>{
 
         this.$nextTick( this.goToBottom );
+        this.setDefaultProductMessage()
 
       })
     },
