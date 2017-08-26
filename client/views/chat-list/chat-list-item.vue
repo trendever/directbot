@@ -156,7 +156,7 @@ export default {
 
         if ( this.lead.products.length > 0 ) {
 
-          console.log(this.lead.products)
+          //console.log(this.lead.products)
           
 
           const { instagram_images } = this.lead.products[ 0 ];
@@ -219,6 +219,7 @@ export default {
       const msgObj = this.getLastMessage[ this.lead.id ];
       if ( msgObj && msgObj.message) {
         msgObj.message = msgObj.message.replace(/₽/g, '&nbsp;<i class="ic-currency-rub"></i> ');
+        msgObj.user_name = this.lead.shop.instagram_username
         return msgObj;
       }
       return {

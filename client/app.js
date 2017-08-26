@@ -16,8 +16,8 @@ const app = new Vue({
 
 
 Vue.config.errorHandler = function (err) {
+  console.error("ОШИБКА!")
   console.log(err);
-  alert("ОШИБКА!")
 }
 
 
