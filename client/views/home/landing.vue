@@ -665,13 +665,14 @@ $tablet__ball: 135px;
     width: 100%;
     text-align: center;
     margin-top: 20px;
-
+    
 
     &.bottom-margin {
       margin-bottom: 20px;
     }
 
     @media (--tabletandless){
+       margin-top: 60px;
        margin-bottom: 60px;
     }
 

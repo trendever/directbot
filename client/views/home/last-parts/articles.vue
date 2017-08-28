@@ -41,8 +41,10 @@
                 .arrow-left.centered(@click="previous(index)")
                   i.ic-review_arrow_right
 
-            p(v-html="article.text")
-            .ps(v-html="article.author")
+
+            .w_p
+              p(v-html="article.text")
+              .ps(v-html="article.author")
 
   slot(name="bottom")
 
@@ -367,6 +369,10 @@ export default {
 
 
         @media (--tabletandless){
+          .w_p {
+            background: rgba(94, 139, 206,.8);
+            color: white;
+          }
 
           p {
             text-align: left !important;
