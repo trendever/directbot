@@ -175,7 +175,7 @@
           .profile_insta-link.info.no-mob(
             v-if="!isTrendever",
             :class="{ directbot: true,'margin-top': !isMoreClass }")
-            .insta-link-text Cсылка сюда&nbsp
+            .insta-link-text cсылка сюда&nbsp
             .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
 
       template(v-if="loaded && isSelfPage")
@@ -207,7 +207,7 @@
       .profile_insta-link.no-desk(
         v-if="!isTrendever && isMoreClass",
         :class="{ directbot: true,'margin-top': !isMoreClass }")
-        .insta-link-text Cсылка сюда&nbsp
+        .insta-link-text cсылка сюда&nbsp
         .insta-link(ref="instaLink") {{ getUserNameLinked }}.{{ source }}
 
       connect-button(v-if="isSelfPage && isMobile && !botActivity")
