@@ -13,8 +13,6 @@
     .s-icon(@click='search(), $refs.search.focus()')
       i.ic-search.__mirror
 
-
-
     .tags-count(v-if="selectedTagsId.length", @click="clear")
       span {{ selectedTagsId.length }}
 

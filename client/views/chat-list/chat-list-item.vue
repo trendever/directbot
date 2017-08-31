@@ -24,7 +24,7 @@
 
       .body-last-msg
         p
-          b(v-if="recentMessage.user_name.length > 0")
+          b(v-if="showAnotherName")
             | {{recentMessage.user_name=='trendevercom'?'':recentMessage.user_name + ":" }}
           span(v-html="recentMessage.message")
         .body-notify(v-if='unreadCount')
@@ -188,6 +188,11 @@ export default {
       'getLastMessage',
       'getLeadTab'
     ]),
+    showAnotherName(){
+      if(this.recentMessage.user_name){
+        return this.recentMessage.user_name.length > 0
+      } 
+    },
     noProducts(){
       return !(Array.isArray( this.lead.products ) && this.lead.products.length > 0)
     },
