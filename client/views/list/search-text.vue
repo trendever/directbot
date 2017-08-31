@@ -30,6 +30,7 @@ export default {
     ...mapGetters([
       'selectedTagsId',
       'searchValue',
+      'isAuth',
     ])
   },
 
