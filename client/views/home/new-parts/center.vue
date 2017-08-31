@@ -1,10 +1,10 @@
-<template lang="pug">
+  <template lang="pug">
 
 .wrap-advert.center-landing
 
   .__title 
-    | Зарегистрируйтесь и управляйте#[br] 
-    | продажами в Instagram с помощью Directbot
+    | Зарегистрируйтесь#[br.mobile] и управляйте#[br.desktop]
+    | продажами в Instagram#[br.mobile] с помощью Directbot
     //-| Полный доступ#[br.mobile] к функционалу#[br.desktop] CRM Directbot 
     //-|стоит от
   .advert-price
