@@ -1,7 +1,7 @@
 <template lang="pug">
 
 #dress-blogger(:class="{wait: wait}")
-  span Скоро запуск!
+  span(v-if="wait") Скоро запуск!
   template(v-if="!wait")
     top-blogger
     how-win
@@ -37,7 +37,7 @@ export default {
   },
   data () {
     return {
-      wait: true
+      wait: false
     };
   }
 };
