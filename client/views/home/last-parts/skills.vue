@@ -319,13 +319,14 @@ export default {
     margin-bottom: 40px;
     & > div {
       flex:1;
+    
     }
 
-
+    
 
     @media (--overtablet) {
       display: inline-flex;
-      margin-bottom: 150px;
+      margin-bottom: 50px;
       margin-top: 50px;
       height: 700px;
       .image {

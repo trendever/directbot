@@ -1,4 +1,4 @@
-<style src="./new-parts/style-global.pcss"></style>
+  <style src="./new-parts/style-global.pcss"></style>
 <template lang="pug">
 #landing(:class="{'new-land': newLanding && !lastLanding, 'update-land': !old && !lastLanding}")
 
@@ -100,7 +100,7 @@
     top-desk
 
     skills
-      .btn-wrap(slot="bottom")
+      .btn-wrap.none-margin(slot="bottom")
         .big-landing-btn(@click="$router.push({name: 'why-popup'})") Почему мы это делаем
 
     center
@@ -666,6 +666,11 @@ $tablet__ball: 135px;
     text-align: center;
     margin-top: 20px;
     
+    &.none-margin {
+      @media (--overtablet) {
+        margin-top: 0;
+      }
+    }
 
     &.bottom-margin {
       margin-bottom: 20px;
