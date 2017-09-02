@@ -13,8 +13,13 @@
         |  вырос в 2 раза до 600 млн активных#[br]
         |  пользователей в месяц. Причем#[br.mobile] аудитория в 19#[br.desktop]
         |  раз активнее, чем#[br.mobile] в Facebook/VK.
+      
 
-      p
+      p 
+        | Сервис Directbot помогает бизнесу #[br]
+        | продавать в Instagram без накруток и #[br]
+        | спама.
+      //-p
         |  Поэтому мы фокусируемся только на#[br.mobile] Instagram#[br.desktop]
         |  и обеспечиваем комплексное#[br.mobile] продвижение и#[br.desktop]
         |  обслуживание магазинов#[br.mobile] в Instagram.
@@ -29,7 +34,7 @@
           li контент
           li сервис
 
-        p Directbot покрывает пункты 2 и 3.
+        //-p Directbot покрывает пункты 2 и 3.
 
     .area.two
       .more-info
@@ -50,7 +55,7 @@
           |  клиенты задают вопрос. Не#[br.mobile] принуждая идти на#[br.desktop]
           |  сайт или писать в#[br.mobile] WhatsApp.
 
-        p
+        //-p
           |  Оставшиеся 10% - это массфолоу,#[br.mobile] автолайки и#[br.desktop]
           |  платная реклама. Мы и это#[br.mobile] поможем настроить.
 
@@ -58,11 +63,11 @@
           |  Мы нужны, чтобы вы могли#[br.mobile] сфокусироваться#[br.desktop]
           |  на качестве и дизайне#[br.mobile] своего продукта!
 
-  .price от 590 руб. в месяц
+  //-.price от 590 руб. в месяц
 
 
   .wrap-button
-    button(@click="$router.push({name: 'auth'})") Попробовать бесплатно
+    button(@click="$router.push({name: 'auth'})") Регистрация
 
   .bottom.no-desk
 
@@ -182,6 +187,9 @@ $margin__bottom: 20px;
       &.two {
         p {
           margin-bottom: 13px;
+          @media (--overtablet) {
+            margin-bottom: 27px;
+          }
         }
       }
     }
