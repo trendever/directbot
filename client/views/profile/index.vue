@@ -258,7 +258,9 @@ export default {
         }
         if(!suspended && plan!=1){
           push('none')
+          return 
         }
+        this.$router.push({name: 'monetization'})
       }
     },
     findBloger(){
