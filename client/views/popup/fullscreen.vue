@@ -10,6 +10,7 @@
 <script>
 import connectHelp from './parts/connectbot-help';
 import useConditions from './parts/use-conditions';
+import agreement from './parts/agreement';
 
 export default {
   data(){
@@ -37,7 +38,8 @@ export default {
   },
   components: {
     'connect': connectHelp,
-    'conditions': useConditions
+    'conditions': useConditions,
+    'agreement': agreement,
   }
 }
 
