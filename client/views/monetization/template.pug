@@ -49,6 +49,11 @@
           span Мне нужно больше дней
           br
           span на испытание Directbot
+      .monetization__zero-days-link.orange(v-if="!isMobile")
+        router-link(:to='{path:"popup/agreement"}')
+          span Договор публичной оферты
+          br
+          span на оказание услуг
 
 
     .monetization__plans

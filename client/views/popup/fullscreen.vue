@@ -28,6 +28,10 @@ export default {
         this.$router.push({name: 'connect-bot'})
         return
       }
+      if(this.$route.path.indexOf("agreement") != -1) {
+        this.$router.push({name:'monetization'})
+        return
+      }
       this.$router.push({ name: 'home'})
     }
   },
