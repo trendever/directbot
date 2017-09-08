@@ -422,7 +422,7 @@ export default {
       Promise.resolve().then(()=>{
 
         this.$nextTick( this.goToBottom );
-        this.setDefaultProductMessage()
+        //this.setDefaultProductMessage()
 
       })
     },
