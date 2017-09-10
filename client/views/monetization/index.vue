@@ -157,11 +157,7 @@ export default {
         });
     },
     closePage(){
-      if(window.history.length > 3){
-        window.history.back();
-        return;
-      }
-      this.$router.go({name: 'home'})
+      this.$router.push({name: 'profile'})
     },
     accept(){
       if(!this.dealType){

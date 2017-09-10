@@ -244,6 +244,8 @@ export default {
           query: {last: 'profile'}
         })
       }
+
+
       let plan = this.user.plan_id
       let suspended = this.user.suspended
 
@@ -260,6 +262,7 @@ export default {
           push('none')
           return 
         }
+      } else {
         this.$router.push({name: 'monetization'})
       }
     },
