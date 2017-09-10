@@ -1,7 +1,7 @@
 <template lang="pug">
 
 #fullscreen-popup(:class="{'full': full, 'ios-browser': isIos }", ref="screen")
-  i.ic-close(v-on:click="close")
+  span.close: i.ic-close(v-on:click="close")
   component(v-bind:is="$route.params.id")
 
 </template>
@@ -74,17 +74,22 @@ export default {
   &.full {
     height: 100%;
   }
-
-  i.ic-close{
+  span.close {
+    top: 0;
+    right: 0;
+    display: block;
     position: fixed;
-    color: $color__white;
-    font-size: 24px;
-    top: 30px;
-    right: 30px;
+    padding: 30px;
+    i.ic-close{
+
+      color: $color__white;
+      font-size: 24px;
       cursor: pointer;
-      @media(--mobile){
+      @media (--tabletandless){
         font-size: 34px;
       }
+    }
+    
   }
 
   .title {
@@ -94,7 +99,7 @@ export default {
     font-family: $font__family__semibold;
     font-size: 32px;
 
-    @media (--mobile) {
+    @media (--tabletandless) {
       font-size: 40px;
     }
 
@@ -107,7 +112,7 @@ export default {
     .title-body{
 
         font-family: $font__family__light;
-        @media (--mobile ) {
+        @media (--tabletandless ) {
           font-size: 4.6vw;
         }
 
@@ -137,7 +142,7 @@ export default {
       margin-right: auto;
       margin-top: -24px;
 
-      @media( --mobile) {
+      @media( --tabletandless) {
         padding-left: 7%;
       }
       @media screen and (min-width: 751px) {
@@ -153,7 +158,7 @@ export default {
         margin-top: 10px;
 
 
-        @media (--mobile) {
+        @media (--tabletandless) {
           line-height: 40px;
           margin-top: 30px;
           font-size: 4.6vw;
