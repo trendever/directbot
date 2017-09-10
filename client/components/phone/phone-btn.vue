@@ -31,6 +31,23 @@ export default {
   max-width: 40px;
   height: auto;
 
+  @media (--overtablet){
+    position: relative;
+    left: 20%;
+    display: inline-block;
+    text-align: center;
+    a {
+      display: inline;
+      width: 60px;
+      height: 50px;
+    }
+  }
+
+  @media (--tabletandless) {
+    box-sizing: content-box;
+    display: block;
+    position: absolute 23px 45px 0 *;
+  }
 
   i.ic-icon_phone {
     font-size: 30px;
@@ -39,17 +56,12 @@ export default {
       font-size: 42px;
     }
   }
-/*   img {
-    width: 100%;
-    height: auto;
-  } */
+
   a {
-    display: initial;
+    display: inline;
     padding: 10px;
-    @media (--overtablet){
-      height: 50px;
-    }
   }
+
   &.home {
     display: none;
     @media (--overtablet){
@@ -116,22 +128,6 @@ export default {
     }
   }
 
-  @media (--overtablet){
-    position: relative;
-    left: 20%;
-    display: inline-block;
-    text-align: center;
-    a {
-      display: inline-block;
-      width: 60px;
-    }
-  }
-
-  @media (--tabletandless) {
-    box-sizing: content-box;
-    display: block;
-    position: absolute 23px 45px 0 *;
-  }
 
 }
 </style>
