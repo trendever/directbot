@@ -89,12 +89,12 @@ export default {
     }
 
     @media screen and (min-width: 1200px){
-      transform: translateY(-88px);
+      top: -88px;
       left: 480px !important;
     }
     @media screen and (min-width: 1025px) and (max-width: 1199px){
       left: 390px !important;
-      transform: translateY(-88px);
+      top: -88px;
     }
   }
 
