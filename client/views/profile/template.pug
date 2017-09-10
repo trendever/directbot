@@ -130,8 +130,10 @@
         .profile_desc(v-on:click="isMoreClass = true",
           ref="profileDesk",
           v-bind:class="{ more : isMoreClass, less: !isMoreClass}")
-          .profile_desc_t.fake__text(v-if="!getSlogan && isSelfPage") слоган вашего {{appWord}}
-          .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
+
+          div(@click="supportChat")
+            .profile_desc_t.fake__text(v-if="!getSlogan && isSelfPage") слоган вашего {{appWord}}
+            .profile_desc_t(v-if="getSlogan") {{ getSlogan }}
 
 
           .profile_info_about(
@@ -167,7 +169,7 @@
             :class="{'fake__text': !user.shipping_rules && isSelfPage }",
             v-if="user.shipping_rules && !isSelfPage || isSelfPage")
             .profile_desc_t(v-if="user.shipping_rules") Условия
-            .profile_desc_caption.fake__text(v-if="!user.shipping_rules && isSelfPage")
+            .profile_desc_caption.fake__text( @click="supportChat" v-if="!user.shipping_rules && isSelfPage")
               template(v-if="!isTrendever") подробное описание вашего бизнеса, преимуществ и условий работы
               template(v-if="isTrendever") подробное описание профиля
             .profile_desc_caption(v-if="user.shipping_rules") {{ user.shipping_rules }}
