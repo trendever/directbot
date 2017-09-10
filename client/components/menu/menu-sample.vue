@@ -65,19 +65,11 @@ transition(:name="isMobile ? 'fade-menu' : ''")
   background: #ececec;
   z-index: 150;
   height: auto;
-  width: 210px;
-
 
   @media (--overtablet) {
     position: fixed 60px 10px * * ;
     box-shadow: 1px 1px 5px #595959;
     z-index: 300;
-    &.prof-menu {
-      width: 242px;
-    }
-    &.product {
-      width: 275px;
-    }
   }
 
   @media (--tabletandless) {
@@ -140,7 +132,7 @@ transition(:name="isMobile ? 'fade-menu' : ''")
       line-height: 45px;
       height: 45px;
 
-      @media (--mobile) {
+      @media (--tabletandless) {
         background: #dedede;
         padding-top: 1px;
         text-align: center;
@@ -157,6 +149,7 @@ transition(:name="isMobile ? 'fade-menu' : ''")
         @media screen and (--overtablet){
 
           padding-left: 30px;
+          padding-right: 30px;
 
         }
 

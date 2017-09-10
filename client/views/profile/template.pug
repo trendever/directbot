@@ -29,7 +29,7 @@
           i.ic-wallet-icon
 
 
-  menu-sample.prof-menu(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
+  menu-sample(:opened="showProfileMenu", v-on:close="showProfileMenu = false")
     .item(v-if="botActivity")
       .text Отключить бота
     //-.item(v-if="isMobile && !isTrendever")
