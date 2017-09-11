@@ -422,6 +422,7 @@ export default {
       Promise.resolve().then(()=>{
 
         this.$nextTick( this.goToBottom );
+        //Ask Anton why this code is commented
         //this.setDefaultProductMessage()
 
       })
