@@ -60,10 +60,10 @@ module.exports = {
       },
       {
         test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-        loader: 'file-loader',
-        query: {
-          name: `${isSlash}static/media/[name].[hash:8].[ext]`
-        }
+        loaders: [`file-loader?name=${isSlash}static/media/[name].[hash:8].[ext]`,'webp-loader?{quality: 80}'],
+        // query: {
+        //   name: `${isSlash}static/media/[name].[hash:8].[ext]`
+        // }
       },
       {
         test: /\.pug$/,
