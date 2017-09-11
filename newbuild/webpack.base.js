@@ -59,20 +59,17 @@ module.exports = {
         loaders: ['babel-loader']
       },
       {
-        test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-        loaders: [`file-loader?name=${isSlash}static/media/[name].[hash:8].[ext]`,'webp-loader?{quality: 80}'],
-        // query: {
-        //   name: `${isSlash}static/media/[name].[hash:8].[ext]`
-        // }
+        test: /\.(ico|eot|otf|svg|ttf|woff|woff2)(\?.*)?$/,
+        loaders: [`file-loader?name=${isSlash}static/media/[name].[hash:8].[ext]`],
+      },
+      {
+        test: /\.(jpg|png|gif|webp)(\?.*)?$/,
+        loaders: [`file-loader?name=${isSlash}static/media/[name].[hash:8].[ext].webp`,`webp-loader?{quality: 80}`],
       },
       {
         test: /\.pug$/,
         loader: 'pug'
       },
-      // {
-      //   test: /\.svg$/,
-      //   loader: 'raw-loader'
-      // }
     ]
   },
   plugins: [
