@@ -74,6 +74,11 @@ import { setToken } from 'services/user';
 import { isStandalone } from 'root/utils'
 import config from 'root/../config'
 
+
+import $ from 'jquery'
+import { lazyload } from  "root/utils"
+lazyload($, window, document)
+
 export default {
 
   watch: {
@@ -84,6 +89,7 @@ export default {
       } else {
         this.transName = ''
       }
+      $('img').lazyload()
     }
   },
 
@@ -125,7 +131,9 @@ export default {
       }
     }
   },
-
+  updated(){
+    $('img').lazyload()
+  },
   //get user for ios push actions logic
 
   created(){

@@ -6,6 +6,7 @@ import store from './store'
 import config from 'root/../config'
 import {isStandalone} from 'root/utils'
 
+
 sync(store, router)
 
 const app = new Vue({

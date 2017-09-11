@@ -19,17 +19,18 @@
     ]
   },
   "dependencies": {
+    "ba-linkify": "^1.0.1",
     "babel-runtime": "^6.18.0",
+    "clipboard": "^1.5.15",
+    "fastclick": "^1.0.6",
+    "jquery-lazyload": "^1.9.7",
+    "jwt-decode": "^2.1.0",
     "promise-polyfill": "^6.0.2",
+    "sockjs-client": "^1.1.1",
     "vue": "^2.2.0",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",
-    "vuex-router-sync": "^4.0.0",
-    "fastclick": "^1.0.6",
-    "ba-linkify": "^1.0.1",
-    "clipboard": "^1.5.15",
-    "jwt-decode": "^2.1.0",
-    "sockjs-client": "^1.1.1"
+    "vuex-router-sync": "^4.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
