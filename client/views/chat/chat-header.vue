@@ -25,7 +25,7 @@
           @click="$router.push({name: 'user', params: {id: getShopName}})")
 
         .chat-header_cnt(v-show='getShopName' v-if="!isServiceShop")
-          .chat-header_cnt_t(@click="$router.push({name: 'user', params: {id: getShopName}})") {{ getShopName }}
+          .chat-header_cnt_t(@click="$router.push({name: 'user', params: {id: getName}})") {{ getName }}
           .chat-header_cnt_info
             span.chat-header_cnt_info-text
             | {{ getLeadId }},
@@ -168,6 +168,9 @@
     },
 
     computed: {
+      getName(){
+        return this.getCurrentMember.role!=1?this.getCustomerName:this.getShopName
+      },
       userImage(){
         return this.getPhoto || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
       },
@@ -180,6 +183,8 @@
         'getId',
         'getLeadId',
         'getStatusName',
+        'getCurrentMember',
+        'getCustomerName',
         'getShopName',
         'getShopSupplierId',
         'isServiceShop',
