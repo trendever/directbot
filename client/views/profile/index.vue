@@ -213,6 +213,9 @@ export default {
   },
 
   methods: {
+    directSend(){
+      this.openMenuProduct(config.direct_send_id)
+    },
     connectAssistant(){
       this.openMenuProduct(config.connect_assistant_id)
     },
