@@ -6,6 +6,7 @@
       img(:src="firstImg")
       img(:src="secondImg")
       img(:src="thirdImg")
+      img(:src="fourImg")
 
   .title Отзывы клиентов
   .body
@@ -55,6 +56,7 @@
 let firstImg = require('./images/review_narspi_shop_book_zoom.png');
 let secondImg = require('./images/review_bella-fiori_book_zoom.png');
 let thirdImg = require('./images/review_grideli_atelier_book_zoom.png');
+let fourImg = require('./images/review_zharmoscow_brand.png');
 export default {
   computed: {
     storeWindow(){
@@ -101,6 +103,7 @@ export default {
       firstImg,
       secondImg,
       thirdImg,
+      fourImg,
       shopName: 'narspi_shop',
       timeId: {},
       sliderRun: false,
@@ -155,6 +158,21 @@ export default {
             своими же товарами"
           `,
           author: "Ольга,<br>Основатель и владелец бренда"
+        },
+        {
+          img: fourImg,
+          shop: '@grideli_atelier',
+          category: 'Магазин одежды',
+          text: `
+            "Directbot полностью удовлетворяет потребности 
+            ресторана ЖАРЪ по  присутствию в Instagram.
+            Каждую неделю 3-5 блогеров приходят к нам
+            на обед или ужин, делают видео, фото,
+            размещают нативную рекламу в своей ленте и сториз. 
+            Спасибо Directbot, что так тщательно подходит
+            к отбору блогеров" 
+          `,
+          author: "Виктория,<br> глава PR"
         }
       ]
     };
