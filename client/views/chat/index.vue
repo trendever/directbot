@@ -252,19 +252,16 @@ export default {
           if(this.loaded) return
           this.loaded = true
           this.$store
-            .dispatch("openProduct",lead.products[0].id)
+            .dispatch("openProduct",lead.products[lead.products.length-1].id)
             .then(()=>{
               if(this.messagesList.length>0) {
-                let answer = this.messagesList.find(i=>{
-                  if(i.user){
-                    return accept.indexOf(i.user.role) != -1
-                  }
-                })
+                let message = this.messagesList[this.messagesList.length - 1]
+                let answer = message.user.id == this.getCurrentMember.id
+                alert(message.user.id == this.getCurrentMember.id)
                 if(answer) {
                   let p = this.getOpenedProduct
-                  console.log(p)
                   if(p.id && !p.chat_message){
-                    p.chat_message = answer.parts[0].content
+                    p.chat_message = message.parts[0].content
                     productService.editProduct(p)
                   }
                 }  
@@ -423,7 +420,7 @@ export default {
 
         this.$nextTick( this.goToBottom );
         //Ask Anton why this code is commented
-        //this.setDefaultProductMessage()
+        this.setDefaultProductMessage()
 
       })
     },
