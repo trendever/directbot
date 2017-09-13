@@ -239,12 +239,13 @@ let list = {
 @import 'style/vars/vars.pcss';
 .agreement {
 	ul {
-		//margin-left: 0 !important;
+		position: relative;
+		margin-top: 0 !important;
 		@media (--tabletandless) {
 			padding-left: 0 !important;
-		}
-		&.first-list {
-			padding-left:25px !important;
+			&.first-list {
+				padding-left:32px !important;
+			}
 		}
 		li {
 			line-height: initial !important;
@@ -253,9 +254,6 @@ let list = {
 		}
 	}
 
-	.inner-title {
-		height: 80px;
-	}
 
 	.title-date {
 		font-size: 25px;
