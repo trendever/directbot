@@ -70,10 +70,6 @@ module.exports = {
         test: /\.pug$/,
         loader: 'pug'
       },
-      // {
-      //   test: /\.svg$/,
-      //   loader: 'raw-loader'
-      // }
     ]
   },
   plugins: [
