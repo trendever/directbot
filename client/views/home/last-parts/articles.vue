@@ -161,8 +161,8 @@ export default {
         },
         {
           img: fourImg,
-          shop: '@grideli_atelier',
-          category: 'Магазин одежды',
+          shop: 'zhar.moscow',
+          category: 'Ресторан',
           text: `
             "Directbot полностью удовлетворяет потребности 
             ресторана ЖАРЪ по  присутствию в Instagram.
@@ -375,7 +375,7 @@ export default {
 
           span {
             cursor: pointer;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.54);
+            //border-bottom: 2px solid rgba(255, 255, 255, 0.54);
           }
         }
 
