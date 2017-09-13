@@ -11,6 +11,7 @@
 import connectHelp from './parts/connectbot-help';
 import useConditions from './parts/use-conditions';
 import agreement from './parts/agreement';
+import privacy from './parts/privacy';
 
 export default {
   data(){
@@ -44,6 +45,7 @@ export default {
     'connect': connectHelp,
     'conditions': useConditions,
     'agreement': agreement,
+    'privacy': privacy,
   }
 }
 
