@@ -44,7 +44,7 @@
 
       template(v-if="findBlogger")
         .chat-header_cnt.support.blogger
-          .chat-header_cnt_t Поиск блогера 
+          .chat-header_cnt_t Подбор блогеров
 
     phone-component.no-mob(slot="action-elements", :phone="'tel:+79854107012'")
     phone-component.no-desk(slot="center-content", :phone="'tel:+79854107012'")

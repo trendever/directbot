@@ -7,6 +7,7 @@
       img(:src="secondImg")
       img(:src="thirdImg")
       img(:src="fourImg")
+      img(:src="fiveImg")
 
   .title Отзывы клиентов
   .body
@@ -57,6 +58,7 @@ let firstImg = require('./images/review_narspi_shop_book_zoom.png');
 let secondImg = require('./images/review_bella-fiori_book_zoom.png');
 let thirdImg = require('./images/review_grideli_atelier_book_zoom.png');
 let fourImg = require('./images/review_zharmoscow_brand.png');
+let fiveImg = require('./images/review_sv_spoon.png')
 export default {
   computed: {
     storeWindow(){
@@ -104,6 +106,7 @@ export default {
       secondImg,
       thirdImg,
       fourImg,
+      fiveImg,
       shopName: 'narspi_shop',
       timeId: {},
       sliderRun: false,
@@ -173,6 +176,15 @@ export default {
             к отбору блогеров" 
           `,
           author: "Виктория,<br> глава PR"
+        },
+        {
+          img: fiveImg,
+          shop: "sv_spoon",
+          category: "Магазин детской одежды",
+          text: `
+            "Детская мода - очень популярна в Instagram. Раньше сотрудничества с блогерами-мамами, детскими стилистами и аудит отнимали много сил и времени. С появлением Directbot кратно выросло качество и снизились затраты на рекламу у блогеров и создание контента."
+          `,
+          author: "Елена, глава маркетинга"
         }
       ]
     };

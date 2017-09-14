@@ -22,7 +22,7 @@ $space_beetwen: 40px;
 
   .scroll-help-block {
     display: none;
-    @media (--mobile){
+    @media (--tabletandless){
       display: block;
       height: 150px;
     }
@@ -58,7 +58,7 @@ $space_beetwen: 40px;
       text-align: left;
       font-size: $font__normal;
       font-family: $font__family__light;
-      @media (--mobile) {
+      @media (--tabletandless) {
 
         font-size: $font__medium;
         margin-top: -25px;
@@ -78,7 +78,7 @@ $space_beetwen: 40px;
       //position: fixed 50% 25% * *;
       //transform: translate(25%,-50%);
     }
-    p.rate-title {
+    .rate-title {
       font-size: $font__medium;
       padding-bottom: 20px;
       margin-top: 36px;
@@ -87,6 +87,13 @@ $space_beetwen: 40px;
         font-size: $font__normal;
         margin-top: 0px;
 
+      }
+
+      @media (--tabletandless) {
+        h2 span {
+          font-size: 3rem;
+          margin-bottom: 25px;
+        }
       }
     }
 
@@ -373,6 +380,10 @@ $space_beetwen: 40px;
       @media (--overtablet) {
         padding-top: 5px;
         font-size: $font__normal;
+      }
+
+      @media (--tabletandless){
+        margin-bottom: 20px;
       }
     }
   }

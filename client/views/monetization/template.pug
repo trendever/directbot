@@ -34,9 +34,8 @@
                 | {{ text }}
 
 
-      .monetization__text.help.no-desk
-        | После истечения пробного периода#[br]
-        | выберите подхоящий тарифный план
+      .monetization__text.help.no-desk(style="text-transform:uppercase")
+        | выберите тарифный план
 
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
         button(v-if="selectedPlan === 0", @click.stop.prevent="goProfile", :class="{'red_none': noPlanSelected}")
@@ -59,12 +58,15 @@
       //-.monetization__text.bot
         | Выбор тарифного плана
 
-
-      p.rate-title
-        | Тарифы сaмостоятельного обслуживания#[br.mobile]
-        | помогут вам организовать продажи,#[br.mobile]
-        | контролировать результаты и подбирать#[br.mobile]
-        | качественных блогеров
+      
+      .rate-title
+        h2 
+          | ТАРИФНЫЙ ПЛАН#[br.mobile]
+          span СВОЯ КОМАНДА
+        p 
+          | Поможет вам организовать продажи,#[br.mobile]
+          | контролировать результаты и подбирать#[br.mobile]
+          | качественных блогеров
 
       template(v-for="plan in getPlans('self')")
         .monetization__btn(@click="selectPlan(plan.id, $event)",
@@ -81,11 +83,14 @@
             li(v-for="text in parse(plan.about).adv")
               | {{ text }}
 
-      p.rate-title
-        | Тарифы полного обслуживания включают#[br.mobile]
-        | личного менеджера, который за вас#[br.mobile]
-        | консультирует клиентов и сотрудничает#[br.mobile]
-        | с блогерами от вашего имени
+      .rate-title
+        h2 
+          | ТАРИФНЫЙ ПЛАН#[br.mobile] 
+          span ВСЕ-ВКЛЮЧЕНО
+        p
+          | Менеджер, который за вас #[br.mobile] 
+          | консультирует клиентов и сотрудничает#[br.mobile]
+          | с блогерами от вашего имени
 
       template(v-for="plan in getPlans('full')")
         .monetization__btn(@click="selectPlan(plan.id, $event)",
@@ -107,5 +112,8 @@
           span Мне нужно больше дней
           br
           span на испытания Directbot
+      .monetization__zero-days-link(v-if="isMobile")
+        router-link(:to='{path:"popup/agreement"}')
+          span Публичная оферта
 
     .scroll-help-block
