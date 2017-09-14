@@ -16,6 +16,7 @@
       .monetization__days-to-end(
         :class="{is__end: monetizationDays === 0, 'red_none': noPlanSelected, 'active-plan': activePlanName }"
         @click="fakeMonetization")
+        .monetization__text.help.no-desk Выбор тарифа
         template(v-if="!monetizationDays && !activePlan || isMobile && !monetizationDays") 0
         tempalte(v-if="monetizationDays && !activePlan || isMobile && monetizationDays") {{ monetizationDays }}
         transition(name="fademonetization")
@@ -34,8 +35,7 @@
                 | {{ text }}
 
 
-      .monetization__text.help.no-desk(style="text-transform:uppercase")
-        | выберите тарифный план
+
 
       .monetization__accept-btn(:class="{ dark__yellow: getUseDays === 0 && !dealType}")
         button(v-if="selectedPlan === 0", @click.stop.prevent="goProfile", :class="{'red_none': noPlanSelected}")
@@ -61,7 +61,7 @@
       
       .rate-title
         h2 
-          | ТАРИФНЫЙ ПЛАН#[br.mobile]
+          | ТАРИФНЫЙ ПЛАН#[br.mobile]&nbsp
           span СВОЯ КОМАНДА
         p 
           | Поможет вам организовать продажи,#[br.mobile]
