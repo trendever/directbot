@@ -257,7 +257,6 @@ export default {
               if(this.messagesList.length>0) {
                 let message = this.messagesList[this.messagesList.length - 1]
                 let answer = message.user.id == this.getCurrentMember.id
-                alert(message.user.id == this.getCurrentMember.id)
                 if(answer) {
                   let p = this.getOpenedProduct
                   if(p.id && !p.chat_message){
