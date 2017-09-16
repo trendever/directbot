@@ -419,7 +419,7 @@ export default {
 
         this.$nextTick( this.goToBottom );
         //Ask Anton why this code is commented
-        this.setDefaultProductMessage()
+        //this.setDefaultProductMessage()
 
       })
     },
