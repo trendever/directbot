@@ -114,7 +114,7 @@ export default {
       articles:[
         {
           img: firstImg,
-          shop: "@narspi_shop",
+          shop: "narspi_shop",
           category: "Шубы и меховые жилеты",
           text: `
             "Когда пошли продажи и мы уже<br class="desktop"> собирались
@@ -131,7 +131,7 @@ export default {
         },
         {
           img: secondImg,
-          shop: "@bella.fiori",
+          shop: "bella.fiori",
           category: "Цветочный бутик",
           text: `
             "Мы уже пользовались службой<br class="desktop"> мониторинга
@@ -146,7 +146,7 @@ export default {
         },
         {
           img: thirdImg,
-          shop: '@grideli_atelier',
+          shop: 'grideli_atelier',
           category: 'Магазин одежды',
           text: `
             "Несмотря на то, что Instagram у нас не
@@ -175,7 +175,7 @@ export default {
             Спасибо Directbot, что так тщательно подходит
             к отбору блогеров" 
           `,
-          author: "Виктория,<br> глава PR"
+          author: "Виктория,<br> глава PR отдела"
         },
         {
           img: fiveImg,
@@ -184,7 +184,7 @@ export default {
           text: `
             "Детская мода - очень популярна в Instagram. Раньше сотрудничества с блогерами-мамами, детскими стилистами и аудит отнимали много сил и времени. С появлением Directbot кратно выросло качество и снизились затраты на рекламу у блогеров и создание контента."
           `,
-          author: "Елена, глава маркетинга"
+          author: "Елена,<br> глава отдела по маркетингу"
         }
       ]
     };
@@ -351,6 +351,7 @@ export default {
           background: rgba(94, 139, 206,.8);
           color:white;
           padding-left: 30px;
+          padding-right: 20px;
           height: auto;
           position: relative;
           top: 50%;
