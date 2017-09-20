@@ -28,12 +28,13 @@
           img(:src="article.img")
 
         .text
-          button
+          button.button-wrapper
             //-.land__top-btn
               a(:href="storeWindow", target="_blank") посмотреть витрину
             .info
-              .category {{ article.category }}
-              .brand-name(@click="goShop"): span {{ article.shop }}
+              .fix-it
+                .category {{ article.category }}
+                .brand-name(@click="goShop"): span {{ article.shop }}
 
               .wrap-arrows
 
@@ -44,7 +45,7 @@
                   i.ic-review_arrow_right
 
 
-            .w_p
+            button.w_p
               p(v-html="article.text")
               .ps(v-html="article.author")
 
@@ -205,7 +206,23 @@ export default {
   @media (--overtablet) {
     .slider img { width: 530px;}
     .text .wrap-arrows{display: none;}
+    .fix-it {
+      position: absolute 30px * * 30px;
+    }
   }
+    
+  button.w_p {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    @media (--overtablet){
+      padding-left:0;
+      padding-top: 130px;
+    }
+
+  }
+
 
   @media (--tabletandless) {
     .plank {
@@ -221,7 +238,7 @@ export default {
 
     .text {
       padding: 0;
-      button {
+      .button-wrapper {
         padding: 0;
         .info {
           position: relative;
@@ -288,12 +305,12 @@ export default {
     position: relative;
   }
 
-  button {
+  .button-wrapper {
     outline: none;
     border:none;
     display: block;
     background: none;
-
+    position: relative;
 
 
     .land__top-btn {
@@ -347,7 +364,7 @@ export default {
 
       @media (--overtablet){
         padding-left: 10px;
-        button {
+        .button-wrapper {
           background: rgba(94, 139, 206,.8);
           color:white;
           padding-left: 30px;
@@ -362,7 +379,7 @@ export default {
       }
 
 
-      button, .wrap {
+      .button-wrapper, .wrap {
 
         .category {
           font-size: calc($font__normal + 4px);
