@@ -6,8 +6,8 @@
       img(:src="firstImg")
       img(:src="secondImg")
       img(:src="thirdImg")
-      img(:src="fourImg")
-      img(:src="fiveImg")
+      //-img(:src="fourImg")
+      //-img(:src="fiveImg")
 
   .title Отзывы клиентов
   .body
@@ -224,6 +224,8 @@ export default {
   }
 
 
+
+
   @media (--tabletandless) {
     .plank {
       overflow: visible;
@@ -269,6 +271,7 @@ export default {
     }
   }
   .hidden-images {
+    max-width: 100px;
     position: absolute * 0 0 0;
     z-index: -10;
     opacity: 0;

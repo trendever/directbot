@@ -179,6 +179,20 @@ export const getStatusName = ( state ) => {
   return status;
 };
 
+
+export const getCustomerPhoto = ( state ) => {
+
+  const lead = getLeadByConversationId( store.state.leads, state.id );
+
+  if ( lead !== null ) {
+
+    return lead.customer.avatar_url;
+
+  }
+
+  return null;
+};
+
 export const getPhoto = ( state ) => {
 
   const lead = getLeadByConversationId( store.state.leads, state.id );

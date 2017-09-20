@@ -302,6 +302,7 @@ export default {
       padding: 373px 40px 373px 100px;
       transform: scale(-1,1);
     }
+
   }
 
   .slide-screen {
