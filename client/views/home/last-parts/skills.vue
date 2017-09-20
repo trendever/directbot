@@ -42,7 +42,7 @@
                 @mouseleave="openedIndex=''",
                 :class="{ opened: openedIndex === index }")
                 i.ic-info_icon
-                .counter.no-mob {{ words[index]+" функция" }}
+                //-.counter.no-mob {{ words[index]+" функция" }}
                 p.first(v-html="block.text")
                 p.overview(v-html="block.overview", :class="{opened: openedIndex === index}")
 
@@ -267,7 +267,6 @@ export default {
 .info-blocks {
 
   @media (--overtablet) {
-    
     overflow: hidden;
     width: 1180px;
     margin: 0 auto;  
@@ -291,18 +290,17 @@ export default {
     .right {
       cursor: pointer;
       position: absolute;
-      top: 50%;
-      padding: 320px 40px 320px 100px;
+  
+      padding: 373px 40px 373px 100px;
       right: 10px;
-      transform: translateY(-395px);
+
     }
     .left {
       cursor: pointer;
       position: absolute;
       left: 10px;
-      padding: 320px 40px 320px 100px;
-      top: 50%;
-      transform: scale(-1,1) translateY(-395px);
+      padding: 373px 40px 373px 100px;
+      transform: scale(-1,1);
     }
   }
 
