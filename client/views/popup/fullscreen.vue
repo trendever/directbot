@@ -21,7 +21,10 @@ export default {
   },
   methods:{
     close(){
-      if(this.$route.params.id === 'conditions'){
+
+      let id = this.$route.params.id
+
+      if(id === 'conditions'||id=="privacy"){
         this.$router.push({name: 'auth'})
         return
       }

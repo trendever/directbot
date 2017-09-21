@@ -48,7 +48,13 @@
 
 
       .send-btn(@click="request") ОТПРАВИТЬ КОД
-      .bottom-link(@click="openConditions") Условия использования
+
+      .link-container
+        .bottom-link Согласен на&nbsp
+        .bottom-link.linked(@click="$router.push({path:'/popup/privacy'})") Обработку данных 
+        br
+        .bottom-link и с&nbsp
+        .bottom-link.linked(@click="openConditions") Условиями использования
 
 
 
@@ -378,12 +384,20 @@ export default {
       }
 
     }
+    
+    .link-container {
+      @media (--tabletandless) {
+        width: 100%;
+      }
+    }
+
+    .linked {
+      border-bottom: 1px solid white;
+    }
 
     .bottom-link {
-
       @mixin standart__font;
       cursor: pointer;
-      border-bottom: 1px solid white;
       color: white;
       opacity: 0.5;
       display: inline-block;
@@ -393,7 +407,7 @@ export default {
       }
 
       @media (--tabletandless){
-        margin-top: 50px;
+        margin-top: 20px;
         transform: translateX(-42px)
 
       }
