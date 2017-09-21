@@ -177,8 +177,12 @@ export default {
 
         }
 
+      } else {
+        return this.getAuthUser.id == this.lead.customer.id ? 
+          this.lead.shop.instagram_avatar_url || this.lead.shop.avatar_url 
+          :
+          null || this.customer.avatar_url
       }
-      return null;
 
     }
   },

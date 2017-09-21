@@ -172,7 +172,9 @@
         return this.getCurrentMember.role!=1?this.getCustomerName:this.getShopName
       },
       userImage(){
-        return this.getPhoto || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+        let supportImage = 'https://scontent-lht6-1.cdninstagram.com/t51.2885-19/s150x150/21149557_189508908257225_7411847190378708992_a.jpg'
+        let photo = this.getCurrentMember.role != 1 ? this.getCustomerPhoto : this.getPhoto
+        return photo || supportImage//'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
       },
       unreadCount(){
         return this.isFake ? 0 : this.getGlobalNotifyCount;
@@ -191,7 +193,8 @@
         'getIsServiceProductTitle',
         'getPhoto',
         'isFake',
-        'getGlobalNotifyCount'
+        'getGlobalNotifyCount',
+        'getCustomerPhoto'
       ]),
       getStatus(){
         if ( this.getStatusName !== null ) {
