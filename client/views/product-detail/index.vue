@@ -5,9 +5,9 @@
     :center-text-link="centerTextLink",
     :page="page",
     :avatar-url='avatarUrl',
-    :show-desktop-arrow="false",
+    :show-desktop-arrow="showArrow",
     :back-function="back",
-    :left-btn-show="true",
+    :left-btn-show="showArrow",
     :back-link="{name: 'user', params: { id: getOpenedProduct.supplier.instagram_username }}")
 
     .directbot-right-nav(slot="content")
@@ -172,11 +172,11 @@ export default {
 
   },
 
-  beforeRouteEnter( { params: { id } } , to, next )  {
-
+  beforeRouteEnter( { params: { id } } , from, next )  {
+  
     store.dispatch('openProduct', +id ).then(()=>{
 
-      next();
+      next(vm=>{if(from.matched.length!=0)vm.showArrow=true});
 
     });
 
@@ -185,6 +185,11 @@ export default {
   beforeDestroy(){
     this.closeProduct();
     this.$store.state.products.authUserProduct = false;
+  },
+  data(){
+    return {
+      showArrow: false
+    }
   },
 
   components: {
@@ -210,9 +215,6 @@ export default {
 #product-detail {
 
   @media (--overtablet){
-    .header__arrow {
-      display: none;
-    }
 
     #tags {
       //max-width: 413px;
