@@ -50,11 +50,11 @@
       .send-btn(@click="request") ОТПРАВИТЬ КОД
 
       .link-container
-        .bottom-link Согласен на&nbsp
-        .bottom-link.linked(@click="$router.push({path:'/popup/privacy'})") Обработку данных 
+        .bottom-link Согласен на &nbsp
+        .bottom-link.linked(@click="$router.push({path:'/popup/privacy'})") обработку персональных данных 
         br
         .bottom-link и с&nbsp
-        .bottom-link.linked(@click="openConditions") Условиями использования
+        .bottom-link.linked(@click="openConditions") условиями использования
 
 
 
@@ -386,7 +386,9 @@ export default {
     }
     
     .link-container {
+      padding-top: 10px;
       @media (--tabletandless) {
+        padding-top: 30px;
         width: 100%;
       }
     }
@@ -403,11 +405,12 @@ export default {
       display: inline-block;
 
       @media (--overtablet) {
-        margin-top: 10px;
+        //margin-top: 10px;
       }
 
       @media (--tabletandless){
-        margin-top: 20px;
+        font-size: 30px;
+        margin-top: 15px;
         transform: translateX(-42px)
 
       }

@@ -4,7 +4,7 @@
 
 	.title
 
-		.title-head ПОЛОЖЕНИЕ О ЗАЩИТЕ ПЕРСОНАЛЬНЫХ#[br.no-mob] ДАННЫХ ПОЛЬЗОВАТЕЛЕЙ DIRECTBOT
+		.title-head Пололжение о защите персональных#[br.no-mob] данных пользователей Directbot
 	
 	.content
 		ul.first-list
