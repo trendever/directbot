@@ -160,7 +160,7 @@ export default {
   },
 
   mounted(){
-
+  
     if ( this.isAuth ) {
 
       this.onMessage      = this.onMessage.bind( this );
@@ -256,7 +256,7 @@ export default {
             .then(()=>{
               if(this.messagesList.length>0) {
                 let message = this.messagesList[this.messagesList.length - 1]
-                let answer = message.user.id == this.getCurrentMember.id
+                let answer = message.user.id == this.getCurrentMember.user_id
                 if(answer) {
                   let p = this.getOpenedProduct
                   if(p.id && !p.chat_message){
