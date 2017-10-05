@@ -4,7 +4,7 @@
 
 	.title
 
-		.title-head Пололжение о защите персональных#[br.no-mob] данных пользователей Directbot
+		.title-head Положение о защите персональных#[br.no-mob] данных пользователей Directbot
 	
 	.content
 		ul.first-list
@@ -37,9 +37,13 @@
 
 <style lang="postcss">
 
-.use-conditions.privacy {
-	.inner-title {
+@import "style/vars/vars.pcss";
 
+.use-conditions.privacy {
+	.title-head {
+		@media (--tabletandless) {
+			padding-top: 50px;	
+		}
 	}
 }
 </style>
