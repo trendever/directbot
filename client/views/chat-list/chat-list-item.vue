@@ -190,7 +190,8 @@ export default {
     ...mapGetters([
       'getNotifyCountList',
       'getLastMessage',
-      'getLeadTab'
+      'getLeadTab',
+      'getAuthUser'
     ]),
     showAnotherName(){
       if(this.recentMessage.user_name){
@@ -224,12 +225,27 @@ export default {
       return this.getNotifyCountList[ this.lead.id ];
 
     },
+
     recentMessage(){
       const msgObj = this.getLastMessage[ this.lead.id ];
       if ( msgObj && msgObj.message) {
         msgObj.message = msgObj.message.replace(/₽/g, '&nbsp;<i class="ic-currency-rub"></i> ');
-        msgObj.user_name = this.lead.shop.instagram_username
+
+        let s = this.$store.state.leads.seller.length
+        let u = this.getAuthUser
+        let shopName = this.lead.shop.instagram_username
+
+        if (u.supplier_of == null && u.seller_of == null && !s) {
+          let name = u.instagram_username || u.name
+          if(name != msgObj.user_name && msgObj.user_name != shopName) {
+            msgObj.user_name = `${shopName} (${msgObj.user_name})`
+          }
+        }
+
+        console.log(`${shopName} (${msgObj.user_name})`)
+
         return msgObj;
+
       }
       return {
         message: '',
