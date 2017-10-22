@@ -166,10 +166,10 @@ export default {
     },
     goVideo(){this.$router.push({name: "video-trendever"})},
     scrollFirst() {
-      JQuery(document.body).animate({scrollTop: window.innerHeight},450);
+      JQuery("body, html").animate({scrollTop: window.innerHeight},450);
     },
     scrollSecond() {
-      JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
+      JQuery("body, html").animate({scrollTop: 2 * window.innerHeight},450);
     },
     getLink(){
       commonService.marketSms({phone: this.phoneNumber }).then(data=>{

@@ -261,17 +261,18 @@ export default {
     window.eventHub.$on('toggle-landing-buttons',()=>{
       this.toggleBtns = true;
       this.$nextTick(()=>{
-        JQuery(document.body).animate({scrollTop: JQuery('.toogle-btns').offset().top})
+        JQuery("html, body").animate({scrollTop: JQuery('.toogle-btns').offset().top})
       })
     })
     this.scrollListener=listen(window, 'scroll',()=>{
 
       if(this.isMobile){
-        this.showBtns = document.body.scrollTop > window.innerHeight * 2;
-        this.showChatBall = document.body.scrollTop <= window.innerHeight * 1.1;
+        this.showBtns = document.body.scrollTop || window.scrollY > window.innerHeight * 2;
+        this.showChatBall = document.body.scrollTop || window.scrollY <= window.innerHeight * 1.1;
       } else {
-        this.showBtns = document.body.scrollTop > window.innerHeight;
-        this.showChatBall = document.body.scrollTop <= window.innerHeight;
+        console.log(document.body.scrollTop > window.innerHeight)
+        this.showBtns = document.body.scrollTop || window.scrollY > window.innerHeight;
+        this.showChatBall = document.body.scrollTop || window.scrollY <= window.innerHeight;
       }
 
       if(!this.newLanding){
@@ -319,22 +320,23 @@ export default {
   },
   methods: {
     showArticles(){
-      JQuery(document.body).animate({scrollTop: JQuery('#last-articles').offset().top}, 450)
+      console.log(JQuery('#last-articles').offset().top)
+      JQuery("html, body").animate({scrollTop: JQuery('#last-articles').offset().top}, 450)
     },
     openManager(){
       this.managerShow = true;
       this.$nextTick(()=>{
-        JQuery(document.body).animate({scrollTop: JQuery('#operator-actions').offset().top}, 450)
+        JQuery("html, body").animate({scrollTop: JQuery('#operator-actions').offset().top}, 450)
       })
     },
     openPopup(name){
       this.$router.push({name: 'home-info', params: {id: name}})
     },
     scrollFirst() {
-      JQuery(document.body).animate({scrollTop: this.isTrendever ? window.innerHeight : window.innerHeight - 100},450);
+      JQuery("html, body").animate({scrollTop: this.isTrendever ? window.innerHeight : window.innerHeight - 100},450);
     },
     scrollSecond() {
-      JQuery(document.body).animate({scrollTop: 2 * window.innerHeight},450);
+      JQuery("html, body").animate({scrollTop: 2 * window.innerHeight},450);
     },
     ask(){
       yaCounter42602829.reachGoal('askfrommain');
