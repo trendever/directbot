@@ -3,7 +3,7 @@
 .wrap-advert.center-landing
 
   .__title 
-    | Зарегистрируйтесь#[br.mobile] и управляйте#[br.desktop]
+    | Зарегистрируйтесь#[br.mobile] и управляйте#[br]
     | продажами в Instagram#[br.mobile] с помощью Directbot
     //-| Полный доступ#[br.mobile] к функционалу#[br.desktop] CRM Directbot 
     //-|стоит от

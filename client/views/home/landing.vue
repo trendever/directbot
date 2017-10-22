@@ -265,20 +265,19 @@ export default {
       })
     })
     this.scrollListener=listen(window, 'scroll',()=>{
-
+      let scrollTop = document.body.scrollTop || window.scrollY
       if(this.isMobile){
-        this.showBtns = document.body.scrollTop || window.scrollY > window.innerHeight * 2;
-        this.showChatBall = document.body.scrollTop || window.scrollY <= window.innerHeight * 1.1;
+        this.showBtns = scrollTop > window.innerHeight * 2;
+        this.showChatBall = scrollTop <= window.innerHeight * 1.1;
       } else {
-        console.log(document.body.scrollTop > window.innerHeight)
-        this.showBtns = document.body.scrollTop || window.scrollY > window.innerHeight;
-        this.showChatBall = document.body.scrollTop || window.scrollY <= window.innerHeight;
+        this.showBtns = scrollTop > window.innerHeight;
+        this.showChatBall = scrollTop <= window.innerHeight;
       }
 
       if(!this.newLanding){
         let  elem = JQuery('#operator-skills');
         if(elem && elem.offset()){
-          if(document.body.scrollTop >= elem.offset().top) {
+          if(scrollTop >= elem.offset().top) {
             if(this.pricePopupShown) return;
             if(this.$store.state.user.pricePopup) return;
             this.pricePopupShown = true;
