@@ -110,7 +110,7 @@
         .big-landing-btn(@click="ask") Часто задаваемые вопросы
 
     bottom
-      .btn-wrap(slot="bottom")
+      .btn-wrap(:style="{marginTop: '24px'}" slot="bottom")
         .big-landing-btn.white(@click="openManager") Как работает менеджер
 
 
