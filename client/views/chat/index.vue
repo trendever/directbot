@@ -260,11 +260,11 @@ export default {
                 if(answer) {
                   let p = this.getOpenedProduct
                   if(p.id && !p.chat_message){
-                    if(!~["directbot", "trendevercom"].indexOf(p.supplier.instagram_username)) {
+                    //if(!~["directbot", "trendevercom"].indexOf(p.supplier.instagram_username)) {
+                    if(!~p.code.indexOf("_help")) {
                       p.chat_message = message.parts[0].content
                       productService.editProduct(p)
                     }
-                    
                   }
                 }  
               }
