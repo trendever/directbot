@@ -256,12 +256,15 @@ export default {
             .then(()=>{
               if(this.messagesList.length>0) {
                 let message = this.messagesList[this.messagesList.length - 1]
-                let answer = message.user.id == this.getCurrentMember.user_id
+                let answer = message.user_id == this.getCurrentMember.user_id
                 if(answer) {
                   let p = this.getOpenedProduct
                   if(p.id && !p.chat_message){
-                    p.chat_message = message.parts[0].content
-                    productService.editProduct(p)
+                    if(!~["directbot", "trendevercom"].indexOf(p.supplier.instagram_username)) {
+                      p.chat_message = message.parts[0].content
+                      productService.editProduct(p)
+                    }
+                    
                   }
                 }  
               }
@@ -419,7 +422,7 @@ export default {
 
         this.$nextTick( this.goToBottom );
         //Ask Anton why this code is commented
-        //this.setDefaultProductMessage()
+        this.setDefaultProductMessage()
 
       })
     },
