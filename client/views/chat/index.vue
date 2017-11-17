@@ -421,8 +421,8 @@ export default {
       Promise.resolve().then(()=>{
 
         this.$nextTick( this.goToBottom );
-        //Ask Anton why this code is commented
-        this.setDefaultProductMessage()
+        //First make popup with ask about "save this template for product?"
+        //this.setDefaultProductMessage()
 
       })
     },
