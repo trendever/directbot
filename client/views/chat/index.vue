@@ -260,10 +260,12 @@ export default {
                 if(answer) {
                   let p = this.getOpenedProduct
                   if(p.id && !p.chat_message){
-                    //if(!~["directbot", "trendevercom"].indexOf(p.supplier.instagram_username)) {
                     if(!~p.code.indexOf("_help")) {
-                      p.chat_message = message.parts[0].content
-                      productService.editProduct(p)
+                      var r = confirm("Установить последнее сообщение как шаблон к этому товару?");
+                      if (r == true) {
+                          p.chat_message = message.parts[0].content;
+                          productService.editProduct(p);
+                      }                      
                     }
                   }
                 }  
@@ -421,8 +423,7 @@ export default {
       Promise.resolve().then(()=>{
 
         this.$nextTick( this.goToBottom );
-        //First make popup with ask about "save this template for product?"
-        //this.setDefaultProductMessage()
+        this.setDefaultProductMessage() ;
 
       })
     },
