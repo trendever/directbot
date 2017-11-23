@@ -94,7 +94,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
         }
 
 
-        commit( types.CONVERSATION_SET, { id: conversation_id, messages, lengthList: chatCountForLoading } )
+        commit( types.CONVERSATION_SET, { id: conversation_id, messages, lengthList: chatCountForLoading() } )
 
       }
 
@@ -123,7 +123,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
             if ( lead.chat.id ) {
               console.log('Из чатов');
               return messageService
-                .find( lead.chat.id, null, chatCountForLoading, true )
+                .find( lead.chat.id, null, chatCountForLoading(), true )
                 .then(
                   ( messages ) => {
                     if ( Array.isArray( messages ) ) {
@@ -206,7 +206,7 @@ export const setConversation = ( { commit, state }, lead_id ) => {
               tab: getGroup( store.state.leads, lead )
              } )
             return messageService
-                .find( lead.chat.id, null, chatCountForLoading )
+                .find( lead.chat.id, null, chatCountForLoading() )
                 .then(
                   ( messages ) => {
                     if ( Array.isArray( messages ) ) {
@@ -255,11 +255,11 @@ export const loadMessage = (() => {
         if ( hasMore[ state.id ] ) {
 
           return messageService
-            .find( id, messages.length > 0 ? messages[ 0 ].id : undefined, chatCountForLoading, true )
+            .find( id, messages.length > 0 ? messages[ 0 ].id : undefined, chatCountForLoading(), true )
             .then(
               ( messages ) => {
 
-                if ( messages === null || messages.length < chatCountForLoading ) {
+                if ( messages === null || messages.length < chatCountForLoading() ) {
 
                   hasMore[ state.id ] = false;
 
@@ -286,7 +286,7 @@ export const loadMessage = (() => {
 
         if ( !hasMore[ state.id ] && messages.length >= state.lengthList ) {
 
-          commit( types.CONVERSATION_INC_LENGTH_LIST, chatCountForLoading )
+          commit( types.CONVERSATION_INC_LENGTH_LIST, chatCountForLoading() )
 
           resolve( messages );
 
