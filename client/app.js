@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import config from 'root/../config'
 import {isStandalone} from 'root/utils'
-
+import * as accountService from 'services/account'
 
 sync(store, router)
 
@@ -41,6 +41,9 @@ Vue.mixin({
         window.open('https://directbot.io/profile?token=' + this.$store.state.user.token)
       }
     },
+    disconnectDirect() {
+      accountService.invalidate(this.$store.state.user.id)
+    },
     openMenuProduct(product_id){
       this
         .$store
@@ -55,7 +58,6 @@ Vue.mixin({
         .catch(()=>{
           console.warn(`NO LEAD '${product_id}'`)
         })
-
     }
   }
 });

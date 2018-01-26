@@ -146,6 +146,7 @@ export default {
 
   created(){
     this.connectDirect.bind(this)
+    this.disconnectDirect.bind(this)
     if(this.monetizationTestOver) {
       //this.$router.replace({name: 'connect-bot'});
     }

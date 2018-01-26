@@ -59,16 +59,22 @@ export function confirm(name,code, password ) {
 
   return new Promise( (resolve, reject) => {
 
-    channel.req('confirm', 'account', {instagram_username: name, code, password } ).then( data => {
+    channel.req('confirm', 'account', {instagram_username: name, code, password}).then(data => {
+      resolve(data.response_map)
+    }).catch(error => {
+      console.error('CONFIRM ACCOUNT', error)
+      reject()
+    })
+  })
+}
 
-      resolve(data.response_map);
-
-    }).catch( error => {
-
-        console.error('CONFIRM ACCOUNT', error);
-        reject()
-    });
-
-  });
-
+export function invalidate(name) {
+  return new Promise((resolve, reject) => {
+    channel.req('invalidate', 'account', {username: name}).then(data => {
+      resolve(data.response_map)
+    }).catch(error => {
+      console.error('invalidate account', error)
+      reject()
+    })
+  })
 }
