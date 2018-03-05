@@ -60,10 +60,10 @@
         i.header__arrow__ic.ic-arrow-left(
         :class='{"_up": is_action_up}')
 
-      .header__notify-count(v-if="notifyCount")
+      .header__notify-count(v-if="notifyCount", @click='leftBtnAction')
         span {{ notifyCount }}
 
-      div(style="width: 46px", v-if="isMobile && !notifyCount")
+      div(style="width: 46px", v-if="isMobile && !notifyCount", @click='leftBtnAction')
 
       slot(name='flex-item')
 
