@@ -254,7 +254,7 @@ export default {
       let suspended = this.user.suspended
 
       if(plan) {
-        if(suspended && plan==1){
+        if(plan==1){
           this.$router.push({name: 'monetization'})
           return
         }
