@@ -147,8 +147,8 @@ export default {
         return this.run().then(()=>{
           this.clearNotify(this.lead_id);
           this.$nextTick( () => {
-                  this.goToBottom();
-                } );
+            this.goToBottom();
+          });
 
 
         })
@@ -479,25 +479,7 @@ export default {
 
     },
     goToBottom(){
-
-      let height = document.body.scrollHeight;
-
-      if(this.fullScroll !==  height) {
-
-        document.body.scrollTop = height;
-
-        this.fullScroll = height;
-
-        this.$nextTick(()=>{
-
-          setTimeout(()=>{
-
-            this.goToBottom();
-
-          }, 100 );
-
-        })
-      }
+      window.scrollTo(0,document.body.scrollHeight);
     }
   },
 }
