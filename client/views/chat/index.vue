@@ -247,31 +247,31 @@ export default {
       let id = this.$store.state.conversation.id
       let role = this.getCurrentMember.role
       let accept = [2,3,4]
-        if(id && accept.indexOf(role)!=-1){
-          let lead =  getLeadByConversationId(this.$store.state.lead,id)
-          if(this.loaded) return
-          this.loaded = true
-          this.$store
-            .dispatch("openProduct",lead.products[lead.products.length-1].id)
-            .then(()=>{
-              if(this.messagesList.length>0) {
-                let message = this.messagesList[this.messagesList.length - 1]
-                let answer = message.user_id == this.getCurrentMember.user_id
-                if(answer) {
-                  let p = this.getOpenedProduct
-                  if(p.id && !p.chat_message){
-                    if(!~p.code.indexOf("_help")) {
-                      var r = confirm("Установить последнее сообщение как шаблон к этому товару?");
-                      if (r == true) {
-                          p.chat_message = message.parts[0].content;
-                          productService.editProduct(p);
-                      }                      
-                    }
+      if(id && accept.indexOf(role)!=-1){
+        let lead =  getLeadByConversationId(this.$store.state.lead,id)
+        if(this.loaded) return
+        this.loaded = true
+        this.$store
+          .dispatch("openProduct",lead.products[lead.products.length-1].id)
+          .then(()=>{
+            if(this.messagesList.length>0 && this.messagesList < 5) {
+              let message = this.messagesList[this.messagesList.length - 1]
+              let answer = message.user_id == this.getCurrentMember.user_id
+              if(answer) {
+                let p = this.getOpenedProduct
+                if(p.id && !p.chat_message){
+                  if(!~p.code.indexOf("_help")) {
+                    var r = confirm("Установить последнее сообщение как шаблон к этому товару?");
+                    if (r == true) {
+                        p.chat_message = message.parts[0].content;
+                        productService.editProduct(p);
+                    }                      
                   }
-                }  
-              }
-            })
-        }
+                }
+              }  
+            }
+          })
+      }
     },
     ...mapActions([
 
