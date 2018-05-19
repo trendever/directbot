@@ -1,7 +1,7 @@
 <template lang="pug">
 
 #fullscreen-popup(:class="{'full': full, 'ios-browser': isIos }", ref="screen")
-  span.close: i.ic-close(v-on:click="close")
+  span.close(v-on:click="close"): i.ic-close
   component(v-bind:is="$route.params.id")
 
 </template>
@@ -85,6 +85,8 @@ export default {
     display: block;
     position: fixed;
     padding: 30px;
+    cursor: pointer;
+    z-index: 5000;
     i.ic-close{
 
       color: $color__white;
